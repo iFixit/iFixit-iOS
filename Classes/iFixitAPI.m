@@ -29,7 +29,7 @@ static int volatile openConnections = 0;
 }
 
 - (void)getGuide:(NSInteger)guideid forObject:(id)object withSelector:(SEL)selector {
-	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guide/%d?intro=rendered", IFIXIT_HOST, guideid];	
+	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guide/%d", IFIXIT_HOST, guideid];	
 
 	BGNetRequest *bgnr = [BGNetRequest initWithUrl:url];
 	[bgnr pushHandler:[MTHandler initForObject:object withSelector:selector]];
