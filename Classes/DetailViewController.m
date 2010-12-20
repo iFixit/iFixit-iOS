@@ -40,10 +40,13 @@
 // Called when the view is shown again in the split view, invalidating the button and popover controller.
 - (void)splitViewController: (UISplitViewController*)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
     NSMutableArray *items = [[toolbar items] mutableCopy];
-    [items removeObjectAtIndex:0];
-    [toolbar setItems:items animated:YES];
-    [items release];
-    self.popoverController = nil;
+    UIBarButtonItem *button = [items objectAtIndex:0];
+    if ([button.title isEqual:@"Browse"]) {
+        [items removeObjectAtIndex:0];
+        [toolbar setItems:items animated:YES];
+        [items release];
+        self.popoverController = nil;
+    }
 }
 
 - (void)splitViewController:(UISplitViewController*)svc popoverController:(UIPopoverController*)pc willPresentViewController:(UIViewController *)aViewController{
@@ -172,6 +175,9 @@
     self.popoverController = nil;
 }
 
+- (IBAction)showSplash:(UIBarButtonItem *)button {
+    [(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showSplash];   
+}
 
 #pragma mark -
 #pragma mark Memory management

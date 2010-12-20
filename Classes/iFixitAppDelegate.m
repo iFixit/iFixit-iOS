@@ -11,11 +11,11 @@
 
 #import "RootViewController.h"
 #import "DetailViewController.h"
-
+#import "SplashViewController.h"
 
 @implementation iFixitAppDelegate
 
-@synthesize window, splitViewController, rootViewController, detailViewController;
+@synthesize window, splitViewController, rootViewController, detailViewController, splashViewController;
 @synthesize api;
 
 #pragma mark -
@@ -26,6 +26,10 @@
 	
 	rootViewController.delegate = self;
 	
+    // Inject the splash view controller.
+    self.splashViewController = [[SplashViewController alloc] initWithNibName:@"SplashView" bundle:nil];
+    [self showSplash];
+    
     // Add the split view controller's view to the window and display.
     [window addSubview:splitViewController.view];
     [window makeKeyAndVisible];
@@ -33,6 +37,16 @@
     return YES;
 }
 
+- (void)showBrowser {
+    NSMutableArray *controllers = [splitViewController.viewControllers mutableCopy];
+    [controllers replaceObjectAtIndex:1 withObject:detailViewController];
+    splitViewController.viewControllers = [NSArray arrayWithArray:controllers];
+}
+- (void)showSplash {
+    NSMutableArray *controllers = [splitViewController.viewControllers mutableCopy];
+    [controllers replaceObjectAtIndex:1 withObject:splashViewController];
+    splitViewController.viewControllers = [NSArray arrayWithArray:controllers];
+}
 
 - (void)showGuide:(NSInteger)guideid {
 

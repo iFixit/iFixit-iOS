@@ -12,6 +12,7 @@
 @class RootViewController;
 @class DetailViewController;
 @class GuideStepViewController;
+@class SplashViewController;
 
 @interface iFixitAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
@@ -20,6 +21,7 @@
     
     RootViewController *rootViewController;
     DetailViewController *detailViewController;
+    SplashViewController *splashViewController;
 	
 	iFixitAPI *api;
 }
@@ -29,10 +31,13 @@
 @property (nonatomic, retain) IBOutlet UISplitViewController *splitViewController;
 @property (nonatomic, retain) IBOutlet RootViewController *rootViewController;
 @property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
+@property (nonatomic, retain) IBOutlet SplashViewController *splashViewController;
 
 @property (nonatomic, retain) iFixitAPI *api;
 
 - (void)showGuide:(NSInteger)guideid;
 - (void)hideGuide;
+- (void)showBrowser;
+- (void)showSplash;
 
 @end

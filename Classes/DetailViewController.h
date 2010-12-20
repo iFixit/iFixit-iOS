@@ -25,5 +25,6 @@
 @property (nonatomic, retain) UIPopoverController *popoverController;
 
 - (NSInteger)parseGuideURL:(NSString *)url;
+- (IBAction)showSplash:(UIBarButtonItem *)button;
 
 @end

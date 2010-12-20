@@ -52,6 +52,9 @@
 		DA8CA7C112692AD600521FE7 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA8CA7BF12692AD600521FE7 /* back@2x.png */; };
 		DA8CA7C212692AD600521FE7 /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA8CA7C012692AD600521FE7 /* forward@2x.png */; };
 		DA8CA7CA12692D2200521FE7 /* logo_black.png in Resources */ = {isa = PBXBuildFile; fileRef = DA8CA7C912692D2200521FE7 /* logo_black.png */; };
+		DAAFB80012BEE79C003ACCD0 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAFB7FE12BEE79C003ACCD0 /* SplashViewController.m */; };
+		DAAFB80112BEE79C003ACCD0 /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAFB7FF12BEE79C003ACCD0 /* SplashView.xib */; };
+		DAAFB9B312BF0F65003ACCD0 /* splash_header.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAFB9B212BF0F65003ACCD0 /* splash_header.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +130,10 @@
 		DA8CA7BF12692AD600521FE7 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		DA8CA7C012692AD600521FE7 /* forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward@2x.png"; sourceTree = "<group>"; };
 		DA8CA7C912692D2200521FE7 /* logo_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_black.png; sourceTree = "<group>"; };
+		DAAFB7FD12BEE79C003ACCD0 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
+		DAAFB7FE12BEE79C003ACCD0 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
+		DAAFB7FF12BEE79C003ACCD0 /* SplashView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SplashView.xib; path = Classes/SplashView.xib; sourceTree = "<group>"; };
+		DAAFB9B212BF0F65003ACCD0 /* splash_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_header.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +164,8 @@
 				2804200A108E984D000629CD /* DetailViewController.m */,
 				1D3623240D0F684500981E51 /* iFixitAppDelegate.h */,
 				1D3623250D0F684500981E51 /* iFixitAppDelegate.m */,
+				DAAFB7FD12BEE79C003ACCD0 /* SplashViewController.h */,
+				DAAFB7FE12BEE79C003ACCD0 /* SplashViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -195,6 +204,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DAAFB7FF12BEE79C003ACCD0 /* SplashView.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				2804203B108E9BAB000629CD /* DetailView.xib */,
 				8D1107310486CEB800E47090 /* iFixit-Info.plist */,
@@ -269,6 +279,7 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DAAFB9B212BF0F65003ACCD0 /* splash_header.png */,
 				DA1A0B18129203AC00620927 /* Default-Landscape.png */,
 				DA1A0B19129203AC00620927 /* Default-Portrait.png */,
 				DA8CA7C912692D2200521FE7 /* logo_black.png */,
@@ -379,6 +390,8 @@
 				DA228AA212A45BB3004BB858 /* icon114.png in Resources */,
 				DA228AA312A45BB3004BB858 /* icon512.png in Resources */,
 				DA228B1012A4633D004BB858 /* backarrow.png in Resources */,
+				DAAFB80112BEE79C003ACCD0 /* SplashView.xib in Resources */,
+				DAAFB9B312BF0F65003ACCD0 /* splash_header.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +425,7 @@
 				C1C894F7121B447E0036FAFC /* TapDetectingImageView.m in Sources */,
 				DA8CA6C512691A8000521FE7 /* CachedImageLoader.m in Sources */,
 				DA8CA6C612691A8000521FE7 /* DiskCache.m in Sources */,
+				DAAFB80012BEE79C003ACCD0 /* SplashViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

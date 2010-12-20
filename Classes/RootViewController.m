@@ -6,6 +6,7 @@
 //  Copyright iFixit 2010. All rights reserved.
 //
 
+#import "iFixitAppDelegate.h"
 #import "RootViewController.h"
 #import "DetailViewController.h"
 
@@ -122,6 +123,8 @@
 		[self.navigationController pushViewController:vc animated:YES];
 		[vc release];
 	} else {
+        [(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showBrowser];
+
 		// Show the device in detailViewController
 		NSString *device = [leafs objectAtIndex:indexPath.row];
 		NSString *url = [NSString stringWithFormat:@"http://%@/Guide/Device/%@", 
