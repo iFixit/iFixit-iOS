@@ -66,19 +66,19 @@ static int volatile openConnections = 0;
 	[handler.object performSelector:handler.selector withObject:areas];	
 }
 
-- (void)getFeaturedGuides:(NSString *)area forObject:(id)object withSelector:(SEL)selector {
-	if (!area)
-		area = @"";
+- (void)getGuides:(NSString *)type forObject:(id)object withSelector:(SEL)selector {
+	if (!type)
+		type = @"featured";
 	
-	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guides/%@?sort=featured&limit=6", IFIXIT_HOST, area];	
+	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guides/%@?limit=9", IFIXIT_HOST, type];	
 	
 	BGNetRequest *bgnr = [BGNetRequest initWithUrl:url];
 	[bgnr pushHandler:[MTHandler initForObject:object withSelector:selector]];
-    [bgnr pushHandler:[MTHandler initForObject:self withSelector:@selector(gotFeaturedGuides:)]];
+    [bgnr pushHandler:[MTHandler initForObject:self withSelector:@selector(gotGuides:)]];
 	[self performSelectorInBackground:@selector(get:) withObject:bgnr];
 }
 
-- (void)gotFeaturedGuides:(BGNetRequest *)bgnr {
+- (void)gotGuides:(BGNetRequest *)bgnr {
 	NSArray *guides = [bgnr.data JSONValue];
 	
 	MTHandler *handler = [bgnr popHandler];

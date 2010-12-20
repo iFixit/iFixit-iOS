@@ -35,16 +35,33 @@
 
 @implementation SplashViewController
 
-@synthesize guides, numImagesLoaded;
-@synthesize button1, button2, button3, button4, button5, button6;
-@synthesize label1, label2, label3, label4, label5, label6;
+@synthesize guides, numImagesLoaded, lastRow;
+@synthesize button1, button2, button3, button4, button5, button6, button7, button8, button9;
+@synthesize label1, label2, label3, label4, label5, label6, label7, label8, label9;
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[iFixitAPI sharedInstance] getFeaturedGuides:nil forObject:self withSelector:@selector(gotFeaturedGuides:)];
+    self.guides = nil;
+    [[iFixitAPI sharedInstance] getGuides:@"featured" forObject:self withSelector:@selector(gotFeaturedGuides:)];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    UIInterfaceOrientation toInterfaceOrientation = [[UIDevice currentDevice] orientation];
+    [UIView beginAnimations:@"fade" context:nil];
+    lastRow.alpha = (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || 
+                     toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) ? 0 : 1;
+    [UIView commitAnimations];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [UIView beginAnimations:@"fade" context:nil];
+     lastRow.alpha = (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || 
+                      toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) ? 0 : 1;
+    [UIView commitAnimations];
+
 }
 
 - (void)gotFeaturedGuides:(NSArray *)guidesArray {
@@ -68,6 +85,12 @@
         guide = 4;
     else if ([button isEqual:button6])
         guide = 5;
+    else if ([button isEqual:button7])
+        guide = 6;
+    else if ([button isEqual:button8])
+        guide = 7;
+    else if ([button isEqual:button9])
+        guide = 8;
     
     int guideid = [[[guides objectAtIndex:guide] valueForKey:@"guideid"] integerValue];
     [(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showGuide:guideid];
@@ -125,6 +148,18 @@
     else if (numImagesLoaded == 6) {
         button = button6;
         label = label6;
+    }
+    else if (numImagesLoaded == 7) {
+        button = button7;
+        label = label7;
+    }
+    else if (numImagesLoaded == 8) {
+        button = button8;
+        label = label8;
+    }
+    else if (numImagesLoaded == 9) {
+        button = button9;
+        label = label9;
     }
     
     NSDictionary *guide = [guides objectAtIndex:numImagesLoaded-1];

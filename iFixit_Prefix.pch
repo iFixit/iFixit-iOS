@@ -28,7 +28,7 @@
 // ALog always displays output regardless of the DEBUG setting
 #define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 
-#define IFIXIT_HOST @"dpatierno.cominor.com"
-#define START_URL @"http://dpatierno.cominor.com/Guide"
+#define IFIXIT_HOST @"www.ifixit.com"
+#define START_URL @"http://www.ifixit.com/Guide"
 //#define IFIXIT_HOST @"makeprojects.com"
 //#define START_URL @"http://makeprojects.com"

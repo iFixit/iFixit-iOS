@@ -18,6 +18,6 @@
 + (iFixitAPI *)sharedInstance;
 - (void)getGuide:(NSInteger)guideid forObject:(id)object withSelector:(SEL)selector;
 - (void)getAreas:(NSString *)parent forObject:(id)object withSelector:(SEL)selector;
-- (void)getFeaturedGuides:(NSString *)area forObject:(id)object withSelector:(SEL)selector;
+- (void)getGuides:(NSString *)type forObject:(id)object withSelector:(SEL)selector;
 - (void)get:(BGNetRequest *)bgnr;
 @end

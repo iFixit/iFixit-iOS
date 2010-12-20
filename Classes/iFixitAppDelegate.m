@@ -49,6 +49,8 @@
 }
 
 - (void)showGuide:(NSInteger)guideid {
+    if (!guideid)
+        return;
 
 	GuideViewController *vc = [GuideViewController initWithGuideid:guideid];
 	[splitViewController presentModalViewController:vc animated:YES];
@@ -113,9 +115,13 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive.
      */
-    if (!rootViewController.tree)
+    if (!rootViewController.tree) {
         [[iFixitAPI sharedInstance] getAreas:nil forObject:self withSelector:@selector(gotAreas:)];
+    }
 
+    if (!splashViewController.guides) {
+        [[iFixitAPI sharedInstance] getGuides:@"featured" forObject:splashViewController withSelector:@selector(gotFeaturedGuides:)];
+    }
 }
 
 
