@@ -6,6 +6,7 @@ http://www.ifixit.com/api
 APIs used:
  * /api/areas
  * /api/guide
+ * /api/guide/featured
  
 ----------
 

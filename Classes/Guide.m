@@ -11,19 +11,35 @@
 
 @implementation Guide
 
-@synthesize guideid, device, title, author, timeRequired, difficulty, introduction, introduction_rendered, summary, image;
+@synthesize data, guideid, device, subject, title, author, timeRequired, difficulty, introduction, introduction_rendered, summary, image;
 @synthesize documents, parts, tools, flags;
 @synthesize prereqs, steps;
 
++ (NSDictionary *)repairNullsForDict:(NSDictionary *)dict {
+    NSDictionary *guideData = [dict objectForKey:@"guide"];
+    
+    // I think this are the only fields that may be null.
+    if ([[guideData objectForKey:@"summary"] isEqual:[NSNull null]])
+        [guideData setValue:@"" forKey:@"summary"];
+    
+    if ([[guideData objectForKey:@"subject"] isEqual:[NSNull null]])
+        [guideData setValue:@"" forKey:@"subject"]; 
+    
+    return dict;
+}
+
 + (Guide *)guideWithDictionary:(NSDictionary *)dict {
 	Guide *guide		= [[Guide alloc] init];
+    dict                = [Guide repairNullsForDict:dict];
+    guide.data          = dict;
 	guide.guideid		= [[dict valueForKey:@"guideid"] integerValue];
 	
 	NSDictionary *guideData = [dict valueForKey:@"guide"];
 	
 	// Meta information
 	guide.title          = [guideData valueForKey:@"title"];
-	guide.device         = [guideData valueForKey:@"device"];
+	guide.device         = [dict valueForKey:@"device"];
+	guide.subject        = [guideData valueForKey:@"subject"];
 	guide.author         = [guideData valueForKey:@"author"];
 	guide.timeRequired   = [guideData valueForKey:@"time"];
 	guide.difficulty     = [guideData valueForKey:@"difficulty"];

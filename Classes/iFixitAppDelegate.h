@@ -6,10 +6,9 @@
 //  Copyright iFixit 2010. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "iFixitAPI.h"
 
-@class RootViewController;
+@class AreasViewController;
 @class DetailViewController;
 @class GuideStepViewController;
 @class SplashViewController;
@@ -19,25 +18,34 @@
     
     UISplitViewController *splitViewController;
     
-    RootViewController *rootViewController;
+    AreasViewController *areasViewController;
     DetailViewController *detailViewController;
     SplashViewController *splashViewController;
 	
 	iFixitAPI *api;
+    BOOL firstLoad;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) IBOutlet UISplitViewController *splitViewController;
-@property (nonatomic, retain) IBOutlet RootViewController *rootViewController;
-@property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
+@property (nonatomic, retain) UISplitViewController *splitViewController;
+@property (nonatomic, retain) AreasViewController *areasViewController;
+@property (nonatomic, retain) DetailViewController *detailViewController;
 @property (nonatomic, retain) IBOutlet SplashViewController *splashViewController;
 
 @property (nonatomic, retain) iFixitAPI *api;
+@property (nonatomic) BOOL firstLoad;
 
-- (void)showGuide:(NSInteger)guideid;
++ (BOOL)isIPad;
+- (void)showDozukiSplash;
+- (void)showSiteSplash;
+- (UIViewController *)iPadRoot;
+- (UIViewController *)iPhoneRoot;
+- (void)showGuideid:(NSInteger)guideid;
+- (void)showGuide:(Guide *)guide;
 - (void)hideGuide;
 - (void)showBrowser;
 - (void)showSplash;
+- (void)loadSite:(NSString *)domain;
 
 @end

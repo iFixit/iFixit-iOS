@@ -7,7 +7,7 @@
 //
 
 #import "GuideImageViewController.h"
-
+#import "Config.h"
 
 #define ZOOM_VIEW_TAG 100
 
@@ -23,14 +23,36 @@
 
 static CGRect frameView;
 
+- (void)detectOrientation {
+    if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]))
+        frameView = CGRectMake(0.0f, 0.0f, 480.0f, 320.0f);
+    else
+        frameView = CGRectMake(0.0f, 0.0f, 320.0f, 480.0f);
+
+    self.view.frame = frameView;
+    
+    if ([self.view.subviews count])
+        [self loadView];
+}
+
 + (id)initWithUIImage:(UIImage *)image {
-	// 20 pixel header
-	frameView = CGRectMake(0.0f,    0.0f, 1024.0f, 748.0f);
+    [TestFlight passCheckpoint:@"Image Zoom"];
 
 	GuideImageViewController *vc = [[GuideImageViewController alloc] init];
-	
 	vc.image = image;
-		
+
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        frameView = CGRectMake(0.0f, 0.0f, 1024.0f, 748.0f);
+        vc.view.frame = frameView;        
+    }
+    else {
+        [vc setWantsFullScreenLayout:YES];
+        [vc detectOrientation];
+        
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        [[NSNotificationCenter defaultCenter] addObserver:vc selector:@selector(detectOrientation) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    }
+	
     return [vc autorelease];
 }
 
@@ -39,7 +61,7 @@ static CGRect frameView;
 
     // set up main scroll view
 	imageScrollView = [[UIScrollView alloc] initWithFrame:frameView];
-    [imageScrollView setBackgroundColor:[UIColor blackColor]];
+    [imageScrollView setBackgroundColor:[Config currentConfig].backgroundColor];
     [imageScrollView setDelegate:self];
     [imageScrollView setBouncesZoom:YES];
     [self.view addSubview:imageScrollView];
@@ -50,14 +72,16 @@ static CGRect frameView;
    
     [imageView setTag:ZOOM_VIEW_TAG];
     [imageView setUserInteractionEnabled:YES];
-    [imageScrollView setContentSize:[imageView frame].size];
-    //[imageScrollView setContentSize:CGSizeMake(1600.0f, 1200.0f)];
+    //[imageScrollView setContentSize:[imageView frame].size];
+    [imageScrollView setContentSize:CGSizeMake(1600.0f, 1200.0f)];
 	[imageScrollView addSubview:imageView];
     [imageView release];
    
-    // calculate minimum scale to perfectly fit image width, and begin at that scale
-    float minimumScale = [imageScrollView frame].size.width / [imageView frame].size.width;
-   
+    // calculate minimum scale to perfectly fit longer edge, and begin at that scale
+    float minimumWidthScale = [imageScrollView frame].size.width / [imageView frame].size.width;
+    float minimumHeightScale = [imageScrollView frame].size.height / [imageView frame].size.height;
+    float minimumScale = fmax(minimumWidthScale, minimumHeightScale);
+    
     [imageScrollView setMinimumZoomScale:minimumScale];
     [imageScrollView setZoomScale:minimumScale];
     [imageScrollView setMaximumZoomScale:2.0];
@@ -70,15 +94,17 @@ static CGRect frameView;
     
     self.delay = [NSDate date];
     
-    // Show the back button.
-    CGRect backFrame = CGRectMake(3, 4, 46, 35);
-    UIImage *backarrow = [UIImage imageNamed:@"backarrow.png"];
+    // Show the x icon.
+    CGRect backFrame = CGRectMake(5, 5, 50, 50);
+    UIImage *x = [UIImage imageNamed:@"x-icon.png"];
     UIButton *back = [UIButton buttonWithType:UIButtonTypeCustom];
-    [back setBackgroundImage:backarrow forState:UIControlStateNormal];
-    [back addTarget:delegate action:@selector(hideGuideImage:) forControlEvents:UIControlEventTouchUpInside];
+    back.alpha = 0.4;
+    [back setBackgroundImage:x forState:UIControlStateNormal];
+    back.userInteractionEnabled = NO;
+    //[back addTarget:delegate action:@selector(hideGuideImage:) forControlEvents:UIControlEventTouchUpInside];
     back.frame = backFrame;
     [self.view addSubview:back];
-   
+       
 }
 - (void)setupTouchEvents:(UIImageView *)imageView {
    
@@ -125,8 +151,12 @@ static CGRect frameView;
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		[NSThread sleepForTimeInterval:0.25];
 
-		if (!doubleTap)
-			[delegate performSelectorOnMainThread:@selector(hideGuideImage:) withObject:nil waitUntilDone:NO];
+		if (!doubleTap) {
+            [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+            [[NSNotificationCenter defaultCenter] removeObserver:self];
+            
+			[delegate performSelectorOnMainThread:@selector(hideGuideImage:) withObject:nil waitUntilDone:NO];;
+        }
 		
 	});
 }

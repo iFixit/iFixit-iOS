@@ -6,25 +6,29 @@
 //  Copyright iFixit 2010. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "GuideViewController.h"
+@class GuideCatchingWebView;
+@class WBProgressHUD;
 
-@interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UIWebViewDelegate> {
+@interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UIWebViewDelegate, UIAlertViewDelegate> {
     UIPopoverController *popoverController;
     UIToolbar *toolbar;
     
-    UIWebView *webView;
+    GuideCatchingWebView *webView;
+    WBProgressHUD *loading;
+    NSURL *lastURL;
 	UIBarButtonItem *backButton;
 	UIBarButtonItem *fwdButton;
 }
 
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (nonatomic, retain) IBOutlet GuideCatchingWebView *webView;
+@property (nonatomic, retain) WBProgressHUD *loading;
+@property (nonatomic, retain) NSURL *lastURL;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *fwdButton;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 
-- (NSInteger)parseGuideURL:(NSString *)url;
 - (IBAction)showSplash:(UIBarButtonItem *)button;
 
 @end

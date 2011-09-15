@@ -1,0 +1,18 @@
+html, body {
+   background-color: black;
+   color: white;
+   font-family: "Helvetica", sans-serif;
+   margin: 0px 10px;
+}
+
+body.small {
+   font-size: 0.8em;
+}
+
+a, a:visited {
+   color: #aaf;
+}
+
+div.parts {
+   margin-bottom: 20px;
+}

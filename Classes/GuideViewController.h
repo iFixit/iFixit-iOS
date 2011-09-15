@@ -6,8 +6,8 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 @class Guide;
+@class GuideBookmarker;
 
 @interface GuideViewController : UIViewController <UIScrollViewDelegate> {
 	UINavigationBar *navBar;
@@ -15,12 +15,11 @@
 	UIPageControl *pageControl;
     NSMutableArray *viewControllers;
 	UIActivityIndicatorView *spinner;
+    
+    GuideBookmarker *bookmarker;
 	
     // To be used when scrolls originate from the UIPageControl
     BOOL pageControlUsed;
-    
-    // Rate limit image loading.
-    NSDate *lastScroll;
 	
 	Guide *guide;
     NSInteger guideid;
@@ -31,13 +30,15 @@
 @property (nonatomic, retain) IBOutlet UINavigationBar *navBar;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
+@property (nonatomic, retain) GuideBookmarker *bookmarker;
 @property (nonatomic, retain) NSMutableArray *viewControllers;
 @property (nonatomic, retain) Guide *guide;
-@property (nonatomic, retain) NSDate *lastScroll;
 @property (nonatomic) NSInteger guideid;
 @property (nonatomic) NSInteger shouldLoadPage;
 
 + (GuideViewController *)initWithGuideid:(NSInteger)guideid;
++ (GuideViewController *)initWithGuide:(Guide *)guide;
+- (void)gotGuide:(Guide *)theGuide;
 - (void)loadScrollViewWithPage:(int)page;
 - (void)preloadForCurrentPage:(NSNumber *)pageNumber;
 - (IBAction)changePage:(id)sender;

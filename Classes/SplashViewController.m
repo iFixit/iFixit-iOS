@@ -8,6 +8,8 @@
 
 #import "iFixitAppDelegate.h"
 #import "SplashViewController.h"
+#import "UIButton+WebCache.h"
+#import "Config.h"
 
 #pragma mark VerticalAlign
 @interface UILabel (VerticalAlign)
@@ -35,6 +37,7 @@
 
 @implementation SplashViewController
 
+@synthesize splashHeaderMake, splashHeaderIFixit, featuredLabelMake, featuredLabelIFixit;
 @synthesize guides, numImagesLoaded, lastRow;
 @synthesize button1, button2, button3, button4, button5, button6, button7, button8, button9;
 @synthesize label1, label2, label3, label4, label5, label6, label7, label8, label9;
@@ -44,16 +47,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Set the appropriate header.
+    if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
+        featuredLabelMake.hidden = NO;
+        splashHeaderMake.hidden = NO;
+    }
+    else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
+        featuredLabelIFixit.hidden = NO;
+        splashHeaderIFixit.hidden = NO;
+    }
+    
+    // Set the background color.
+    self.view.backgroundColor = [Config currentConfig].backgroundColor;
+
     self.guides = nil;
-    [[iFixitAPI sharedInstance] getGuides:@"featured" forObject:self withSelector:@selector(gotFeaturedGuides:)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    UIInterfaceOrientation toInterfaceOrientation = [[UIDevice currentDevice] orientation];
-    [UIView beginAnimations:@"fade" context:nil];
-    lastRow.alpha = (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || 
-                     toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) ? 0 : 1;
-    [UIView commitAnimations];
+    lastRow.alpha = (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || 
+                     self.interfaceOrientation == UIInterfaceOrientationLandscapeRight) ? 0 : 1;
+
+    if (!guides)
+        [[iFixitAPI sharedInstance] getGuides:@"featured" forObject:self withSelector:@selector(gotFeaturedGuides:)];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -61,13 +76,45 @@
      lastRow.alpha = (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || 
                       toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) ? 0 : 1;
     [UIView commitAnimations];
-
 }
 
 - (void)gotFeaturedGuides:(NSArray *)guidesArray {
     self.guides = guidesArray;
-    numImagesLoaded = 0;
-    [self startImageDownloads];
+    
+    NSArray *buttons = [NSArray arrayWithObjects:button1, button2, button3, button4, button5, button6, button7, button8, button9, nil];
+    NSArray *labels = [NSArray arrayWithObjects:label1, label2, label3, label4, label5, label6, label7, label8, label9, nil];
+
+    for (int i=0; i<9; i++) {
+        UIButton *button = [buttons objectAtIndex:i];
+        UILabel *label = [labels objectAtIndex:i];
+        
+        NSDictionary *guide = nil;
+        if ([guides count] > i)
+            guide = [guides objectAtIndex:i];
+        
+        if (guide) {
+            // Load the image
+            GuideImage *image = [[GuideImage alloc] init];
+            image.url = [guide valueForKey:@"image_url"];
+            [button setImageWithURL:[image URLForSize:@"standard"]];
+            [image release];
+            
+            // Set the label
+            [label setText:[NSString stringWithFormat:@"%@ %@", 
+                            [guide valueForKey:@"device"],
+                            [guide valueForKey:@"thing"]]];
+            [label alignTop];
+            
+            // Show the labels in case we hid them earlier from a network failure.
+            button.backgroundColor = [UIColor clearColor];
+            label.hidden = NO;
+        }
+        else {
+            // Hide the labels and spinners.
+            button.backgroundColor = [UIColor blackColor];
+            label.hidden = YES;
+        }
+    }
 }
 
 - (IBAction)showGuide:(UIButton *)button {
@@ -92,86 +139,14 @@
     else if ([button isEqual:button9])
         guide = 8;
     
-    int guideid = [[[guides objectAtIndex:guide] valueForKey:@"guideid"] integerValue];
-    [(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showGuide:guideid];
+    if (guide < [guides count]) {
+        int guideid = [[[guides objectAtIndex:guide] valueForKey:@"guideid"] integerValue];
+        [(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showGuideid:guideid];
+    }
 }
 
 - (IBAction)browseAll:(UIButton *)button {
     [(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showBrowser];
-}
-
-
-- (void)startImageDownloads {
-    if ([guides count] > numImagesLoaded)
-        [[CachedImageLoader sharedImageLoader] addClientToDownloadQueue:self];
-}
-- (NSURLRequest *)request {
-    if (numImagesLoaded >= [guides count])
-        return nil;
-    
-    GuideImage *image = [[GuideImage alloc] init];
-    image.url = [[guides objectAtIndex:numImagesLoaded] valueForKey:@"image_url"];
-    
-    return [NSURLRequest requestWithURL:[image URLForSize:@"standard"]];
-}
-- (void)renderImage:(UIImage *)theImage {
-    numImagesLoaded++;
-    
-    // Use this instead of dispatch_async() for iOS 3.2 compatibility.
-    [self performSelectorOnMainThread:@selector(setImageAndLoadNext:) withObject:theImage waitUntilDone:YES];
-}
-
-- (void)setImageAndLoadNext:(UIImage *)theImage {
-    UIButton *button;
-    UILabel *label;
-    
-    if (numImagesLoaded == 1) {
-        button = button1;
-        label = label1;
-    }
-    else if (numImagesLoaded == 2) {
-        button = button2;
-        label = label2;
-    }
-    else if (numImagesLoaded == 3) {
-        button = button3;
-        label = label3;
-    }
-    else if (numImagesLoaded == 4) {
-        button = button4;
-        label = label4;
-    }
-    else if (numImagesLoaded == 5) {
-        button = button5;
-        label = label5;
-    }
-    else if (numImagesLoaded == 6) {
-        button = button6;
-        label = label6;
-    }
-    else if (numImagesLoaded == 7) {
-        button = button7;
-        label = label7;
-    }
-    else if (numImagesLoaded == 8) {
-        button = button8;
-        label = label8;
-    }
-    else if (numImagesLoaded == 9) {
-        button = button9;
-        label = label9;
-    }
-    
-    NSDictionary *guide = [guides objectAtIndex:numImagesLoaded-1];
-    [label setText:[NSString stringWithFormat:@"%@ %@", 
-                    [guide valueForKey:@"device"],
-                    [guide valueForKey:@"thing"]]];
-    [label alignTop];
-    [button setBackgroundImage:theImage forState:UIControlStateNormal];
-    
-    // Load the next image.
-    if ([guides count] > numImagesLoaded)
-        [[CachedImageLoader sharedImageLoader] addClientToDownloadQueue:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

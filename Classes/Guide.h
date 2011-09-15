@@ -6,15 +6,16 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "GuideImage.h"
 #import "GuideStep.h"
 #import "GuideStepLine.h"
 
 @interface Guide : NSObject {
+    NSDictionary *data;
 	NSInteger guideid;
 	NSString *title;
 	NSString *device;
+	NSString *subject;
 	NSString *author;
 	NSString *timeRequired;
 	NSString *difficulty;
@@ -32,9 +33,11 @@
 	NSMutableArray *steps;
 }
 
+@property (nonatomic, retain) NSDictionary *data;
 @property (nonatomic) NSInteger guideid;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *device;
+@property (nonatomic, retain) NSString *subject;
 @property (nonatomic, retain) NSString *author;
 @property (nonatomic, retain) NSString *timeRequired;
 @property (nonatomic, retain) NSString *difficulty;

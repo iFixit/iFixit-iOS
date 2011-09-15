@@ -6,11 +6,12 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "CachedImageLoader.h"
-
-
-@interface SplashViewController : UIViewController <ImageConsumer> {
+@interface SplashViewController : UIViewController {
+    UIView *splashHeaderMake;
+    UIView *splashHeaderIFixit;
+    UILabel *featuredLabelMake;
+    UILabel *featuredLabelIFixit;
+    
     NSArray *guides;
     
     UIView *lastRow;
@@ -34,6 +35,11 @@
     UILabel *label9;
     NSInteger numImagesLoaded;
 }
+
+@property (nonatomic, retain) IBOutlet UIView* splashHeaderMake;
+@property (nonatomic, retain) IBOutlet UIView* splashHeaderIFixit;
+@property (nonatomic, retain) IBOutlet UILabel *featuredLabelMake;
+@property (nonatomic, retain) IBOutlet UILabel *featuredLabelIFixit;
 
 @property (nonatomic, retain) NSArray *guides;
 
@@ -60,6 +66,5 @@
 
 - (IBAction)showGuide:(UIButton *)button;
 - (IBAction)browseAll:(UIButton *)button;
-- (void)startImageDownloads;
 
 @end

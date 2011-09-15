@@ -10,20 +10,19 @@
 #import "GuideImageViewController.h"
 #import "GuideStep.h"
 #import "GuideImage.h"
-
+#import "Config.h"
+#import "SDWebImageDownloader.h"
+#import "UIButton+WebCache.h"
 
 @implementation GuideStepViewController
 
-@synthesize delegate, step, titleLabel, mainImage, imageSpinner, textSpinner, webView, imageVC, image;
-@synthesize image1, image2, image3, numImagesLoaded, bigImages;
-
-static CGRect frameView;
+@synthesize delegate, step, titleLabel, mainImage, imageSpinner, webView, imageVC;
+@synthesize image1, image2, image3, numImagesLoaded, bigImages, html;
 
 // Load the view nib and initialize the pageNumber ivar.
 + (id)initWithStep:(GuideStep *)step {
-	frameView = CGRectMake(0.0f,    0.0f, 1024.0f, 768.0f);
-	
-	GuideStepViewController *vc = [[GuideStepViewController alloc] initWithNibName:@"GuideStepView" bundle:nil];
+    NSString *nib = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"GuideStepView" : @"SmallGuideStepView";
+	GuideStepViewController *vc = [[GuideStepViewController alloc] initWithNibName:nib bundle:nil];
 
 	vc.step = step;
 	vc.numImagesLoaded = 0;
@@ -35,15 +34,32 @@ static CGRect frameView;
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-		
+    
+    UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? 
+        [self layoutLandscape] : [self layoutPortrait];
+
+    // Set the background color, softening black and white by 15%.
+    UIColor *bgColor = [Config currentConfig].backgroundColor;
+    /*
+    if ([bgColor isEqual:[UIColor blackColor]])
+        bgColor = [UIColor colorWithRed:0.05 green:0.05 blue:0.05 alpha:1.0];
+    else if ([bgColor isEqual:[UIColor whiteColor]])
+        bgColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
+    */
+    self.view.backgroundColor = bgColor;
+	webView.backgroundColor = bgColor;    
+    
 	NSString *stepTitle = [NSString stringWithFormat:@"Step %d", step.number];
 	if (![step.title isEqual:@""])
 		stepTitle = [NSString stringWithFormat:@"%@ - %@", stepTitle, step.title];
 	
 	[titleLabel setText:stepTitle];
+    titleLabel.textColor = [Config currentConfig].textColor;
 
     // Load the step contents as HTML.
-    NSString *header = @"<html><head><style type=\"text/css\"> html, body { background-color: black; color: white; font-family: \"Helvetica\", sans-serif; } a, a:visited { color: #aaf; } body { margin-right: 20px; } li {list-style-type: none; position: relative;} .l_1 { margin-left: 20px; } .l_2 { margin-left: 40px; } .l_3 { margin-left: 60px; } .bullet { position: absolute; top: 6px; left: -15px; background-image:url(\"http://static.ifixit.net/static/images/guide/bullets-black.gif\"); background-repeat:no-repeat; height:10px; width:10px; background-position: -1px -1px; } .bullet_black {background-position: -1px -1px;} .bullet_red {background-position: -1px -13px;} .bullet_orange {background-position: -1px -25px;} .bullet_yellow {background-position: -1px -37px;} .bullet_green {background-position: -1px -49px;} .bullet_blue {background-position: -1px -61px;} .bullet_violet {background-position: -1px -73px;} p {margin: 3px} .bulletIcon {float: right; margin: 0px 0px 0px 5px;    width: 50px; height: 50px; background-image: url(\"http://static.ifixit.net/static/images/guide/bullets-black.gif\"); background-repeat: no-repeat; } .bullet_icon_caution {background-position: -1px -109px;} .bullet_icon_note {background-position: -1px -161px;} .bullet_icon_reminder {background-position: -1px -213px;} </style></head><body><ul>";
+    NSString *header = [NSString stringWithFormat:@"<html><head><style type=\"text/css\"> %@ </style></head><body class=\"%@\"><ul>",
+                        [Config currentConfig].stepCSS,
+                        (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"big" : @"small"];
     NSString *footer = @"</ul></body></html>";
    
     NSMutableString *body = [NSMutableString stringWithString:@""];
@@ -58,114 +74,58 @@ static CGRect frameView;
        [body appendFormat:@"<li class=\"l_%d\"><div class=\"bullet bullet_%@\"></div>%@<p>%@</p><div style=\"clear: both\"></div></li>\n", line.level, line.bullet, icon, line.text];
     }
        
-    NSString *html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
-    [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", IFIXIT_HOST]]];
-   	webView.backgroundColor = [UIColor blackColor];
+    self.html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
+    [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
     
     // Disable bounce scrolling.
+    /*
     for (id subview in webView.subviews)
         if ([[subview class] isSubclassOfClass:[UIScrollView class]])
             ((UIScrollView *)subview).bounces = NO;
+     */
+    
+    [self startImageDownloads];
 }
 
 - (void)startImageDownloads {
-    if ([step.images count] > numImagesLoaded)
-        [[CachedImageLoader sharedImageLoader] addClientToDownloadQueue:self];
-}
-
-- (IBAction)changeImage:(UIButton *)button {
-    if ([button isEqual:image1])
-        self.image = [bigImages objectAtIndex:0];
-    else if ([button isEqual:image2])
-        self.image = [bigImages objectAtIndex:1];
-    else if ([button isEqual:image3])
-        self.image = [bigImages objectAtIndex:2];
     
-    [mainImage setBackgroundImage:self.image forState:UIControlStateNormal];
-}
-
-
-- (NSURLRequest *)request {
-    if (numImagesLoaded >= [step.images count])
-        return nil;
-
-    return [NSURLRequest requestWithURL:[[step.images objectAtIndex:numImagesLoaded] URLForSize:@"large"]];
-}
-- (void)renderImage:(UIImage *)theImage {
-    numImagesLoaded++;
-    
-    // Save the large image.
-    [bigImages addObject:theImage];
-    
-    // Load the small image thumbnail.
-    // Use this instead of dispatch_async() for iOS 3.2 compatibility.
-    [self performSelectorInBackground:@selector(loadSmallImage:) withObject:[NSNumber numberWithInt:numImagesLoaded-1]];
-    
-    // Use this instead of dispatch_async() for iOS 3.2 compatibility.
-    [self performSelectorOnMainThread:@selector(setMainAndLoadNext:) withObject:theImage waitUntilDone:YES];
-}
-
-- (void)setMainAndLoadNext:(UIImage *)theImage {
-    // First image, set the main.
-    if (numImagesLoaded == 1) {
-        self.image = theImage;
-        [imageSpinner stopAnimating];
-        [mainImage setBackgroundImage:image forState:UIControlStateNormal];
-        mainImage.hidden = NO;
+    if ([step.images count] > 0) {
+        [mainImage setImageWithURL:[[step.images objectAtIndex:0] URLForSize:@"large"]];
+        
+        if ([step.images count] > 1) {
+            [image1 setImageWithURL:[[step.images objectAtIndex:0] URLForSize:@"thumbnail"]];
+            image1.hidden = NO;
+        }
     }
     
-    // Load the next image.
-    if ([step.images count] > numImagesLoaded)
-        [[CachedImageLoader sharedImageLoader] addClientToDownloadQueue:self];
-}
-
-- (void)loadSmallImage:(NSNumber *)index {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
-    NSURLRequest *thumbRequest = [NSURLRequest requestWithURL:[[step.images objectAtIndex:[index intValue]] URLForSize:@"thumbnail"]];
-    NSData *data = [NSURLConnection sendSynchronousRequest:thumbRequest
-                                         returningResponse:nil
-                                                     error:nil];
-    
-    UIImage *thumbnailImage = [UIImage imageWithData:data];
-
-    NSArray *imageAndIndex = [NSArray arrayWithObjects:thumbnailImage, index, nil];
-    
-    // Use this instead of dispatch_async() for iOS 3.2 compatibility.
-    [self performSelectorOnMainThread:@selector(setSmallImage:) withObject:imageAndIndex waitUntilDone:YES];
-    
-    [pool drain];
-}
-- (void)setSmallImage:(NSArray *)imageAndIndex {
-    
-    UIImage *thumbnailImage = [imageAndIndex objectAtIndex:0];
-    NSNumber *index = [imageAndIndex objectAtIndex:1];
-    
-    // Which image? 1,2,3
-    UIButton *imageButton;
-    switch ([index intValue]) {
-        case 0:
-            imageButton = image1;
-            break;
-        case 1:
-            imageButton = image2;
-            break;
-        case 2:
-            imageButton = image3;
-            break;
-    }
-    
-    [imageButton setBackgroundImage:thumbnailImage forState:UIControlStateNormal];
-    
-    // Show the thumbnails.
-    if (numImagesLoaded > 1) {
-        image1.hidden = NO;
+    if ([step.images count] > 1) {
+        [image2 setImageWithURL:[[step.images objectAtIndex:1] URLForSize:@"thumbnail"]];
         image2.hidden = NO;
     }
     
-    if (numImagesLoaded == 3)
-        image3.hidden = NO;   
+    if ([step.images count] > 2) {
+        [image3 setImageWithURL:[[step.images objectAtIndex:2] URLForSize:@"thumbnail"]];
+        image3.hidden = NO;
+    }
+}
+
+- (IBAction)changeImage:(UIButton *)button {
+    GuideImage *guideImage = nil;
     
+    if ([button isEqual:image1])
+        guideImage = [step.images objectAtIndex:0];
+    else if ([button isEqual:image2])
+        guideImage = [step.images objectAtIndex:1];
+    else if ([button isEqual:image3])
+        guideImage = [step.images objectAtIndex:2];
+
+    // Switch to the new image, but delay the spinner for a short time.
+    imageSpinner.hidden = YES;
+    [mainImage setImageWithURL:[guideImage URLForSize:@"large"]];
+    [self performSelector:@selector(showImageSpinner) withObject:nil afterDelay:0.2];
+}
+- (void)showImageSpinner {
+    imageSpinner.hidden = NO;
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -182,15 +142,17 @@ static CGRect frameView;
 // Because the web view has a white background, it starts hidden.
 // After the content is loaded, we wait a small amount of time before showing it to prevent flicker.
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-	[self performSelector:@selector(showWebView:) withObject:nil afterDelay:0.3];
+	[self performSelector:@selector(showWebView:) withObject:nil afterDelay:0.2];
 }
 - (void)showWebView:(id)sender {
-	[textSpinner stopAnimating];
 	webView.hidden = NO;	
 }
 
 - (IBAction)zoomImage:(id)sender {
-   	
+   	UIImage *image = [mainImage backgroundImageForState:UIControlStateNormal];
+    if (!image)
+        return;
+    
 	// Create the image view controller and add it to the view hierarchy.
 	self.imageVC = [GuideImageViewController initWithUIImage:image];
 	imageVC.delegate = self;
@@ -198,7 +160,6 @@ static CGRect frameView;
 
 	// Set the position and hide it.
 	imageVC.view.alpha = 0;
-	imageVC.view.frame = frameView;
 	
 	// Animate the button and fade in the image view
 	[UIView beginAnimations:@"ImageView" context:nil];
@@ -220,6 +181,58 @@ static CGRect frameView;
     // Overriden to allow any orientation.
     return YES;
 }
+- (void)layoutLandscape {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        return;
+    
+    // These dimensions represent the object's position BEFORE rotation,
+    // and are automatically tweaked during animation with respect to their resize masks.
+    CGRect frame = image1.frame;
+    frame.origin.y = 170;
+    
+    frame.origin.x = 20;
+    image1.frame = frame;
+    
+    frame.origin.x = 90;
+    image2.frame = frame;
+    
+    frame.origin.x = 160;
+    image3.frame = frame;
+    
+    webView.frame = CGRectMake(230, 0, 250, 245);
+}
+- (void)layoutPortrait {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        return;
+    
+    // These dimensions represent the object's position BEFORE rotation,
+    // and are automatically tweaked during animation with respect to their resize masks.
+    CGRect frame = image1.frame;
+    frame.origin.x = 238;
+    
+    frame.origin.y = 10;
+    image1.frame = frame;
+    
+    frame.origin.y = 62;
+    image2.frame = frame;
+    
+    frame.origin.y = 115;
+    image3.frame = frame;
+    
+    webView.frame = CGRectMake(0, 168, 320, 225);
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+        [self layoutLandscape];
+    }
+    else {
+        [self layoutPortrait];
+    }
+    
+    // Re-flow HTML
+    [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -240,11 +253,17 @@ static CGRect frameView;
 
 - (void)dealloc {
     self.step = nil;
-    self.image = nil;
     self.bigImages = nil;
    
     webView.delegate = nil;
+    self.webView = nil;
+    self.titleLabel = nil;
     self.mainImage = nil;
+    
+    self.image1 = nil;
+    self.image2 = nil;
+    self.image3 = nil;
+    self.html = nil;
    
     [super dealloc];
 }

@@ -6,34 +6,42 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "CachedImageLoader.h"
-
 @class Guide;
 @class GuideImageViewController;
 
-@interface GuideIntroViewController : UIViewController <UIWebViewDelegate, ImageConsumer> {
+@interface GuideIntroViewController : UIViewController <UIWebViewDelegate> {
 	id delegate;
+    UIImageView *headerImageIFixit;
+    UIImageView *headerImageMake;
+    UILabel *swipeLabel;
+    
 	Guide *guide;
 	UILabel *device;
 	UIButton *mainImage;
 	UIWebView *webView;
-	UIActivityIndicatorView *textSpinner;
 	UIActivityIndicatorView *imageSpinner;
 	GuideImageViewController *imageVC;
     UIImage *huge;
+    NSString *html;
 }
 
 @property (nonatomic, retain) id delegate;
+@property (nonatomic, retain) IBOutlet UIImageView *headerImageIFixit;
+@property (nonatomic, retain) IBOutlet UIImageView *headerImageMake;
+@property (nonatomic, retain) IBOutlet UILabel *swipeLabel;
+
 @property (nonatomic, retain) Guide *guide;
 @property (nonatomic, retain) IBOutlet UILabel *device;
 @property (nonatomic, retain) IBOutlet UIButton *mainImage;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *textSpinner;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *imageSpinner;
 @property (nonatomic, retain) GuideImageViewController *imageVC;
 @property (nonatomic, retain) UIImage *huge;
+@property (nonatomic, retain) NSString *html;
 
 + (id)initWithGuide:(Guide *)guide;
+
+- (void)layoutPortrait;
+- (void)layoutLandscape;
 
 @end

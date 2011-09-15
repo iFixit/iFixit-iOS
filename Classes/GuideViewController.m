@@ -11,19 +11,28 @@
 #import "iFixitAPI.h"
 #import "GuideIntroViewController.h"
 #import "GuideStepViewController.h"
+#import "GuideBookmarker.h"
+#import "Config.h"
+#import "UIImage+Coder.m"
 
 @implementation GuideViewController
 
-@synthesize navBar, scrollView, pageControl, viewControllers, spinner;
-@synthesize lastScroll, guide, guideid, shouldLoadPage;
+@synthesize navBar, scrollView, pageControl, viewControllers, spinner, bookmarker;
+@synthesize guide, guideid, shouldLoadPage;
 
 + (GuideViewController *)initWithGuideid:(NSInteger)guideid {
-	GuideViewController *vc = [[GuideViewController alloc] initWithNibName:@"GuideView" bundle:nil];
+    NSString *nib = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"GuideView" : @"SmallGuideView";
+	GuideViewController *vc = [[GuideViewController alloc] initWithNibName:nib bundle:nil];
 
+    vc.guide = nil;
     vc.guideid = guideid;
     vc.shouldLoadPage = 0;
 	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    vc.lastScroll = nil;
+    
+    GuideBookmarker *b = [[GuideBookmarker alloc] init];
+    b.delegate = vc;
+    vc.bookmarker = b;
+    [b release];
 	
 	// Load the data
 	[[iFixitAPI sharedInstance] getGuide:guideid forObject:vc withSelector:@selector(gotGuide:)];
@@ -31,7 +40,57 @@
 	return [vc autorelease];
 }
 
++ (GuideViewController *)initWithGuide:(Guide *)theGuide {
+    NSString *nib = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"GuideView" : @"SmallGuideView";
+	GuideViewController *vc = [[GuideViewController alloc] initWithNibName:nib bundle:nil];
+    
+    vc.guide = theGuide;
+    vc.guideid = theGuide.guideid;
+    vc.shouldLoadPage = 0;
+	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    GuideBookmarker *b = [[GuideBookmarker alloc] init];
+    b.delegate = vc;
+    vc.bookmarker = b;
+    [b release];
+
+	return [vc autorelease];
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    [TestFlight passCheckpoint:@"Guide View"];
+
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+        [UIApplication sharedApplication].idleTimerDisabled = YES;
+    }
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // Soften black and white by 5%.
+    UIColor *bgColor = [Config currentConfig].backgroundColor;
+    /*
+    if ([bgColor isEqual:[UIColor blackColor]])
+        bgColor = [UIColor colorWithRed:0.05 green:0.05 blue:0.05 alpha:1.0];
+    else if ([bgColor isEqual:[UIColor whiteColor]])
+        bgColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
+     */
+    
+    self.view.backgroundColor = bgColor;
+    if ([[Config currentConfig].backgroundColor isEqual:[UIColor whiteColor]]) {
+        navBar.tintColor = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ?
+            nil : [Config currentConfig].toolbarColor;
+    }
+    
+    if (guide)
+        [self gotGuide:guide];
+}
+
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
+    if (bookmarker.poc.isPopoverVisible)
+        [bookmarker.poc dismissPopoverAnimated:YES];
 	[(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] hideGuide];
 	return YES;
 }
@@ -49,6 +108,27 @@
     }
 }
 
+- (void)adjustScrollViewContentSizeForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	NSInteger numPages = [guide.steps count] + 1;
+    
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        CGRect frame;
+        
+        // Landscape
+        if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+            frame = CGRectMake(0, 44, 480, 326);
+        }
+        // Portrait
+        else {
+            frame = CGRectMake(0, 44, 320, 396);
+        }
+        
+        scrollView.frame = frame;
+    }
+    
+    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * numPages, scrollView.frame.size.height);
+}
+
 - (void)gotGuide:(Guide *)theGuide {
 	[spinner stopAnimating];
 
@@ -62,7 +142,6 @@
         return;
     }
     
-    pageControl.hidden = NO;
 	self.guide = theGuide;
 
 	// Steps plus one for intro
@@ -79,7 +158,7 @@
 	
     // a page is the width of the scroll view
     scrollView.pagingEnabled = YES;
-    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * numPages, scrollView.frame.size.height);
+    [self adjustScrollViewContentSizeForInterfaceOrientation:self.interfaceOrientation];
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.scrollsToTop = NO;
@@ -88,9 +167,19 @@
 	// Steps plus one for intro
     pageControl.numberOfPages = numPages;
     pageControl.currentPage = 0;
+    
+    // Hide page control on iPhone.
+    pageControl.hidden = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? NO : YES;
 	
-	UINavigationItem *topItem = [[UINavigationItem alloc] initWithTitle:@"Back"];
-	UINavigationItem *thisItem = [[UINavigationItem alloc] initWithTitle:guide.title];
+    // Setup the navigation items to show back arrow and bookmarks button
+    NSString *title = guide.title;
+    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad && [guide.subject length] > 0)
+        title = guide.subject;
+    
+    UINavigationItem *topItem = [[UINavigationItem alloc] initWithTitle:@"Back"];
+	UINavigationItem *thisItem = [[UINavigationItem alloc] initWithTitle:title];
+    [bookmarker setNavItem:thisItem andGuideid:guide.guideid];
+    
 	NSArray *navItems = [NSArray arrayWithObjects:topItem, thisItem, nil];
 	[navBar setItems:navItems animated:NO];
 	[topItem release];
@@ -107,21 +196,16 @@
 
     }
     
-    self.lastScroll = [NSDate date];
-
 }
 
 - (void)showPage:(NSInteger)page {
-   
-   if (guide) {
-      pageControl.currentPage = page;
-      [self changePage:nil];
-   } else {
-      shouldLoadPage = page;
-   }
-
+    if (guide) {
+        pageControl.currentPage = page;
+        [self changePage:nil];
+    } else {
+        shouldLoadPage = page;
+    }
 }
-
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 /*
@@ -131,6 +215,7 @@
 */
 
 - (void)loadScrollViewWithPage:(int)page {
+
     if (page < 0 || page >= pageControl.numberOfPages)
        return;
 	
@@ -156,36 +241,8 @@
         frame.origin.x = frame.size.width * page;
         frame.origin.y = 0;
         controller.view.frame = frame;
+        [controller willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
         [scrollView addSubview:controller.view];
-    }
-    
-    // Rate limit image loading.
-    if (lastScroll) {
-        NSDate *now = [NSDate date];        
-        [self performSelector:@selector(checkCalm:) withObject:now afterDelay:0.6];
-        self.lastScroll = now;
-    }
-}
-
-- (void)checkCalm:(NSDate *)date {
-    if ([lastScroll isEqualToDate:date]) {
-        UIViewController *controller;
-        int page = pageControl.currentPage;
-
-        controller = [viewControllers objectAtIndex:page];
-        if ([controller respondsToSelector:@selector(startImageDownloads)])
-            [(GuideStepViewController *)controller startImageDownloads];
-        
-        if (page + 1 < [viewControllers count]) {
-            controller = [viewControllers objectAtIndex:page+1];
-            if ([controller respondsToSelector:@selector(startImageDownloads)])
-                [(GuideStepViewController *)controller startImageDownloads];
-        }
-        if (page > 0) {
-            controller = [viewControllers objectAtIndex:page-1];
-            if ([controller respondsToSelector:@selector(startImageDownloads)])
-                [(GuideStepViewController *)controller startImageDownloads];
-        }
     }
 }
 
@@ -220,11 +277,6 @@
          }
       }
    }
-   
-    // Save our state.
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	[prefs setObject:[NSNumber numberWithInt:page] forKey:@"last_guide_page"];
-	[prefs synchronize];
 }
 
 // At the begin of scroll dragging, reset the boolean used when scrolls originate from the UIPageControl
@@ -254,11 +306,6 @@
     
 	// Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
     pageControlUsed = YES;
-   
-    // Save our state.
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	[prefs setObject:[NSNumber numberWithInt:page] forKey:@"last_guide_page"];
-	[prefs synchronize];
 }
 
 - (void)preloadForCurrentPage:(NSNumber *)pageNumber {
@@ -270,8 +317,32 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Landscape only until I work out the issues.
-    return interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight;
+    // iPad Landscape only.
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        return interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight;
+    
+    // iPhone Portrait only.
+    return UIInterfaceOrientationPortrait;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self adjustScrollViewContentSizeForInterfaceOrientation:self.interfaceOrientation];
+    
+    for (int i=0; i<[viewControllers count]; i++) {
+        UIViewController *vc = [viewControllers objectAtIndex:i];
+        
+        if ((NSNull *)vc != [NSNull null]) {
+            CGRect frame = scrollView.frame;
+            frame.origin.x = frame.size.width * i;
+            frame.origin.y = 0;
+            
+            vc.view.frame = frame;
+            [vc willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
+        }
+    }
+    
+    [self showPage:pageControl.currentPage];
 }
 
 
@@ -292,6 +363,7 @@
 
 - (void)dealloc {
     self.guide = nil;
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
     [super dealloc];
 }
 

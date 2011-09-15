@@ -9,10 +9,13 @@
 #import "GuideIntroViewController.h"
 #import "Guide.h"
 #import "GuideImageViewController.h"
+#import "UIButton+WebCache.h"
+#import "Config.h"
 
 @implementation GuideIntroViewController
 
-@synthesize delegate, guide, device, mainImage, webView, textSpinner, imageSpinner, imageVC, huge;
+@synthesize delegate, headerImageIFixit, headerImageMake, swipeLabel;
+@synthesize guide, device, mainImage, webView, imageSpinner, imageVC, huge, html;
 
 static CGRect frameView;
 
@@ -20,58 +23,66 @@ static CGRect frameView;
 + (id)initWithGuide:(Guide *)guide {
 	frameView = CGRectMake(0.0f,    0.0f, 1024.0f, 768.0f);
 
-	GuideIntroViewController *vc = [[GuideIntroViewController alloc] initWithNibName:@"GuideIntroView" bundle:nil];
+    NSString *nib = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"GuideIntroView" : @"SmallGuideIntroView";
+	GuideIntroViewController *vc = [[GuideIntroViewController alloc] initWithNibName:nib bundle:nil];
 	
 	vc.guide = guide;
-   vc.huge = nil;
+    vc.huge = nil;
 	
     return [vc autorelease];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Set the appropriate header image.
+    if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
+        headerImageMake.hidden = NO;
+        swipeLabel.textColor = [UIColor redColor];
+    }
+    else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
+        headerImageIFixit.hidden = NO;
+    }
+    
+    // Hide the swipe label if there are no steps.
+    if (![guide.steps count])
+        swipeLabel.hidden = YES;
+    
+    // Set the background color, softening black and white by 5%.
+    UIColor *bgColor = [Config currentConfig].backgroundColor;
+    /*
+    if ([bgColor isEqual:[UIColor blackColor]])
+        bgColor = [UIColor colorWithRed:0.05 green:0.05 blue:0.05 alpha:1.0];
+    else if ([bgColor isEqual:[UIColor whiteColor]])
+        bgColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
+     */
+    
+    self.view.backgroundColor = bgColor;
+	webView.backgroundColor = bgColor;
 	
 	// Load the intro contents as HTML.
-	NSString *header = @"<html><head><style type=\"text/css\"> html, body { background-color: black; color: white; font-family: \"Helvetica\", sans-serif; } a, a:visited { color: #aaf; } div.parts { margin-bottom: 20px; } </style></head><body><ul>";
-	NSString *footer = @"</ul></body></html>";
+	NSString *header = [NSString stringWithFormat:@"<html><head><style type=\"text/css\"> %@ </style></head><body class=\"%@\">",
+                        [Config currentConfig].introCSS,
+                        (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"big" : @"small"];
+	NSString *footer = @"</body></html>";
 
 	NSString *body = guide.introduction_rendered;
    //NSString *body = guide.introduction;
 	
-    NSString *html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
-	[webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", IFIXIT_HOST]]];
-	webView.backgroundColor = [UIColor blackColor];
+    self.html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
+	[webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
     
 	[device setText:guide.device];
 
-    [[CachedImageLoader sharedImageLoader] addClientToDownloadQueue:self];
-
     // Disable bounce scrolling.
+    /*
     for (id subview in webView.subviews)
         if ([[subview class] isSubclassOfClass:[UIScrollView class]])
             ((UIScrollView *)subview).bounces = NO;
-}
-
-
-- (NSURLRequest *)request {
-    if (![guide.image.imageid intValue]) {
-        [imageSpinner stopAnimating];
-        return nil;
-    }
+     */
     
-    return [NSURLRequest requestWithURL:[guide.image URLForSize:@"standard"]];
+    [mainImage setImageWithURL:[guide.image URLForSize:@"standard"] placeholderImage:nil];
 }
-- (void)renderImage:(UIImage *)image {
-    // Use this instead of dispatch_async() for iOS 3.2 compatibility.
-    [self performSelectorOnMainThread:@selector(renderImageOnMainThread:) withObject:image waitUntilDone:YES];
-}
-
-- (void)renderImageOnMainThread:(UIImage *)image {
-    [mainImage setImage:image forState:UIControlStateNormal];
-    mainImage.hidden = NO;
-    [imageSpinner stopAnimating];
-}
-
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 
@@ -87,10 +98,9 @@ static CGRect frameView;
 // Because the web view has a white background, it starts hidden.
 // After the content is loaded, we wait a small amount of time before showing it to prevent flicker.
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-	[self performSelector:@selector(showWebView:) withObject:nil afterDelay:0.3];
+	[self performSelector:@selector(showWebView:) withObject:nil afterDelay:0.2];
 }
 - (void)showWebView:(id)sender {
-	[textSpinner stopAnimating];
 	webView.hidden = NO;	
 }
 
@@ -119,7 +129,36 @@ static CGRect frameView;
     // Overriden to allow any orientation.
     return YES;
 }
+- (void)layoutLandscape {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        return;
+    
+    // These dimensions represent the object's position BEFORE rotation,
+    // and are automatically tweaked during animation with respect to their resize masks.
+    mainImage.frame = CGRectMake(40, 40, 200, 150);
+    webView.frame = CGRectMake(240, 0, 238, 245);
+}
+- (void)layoutPortrait {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        return;
+    
+    // These dimensions represent the object's position BEFORE rotation,
+    // and are automatically tweaked during animation with respect to their resize masks.
+    mainImage.frame = CGRectMake(60, 10, 200, 150);
+    webView.frame = CGRectMake(0, 168, 320, 228);
+}
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+        [self layoutLandscape];
+    }
+    else {
+        [self layoutPortrait];
+    }
+    
+    // Re-flow HTML
+    [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
+}
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -141,6 +180,7 @@ static CGRect frameView;
     self.huge = nil;
     webView.delegate = nil;
     self.mainImage = nil;
+    self.html = nil;
     [super dealloc];
 }
 
