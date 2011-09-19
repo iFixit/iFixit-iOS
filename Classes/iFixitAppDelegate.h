@@ -12,6 +12,7 @@
 @class DetailViewController;
 @class GuideStepViewController;
 @class SplashViewController;
+@class Guide;
 
 @interface iFixitAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;

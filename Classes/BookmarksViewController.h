@@ -9,15 +9,11 @@
 @class LoginViewController;
 #import "LoginViewControllerDelegate.h"
 
-@interface BookmarksViewController : UITableViewController <LoginViewControllerDelegate, UIActionSheetDelegate> {
-    NSMutableDictionary *bookmarks;
-    LoginViewController *lvc;
-    NSArray *devices;
-}
+@interface BookmarksViewController : UITableViewController <LoginViewControllerDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, retain) NSMutableDictionary *bookmarks;
 @property (nonatomic, retain) LoginViewController *lvc;
-@property (nonatomic, retain) NSArray *devices;
+@property (nonatomic, retain) NSMutableArray *devices;
 
 - (void)refresh;
 

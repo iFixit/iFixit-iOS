@@ -6,20 +6,7 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "MTHandler.h"
-#import "BGNetRequest.h"
-#import "Guide.h"
-#import "JSON.h"
 @class User;
-
-typedef enum _RequestAction {
-	RequestActionLogin    = 0,
-    RequestActionRegister = 1,
-    RequestActionGetLikes = 2,
-    RequestActionLike     = 3,
-    RequestActionUnlike   = 4
-} RequestAction;
 
 @interface iFixitAPI : NSObject {
     User *user;
@@ -48,5 +35,4 @@ typedef enum _RequestAction {
 - (void)unlike:(NSNumber *)guideid forObject:(id)object withSelector:(SEL)selector;
 - (void)loadSession;
 
-- (void)get:(BGNetRequest *)bgnr;
 @end

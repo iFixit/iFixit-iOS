@@ -13,6 +13,7 @@
 #import "Config.h"
 #import "SDWebImageDownloader.h"
 #import "UIButton+WebCache.h"
+#import "SVWebViewController.h"
 
 @implementation GuideStepViewController
 
@@ -130,13 +131,15 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 
-   if (navigationType != UIWebViewNavigationTypeLinkClicked)
-      return YES;
+    if (navigationType != UIWebViewNavigationTypeLinkClicked)
+       return YES;
    
-   // Load all URLs in Safari.
-   [[UIApplication sharedApplication] openURL:[request URL]];
-   return NO;
-   
+    // Load all URLs in popup browser.
+    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:[[request URL] absoluteString]];
+    [self.delegate presentModalViewController:webViewController animated:YES];   
+    [webViewController release];
+    
+    return NO;
 }
 
 // Because the web view has a white background, it starts hidden.

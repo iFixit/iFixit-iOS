@@ -26,7 +26,7 @@
         LoginViewController *vc = [[LoginViewController alloc] initWithStyle:UITableViewStyleGrouped];
         vc.delegate = self;
         self.lvc = vc;
-        self.devices = [NSArray array];
+        self.devices = [NSMutableArray array];
         [vc release];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -67,7 +67,7 @@
     }
     
     self.bookmarks = b;
-    self.devices = [[bookmarks allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    self.devices = [NSMutableArray arrayWithArray:[[bookmarks allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]];
     
     dispatch_sync(dispatch_get_main_queue(), ^{
         if ([bookmarks count]) {
@@ -262,7 +262,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSString *key = [[bookmarks allKeys] objectAtIndex:indexPath.section];
+        NSString *key = [devices objectAtIndex:indexPath.section];
         NSMutableArray *section = [bookmarks objectForKey:key];
         Guide *guide = [section objectAtIndex:indexPath.row];
 
@@ -275,6 +275,7 @@
         
         // Delete the section if there are no guides left.
         if (![section count]) {
+            [devices removeObjectAtIndex:indexPath.section];
             [bookmarks removeObjectForKey:key];
             [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
         }

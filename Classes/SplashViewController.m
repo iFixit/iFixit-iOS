@@ -10,6 +10,7 @@
 #import "SplashViewController.h"
 #import "UIButton+WebCache.h"
 #import "Config.h"
+#import "GuideImage.h"
 
 #pragma mark VerticalAlign
 @interface UILabel (VerticalAlign)

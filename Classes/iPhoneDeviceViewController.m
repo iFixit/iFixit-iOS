@@ -80,22 +80,21 @@
     [self.tableView reloadData];
     [self hideLoading];
     
-    if (!self.guides) {
+    if (!self.guides)
         [self showRefreshButton];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error loading device"
-                                                        message:@"Please check your internet connection and try again."
+    else if (![self.guides count]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No guides found"
+                                                        message:@"This device has no guides."
                                                        delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Retry", nil];
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"Okay", nil];
         [alert show];
         [alert release];
     }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex)
-        [self getGuides];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {

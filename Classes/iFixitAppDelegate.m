@@ -16,6 +16,7 @@
 #import "DozukiSplashViewController.h"
 #import "DozukiInfoViewController.h"
 #import "GuideBookmarks.h"
+#import "Guide.h"
 
 @implementation UISplitViewController (SplitViewRotate)
 

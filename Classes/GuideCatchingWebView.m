@@ -10,6 +10,7 @@
 #import "iFixitAppDelegate.h"
 #import "Config.h"
 #import "RegexKitLite.h"
+#import "SVWebViewController.h"
 
 @implementation GuideCatchingWebView
 
@@ -55,13 +56,13 @@
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	NSString *host = [[request URL] host];
-    
 	// Open guides with the native viewer.
 	NSInteger guideid = [self parseGuideURL:[[request URL] absoluteString]];
-
+    
+    iFixitAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    
 	if (guideid != -1) {
-		[(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showGuideid:guideid];
+		[delegate showGuideid:guideid];
 		return NO;
 	}
     
@@ -71,17 +72,11 @@
     
     if (shouldStart) {
         // Open all other URLs with Safari.
+        NSString *host = [[request URL] host];
         if (![host isEqual:[Config host]] && navigationType == UIWebViewNavigationTypeLinkClicked) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Open with Safari?"
-                                                            message:@"You are now leaving the native app experience. Following this link will open a new window in Safari.\n\nWould you like to continue?"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"Okay", nil];
-            self.externalURL = [request URL];
-            [alert show];
-            [alert release];
-            
-            return NO;
+            SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:[[request URL] absoluteString]];
+            [delegate.window.rootViewController presentModalViewController:webViewController animated:YES];   
+            [webViewController release];
         }
     }
 	

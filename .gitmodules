@@ -1,0 +1,6 @@
+[submodule "SVWebViewController"]
+	path = SVWebViewController
+	url = git://github.com/samvermette/SVWebViewController.git
+[submodule "ASIHTTPRequest"]
+	path = ASIHTTPRequest
+	url = git://github.com/pokeb/asi-http-request.git

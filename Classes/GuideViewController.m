@@ -14,6 +14,7 @@
 #import "GuideBookmarker.h"
 #import "Config.h"
 #import "UIImage+Coder.m"
+#import "Guide.h"
 
 @implementation GuideViewController
 

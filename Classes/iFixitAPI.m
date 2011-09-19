@@ -8,6 +8,8 @@
 
 #import "iFixitAPI.h"
 #import "iFixitAppDelegate.h"
+#import "Guide.h"
+#import "JSON.h"
 #import "Config.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
@@ -64,41 +66,33 @@ static int volatile openConnections = 0;
 	return nil;
 }
 
-
-
 - (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/sites?limit=%d&offset=%d", [Config host], limit, offset];	
 	
-	BGNetRequest *bgnr = [BGNetRequest initWithUrl:url];
-	[bgnr pushHandler:[MTHandler initForObject:object withSelector:selector]];
-    [bgnr pushHandler:[MTHandler initForObject:self withSelector:@selector(gotSites:)]];
-	[self performSelectorInBackground:@selector(get:) withObject:bgnr];
-}
-
-- (void)gotSites:(BGNetRequest *)bgnr {
-	NSArray *sites = [bgnr.data JSONValue];
-	
-	MTHandler *handler = [bgnr popHandler];
-	[handler.object performSelector:handler.selector withObject:sites];	
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setCompletionBlock:^{
+        NSArray *results = [[request responseString] JSONValue];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        [object performSelector:selector withObject:nil];
+    }];
+    [request startAsynchronous];
 }
 
 - (void)getGuide:(NSInteger)guideid forObject:(id)object withSelector:(SEL)selector {
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guide/%d", [Config host], guideid];	
 
-	BGNetRequest *bgnr = [BGNetRequest initWithUrl:url];
-	[bgnr pushHandler:[MTHandler initForObject:object withSelector:selector]];
-	[bgnr pushHandler:[MTHandler initForObject:self withSelector:@selector(gotGuide:)]];
-
-	[self performSelectorInBackground:@selector(get:) withObject:bgnr];
-}
-
-- (void)gotGuide:(BGNetRequest *)bgnr {
-	NSDictionary *data = [bgnr.data JSONValue];
-	
-	Guide *guide = data ? [Guide guideWithDictionary:data] : nil;
-
-	MTHandler *handler = [bgnr popHandler];
-	[handler.object performSelector:handler.selector withObject:guide];
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setCompletionBlock:^{
+        NSDictionary *result = [[request responseString] JSONValue];
+        Guide *guide = result ? [Guide guideWithDictionary:result] : nil;
+        [object performSelector:selector withObject:guide];
+    }];
+    [request setFailedBlock:^{
+        [object performSelector:selector withObject:nil];
+    }];
+    [request startAsynchronous];
 }
 
 - (void)getAreas:(NSString *)parent forObject:(id)object withSelector:(SEL)selector {
@@ -112,34 +106,30 @@ static int volatile openConnections = 0;
 	
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/areas/%@%@", [Config host], parent, requireGuides];	
 	
-	BGNetRequest *bgnr = [BGNetRequest initWithUrl:url];
-	[bgnr pushHandler:[MTHandler initForObject:object withSelector:selector]];
-    [bgnr pushHandler:[MTHandler initForObject:self withSelector:@selector(gotAreas:)]];
-	[self performSelectorInBackground:@selector(get:) withObject:bgnr];
-}
-
-- (void)gotAreas:(BGNetRequest *)bgnr {
-	NSDictionary *areas = [bgnr.data JSONValue];
-	
-	MTHandler *handler = [bgnr popHandler];
-	[handler.object performSelector:handler.selector withObject:areas];	
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setCompletionBlock:^{
+        NSDictionary *results = [[request responseString] JSONValue];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        [object performSelector:selector withObject:nil];
+    }];
+    [request startAsynchronous];
 }
 
 - (void)getDevice:(NSString *)device forObject:(id)object withSelector:(SEL)selector {
     device = [device stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/device/%@", [Config host], device];	
     
-	BGNetRequest *bgnr = [BGNetRequest initWithUrl:url];
-	[bgnr pushHandler:[MTHandler initForObject:object withSelector:selector]];
-    [bgnr pushHandler:[MTHandler initForObject:self withSelector:@selector(gotDevice:)]];
-	[self performSelectorInBackground:@selector(get:) withObject:bgnr];
-}
-
-- (void)gotDevice:(BGNetRequest *)bgnr {
-	NSDictionary *data = [bgnr.data JSONValue];
-
-	MTHandler *handler = [bgnr popHandler];
-	[handler.object performSelector:handler.selector withObject:data];	
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setCompletionBlock:^{
+        NSDictionary *results = [[request responseString] JSONValue];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        [object performSelector:selector withObject:nil];
+    }];
+    [request startAsynchronous];
 }
 
 - (void)getGuides:(NSString *)type forObject:(id)object withSelector:(SEL)selector {
@@ -147,18 +137,16 @@ static int volatile openConnections = 0;
 		type = @"featured";
 	
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guides/%@?limit=9", [Config host], type];	
-	
-	BGNetRequest *bgnr = [BGNetRequest initWithUrl:url];
-	[bgnr pushHandler:[MTHandler initForObject:object withSelector:selector]];
-    [bgnr pushHandler:[MTHandler initForObject:self withSelector:@selector(gotGuides:)]];
-	[self performSelectorInBackground:@selector(get:) withObject:bgnr];
-}
-
-- (void)gotGuides:(BGNetRequest *)bgnr {
-	NSArray *guides = [bgnr.data JSONValue];
-	
-	MTHandler *handler = [bgnr popHandler];
-	[handler.object performSelector:handler.selector withObject:guides];	
+    
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setCompletionBlock:^{
+        NSArray *results = [[request responseString] JSONValue];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        [object performSelector:selector withObject:nil];
+    }];
+    [request startAsynchronous];
 }
 
 - (void)getSearchResults:(NSString *)search forObject:(id)object withSelector:(SEL)selector {
@@ -168,18 +156,32 @@ static int volatile openConnections = 0;
 	
     NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/search/%@?filter=device&limit=50", [Config host], search];	
 	
-	BGNetRequest *bgnr = [BGNetRequest initWithUrl:url];
-	[bgnr pushHandler:[MTHandler initForObject:object withSelector:selector]];
-    [bgnr pushHandler:[MTHandler initForObject:self withSelector:@selector(gotSearchResults:)]];
-	[self performSelectorInBackground:@selector(get:) withObject:bgnr];
-
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setCompletionBlock:^{
+        NSDictionary *results = [[request responseString] JSONValue];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        [object performSelector:selector withObject:nil];
+    }];
+    [request startAsynchronous];
 }
 
-- (void)gotSearchResults:(BGNetRequest *)bgnr {
-	NSDictionary *results = [bgnr.data JSONValue];
-	
-	MTHandler *handler = [bgnr popHandler];
-	[handler.object performSelector:handler.selector withObject:results];	
+- (void)checkLogin:(NSDictionary *)results {
+    if ([results respondsToSelector:@selector(valueForKey:)]) {
+        if (![results valueForKey:@"error"]) {
+            self.user = [User userWithDictionary:results];
+            [self saveSession];
+        }
+    }
+}
+
+- (void)checkSession:(NSDictionary *)results {
+    // Check for invalid sessionid
+    if ([results valueForKey:@"error"] && [[results valueForKey:@"msg"] isEqual:@"Invalid login"]) {
+        self.user = nil;
+        [self saveSession];
+    }
 }
 
 - (void)loginWithLogin:(NSString *)login andPassword:(NSString *)password forObject:(id)object withSelector:(SEL)selector {
@@ -187,20 +189,21 @@ static int volatile openConnections = 0;
 
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/0.1/login", [Config host]];	
 
-    BGNetRequest *bgnr = [BGNetRequest initWithUrl:url];
-	[bgnr pushHandler:[MTHandler initForObject:object withSelector:selector]];
-    
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
-    request.tag = RequestActionLogin;
-
-    // ONLY USE THIS LINE IN DEV MODE
-    [request setValidatesSecureCertificate:NO];
-    
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
     [request setRequestMethod:@"POST"];
-    [request setUserInfo:[NSDictionary dictionaryWithObject:bgnr forKey:@"bgnr"]];
     [request setPostValue:login forKey:@"login"];
     [request setPostValue:password forKey:@"password"];
-    [request setDelegate:self];
+    
+    [request setCompletionBlock:^{
+        NSDictionary *results = [[request responseString] JSONValue];
+        [self checkLogin:results];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
+        [object performSelector:selector withObject:results];
+    }];
+    
     [request startAsynchronous];
 }
 
@@ -209,21 +212,22 @@ static int volatile openConnections = 0;
 
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/0.1/register", [Config host]];	
     
-    BGNetRequest *bgnr = [BGNetRequest initWithUrl:url];
-	[bgnr pushHandler:[MTHandler initForObject:object withSelector:selector]];
-    
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
-    request.tag = RequestActionRegister;
-    
-    // ONLY USE THIS LINE IN DEV MODE
-    [request setValidatesSecureCertificate:NO];
-    
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];    
     [request setRequestMethod:@"POST"];
-    [request setUserInfo:[NSDictionary dictionaryWithObject:bgnr forKey:@"bgnr"]];
     [request setPostValue:login forKey:@"login"];
     [request setPostValue:password forKey:@"password"];
     [request setPostValue:name forKey:@"username"];
-    [request setDelegate:self];
+    
+    [request setCompletionBlock:^{
+        NSDictionary *results = [[request responseString] JSONValue];
+        [self checkLogin:results];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
+        [object performSelector:selector withObject:results];
+    }];
+    
     [request startAsynchronous];
 }
 
@@ -237,19 +241,20 @@ static int volatile openConnections = 0;
 - (void)getUserLikesForObject:(id)object withSelector:(SEL)selector {
     NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/likes", [Config host]];	
     
-    BGNetRequest *bgnr = [BGNetRequest initWithUrl:url];
-	[bgnr pushHandler:[MTHandler initForObject:object withSelector:selector]];
-    
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
-    request.tag = RequestActionGetLikes;
-    
-    // ONLY USE THIS LINE IN DEV MODE
-    [request setValidatesSecureCertificate:NO];
-    
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];    
     [request setRequestMethod:@"POST"];
-    [request setUserInfo:[NSDictionary dictionaryWithObject:bgnr forKey:@"bgnr"]];
     [request setPostValue:user.session forKey:@"sessionid"];
-    [request setDelegate:self];
+    
+    [request setCompletionBlock:^{
+        NSDictionary *results = [[request responseString] JSONValue];
+        [self checkSession:results];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
+        [object performSelector:selector withObject:results];
+    }];
+    
     [request startAsynchronous];
 }
 
@@ -258,19 +263,19 @@ static int volatile openConnections = 0;
 
     NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/likes/add", [Config host]];	
     
-    BGNetRequest *bgnr = [BGNetRequest initWithUrl:url];
-	[bgnr pushHandler:[MTHandler initForObject:object withSelector:selector]];
-    
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
-    request.tag = RequestActionLike;
-    
-    // ONLY USE THIS LINE IN DEV MODE
-    [request setValidatesSecureCertificate:NO];
-    
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];    
     [request setRequestMethod:@"POST"];
-    [request setUserInfo:[NSDictionary dictionaryWithObject:bgnr forKey:@"bgnr"]];
     [request setPostValue:guideid forKey:@"guideid"];
-    [request setDelegate:self];
+    [request setCompletionBlock:^{
+        NSDictionary *results = [[request responseString] JSONValue];
+        [self checkSession:results];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
+        [object performSelector:selector withObject:results];
+    }];
+    
     [request startAsynchronous];
 }
 
@@ -279,95 +284,21 @@ static int volatile openConnections = 0;
 
     NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/likes/remove", [Config host]];	
     
-    BGNetRequest *bgnr = [BGNetRequest initWithUrl:url];
-	[bgnr pushHandler:[MTHandler initForObject:object withSelector:selector]];
-    
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
-    request.tag = RequestActionLike;
-    
-    // ONLY USE THIS LINE IN DEV MODE
-    [request setValidatesSecureCertificate:NO];
-    
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];    
     [request setRequestMethod:@"POST"];
-    [request setUserInfo:[NSDictionary dictionaryWithObject:bgnr forKey:@"bgnr"]];
     [request setPostValue:guideid forKey:@"guideid"];
-    [request setDelegate:self];
+    
+    [request setCompletionBlock:^{
+        NSDictionary *results = [[request responseString] JSONValue];
+        [self checkSession:results];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
+        [object performSelector:selector withObject:results];
+    }];
+    
     [request startAsynchronous];
-}
-
-- (void)requestFinished:(ASIHTTPRequest *)request {	
-    NSDictionary *results = [[request responseString] JSONValue];
-    
-    switch (request.tag) {
-        case RequestActionLogin:
-        case RequestActionRegister:
-            // Save the sessionid here locally.
-            if ([results respondsToSelector:@selector(objectForKey:)]) {
-                if (![results objectForKey:@"error"]) {
-                    self.user = [User userWithDictionary:results];
-                    [self saveSession];
-                }
-            }
-            break;
-            
-        case RequestActionGetLikes:
-        case RequestActionLike:
-        case RequestActionUnlike:
-            // Check for invalid sessionid
-            if ([results valueForKey:@"error"] && [[results valueForKey:@"msg"] isEqual:@"Invalid login"]) {
-                self.user = nil;
-                [self saveSession];
-            }
-            break;
-            
-        default:
-            break;
-    }
-    
-    BGNetRequest *bgnr = [request.userInfo objectForKey:@"bgnr"];
-	MTHandler *handler = [bgnr popHandler];
-	[handler.object performSelector:handler.selector withObject:results];
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)request {
-    NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
-    BGNetRequest *bgnr = [request.userInfo objectForKey:@"bgnr"];
-	MTHandler *handler = [bgnr popHandler];
-	[handler.object performSelector:handler.selector withObject:results];
-}
-
-/**
-  * Background handler for HTTP GET requests.
-  */
-- (void)get:(BGNetRequest *)bgnr {
-	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
-	UIApplication* app = [UIApplication sharedApplication];
-	app.networkActivityIndicatorVisible = YES;
-	openConnections++;
-	
-	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];  
-	[request setURL:[NSURL URLWithString:bgnr.url]];
-		
-    NSError *err = nil;
-	NSData *data = [NSURLConnection sendSynchronousRequest:request
-												returningResponse:nil
-															error:&err];
-
-	[request release];
-
-	MTHandler *handler = [bgnr popHandler];
-	bgnr.data = err ? nil : [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
-	[handler.object performSelectorOnMainThread:handler.selector withObject:bgnr waitUntilDone:NO];
-
-	if (--openConnections <= 0) {
-		openConnections = 0;
-		app.networkActivityIndicatorVisible = NO;
-	}
-	
-	[pool drain];
-	
 }
 
 @end
