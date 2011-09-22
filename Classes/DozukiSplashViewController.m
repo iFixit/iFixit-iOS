@@ -11,7 +11,8 @@
 #import "iFixitAppDelegate.h"
 
 @implementation DozukiSplashViewController
-@synthesize introView;
+
+@synthesize introView, nextViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -19,6 +20,19 @@
     if (self) {
         // Custom initialization
         showingList = NO;
+        
+        // Create a navigation controller and load the info view.
+        DozukiInfoViewController *divc = [[DozukiInfoViewController alloc] initWithNibName:@"DozukiInfoView" bundle:nil];
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:divc];
+        nvc.delegate = self;
+        [divc showList];
+        
+        nvc.modalPresentationStyle = UIModalPresentationFormSheet;
+        nvc.modalTransitionStyle = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ?
+            UIModalTransitionStyleFlipHorizontal : UIModalTransitionStyleCrossDissolve;
+        self.nextViewController = nvc;
+        [nvc release];
+        [divc release];
     }
     return self;
 }
@@ -77,19 +91,12 @@
         showingList = YES;
     }];
     
-    // Create a navigation controller and load the info view.
-    DozukiInfoViewController *divc = [[DozukiInfoViewController alloc] initWithNibName:@"DozukiInfoView" bundle:nil];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:divc];
-    nvc.delegate = self;
-    
-    [divc showList];
-    
-    nvc.modalPresentationStyle = UIModalPresentationFormSheet;
-    nvc.modalTransitionStyle = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ?
-        UIModalTransitionStyleFlipHorizontal : UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:nvc animated:YES];
-    [nvc release];
-    [divc release];
+    if ([nextViewController.viewControllers count] == 1) {
+        nextViewController.viewControllers = [NSArray arrayWithObject:[nextViewController.viewControllers objectAtIndex:0]];
+        [(DozukiInfoViewController *)nextViewController.topViewController showList];
+    }
+
+    [self presentModalViewController:self.nextViewController animated:YES];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController
@@ -118,6 +125,7 @@
 
 - (void)dealloc {
     [introView release];
+    [nextViewController release];
     [super dealloc];
 }
 @end

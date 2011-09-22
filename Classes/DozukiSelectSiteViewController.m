@@ -32,6 +32,7 @@
         // Custom initialization
         self.sites = [NSMutableArray array];
         hasMoreSites = YES;
+        self.title = @"Choose a Site";
         [self loadMore];
     }
     return self;
@@ -114,7 +115,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.title = @"Choose a Site";
     
     if (loading)
         [self showLoading];

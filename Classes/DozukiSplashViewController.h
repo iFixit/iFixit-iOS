@@ -11,6 +11,8 @@
 }
 
 @property (retain, nonatomic) IBOutlet UIView *introView;
+@property (nonatomic, retain) UINavigationController *nextViewController;
+
 - (IBAction)getStarted:(id)sender;
 
 @end

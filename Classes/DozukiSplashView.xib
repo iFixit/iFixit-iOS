@@ -56,12 +56,58 @@
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIButton" id="498337763">
+							<object class="IBUIImageView" id="565546693">
 								<reference key="NSNextResponder" ref="761339406"/>
-								<int key="NSvFlags">265</int>
-								<string key="NSFrame">{{19, 337}, {283, 161}}</string>
+								<int key="NSvFlags">269</int>
+								<string key="NSFrame">{{21, 339}, {278, 42}}</string>
 								<reference key="NSSuperview" ref="761339406"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="835877660"/>
+								<string key="NSReuseIdentifierKey">_NS:569</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">dozukiIntro.png</string>
+								</object>
+							</object>
+							<object class="IBUIImageView" id="817992792">
+								<reference key="NSNextResponder" ref="761339406"/>
+								<int key="NSvFlags">293</int>
+								<string key="NSFrame">{{19, 15}, {283, 93}}</string>
+								<reference key="NSSuperview" ref="761339406"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="565546693"/>
+								<string key="NSReuseIdentifierKey">_NS:569</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">dozukiLogo.png</string>
+								</object>
+							</object>
+							<object class="IBUIImageView" id="835877660">
+								<reference key="NSNextResponder" ref="761339406"/>
+								<int key="NSvFlags">269</int>
+								<string key="NSFrame">{{77, 397}, {166, 42}}</string>
+								<reference key="NSSuperview" ref="761339406"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
+								<string key="NSReuseIdentifierKey">_NS:567</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">dozukiGetStarted.png</string>
+								</object>
+							</object>
+							<object class="IBUIButton" id="498337763">
+								<reference key="NSNextResponder" ref="761339406"/>
+								<int key="NSvFlags">274</int>
+								<string key="NSFrameSize">{320, 460}</string>
+								<reference key="NSSuperview" ref="761339406"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="817992792"/>
 								<string key="NSReuseIdentifierKey">_NS:241</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -79,10 +125,6 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
-								<object class="NSCustomResource" key="IBUINormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">dozukiGetStarted.png</string>
-								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
 									<double key="pointSize">15</double>
@@ -93,41 +135,11 @@
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="565546693">
-								<reference key="NSNextResponder" ref="761339406"/>
-								<int key="NSvFlags">265</int>
-								<string key="NSFrame">{{21, 339}, {278, 42}}</string>
-								<reference key="NSSuperview" ref="761339406"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="498337763"/>
-								<string key="NSReuseIdentifierKey">_NS:569</string>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">dozukiIntro.png</string>
-								</object>
-							</object>
-							<object class="IBUIImageView" id="817992792">
-								<reference key="NSNextResponder" ref="761339406"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{19, 15}, {283, 93}}</string>
-								<reference key="NSSuperview" ref="761339406"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="565546693"/>
-								<string key="NSReuseIdentifierKey">_NS:569</string>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">dozukiLogo.png</string>
-								</object>
-							</object>
 						</array>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="817992792"/>
+						<reference key="NSNextKeyView" ref="498337763"/>
 						<string key="NSReuseIdentifierKey">_NS:212</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -216,9 +228,10 @@
 						<int key="objectID">4</int>
 						<reference key="object" ref="761339406"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="498337763"/>
 							<reference ref="817992792"/>
 							<reference ref="565546693"/>
+							<reference ref="835877660"/>
+							<reference ref="498337763"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -237,6 +250,11 @@
 						<reference key="object" ref="565546693"/>
 						<reference key="parent" ref="761339406"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">11</int>
+						<reference key="object" ref="835877660"/>
+						<reference key="parent" ref="761339406"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -245,6 +263,7 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -255,7 +274,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">10</int>
+			<int key="maxID">11</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

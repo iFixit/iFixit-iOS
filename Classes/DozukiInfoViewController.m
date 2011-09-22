@@ -19,7 +19,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.dssvc = [[DozukiSelectSiteViewController alloc] initWithNibName:@"DozukiSelectSiteView" bundle:nil];
+        self.dssvc = [[[DozukiSelectSiteViewController alloc] initWithNibName:@"DozukiSelectSiteView" bundle:nil] autorelease];
+        self.title = @"Back";
     }
     return self;
 }
@@ -38,11 +39,8 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.title = @"";
     
     [self willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
 }
@@ -53,11 +51,10 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
         return YES;
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)dealloc {
