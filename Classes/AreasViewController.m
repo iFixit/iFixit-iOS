@@ -10,7 +10,6 @@
 #import "Config.h"
 #import "AreasViewController.h"
 #import "DetailViewController.h"
-#import "ThinDeviceViewController.h"
 #import "iPhoneDeviceViewController.h"
 
 @implementation AreasViewController
@@ -29,7 +28,7 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-- (void)viewDidAppear:(BOOL)animated {    
+- (void)viewWillAppear:(BOOL)animated {    
     if (!tree)
         [self getAreas];
 }
@@ -210,11 +209,11 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)theSearchBar {
     searchBar.text = @"";
-    [searchBar resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
-    [searchBar resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -223,7 +222,7 @@
     bounds.origin.y = 0;
     self.navigationController.view.bounds = bounds;
     
-    [searchBar resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 // Ensure that the view controller supports rotation and that the split view can therefore show in both portrait and landscape.
@@ -366,7 +365,6 @@
         
         // iPhone: Push a webView onto the stack.
         if (![iFixitAppDelegate isIPad]) {
-            //ThinDeviceViewController *vc = [[ThinDeviceViewController alloc] initWithURL:[NSURL URLWithString:url]];
             iPhoneDeviceViewController *vc = [[iPhoneDeviceViewController alloc] initWithDevice:title];
             vc.title = display_title;
             [self.navigationController pushViewController:vc animated:YES];
@@ -382,7 +380,7 @@
         [detailViewController.popoverController dismissPopoverAnimated:YES];
     }
 
-    [searchBar resignFirstResponder];
+    [self.view endEditing:YES];
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }

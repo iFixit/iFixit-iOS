@@ -17,7 +17,7 @@
 
 @implementation GuideStepViewController
 
-@synthesize delegate, step, titleLabel, mainImage, imageSpinner, webView, imageVC;
+@synthesize delegate, step, titleLabel, mainImage, imageSpinner, webView;
 @synthesize image1, image2, image3, numImagesLoaded, bigImages, html;
 
 // Load the view nib and initialize the pageNumber ivar.
@@ -155,29 +155,12 @@
    	UIImage *image = [mainImage backgroundImageForState:UIControlStateNormal];
     if (!image)
         return;
+
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
 	// Create the image view controller and add it to the view hierarchy.
-	self.imageVC = [GuideImageViewController initWithUIImage:image];
-	imageVC.delegate = self;
-	[[delegate view] addSubview:imageVC.view];
-
-	// Set the position and hide it.
-	imageVC.view.alpha = 0;
-	
-	// Animate the button and fade in the image view
-	[UIView beginAnimations:@"ImageView" context:nil];
-	[UIView setAnimationDuration:0.25];
-//	mainImage.transform = CGAffineTransformMakeScale(2,2);
-	imageVC.view.alpha = 1;
-	[UIView commitAnimations];
-   
-}
-- (void)hideGuideImage:(id)object {
-	[UIView beginAnimations:@"ImageView" context:nil];
-	[UIView setAnimationDuration:0.25];
-	imageVC.view.alpha = 0;
-//	mainImage.transform = CGAffineTransformMakeScale(1,1);
-	[UIView commitAnimations];
+	GuideImageViewController *imageVC = [GuideImageViewController zoomWithUIImage:image delegate:self];
+    [delegate presentModalViewController:imageVC animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

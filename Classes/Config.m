@@ -50,6 +50,7 @@ static Config *currentConfig = nil;
     }
     
     switch (site) {
+        // Make
         case ConfigMake:
         case ConfigMakeDev:
             self.backgroundColor = [UIColor whiteColor];
@@ -60,6 +61,7 @@ static Config *currentConfig = nil;
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             break;
+        // iFixit
         case ConfigIFixit:
         case ConfigIFixitDev:
             self.backgroundColor = [UIColor blackColor];
@@ -71,6 +73,7 @@ static Config *currentConfig = nil;
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             break;
+        // Dozuki
         default:
             self.backgroundColor = [UIColor blackColor];
             self.textColor = [UIColor whiteColor];

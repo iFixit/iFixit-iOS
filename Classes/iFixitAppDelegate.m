@@ -55,6 +55,7 @@
 
     /** IFIXIT *************************************************************************/
     [self showSiteSplash];
+    //return YES;
     
     /** DOZUKI *************************************************************************/
     if (!domain)
@@ -74,7 +75,7 @@
     [defaults setValue:nil forKey:@"domain"];
     [defaults synchronize];
 
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    if (YES || [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         // Dozuki splash
         DozukiSplashViewController *dsvc = [[DozukiSplashViewController alloc] initWithNibName:@"DozukiSplashView" bundle:nil];
         dsvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -183,37 +184,6 @@
     // Show the main app!
     [[iFixitAPI sharedInstance] loadSession];
     [self showSiteSplash];
-}
-
-- (void)showGuideid:(NSInteger)guideid {
-    if (!guideid)
-        return;
-
-	GuideViewController *vc = [GuideViewController initWithGuideid:guideid];
-    
-    if ([iFixitAppDelegate isIPad])
-        [splitViewController presentModalViewController:vc animated:YES];
-    else
-        [window.rootViewController presentModalViewController:vc animated:YES];
-}
-
-- (void)showGuide:(Guide *)guide {
-    if (!guide)
-        return;
-    
-	GuideViewController *vc = [GuideViewController initWithGuide:guide];
-    
-    if ([iFixitAppDelegate isIPad])
-        [splitViewController presentModalViewController:vc animated:YES];
-    else
-        [window.rootViewController presentModalViewController:vc animated:YES];
-}
-
-- (void)hideGuide {
-    if ([iFixitAppDelegate isIPad])
-        [splitViewController dismissModalViewControllerAnimated:YES];
-    else
-        [window.rootViewController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

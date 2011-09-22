@@ -7,7 +7,6 @@
 //
 
 @class Guide;
-@class GuideImageViewController;
 
 @interface GuideIntroViewController : UIViewController <UIWebViewDelegate> {
 	id delegate;
@@ -20,7 +19,6 @@
 	UIButton *mainImage;
 	UIWebView *webView;
 	UIActivityIndicatorView *imageSpinner;
-	GuideImageViewController *imageVC;
     UIImage *huge;
     NSString *html;
 }
@@ -35,7 +33,6 @@
 @property (nonatomic, retain) IBOutlet UIButton *mainImage;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *imageSpinner;
-@property (nonatomic, retain) GuideImageViewController *imageVC;
 @property (nonatomic, retain) UIImage *huge;
 @property (nonatomic, retain) NSString *html;
 

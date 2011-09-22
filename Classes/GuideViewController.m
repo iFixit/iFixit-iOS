@@ -92,7 +92,9 @@
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
     if (bookmarker.poc.isPopoverVisible)
         [bookmarker.poc dismissPopoverAnimated:YES];
-	[(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] hideGuide];
+    
+    // Hide the guide.
+    [self dismissModalViewControllerAnimated:YES];
 	return YES;
 }
 
@@ -105,7 +107,7 @@
     }
     // Cancel
     else {
-        [(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] hideGuide];
+        [self dismissModalViewControllerAnimated:YES];
     }
 }
 
@@ -272,6 +274,7 @@
       if (distance > 2.0) {
          UIViewController *vc = [viewControllers objectAtIndex:i];
          if ((NSNull *)vc != [NSNull null]) {
+             NSLog(@"remove %i", i);
             [vc.view removeFromSuperview];
             vc.view = nil;
             [viewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
@@ -319,11 +322,11 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // iPad Landscape only.
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight;
     
-    // iPhone Portrait only.
-    return UIInterfaceOrientationPortrait;
+    // iPhone Portrait+Landscape.
+    return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

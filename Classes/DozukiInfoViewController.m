@@ -42,28 +42,12 @@
 {
     [super viewDidLoad];
 
-    self.title = @"How It Works";
-    
-    // Align vertically.
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        textLabel.text = [textLabel.text stringByAppendingString:@"\n\n\n\n"];
-    }
-    else {
-        //self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.61 green:0.61 blue:0.07 alpha:1.0];
-        self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.95 green:0.46 blue:0.09 alpha:1.0];
-    }
+    self.title = @"";
     
     [self willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
 }
 
-- (void)viewDidUnload
-{
-    [textLabel release];
-    textLabel = nil;
-    [getStartedButton release];
-    getStartedButton = nil;
-    [titleLabel release];
-    titleLabel = nil;
+- (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -76,48 +60,8 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        return;
-    
-    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
-        CGRect frame = titleLabel.frame;
-        frame.origin.y = 20;
-        titleLabel.frame = frame;
-        
-        frame = textLabel.frame;
-        frame.origin.y = 60;
-        textLabel.frame = frame;
-        
-        frame = getStartedButton.frame;
-        frame.origin.y = 275;
-        getStartedButton.frame = frame;
-    }
-    else {
-        CGRect frame = titleLabel.frame;
-        frame.origin.y = 10;
-        titleLabel.frame = frame;
-        
-        frame = textLabel.frame;
-        frame.origin.y = 25;
-        textLabel.frame = frame;   
-        
-        frame = getStartedButton.frame;
-        frame.origin.y = 185;
-        getStartedButton.frame = frame;
-    }
-}
-
-- (IBAction)getStarted:(id)sender {
-    [self.navigationController pushViewController:dssvc animated:YES];
-    [dssvc release];
-}
-
 - (void)dealloc {
-    self.dssvc = nil;
-    [textLabel release];
-    [getStartedButton release];
-    [titleLabel release];
+    [self.dssvc release];
     [super dealloc];
 }
 @end

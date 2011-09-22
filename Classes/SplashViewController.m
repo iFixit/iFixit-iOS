@@ -11,6 +11,7 @@
 #import "UIButton+WebCache.h"
 #import "Config.h"
 #import "GuideImage.h"
+#import "GuideViewController.h"
 
 #pragma mark VerticalAlign
 @interface UILabel (VerticalAlign)
@@ -142,7 +143,9 @@
     
     if (guide < [guides count]) {
         int guideid = [[[guides objectAtIndex:guide] valueForKey:@"guideid"] integerValue];
-        [(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showGuideid:guideid];
+
+        GuideViewController *vc = [GuideViewController initWithGuideid:guideid];
+        [self presentModalViewController:vc animated:YES];
     }
 }
 

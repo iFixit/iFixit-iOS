@@ -84,7 +84,7 @@
     }
     else {
         hasMoreSites = NO;
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error loading sites list"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not load site list"
                                                         message:@"Please check your internet connection and try again."
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
@@ -142,11 +142,10 @@
     [super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
         return YES;
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - Table view data source
@@ -159,8 +158,7 @@
     return [sites count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];

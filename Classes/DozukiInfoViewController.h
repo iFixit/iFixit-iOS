@@ -8,16 +8,10 @@
 
 @class DozukiSelectSiteViewController;
 
-@interface DozukiInfoViewController : UIViewController  {
-    DozukiSelectSiteViewController *dssvc;
-    IBOutlet UILabel *titleLabel;
-    IBOutlet UILabel *textLabel;
-    IBOutlet UIButton *getStartedButton;
-}
+@interface DozukiInfoViewController : UIViewController
 
 @property (nonatomic, retain) DozukiSelectSiteViewController *dssvc;
 
-- (IBAction)getStarted:(id)sender;
 - (void)showList;
 
 @end

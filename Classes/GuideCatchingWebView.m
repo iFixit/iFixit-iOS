@@ -11,6 +11,7 @@
 #import "Config.h"
 #import "RegexKitLite.h"
 #import "SVWebViewController.h"
+#import "GuideViewController.h"
 
 @implementation GuideCatchingWebView
 
@@ -62,7 +63,8 @@
     iFixitAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     
 	if (guideid != -1) {
-		[delegate showGuideid:guideid];
+        GuideViewController *vc = [GuideViewController initWithGuideid:guideid];
+        [delegate.areasViewController presentModalViewController:vc animated:YES];
 		return NO;
 	}
     

@@ -42,9 +42,6 @@
 - (void)showSiteSplash;
 - (UIViewController *)iPadRoot;
 - (UIViewController *)iPhoneRoot;
-- (void)showGuideid:(NSInteger)guideid;
-- (void)showGuide:(Guide *)guide;
-- (void)hideGuide;
 - (void)showBrowser;
 - (void)showSplash;
 - (void)loadSite:(NSString *)domain;

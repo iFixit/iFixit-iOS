@@ -16,13 +16,16 @@
 #import "User.h"
 #import "iFixitAPI.h"
 #import "Config.h"
+#import "GuideViewController.h"
 
 @implementation BookmarksViewController
 
 @synthesize bookmarks, lvc, devices;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {    
+        self.title = @"Favorites";
+
         LoginViewController *vc = [[LoginViewController alloc] initWithStyle:UITableViewStyleGrouped];
         vc.delegate = self;
         self.lvc = vc;
@@ -138,8 +141,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title = @"Bookmarks";
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -292,7 +293,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *key = [devices objectAtIndex:indexPath.section];
     Guide *guide = [[bookmarks objectForKey:key] objectAtIndex:indexPath.row];
-    [(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showGuide:guide];
+    //[(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showGuide:guide];
+    
+    GuideViewController *vc = [GuideViewController initWithGuide:guide];
+    [self.navigationController presentModalViewController:vc animated:YES];
     
     // Refresh any changes.
     [[GuideBookmarks sharedBookmarks] addGuideid:[NSNumber numberWithInt:guide.guideid]];

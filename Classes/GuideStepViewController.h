@@ -6,7 +6,6 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
-@class GuideImageViewController;
 @class GuideStep;
 
 @interface GuideStepViewController : UIViewController <UIWebViewDelegate> {
@@ -17,7 +16,6 @@
 	UIButton *mainImage;
 	UIActivityIndicatorView *imageSpinner;
 	UIWebView *webView;
-	GuideImageViewController *imageVC;
     
     UIButton *image1;
     UIButton *image2;
@@ -41,8 +39,6 @@
 @property (nonatomic) NSInteger numImagesLoaded;
 @property (nonatomic, retain) NSMutableArray *bigImages;
 @property (nonatomic, retain) NSString *html;
-
-@property (nonatomic, retain) GuideImageViewController *imageVC;
 
 + (id)initWithStep:(GuideStep *)step;
 - (IBAction)zoomImage:(id)sender;

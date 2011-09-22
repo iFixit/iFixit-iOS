@@ -8,7 +8,6 @@
 
 #import "GuideIntroViewController.h"
 #import "Guide.h"
-#import "GuideImageViewController.h"
 #import "UIButton+WebCache.h"
 #import "Config.h"
 #import "SVWebViewController.h"
@@ -16,7 +15,7 @@
 @implementation GuideIntroViewController
 
 @synthesize delegate, headerImageIFixit, headerImageMake, swipeLabel;
-@synthesize guide, device, mainImage, webView, imageSpinner, imageVC, huge, html;
+@synthesize guide, device, mainImage, webView, imageSpinner, huge, html;
 
 static CGRect frameView;
 
@@ -112,20 +111,6 @@ static CGRect frameView;
     return;
 
 }
-- (void)hideGuideImage:(id)object {
-	[UIView beginAnimations:@"ImageView" context:nil];
-	[UIView setAnimationDuration:0.3];
-	mainImage.transform = CGAffineTransformMakeScale(1,1);
-	imageVC.view.alpha = 0;
-	[UIView commitAnimations];
-    
-    [self performSelector:@selector(removeImageVC) withObject:nil afterDelay:0.5];
-}
-
-- (void)removeImageVC {
-    [imageVC.view removeFromSuperview];
-}
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Overriden to allow any orientation.

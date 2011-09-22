@@ -19,60 +19,77 @@
 
 @implementation GuideImageViewController
 
-@synthesize delegate, image, delay;
+@synthesize delegate, image, imageScrollView, delay;
 
 static CGRect frameView;
 
 - (void)detectOrientation {
-    if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]))
+    if ([delegate view].frame.size.width > 400.0)
         frameView = CGRectMake(0.0f, 0.0f, 480.0f, 320.0f);
     else
         frameView = CGRectMake(0.0f, 0.0f, 320.0f, 480.0f);
 
     self.view.frame = frameView;
-    
-    if ([self.view.subviews count])
-        [self loadView];
 }
 
-+ (id)initWithUIImage:(UIImage *)image {
+- (id)initWithUIImage:(UIImage *)i delegate:(id)d {
+    if ((self = [super init])) {
+        self.image = i;
+        self.delegate = d;
+    }
+    return self;
+}
+
++ (id)zoomWithUIImage:(UIImage *)image delegate:(id)delegate {
     [TestFlight passCheckpoint:@"Image Zoom"];
 
-	GuideImageViewController *vc = [[GuideImageViewController alloc] init];
-	vc.image = image;
+	GuideImageViewController *vc = [[GuideImageViewController alloc] initWithUIImage:image delegate:delegate];
+    vc.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    [vc setWantsFullScreenLayout:YES];
+
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         frameView = CGRectMake(0.0f, 0.0f, 1024.0f, 748.0f);
         vc.view.frame = frameView;        
     }
     else {
-        [vc setWantsFullScreenLayout:YES];
         [vc detectOrientation];
-        
-        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-        [[NSNotificationCenter defaultCenter] addObserver:vc selector:@selector(detectOrientation) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
     }
-	
+    
     return [vc autorelease];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // iPad Landscape only.
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        return interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight;
+    
+    // iPhone Portrait+Landscape.
+    return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 - (void)loadView {
     [super loadView];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
     // set up main scroll view
-	imageScrollView = [[UIScrollView alloc] initWithFrame:frameView];
+	self.imageScrollView = [[[UIScrollView alloc] initWithFrame:self.view.frame] autorelease];
+    imageScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [imageScrollView setBackgroundColor:[Config currentConfig].backgroundColor];
     [imageScrollView setDelegate:self];
     [imageScrollView setBouncesZoom:YES];
     [self.view addSubview:imageScrollView];
 	[self.view sendSubviewToBack:imageScrollView];
-   
+
     // add touch-sensitive image view to the scroll view
-	UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-   
+	UIImageView *imageView = [[UIImageView alloc] initWithImage:self.image];
+
     [imageView setTag:ZOOM_VIEW_TAG];
     [imageView setUserInteractionEnabled:YES];
     //[imageScrollView setContentSize:[imageView frame].size];
+    imageView.frame = CGRectMake(0.0, 0.0, 1600.0, 1200.0);
     [imageScrollView setContentSize:CGSizeMake(1600.0f, 1200.0f)];
 	[imageScrollView addSubview:imageView];
     [imageView release];
@@ -127,8 +144,7 @@ static CGRect frameView;
 }
 
 - (void)dealloc {
-    self.delay = nil;
-	[imageScrollView release];
+    //	self.imageScrollView = nil;
     
     [super dealloc];
 }
@@ -152,10 +168,10 @@ static CGRect frameView;
 		[NSThread sleepForTimeInterval:0.25];
 
 		if (!doubleTap) {
-            [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
-            [[NSNotificationCenter defaultCenter] removeObserver:self];
-            
-			[delegate performSelectorOnMainThread:@selector(hideGuideImage:) withObject:nil waitUntilDone:NO];;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[UIApplication sharedApplication] setStatusBarHidden:NO];
+                [[delegate delegate] dismissModalViewControllerAnimated:YES];
+            });
         }
 		
 	});

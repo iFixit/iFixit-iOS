@@ -44,7 +44,7 @@
     self.guideid = [NSNumber numberWithInt:newGuideid];
     
     if (![[GuideBookmarks sharedBookmarks] guideForGuideid:guideid]) {
-        UIBarButtonItem *bookmarkButton = [[UIBarButtonItem alloc] initWithTitle:@"Bookmark" 
+        UIBarButtonItem *bookmarkButton = [[UIBarButtonItem alloc] initWithTitle:@"Favorite" 
                                                                            style:UIBarButtonItemStyleBordered 
                                                                           target:self 
                                                                           action:@selector(bookmark:)];

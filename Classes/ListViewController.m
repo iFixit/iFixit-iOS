@@ -59,7 +59,7 @@
     
     toolbar.tintColor = [Config currentConfig].toolbarColor;
     
-    NSArray *toggleItems = [NSArray arrayWithObjects:@"All", @"Bookmarks", nil];
+    NSArray *toggleItems = [NSArray arrayWithObjects:@"All", @"Favorites", nil];
     UISegmentedControl *toggle = [[UISegmentedControl alloc] initWithItems:toggleItems];
     toggle.selectedSegmentIndex = bookmarksTVC && self.topViewController == bookmarksTVC ? 1 : 0;
     toggle.tintColor = [[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]] ? [UIColor darkGrayColor] : [Config currentConfig].toolbarColor;

@@ -24,7 +24,7 @@
         // Custom initialization
         self.delegate = nil;
         self.loading = nil;
-        self.message = @"Favorites are synced online and saved locally for offline browsing. Please login or register to access this feature.";
+        self.message = @"Favorites are synced across devices and saved locally for offline browsing. Please login or register to access this feature.";
         showRegister = NO;
         self.emailField = nil;
         self.passwordField = nil;
@@ -89,15 +89,16 @@
         self.loading = [[[WBProgressHUD alloc] initWithFrame:rect] autorelease];
     }
     
+    // Hide the keyboard and prevent further editing.
     self.view.userInteractionEnabled = NO;
-    [emailField resignFirstResponder];
-    [passwordField resignFirstResponder];
-    [passwordVerifyField resignFirstResponder];
-    [fullNameField resignFirstResponder];
+    [self.view endEditing:YES];
+    
     [loading showInView:self.tableView];
 }
 - (void)hideLoading {
     [loading removeFromSuperview];
+    
+    // Allow editing again.
     self.view.userInteractionEnabled = YES;
 }
 
@@ -350,6 +351,7 @@
         inputField.frame = rect;
         inputField.placeholder = @"email@example.com";
         inputField.keyboardType = UIKeyboardTypeEmailAddress;
+        inputField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         inputField.returnKeyType = UIReturnKeyNext;
     }
     else if (row == 1) {

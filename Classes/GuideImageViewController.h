@@ -18,11 +18,12 @@
     NSDate *delay;
 }
 
-@property (nonatomic, retain) id delegate;
+@property (nonatomic, assign) id delegate;
+@property (nonatomic, retain) UIScrollView *imageScrollView;
 @property (nonatomic, retain) UIImage *image;
 @property (nonatomic, retain) NSDate *delay;
 
-+ (id)initWithUIImage:(UIImage *)image;
++ (id)zoomWithUIImage:(UIImage *)image delegate:(id)delegate;
 - (void)setupTouchEvents:(UIImageView *)imageView;
 
 @end

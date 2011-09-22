@@ -12,6 +12,7 @@
 #import "GuideCell.h"
 #import "UIImageView+WebCache.h"
 #import "iFixitAppDelegate.h"
+#import "GuideViewController.h"
 
 @implementation iPhoneDeviceViewController
 
@@ -174,7 +175,8 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"subject"];
+    NSString *subject = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"subject"];
+    cell.textLabel.text = [subject stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
     
     NSString *thumbnailURL = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"thumbnail"];
     [cell.imageView setImageWithURL:[NSURL URLWithString:thumbnailURL] placeholderImage:[UIImage imageNamed:@"NoImage_300x225.jpg"]];
@@ -186,7 +188,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger guideid = [[[self.guides objectAtIndex:indexPath.row] valueForKey:@"guideid"] intValue];
-    [(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showGuideid:guideid];
+    
+    GuideViewController *guideVC = [GuideViewController initWithGuideid:guideid];
+    [self presentModalViewController:guideVC animated:YES];
 
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
