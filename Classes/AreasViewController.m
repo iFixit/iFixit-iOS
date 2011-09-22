@@ -104,6 +104,11 @@
         [self.tableView reloadData];
     }
     else {
+        // TODO: Show guides instead
+        if ([areas isKindOfClass:[NSArray class]] && ![areas count]) {
+            NSLog(@"empty");
+        }
+
         [self showRefreshButton];
     }
 }

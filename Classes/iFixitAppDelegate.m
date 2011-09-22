@@ -106,9 +106,21 @@
     UIViewController *root = 
     [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ?
         [self iPadRoot] : [self iPhoneRoot];
-
+ 
     self.window.rootViewController = root;
     [window makeKeyAndVisible];
+    
+    /*
+    root.view.alpha = 0.0;
+    [self.window addSubview:root.view];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        root.view.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        self.window.rootViewController = root;
+        [window makeKeyAndVisible];
+    }];    
+    */
 }
 
 - (UIViewController *)iPadRoot {
@@ -184,6 +196,32 @@
     // Show the main app!
     [[iFixitAPI sharedInstance] loadSession];
     [self showSiteSplash];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    
+    NSString *urlString = [url absoluteString];
+    
+    // Pull out the site name with a regex.
+    if (urlString) {
+        NSError *error = nil;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^dozuki://(.*?)$"
+                                                                               options:NSRegularExpressionCaseInsensitive error:&error];
+        NSTextCheckingResult *match = [regex firstMatchInString:urlString options:0 range:NSMakeRange(0, [urlString length])];
+        
+        if (match) {
+            NSRange keyRange = [match rangeAtIndex:1];
+            NSString *domain = [urlString substringWithRange:keyRange];
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setValue:domain forKey:@"domain"];
+            [defaults synchronize];
+            
+            [self loadSite:domain];
+        }
+    }
+	
+	return NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

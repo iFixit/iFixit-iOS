@@ -8,7 +8,6 @@
 
 @interface DozukiSplashViewController : UIViewController <UINavigationControllerDelegate> {
     BOOL showingList;
-    BOOL firstLoad;
 }
 
 @property (retain, nonatomic) IBOutlet UIView *introView;

@@ -19,7 +19,6 @@
     if (self) {
         // Custom initialization
         showingList = NO;
-        firstLoad = YES;
     }
     return self;
 }
@@ -34,19 +33,20 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (firstLoad) {
+    iFixitAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    if (appDelegate.firstLoad) {
         for (UIView *view in self.introView.subviews)
             view.alpha = 0.0;
     }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (firstLoad) {
+    iFixitAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    if (appDelegate.firstLoad) {
         [UIView animateWithDuration:0.5 animations:^{
             for (UIView *view in self.introView.subviews)
                 view.alpha = 1.0;
         }];
-        firstLoad = NO;
     }    
 }
 
