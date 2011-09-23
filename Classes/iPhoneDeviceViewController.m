@@ -202,9 +202,20 @@
     
     // Configure the cell...
     NSString *subject = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"subject"];
-    subject = [subject stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
-    subject = [subject stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
-    subject = [subject stringByReplacingOccurrencesOfString:@"<wbr />" withString:@" "];
+    
+    // Run some error checking.
+    if (!subject || [subject isEqual:[NSNull null]])
+        subject = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"thing"];
+
+    if (!subject || [subject isEqual:[NSNull null]] || [subject isEqual:@""]) {
+        subject = @"Untitled";
+    }
+    else {
+        subject = [subject stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+        subject = [subject stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+        subject = [subject stringByReplacingOccurrencesOfString:@"<wbr />" withString:@" "];
+    }
+    
     cell.textLabel.text = subject;
     
     NSString *thumbnailURL = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"thumbnail"];
