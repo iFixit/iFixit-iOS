@@ -45,5 +45,6 @@
 - (void)showBrowser;
 - (void)showSplash;
 - (void)loadSite:(NSString *)domain;
+- (void)loadSite:(NSString *)domain withColor:(UIColor *)color;
 
 @end

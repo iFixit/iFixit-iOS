@@ -35,6 +35,7 @@
 		C1D98150120E09BA00509D18 /* GuideStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9814E120E09BA00509D18 /* GuideStepViewController.m */; };
 		C1D98151120E09BA00509D18 /* GuideStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D9814F120E09BA00509D18 /* GuideStepView.xib */; };
 		DA05677B138D976600660C86 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA05677A138D976600660C86 /* User.m */; };
+		DA0877BD142D3E6200954482 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0877BC142D3E6200954482 /* UIColor+Hex.m */; };
 		DA0A0C03138B02310027721E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C02138B02310027721E /* CFNetwork.framework */; };
 		DA0A0C05138B02370027721E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C04138B02370027721E /* SystemConfiguration.framework */; };
 		DA0A0C07138B023C0027721E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C06138B023C0027721E /* MobileCoreServices.framework */; };
@@ -194,6 +195,8 @@
 		C1D9814F120E09BA00509D18 /* GuideStepView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GuideStepView.xib; path = ../GuideStepView.xib; sourceTree = "<group>"; };
 		DA056779138D976600660C86 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DA05677A138D976600660C86 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		DA0877BB142D3E6200954482 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		DA0877BC142D3E6200954482 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		DA0A0C02138B02310027721E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		DA0A0C04138B02370027721E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DA0A0C06138B023C0027721E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -573,6 +576,15 @@
 			name = "Guide View";
 			sourceTree = "<group>";
 		};
+		DA0877B7142D3E3200954482 /* UIColor+Hex */ = {
+			isa = PBXGroup;
+			children = (
+				DA0877BB142D3E6200954482 /* UIColor+Hex.h */,
+				DA0877BC142D3E6200954482 /* UIColor+Hex.m */,
+			);
+			name = "UIColor+Hex";
+			sourceTree = "<group>";
+		};
 		DA3E3E10133C0F580070615F /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -716,6 +728,7 @@
 		DAC88AD51427E10B00D33C00 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				DA0877B7142D3E3200954482 /* UIColor+Hex */,
 				DA8860BD1427DD0C0030F52C /* ASIHTTPRequest */,
 				DA8860DE1427DD490030F52C /* SVWebViewController */,
 				C10F26FC120CE5140027A28D /* JSON */,
@@ -960,6 +973,7 @@
 				DA8860D91427DD240030F52C /* ASINetworkQueue.m in Sources */,
 				DA8860DD1427DD2A0030F52C /* Reachability.m in Sources */,
 				DA8860E31427DD490030F52C /* SVWebViewController.m in Sources */,
+				DA0877BD142D3E6200954482 /* UIColor+Hex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

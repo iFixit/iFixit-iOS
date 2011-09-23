@@ -104,9 +104,11 @@
         [self.tableView reloadData];
     }
     else {
-        // TODO: Show guides instead
+        // If there is no area hierarchy, show a guide list instead
         if ([areas isKindOfClass:[NSArray class]] && ![areas count]) {
-            NSLog(@"empty");
+            iPhoneDeviceViewController *dvc = [[iPhoneDeviceViewController alloc] initWithDevice:nil];
+            [self.navigationController pushViewController:dvc animated:YES];
+            [dvc release];
         }
 
         [self showRefreshButton];

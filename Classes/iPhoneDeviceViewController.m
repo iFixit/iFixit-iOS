@@ -13,6 +13,7 @@
 #import "UIImageView+WebCache.h"
 #import "iFixitAppDelegate.h"
 #import "GuideViewController.h"
+#import "Config.h"
 
 @implementation iPhoneDeviceViewController
 
@@ -23,6 +24,9 @@
     if ((self = [super initWithNibName:@"iPhoneDeviceView" bundle:nil])) {
         self.device = device;
         self.guides = [NSArray array];
+        
+        if (!device)
+            self.title = @"Guides";
         
         [self getGuides];
     }
@@ -72,10 +76,22 @@
     if (!loading) {
         loading = YES;
         [self showLoading];
-        [[iFixitAPI sharedInstance] getDevice:self.device forObject:self withSelector:@selector(gotDevice:)];
+        
+        if (self.device)
+            [[iFixitAPI sharedInstance] getDevice:self.device forObject:self withSelector:@selector(gotDevice:)];
+        else
+            [[iFixitAPI sharedInstance] getGuides:nil forObject:self withSelector:@selector(gotGuides:)];
     }
 }
 
+- (void)gotGuides:(NSArray *)guides {
+    self.guides = guides;
+    [self.tableView reloadData];
+    [self hideLoading];
+    
+    if (!self.guides)
+        [self showRefreshButton];
+}
 - (void)gotDevice:(NSDictionary *)data {
     self.guides = [data arrayForKey:@"guides"];
     [self.tableView reloadData];
@@ -106,6 +122,16 @@
 
     if (loading)
         [self showLoading];
+    
+    // Show the Dozuki sites select button if needed.
+    if ([Config currentConfig].dozuki && !self.device) {
+        UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
+        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
+                                                                  target:[[UIApplication sharedApplication] delegate]
+                                                                  action:@selector(showDozukiSplash)];
+        self.navigationItem.leftBarButtonItem = button;
+        [button release];
+    }
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -176,7 +202,10 @@
     
     // Configure the cell...
     NSString *subject = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"subject"];
-    cell.textLabel.text = [subject stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    subject = [subject stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    subject = [subject stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    subject = [subject stringByReplacingOccurrencesOfString:@"<wbr />" withString:@" "];
+    cell.textLabel.text = subject;
     
     NSString *thumbnailURL = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"thumbnail"];
     [cell.imageView setImageWithURL:[NSURL URLWithString:thumbnailURL] placeholderImage:[UIImage imageNamed:@"NoImage_300x225.jpg"]];

@@ -50,8 +50,9 @@
     
     // Load a previous choice
     NSString *domain = [[NSUserDefaults standardUserDefaults] valueForKey:@"domain"];
+    UIColor *color = [[NSUserDefaults standardUserDefaults] objectForKey:@"color"];
     if (domain)
-        [self loadSite:domain];
+        [self loadSite:domain withColor:color];
 
     /** IFIXIT *************************************************************************/
     [self showSiteSplash];
@@ -177,6 +178,10 @@
 }
 
 - (void)loadSite:(NSString *)domain {
+    [self loadSite:domain withColor:nil];
+}
+
+- (void)loadSite:(NSString *)domain withColor:(UIColor *)color {
     // Load the right site
     if ([domain isEqual:@"www.ifixit.com"]) {
         [[Config currentConfig] setSite:ConfigIFixit];
@@ -191,6 +196,9 @@
         [[Config currentConfig] setSite:ConfigDozuki];
         [Config currentConfig].host = domain;
         [Config currentConfig].baseURL = [NSString stringWithFormat:@"http://%@/Guide", domain];
+        
+        if (color)
+            [Config currentConfig].toolbarColor = color;
     }
     
     // Show the main app!
@@ -215,6 +223,7 @@
             
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setValue:domain forKey:@"domain"];
+            [defaults setValue:nil forKey:@"color"];
             [defaults synchronize];
             
             [self loadSite:domain];

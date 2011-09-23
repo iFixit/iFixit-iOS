@@ -43,6 +43,13 @@ static CGRect frameView;
     else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
         headerImageIFixit.hidden = NO;
     }
+    // If this is a Dozuki site, we have no logo, so move the intro up to fill the space.
+    else if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        CGRect frame = self.webView.frame;
+        frame.origin.y -= 80.0;
+        frame.size.height += 80.0;
+        self.webView.frame = frame;
+    }
     
     // Hide the swipe label if there are no steps.
     if (![guide.steps count])

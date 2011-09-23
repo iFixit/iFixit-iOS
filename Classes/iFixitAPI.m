@@ -133,10 +133,9 @@ static int volatile openConnections = 0;
 }
 
 - (void)getGuides:(NSString *)type forObject:(id)object withSelector:(SEL)selector {
-	if (!type)
-		type = @"featured";
+    int limit = [type isEqual:@"featured"] ? 9 : 100;
 	
-	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guides/%@?limit=9", [Config host], type];	
+	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guides/%@?limit=%d", [Config host], type, limit];	
     
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{

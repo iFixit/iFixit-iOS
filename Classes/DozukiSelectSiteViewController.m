@@ -10,6 +10,7 @@
 #import "iFixitAppDelegate.h"
 #import "Config.h"
 #import "iFixitAPI.h"
+#import "UIColor+Hex.h"
 
 #define SITES_REQUEST_LIMIT 25
 
@@ -177,15 +178,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [TestFlight passCheckpoint:@"Dozuki Site Select"];
+
+    NSString *domain = [[sites objectAtIndex:indexPath.row] valueForKey:@"domain"];
+    NSString *colorHex = [[sites objectAtIndex:indexPath.row] valueForKey:@"color"];
+    UIColor *color = [UIColor colorFromHexString:colorHex];
     
     // Save this choice for future launches
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *domain = [[sites objectAtIndex:indexPath.row] valueForKey:@"domain"];
     [defaults setValue:domain forKey:@"domain"];
+    [defaults setValue:color forKey:@"color"];
     [defaults synchronize];
     
     iFixitAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate loadSite:domain];
+    [appDelegate loadSite:domain withColor:color];
  
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
