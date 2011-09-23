@@ -36,6 +36,9 @@
 		C1D98151120E09BA00509D18 /* GuideStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D9814F120E09BA00509D18 /* GuideStepView.xib */; };
 		DA05677B138D976600660C86 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA05677A138D976600660C86 /* User.m */; };
 		DA0877BD142D3E6200954482 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0877BC142D3E6200954482 /* UIColor+Hex.m */; };
+		DA0877C3142D4BBB00954482 /* vignette.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0877C2142D4BBB00954482 /* vignette.png */; };
+		DA0877C6142D4EAB00954482 /* vignette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0877C4142D4EAB00954482 /* vignette@2x.png */; };
+		DA0877C7142D4EAB00954482 /* vignette~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0877C5142D4EAB00954482 /* vignette~ipad.png */; };
 		DA0A0C03138B02310027721E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C02138B02310027721E /* CFNetwork.framework */; };
 		DA0A0C05138B02370027721E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C04138B02370027721E /* SystemConfiguration.framework */; };
 		DA0A0C07138B023C0027721E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C06138B023C0027721E /* MobileCoreServices.framework */; };
@@ -197,6 +200,9 @@
 		DA05677A138D976600660C86 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DA0877BB142D3E6200954482 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		DA0877BC142D3E6200954482 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		DA0877C2142D4BBB00954482 /* vignette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vignette.png; path = Graphics/vignette.png; sourceTree = "<group>"; };
+		DA0877C4142D4EAB00954482 /* vignette@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vignette@2x.png"; path = "Graphics/vignette@2x.png"; sourceTree = "<group>"; };
+		DA0877C5142D4EAB00954482 /* vignette~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vignette~ipad.png"; path = "Graphics/vignette~ipad.png"; sourceTree = "<group>"; };
 		DA0A0C02138B02310027721E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		DA0A0C04138B02370027721E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DA0A0C06138B023C0027721E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -684,6 +690,9 @@
 		DA9948AB142ACC6000E4167D /* Dozuki Splash */ = {
 			isa = PBXGroup;
 			children = (
+				DA0877C2142D4BBB00954482 /* vignette.png */,
+				DA0877C4142D4EAB00954482 /* vignette@2x.png */,
+				DA0877C5142D4EAB00954482 /* vignette~ipad.png */,
 				DA9948A1142AC24B00E4167D /* dozukiGetStarted.png */,
 				DA994897142ABDDB00E4167D /* dozukiGetStarted~ipad.png */,
 				DA99489F142AC01A00E4167D /* dozukiGetStarted@2x.png */,
@@ -908,6 +917,9 @@
 				DA9948A4142AC26900E4167D /* dozukiLogo.png in Resources */,
 				DA9948A6142AC34E00E4167D /* dozukiIntro.png in Resources */,
 				DA9948AA142AC55D00E4167D /* DozukiSplashView.xib in Resources */,
+				DA0877C3142D4BBB00954482 /* vignette.png in Resources */,
+				DA0877C6142D4EAB00954482 /* vignette@2x.png in Resources */,
+				DA0877C7142D4EAB00954482 /* vignette~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1115,7 +1127,7 @@
 					"\"$(SRCROOT)/TestFlight\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "36EEB7E0-92DB-4773-92D0-2DEE4472B717";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0EE86613-549D-41B5-8A8F-4F9EE24ECEB7";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";
