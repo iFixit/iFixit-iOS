@@ -17,6 +17,7 @@
 #import "DozukiInfoViewController.h"
 #import "GuideBookmarks.h"
 #import "Guide.h"
+#import "UIColor+Hex.h"
 
 @implementation UISplitViewController (SplitViewRotate)
 
@@ -50,9 +51,11 @@
     
     // Load a previous choice
     NSString *domain = [[NSUserDefaults standardUserDefaults] valueForKey:@"domain"];
-    UIColor *color = [[NSUserDefaults standardUserDefaults] objectForKey:@"color"];
-    if (domain)
+    if (domain) {
+        NSString *colorHex = [[NSUserDefaults standardUserDefaults] objectForKey:@"color"];
+        UIColor *color = [UIColor colorFromHexString:colorHex];
         [self loadSite:domain withColor:color];
+    }
 
     /** IFIXIT *************************************************************************/
     [self showSiteSplash];

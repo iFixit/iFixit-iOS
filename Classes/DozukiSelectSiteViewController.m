@@ -186,7 +186,7 @@
     // Save this choice for future launches
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setValue:domain forKey:@"domain"];
-    [defaults setValue:color forKey:@"color"];
+    [defaults setValue:colorHex forKey:@"color"];
     [defaults synchronize];
     
     iFixitAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
