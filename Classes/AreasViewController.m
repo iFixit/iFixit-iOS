@@ -37,7 +37,7 @@
     [super viewDidLoad];
     
     if (!self.title) {
-        self.title = @"Areas";
+        self.title = @"Categories";
         
         if ([Config currentConfig].site != ConfigIFixit && [Config currentConfig].site != ConfigIFixitDev) {
             
@@ -279,7 +279,7 @@
 	if ([self numberOfSectionsInTableView:nil] == 1 || ![keys count])
 		return nil;
 	
-	return section == 0 ? @"Areas" : @"Devices";
+	return section == 0 ? @"Categories" : @"Devices";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

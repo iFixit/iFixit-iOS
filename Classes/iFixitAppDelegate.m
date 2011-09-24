@@ -45,29 +45,30 @@
 
     [[Config currentConfig] setSite:ConfigIFixit];
     
-    [Config currentConfig].dozuki = YES;
+    [Config currentConfig].dozuki = NO;
     self.window.rootViewController = nil;
     firstLoad = YES;
     
     // Load a previous choice
+    /*
     NSString *domain = [[NSUserDefaults standardUserDefaults] valueForKey:@"domain"];
     if (domain) {
         NSString *colorHex = [[NSUserDefaults standardUserDefaults] objectForKey:@"color"];
         UIColor *color = [UIColor colorFromHexString:colorHex];
         [self loadSite:domain withColor:color];
-    }
+    }*/
 
     /** IFIXIT *************************************************************************/
     [self showSiteSplash];
-    //return YES;
+    return YES;
     
     /** DOZUKI *************************************************************************/
-    if (!domain)
-        [self showDozukiSplash];
+    //if (!domain)
+    //    [self showDozukiSplash];
 
-    firstLoad = NO;
+    //firstLoad = NO;
     
-    return YES;
+    //return YES;
 }
 
 - (void)showDozukiSplash {

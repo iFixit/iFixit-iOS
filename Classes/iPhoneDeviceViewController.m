@@ -195,7 +195,7 @@
 {
     static NSString *CellIdentifier = @"GuideCell";
     
-    GuideCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    GuideCell *cell = (GuideCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[GuideCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
