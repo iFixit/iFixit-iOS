@@ -1030,6 +1030,7 @@
 					armv6,
 				);
 				CODE_SIGN_ENTITLEMENTS = "~/Code/iOS/iFixit/Entitlements.plist";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
@@ -1042,6 +1043,7 @@
 					"\"$(SRCROOT)/TestFlight\"",
 				);
 				PRODUCT_NAME = iFixit;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "744B7CDF-B465-4F11-929C-20C964A17D65";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

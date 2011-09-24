@@ -29,7 +29,7 @@ static Config *currentConfig = nil;
 
     switch (site) {
         case ConfigIFixit:
-            self.host = @"dpatierno.cominor.com";
+            self.host = @"www.ifixit.com";
             self.baseURL = @"http://www.ifixit.com/Guide";
             break;
         case ConfigIFixitDev:
