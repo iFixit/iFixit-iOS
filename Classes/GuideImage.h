@@ -6,19 +6,7 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-
-@interface GuideImage : NSObject {
-	NSNumber *imageid;
-	NSString *url;
-	UIImage *mini;
-	UIImage *thumbnail;
-	UIImage *standard;
-	UIImage *medium;
-	UIImage *large;
-	UIImage *huge;
-}
+@interface GuideImage : NSObject
 
 @property (nonatomic, retain) NSNumber *imageid;
 @property (nonatomic, retain) NSString *url;

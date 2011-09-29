@@ -101,14 +101,14 @@
 }
 
 - (void)dealloc {
-    self.bookmarks = nil;
-    self.lvc = nil;
+    [bookmarks release];
+    [lvc release];
+    [devices release];
     
     [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
@@ -295,8 +295,9 @@
     Guide *guide = [[bookmarks objectForKey:key] objectAtIndex:indexPath.row];
     //[(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showGuide:guide];
     
-    GuideViewController *vc = [GuideViewController initWithGuide:guide];
+    GuideViewController *vc = [[GuideViewController alloc] initWithGuide:guide];
     [self.navigationController presentModalViewController:vc animated:YES];
+    [vc release];
     
     // Refresh any changes.
     [[GuideBookmarks sharedBookmarks] addGuideid:[NSNumber numberWithInt:guide.guideid]];

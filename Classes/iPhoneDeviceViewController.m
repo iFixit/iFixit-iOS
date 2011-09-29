@@ -229,14 +229,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger guideid = [[[self.guides objectAtIndex:indexPath.row] valueForKey:@"guideid"] intValue];
     
-    GuideViewController *guideVC = [GuideViewController initWithGuideid:guideid];
-    [self presentModalViewController:guideVC animated:YES];
+    GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
+    [self presentModalViewController:vc animated:YES];
+    [vc release];
 
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)dealloc {
     [_device release];
+    [_guides release];
     [super dealloc];
 }
 

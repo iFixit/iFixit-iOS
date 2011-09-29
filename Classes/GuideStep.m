@@ -35,8 +35,11 @@
 }
 
 - (void)dealloc {
-   [images release];
-   [super dealloc];
+    [title release];
+    [lines release];
+    [images release];
+    
+    [super dealloc];
 }
 
 @end

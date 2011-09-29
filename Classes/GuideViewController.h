@@ -10,20 +10,8 @@
 @class GuideBookmarker;
 
 @interface GuideViewController : UIViewController <UIScrollViewDelegate> {
-	UINavigationBar *navBar;
-	UIScrollView *scrollView;
-	UIPageControl *pageControl;
-    NSMutableArray *viewControllers;
-	UIActivityIndicatorView *spinner;
-    
-    GuideBookmarker *bookmarker;
-	
     // To be used when scrolls originate from the UIPageControl
-    BOOL pageControlUsed;
-	
-	Guide *guide;
-    NSInteger guideid;
-    NSInteger shouldLoadPage;
+    BOOL pageControlUsed;	
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
@@ -36,8 +24,9 @@
 @property (nonatomic) NSInteger guideid;
 @property (nonatomic) NSInteger shouldLoadPage;
 
-+ (GuideViewController *)initWithGuideid:(NSInteger)guideid;
-+ (GuideViewController *)initWithGuide:(Guide *)guide;
+- (id)initWithGuide:(Guide *)guide;
+- (id)initWithGuideid:(NSInteger)guideid;
+- (id)initWithGuideid:(NSInteger)guideid guide:(Guide *)guide;
 - (void)gotGuide:(Guide *)theGuide;
 - (void)loadScrollViewWithPage:(int)page;
 - (void)preloadForCurrentPage:(NSNumber *)pageNumber;

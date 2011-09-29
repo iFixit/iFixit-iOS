@@ -144,8 +144,9 @@
     if (guide < [guides count]) {
         int guideid = [[[guides objectAtIndex:guide] valueForKey:@"guideid"] integerValue];
 
-        GuideViewController *vc = [GuideViewController initWithGuideid:guideid];
+        GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
         [self presentModalViewController:vc animated:YES];
+        [vc release];
     }
 }
 
@@ -169,12 +170,63 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    self.splashHeaderMake = nil;
+    self.splashHeaderIFixit = nil;
+    self.featuredLabelMake = nil;
+    self.featuredLabelIFixit = nil;
+    
+    self.lastRow = nil;
+    self.button1 = nil;
+    self.button2 = nil;
+    self.button3 = nil;
+    self.button4 = nil;
+    self.button5 = nil;
+    self.button6 = nil;
+    self.button7 = nil;
+    self.button8 = nil;
+    self.button9 = nil;
+    self.label1 = nil;
+    self.label2 = nil;
+    self.label3 = nil;
+    self.label4 = nil;
+    self.label5 = nil;
+    self.label6 = nil;
+    self.label7 = nil;
+    self.label8 = nil;
+    self.label9 = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 
 - (void)dealloc {
+    [splashHeaderMake release];
+    [splashHeaderIFixit release];
+    [featuredLabelMake release];
+    [featuredLabelIFixit release];
+    
+    [guides release];
+    
+    [lastRow release];
+    [button1 release];
+    [button2 release];
+    [button3 release];
+    [button4 release];
+    [button5 release];
+    [button6 release];
+    [button7 release];
+    [button8 release];
+    [button9 release];
+    [label1 release];
+    [label2 release];
+    [label3 release];
+    [label4 release];
+    [label5 release];
+    [label6 release];
+    [label7 release];
+    [label8 release];
+    [label9 release];
+    
     [super dealloc];
 }
 

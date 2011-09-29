@@ -7,10 +7,7 @@
 //
 
 
-@interface ListViewController : UINavigationController {
-    NSArray *allStack;
-    UIViewController *bookmarksTVC;
-}
+@interface ListViewController : UINavigationController
 
 @property (nonatomic, retain) NSArray *allStack;
 @property (nonatomic, retain) UIViewController *bookmarksTVC;

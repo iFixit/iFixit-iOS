@@ -10,16 +10,7 @@
 @class GuideCatchingWebView;
 @class WBProgressHUD;
 
-@interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UIWebViewDelegate, UIAlertViewDelegate> {
-    UIPopoverController *popoverController;
-    UIToolbar *toolbar;
-    
-    GuideCatchingWebView *webView;
-    WBProgressHUD *loading;
-    NSURL *lastURL;
-	UIBarButtonItem *backButton;
-	UIBarButtonItem *fwdButton;
-}
+@interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UIWebViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet GuideCatchingWebView *webView;

@@ -21,4 +21,10 @@
 	return [guideStepLine autorelease];
 }
 
+- (void)dealloc {
+    [bullet release];
+    [text release];
+    
+    [super dealloc];
+}
 @end

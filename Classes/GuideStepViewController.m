@@ -17,19 +17,17 @@
 
 @implementation GuideStepViewController
 
-@synthesize delegate, step, titleLabel, mainImage, imageSpinner, webView;
+@synthesize delegate, step=_step, titleLabel, mainImage, imageSpinner, webView;
 @synthesize image1, image2, image3, numImagesLoaded, bigImages, html;
 
 // Load the view nib and initialize the pageNumber ivar.
-+ (id)initWithStep:(GuideStep *)step {
-    NSString *nib = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"GuideStepView" : @"SmallGuideStepView";
-	GuideStepViewController *vc = [[GuideStepViewController alloc] initWithNibName:nib bundle:nil];
-
-	vc.step = step;
-	vc.numImagesLoaded = 0;
-    vc.bigImages = [NSMutableArray array];
-    
-    return [vc autorelease];
+- (id)initWithStep:(GuideStep *)step {
+    if ((self = [super initWithNibName:@"GuideStepView" bundle:nil])) {
+        self.step = step;
+        self.numImagesLoaded = 0;
+        self.bigImages = [[NSMutableArray array] autorelease];
+    }
+    return self;
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -50,9 +48,9 @@
     self.view.backgroundColor = bgColor;
 	webView.backgroundColor = bgColor;    
     
-	NSString *stepTitle = [NSString stringWithFormat:@"Step %d", step.number];
-	if (![step.title isEqual:@""])
-		stepTitle = [NSString stringWithFormat:@"%@ - %@", stepTitle, step.title];
+	NSString *stepTitle = [NSString stringWithFormat:@"Step %d", self.step.number];
+	if (![self.step.title isEqual:@""])
+		stepTitle = [NSString stringWithFormat:@"%@ - %@", stepTitle, self.step.title];
 	
 	[titleLabel setText:stepTitle];
     titleLabel.textColor = [Config currentConfig].textColor;
@@ -64,7 +62,7 @@
     NSString *footer = @"</ul></body></html>";
    
     NSMutableString *body = [NSMutableString stringWithString:@""];
-    for (GuideStepLine *line in step.lines) {
+    for (GuideStepLine *line in self.step.lines) {
         NSString *icon = @"";
         
         if ([line.bullet isEqual:@"icon_note"] || [line.bullet isEqual:@"icon_reminder"] || [line.bullet isEqual:@"icon_caution"]) {
@@ -90,22 +88,22 @@
 
 - (void)startImageDownloads {
     
-    if ([step.images count] > 0) {
-        [mainImage setImageWithURL:[[step.images objectAtIndex:0] URLForSize:@"large"]];
+    if ([self.step.images count] > 0) {
+        [mainImage setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"large"]];
         
-        if ([step.images count] > 1) {
-            [image1 setImageWithURL:[[step.images objectAtIndex:0] URLForSize:@"thumbnail"]];
+        if ([self.step.images count] > 1) {
+            [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"thumbnail"]];
             image1.hidden = NO;
         }
     }
     
-    if ([step.images count] > 1) {
-        [image2 setImageWithURL:[[step.images objectAtIndex:1] URLForSize:@"thumbnail"]];
+    if ([self.step.images count] > 1) {
+        [image2 setImageWithURL:[[self.step.images objectAtIndex:1] URLForSize:@"thumbnail"]];
         image2.hidden = NO;
     }
     
-    if ([step.images count] > 2) {
-        [image3 setImageWithURL:[[step.images objectAtIndex:2] URLForSize:@"thumbnail"]];
+    if ([self.step.images count] > 2) {
+        [image3 setImageWithURL:[[self.step.images objectAtIndex:2] URLForSize:@"thumbnail"]];
         image3.hidden = NO;
     }
 }
@@ -114,11 +112,11 @@
     GuideImage *guideImage = nil;
     
     if ([button isEqual:image1])
-        guideImage = [step.images objectAtIndex:0];
+        guideImage = [self.step.images objectAtIndex:0];
     else if ([button isEqual:image2])
-        guideImage = [step.images objectAtIndex:1];
+        guideImage = [self.step.images objectAtIndex:1];
     else if ([button isEqual:image3])
-        guideImage = [step.images objectAtIndex:2];
+        guideImage = [self.step.images objectAtIndex:2];
 
     // Switch to the new image, but delay the spinner for a short time.
     imageSpinner.hidden = YES;
@@ -231,25 +229,33 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    self.titleLabel = nil;
+    self.mainImage = nil;
+    self.imageSpinner = nil;
+    self.webView = nil;
+    self.image1 = nil;
+    self.image2 = nil;
+    self.image3 = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-   self.mainImage = nil;
 }
 
 
 - (void)dealloc {
-    self.step = nil;
-    self.bigImages = nil;
+    [_step release];
+    // TODO: Figure out why this crashes.
+    //[bigImages release];
+    [html release];
    
     webView.delegate = nil;
-    self.webView = nil;
-    self.titleLabel = nil;
-    self.mainImage = nil;
     
-    self.image1 = nil;
-    self.image2 = nil;
-    self.image3 = nil;
-    self.html = nil;
+    [titleLabel release];
+    [mainImage release];
+    [imageSpinner release];
+    [webView release];
+    [image1 release];
+    [image2 release];
+    [image3 release];
    
     [super dealloc];
 }

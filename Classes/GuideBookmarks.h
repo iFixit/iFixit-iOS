@@ -14,16 +14,6 @@
 @class GuideBookmarker;
 
 @interface GuideBookmarks : NSObject <SDWebImageManagerDelegate> {
-    NSMutableDictionary *guides;
-    NSMutableDictionary *images;
-    NSMutableDictionary *queue;
-    
-    NSString *guidesFilePath;
-    NSString *imagesFilePath;
-    NSString *queueFilePath;
-    
-    NSString *currentItem;
-    GuideBookmarker *bookmarker;
     NSInteger imagesDownloaded;
     NSInteger imagesRemaining;
 }

@@ -145,7 +145,7 @@
     [searchBar setShowsCancelButton:YES animated:YES];  
     
     // Animate the table up.
-    if (![iFixitAppDelegate isIPad]) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         [UIView beginAnimations:@"showSearch" context:nil];
         [UIView setAnimationDuration:0.3];
         CGRect bounds = self.navigationController.view.bounds;
@@ -165,7 +165,7 @@
     [searchBar setShowsCancelButton:NO animated:YES];    
     
     // Animate the table back down.
-    if (![iFixitAppDelegate isIPad]) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         [UIView beginAnimations:@"showSearch" context:nil];
         [UIView setAnimationDuration:0.3];
         CGRect bounds = self.navigationController.view.bounds;
@@ -195,7 +195,7 @@
     if ([[results objectForKey:@"search"] isEqual:searchBar.text]) {
         
         // Remove non-device results from iPhone+iPod search
-        if (![iFixitAppDelegate isIPad]) {
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
             NSArray *list = [results objectForKey:@"results"];
             NSMutableArray *devicesOnly = [NSMutableArray array];
             
@@ -371,7 +371,7 @@
         }
         
         // iPhone: Push a webView onto the stack.
-        if (![iFixitAppDelegate isIPad]) {
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
             iPhoneDeviceViewController *vc = [[iPhoneDeviceViewController alloc] initWithDevice:title];
             vc.title = display_title;
             [self.navigationController pushViewController:vc animated:YES];
@@ -380,7 +380,7 @@
 	}
     
     // iPad: Show the device in detailViewController
-    if ([iFixitAppDelegate isIPad]) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         [(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showBrowser];    
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];        
         [detailViewController.webView loadRequest:request];
@@ -404,13 +404,23 @@
 }
 
 - (void)viewDidUnload {
+    [super viewDidUnload];
+    self.searchBar = nil;
+    self.detailViewController = nil;
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
 }
 
 
 - (void)dealloc {
+    [searchBar release];
+    [searchResults release];
     [detailViewController release];
+    [data release];
+    [tree release];
+    [keys release];
+    [leafs release];
+    
     [super dealloc];
 }
 

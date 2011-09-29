@@ -25,12 +25,16 @@
 }
 
 - (void)dealloc {
-   [mini release];
-   [thumbnail release];
-   [medium release];
-   [large release];
-   [huge release];
-   [super dealloc];
+    [imageid release];
+    [url release];
+    [mini release];
+    [thumbnail release];
+    [standard release];
+    [medium release];
+    [large release];
+    [huge release];
+    
+    [super dealloc];
 }
 
 @end

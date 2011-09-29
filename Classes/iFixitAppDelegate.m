@@ -18,6 +18,9 @@
 #import "GuideBookmarks.h"
 #import "Guide.h"
 #import "UIColor+Hex.h"
+#import "GANTracker.h"
+
+static const NSInteger kGANDispatchPeriodSec = 10;
 
 @implementation UISplitViewController (SplitViewRotate)
 
@@ -35,40 +38,66 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
-+ (BOOL)isIPad {
-    return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
+- (void)setupAnalytics {
+    [[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-00000000-1"
+                                           dispatchPeriod:kGANDispatchPeriodSec
+                                                 delegate:nil];
+    
+    [[GANTracker sharedTracker] setCustomVariableAtIndex:1
+                                                    name:@"model"
+                                                   value:[UIDevice currentDevice].model
+                                               withError:NULL];
+    [[GANTracker sharedTracker] setCustomVariableAtIndex:2
+                                                    name:@"name"
+                                                   value:[UIDevice currentDevice].name
+                                               withError:NULL];
+    [[GANTracker sharedTracker] setCustomVariableAtIndex:3
+                                                    name:@"systemVersion"
+                                                   value:[UIDevice currentDevice].systemVersion
+                                               withError:NULL];
+    
+    [[GANTracker sharedTracker] trackEvent:@"iOS Launch"
+                                    action:[NSString stringWithFormat:@"Launch %@", [UIDevice currentDevice].model]
+                                     label:@"Launch"
+                                     value:99
+                                 withError:NULL];
 }
 
 // Override point for customization after app launch.
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    [TestFlight takeOff:@"c74d40d00ff8789a3c63bc4c2ee210e6_MTcxMjIwMTEtMDktMTIgMTc6MzY6MzcuNzIyMTQ3"];
-
-    [[Config currentConfig] setSite:ConfigIFixit];
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    /* Configure. */
     [Config currentConfig].dozuki = NO;
+    
+    /* Track. */
+    [TestFlight takeOff:@"c74d40d00ff8789a3c63bc4c2ee210e6_MTcxMjIwMTEtMDktMTIgMTc6MzY6MzcuNzIyMTQ3"];
+    [self setupAnalytics];
+    
+    /* Setup and launch. */
     self.window.rootViewController = nil;
     firstLoad = YES;
-    
-    // Load a previous choice
-    /*
-    NSString *domain = [[NSUserDefaults standardUserDefaults] valueForKey:@"domain"];
-    if (domain) {
-        NSString *colorHex = [[NSUserDefaults standardUserDefaults] objectForKey:@"color"];
-        UIColor *color = [UIColor colorFromHexString:colorHex];
-        [self loadSite:domain withColor:color];
-    }*/
 
-    /** IFIXIT *************************************************************************/
-    [self showSiteSplash];
+    /* iFixit is easy. */
+    if (![Config currentConfig].dozuki) {
+        [self showSiteSplash];
+    }
+    /* Dozuki gets a little more complicated. */
+    else {
+        NSString *domain = [[NSUserDefaults standardUserDefaults] valueForKey:@"domain"];
+        if (domain) {
+            NSString *colorHex = [[NSUserDefaults standardUserDefaults] objectForKey:@"color"];
+            UIColor *color = [UIColor colorFromHexString:colorHex];
+            [self loadSite:domain withColor:color];
+        }
+        
+        [self showSiteSplash];
+        
+        if (!domain)
+            [self showDozukiSplash];
+        
+        firstLoad = NO;
+    }
+    
     return YES;
-    
-    /** DOZUKI *************************************************************************/
-    //if (!domain)
-    //    [self showDozukiSplash];
-
-    //firstLoad = NO;
-    
-    //return YES;
 }
 
 - (void)showDozukiSplash {
@@ -231,6 +260,7 @@
             [defaults synchronize];
             
             [self loadSite:domain];
+            return YES;
         }
     }
 	

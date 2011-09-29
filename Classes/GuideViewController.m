@@ -15,54 +15,37 @@
 #import "Config.h"
 #import "UIImage+Coder.m"
 #import "Guide.h"
+#import "GANTracker.h"
 
 @implementation GuideViewController
 
 @synthesize navBar, scrollView, pageControl, viewControllers, spinner, bookmarker;
-@synthesize guide, guideid, shouldLoadPage;
+@synthesize guide=_guide;
+@synthesize guideid=_guideid;
+@synthesize shouldLoadPage;
 
-+ (GuideViewController *)initWithGuideid:(NSInteger)guideid {
-    NSString *nib = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"GuideView" : @"SmallGuideView";
-	GuideViewController *vc = [[GuideViewController alloc] initWithNibName:nib bundle:nil];
-
-    vc.guide = nil;
-    vc.guideid = guideid;
-    vc.shouldLoadPage = 0;
-	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    
-    GuideBookmarker *b = [[GuideBookmarker alloc] init];
-    b.delegate = vc;
-    vc.bookmarker = b;
-    [b release];
-	
-	// Load the data
-	[[iFixitAPI sharedInstance] getGuide:guideid forObject:vc withSelector:@selector(gotGuide:)];
-
-	return [vc autorelease];
+- (id)initWithGuide:(Guide *)guide {
+    return [self initWithGuideid:0 guide:guide];
 }
-
-+ (GuideViewController *)initWithGuide:(Guide *)theGuide {
-    NSString *nib = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"GuideView" : @"SmallGuideView";
-	GuideViewController *vc = [[GuideViewController alloc] initWithNibName:nib bundle:nil];
-    
-    vc.guide = theGuide;
-    vc.guideid = theGuide.guideid;
-    vc.shouldLoadPage = 0;
-	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    
-    GuideBookmarker *b = [[GuideBookmarker alloc] init];
-    b.delegate = vc;
-    vc.bookmarker = b;
-    [b release];
-
-	return [vc autorelease];
+- (id)initWithGuideid:(NSInteger)guideid {
+    return [self initWithGuideid:guideid guide:nil];
 }
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    [TestFlight passCheckpoint:@"Guide View"];
-
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+- (id)initWithGuideid:(NSInteger)guideid guide:(Guide *)guide {
+    if ((self = [super initWithNibName:@"GuideView" bundle:nil])) {
+        self.guide = guide;
+        self.guideid = guide ? guide.guideid : guideid;
+        self.shouldLoadPage = 0;
+        self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        GuideBookmarker *b = [[GuideBookmarker alloc] init];
+        b.delegate = self;
+        self.bookmarker = b;
+        [b release];
+        
         [UIApplication sharedApplication].idleTimerDisabled = YES;
+        
+        [TestFlight passCheckpoint:@"Guide View"];
+        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/view/%d", self.guideid] withError:NULL];
     }
     return self;
 }
@@ -85,8 +68,15 @@
             nil : [Config currentConfig].toolbarColor;
     }
     
-    if (guide)
-        [self gotGuide:guide];
+    if (self.guide) {
+        [self gotGuide:self.guide];
+    }
+    else {
+        // Load the data
+        [[iFixitAPI sharedInstance] getGuide:self.guideid forObject:self withSelector:@selector(gotGuide:)];
+    }
+    
+    // TODO: Show step that was in view before memory warning
 }
 
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
@@ -103,7 +93,7 @@
     
     // Try Again
     if (buttonIndex) {
-        [[iFixitAPI sharedInstance] getGuide:guideid forObject:self withSelector:@selector(gotGuide:)];
+        [[iFixitAPI sharedInstance] getGuide:self.guideid forObject:self withSelector:@selector(gotGuide:)];
     }
     // Cancel
     else {
@@ -112,7 +102,7 @@
 }
 
 - (void)adjustScrollViewContentSizeForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	NSInteger numPages = [guide.steps count] + 1;
+	NSInteger numPages = [self.guide.steps count] + 1;
     
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
         CGRect frame;
@@ -132,10 +122,10 @@
     scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * numPages, scrollView.frame.size.height);
 }
 
-- (void)gotGuide:(Guide *)theGuide {
+- (void)gotGuide:(Guide *)guide {
 	[spinner stopAnimating];
 
-    if (!theGuide) {
+    if (!guide) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Network Error"
                                                             message:@"Failed loading guide."
                                                            delegate:self
@@ -145,10 +135,10 @@
         return;
     }
     
-	self.guide = theGuide;
+	self.guide = guide;
 
 	// Steps plus one for intro
-	NSInteger numPages = [guide.steps count] + 1;
+	NSInteger numPages = [self.guide.steps count] + 1;
 	
 	// view controllers are created lazily
     // in the meantime, load the array with placeholders which will be replaced on demand
@@ -177,11 +167,11 @@
     // Setup the navigation items to show back arrow and bookmarks button
     NSString *title = guide.title;
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad && [guide.subject length] > 0)
-        title = guide.subject;
+        title = self.guide.subject;
     
     UINavigationItem *topItem = [[UINavigationItem alloc] initWithTitle:@"Back"];
 	UINavigationItem *thisItem = [[UINavigationItem alloc] initWithTitle:title];
-    [bookmarker setNavItem:thisItem andGuideid:guide.guideid];
+    [bookmarker setNavItem:thisItem andGuideid:self.guide.guideid];
     
 	NSArray *navItems = [NSArray arrayWithObjects:topItem, thisItem, nil];
 	[navBar setItems:navItems animated:NO];
@@ -202,7 +192,7 @@
 }
 
 - (void)showPage:(NSInteger)page {
-    if (guide) {
+    if (self.guide) {
         pageControl.currentPage = page;
         [self changePage:nil];
     } else {
@@ -228,14 +218,15 @@
     UIViewController *controller = [viewControllers objectAtIndex:page];
     if ((NSNull *)controller == [NSNull null]) {
 		if (stepNumber == -1) {
-			controller = [GuideIntroViewController initWithGuide:guide];
+			controller = [[GuideIntroViewController alloc] initWithGuide:self.guide];
             ((GuideIntroViewController *)controller).delegate = self;
 		} else {
-			controller = [GuideStepViewController initWithStep:[guide.steps objectAtIndex:stepNumber]];
+			controller = [[GuideStepViewController alloc] initWithStep:[self.guide.steps objectAtIndex:stepNumber]];
             ((GuideStepViewController *)controller).delegate = self;
 		}
 
-       [viewControllers replaceObjectAtIndex:page withObject:controller];
+        [viewControllers replaceObjectAtIndex:page withObject:controller];
+        [controller release];
     }
 	
     // add the controller's view to the scroll view
@@ -274,7 +265,6 @@
       if (distance > 2.0) {
          UIViewController *vc = [viewControllers objectAtIndex:i];
          if ((NSNull *)vc != [NSNull null]) {
-             NSLog(@"remove %i", i);
             [vc.view removeFromSuperview];
             vc.view = nil;
             [viewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
@@ -360,14 +350,29 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    self.spinner = nil;
+    self.navBar = nil;
+    self.scrollView = nil;
+    self.pageControl = nil;
+
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 
 - (void)dealloc {
-    self.guide = nil;
+    [_guide release];
+    
+    [spinner release];
+    [navBar release];
+    [scrollView release];
+    [pageControl release];
+    [bookmarker release];
+    // TODO: Figure out why this crashes.
+    //[viewControllers release];
+     
     [UIApplication sharedApplication].idleTimerDisabled = NO;
+     
     [super dealloc];
 }
 

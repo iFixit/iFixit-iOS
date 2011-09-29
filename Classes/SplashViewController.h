@@ -6,35 +6,7 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
-@interface SplashViewController : UIViewController {
-    UIView *splashHeaderMake;
-    UIView *splashHeaderIFixit;
-    UILabel *featuredLabelMake;
-    UILabel *featuredLabelIFixit;
-    
-    NSArray *guides;
-    
-    UIView *lastRow;
-    UIButton *button1;
-    UIButton *button2;
-    UIButton *button3;
-    UIButton *button4;
-    UIButton *button5;
-    UIButton *button6;
-    UIButton *button7;
-    UIButton *button8;
-    UIButton *button9;
-    UILabel *label1;
-    UILabel *label2;
-    UILabel *label3;
-    UILabel *label4;
-    UILabel *label5;
-    UILabel *label6;
-    UILabel *label7;
-    UILabel *label8;
-    UILabel *label9;
-    NSInteger numImagesLoaded;
-}
+@interface SplashViewController : UIViewController
 
 @property (nonatomic, retain) IBOutlet UIView* splashHeaderMake;
 @property (nonatomic, retain) IBOutlet UIView* splashHeaderIFixit;

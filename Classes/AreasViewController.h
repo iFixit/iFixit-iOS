@@ -8,20 +8,9 @@
 
 @class DetailViewController;
 
-@interface AreasViewController : UITableViewController <UISearchBarDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
-    id delegate;
-    UISearchBar *searchBar;
-    BOOL searching;
-    NSArray *searchResults;
+@interface AreasViewController : UITableViewController <UISearchBarDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 
-    DetailViewController *detailViewController;
-	NSDictionary *data;
-	NSMutableDictionary *tree;
-	NSArray *keys;
-	NSArray *leafs;
-}
-
-@property (nonatomic, retain) id delegate;
+@property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
 @property BOOL searching;
 @property (nonatomic, retain) NSArray *searchResults;

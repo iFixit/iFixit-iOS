@@ -6,8 +6,9 @@
 //  Copyright 2011 iFixit. All rights reserved.
 //
 
-@class LoginViewController;
 #import "LoginViewControllerDelegate.h"
+
+@class LoginViewController;
 
 @interface BookmarksViewController : UITableViewController <LoginViewControllerDelegate, UIActionSheetDelegate>
 

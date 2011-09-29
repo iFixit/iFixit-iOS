@@ -6,15 +6,7 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-
-@interface GuideStepLine : NSObject {
-	NSInteger lineid;
-	NSInteger level;
-	NSString *bullet;
-	NSString *text;
-}
+@interface GuideStepLine : NSObject
 
 @property (nonatomic) NSInteger lineid;
 @property (nonatomic) NSInteger level;

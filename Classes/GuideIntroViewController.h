@@ -8,22 +8,9 @@
 
 @class Guide;
 
-@interface GuideIntroViewController : UIViewController <UIWebViewDelegate> {
-	id delegate;
-    UIImageView *headerImageIFixit;
-    UIImageView *headerImageMake;
-    UILabel *swipeLabel;
-    
-	Guide *guide;
-	UILabel *device;
-	UIButton *mainImage;
-	UIWebView *webView;
-	UIActivityIndicatorView *imageSpinner;
-    UIImage *huge;
-    NSString *html;
-}
+@interface GuideIntroViewController : UIViewController <UIWebViewDelegate>
 
-@property (nonatomic, retain) id delegate;
+@property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) IBOutlet UIImageView *headerImageIFixit;
 @property (nonatomic, retain) IBOutlet UIImageView *headerImageMake;
 @property (nonatomic, retain) IBOutlet UILabel *swipeLabel;
@@ -36,7 +23,7 @@
 @property (nonatomic, retain) UIImage *huge;
 @property (nonatomic, retain) NSString *html;
 
-+ (id)initWithGuide:(Guide *)guide;
+- (id)initWithGuide:(Guide *)guide;
 
 - (void)layoutPortrait;
 - (void)layoutLandscape;

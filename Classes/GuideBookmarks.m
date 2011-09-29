@@ -336,11 +336,15 @@ static GuideBookmarks *sharedBookmarks = nil;
 }
 
 - (void)dealloc {
-    self.guides = nil;
-    self.images = nil;
-    self.queue = nil;
-    self.currentItem = nil;
-    self.bookmarker = nil;
+    [guides release];
+    [images release];
+    [queue release];
+    [guidesFilePath release];
+    [imagesFilePath release];
+    [queueFilePath release];
+    [currentItem release];
+    [bookmarker release];
+    
     [super dealloc];
 }
 

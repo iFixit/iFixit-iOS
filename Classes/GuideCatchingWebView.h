@@ -6,13 +6,9 @@
 //  Copyright 2011 iFixit. All rights reserved.
 //
 
-@interface GuideCatchingWebView : UIWebView <UIWebViewDelegate, UIAlertViewDelegate> {
-    id<UIWebViewDelegate> externalDelegate;
-    NSNumberFormatter *formatter;
-    NSURL *externalURL;
-}
+@interface GuideCatchingWebView : UIWebView <UIWebViewDelegate, UIAlertViewDelegate>
 
-@property (nonatomic, retain) id<UIWebViewDelegate> externalDelegate;
+@property (nonatomic, assign) id<UIWebViewDelegate> externalDelegate;
 @property (nonatomic, retain) NSNumberFormatter *formatter;
 @property (nonatomic, retain) NSURL *externalURL;
 

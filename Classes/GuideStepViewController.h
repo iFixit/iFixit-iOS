@@ -8,25 +8,9 @@
 
 @class GuideStep;
 
-@interface GuideStepViewController : UIViewController <UIWebViewDelegate> {
-	id delegate;
-	GuideStep *step;
-	
-	UILabel *titleLabel;
-	UIButton *mainImage;
-	UIActivityIndicatorView *imageSpinner;
-	UIWebView *webView;
-    
-    UIButton *image1;
-    UIButton *image2;
-    UIButton *image3;
-    NSInteger numImagesLoaded;
-    NSMutableArray *bigImages;
-    
-    NSString *html;
-}
+@interface GuideStepViewController : UIViewController <UIWebViewDelegate>
 
-@property (nonatomic, retain) id delegate;
+@property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) GuideStep *step;
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property (nonatomic, retain) IBOutlet UIButton *mainImage;
@@ -40,7 +24,7 @@
 @property (nonatomic, retain) NSMutableArray *bigImages;
 @property (nonatomic, retain) NSString *html;
 
-+ (id)initWithStep:(GuideStep *)step;
+- (id)initWithStep:(GuideStep *)step;
 - (IBAction)zoomImage:(id)sender;
 - (IBAction)changeImage:(UIButton *)button;
 - (void)startImageDownloads;

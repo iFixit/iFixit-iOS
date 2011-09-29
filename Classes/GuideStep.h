@@ -10,12 +10,7 @@
 #import "GuideImage.h"
 #import "GuideStepLine.h"
 
-@interface GuideStep : NSObject {
-	NSInteger number;
-	NSString *title;
-	NSMutableArray *lines;
-	NSMutableArray *images;
-}
+@interface GuideStep : NSObject
 
 @property (nonatomic) NSInteger number;
 @property (nonatomic, retain) NSString *title;

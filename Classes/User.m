@@ -8,7 +8,6 @@
 
 #import "User.h"
 
-
 @implementation User
 
 @synthesize data, userid, username, imageid, session;
@@ -21,6 +20,16 @@
 	user.imageid 		= [dict valueForKey:@"imageid"];
 	user.session 		= [dict valueForKey:@"session"];
 	return [user autorelease];
+}
+
+- (void)dealloc {
+    [data release];
+    [userid release];
+    [username release];
+    [imageid release];
+    [session release];
+    
+    [super dealloc];
 }
 
 @end

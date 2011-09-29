@@ -6,13 +6,7 @@
 //  Copyright 2011 iFixit. All rights reserved.
 //
 
-@interface User : NSObject {
-    NSDictionary *data;
-    NSNumber *userid;
-    NSString *username;
-    NSNumber *imageid;
-    NSString *session;
-}
+@interface User : NSObject
 
 @property (nonatomic, retain) NSDictionary *data;
 @property (nonatomic, retain) NSNumber *userid;

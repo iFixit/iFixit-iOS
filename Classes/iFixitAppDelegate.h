@@ -14,18 +14,7 @@
 @class SplashViewController;
 @class Guide;
 
-@interface iFixitAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-    
-    UISplitViewController *splitViewController;
-    
-    AreasViewController *areasViewController;
-    DetailViewController *detailViewController;
-    SplashViewController *splashViewController;
-	
-	iFixitAPI *api;
-    BOOL firstLoad;
-}
+@interface iFixitAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
@@ -37,7 +26,6 @@
 @property (nonatomic, retain) iFixitAPI *api;
 @property (nonatomic) BOOL firstLoad;
 
-+ (BOOL)isIPad;
 - (void)showDozukiSplash;
 - (void)showSiteSplash;
 - (UIViewController *)iPadRoot;

@@ -15,21 +15,16 @@
 @implementation GuideIntroViewController
 
 @synthesize delegate, headerImageIFixit, headerImageMake, swipeLabel;
-@synthesize guide, device, mainImage, webView, imageSpinner, huge, html;
-
-static CGRect frameView;
+@synthesize guide=_guide;
+@synthesize device, mainImage, webView, imageSpinner, huge, html;
 
 // Load the view nib and initialize the guide.
-+ (id)initWithGuide:(Guide *)guide {
-	frameView = CGRectMake(0.0f,    0.0f, 1024.0f, 768.0f);
-
-    NSString *nib = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"GuideIntroView" : @"SmallGuideIntroView";
-	GuideIntroViewController *vc = [[GuideIntroViewController alloc] initWithNibName:nib bundle:nil];
-	
-	vc.guide = guide;
-    vc.huge = nil;
-	
-    return [vc autorelease];
+- (id)initWithGuide:(Guide *)guide {
+    if ((self = [super initWithNibName:@"GuideIntroView" bundle:nil])) {
+        self.guide = guide;
+        self.huge = nil;
+    }	
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -52,7 +47,7 @@ static CGRect frameView;
     }
     
     // Hide the swipe label if there are no steps.
-    if (![guide.steps count])
+    if (![self.guide.steps count])
         swipeLabel.hidden = YES;
     
     // Set the background color, softening black and white by 5%.
@@ -73,13 +68,13 @@ static CGRect frameView;
                         (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"big" : @"small"];
 	NSString *footer = @"</body></html>";
 
-	NSString *body = guide.introduction_rendered;
+	NSString *body = self.guide.introduction_rendered;
    //NSString *body = guide.introduction;
 	
     self.html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
 	[webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
     
-	[device setText:guide.device];
+	[device setText:self.guide.device];
 
     // Disable bounce scrolling.
     /*
@@ -88,7 +83,7 @@ static CGRect frameView;
             ((UIScrollView *)subview).bounces = NO;
      */
     
-    [mainImage setImageWithURL:[guide.image URLForSize:@"standard"] placeholderImage:nil];
+    [mainImage setImageWithURL:[self.guide.image URLForSize:@"standard"] placeholderImage:nil];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -164,17 +159,33 @@ static CGRect frameView;
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    self.headerImageIFixit = nil;
+    self.headerImageMake = nil;
+    self.swipeLabel = nil;
+    self.device = nil;
+    self.mainImage = nil;
+    self.webView = nil;
+    self.imageSpinner = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 
 - (void)dealloc {
-    self.guide = nil;
-    self.huge = nil;
     webView.delegate = nil;
-    self.mainImage = nil;
-    self.html = nil;
+    
+    [_guide release];
+    [huge release];
+    [html release];
+
+    [headerImageIFixit release];
+    [headerImageMake release];
+    [swipeLabel release];
+    [device release];
+    [mainImage release];
+    [webView release];
+    [imageSpinner release];
+    
     [super dealloc];
 }
 

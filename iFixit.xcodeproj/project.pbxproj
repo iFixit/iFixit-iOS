@@ -25,15 +25,15 @@
 		C10F271A120CE6980027A28D /* iFixitAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2719120CE6980027A28D /* iFixitAPI.m */; };
 		C115FC2D12174FA1005D0B77 /* GuideImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */; };
 		C184D4C61210CDB900953C39 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D4C41210CDB900953C39 /* GuideViewController.m */; };
-		C184D4C71210CDB900953C39 /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D4C51210CDB900953C39 /* GuideView.xib */; };
+		C184D4C71210CDB900953C39 /* GuideView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D4C51210CDB900953C39 /* GuideView~ipad.xib */; };
 		C184D5381210D8CD00953C39 /* GuideIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D5361210D8CD00953C39 /* GuideIntroViewController.m */; };
-		C184D5391210D8CD00953C39 /* GuideIntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D5371210D8CD00953C39 /* GuideIntroView.xib */; };
+		C184D5391210D8CD00953C39 /* GuideIntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */; };
 		C1C894F7121B447E0036FAFC /* TapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C894F6121B447E0036FAFC /* TapDetectingImageView.m */; };
 		C1D980A1120DFA5B00509D18 /* GuideImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D980A0120DFA5B00509D18 /* GuideImage.m */; };
 		C1D980AA120DFB2900509D18 /* GuideStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D980A9120DFB2900509D18 /* GuideStep.m */; };
 		C1D980AD120DFB5500509D18 /* GuideStepLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D980AC120DFB5500509D18 /* GuideStepLine.m */; };
 		C1D98150120E09BA00509D18 /* GuideStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9814E120E09BA00509D18 /* GuideStepViewController.m */; };
-		C1D98151120E09BA00509D18 /* GuideStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D9814F120E09BA00509D18 /* GuideStepView.xib */; };
+		C1D98151120E09BA00509D18 /* GuideStepView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D9814F120E09BA00509D18 /* GuideStepView~ipad.xib */; };
 		DA05677B138D976600660C86 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA05677A138D976600660C86 /* User.m */; };
 		DA0877BD142D3E6200954482 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0877BC142D3E6200954482 /* UIColor+Hex.m */; };
 		DA0877C3142D4BBB00954482 /* vignette.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0877C2142D4BBB00954482 /* vignette.png */; };
@@ -115,14 +115,16 @@
 		DAA7508D1368DD71002AA546 /* splashButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA7508C1368DD71002AA546 /* splashButton.png */; };
 		DAA7508F1368DDA7002AA546 /* splashButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA7508E1368DDA7002AA546 /* splashButton@2x.png */; };
 		DAA750911368F45D002AA546 /* titleImage_make.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA750901368F45D002AA546 /* titleImage_make.png */; };
+		DAAAC7461433DF7600CB90AF /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAAC7451433DF7600CB90AF /* libGoogleAnalytics.a */; };
+		DAAAC7481433E03B00CB90AF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAAC7471433E03B00CB90AF /* libsqlite3.dylib */; };
 		DAAFB80012BEE79C003ACCD0 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAFB7FE12BEE79C003ACCD0 /* SplashViewController.m */; };
 		DAAFB80112BEE79C003ACCD0 /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAFB7FF12BEE79C003ACCD0 /* SplashView.xib */; };
 		DAB9343A137228AD00B6AA9A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB93439137228AD00B6AA9A /* LoginViewController.m */; };
 		DAB9344413722AEB00B6AA9A /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = DAB9344313722AEB00B6AA9A /* login.png */; };
 		DAB9344613722FB300B6AA9A /* register.png in Resources */ = {isa = PBXBuildFile; fileRef = DAB9344513722FB300B6AA9A /* register.png */; };
-		DABE9CF513C54D2200B778FE /* SmallGuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF413C54D2200B778FE /* SmallGuideView.xib */; };
-		DABE9CF713C5519800B778FE /* SmallGuideIntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF613C5519800B778FE /* SmallGuideIntroView.xib */; };
-		DABE9CF913C5535200B778FE /* SmallGuideStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF813C5535200B778FE /* SmallGuideStepView.xib */; };
+		DABE9CF513C54D2200B778FE /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF413C54D2200B778FE /* GuideView.xib */; };
+		DABE9CF713C5519800B778FE /* GuideIntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF613C5519800B778FE /* GuideIntroView.xib */; };
+		DABE9CF913C5535200B778FE /* GuideStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF813C5535200B778FE /* GuideStepView.xib */; };
 		DAC26873140842B300752982 /* backtosites.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC26871140842B300752982 /* backtosites.png */; };
 		DAC26874140842B300752982 /* backtosites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC26872140842B300752982 /* backtosites@2x.png */; };
 		DACE44381353B87E00F78360 /* x-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DACE44361353B87E00F78360 /* x-icon.png */; };
@@ -181,10 +183,10 @@
 		C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideImageViewController.m; sourceTree = "<group>"; };
 		C184D4C31210CDB900953C39 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		C184D4C41210CDB900953C39 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
-		C184D4C51210CDB900953C39 /* GuideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideView.xib; sourceTree = "<group>"; };
+		C184D4C51210CDB900953C39 /* GuideView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideView~ipad.xib"; sourceTree = "<group>"; };
 		C184D5351210D8CD00953C39 /* GuideIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideIntroViewController.h; sourceTree = "<group>"; };
 		C184D5361210D8CD00953C39 /* GuideIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideIntroViewController.m; sourceTree = "<group>"; };
-		C184D5371210D8CD00953C39 /* GuideIntroView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideIntroView.xib; sourceTree = "<group>"; };
+		C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideIntroView~ipad.xib"; sourceTree = "<group>"; };
 		C1C894F5121B447E0036FAFC /* TapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapDetectingImageView.h; sourceTree = "<group>"; };
 		C1C894F6121B447E0036FAFC /* TapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapDetectingImageView.m; sourceTree = "<group>"; };
 		C1D9809F120DFA5B00509D18 /* GuideImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideImage.h; sourceTree = "<group>"; };
@@ -195,7 +197,7 @@
 		C1D980AC120DFB5500509D18 /* GuideStepLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideStepLine.m; sourceTree = "<group>"; };
 		C1D9814D120E09BA00509D18 /* GuideStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideStepViewController.h; sourceTree = "<group>"; };
 		C1D9814E120E09BA00509D18 /* GuideStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideStepViewController.m; sourceTree = "<group>"; };
-		C1D9814F120E09BA00509D18 /* GuideStepView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GuideStepView.xib; path = ../GuideStepView.xib; sourceTree = "<group>"; };
+		C1D9814F120E09BA00509D18 /* GuideStepView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "GuideStepView~ipad.xib"; path = "../GuideStepView~ipad.xib"; sourceTree = "<group>"; };
 		DA056779138D976600660C86 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DA05677A138D976600660C86 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DA0877BB142D3E6200954482 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -315,6 +317,9 @@
 		DAA7508C1368DD71002AA546 /* splashButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splashButton.png; path = Graphics/splashButton.png; sourceTree = "<group>"; };
 		DAA7508E1368DDA7002AA546 /* splashButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splashButton@2x.png"; path = "Graphics/splashButton@2x.png"; sourceTree = "<group>"; };
 		DAA750901368F45D002AA546 /* titleImage_make.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titleImage_make.png; path = Graphics/titleImage_make.png; sourceTree = "<group>"; };
+		DAAAC7441433DF7600CB90AF /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
+		DAAAC7451433DF7600CB90AF /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		DAAAC7471433E03B00CB90AF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DAAFB7FD12BEE79C003ACCD0 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		DAAFB7FE12BEE79C003ACCD0 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		DAAFB7FF12BEE79C003ACCD0 /* SplashView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
@@ -322,9 +327,9 @@
 		DAB93439137228AD00B6AA9A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		DAB9344313722AEB00B6AA9A /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login.png; path = Graphics/login.png; sourceTree = "<group>"; };
 		DAB9344513722FB300B6AA9A /* register.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = register.png; path = Graphics/register.png; sourceTree = "<group>"; };
-		DABE9CF413C54D2200B778FE /* SmallGuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SmallGuideView.xib; sourceTree = "<group>"; };
-		DABE9CF613C5519800B778FE /* SmallGuideIntroView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SmallGuideIntroView.xib; sourceTree = "<group>"; };
-		DABE9CF813C5535200B778FE /* SmallGuideStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SmallGuideStepView.xib; sourceTree = "<group>"; };
+		DABE9CF413C54D2200B778FE /* GuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideView.xib; sourceTree = "<group>"; };
+		DABE9CF613C5519800B778FE /* GuideIntroView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideIntroView.xib; sourceTree = "<group>"; };
+		DABE9CF813C5535200B778FE /* GuideStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideStepView.xib; sourceTree = "<group>"; };
 		DAC26871140842B300752982 /* backtosites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backtosites.png; path = Graphics/backtosites.png; sourceTree = "<group>"; };
 		DAC26872140842B300752982 /* backtosites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backtosites@2x.png"; path = "Graphics/backtosites@2x.png"; sourceTree = "<group>"; };
 		DACE44361353B87E00F78360 /* x-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "x-icon.png"; path = "Graphics/x-icon.png"; sourceTree = "<group>"; };
@@ -358,6 +363,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAAAC7481433E03B00CB90AF /* libsqlite3.dylib in Frameworks */,
 				DA8860E51427DE590030F52C /* MessageUI.framework in Frameworks */,
 				DA0A0C16138B07DA0027721E /* libxml2.2.dylib in Frameworks */,
 				DA0A0C07138B023C0027721E /* MobileCoreServices.framework in Frameworks */,
@@ -369,6 +375,7 @@
 				DAE4242113C3DE6C00F20EEE /* libz.dylib in Frameworks */,
 				DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */,
 				DAF5750E142045130083B583 /* libTestFlight.a in Frameworks */,
+				DAAAC7461433DF7600CB90AF /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +471,7 @@
 				DA0A0C04138B02370027721E /* SystemConfiguration.framework */,
 				DA0A0C02138B02310027721E /* CFNetwork.framework */,
 				DA53FA74141368BB00D5388F /* libicucore.dylib */,
+				DAAAC7471433E03B00CB90AF /* libsqlite3.dylib */,
 				DAE4242013C3DE6C00F20EEE /* libz.dylib */,
 				DA0A0C15138B07DA0027721E /* libxml2.2.dylib */,
 			);
@@ -565,14 +573,16 @@
 		C1C89684121B5CCD0036FAFC /* Guide View */ = {
 			isa = PBXGroup;
 			children = (
-				DABE9CF313C54CC000B778FE /* Small */,
-				C184D4C51210CDB900953C39 /* GuideView.xib */,
+				DABE9CF413C54D2200B778FE /* GuideView.xib */,
+				DABE9CF613C5519800B778FE /* GuideIntroView.xib */,
+				DABE9CF813C5535200B778FE /* GuideStepView.xib */,
+				C184D4C51210CDB900953C39 /* GuideView~ipad.xib */,
+				C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */,
+				C1D9814F120E09BA00509D18 /* GuideStepView~ipad.xib */,
 				C184D4C31210CDB900953C39 /* GuideViewController.h */,
 				C184D4C41210CDB900953C39 /* GuideViewController.m */,
-				C184D5371210D8CD00953C39 /* GuideIntroView.xib */,
 				C184D5351210D8CD00953C39 /* GuideIntroViewController.h */,
 				C184D5361210D8CD00953C39 /* GuideIntroViewController.m */,
-				C1D9814F120E09BA00509D18 /* GuideStepView.xib */,
 				C1D9814D120E09BA00509D18 /* GuideStepViewController.h */,
 				C1D9814E120E09BA00509D18 /* GuideStepViewController.m */,
 				DA3DE74A134CF57000AD5050 /* GuideBookmarker.h */,
@@ -724,19 +734,19 @@
 			path = wbprogresshud;
 			sourceTree = "<group>";
 		};
-		DABE9CF313C54CC000B778FE /* Small */ = {
+		DAAAC7431433DF7600CB90AF /* GAnalytics */ = {
 			isa = PBXGroup;
 			children = (
-				DABE9CF413C54D2200B778FE /* SmallGuideView.xib */,
-				DABE9CF613C5519800B778FE /* SmallGuideIntroView.xib */,
-				DABE9CF813C5535200B778FE /* SmallGuideStepView.xib */,
+				DAAAC7441433DF7600CB90AF /* GANTracker.h */,
+				DAAAC7451433DF7600CB90AF /* libGoogleAnalytics.a */,
 			);
-			name = Small;
-			sourceTree = "<group>";
+			path = GAnalytics;
+			sourceTree = SOURCE_ROOT;
 		};
 		DAC88AD51427E10B00D33C00 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				DAAAC7431433DF7600CB90AF /* GAnalytics */,
 				DA0877B7142D3E3200954482 /* UIColor+Hex */,
 				DA8860BD1427DD0C0030F52C /* ASIHTTPRequest */,
 				DA8860DE1427DD490030F52C /* SVWebViewController */,
@@ -853,9 +863,9 @@
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */,
 				2804203C108E9BAB000629CD /* DetailView.xib in Resources */,
-				C1D98151120E09BA00509D18 /* GuideStepView.xib in Resources */,
-				C184D4C71210CDB900953C39 /* GuideView.xib in Resources */,
-				C184D5391210D8CD00953C39 /* GuideIntroView.xib in Resources */,
+				C1D98151120E09BA00509D18 /* GuideStepView~ipad.xib in Resources */,
+				C184D4C71210CDB900953C39 /* GuideView~ipad.xib in Resources */,
+				C184D5391210D8CD00953C39 /* GuideIntroView~ipad.xib in Resources */,
 				DAAFB80112BEE79C003ACCD0 /* SplashView.xib in Resources */,
 				DA61C52513380E4C000028C3 /* back.png in Resources */,
 				DA61C52613380E4C000028C3 /* back@2x.png in Resources */,
@@ -891,9 +901,9 @@
 				DAA750911368F45D002AA546 /* titleImage_make.png in Resources */,
 				DAB9344413722AEB00B6AA9A /* login.png in Resources */,
 				DAB9344613722FB300B6AA9A /* register.png in Resources */,
-				DABE9CF513C54D2200B778FE /* SmallGuideView.xib in Resources */,
-				DABE9CF713C5519800B778FE /* SmallGuideIntroView.xib in Resources */,
-				DABE9CF913C5535200B778FE /* SmallGuideStepView.xib in Resources */,
+				DABE9CF513C54D2200B778FE /* GuideView.xib in Resources */,
+				DABE9CF713C5519800B778FE /* GuideIntroView.xib in Resources */,
+				DABE9CF913C5535200B778FE /* GuideStepView.xib in Resources */,
 				DA59293913FB253B00504CD3 /* DozukiSplashView~ipad.xib in Resources */,
 				DA59297013FB28B600504CD3 /* DozukiInfoView.xib in Resources */,
 				DA59297513FB2ED800504CD3 /* DozukiSelectSiteView.xib in Resources */,
@@ -1011,6 +1021,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlight\"",
+					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5DF6B989-29D2-477D-AEF8-1DA413BFA5BB";
@@ -1035,6 +1046,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlight\"",
+					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "44397B95-7470-4A9E-9585-CEFB42988156";
@@ -1118,6 +1130,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlight\"",
+					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9C77AADF-C412-4078-8A37-998508B1F00D";

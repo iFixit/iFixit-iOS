@@ -68,4 +68,28 @@
 	return [guide autorelease];
 }
 
+- (void)dealloc {
+    [data release];
+    [title release];
+    [device release];
+    [subject release];
+    [author release];
+    [timeRequired release];
+    [difficulty release];
+    [introduction release];
+    [summary release];
+    [introduction_rendered release];
+    [image release];
+    
+    [documents release];
+    [parts release];
+    [tools release];
+    [flags release];
+    
+    [prereqs release];
+    [steps release];
+    
+    [super dealloc];
+}
+
 @end

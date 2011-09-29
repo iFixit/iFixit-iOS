@@ -144,7 +144,9 @@ static CGRect frameView;
 }
 
 - (void)dealloc {
-    //	self.imageScrollView = nil;
+    [image release];
+    [imageScrollView release];
+    [delay release];
     
     [super dealloc];
 }

@@ -25,13 +25,14 @@
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
+    [allStack release];
+    [bookmarksTVC release];
+    
     [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
@@ -41,15 +42,14 @@
 #pragma mark - View lifecycle
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
     
     // Add the toolbar with bookmarks toggle.
     UIToolbar *toolbar = [[UIToolbar alloc] init];
     
-    if ([iFixitAppDelegate isIPad]) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         toolbar.frame = CGRectMake(0, 768 - 20 - 44, 320, 44);
     }
     else {
@@ -103,15 +103,13 @@
     
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }

@@ -9,21 +9,7 @@
 @class WBProgressHUD;
 #import "LoginViewControllerDelegate.h"
 
-@interface LoginViewController : UITableViewController <UITextFieldDelegate> {
-    id<LoginViewControllerDelegate> delegate;
-    NSString *message;
-    WBProgressHUD *loading;
-    BOOL showRegister;
-    
-    UITextField *emailField;
-    UITextField *passwordField;
-    UITextField *passwordVerifyField;
-    UITextField *fullNameField;
-    
-    UIButton *loginButton;
-    UIButton *registerButton;
-    UIButton *cancelButton;
-}
+@interface LoginViewController : UITableViewController <UITextFieldDelegate>
 
 @property (nonatomic, assign) id<LoginViewControllerDelegate> delegate;
 @property (nonatomic, copy) NSString *message;

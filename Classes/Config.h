@@ -14,17 +14,7 @@ enum {
     ConfigDozuki
 };
 
-@interface Config : NSObject {
-    BOOL dozuki;
-    NSInteger site;
-    NSString *host;
-    NSString *baseURL;
-    UIColor *backgroundColor;
-    UIColor *textColor;
-    UIColor *toolbarColor;
-    NSString *introCSS;
-    NSString *stepCSS;
-}
+@interface Config : NSObject
 
 @property (nonatomic) BOOL dozuki;
 @property (nonatomic) NSInteger site;

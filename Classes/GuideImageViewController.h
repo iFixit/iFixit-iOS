@@ -11,11 +11,7 @@
 #import "TapDetectingImageView.h"
 
 @interface GuideImageViewController : UIViewController <UIScrollViewDelegate, TapDetectingImageViewDelegate> {
-	id delegate;
-    UIScrollView *imageScrollView;
-	UIImage *image;
 	BOOL doubleTap;
-    NSDate *delay;
 }
 
 @property (nonatomic, assign) id delegate;

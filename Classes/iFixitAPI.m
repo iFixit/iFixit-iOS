@@ -101,7 +101,7 @@ static int volatile openConnections = 0;
     
     // On iPhone and iPod touch, only show leaf nodes with viewable guides.
     NSString *requireGuides = @"";
-    if (![iFixitAppDelegate isIPad])
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         requireGuides = @"?requireGuides=yes";
 	
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/areas/%@%@", [Config host], parent, requireGuides];	

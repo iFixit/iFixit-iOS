@@ -211,10 +211,14 @@
 }
 
 - (void)viewDidUnload {
+    [super viewDidUnload];
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    self.popoverController = nil;
-    self.loading = nil;
+    self.toolbar = nil;
+    self.webView = nil;
+    self.backButton = nil;
+    self.fwdButton = nil;
 }
 
 - (IBAction)showSplash:(UIBarButtonItem *)button {
@@ -234,9 +238,15 @@
 */
 
 - (void)dealloc {
-    self.loading = nil;
-    [popoverController release];
+    webView.delegate = nil;
+    
     [toolbar release];
+    [webView release];
+    [loading release];
+    [lastURL release];
+    [backButton release];
+    [fwdButton release];
+    [popoverController release];
     
     [super dealloc];
 }

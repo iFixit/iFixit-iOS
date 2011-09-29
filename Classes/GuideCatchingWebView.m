@@ -63,8 +63,9 @@
     iFixitAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     
 	if (guideid != -1) {
-        GuideViewController *vc = [GuideViewController initWithGuideid:guideid];
+        GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
         [delegate.areasViewController presentModalViewController:vc animated:YES];
+        [vc release];
 		return NO;
 	}
     
@@ -95,7 +96,8 @@
         }
         
         if (!hasCustomHeader) {
-            NSString *device = [iFixitAppDelegate isIPad] ? @"Wide iFixit" : @"Thin iFixit";
+            NSString *device = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? 
+                @"Wide iFixit" : @"Thin iFixit";
             NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];	
             NSString *mobileClient = [NSString stringWithFormat:@"%@ %@", device, version];
             
@@ -125,9 +127,8 @@
 }
 
 - (void)dealloc {
-    self.externalDelegate = nil;
-    self.formatter = nil;
-    self.externalURL = nil;
+    [formatter release];
+    [externalURL release];
     
     [super dealloc];
 }

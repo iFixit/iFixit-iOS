@@ -10,28 +10,7 @@
 #import "GuideStep.h"
 #import "GuideStepLine.h"
 
-@interface Guide : NSObject {
-    NSDictionary *data;
-	NSInteger guideid;
-	NSString *title;
-	NSString *device;
-	NSString *subject;
-	NSString *author;
-	NSString *timeRequired;
-	NSString *difficulty;
-	NSString *introduction;
-	NSString *summary;
-	NSString *introduction_rendered;
-	GuideImage *image;
-	
-	NSMutableArray *documents;
-	NSMutableArray *parts;
-	NSMutableArray *tools;
-	NSMutableArray *flags;
-	
-	NSMutableArray *prereqs;
-	NSMutableArray *steps;
-}
+@interface Guide : NSObject
 
 @property (nonatomic, retain) NSDictionary *data;
 @property (nonatomic) NSInteger guideid;

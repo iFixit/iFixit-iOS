@@ -102,18 +102,18 @@
     self.view.userInteractionEnabled = YES;
 }
 
-- (void)dealloc
-{
-    self.loading = nil;
-    self.message = nil;
+- (void)dealloc {
+    [message release];
+    [loading release];
     
-    self.emailField = nil;
-    self.passwordField = nil;
-    self.passwordVerifyField = nil;
-    self.fullNameField = nil;
-    self.loginButton = nil;
-    self.registerButton = nil;
-    self.cancelButton = nil;
+    [emailField release];
+    [passwordField release];
+    [passwordVerifyField release];
+    [fullNameField release];
+    
+    [loginButton release];
+    [registerButton release];
+    [cancelButton release];
     
     [super dealloc];
 }
@@ -274,8 +274,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -283,13 +282,13 @@
     self.passwordField = nil;
     self.passwordVerifyField = nil;
     self.fullNameField = nil;
+    
     self.loginButton = nil;
     self.registerButton = nil;
     self.cancelButton = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
