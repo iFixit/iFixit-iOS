@@ -5,8 +5,11 @@ http://www.ifixit.com/api
 
 APIs used:
  * /api/areas
+ * /api/guides
+ * /api/device
  * /api/guide
- * /api/guide/featured
+ * /api/search
+ * /api/likes
  
 ----------
 
