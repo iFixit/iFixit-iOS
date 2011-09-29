@@ -31,19 +31,21 @@
     [super viewDidLoad];
     
     // Set the appropriate header image.
-    if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
-        headerImageMake.hidden = NO;
-        swipeLabel.textColor = [UIColor redColor];
-    }
-    else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
-        headerImageIFixit.hidden = NO;
-    }
-    // If this is a Dozuki site, we have no logo, so move the intro up to fill the space.
-    else if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        CGRect frame = self.webView.frame;
-        frame.origin.y -= 80.0;
-        frame.size.height += 80.0;
-        self.webView.frame = frame;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
+            headerImageMake.hidden = NO;
+            swipeLabel.textColor = [UIColor redColor];
+        }
+        else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
+            headerImageIFixit.hidden = NO;
+        }
+        // If this is a Dozuki site, we have no logo, so move the intro up to fill the space.
+        else {
+            CGRect frame = self.webView.frame;
+            frame.origin.y -= 80.0;
+            frame.size.height += 80.0;
+            self.webView.frame = frame;
+        }
     }
     
     // Hide the swipe label if there are no steps.
