@@ -69,6 +69,10 @@ static CGRect frameView;
     return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [[delegate delegate] willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
 - (void)loadView {
     [super loadView];
     

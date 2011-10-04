@@ -109,13 +109,12 @@
         
         // Landscape
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-            frame = CGRectMake(0, 44, 480, 326);
+            frame = CGRectMake(0, 44, 480, 276);
         }
         // Portrait
         else {
             frame = CGRectMake(0, 44, 320, 396);
         }
-        
         scrollView.frame = frame;
     }
     
@@ -319,9 +318,8 @@
     return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [self adjustScrollViewContentSizeForInterfaceOrientation:self.interfaceOrientation];
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self adjustScrollViewContentSizeForInterfaceOrientation:toInterfaceOrientation];
     
     for (int i=0; i<[viewControllers count]; i++) {
         UIViewController *vc = [viewControllers objectAtIndex:i];
@@ -332,7 +330,7 @@
             frame.origin.y = 0;
             
             vc.view.frame = frame;
-            [vc willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
+            [vc willRotateToInterfaceOrientation:toInterfaceOrientation duration:0];
         }
     }
     

@@ -39,7 +39,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 #pragma mark Application lifecycle
 
 - (void)setupAnalytics {
-    [[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-00000000-1"
+    [[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-30506-9"
                                            dispatchPeriod:kGANDispatchPeriodSec
                                                  delegate:nil];
     
