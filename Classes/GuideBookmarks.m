@@ -16,6 +16,7 @@
 #import "User.h"
 #import "SDWebImageManager.h"
 #import "Config.h"
+#include <sys/xattr.h>
 
 static GuideBookmarks *sharedBookmarks = nil;
 
@@ -33,6 +34,11 @@ static GuideBookmarks *sharedBookmarks = nil;
     if (sharedBookmarks)
         [sharedBookmarks release];
     sharedBookmarks = nil;
+}
+
+- (void)AddSkipBackupAttributeToFile:(NSURL *)url {
+    u_int8_t b = 1;
+    setxattr([[url path] fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
 }
 
 // Returns a flat list of all cached image paths so 
@@ -123,6 +129,15 @@ static GuideBookmarks *sharedBookmarks = nil;
         [guides writeToFile:[self guidesFilePath] atomically:YES];
         [images writeToFile:[self imagesFilePath] atomically:YES];
         [queue  writeToFile:[self queueFilePath] atomically:YES];
+        
+        // Mark favorites databases as offline storage
+        [self AddSkipBackupAttributeToFile:[NSURL URLWithString:[self guidesFilePath]]];
+        [self AddSkipBackupAttributeToFile:[NSURL URLWithString:[self imagesFilePath]]];
+        [self AddSkipBackupAttributeToFile:[NSURL URLWithString:[self queueFilePath]]];
+        
+        // Mark all images as offline storage
+        for (NSString *fileName in images)
+            [self AddSkipBackupAttributeToFile:[NSURL URLWithString:fileName]];
     }
 }
 

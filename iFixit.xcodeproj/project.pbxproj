@@ -1049,7 +1049,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "44397B95-7470-4A9E-9585-CEFB42988156";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "618705B0-6E6B-4509-8414-3852B0A51B15";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1133,7 +1133,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9C77AADF-C412-4078-8A37-998508B1F00D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "618705B0-6E6B-4509-8414-3852B0A51B15";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";
