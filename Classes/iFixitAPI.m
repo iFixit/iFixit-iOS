@@ -80,6 +80,20 @@ static int volatile openConnections = 0;
     [request startAsynchronous];
 }
 
+- (void)getCollectionsWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
+	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/collections?limit=%d&offset=%d", [Config host], limit, offset];
+	
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setCompletionBlock:^{
+        NSArray *results = [[request responseString] JSONValue];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        [object performSelector:selector withObject:nil];
+    }];
+    [request startAsynchronous];
+}
+
 - (void)getGuide:(NSInteger)guideid forObject:(id)object withSelector:(SEL)selector {
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guide/%d", [Config host], guideid];	
 
@@ -136,6 +150,21 @@ static int volatile openConnections = 0;
     int limit = [type isEqual:@"featured"] ? 9 : 100;
 	
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guides/%@?limit=%d", [Config host], type, limit];	
+    
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setCompletionBlock:^{
+        NSArray *results = [[request responseString] JSONValue];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        [object performSelector:selector withObject:nil];
+    }];
+    [request startAsynchronous];
+}
+
+- (void)getGuidesByIds:(NSArray *)guideids forObject:(id)object withSelector:(SEL)selector {
+    NSString *guideidsString = [guideids componentsJoinedByString:@","];
+	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guides?guideids=%@", [Config host], guideidsString];
     
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{

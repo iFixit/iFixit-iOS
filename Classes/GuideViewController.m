@@ -53,16 +53,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Soften black and white by 5%.
+    // Replace black with concrete.
     UIColor *bgColor = [Config currentConfig].backgroundColor;
-    /*
-    if ([bgColor isEqual:[UIColor blackColor]])
-        bgColor = [UIColor colorWithRed:0.05 green:0.05 blue:0.05 alpha:1.0];
-    else if ([bgColor isEqual:[UIColor whiteColor]])
-        bgColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
-     */
+    //if ([bgColor isEqual:[UIColor blackColor]])
+    //    bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
     
     self.view.backgroundColor = bgColor;
+
     if ([[Config currentConfig].backgroundColor isEqual:[UIColor whiteColor]]) {
         navBar.tintColor = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ?
             nil : [Config currentConfig].toolbarColor;

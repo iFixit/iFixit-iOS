@@ -13,6 +13,7 @@
 #import "AreasViewController.h"
 #import "DetailViewController.h"
 #import "SplashViewController.h"
+#import "FeaturedViewController.h"
 #import "DozukiSplashViewController.h"
 #import "DozukiInfoViewController.h"
 #import "GuideBookmarks.h"
@@ -39,6 +40,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 #pragma mark Application lifecycle
 
 - (void)setupAnalytics {
+    if ([Config currentConfig].dozuki)
+        return;
+    
     [[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-30506-9"
                                            dispatchPeriod:kGANDispatchPeriodSec
                                                  delegate:nil];
@@ -48,19 +52,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
                                                    value:[UIDevice currentDevice].model
                                                withError:NULL];
     [[GANTracker sharedTracker] setCustomVariableAtIndex:2
-                                                    name:@"name"
-                                                   value:[UIDevice currentDevice].name
-                                               withError:NULL];
-    [[GANTracker sharedTracker] setCustomVariableAtIndex:3
                                                     name:@"systemVersion"
                                                    value:[UIDevice currentDevice].systemVersion
                                                withError:NULL];
     
-    [[GANTracker sharedTracker] trackEvent:@"iOS Launch"
-                                    action:[NSString stringWithFormat:@"Launch %@", [UIDevice currentDevice].model]
-                                     label:@"Launch"
-                                     value:99
-                                 withError:NULL];
+    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/launch/%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]] withError:NULL];
 }
 
 // Override point for customization after app launch.
@@ -71,6 +67,10 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     /* Track. */
     [TestFlight takeOff:@"c74d40d00ff8789a3c63bc4c2ee210e6_MTcxMjIwMTEtMDktMTIgMTc6MzY6MzcuNzIyMTQ3"];
     [self setupAnalytics];
+    
+    /* iOS 5 appearance */
+    if ([UITabBar respondsToSelector:@selector(appearance)])
+        [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"customTabBarBackground.png"]];
     
     /* Setup and launch. */
     self.window.rootViewController = nil;
@@ -179,13 +179,23 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     areasViewController.delegate = self;
     
-    // Inject the splash view controller if necessary.
-    if ([Config currentConfig].site != ConfigDozuki) {
-        self.splashViewController = [[SplashViewController alloc] initWithNibName:@"SplashView" bundle:nil];
-        [self showSplash];
-    }
+    // Dozuki ends here, but iFixit gets a fancy tab bar at the bottom.
+    if ([Config currentConfig].dozuki)
+        return splitViewController;
     
-    return splitViewController;
+    // Create the featured view controller
+    FeaturedViewController *featuredViewController = [[FeaturedViewController alloc] init];
+    
+    // Initialize the tab bar items.
+    splitViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Repair" image:nil tag:0] autorelease];
+    featuredViewController.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0] autorelease];
+    
+    // Create the tab bar.
+    UITabBarController *tbc = [[UITabBarController alloc] init];
+    tbc.viewControllers = [NSArray arrayWithObjects:featuredViewController, splitViewController, nil];
+    [featuredViewController release];
+    
+    return [tbc autorelease];
 }
 
 - (UIViewController *)iPhoneRoot {
@@ -202,11 +212,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (void)showBrowser {
     NSMutableArray *controllers = [splitViewController.viewControllers mutableCopy];
     [controllers replaceObjectAtIndex:1 withObject:detailViewController];
-    splitViewController.viewControllers = [NSArray arrayWithArray:controllers];
-}
-- (void)showSplash {
-    NSMutableArray *controllers = [splitViewController.viewControllers mutableCopy];
-    [controllers replaceObjectAtIndex:1 withObject:splashViewController];
     splitViewController.viewControllers = [NSArray arrayWithArray:controllers];
 }
 

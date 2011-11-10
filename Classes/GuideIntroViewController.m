@@ -52,17 +52,11 @@
     if (![self.guide.steps count])
         swipeLabel.hidden = YES;
     
-    // Set the background color, softening black and white by 5%.
-    UIColor *bgColor = [Config currentConfig].backgroundColor;
-    /*
-    if ([bgColor isEqual:[UIColor blackColor]])
-        bgColor = [UIColor colorWithRed:0.05 green:0.05 blue:0.05 alpha:1.0];
-    else if ([bgColor isEqual:[UIColor whiteColor]])
-        bgColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
-     */
-    
+    UIColor *bgColor = [UIColor clearColor];
+
     self.view.backgroundColor = bgColor;
 	webView.backgroundColor = bgColor;
+    webView.opaque = NO;
 	
 	// Load the intro contents as HTML.
 	NSString *header = [NSString stringWithFormat:@"<html><head><style type=\"text/css\"> %@ </style></head><body class=\"%@\">",

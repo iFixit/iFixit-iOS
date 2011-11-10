@@ -101,13 +101,6 @@
 	backButton.action = @selector(goBack);
     fwdButton.target = webView;
 	fwdButton.action = @selector(goForward);
-    
-    // Hide the splash button if on a Dozuki site.
-    if ([Config currentConfig].dozuki) {
-        NSMutableArray *items = [[toolbar items] mutableCopy];
-        [items removeObjectAtIndex:0];
-        [toolbar setItems:items animated:YES];
-    }
 }
 
 - (NSDictionary *)treeMatchInTree:(NSDictionary *)tree forURL:(NSString *)url {
@@ -219,10 +212,6 @@
     self.webView = nil;
     self.backButton = nil;
     self.fwdButton = nil;
-}
-
-- (IBAction)showSplash:(UIBarButtonItem *)button {
-    [(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showSplash];   
 }
 
 #pragma mark -

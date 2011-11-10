@@ -16,6 +16,7 @@
 #import "User.h"
 #import "SDWebImageManager.h"
 #import "Config.h"
+#import "GANTracker.h"
 #include <sys/xattr.h>
 
 static GuideBookmarks *sharedBookmarks = nil;
@@ -60,6 +61,9 @@ static GuideBookmarks *sharedBookmarks = nil;
 }
 
 - (void)addGuideid:(NSNumber *)guideid {
+    // Analytics
+    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/favorites/add/%d", guideid] withError:NULL];
+
     [queue setValue:@"add" forKey:[NSString stringWithFormat:@"%d_%d",
                                    [[iFixitAPI sharedInstance].user.userid intValue],
                                    [guideid intValue]]];
@@ -106,6 +110,9 @@ static GuideBookmarks *sharedBookmarks = nil;
 }
 
 - (void)removeGuideid:(NSNumber *)guideid {
+    // Analytics
+    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/favorites/remove/%d", guideid] withError:NULL];
+
     NSString *key = [NSString stringWithFormat:@"%d_%d",
                      [[iFixitAPI sharedInstance].user.userid intValue],
                      [guideid intValue]];

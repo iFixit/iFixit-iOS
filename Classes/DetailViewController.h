@@ -20,6 +20,4 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *fwdButton;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 
-- (IBAction)showSplash:(UIBarButtonItem *)button;
-
 @end

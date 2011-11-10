@@ -50,7 +50,11 @@
     UIToolbar *toolbar = [[UIToolbar alloc] init];
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        toolbar.frame = CGRectMake(0, 768 - 20 - 44, 320, 44);
+        int diff = 20 + 44;
+        // Adjust for iFixit's tab bar.
+        if (![Config currentConfig].dozuki)
+            diff += 49;
+        toolbar.frame = CGRectMake(0, 768 - diff, 320, 44);
     }
     else {
         toolbar.frame = CGRectMake(0, 480 - 43, 320, 44);

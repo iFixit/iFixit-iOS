@@ -94,6 +94,8 @@
 		DA8860E21427DD490030F52C /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA8860DF1427DD490030F52C /* SVWebViewController.bundle */; };
 		DA8860E31427DD490030F52C /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8860E11427DD490030F52C /* SVWebViewController.m */; };
 		DA8860E51427DE590030F52C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA8860E41427DE590030F52C /* MessageUI.framework */; };
+		DA8F60061469B29700482D29 /* DMPGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8F60021469B29700482D29 /* DMPGridViewCell.m */; };
+		DA8F60071469B29700482D29 /* DMPGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8F60041469B29700482D29 /* DMPGridViewController.m */; };
 		DA994894142ABA7D00E4167D /* dozukiSplash.png in Resources */ = {isa = PBXBuildFile; fileRef = DA994893142ABA7D00E4167D /* dozukiSplash.png */; };
 		DA994896142ABB7700E4167D /* dozukiSplash~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA994895142ABB7700E4167D /* dozukiSplash~ipad.png */; };
 		DA99489B142ABDDB00E4167D /* dozukiGetStarted~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA994897142ABDDB00E4167D /* dozukiGetStarted~ipad.png */; };
@@ -117,6 +119,8 @@
 		DAAAC74A1433F43C00CB90AF /* GuideStepView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC7491433F43C00CB90AF /* GuideStepView~ipad.xib */; };
 		DAAAC74D1433F49300CB90AF /* AreasView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC74B1433F49000CB90AF /* AreasView.xib */; };
 		DAAAC74E1433F49300CB90AF /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC74C1433F49100CB90AF /* DetailView.xib */; };
+		DAAED15914686A2D00C476C1 /* FeaturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAED15714686A2D00C476C1 /* FeaturedViewController.m */; };
+		DAAED15E1468710C00C476C1 /* PastFeaturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAED15D1468710C00C476C1 /* PastFeaturesViewController.m */; };
 		DAAFB80012BEE79C003ACCD0 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAFB7FE12BEE79C003ACCD0 /* SplashViewController.m */; };
 		DAAFB80112BEE79C003ACCD0 /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAFB7FF12BEE79C003ACCD0 /* SplashView.xib */; };
 		DAB9343A137228AD00B6AA9A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB93439137228AD00B6AA9A /* LoginViewController.m */; };
@@ -125,6 +129,11 @@
 		DABE9CF513C54D2200B778FE /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF413C54D2200B778FE /* GuideView.xib */; };
 		DABE9CF713C5519800B778FE /* GuideIntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF613C5519800B778FE /* GuideIntroView.xib */; };
 		DABE9CF913C5535200B778FE /* GuideStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF813C5535200B778FE /* GuideStepView.xib */; };
+		DAC0C19D146B182000EF42DC /* collectionsImagePlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC0C19C146B182000EF42DC /* collectionsImagePlaceholder.png */; };
+		DAC0C1A1146B37E000EF42DC /* concreteBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC0C1A0146B37E000EF42DC /* concreteBackground.png */; };
+		DAC0C1A3146B3F6F00EF42DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC0C1A2146B3F6F00EF42DC /* QuartzCore.framework */; };
+		DAC0C1A5146B411A00EF42DC /* collectionsHeaderGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC0C1A4146B411A00EF42DC /* collectionsHeaderGradient.png */; };
+		DAC0C1A7146B49AA00EF42DC /* Lobster.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAC0C1A6146B49AA00EF42DC /* Lobster.ttf */; };
 		DAC26873140842B300752982 /* backtosites.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC26871140842B300752982 /* backtosites.png */; };
 		DAC26874140842B300752982 /* backtosites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC26872140842B300752982 /* backtosites@2x.png */; };
 		DACE44381353B87E00F78360 /* x-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DACE44361353B87E00F78360 /* x-icon.png */; };
@@ -291,6 +300,12 @@
 		DA8860E01427DD490030F52C /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
 		DA8860E11427DD490030F52C /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
 		DA8860E41427DE590030F52C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		DA8F60011469B29700482D29 /* DMPGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMPGridViewCell.h; path = GridViewController/DMPGridViewCell.h; sourceTree = "<group>"; };
+		DA8F60021469B29700482D29 /* DMPGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMPGridViewCell.m; path = GridViewController/DMPGridViewCell.m; sourceTree = "<group>"; };
+		DA8F60031469B29700482D29 /* DMPGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMPGridViewController.h; path = GridViewController/DMPGridViewController.h; sourceTree = "<group>"; };
+		DA8F60041469B29700482D29 /* DMPGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMPGridViewController.m; path = GridViewController/DMPGridViewController.m; sourceTree = "<group>"; };
+		DA8F60051469B29700482D29 /* DMPGridViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMPGridViewDelegate.h; path = GridViewController/DMPGridViewDelegate.h; sourceTree = "<group>"; };
+		DA8F60081469F8E600482D29 /* PastFeaturesViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastFeaturesViewDelegate.h; sourceTree = "<group>"; };
 		DA994893142ABA7D00E4167D /* dozukiSplash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiSplash.png; path = Graphics/dozukiSplash.png; sourceTree = "<group>"; };
 		DA994895142ABB7700E4167D /* dozukiSplash~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiSplash~ipad.png"; path = "Graphics/dozukiSplash~ipad.png"; sourceTree = "<group>"; };
 		DA994897142ABDDB00E4167D /* dozukiGetStarted~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiGetStarted~ipad.png"; path = "Graphics/dozukiGetStarted~ipad.png"; sourceTree = "<group>"; };
@@ -320,6 +335,10 @@
 		DAAAC7491433F43C00CB90AF /* GuideStepView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuideStepView~ipad.xib"; sourceTree = "<group>"; };
 		DAAAC74B1433F49000CB90AF /* AreasView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AreasView.xib; sourceTree = "<group>"; };
 		DAAAC74C1433F49100CB90AF /* DetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
+		DAAED15614686A2D00C476C1 /* FeaturedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedViewController.h; sourceTree = "<group>"; };
+		DAAED15714686A2D00C476C1 /* FeaturedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedViewController.m; sourceTree = "<group>"; };
+		DAAED15C1468710C00C476C1 /* PastFeaturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastFeaturesViewController.h; sourceTree = "<group>"; };
+		DAAED15D1468710C00C476C1 /* PastFeaturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastFeaturesViewController.m; sourceTree = "<group>"; };
 		DAAFB7FD12BEE79C003ACCD0 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		DAAFB7FE12BEE79C003ACCD0 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		DAAFB7FF12BEE79C003ACCD0 /* SplashView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
@@ -330,6 +349,11 @@
 		DABE9CF413C54D2200B778FE /* GuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideView.xib; sourceTree = "<group>"; };
 		DABE9CF613C5519800B778FE /* GuideIntroView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideIntroView.xib; sourceTree = "<group>"; };
 		DABE9CF813C5535200B778FE /* GuideStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideStepView.xib; sourceTree = "<group>"; };
+		DAC0C19C146B182000EF42DC /* collectionsImagePlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = collectionsImagePlaceholder.png; path = Graphics/collectionsImagePlaceholder.png; sourceTree = "<group>"; };
+		DAC0C1A0146B37E000EF42DC /* concreteBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = concreteBackground.png; path = Graphics/concreteBackground.png; sourceTree = "<group>"; };
+		DAC0C1A2146B3F6F00EF42DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DAC0C1A4146B411A00EF42DC /* collectionsHeaderGradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = collectionsHeaderGradient.png; path = Graphics/collectionsHeaderGradient.png; sourceTree = "<group>"; };
+		DAC0C1A6146B49AA00EF42DC /* Lobster.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lobster.ttf; sourceTree = "<group>"; };
 		DAC26871140842B300752982 /* backtosites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backtosites.png; path = Graphics/backtosites.png; sourceTree = "<group>"; };
 		DAC26872140842B300752982 /* backtosites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backtosites@2x.png"; path = "Graphics/backtosites@2x.png"; sourceTree = "<group>"; };
 		DACE44361353B87E00F78360 /* x-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "x-icon.png"; path = "Graphics/x-icon.png"; sourceTree = "<group>"; };
@@ -363,6 +387,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAC0C1A3146B3F6F00EF42DC /* QuartzCore.framework in Frameworks */,
 				DAAAC7481433E03B00CB90AF /* libsqlite3.dylib in Frameworks */,
 				DA8860E51427DE590030F52C /* MessageUI.framework in Frameworks */,
 				DA0A0C16138B07DA0027721E /* libxml2.2.dylib in Frameworks */,
@@ -392,6 +417,7 @@
 				C1C894F9121B44FA0036FAFC /* Image View */,
 				DA59293413FB250800504CD3 /* Dozuki */,
 				DAF3AF511422881B00913238 /* Navigation */,
+				DAAED15B146870E800C476C1 /* Featured Collections */,
 				DA881854134A5AFE004387CE /* BookmarksViewController.h */,
 				DA881855134A5AFE004387CE /* BookmarksViewController.m */,
 				DA881856134A5AFE004387CE /* BookmarksView.xib */,
@@ -434,6 +460,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				DAC0C1A6146B49AA00EF42DC /* Lobster.ttf */,
 				DAE7D7C0142A9FC900C07529 /* icon57.png */,
 				DAE7D7C1142A9FC900C07529 /* icon72.png */,
 				DAE7D7C2142A9FC900C07529 /* icon114.png */,
@@ -463,6 +490,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DAC0C1A2146B3F6F00EF42DC /* QuartzCore.framework */,
 				DA8860E41427DE590030F52C /* MessageUI.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -530,6 +558,9 @@
 			isa = PBXGroup;
 			children = (
 				DA9948AB142ACC6000E4167D /* Dozuki Splash */,
+				DAC0C1A4146B411A00EF42DC /* collectionsHeaderGradient.png */,
+				DAC0C19C146B182000EF42DC /* collectionsImagePlaceholder.png */,
+				DAC0C1A0146B37E000EF42DC /* concreteBackground.png */,
 				DAC26871140842B300752982 /* backtosites.png */,
 				DAC26872140842B300752982 /* backtosites@2x.png */,
 				DAB9344313722AEB00B6AA9A /* login.png */,
@@ -697,6 +728,18 @@
 			path = SVWebViewController/SVWebViewController;
 			sourceTree = SOURCE_ROOT;
 		};
+		DA8F60001469B25B00482D29 /* GridViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DA8F60011469B29700482D29 /* DMPGridViewCell.h */,
+				DA8F60021469B29700482D29 /* DMPGridViewCell.m */,
+				DA8F60031469B29700482D29 /* DMPGridViewController.h */,
+				DA8F60041469B29700482D29 /* DMPGridViewController.m */,
+				DA8F60051469B29700482D29 /* DMPGridViewDelegate.h */,
+			);
+			name = GridViewController;
+			sourceTree = "<group>";
+		};
 		DA9948AB142ACC6000E4167D /* Dozuki Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,6 +785,19 @@
 			);
 			path = GAnalytics;
 			sourceTree = SOURCE_ROOT;
+		};
+		DAAED15B146870E800C476C1 /* Featured Collections */ = {
+			isa = PBXGroup;
+			children = (
+				DA8F60001469B25B00482D29 /* GridViewController */,
+				DAAED15614686A2D00C476C1 /* FeaturedViewController.h */,
+				DAAED15714686A2D00C476C1 /* FeaturedViewController.m */,
+				DAAED15C1468710C00C476C1 /* PastFeaturesViewController.h */,
+				DAAED15D1468710C00C476C1 /* PastFeaturesViewController.m */,
+				DA8F60081469F8E600482D29 /* PastFeaturesViewDelegate.h */,
+			);
+			name = "Featured Collections";
+			sourceTree = "<group>";
 		};
 		DAC88AD51427E10B00D33C00 /* Packages */ = {
 			isa = PBXGroup;
@@ -930,6 +986,10 @@
 				DAAAC74A1433F43C00CB90AF /* GuideStepView~ipad.xib in Resources */,
 				DAAAC74D1433F49300CB90AF /* AreasView.xib in Resources */,
 				DAAAC74E1433F49300CB90AF /* DetailView.xib in Resources */,
+				DAC0C19D146B182000EF42DC /* collectionsImagePlaceholder.png in Resources */,
+				DAC0C1A1146B37E000EF42DC /* concreteBackground.png in Resources */,
+				DAC0C1A5146B411A00EF42DC /* collectionsHeaderGradient.png in Resources */,
+				DAC0C1A7146B49AA00EF42DC /* Lobster.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,6 +1056,10 @@
 				DA8860DD1427DD2A0030F52C /* Reachability.m in Sources */,
 				DA8860E31427DD490030F52C /* SVWebViewController.m in Sources */,
 				DA0877BD142D3E6200954482 /* UIColor+Hex.m in Sources */,
+				DAAED15914686A2D00C476C1 /* FeaturedViewController.m in Sources */,
+				DAAED15E1468710C00C476C1 /* PastFeaturesViewController.m in Sources */,
+				DA8F60061469B29700482D29 /* DMPGridViewCell.m in Sources */,
+				DA8F60071469B29700482D29 /* DMPGridViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,7 +1088,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5DF6B989-29D2-477D-AEF8-1DA413BFA5BB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8081545A-70C0-470B-B9AE-0B055086A910";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1049,7 +1113,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "618705B0-6E6B-4509-8414-3852B0A51B15";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "67F817B6-EA39-44E6-9311-857446D92110";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1133,7 +1197,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "618705B0-6E6B-4509-8414-3852B0A51B15";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "67F817B6-EA39-44E6-9311-857446D92110";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";

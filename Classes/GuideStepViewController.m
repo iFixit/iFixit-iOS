@@ -37,17 +37,12 @@
     UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? 
         [self layoutLandscape] : [self layoutPortrait];
 
-    // Set the background color, softening black and white by 15%.
-    UIColor *bgColor = [Config currentConfig].backgroundColor;
-    /*
-    if ([bgColor isEqual:[UIColor blackColor]])
-        bgColor = [UIColor colorWithRed:0.05 green:0.05 blue:0.05 alpha:1.0];
-    else if ([bgColor isEqual:[UIColor whiteColor]])
-        bgColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
-    */
+    UIColor *bgColor = [UIColor clearColor];
+    
     self.view.backgroundColor = bgColor;
 	webView.backgroundColor = bgColor;    
-    
+    webView.opaque = NO;
+
 	NSString *stepTitle = [NSString stringWithFormat:@"Step %d", self.step.number];
 	if (![self.step.title isEqual:@""])
 		stepTitle = [NSString stringWithFormat:@"%@ - %@", stepTitle, self.step.title];
