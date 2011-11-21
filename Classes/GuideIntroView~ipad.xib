@@ -44,12 +44,12 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIView" id="303000594">
 						<reference key="NSNextResponder" ref="766721923"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">274</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIButton" id="1035275890">
 								<reference key="NSNextResponder" ref="303000594"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">274</int>
 								<string key="NSFrameSize">{1024, 710}</string>
 								<reference key="NSSuperview" ref="303000594"/>
 								<reference key="NSWindow"/>
@@ -101,7 +101,7 @@
 					<object class="IBUIWebView" id="860367058">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{20, 160}, {660, 420}}</string>
+						<string key="NSFrame">{{20, 160}, {984, 420}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="319840401"/>

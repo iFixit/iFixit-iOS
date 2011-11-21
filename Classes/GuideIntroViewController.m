@@ -142,22 +142,34 @@
     return YES;
 }
 - (void)layoutLandscape {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        return;
-    
-    // These dimensions represent the object's position BEFORE rotation,
-    // and are automatically tweaked during animation with respect to their resize masks.
-    mainImage.frame = CGRectMake(40, 40, 200, 150);
-    webView.frame = CGRectMake(240, 0, 238, 245);
+    // iPad
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        swipeLabel.frame = CGRectMake(617.0, 588.0, 387.0, 65.0);
+        webView.frame = CGRectMake(20.0, 160.0, 984.0, 420.0);
+    }
+    // iPhone
+    else {
+        // These dimensions represent the object's position BEFORE rotation,
+        // and are automatically tweaked during animation with respect to their resize masks.
+        // Created by trial and error. :(
+        mainImage.frame = CGRectMake(40, 40, 200, 150);
+        webView.frame = CGRectMake(240, 0, 238, 245);
+    }
 }
 - (void)layoutPortrait {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        return;
-    
-    // These dimensions represent the object's position BEFORE rotation,
-    // and are automatically tweaked during animation with respect to their resize masks.
-    mainImage.frame = CGRectMake(60, 10, 200, 150);
-    webView.frame = CGRectMake(0, 168, 320, 228);
+    // iPad
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        swipeLabel.frame = CGRectMake(360.0, 800.0, 387.0, 65.0);
+        webView.frame = CGRectMake(20.0, 160.0, 728.0, 640.0);
+    }
+    // iPhone
+    else {
+        // These dimensions represent the object's position BEFORE rotation,
+        // and are automatically tweaked during animation with respect to their resize masks.
+        // Created by trial and error. :(
+        mainImage.frame = CGRectMake(60, 10, 200, 150);
+        webView.frame = CGRectMake(0, 168, 320, 228);
+    }
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {

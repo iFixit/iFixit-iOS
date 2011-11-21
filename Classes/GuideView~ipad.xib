@@ -45,7 +45,26 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIScrollView" id="261286567">
 						<reference key="NSNextResponder" ref="766721923"/>
-						<int key="NSvFlags">274</int>
+						<int key="NSvFlags">292</int>
+						<object class="NSMutableArray" key="NSSubviews">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIActivityIndicatorView" id="421760874">
+								<reference key="NSNextResponder" ref="261286567"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{494, 333}, {37, 37}}</string>
+								<reference key="NSSuperview" ref="261286567"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="910607363"/>
+								<object class="NSColor" key="IBUIBackgroundColor" id="809987452">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MCAwAA</bytes>
+								</object>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<bool key="IBUIAnimating">YES</bool>
+								<int key="IBUIStyle">0</int>
+							</object>
+						</object>
 						<string key="NSFrame">{{0, 44}, {1024, 704}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
@@ -87,29 +106,14 @@
 						<string key="NSFrame">{{10, 712}, {1004, 36}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<object class="NSColor" key="IBUIBackgroundColor" id="809987452">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
+						<reference key="NSNextKeyView"/>
+						<reference key="IBUIBackgroundColor" ref="809987452"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<bool key="IBUIHidesForSinglePage">YES</bool>
 						<int key="IBUINumberOfPages">1</int>
-					</object>
-					<object class="IBUIActivityIndicatorView" id="421760874">
-						<reference key="NSNextResponder" ref="766721923"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{331, 365}, {37, 37}}</string>
-						<reference key="NSSuperview" ref="766721923"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="910607363"/>
-						<reference key="IBUIBackgroundColor" ref="809987452"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<bool key="IBUIAnimating">YES</bool>
-						<int key="IBUIStyle">0</int>
 					</object>
 				</object>
 				<string key="NSFrame">{{0, 20}, {1024, 748}}</string>
@@ -221,7 +225,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="910607363"/>
 							<reference ref="553802897"/>
-							<reference ref="421760874"/>
 							<reference ref="261286567"/>
 						</object>
 						<reference key="parent" ref="0"/>
@@ -236,6 +239,7 @@
 						<reference key="object" ref="261286567"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="421760874"/>
 						</object>
 						<reference key="parent" ref="766721923"/>
 					</object>
@@ -259,7 +263,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">18</int>
 						<reference key="object" ref="421760874"/>
-						<reference key="parent" ref="766721923"/>
+						<reference key="parent" ref="261286567"/>
 					</object>
 				</object>
 			</object>

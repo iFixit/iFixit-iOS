@@ -75,6 +75,19 @@
         [[iFixitAPI sharedInstance] getGuide:self.guideid forObject:self withSelector:@selector(gotGuide:)];
     }
     
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        
+        // Landscape        
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+            spinner.frame = CGRectMake(494.0, 333.0, 37.0, 37.0);
+        }
+        // Portrait
+        else {
+            spinner.frame = CGRectMake(365.0, 450.0, 37.0, 37.0);
+        }
+        
+    }
+    
     // TODO: Show step that was in view before memory warning
 }
 
@@ -102,21 +115,34 @@
 
 - (void)adjustScrollViewContentSizeForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	NSInteger numPages = [self.guide.steps count] + 1;
-    
-    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-        CGRect frame;
-        
+    CGRect frame;
+
+    // iPad
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         // Landscape
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-            frame = CGRectMake(0, 44, 480, 276);
+            spinner.frame = CGRectMake(494.0, 333.0, 37.0, 37.0);
+            frame = CGRectMake(0, 44, 1024, 768 - 44);
         }
         // Portrait
         else {
-            frame = CGRectMake(0, 44, 320, 396);
-        }
-        scrollView.frame = frame;
+            spinner.frame = CGRectMake(365.0, 450.0, 37.0, 37.0);
+            frame = CGRectMake(0, 44, 768, 1024 - 44);
+        }        
     }
-    
+    // iPhone
+    else {        
+        // Landscape
+        if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+            frame = CGRectMake(0, 44, 480, 320 - 44);
+        }
+        // Portrait
+        else {
+            frame = CGRectMake(0, 44, 320, 480 - 84);
+        }
+    }
+
+    scrollView.frame = frame;
     scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * numPages, scrollView.frame.size.height);
 }
 
@@ -198,13 +224,6 @@
         shouldLoadPage = page;
     }
 }
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-/*
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
 
 - (void)loadScrollViewWithPage:(int)page {
 
@@ -310,9 +329,9 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // iPad Landscape only.
+    // iPad any orientation.
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        return interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight;
+        return YES;
     
     // iPhone Portrait+Landscape.
     return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;

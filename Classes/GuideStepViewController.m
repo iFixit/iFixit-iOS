@@ -182,44 +182,84 @@
     return YES;
 }
 - (void)layoutLandscape {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        return;
-    
-    // These dimensions represent the object's position BEFORE rotation,
-    // and are automatically tweaked during animation with respect to their resize masks.
-    CGRect frame = image1.frame;
-    frame.origin.y = 170;
-    
-    frame.origin.x = 20;
-    image1.frame = frame;
-    
-    frame.origin.x = 90;
-    image2.frame = frame;
-    
-    frame.origin.x = 160;
-    image3.frame = frame;
-    
-    webView.frame = CGRectMake(230, 0, 250, 245);
+    // iPad
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        mainImage.frame = CGRectMake(20.0, 103.0, 592.0, 444.0);
+        imageSpinner.frame = CGRectMake(297.0, 306.0, 37.0, 37.0);
+        webView.frame = CGRectMake(620.0, 103.0, 404.0, 562.0);
+        titleLabel.frame = CGRectMake(30.0, 30.0, 975.0, 65.0);
+        titleLabel.textAlignment = UITextAlignmentRight;
+        
+        CGRect frame = image1.frame;
+        frame.origin.y = 560.0;
+        
+        frame.origin.x = 20.0;
+        image1.frame = frame;
+        
+        frame.origin.x = 173.0;
+        image2.frame = frame;
+        
+        frame.origin.x = 326.0;
+        image3.frame = frame;
+    }
+    // iPhone
+    else {
+        // These dimensions represent the object's position BEFORE rotation,
+        // and are automatically tweaked during animation with respect to their resize masks.
+        CGRect frame = image1.frame;
+        frame.origin.y = 170;
+        
+        frame.origin.x = 20;
+        image1.frame = frame;
+        
+        frame.origin.x = 90;
+        image2.frame = frame;
+        
+        frame.origin.x = 160;
+        image3.frame = frame;
+        
+        webView.frame = CGRectMake(230, 0, 250, 245);
+    }
 }
 - (void)layoutPortrait {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        return;
-    
-    // These dimensions represent the object's position BEFORE rotation,
-    // and are automatically tweaked during animation with respect to their resize masks.
-    CGRect frame = image1.frame;
-    frame.origin.x = 238;
-    
-    frame.origin.y = 10;
-    image1.frame = frame;
-    
-    frame.origin.y = 62;
-    image2.frame = frame;
-    
-    frame.origin.y = 115;
-    image3.frame = frame;
-    
-    webView.frame = CGRectMake(0, 168, 320, 225);
+    // iPad
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        mainImage.frame = CGRectMake(20.0, 30.0, 592.0, 444.0);
+        imageSpinner.frame = CGRectMake(297.0, 234.0, 37.0, 37.0);
+        webView.frame = CGRectMake(20.0, 554.0, 615.0, 380.0);
+        titleLabel.frame = CGRectMake(30.0, 489.0, 708.0, 65.0);
+        titleLabel.textAlignment = UITextAlignmentLeft;
+
+        CGRect frame = image1.frame;
+        frame.origin.x = 626.0;
+        
+        frame.origin.y = 30.0;
+        image1.frame = frame;
+        
+        frame.origin.y = 150.0;
+        image2.frame = frame;
+        
+        frame.origin.y = 270.0;
+        image3.frame = frame;
+    }
+    // iPhone
+    else {
+        // These dimensions represent the object's position BEFORE rotation,
+        // and are automatically tweaked during animation with respect to their resize masks.
+        CGRect frame = image1.frame;
+        frame.origin.x = 238;
+        
+        frame.origin.y = 10;
+        image1.frame = frame;
+        
+        frame.origin.y = 62;
+        image2.frame = frame;
+        
+        frame.origin.y = 115;
+        image3.frame = frame;
+        
+        webView.frame = CGRectMake(0, 168, 320, 225);
+    }
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
