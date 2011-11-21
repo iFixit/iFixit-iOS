@@ -58,7 +58,7 @@
 }
 
 - (void)dealloc {
-    [self.dssvc release];
+    [dssvc release];
     [super dealloc];
 }
 @end

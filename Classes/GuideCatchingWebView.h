@@ -11,5 +11,6 @@
 @property (nonatomic, assign) id<UIWebViewDelegate> externalDelegate;
 @property (nonatomic, retain) NSNumberFormatter *formatter;
 @property (nonatomic, retain) NSURL *externalURL;
+@property (nonatomic, assign) UIViewController *modalDelegate;
 
 @end

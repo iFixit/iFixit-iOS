@@ -16,7 +16,10 @@ typedef enum {
     DMPGridViewCellStyleLandscape1 = 4,
     DMPGridViewCellStyleLandscape2 = 5,
     DMPGridViewCellStyleLandscape3 = 6,
-    DMPGridViewCellStyleLandscape4 = 7
+    DMPGridViewCellStyleLandscape4 = 7,
+    
+    DMPGridViewCellStylePortraitColumns = 8,
+    DMPGridViewCellStyleLandscapeColumns = 9
 } DMPGridViewCellStyle;
 
 @interface DMPGridViewCell : UIView

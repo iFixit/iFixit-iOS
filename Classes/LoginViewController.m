@@ -10,6 +10,7 @@
 #import "WBProgressHUD.h"
 #import "iFixitAPI.h"
 #import "BookmarksViewController.h"
+#import "Config.h"
 
 @implementation LoginViewController
 
@@ -296,6 +297,10 @@
 #pragma mark - Table view data source
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if ([Config currentConfig].site == ConfigIFixit)
+        return @"iFixit Login";
+    else if ([Config currentConfig].site == ConfigMake)
+        return @"Make: Projects Login";
     return @"Login";
 }
 /*

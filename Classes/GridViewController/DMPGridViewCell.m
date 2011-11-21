@@ -42,6 +42,12 @@
         case DMPGridViewCellStyleLandscape4:
             result = 3;
             break;
+        case DMPGridViewCellStylePortraitColumns:
+            result = 2;
+            break;
+        case DMPGridViewCellStyleLandscapeColumns:
+            result = 2;
+            break;
     }
     
     return result;
@@ -101,6 +107,19 @@
                 case 0: frame = CGRectMake( 10.0, 10.0, 328.0, 225.0); break;
                 case 1: frame = CGRectMake(348.0, 10.0, 328.0, 225.0); break;
                 case 2: frame = CGRectMake(686.0, 10.0, 328.0, 225.0); break;
+            }
+            break;
+            
+        case DMPGridViewCellStylePortraitColumns:
+            switch (_index) {
+                case 0: frame = CGRectMake( 10.0, 10.0, 369.0, 225.0); break;
+                case 1: frame = CGRectMake(389.0, 10.0, 369.0, 225.0); break;
+            }
+            break;
+        case DMPGridViewCellStyleLandscapeColumns:
+            switch (_index) {
+                case 0: frame = CGRectMake( 10.0, 10.0, 337.0, 225.0); break;
+                case 1: frame = CGRectMake(357.0, 10.0, 337.0, 225.0); break;
             }
             break;
         default:

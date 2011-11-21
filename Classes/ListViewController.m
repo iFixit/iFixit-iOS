@@ -61,14 +61,20 @@
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     
-    toolbar.tintColor = [Config currentConfig].toolbarColor;
-    
     NSArray *toggleItems = [NSArray arrayWithObjects:@"All", @"Favorites", nil];
     UISegmentedControl *toggle = [[UISegmentedControl alloc] initWithItems:toggleItems];
     toggle.selectedSegmentIndex = bookmarksTVC && self.topViewController == bookmarksTVC ? 1 : 0;
-    toggle.tintColor = [[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]] ? [UIColor darkGrayColor] : [Config currentConfig].toolbarColor;
     toggle.segmentedControlStyle = UISegmentedControlStyleBar;
     [toggle addTarget:self action:@selector(toggleBookmarks:) forControlEvents:UIControlEventValueChanged];
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        toolbar.tintColor = [UIColor lightGrayColor];
+        toggle.tintColor = [UIColor lightGrayColor];
+    }
+    else {
+        toolbar.tintColor = [Config currentConfig].toolbarColor;
+        toggle.tintColor = [[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]] ? [UIColor darkGrayColor] : [Config currentConfig].toolbarColor;
+    }
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                             target:nil

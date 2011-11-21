@@ -126,18 +126,23 @@
     [gradientView release];
     
     // Add the giant text.
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(120.0, 150.0, self.view.frame.size.width - 130.0, 106.0)];
+    UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.adjustsFontSizeToFitWidth = YES;
-    titleLabel.minimumFontSize = 70.0;
+    titleLabel.minimumFontSize = 50.0;
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    if ([Config currentConfig].dozuki)
+    if ([Config currentConfig].dozuki) {
         titleLabel.font = [UIFont fontWithName:@"Lobster" size:120.0];
-    else
-        titleLabel.font = [UIFont fontWithName:@"TrebuchetMS-Italic" size:120.0];
+        titleLabel.frame = CGRectMake(120.0, 150.0, self.view.frame.size.width - 130.0, 106.0);
+        titleLabel.text = [_collection valueForKey:@"title"];
+    }
+    else {
+        titleLabel.font = [UIFont fontWithName:@"Ubuntu-Italic" size:120.0];
+        titleLabel.frame = CGRectMake(120.0, 150.0, self.view.frame.size.width - 110.0, 106.0);
+        titleLabel.text = [[_collection valueForKey:@"title"] stringByAppendingString:@" "];
+    }
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = UITextAlignmentRight;
-    titleLabel.text = [_collection valueForKey:@"title"];
     [headerView addSubview:titleLabel];
     [titleLabel release];
     
@@ -191,7 +196,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (!buttonIndex) {
-        UIBarButtonItem *refreshItem;
+        UIBarButtonItem *refreshItem = nil;
 
         if (alertView.tag == 1) {
             refreshItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
@@ -225,8 +230,9 @@
     // Add a 10px bottom margin.
     self.gvc.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0);
     
-    self.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    
+    //self.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
     self.gvc.view.backgroundColor = [UIColor clearColor];
     
@@ -281,10 +287,17 @@
     if (![_guides count])
         return @"Loading...";
     
+    NSString *title = @"";
     NSDictionary *guide = [_guides objectAtIndex:index];
     if ([guide objectForKey:@"title"] != [NSNull null])
-        return [guide objectForKey:@"title"];
-    return [NSString stringWithFormat:@"%@ %@", [guide valueForKey:@"device"], [guide valueForKey:@"thing"]];
+        title = [guide objectForKey:@"title"];
+    else
+        title = [NSString stringWithFormat:@"%@ %@", [guide valueForKey:@"device"], [guide valueForKey:@"thing"]];
+    
+    title = [title stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    title = [title stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    title = [title stringByReplacingOccurrencesOfString:@"<wbr />" withString:@""];
+    return title;
 }
 - (void)gridViewController:(DMPGridViewController *)gridViewController tappedCellAtIndex:(NSUInteger)index {
     NSInteger guideid = [[[_collection objectForKey:@"guideids"] objectAtIndex:index] intValue];

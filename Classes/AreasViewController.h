@@ -14,6 +14,8 @@
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
 @property BOOL searching;
 @property (nonatomic, retain) NSArray *searchResults;
+@property (nonatomic) BOOL noResults;
+@property (nonatomic) BOOL inPopover;
 
 @property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
 @property (nonatomic, retain) NSDictionary *data;

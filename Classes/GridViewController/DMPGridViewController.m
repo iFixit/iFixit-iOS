@@ -30,6 +30,10 @@
 
 #pragma mark - View lifecycle
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tableView reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

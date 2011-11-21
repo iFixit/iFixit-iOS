@@ -213,7 +213,7 @@
     else {
         subject = [subject stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
         subject = [subject stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
-        subject = [subject stringByReplacingOccurrencesOfString:@"<wbr />" withString:@" "];
+        subject = [subject stringByReplacingOccurrencesOfString:@"<wbr />" withString:@""];
     }
     
     cell.textLabel.text = subject;

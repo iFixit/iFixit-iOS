@@ -21,7 +21,6 @@
 @property (nonatomic, retain) UISplitViewController *splitViewController;
 @property (nonatomic, retain) AreasViewController *areasViewController;
 @property (nonatomic, retain) DetailViewController *detailViewController;
-@property (nonatomic, retain) IBOutlet SplashViewController *splashViewController;
 
 @property (nonatomic, retain) iFixitAPI *api;
 @property (nonatomic) BOOL firstLoad;
@@ -30,7 +29,6 @@
 - (void)showSiteSplash;
 - (UIViewController *)iPadRoot;
 - (UIViewController *)iPhoneRoot;
-- (void)showBrowser;
 - (void)loadSite:(NSString *)domain;
 - (void)loadSite:(NSString *)domain withColor:(UIColor *)color;
 

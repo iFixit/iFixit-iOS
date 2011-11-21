@@ -14,10 +14,10 @@
 
 @implementation AreasViewController
 
-@synthesize delegate, searchBar, searching, searchResults, detailViewController, data, tree, keys, leafs;
+@synthesize delegate, searchBar, searching, searchResults, detailViewController, data, tree, keys, leafs, noResults, inPopover;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+- (id)init {
+    if ((self = [super initWithNibName:@"AreasViewController" bundle:nil])) {        
         self.tree = nil;
         searching = NO;
         self.searchResults = [NSArray array];
@@ -51,7 +51,7 @@
     }
     
     // Color the searchbar.
-    searchBar.tintColor = [Config currentConfig].toolbarColor;
+    //searchBar.tintColor = [Config currentConfig].toolbarColor;
     
     // Make room for the toolbar
     [self willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
@@ -159,6 +159,7 @@
     //self.tableView.scrollEnabled = YES;
     if ([theSearchBar.text isEqual:@""]) {
         searching = NO;
+        noResults = NO;
         [self.tableView reloadData];
     }
     
@@ -178,6 +179,7 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if ([searchText isEqual:@""]) {
         searching = NO;
+        noResults = NO;
         [self.tableView reloadData];    
         self.searchResults = [NSArray array];
         return;
@@ -193,7 +195,6 @@
 
 - (void)gotSearchResults:(NSDictionary *)results {
     if ([[results objectForKey:@"search"] isEqual:searchBar.text]) {
-        
         // Remove non-device results from iPhone+iPod search
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
             NSArray *list = [results objectForKey:@"results"];
@@ -210,12 +211,15 @@
             self.searchResults = [results objectForKey:@"results"];
         }
         
+        noResults = [searchResults count] == 0;
+        
         [self.tableView reloadData];
     }
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)theSearchBar {
     searchBar.text = @"";
+    noResults = NO;
     [self.view endEditing:YES];
 }
 
@@ -238,8 +242,11 @@
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (inPopover)
+        return;
+    
     // Make room for the toolbar
-    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad || UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
         self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 44, 0);
     }
@@ -268,26 +275,49 @@
     if (searching)
         return 1;
     
-    return [keys count] && [leafs count] ? 2 : 1;
+    int general = [self.title isEqual:@"Categories"] ? 0 : 1;
+    int categories = [keys count] ? 1 : 0;
+    int devices = [leafs count] ? 1 : 0;
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        return general + categories + devices;
+    return categories + devices;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (searching)
         return @"Search Results";
-    
-	// Don't show titles if there's only one
-	if ([self numberOfSectionsInTableView:nil] == 1 || ![keys count])
-		return nil;
 	
-	return section == 0 ? @"Categories" : @"Devices";
+    int base = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && 
+        ![self.title isEqual:@"Categories"] ? 0 : 1;
+    
+    if (section == 0 - base)
+        return self.title;
+    if (section == 1 - base)
+        return [keys count] ? @"Categories" : @"Devices";
+    if (section == 2 - base)
+        return @"Devices";
+    
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (searching)
-        return [searchResults count];
+    if (searching) {
+        if ([searchResults count])
+            return [searchResults count];
+        else if (noResults)
+            return 1;
+        else 
+            return 0;
+    }
     
     // Return the number of rows in the section.
-	if (section == 0 && [keys count])
+    int base = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad &&
+        ![self.title isEqual:@"Categories"] ? 0 : 1;
+    
+    if (section == 0 - base)
+        return 1;
+	if (section == 1 - base && [keys count])
 		return [keys count];
 	return [leafs count];
 }
@@ -308,12 +338,24 @@
     }
     
     if (searching) {
-        cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"display_title"];
+        if ([searchResults count]) {
+            cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"display_title"];
+        }
+        else {
+            cell.textLabel.text = @"No Results Found";
+        }
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     else {
+        int base = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad &&
+            ![self.title isEqual:@"Categories"] ? 0 : 1;
+
         // Configure the cell.
-        if (indexPath.section == 0 && [keys count]) {
+        if (indexPath.section == 0 - base) {
+            cell.textLabel.text = @"General Information";
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        else if (indexPath.section == 1 - base && [keys count]) {
             cell.textLabel.text = [NSString stringWithFormat:@"%@", [keys objectAtIndex:indexPath.row]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else {
@@ -331,29 +373,49 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    NSString *url = nil;
+    [self.view endEditing:YES];
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-	if (indexPath.section == 0 && [keys count] && !searching) {
+    int base = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad &&
+        ![self.title isEqual:@"Categories"] ? 0 : 1;
+    
+    if (indexPath.section == 0 - base && !searching) {
+        NSString *area = self.title;
+
+        // Build the Area URL (if we want to show a webview).
+		NSString *url = [NSString stringWithFormat:@"http://%@/Area/%@", 
+                         [Config host],
+                         [area stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+
+        if (!base)
+            [detailViewController.popoverController dismissPopoverAnimated:YES];
+        
+        // iPad: update the main split view content area.
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            [detailViewController reset];
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];        
+            [detailViewController.webView loadRequest:request];
+        }
+    }
+    else if (indexPath.section == 1 - base && [keys count] && !searching) {
 		AreasViewController *vc = [[AreasViewController alloc] init];
+        vc.inPopover = inPopover;
 		vc.detailViewController = detailViewController;
 
 		NSString *area = [keys objectAtIndex:indexPath.row];
 		[vc setData:[tree valueForKey:area]];
-		[vc.tableView reloadData];
 		
         vc.title = area;
 		[self.navigationController pushViewController:vc animated:YES];
+		[vc.tableView reloadData];
 		[vc release];
         
-        // Build the Area URL.
-		url = [NSString stringWithFormat:@"http://%@/Area/%@", 
-               [Config host],
-               [area stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
 	} else {
+        NSString *url = nil;
         NSString *title = nil;
         NSString *display_title = nil;
         
-        if (searching) {
+        if (searching && [searchResults count]) {
             url = [NSString stringWithFormat:@"http://%@%@", 
                    [Config host],
                    [[searchResults objectAtIndex:indexPath.row] objectForKey:@"url"]];
@@ -377,21 +439,17 @@
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
         }
+        // iPad: update the main split view content area.
+        else {
+            [detailViewController.popoverController dismissPopoverAnimated:YES];
+
+            [detailViewController setDevice:title];
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];        
+            [detailViewController.webView loadRequest:request];
+        }
+
 	}
-    
-    // iPad: Show the device in detailViewController
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        [(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showBrowser];    
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];        
-        [detailViewController.webView loadRequest:request];
-        [detailViewController.popoverController dismissPopoverAnimated:YES];
-    }
-
-    [self.view endEditing:YES];
-	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-
 }
-
 
 #pragma mark -
 #pragma mark Memory management
@@ -406,7 +464,6 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
     self.searchBar = nil;
-    self.detailViewController = nil;
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
 }

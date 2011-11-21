@@ -14,6 +14,7 @@
 #import "SDWebImageDownloader.h"
 #import "UIButton+WebCache.h"
 #import "SVWebViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation GuideStepViewController
 
@@ -25,9 +26,28 @@
     if ((self = [super initWithNibName:@"GuideStepView" bundle:nil])) {
         self.step = step;
         self.numImagesLoaded = 0;
-        self.bigImages = [[NSMutableArray array] autorelease];
+        self.bigImages = [NSMutableArray array];
     }
     return self;
+}
+
+- (void)removeWebViewShadows {
+    NSArray *subviews = [webView subviews];
+    if ([subviews count]) {
+        for (UIView *wview in [[subviews objectAtIndex:0] subviews]) { 
+            if ([wview isKindOfClass:[UIImageView class]]) {
+                wview.hidden = YES;
+            }
+        }
+    }
+}
+
+- (void)addViewShadow:(UIView *)view {
+    view.layer.masksToBounds = NO;
+    view.layer.shadowOffset = CGSizeMake(0.0, 1.0);
+    view.layer.shadowRadius = 3.0;
+    view.layer.shadowOpacity = 0.8;
+    view.layer.shadowPath = [UIBezierPath bezierPathWithRect:view.bounds].CGPath;
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -71,12 +91,13 @@
     self.html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
     
-    // Disable bounce scrolling.
-    /*
-    for (id subview in webView.subviews)
-        if ([[subview class] isSubclassOfClass:[UIScrollView class]])
-            ((UIScrollView *)subview).bounces = NO;
-     */
+    [self removeWebViewShadows];
+    
+    // Add a shadow to the images
+    [self addViewShadow:mainImage];
+    [self addViewShadow:image1];
+    [self addViewShadow:image2];
+    [self addViewShadow:image3];
     
     [self startImageDownloads];
 }

@@ -15,12 +15,21 @@
 
 @implementation GuideCatchingWebView
 
-@synthesize externalDelegate, externalURL, formatter;
+@synthesize externalDelegate, externalURL, formatter, modalDelegate;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if ((self = [super initWithCoder:aDecoder])) {
         self.delegate = self;
-        self.formatter = [[NSNumberFormatter alloc] init];
+        self.formatter = [[[NSNumberFormatter alloc] init] autorelease];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    }
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame {
+    if ((self = [super initWithFrame:frame])) {
+        self.delegate = self;
+        self.formatter = [[[NSNumberFormatter alloc] init] autorelease];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     }
     return self;
@@ -48,7 +57,6 @@
 	 )
 	 */
     
-    
     NSString *regexString = [NSString stringWithFormat:@"https?://%@/(Guide|Teardown|Project)/(.*?)/([0-9]+)/([0-9]+)", [Config currentConfig].host];
     NSString *guideidString = [url stringByMatching:regexString capture:3];
     NSNumber *guideid = guideidString ? [formatter numberFromString:guideidString] : [NSNumber numberWithInt:-1];
@@ -64,7 +72,10 @@
     
 	if (guideid != -1) {
         GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
-        [delegate.areasViewController presentModalViewController:vc animated:YES];
+        if (!modalDelegate)
+            [delegate.window.rootViewController presentModalViewController:vc animated:YES];
+        else
+            [modalDelegate presentModalViewController:vc animated:YES];            
         [vc release];
 		return NO;
 	}
@@ -78,7 +89,10 @@
         NSString *host = [[request URL] host];
         if (![host isEqual:[Config host]] && navigationType == UIWebViewNavigationTypeLinkClicked) {
             SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:[[request URL] absoluteString]];
-            [delegate.window.rootViewController presentModalViewController:webViewController animated:YES];   
+            if (!modalDelegate)
+                [delegate.window.rootViewController presentModalViewController:webViewController animated:YES];   
+            else
+                [modalDelegate presentModalViewController:webViewController animated:YES];    
             [webViewController release];
         }
     }

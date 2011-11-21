@@ -12,10 +12,10 @@
 #import "ListViewController.h"
 #import "AreasViewController.h"
 #import "DetailViewController.h"
-#import "SplashViewController.h"
 #import "FeaturedViewController.h"
 #import "DozukiSplashViewController.h"
 #import "DozukiInfoViewController.h"
+#import "SVWebViewController.h"
 #import "GuideBookmarks.h"
 #import "Guide.h"
 #import "UIColor+Hex.h"
@@ -33,7 +33,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 @implementation iFixitAppDelegate
 
-@synthesize window, splitViewController, areasViewController, detailViewController, splashViewController;
+@synthesize window, splitViewController, areasViewController, detailViewController;
 @synthesize api, firstLoad;
 
 #pragma mark -
@@ -158,24 +158,25 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 }
 
 - (UIViewController *)iPadRoot {
+    // Create the split controller children.
+    AreasViewController *rvc = [[AreasViewController alloc] init];
+    self.areasViewController = rvc;
+    [rvc release];
+    DetailViewController *dvc = [[DetailViewController alloc] init];
+    self.detailViewController = dvc;
+    [dvc release];
+    
     // Create the split view controller.
     UISplitViewController *svc = [[UISplitViewController alloc] init];
     svc.delegate = detailViewController;
     self.splitViewController = svc;
     [svc release];
     
-    // Create its two children.
-    AreasViewController *rvc = [[AreasViewController alloc] initWithNibName:@"AreasView" bundle:nil];
-    self.areasViewController = rvc;
-    [rvc release];
-    DetailViewController *dvc = [[DetailViewController alloc] initWithNibName:@"DetailView" bundle:nil];
-    self.detailViewController = dvc;
-    [dvc release];
-    
     areasViewController.detailViewController = detailViewController;
     
     ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:areasViewController];
     splitViewController.viewControllers = [NSArray arrayWithObjects:lvc, detailViewController, nil];
+    [lvc release];
     
     areasViewController.delegate = self;
     
@@ -183,36 +184,40 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     if ([Config currentConfig].dozuki)
         return splitViewController;
     
-    // Create the featured view controller
+    // Create some more view controllers.
     FeaturedViewController *featuredViewController = [[FeaturedViewController alloc] init];
+    SVWebViewController *answersViewController = [[SVWebViewController alloc] initWithAddress:@"http://www.ifixit.com/Answers"];
+    SVWebViewController *storeViewController = [[SVWebViewController alloc] initWithAddress:@"http://www.ifixit.com/Parts-Store"];
+    answersViewController.tintColor = [Config currentConfig].toolbarColor;
+    storeViewController.tintColor = [Config currentConfig].toolbarColor;
+    answersViewController.showsDoneButton = NO;
+    storeViewController.showsDoneButton = NO;
     
     // Initialize the tab bar items.
-    splitViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Repair" image:nil tag:0] autorelease];
+    splitViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Guides" image:[UIImage imageNamed:@"tabBarItemBook.png"] tag:0] autorelease];
     featuredViewController.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0] autorelease];
-    
+    answersViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Answers" image:[UIImage imageNamed:@"tabBarItemBubbles.png"] tag:0] autorelease];
+    storeViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Parts & Tools" image:[UIImage imageNamed:@"tabBarItemGears.png"] tag:0] autorelease];
+
     // Create the tab bar.
     UITabBarController *tbc = [[UITabBarController alloc] init];
-    tbc.viewControllers = [NSArray arrayWithObjects:featuredViewController, splitViewController, nil];
+    tbc.viewControllers = [NSArray arrayWithObjects:featuredViewController, splitViewController, answersViewController, storeViewController, nil];
     [featuredViewController release];
+    [answersViewController release];
+    [storeViewController release];
     
     return [tbc autorelease];
 }
 
 - (UIViewController *)iPhoneRoot {
-    AreasViewController *rvc = [[AreasViewController alloc] initWithNibName:@"AreasView" bundle:nil];
+    AreasViewController *rvc = [[AreasViewController alloc] initWithNibName:nil bundle:nil];
     self.areasViewController = rvc;
     [rvc release];
     
     ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:areasViewController];
-    
+
     lvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     return [lvc autorelease];
-}
-
-- (void)showBrowser {
-    NSMutableArray *controllers = [splitViewController.viewControllers mutableCopy];
-    [controllers replaceObjectAtIndex:1 withObject:detailViewController];
-    splitViewController.viewControllers = [NSArray arrayWithArray:controllers];
 }
 
 - (void)loadSite:(NSString *)domain {
@@ -247,7 +252,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     
     NSString *urlString = [url absoluteString];
-    
+
     // Pull out the site name with a regex.
     if (urlString) {
         NSError *error = nil;
@@ -285,7 +290,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
      Restart any tasks that were paused (or not yet started) while the application was inactive.
      */
     [areasViewController viewWillAppear:NO];
-    [splashViewController viewWillAppear:NO];
 }
 
 

@@ -3,6 +3,7 @@ html, body {
    color: white;
    font-family: "Helvetica", sans-serif;
    margin: 0;
+   text-shadow: 0px 1px 0px rgba(0,0,0,0.6);
 }
 
 body.small {

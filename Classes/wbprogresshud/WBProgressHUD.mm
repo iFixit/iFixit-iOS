@@ -81,7 +81,7 @@ static UIColor* defaultForegroundColor()
     type = UIActivityIndicatorViewStyleWhiteLarge;
     prog = [UIActivityIndicatorView alloc];
     prog = [prog initWithActivityIndicatorStyle:type];
-    prog = [prog autorelease];
+    [prog autorelease];
     prog.frame = [self rectIndicator:prog.frame.size];
     
     // create text label

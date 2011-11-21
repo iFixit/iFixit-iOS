@@ -133,7 +133,7 @@ static int volatile openConnections = 0;
 
 - (void)getDevice:(NSString *)device forObject:(id)object withSelector:(SEL)selector {
     device = [device stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/device/%@", [Config host], device];	
+    NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/device/%@", [Config host], device];	
     
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{

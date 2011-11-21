@@ -55,14 +55,16 @@
     
     // Replace black with concrete.
     UIColor *bgColor = [Config currentConfig].backgroundColor;
-    //if ([bgColor isEqual:[UIColor blackColor]])
-    //    bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
+    if ([bgColor isEqual:[UIColor blackColor]])
+        bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
     
     self.view.backgroundColor = bgColor;
 
-    if ([[Config currentConfig].backgroundColor isEqual:[UIColor whiteColor]]) {
-        navBar.tintColor = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ?
-            nil : [Config currentConfig].toolbarColor;
+    if ([[Config currentConfig].backgroundColor isEqual:[UIColor whiteColor]] && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        navBar.tintColor = nil;
+    }
+    else {
+        navBar.tintColor = [Config currentConfig].toolbarColor;
     }
     
     if (self.guide) {
@@ -128,6 +130,7 @@
                                                   cancelButtonTitle:@"Cancel"
                                                   otherButtonTitles:@"Try Again", nil];
         [alertView show];
+        [alertView release];
         return;
     }
     

@@ -11,6 +11,7 @@
 #import "UIButton+WebCache.h"
 #import "Config.h"
 #import "SVWebViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation GuideIntroViewController
 
@@ -27,8 +28,36 @@
     return self;
 }
 
+- (void)removeWebViewShadows {
+    NSArray *subviews = [webView subviews];
+    if ([subviews count]) {
+        for (UIView *wview in [[subviews objectAtIndex:0] subviews]) { 
+            if ([wview isKindOfClass:[UIImageView class]]) {
+                wview.hidden = YES;
+            }
+        }
+    }
+}
+
+- (void)addViewShadow:(UIView *)view {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        // Apply a blur!
+        [view.layer setRasterizationScale:0.25];
+        [view.layer setShouldRasterize:YES];
+        return;
+    }
+    
+    view.layer.masksToBounds = NO;
+    view.layer.shadowOffset = CGSizeMake(0.0, 1.0);
+    view.layer.shadowRadius = 3.0;
+    view.layer.shadowOpacity = 0.8;
+    view.layer.shadowPath = [UIBezierPath bezierPathWithRect:view.bounds].CGPath;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    swipeLabel.font = [UIFont fontWithName:@"Ubuntu-BoldItalic" size:48.0];
 
     // Set the appropriate header image.
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -70,15 +99,13 @@
     self.html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
 	[webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
     
-	[device setText:self.guide.device];
-
-    // Disable bounce scrolling.
-    /*
-    for (id subview in webView.subviews)
-        if ([[subview class] isSubclassOfClass:[UIScrollView class]])
-            ((UIScrollView *)subview).bounces = NO;
-     */
+    [self removeWebViewShadows];
     
+	[device setText:self.guide.device];
+    
+    // Add a shadow to the image
+    [self addViewShadow:mainImage];
+
     [mainImage setImageWithURL:[self.guide.image URLForSize:@"standard"] placeholderImage:nil];
 }
 

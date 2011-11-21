@@ -156,7 +156,7 @@ static GuideBookmarks *sharedBookmarks = nil;
 
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     [f setNumberStyle:NSNumberFormatterDecimalStyle];
-    
+
     // Loop through all items in the queue.
     for (NSString *key in [queue allKeys]) {
         NSArray *chunks = [key componentsSeparatedByString:@"_"];
@@ -166,7 +166,7 @@ static GuideBookmarks *sharedBookmarks = nil;
         // Only synchronize for the current user.
         if (![userid isEqual:[iFixitAPI sharedInstance].user.userid])
             continue;
-        
+
         // One at a time.
         if (currentItem)
             continue;
@@ -174,6 +174,7 @@ static GuideBookmarks *sharedBookmarks = nil;
         // Download a new guide
         if ([[queue valueForKey:key] isEqual:@"add"]) {
             self.currentItem = key;
+            
             [[iFixitAPI sharedInstance] getGuide:[guideid intValue] forObject:self withSelector:@selector(gotGuide:)];
         }
         // Remove an existing guide
@@ -219,6 +220,22 @@ static GuideBookmarks *sharedBookmarks = nil;
         return;
     }
     
+    // Remove guides that don't exist anymore.
+    if ([guide.data valueForKey:@"error"]) {
+        if ([[guide.data valueForKey:@"msg"] isEqual:@"Guide not found"]) {
+            NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+            [f setNumberStyle:NSNumberFormatterDecimalStyle];
+
+            NSArray *chunks = [currentItem componentsSeparatedByString:@"_"];
+            NSNumber *guideid = [f numberFromString:[chunks objectAtIndex:1]];
+            [f release];
+            
+            guide.guideid = [guideid intValue];
+            [self removeGuide:guide];
+            return;
+        }
+    }
+    
     // Save the result.
     [self saveGuide:guide];
     
@@ -254,7 +271,7 @@ static GuideBookmarks *sharedBookmarks = nil;
     @catch (NSException *e) {
         self.bookmarker = nil;
     }
-    
+
     // Done
     if (!imagesRemaining) {
         // Reset counters.

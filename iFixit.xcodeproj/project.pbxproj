@@ -41,7 +41,22 @@
 		DA0A0C05138B02370027721E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C04138B02370027721E /* SystemConfiguration.framework */; };
 		DA0A0C07138B023C0027721E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C06138B023C0027721E /* MobileCoreServices.framework */; };
 		DA0A0C16138B07DA0027721E /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C15138B07DA0027721E /* libxml2.2.dylib */; };
+		DA1977221473009A00CD6305 /* DetailGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1977211473009A00CD6305 /* DetailGridViewController.m */; };
 		DA2F767012FB87D900683D33 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2F766F12FB87D900683D33 /* Config.m */; };
+		DA35628B1476EDDD00683947 /* detailViewFist.png in Resources */ = {isa = PBXBuildFile; fileRef = DA35628A1476EDDD00683947 /* detailViewFist.png */; };
+		DA3562991476F65200683947 /* DetailIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3562971476F65200683947 /* DetailIntroViewController.m */; };
+		DA35629A1476F65200683947 /* DetailIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3562981476F65200683947 /* DetailIntroViewController.xib */; };
+		DA35629C1476F84C00683947 /* detailViewText.png in Resources */ = {isa = PBXBuildFile; fileRef = DA35629B1476F84C00683947 /* detailViewText.png */; };
+		DA35629E147717D700683947 /* tabBarItemList.png in Resources */ = {isa = PBXBuildFile; fileRef = DA35629D147717D700683947 /* tabBarItemList.png */; };
+		DA3562A5147718FA00683947 /* sv-action-white.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3562A0147718FA00683947 /* sv-action-white.png */; };
+		DA3562A6147718FA00683947 /* sv-back-white.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3562A1147718FA00683947 /* sv-back-white.png */; };
+		DA3562A7147718FA00683947 /* sv-forward-white.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3562A2147718FA00683947 /* sv-forward-white.png */; };
+		DA3562A8147718FA00683947 /* sv-refresh-white.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3562A3147718FA00683947 /* sv-refresh-white.png */; };
+		DA3562A9147718FA00683947 /* sv-stop-white.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3562A4147718FA00683947 /* sv-stop-white.png */; };
+		DA3562AB14771E2B00683947 /* tabBarItemBook.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3562AA14771E2B00683947 /* tabBarItemBook.png */; };
+		DA3562AD1477254500683947 /* Ubuntu-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA3562AC1477254500683947 /* Ubuntu-BoldItalic.ttf */; };
+		DA3562AF14772D1200683947 /* logo_ifixit.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3562AE14772D1200683947 /* logo_ifixit.png */; };
+		DA3562B1147731C500683947 /* noGuides.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3562B0147731C500683947 /* noGuides.png */; };
 		DA3DE74C134CF57000AD5050 /* GuideBookmarker.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3DE74B134CF57000AD5050 /* GuideBookmarker.m */; };
 		DA3DE755134D15E400AD5050 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3DE754134D15E400AD5050 /* UIButton+WebCache.m */; };
 		DA3E3E20133C0F580070615F /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3E3E14133C0F580070615F /* SDImageCache.m */; };
@@ -64,7 +79,6 @@
 		DA61C52B13380E4C000028C3 /* browse_projects.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C51413380E4C000028C3 /* browse_projects.png */; };
 		DA61C52E13380E4C000028C3 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C51713380E4C000028C3 /* forward.png */; };
 		DA61C52F13380E4C000028C3 /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C51813380E4C000028C3 /* forward@2x.png */; };
-		DA61C53413380E4C000028C3 /* logo_black.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C51D13380E4C000028C3 /* logo_black.png */; };
 		DA61C53513380E4C000028C3 /* logo_make_black.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C51E13380E4C000028C3 /* logo_make_black.png */; };
 		DA61C53613380E4C000028C3 /* logo_make.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C51F13380E4C000028C3 /* logo_make.png */; };
 		DA61C53713380E4C000028C3 /* NoImage_300x225.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA61C52013380E4C000028C3 /* NoImage_300x225.jpg */; };
@@ -117,12 +131,14 @@
 		DAAAC7461433DF7600CB90AF /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAAC7451433DF7600CB90AF /* libGoogleAnalytics.a */; };
 		DAAAC7481433E03B00CB90AF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAAC7471433E03B00CB90AF /* libsqlite3.dylib */; };
 		DAAAC74A1433F43C00CB90AF /* GuideStepView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC7491433F43C00CB90AF /* GuideStepView~ipad.xib */; };
-		DAAAC74D1433F49300CB90AF /* AreasView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC74B1433F49000CB90AF /* AreasView.xib */; };
-		DAAAC74E1433F49300CB90AF /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC74C1433F49100CB90AF /* DetailView.xib */; };
+		DAAAC74D1433F49300CB90AF /* AreasViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC74B1433F49000CB90AF /* AreasViewController.xib */; };
+		DAAAC74E1433F49300CB90AF /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC74C1433F49100CB90AF /* DetailViewController.xib */; };
 		DAAED15914686A2D00C476C1 /* FeaturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAED15714686A2D00C476C1 /* FeaturedViewController.m */; };
 		DAAED15E1468710C00C476C1 /* PastFeaturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAED15D1468710C00C476C1 /* PastFeaturesViewController.m */; };
-		DAAFB80012BEE79C003ACCD0 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAFB7FE12BEE79C003ACCD0 /* SplashViewController.m */; };
-		DAAFB80112BEE79C003ACCD0 /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAFB7FF12BEE79C003ACCD0 /* SplashView.xib */; };
+		DAB26972146C96A2000D3A7A /* Ubuntu-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAB26971146C96A2000D3A7A /* Ubuntu-Italic.ttf */; };
+		DAB26979146CA461000D3A7A /* tabBarItemWrench.png in Resources */ = {isa = PBXBuildFile; fileRef = DAB26978146CA461000D3A7A /* tabBarItemWrench.png */; };
+		DAB2697B146CA483000D3A7A /* tabBarItemGears.png in Resources */ = {isa = PBXBuildFile; fileRef = DAB2697A146CA483000D3A7A /* tabBarItemGears.png */; };
+		DAB2697D146CA969000D3A7A /* tabBarItemBubbles.png in Resources */ = {isa = PBXBuildFile; fileRef = DAB2697C146CA969000D3A7A /* tabBarItemBubbles.png */; };
 		DAB9343A137228AD00B6AA9A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB93439137228AD00B6AA9A /* LoginViewController.m */; };
 		DAB9344413722AEB00B6AA9A /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = DAB9344313722AEB00B6AA9A /* login.png */; };
 		DAB9344613722FB300B6AA9A /* register.png in Resources */ = {isa = PBXBuildFile; fileRef = DAB9344513722FB300B6AA9A /* register.png */; };
@@ -216,8 +232,26 @@
 		DA0A0C04138B02370027721E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DA0A0C06138B023C0027721E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DA0A0C15138B07DA0027721E /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		DA1977201473009A00CD6305 /* DetailGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailGridViewController.h; sourceTree = "<group>"; };
+		DA1977211473009A00CD6305 /* DetailGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailGridViewController.m; sourceTree = "<group>"; };
 		DA2F766E12FB87D900683D33 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		DA2F766F12FB87D900683D33 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
+		DA35628A1476EDDD00683947 /* detailViewFist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = detailViewFist.png; path = Graphics/detailViewFist.png; sourceTree = "<group>"; };
+		DA3562961476F65200683947 /* DetailIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailIntroViewController.h; sourceTree = "<group>"; };
+		DA3562971476F65200683947 /* DetailIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailIntroViewController.m; sourceTree = "<group>"; };
+		DA3562981476F65200683947 /* DetailIntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailIntroViewController.xib; sourceTree = "<group>"; };
+		DA35629B1476F84C00683947 /* detailViewText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = detailViewText.png; path = Graphics/detailViewText.png; sourceTree = "<group>"; };
+		DA35629D147717D700683947 /* tabBarItemList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarItemList.png; path = Graphics/tabBarItemList.png; sourceTree = "<group>"; };
+		DA3562A0147718FA00683947 /* sv-action-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sv-action-white.png"; sourceTree = "<group>"; };
+		DA3562A1147718FA00683947 /* sv-back-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sv-back-white.png"; sourceTree = "<group>"; };
+		DA3562A2147718FA00683947 /* sv-forward-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sv-forward-white.png"; sourceTree = "<group>"; };
+		DA3562A3147718FA00683947 /* sv-refresh-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sv-refresh-white.png"; sourceTree = "<group>"; };
+		DA3562A4147718FA00683947 /* sv-stop-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sv-stop-white.png"; sourceTree = "<group>"; };
+		DA3562AA14771E2B00683947 /* tabBarItemBook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarItemBook.png; path = Graphics/tabBarItemBook.png; sourceTree = "<group>"; };
+		DA3562AC1477254500683947 /* Ubuntu-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-BoldItalic.ttf"; sourceTree = "<group>"; };
+		DA3562AE14772D1200683947 /* logo_ifixit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_ifixit.png; path = Graphics/logo_ifixit.png; sourceTree = "<group>"; };
+		DA3562B0147731C500683947 /* noGuides.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noGuides.png; path = Graphics/noGuides.png; sourceTree = "<group>"; };
+		DA38111B147AE2C000BBFB9C /* DetailGridViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailGridViewControllerDelegate.h; sourceTree = "<group>"; };
 		DA3DE74A134CF57000AD5050 /* GuideBookmarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideBookmarker.h; sourceTree = "<group>"; };
 		DA3DE74B134CF57000AD5050 /* GuideBookmarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideBookmarker.m; sourceTree = "<group>"; };
 		DA3DE753134D15E400AD5050 /* UIButton+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
@@ -254,7 +288,6 @@
 		DA61C51413380E4C000028C3 /* browse_projects.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = browse_projects.png; path = Graphics/browse_projects.png; sourceTree = "<group>"; };
 		DA61C51713380E4C000028C3 /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = forward.png; path = Graphics/forward.png; sourceTree = "<group>"; };
 		DA61C51813380E4C000028C3 /* forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forward@2x.png"; path = "Graphics/forward@2x.png"; sourceTree = "<group>"; };
-		DA61C51D13380E4C000028C3 /* logo_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_black.png; path = Graphics/logo_black.png; sourceTree = "<group>"; };
 		DA61C51E13380E4C000028C3 /* logo_make_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_make_black.png; path = Graphics/logo_make_black.png; sourceTree = "<group>"; };
 		DA61C51F13380E4C000028C3 /* logo_make.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_make.png; path = Graphics/logo_make.png; sourceTree = "<group>"; };
 		DA61C52013380E4C000028C3 /* NoImage_300x225.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = NoImage_300x225.jpg; path = Graphics/NoImage_300x225.jpg; sourceTree = "<group>"; };
@@ -333,15 +366,16 @@
 		DAAAC7451433DF7600CB90AF /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
 		DAAAC7471433E03B00CB90AF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DAAAC7491433F43C00CB90AF /* GuideStepView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuideStepView~ipad.xib"; sourceTree = "<group>"; };
-		DAAAC74B1433F49000CB90AF /* AreasView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AreasView.xib; sourceTree = "<group>"; };
-		DAAAC74C1433F49100CB90AF /* DetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
+		DAAAC74B1433F49000CB90AF /* AreasViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AreasViewController.xib; sourceTree = "<group>"; };
+		DAAAC74C1433F49100CB90AF /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		DAAED15614686A2D00C476C1 /* FeaturedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedViewController.h; sourceTree = "<group>"; };
 		DAAED15714686A2D00C476C1 /* FeaturedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedViewController.m; sourceTree = "<group>"; };
 		DAAED15C1468710C00C476C1 /* PastFeaturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastFeaturesViewController.h; sourceTree = "<group>"; };
 		DAAED15D1468710C00C476C1 /* PastFeaturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastFeaturesViewController.m; sourceTree = "<group>"; };
-		DAAFB7FD12BEE79C003ACCD0 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
-		DAAFB7FE12BEE79C003ACCD0 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
-		DAAFB7FF12BEE79C003ACCD0 /* SplashView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
+		DAB26971146C96A2000D3A7A /* Ubuntu-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Italic.ttf"; sourceTree = "<group>"; };
+		DAB26978146CA461000D3A7A /* tabBarItemWrench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarItemWrench.png; path = Graphics/tabBarItemWrench.png; sourceTree = "<group>"; };
+		DAB2697A146CA483000D3A7A /* tabBarItemGears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarItemGears.png; path = Graphics/tabBarItemGears.png; sourceTree = "<group>"; };
+		DAB2697C146CA969000D3A7A /* tabBarItemBubbles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarItemBubbles.png; path = Graphics/tabBarItemBubbles.png; sourceTree = "<group>"; };
 		DAB93438137228AD00B6AA9A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		DAB93439137228AD00B6AA9A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		DAB9344313722AEB00B6AA9A /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login.png; path = Graphics/login.png; sourceTree = "<group>"; };
@@ -426,10 +460,13 @@
 				DAD77267138EAC4F00D107B8 /* LoginViewControllerDelegate.h */,
 				28042009108E984D000629CD /* DetailViewController.h */,
 				2804200A108E984D000629CD /* DetailViewController.m */,
-				DAAAC74C1433F49100CB90AF /* DetailView.xib */,
-				DAAFB7FD12BEE79C003ACCD0 /* SplashViewController.h */,
-				DAAFB7FE12BEE79C003ACCD0 /* SplashViewController.m */,
-				DAAFB7FF12BEE79C003ACCD0 /* SplashView.xib */,
+				DAAAC74C1433F49100CB90AF /* DetailViewController.xib */,
+				DA3562961476F65200683947 /* DetailIntroViewController.h */,
+				DA3562971476F65200683947 /* DetailIntroViewController.m */,
+				DA3562981476F65200683947 /* DetailIntroViewController.xib */,
+				DA1977201473009A00CD6305 /* DetailGridViewController.h */,
+				DA1977211473009A00CD6305 /* DetailGridViewController.m */,
+				DA38111B147AE2C000BBFB9C /* DetailGridViewControllerDelegate.h */,
 				1D3623240D0F684500981E51 /* iFixitAppDelegate.h */,
 				1D3623250D0F684500981E51 /* iFixitAppDelegate.m */,
 			);
@@ -461,6 +498,8 @@
 			isa = PBXGroup;
 			children = (
 				DAC0C1A6146B49AA00EF42DC /* Lobster.ttf */,
+				DA3562AC1477254500683947 /* Ubuntu-BoldItalic.ttf */,
+				DAB26971146C96A2000D3A7A /* Ubuntu-Italic.ttf */,
 				DAE7D7C0142A9FC900C07529 /* icon57.png */,
 				DAE7D7C1142A9FC900C07529 /* icon72.png */,
 				DAE7D7C2142A9FC900C07529 /* icon114.png */,
@@ -557,6 +596,16 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DA3562B0147731C500683947 /* noGuides.png */,
+				DA3562AE14772D1200683947 /* logo_ifixit.png */,
+				DA3562AA14771E2B00683947 /* tabBarItemBook.png */,
+				DA35629F147718FA00683947 /* webNavBar */,
+				DA35629D147717D700683947 /* tabBarItemList.png */,
+				DA35629B1476F84C00683947 /* detailViewText.png */,
+				DA35628A1476EDDD00683947 /* detailViewFist.png */,
+				DAB2697A146CA483000D3A7A /* tabBarItemGears.png */,
+				DAB26978146CA461000D3A7A /* tabBarItemWrench.png */,
+				DAB2697C146CA969000D3A7A /* tabBarItemBubbles.png */,
 				DA9948AB142ACC6000E4167D /* Dozuki Splash */,
 				DAC0C1A4146B411A00EF42DC /* collectionsHeaderGradient.png */,
 				DAC0C19C146B182000EF42DC /* collectionsImagePlaceholder.png */,
@@ -578,7 +627,6 @@
 				DA61C51413380E4C000028C3 /* browse_projects.png */,
 				DA61C51713380E4C000028C3 /* forward.png */,
 				DA61C51813380E4C000028C3 /* forward@2x.png */,
-				DA61C51D13380E4C000028C3 /* logo_black.png */,
 				DA61C51E13380E4C000028C3 /* logo_make_black.png */,
 				DA61C51F13380E4C000028C3 /* logo_make.png */,
 				DA61C52013380E4C000028C3 /* NoImage_300x225.jpg */,
@@ -630,6 +678,19 @@
 				DA0877BC142D3E6200954482 /* UIColor+Hex.m */,
 			);
 			name = "UIColor+Hex";
+			sourceTree = "<group>";
+		};
+		DA35629F147718FA00683947 /* webNavBar */ = {
+			isa = PBXGroup;
+			children = (
+				DA3562A0147718FA00683947 /* sv-action-white.png */,
+				DA3562A1147718FA00683947 /* sv-back-white.png */,
+				DA3562A2147718FA00683947 /* sv-forward-white.png */,
+				DA3562A3147718FA00683947 /* sv-refresh-white.png */,
+				DA3562A4147718FA00683947 /* sv-stop-white.png */,
+			);
+			name = webNavBar;
+			path = Graphics/webNavBar;
 			sourceTree = "<group>";
 		};
 		DA3E3E10133C0F580070615F /* SDWebImage */ = {
@@ -836,7 +897,7 @@
 				DA3E3E36133C17050070615F /* ListViewController.m */,
 				28042007108E984D000629CD /* AreasViewController.h */,
 				28042008108E984D000629CD /* AreasViewController.m */,
-				DAAAC74B1433F49000CB90AF /* AreasView.xib */,
+				DAAAC74B1433F49000CB90AF /* AreasViewController.xib */,
 				DAF3AF541422897900913238 /* iPhoneDeviceViewController.h */,
 				DAF3AF551422897900913238 /* iPhoneDeviceViewController.m */,
 				DAF3AF561422897900913238 /* iPhoneDeviceView.xib */,
@@ -920,14 +981,12 @@
 				28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */,
 				C184D4C71210CDB900953C39 /* GuideView~ipad.xib in Resources */,
 				C184D5391210D8CD00953C39 /* GuideIntroView~ipad.xib in Resources */,
-				DAAFB80112BEE79C003ACCD0 /* SplashView.xib in Resources */,
 				DA61C52513380E4C000028C3 /* back.png in Resources */,
 				DA61C52613380E4C000028C3 /* back@2x.png in Resources */,
 				DA61C52813380E4C000028C3 /* browse_manuals.png in Resources */,
 				DA61C52B13380E4C000028C3 /* browse_projects.png in Resources */,
 				DA61C52E13380E4C000028C3 /* forward.png in Resources */,
 				DA61C52F13380E4C000028C3 /* forward@2x.png in Resources */,
-				DA61C53413380E4C000028C3 /* logo_black.png in Resources */,
 				DA61C53513380E4C000028C3 /* logo_make_black.png in Resources */,
 				DA61C53613380E4C000028C3 /* logo_make.png in Resources */,
 				DA61C53713380E4C000028C3 /* NoImage_300x225.jpg in Resources */,
@@ -984,12 +1043,29 @@
 				DA0877C6142D4EAB00954482 /* vignette@2x.png in Resources */,
 				DA0877C7142D4EAB00954482 /* vignette~ipad.png in Resources */,
 				DAAAC74A1433F43C00CB90AF /* GuideStepView~ipad.xib in Resources */,
-				DAAAC74D1433F49300CB90AF /* AreasView.xib in Resources */,
-				DAAAC74E1433F49300CB90AF /* DetailView.xib in Resources */,
+				DAAAC74D1433F49300CB90AF /* AreasViewController.xib in Resources */,
+				DAAAC74E1433F49300CB90AF /* DetailViewController.xib in Resources */,
 				DAC0C19D146B182000EF42DC /* collectionsImagePlaceholder.png in Resources */,
 				DAC0C1A1146B37E000EF42DC /* concreteBackground.png in Resources */,
 				DAC0C1A5146B411A00EF42DC /* collectionsHeaderGradient.png in Resources */,
 				DAC0C1A7146B49AA00EF42DC /* Lobster.ttf in Resources */,
+				DAB26972146C96A2000D3A7A /* Ubuntu-Italic.ttf in Resources */,
+				DAB26979146CA461000D3A7A /* tabBarItemWrench.png in Resources */,
+				DAB2697B146CA483000D3A7A /* tabBarItemGears.png in Resources */,
+				DAB2697D146CA969000D3A7A /* tabBarItemBubbles.png in Resources */,
+				DA35628B1476EDDD00683947 /* detailViewFist.png in Resources */,
+				DA35629A1476F65200683947 /* DetailIntroViewController.xib in Resources */,
+				DA35629C1476F84C00683947 /* detailViewText.png in Resources */,
+				DA35629E147717D700683947 /* tabBarItemList.png in Resources */,
+				DA3562A5147718FA00683947 /* sv-action-white.png in Resources */,
+				DA3562A6147718FA00683947 /* sv-back-white.png in Resources */,
+				DA3562A7147718FA00683947 /* sv-forward-white.png in Resources */,
+				DA3562A8147718FA00683947 /* sv-refresh-white.png in Resources */,
+				DA3562A9147718FA00683947 /* sv-stop-white.png in Resources */,
+				DA3562AB14771E2B00683947 /* tabBarItemBook.png in Resources */,
+				DA3562AD1477254500683947 /* Ubuntu-BoldItalic.ttf in Resources */,
+				DA3562AF14772D1200683947 /* logo_ifixit.png in Resources */,
+				DA3562B1147731C500683947 /* noGuides.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,7 +1095,6 @@
 				C184D5381210D8CD00953C39 /* GuideIntroViewController.m in Sources */,
 				C115FC2D12174FA1005D0B77 /* GuideImageViewController.m in Sources */,
 				C1C894F7121B447E0036FAFC /* TapDetectingImageView.m in Sources */,
-				DAAFB80012BEE79C003ACCD0 /* SplashViewController.m in Sources */,
 				DA2F767012FB87D900683D33 /* Config.m in Sources */,
 				DA3E3E20133C0F580070615F /* SDImageCache.m in Sources */,
 				DA3E3E21133C0F580070615F /* SDWebImageDownloader.m in Sources */,
@@ -1060,6 +1135,8 @@
 				DAAED15E1468710C00C476C1 /* PastFeaturesViewController.m in Sources */,
 				DA8F60061469B29700482D29 /* DMPGridViewCell.m in Sources */,
 				DA8F60071469B29700482D29 /* DMPGridViewController.m in Sources */,
+				DA1977221473009A00CD6305 /* DetailGridViewController.m in Sources */,
+				DA3562991476F65200683947 /* DetailIntroViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1197,7 +1274,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "67F817B6-EA39-44E6-9311-857446D92110";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C99256FC-6705-4BE3-8F22-7D5AD659AC89";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";
