@@ -210,9 +210,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 }
 
 - (UIViewController *)iPhoneRoot {
-    AreasViewController *rvc = [[AreasViewController alloc] initWithNibName:nil bundle:nil];
-    self.areasViewController = rvc;
-    [rvc release];
+    AreasViewController *avc = [[AreasViewController alloc] init];
+    self.areasViewController = avc;
+    [avc release];
     
     ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:areasViewController];
 

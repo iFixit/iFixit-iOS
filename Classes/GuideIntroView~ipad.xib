@@ -13,7 +13,6 @@
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>IBUIWebView</string>
-			<string>IBUIButton</string>
 			<string>IBUIImageView</string>
 			<string>IBUIView</string>
 			<string>IBUILabel</string>
@@ -47,49 +46,24 @@
 						<int key="NSvFlags">274</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIButton" id="1035275890">
+							<object class="IBUIImageView" id="976021318">
 								<reference key="NSNextResponder" ref="303000594"/>
 								<int key="NSvFlags">274</int>
 								<string key="NSFrameSize">{1024, 710}</string>
 								<reference key="NSSuperview" ref="303000594"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1005349349"/>
-								<bool key="IBUIOpaque">NO</bool>
+								<string key="NSReuseIdentifierKey">_NS:569</string>
 								<float key="IBUIAlpha">0.40000000596046448</float>
 								<int key="IBUIContentMode">2</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
-								<object class="NSColor" key="IBUIHighlightedTitleColor" id="751997323">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-								</object>
-								<object class="NSColor" key="IBUINormalTitleColor" id="890713018">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MAA</bytes>
-								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC41AA</bytes>
-								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Helvetica-Bold</string>
-									<string key="family">Helvetica</string>
-									<int key="traits">2</int>
-									<double key="pointSize">15</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">15</double>
-									<int key="NSfFlags">16</int>
-								</object>
 							</object>
 						</object>
 						<string key="NSFrameSize">{1024, 710}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1035275890"/>
+						<reference key="NSNextKeyView" ref="976021318"/>
 						<string key="NSReuseIdentifierKey">_NS:212</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
@@ -110,6 +84,43 @@
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+					</object>
+					<object class="IBUILabel" id="319840401">
+						<reference key="NSNextResponder" ref="766721923"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{617, 588}, {387, 65}}</string>
+						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<string key="IBUIText">Swipe to begin »</string>
+						<object class="NSColor" key="IBUITextColor" id="751997323">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
+						</object>
+						<reference key="IBUIHighlightedColor" ref="751997323"/>
+						<object class="NSColor" key="IBUIShadowColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MAA</bytes>
+						</object>
+						<string key="IBUIShadowOffset">{0, 1}</string>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">10</float>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<string key="name">Trebuchet-BoldItalic</string>
+							<string key="family">Trebuchet MS</string>
+							<int key="traits">3</int>
+							<double key="pointSize">48</double>
+						</object>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Trebuchet-BoldItalic</string>
+							<double key="NSSize">48</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 					<object class="IBUIImageView" id="1005349349">
 						<reference key="NSNextResponder" ref="766721923"/>
@@ -137,37 +148,6 @@
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">logo_make.png</string>
-						</object>
-					</object>
-					<object class="IBUILabel" id="319840401">
-						<reference key="NSNextResponder" ref="766721923"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{617, 588}, {387, 65}}</string>
-						<reference key="NSSuperview" ref="766721923"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">Swipe to begin »</string>
-						<reference key="IBUITextColor" ref="751997323"/>
-						<reference key="IBUIHighlightedColor" ref="751997323"/>
-						<reference key="IBUIShadowColor" ref="890713018"/>
-						<string key="IBUIShadowOffset">{0, 1}</string>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">10</float>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<string key="name">Trebuchet-BoldItalic</string>
-							<string key="family">Trebuchet MS</string>
-							<int key="traits">3</int>
-							<double key="pointSize">48</double>
-						</object>
-						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Trebuchet-BoldItalic</string>
-							<double key="NSSize">48</double>
-							<int key="NSfFlags">16</int>
 						</object>
 					</object>
 				</object>
@@ -244,18 +224,9 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">mainImage</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="1035275890"/>
+						<reference key="destination" ref="976021318"/>
 					</object>
-					<int key="connectionID">16</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">zoomImage:</string>
-						<reference key="source" ref="1035275890"/>
-						<reference key="destination" ref="606714003"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">22</int>
+					<int key="connectionID">34</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -326,13 +297,13 @@
 						<reference key="object" ref="303000594"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="1035275890"/>
+							<reference ref="976021318"/>
 						</object>
 						<reference key="parent" ref="766721923"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">10</int>
-						<reference key="object" ref="1035275890"/>
+						<int key="objectID">33</int>
+						<reference key="object" ref="976021318"/>
 						<reference key="parent" ref="303000594"/>
 					</object>
 				</object>
@@ -345,13 +316,13 @@
 					<string>-1.IBPluginDependency</string>
 					<string>-2.CustomClassName</string>
 					<string>-2.IBPluginDependency</string>
-					<string>10.IBPluginDependency</string>
 					<string>14.IBPluginDependency</string>
 					<string>2.IBPluginDependency</string>
 					<string>23.IBPluginDependency</string>
 					<string>27.IBPluginDependency</string>
 					<string>28.IBPluginDependency</string>
 					<string>32.IBPluginDependency</string>
+					<string>33.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -380,7 +351,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">32</int>
+			<int key="maxID">34</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -395,7 +366,6 @@
 							<string>device</string>
 							<string>headerImageIFixit</string>
 							<string>headerImageMake</string>
-							<string>imageSpinner</string>
 							<string>mainImage</string>
 							<string>swipeLabel</string>
 							<string>webView</string>
@@ -405,8 +375,7 @@
 							<string>UILabel</string>
 							<string>UIImageView</string>
 							<string>UIImageView</string>
-							<string>UIActivityIndicatorView</string>
-							<string>UIButton</string>
+							<string>UIImageView</string>
 							<string>UILabel</string>
 							<string>UIWebView</string>
 						</object>
@@ -418,7 +387,6 @@
 							<string>device</string>
 							<string>headerImageIFixit</string>
 							<string>headerImageMake</string>
-							<string>imageSpinner</string>
 							<string>mainImage</string>
 							<string>swipeLabel</string>
 							<string>webView</string>
@@ -438,12 +406,8 @@
 								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">imageSpinner</string>
-								<string key="candidateClassName">UIActivityIndicatorView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
 								<string key="name">mainImage</string>
-								<string key="candidateClassName">UIButton</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">swipeLabel</string>
@@ -460,121 +424,10 @@
 						<string key="minorKey">./Classes/GuideIntroViewController.h</string>
 					</object>
 				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">GuideStepViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>changeImage:</string>
-							<string>zoomImage:</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UIButton</string>
-							<string>id</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>changeImage:</string>
-							<string>zoomImage:</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">changeImage:</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">zoomImage:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>image1</string>
-							<string>image2</string>
-							<string>image3</string>
-							<string>imageSpinner</string>
-							<string>mainImage</string>
-							<string>titleLabel</string>
-							<string>webView</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UIButton</string>
-							<string>UIButton</string>
-							<string>UIButton</string>
-							<string>UIActivityIndicatorView</string>
-							<string>UIButton</string>
-							<string>UILabel</string>
-							<string>UIWebView</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>image1</string>
-							<string>image2</string>
-							<string>image3</string>
-							<string>imageSpinner</string>
-							<string>mainImage</string>
-							<string>titleLabel</string>
-							<string>webView</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">image1</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">image2</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">image3</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">imageSpinner</string>
-								<string key="candidateClassName">UIActivityIndicatorView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">mainImage</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">titleLabel</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">webView</string>
-								<string key="candidateClassName">UIWebView</string>
-							</object>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GuideStepViewController.h</string>
-					</object>
-				</object>
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1280" key="NS.object.0"/>
-		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.InterfaceBuilder3</string>
 			<integer value="3100" key="NS.object.0"/>

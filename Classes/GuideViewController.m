@@ -138,7 +138,7 @@
         }
         // Portrait
         else {
-            frame = CGRectMake(0, 44, 320, 480 - 84);
+            frame = CGRectMake(0, 44, 320, 480 - 64);
         }
     }
 

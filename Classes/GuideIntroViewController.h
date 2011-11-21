@@ -17,9 +17,8 @@
 
 @property (nonatomic, retain) Guide *guide;
 @property (nonatomic, retain) IBOutlet UILabel *device;
-@property (nonatomic, retain) IBOutlet UIButton *mainImage;
+@property (nonatomic, retain) IBOutlet UIImageView *mainImage;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *imageSpinner;
 @property (nonatomic, retain) UIImage *huge;
 @property (nonatomic, retain) NSString *html;
 

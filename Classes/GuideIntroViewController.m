@@ -8,7 +8,7 @@
 
 #import "GuideIntroViewController.h"
 #import "Guide.h"
-#import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
 #import "Config.h"
 #import "SVWebViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -17,7 +17,7 @@
 
 @synthesize delegate, headerImageIFixit, headerImageMake, swipeLabel;
 @synthesize guide=_guide;
-@synthesize device, mainImage, webView, imageSpinner, huge, html;
+@synthesize device, mainImage, webView, huge, html;
 
 // Load the view nib and initialize the guide.
 - (id)initWithGuide:(Guide *)guide {
@@ -149,11 +149,6 @@
     }
     // iPhone
     else {
-        // These dimensions represent the object's position BEFORE rotation,
-        // and are automatically tweaked during animation with respect to their resize masks.
-        // Created by trial and error. :(
-        mainImage.frame = CGRectMake(40, 40, 200, 150);
-        webView.frame = CGRectMake(240, 0, 238, 245);
     }
 }
 - (void)layoutPortrait {
@@ -164,11 +159,6 @@
     }
     // iPhone
     else {
-        // These dimensions represent the object's position BEFORE rotation,
-        // and are automatically tweaked during animation with respect to their resize masks.
-        // Created by trial and error. :(
-        mainImage.frame = CGRectMake(60, 10, 200, 150);
-        webView.frame = CGRectMake(0, 168, 320, 228);
     }
 }
 
@@ -200,7 +190,6 @@
     self.device = nil;
     self.mainImage = nil;
     self.webView = nil;
-    self.imageSpinner = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -219,7 +208,6 @@
     [device release];
     [mainImage release];
     [webView release];
-    [imageSpinner release];
     
     [super dealloc];
 }

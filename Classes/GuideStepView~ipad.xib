@@ -74,7 +74,7 @@
 									<int key="NSColorSpace">6</int>
 									<string key="NSCatalogName">System</string>
 									<string key="NSColorName">headerTextColor</string>
-									<object class="NSColor" key="NSColor">
+									<object class="NSColor" key="NSColor" id="494311349">
 										<int key="NSColorSpace">3</int>
 										<bytes key="NSWhite">MAA</bytes>
 									</object>
@@ -185,6 +185,8 @@
 									</object>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
+								<reference key="IBUIShadowColor" ref="494311349"/>
+								<string key="IBUIShadowOffset">{0, 1}</string>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">30</float>
 								<int key="IBUITextAlignment">2</int>
