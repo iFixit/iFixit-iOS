@@ -17,7 +17,10 @@ enum {
 @interface Config : NSObject
 
 @property (nonatomic) BOOL dozuki;
+@property (nonatomic) BOOL answersEnabled;
+@property (nonatomic) BOOL collectionsEnabled;
 @property (nonatomic) NSInteger site;
+@property (nonatomic, retain) NSDictionary *siteData;
 @property (nonatomic, retain) NSString *host;
 @property (nonatomic, retain) NSString *baseURL;
 @property (nonatomic, retain) UIColor *backgroundColor;

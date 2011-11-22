@@ -11,6 +11,7 @@
 #import "AreasViewController.h"
 #import "DetailViewController.h"
 #import "iPhoneDeviceViewController.h"
+#import "DetailGridViewController.h"
 
 @implementation AreasViewController
 
@@ -60,7 +61,7 @@
     self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     
     // Show the Dozuki sites select button if needed.
-    if ([Config currentConfig].dozuki && self.navigationController.topViewController == self) {
+    if ([Config currentConfig].dozuki && [self.title isEqual:@"Categories"]) {
         UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
         UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
                                                                   target:[[UIApplication sharedApplication] delegate]
@@ -383,18 +384,26 @@
         NSString *area = self.title;
 
         // Build the Area URL (if we want to show a webview).
-		NSString *url = [NSString stringWithFormat:@"http://%@/Area/%@", 
+		NSString *wikiUrl = [NSString stringWithFormat:@"http://%@/Area/%@", 
                          [Config host],
                          [area stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
-
+        
+		NSString *answersUrl = [NSString stringWithFormat:@"http://%@/Answers/Device/%@", 
+                         [Config host],
+                         [area stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+        
         if (!base)
             [detailViewController.popoverController dismissPopoverAnimated:YES];
         
         // iPad: update the main split view content area.
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
             [detailViewController reset];
-            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];        
-            [detailViewController.webView loadRequest:request];
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:wikiUrl]];        
+            [detailViewController.wikiWebView loadRequest:request];
+            request = [NSURLRequest requestWithURL:[NSURL URLWithString:answersUrl]];        
+            [detailViewController.answersWebView loadRequest:request];
+            detailViewController.segmentedControl.selectedSegmentIndex = [Config currentConfig].answersEnabled ? 2 : 1;
+            detailViewController.gridViewController.noGuides.hidden = NO;
         }
     }
     else if (indexPath.section == 1 - base && [keys count] && !searching) {
@@ -411,23 +420,30 @@
 		[vc release];
         
 	} else {
-        NSString *url = nil;
+        NSString *wikiUrl = nil, *answersUrl = nil;
         NSString *title = nil;
         NSString *display_title = nil;
         
         if (searching && [searchResults count]) {
-            url = [NSString stringWithFormat:@"http://%@%@", 
+            wikiUrl = [NSString stringWithFormat:@"http://%@%@", 
                    [Config host],
                    [[searchResults objectAtIndex:indexPath.row] objectForKey:@"url"]];
             title = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"title"];
             display_title = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"display_title"];
+            
+            answersUrl = [NSString stringWithFormat:@"http://%@/Answers/Device/%@", 
+                          [Config host], title];
         }
         else {
             // Build the Device URL.
             NSString *device = [leafs objectAtIndex:indexPath.row];
-            url = [NSString stringWithFormat:@"http://%@/Device/%@", 
+            wikiUrl = [NSString stringWithFormat:@"http://%@/Device/%@", 
                    [Config host],
                    [device stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+            answersUrl = [NSString stringWithFormat:@"http://%@/Answers/Device/%@", 
+                          [Config host],
+                          [device stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+
             title = device;
             display_title = device;
         }
@@ -441,11 +457,14 @@
         }
         // iPad: update the main split view content area.
         else {
+            [detailViewController reset];
             [detailViewController.popoverController dismissPopoverAnimated:YES];
 
             [detailViewController setDevice:title];
-            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];        
-            [detailViewController.webView loadRequest:request];
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:wikiUrl]];        
+            [detailViewController.wikiWebView loadRequest:request];
+            request = [NSURLRequest requestWithURL:[NSURL URLWithString:answersUrl]];        
+            [detailViewController.answersWebView loadRequest:request];
         }
 
 	}

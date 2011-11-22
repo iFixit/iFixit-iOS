@@ -149,6 +149,9 @@
     }
     // iPhone
     else {
+        CGRect frame = webView.frame;
+        frame.size.height = 216;
+        webView.frame = frame;
     }
 }
 - (void)layoutPortrait {
@@ -159,6 +162,9 @@
     }
     // iPhone
     else {
+        CGRect frame = webView.frame;
+        frame.size.height = 375;
+        webView.frame = frame;
     }
 }
 

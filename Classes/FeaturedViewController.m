@@ -233,7 +233,11 @@
     //self.navigationBar.barStyle = UIBarStyleBlackOpaque;
     self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
 
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
+    if ([[Config currentConfig].backgroundColor isEqual:[UIColor whiteColor]])
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackgroundWhite.png"]];
+    else
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
+    
     self.gvc.view.backgroundColor = [UIColor clearColor];
     
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Past Features"
@@ -258,9 +262,12 @@
 }
 
 - (void)dealloc {
+    self.gvc.delegate = nil;
+    self.pvc.delegate = nil;
+    
     [poc release];
-    [pvc release];
     [gvc release];
+    [pvc release];
     [_collection release];
     [_guides release];
     [loading release];

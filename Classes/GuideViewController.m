@@ -55,7 +55,9 @@
     
     // Replace black with concrete.
     UIColor *bgColor = [Config currentConfig].backgroundColor;
-    if ([bgColor isEqual:[UIColor blackColor]])
+    if ([bgColor isEqual:[UIColor whiteColor]])
+        bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackgroundWhite.png"]];
+    else
         bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
     
     self.view.backgroundColor = bgColor;
@@ -91,13 +93,12 @@
     // TODO: Show step that was in view before memory warning
 }
 
-- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
+- (void)closeGuide {
     if (bookmarker.poc.isPopoverVisible)
         [bookmarker.poc dismissPopoverAnimated:YES];
     
     // Hide the guide.
     [self dismissModalViewControllerAnimated:YES];
-	return YES;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -187,20 +188,22 @@
     pageControl.currentPage = 0;
     
     // Hide page control on iPhone.
-    pageControl.hidden = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? NO : YES;
+    //pageControl.hidden = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? NO : YES;
 	
     // Setup the navigation items to show back arrow and bookmarks button
     NSString *title = guide.title;
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad && [guide.subject length] > 0)
         title = self.guide.subject;
     
-    UINavigationItem *topItem = [[UINavigationItem alloc] initWithTitle:@"Back"];
 	UINavigationItem *thisItem = [[UINavigationItem alloc] initWithTitle:title];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                target:self action:@selector(closeGuide)];
+    thisItem.leftBarButtonItem = doneButton;
+    [doneButton release];
     [bookmarker setNavItem:thisItem andGuideid:self.guide.guideid];
     
-	NSArray *navItems = [NSArray arrayWithObjects:topItem, thisItem, nil];
+	NSArray *navItems = [NSArray arrayWithObjects:thisItem, nil];
 	[navBar setItems:navItems animated:NO];
-	[topItem release];
 	[thisItem release];
    
     if (shouldLoadPage) {

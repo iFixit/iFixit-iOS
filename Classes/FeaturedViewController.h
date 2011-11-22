@@ -16,8 +16,8 @@
 @interface FeaturedViewController : UINavigationController <UIAlertViewDelegate, DMPGridViewDelegate, PastFeaturesViewDelegate>
 
 @property (retain, nonatomic) UIPopoverController *poc;
-@property (assign, nonatomic) PastFeaturesViewController *pvc;
-@property (assign, nonatomic) DMPGridViewController *gvc;
+@property (retain, nonatomic) PastFeaturesViewController *pvc;
+@property (retain, nonatomic) DMPGridViewController *gvc;
 @property (retain, nonatomic) NSDictionary *collection;
 @property (retain, nonatomic) NSArray *guides;
 @property (retain, nonatomic) WBProgressHUD *loading;

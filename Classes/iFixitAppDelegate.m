@@ -62,7 +62,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 // Override point for customization after app launch.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     /* Configure. */
-    [Config currentConfig].dozuki = NO;
+    [Config currentConfig].dozuki = YES;
     
     /* Track. */
     [TestFlight takeOff:@"c74d40d00ff8789a3c63bc4c2ee210e6_MTcxMjIwMTEtMDktMTIgMTc6MzY6MzcuNzIyMTQ3"];
@@ -82,17 +82,15 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
     /* Dozuki gets a little more complicated. */
     else {
-        NSString *domain = [[NSUserDefaults standardUserDefaults] valueForKey:@"domain"];
-        if (domain) {
-            NSString *colorHex = [[NSUserDefaults standardUserDefaults] objectForKey:@"color"];
-            UIColor *color = [UIColor colorFromHexString:colorHex];
-            [self loadSite:domain withColor:color];
+        NSDictionary *site = [[NSUserDefaults standardUserDefaults] objectForKey:@"site"];
+
+        if (NO && site) {
+            [self loadSite:site];
+            [self showSiteSplash];
         }
-        
-        [self showSiteSplash];
-        
-        if (!domain)
+        else {
             [self showDozukiSplash];
+        }
         
         firstLoad = NO;
     }
@@ -106,14 +104,14 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     // Reset the saved choice.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:nil forKey:@"domain"];
+    [defaults setValue:nil forKey:@"site"];
     [defaults synchronize];
 
     if (YES || [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         // Dozuki splash
-        DozukiSplashViewController *dsvc = [[DozukiSplashViewController alloc] initWithNibName:@"DozukiSplashView" bundle:nil];
+        DozukiSplashViewController *dsvc = [[DozukiSplashViewController alloc] init];
         dsvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self.window.rootViewController presentModalViewController:dsvc animated:!firstLoad];
+        self.window.rootViewController = dsvc;
         [dsvc release];
     }
     else {
@@ -121,12 +119,14 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         DozukiInfoViewController *divc = [[DozukiInfoViewController alloc] initWithNibName:@"DozukiInfoView" bundle:nil];
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:divc];
         nvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self.window.rootViewController presentModalViewController:nvc animated:!firstLoad];
+        self.window.rootViewController = nvc;
         if (!firstLoad)
             [divc showList];
         [nvc release];
         [divc release];
     }
+    
+    [window makeKeyAndVisible];
 }
 
 - (void)showSiteSplash {
@@ -181,29 +181,44 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     areasViewController.delegate = self;
     
     // Dozuki ends here, but iFixit gets a fancy tab bar at the bottom.
-    if ([Config currentConfig].dozuki)
+    if (![Config currentConfig].collectionsEnabled)
         return splitViewController;
     
     // Create some more view controllers.
     FeaturedViewController *featuredViewController = [[FeaturedViewController alloc] init];
-    SVWebViewController *answersViewController = [[SVWebViewController alloc] initWithAddress:@"http://www.ifixit.com/Answers"];
+    //SVWebViewController *answersViewController = [[SVWebViewController alloc] initWithAddress:@"http://www.ifixit.com/Answers"];
+    //answersViewController.tintColor = [Config currentConfig].toolbarColor;
+    //answersViewController.showsDoneButton = NO;
     SVWebViewController *storeViewController = [[SVWebViewController alloc] initWithAddress:@"http://www.ifixit.com/Parts-Store"];
-    answersViewController.tintColor = [Config currentConfig].toolbarColor;
     storeViewController.tintColor = [Config currentConfig].toolbarColor;
-    answersViewController.showsDoneButton = NO;
     storeViewController.showsDoneButton = NO;
     
     // Initialize the tab bar items.
-    splitViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Guides" image:[UIImage imageNamed:@"tabBarItemBook.png"] tag:0] autorelease];
+    NSString *guideTitle = @"Guides";
+    if ([Config currentConfig].site == ConfigMake)
+        guideTitle = @"Projects";
+    else if ([Config currentConfig].site == ConfigIFixit)
+        guideTitle = @"Repair Manuals";
+    
+    NSString *storeTitle = @"Store";
+    if ([Config currentConfig].site == ConfigIFixit) {
+        storeTitle = @"Parts & Tools";
+        splitViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:guideTitle image:[UIImage imageNamed:@"tabBarItemWrench.png"] tag:0] autorelease];
+    }
+    else {
+        splitViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:guideTitle image:[UIImage imageNamed:@"tabBarItemBooks.png"] tag:0] autorelease];
+    }
+    
+    splitViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:guideTitle image:[UIImage imageNamed:@"tabBarItemWrench.png"] tag:0] autorelease];
     featuredViewController.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0] autorelease];
-    answersViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Answers" image:[UIImage imageNamed:@"tabBarItemBubbles.png"] tag:0] autorelease];
-    storeViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Parts & Tools" image:[UIImage imageNamed:@"tabBarItemGears.png"] tag:0] autorelease];
+    //answersViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Answers" image:[UIImage imageNamed:@"tabBarItemBubbles.png"] tag:0] autorelease];
+    storeViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:storeTitle image:[UIImage imageNamed:@"tabBarItemGears.png"] tag:0] autorelease];
 
     // Create the tab bar.
     UITabBarController *tbc = [[UITabBarController alloc] init];
-    tbc.viewControllers = [NSArray arrayWithObjects:featuredViewController, splitViewController, answersViewController, storeViewController, nil];
+    tbc.viewControllers = [NSArray arrayWithObjects:featuredViewController, splitViewController, storeViewController, nil];
     [featuredViewController release];
-    [answersViewController release];
+    //[answersViewController release];
     [storeViewController release];
     
     return [tbc autorelease];
@@ -220,11 +235,16 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     return [lvc autorelease];
 }
 
-- (void)loadSite:(NSString *)domain {
-    [self loadSite:domain withColor:nil];
+- (void)loadSiteWithDomain:(NSString *)domain {
+    NSDictionary *site = [NSDictionary dictionaryWithObject:domain forKey:@"domain"];
+    [self loadSite:site];
 }
 
-- (void)loadSite:(NSString *)domain withColor:(UIColor *)color {
+- (void)loadSite:(NSDictionary *)site {
+    NSString *domain = [site valueForKey:@"domain"];
+    NSString *colorHex = [site valueForKey:@"color"];
+    UIColor *color = [UIColor colorFromHexString:colorHex];
+    
     // Load the right site
     if ([domain isEqual:@"www.ifixit.com"]) {
         [[Config currentConfig] setSite:ConfigIFixit];
@@ -243,6 +263,26 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         if (color)
             [Config currentConfig].toolbarColor = color;
     }
+    
+    // Enable/disable Answers and/or Collections
+    if ([Config currentConfig].site == ConfigIFixit) {
+        [Config currentConfig].answersEnabled = YES;
+        [Config currentConfig].collectionsEnabled = YES;
+    }
+    else {
+        [Config currentConfig].answersEnabled = [[site valueForKey:@"answers"] boolValue];
+        [Config currentConfig].collectionsEnabled = [[site valueForKey:@"collections"] boolValue];
+    }
+    
+    // Save this choice for future launches, first removing any null values.
+    NSMutableDictionary *simpleSite = [NSMutableDictionary dictionary];
+    for (NSString *key in [site allKeys]) {
+        NSObject *value = [site objectForKey:key];
+        if (![value isEqual:[NSNull null]])
+            [simpleSite setValue:value forKey:key];
+    }
+    [[NSUserDefaults standardUserDefaults] setValue:simpleSite forKey:@"site"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     // Show the main app!
     [[iFixitAPI sharedInstance] loadSession];
@@ -263,13 +303,12 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         if (match) {
             NSRange keyRange = [match rangeAtIndex:1];
             NSString *domain = [urlString substringWithRange:keyRange];
+            NSDictionary *site = [NSDictionary dictionaryWithObject:domain forKey:@"domain"];
+
+            [[NSUserDefaults standardUserDefaults] setValue:site forKey:@"site"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setValue:domain forKey:@"domain"];
-            [defaults setValue:nil forKey:@"color"];
-            [defaults synchronize];
-            
-            [self loadSite:domain];
+            [self loadSite:site];
             return YES;
         }
     }

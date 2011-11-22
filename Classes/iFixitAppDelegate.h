@@ -29,7 +29,7 @@
 - (void)showSiteSplash;
 - (UIViewController *)iPadRoot;
 - (UIViewController *)iPhoneRoot;
-- (void)loadSite:(NSString *)domain;
-- (void)loadSite:(NSString *)domain withColor:(UIColor *)color;
+- (void)loadSite:(NSDictionary *)site;
+- (void)loadSiteWithDomain:(NSString *)domain;
 
 @end

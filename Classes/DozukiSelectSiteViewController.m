@@ -179,18 +179,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [TestFlight passCheckpoint:@"Dozuki Site Select"];
 
-    NSString *domain = [[sites objectAtIndex:indexPath.row] valueForKey:@"domain"];
-    NSString *colorHex = [[sites objectAtIndex:indexPath.row] valueForKey:@"color"];
-    UIColor *color = [UIColor colorFromHexString:colorHex];
-    
-    // Save this choice for future launches
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:domain forKey:@"domain"];
-    [defaults setValue:colorHex forKey:@"color"];
-    [defaults synchronize];
-    
+    NSDictionary *site = [sites objectAtIndex:indexPath.row];
+
     iFixitAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate loadSite:domain withColor:color];
+    [appDelegate loadSite:site];
  
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

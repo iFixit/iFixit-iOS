@@ -64,10 +64,22 @@
 						<string key="NSFrame">{{0, 44}, {1024, 704}}</string>
 						<reference key="NSSuperview" ref="647120888"/>
 						<reference key="NSWindow"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
+						<reference key="NSNextKeyView" ref="704696610"/>
+						<object class="NSColor" key="IBUIBackgroundColor" id="483207819">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
 						</object>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<bool key="IBUIScalesPageToFit">YES</bool>
+					</object>
+					<object class="IBUIWebView" id="704696610">
+						<reference key="NSNextResponder" ref="647120888"/>
+						<int key="NSvFlags">-2147483337</int>
+						<string key="NSFrame">{{0, 44}, {1024, 704}}</string>
+						<reference key="NSSuperview" ref="647120888"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<reference key="IBUIBackgroundColor" ref="483207819"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<bool key="IBUIScalesPageToFit">YES</bool>
 					</object>
@@ -104,19 +116,43 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">webView</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="742861885"/>
-					</object>
-					<int key="connectionID">68</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">toolbar</string>
 						<reference key="source" ref="841351856"/>
 						<reference key="destination" ref="410698538"/>
 					</object>
 					<int key="connectionID">65</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">answersWebView</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="704696610"/>
+					</object>
+					<int key="connectionID">91</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">wikiWebView</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="742861885"/>
+					</object>
+					<int key="connectionID">93</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="742861885"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">94</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="704696610"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">92</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -148,6 +184,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="742861885"/>
 							<reference ref="410698538"/>
+							<reference ref="704696610"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -164,6 +201,11 @@
 						</object>
 						<reference key="parent" ref="647120888"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">90</int>
+						<reference key="object" ref="704696610"/>
+						<reference key="parent" ref="647120888"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -178,6 +220,8 @@
 					<string>67.CustomClassName</string>
 					<string>67.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
+					<string>90.CustomClassName</string>
+					<string>90.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -188,6 +232,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>GuideCatchingWebView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>GuideCatchingWebView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -203,7 +249,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">89</int>
+			<int key="maxID">94</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -215,11 +261,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>answersWebView</string>
 							<string>toolbar</string>
-							<string>webView</string>
+							<string>wikiWebView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>GuideCatchingWebView</string>
 							<string>UIToolbar</string>
 							<string>GuideCatchingWebView</string>
 						</object>
@@ -228,17 +276,22 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>answersWebView</string>
 							<string>toolbar</string>
-							<string>webView</string>
+							<string>wikiWebView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">answersWebView</string>
+								<string key="candidateClassName">GuideCatchingWebView</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">toolbar</string>
 								<string key="candidateClassName">UIToolbar</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">webView</string>
+								<string key="name">wikiWebView</string>
 								<string key="candidateClassName">GuideCatchingWebView</string>
 							</object>
 						</object>

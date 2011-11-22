@@ -61,9 +61,9 @@ static CGRect frameView;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // iPad Landscape only.
+    // iPad.
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        return interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight;
+        return YES;
     
     // iPhone Portrait+Landscape.
     return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;

@@ -14,7 +14,6 @@
 @property (nonatomic, retain) GuideStep *step;
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property (nonatomic, retain) IBOutlet UIButton *mainImage;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *imageSpinner;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 
 @property (nonatomic, retain) IBOutlet UIButton *image1;

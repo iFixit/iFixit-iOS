@@ -3,10 +3,11 @@
 //  iFixit
 //
 //  Created by David Patierno on 11/18/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 iFixit. All rights reserved.
 //
 
 #import "DetailIntroViewController.h"
+#import "Config.h"
 
 @implementation DetailIntroViewController
 @synthesize text;
@@ -36,14 +37,16 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    if ([Config currentConfig].site != ConfigIFixit) {
+        text.hidden = YES;
+        image.hidden = YES;
+    }
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [self setImage:nil];
     [self setText:nil];
     [super viewDidUnload];
@@ -51,8 +54,7 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
 	return YES;
 }
@@ -62,4 +64,5 @@
     [text release];
     [super dealloc];
 }
+
 @end

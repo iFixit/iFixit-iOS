@@ -121,6 +121,7 @@
 		DA9948A4142AC26900E4167D /* dozukiLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A3142AC26900E4167D /* dozukiLogo.png */; };
 		DA9948A6142AC34E00E4167D /* dozukiIntro.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A5142AC34E00E4167D /* dozukiIntro.png */; };
 		DA9948AA142AC55D00E4167D /* DozukiSplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */; };
+		DAA10465147C3EEC00DED9DF /* concreteBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA10464147C3EEC00DED9DF /* concreteBackgroundWhite.png */; };
 		DAA750881368DA87002AA546 /* WBFont.mm in Sources */ = {isa = PBXBuildFile; fileRef = DAA750801368DA87002AA546 /* WBFont.mm */; };
 		DAA750891368DA87002AA546 /* WBProgressHUD.mm in Sources */ = {isa = PBXBuildFile; fileRef = DAA750831368DA87002AA546 /* WBProgressHUD.mm */; };
 		DAA7508A1368DA87002AA546 /* WBView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DAA750851368DA87002AA546 /* WBView.mm */; };
@@ -350,6 +351,7 @@
 		DA9948A3142AC26900E4167D /* dozukiLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiLogo.png; path = Graphics/dozukiLogo.png; sourceTree = "<group>"; };
 		DA9948A5142AC34E00E4167D /* dozukiIntro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiIntro.png; path = Graphics/dozukiIntro.png; sourceTree = "<group>"; };
 		DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DozukiSplashView.xib; sourceTree = "<group>"; };
+		DAA10464147C3EEC00DED9DF /* concreteBackgroundWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = concreteBackgroundWhite.png; path = Graphics/concreteBackgroundWhite.png; sourceTree = "<group>"; };
 		DAA7507F1368DA87002AA546 /* WBFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBFont.h; sourceTree = "<group>"; };
 		DAA750801368DA87002AA546 /* WBFont.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WBFont.mm; sourceTree = "<group>"; };
 		DAA750811368DA87002AA546 /* WBGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBGeometry.h; sourceTree = "<group>"; };
@@ -596,6 +598,7 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DAA10464147C3EEC00DED9DF /* concreteBackgroundWhite.png */,
 				DA3562B0147731C500683947 /* noGuides.png */,
 				DA3562AE14772D1200683947 /* logo_ifixit.png */,
 				DA3562AA14771E2B00683947 /* tabBarItemBook.png */,
@@ -1066,6 +1069,7 @@
 				DA3562AD1477254500683947 /* Ubuntu-BoldItalic.ttf in Resources */,
 				DA3562AF14772D1200683947 /* logo_ifixit.png in Resources */,
 				DA3562B1147731C500683947 /* noGuides.png in Resources */,
+				DAA10465147C3EEC00DED9DF /* concreteBackgroundWhite.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

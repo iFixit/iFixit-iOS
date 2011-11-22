@@ -18,7 +18,7 @@
 
 @implementation GuideStepViewController
 
-@synthesize delegate, step=_step, titleLabel, mainImage, imageSpinner, webView;
+@synthesize delegate, step=_step, titleLabel, mainImage, webView;
 @synthesize image1, image2, image3, numImagesLoaded, bigImages, html;
 
 // Load the view nib and initialize the pageNumber ivar.
@@ -71,9 +71,10 @@
     titleLabel.textColor = [Config currentConfig].textColor;
 
     // Load the step contents as HTML.
+    NSString *bodyClass = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? @"big" : @"small";
     NSString *header = [NSString stringWithFormat:@"<html><head><style type=\"text/css\"> %@ </style></head><body class=\"%@\"><ul>",
                         [Config currentConfig].stepCSS,
-                        (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"big" : @"small"];
+                        bodyClass];
     NSString *footer = @"</ul></body></html>";
    
     NSMutableString *body = [NSMutableString stringWithString:@""];
@@ -105,21 +106,21 @@
 - (void)startImageDownloads {
     
     if ([self.step.images count] > 0) {
-        [mainImage setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"large"]];
+        [mainImage setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
         
         if ([self.step.images count] > 1) {
-            [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"thumbnail"]];
+            [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
             image1.hidden = NO;
         }
     }
     
     if ([self.step.images count] > 1) {
-        [image2 setImageWithURL:[[self.step.images objectAtIndex:1] URLForSize:@"thumbnail"]];
+        [image2 setImageWithURL:[[self.step.images objectAtIndex:1] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
         image2.hidden = NO;
     }
     
     if ([self.step.images count] > 2) {
-        [image3 setImageWithURL:[[self.step.images objectAtIndex:2] URLForSize:@"thumbnail"]];
+        [image3 setImageWithURL:[[self.step.images objectAtIndex:2] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
         image3.hidden = NO;
     }
 }
@@ -135,12 +136,7 @@
         guideImage = [self.step.images objectAtIndex:2];
 
     // Switch to the new image, but delay the spinner for a short time.
-    imageSpinner.hidden = YES;
-    [mainImage setImageWithURL:[guideImage URLForSize:@"large"]];
-    [self performSelector:@selector(showImageSpinner) withObject:nil afterDelay:0.2];
-}
-- (void)showImageSpinner {
-    imageSpinner.hidden = NO;
+    [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -185,7 +181,6 @@
     // iPad
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         mainImage.frame = CGRectMake(20.0, 103.0, 592.0, 444.0);
-        imageSpinner.frame = CGRectMake(297.0, 306.0, 37.0, 37.0);
         webView.frame = CGRectMake(620.0, 103.0, 404.0, 562.0);
         titleLabel.frame = CGRectMake(30.0, 30.0, 975.0, 65.0);
         titleLabel.textAlignment = UITextAlignmentRight;
@@ -218,14 +213,13 @@
         frame.origin.x = 160;
         image3.frame = frame;
         
-        webView.frame = CGRectMake(230, 0, 250, 245);
+        webView.frame = CGRectMake(230, 0, 250, 236);
     }
 }
 - (void)layoutPortrait {
     // iPad
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         mainImage.frame = CGRectMake(20.0, 30.0, 592.0, 444.0);
-        imageSpinner.frame = CGRectMake(297.0, 234.0, 37.0, 37.0);
         webView.frame = CGRectMake(20.0, 554.0, 615.0, 380.0);
         titleLabel.frame = CGRectMake(30.0, 489.0, 708.0, 65.0);
         titleLabel.textAlignment = UITextAlignmentLeft;
@@ -287,7 +281,6 @@
     [super viewDidUnload];
     self.titleLabel = nil;
     self.mainImage = nil;
-    self.imageSpinner = nil;
     self.webView = nil;
     self.image1 = nil;
     self.image2 = nil;
@@ -307,7 +300,6 @@
     
     [titleLabel release];
     [mainImage release];
-    [imageSpinner release];
     [webView release];
     [image1 release];
     [image2 release];

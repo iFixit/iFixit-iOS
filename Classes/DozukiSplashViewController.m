@@ -14,9 +14,8 @@
 
 @synthesize introView, nextViewController;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)init {
+    self = [super initWithNibName:@"DozukiSplashView" bundle:nil];
     if (self) {
         // Custom initialization
         showingList = NO;
@@ -47,21 +46,15 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    iFixitAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    if (appDelegate.firstLoad) {
-        for (UIView *view in self.introView.subviews)
-            view.alpha = 0.0;
-    }
+    for (UIView *view in self.introView.subviews)
+        view.alpha = 0.0;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    iFixitAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    if (appDelegate.firstLoad) {
-        [UIView animateWithDuration:0.5 animations:^{
-            for (UIView *view in self.introView.subviews)
-                view.alpha = 1.0;
-        }];
-    }    
+    [UIView animateWithDuration:0.5 animations:^{
+        for (UIView *view in self.introView.subviews)
+            view.alpha = 1.0;
+    }];
 }
 
 - (void)viewDidUnload

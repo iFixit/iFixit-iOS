@@ -1,5 +1,5 @@
 html, body {
-   background-color: white;
+   background-color: transparent;
    color: black;
    font-family: "Helvetica", sans-serif;
    margin: 0px 10px;
@@ -10,7 +10,7 @@ body.small {
 }
 
 a, a:visited {
-   color: #aaf;
+   color: #33a;
 }
 
 div.parts {

@@ -19,7 +19,7 @@
 
 @implementation DetailViewController
 
-@synthesize toolbar, popoverController, webView, lastURL, deviceToolbarItems, segmentedControl, browseButton;
+@synthesize toolbar, popoverController, wikiWebView, answersWebView, lastURL, deviceToolbarItems, segmentedControl, browseButton;
 @synthesize introViewController, gridViewController;
 
 #pragma mark -
@@ -102,31 +102,48 @@
     [introViewController.view removeFromSuperview];
     self.introViewController = nil;
     
-    webView.hidden = YES;
+    wikiWebView.hidden = YES;
+    answersWebView.hidden = YES;
     gridViewController.view.hidden = NO;
 }
 
-- (void)displayWebView {
+- (void)displayWikiView {
     [introViewController.view removeFromSuperview];
     self.introViewController = nil;
     
-    webView.hidden = NO;
+    wikiWebView.hidden = NO;
+    answersWebView.hidden = YES;
+    gridViewController.view.hidden = YES;
+}
+
+- (void)displayAnswersView {
+    [introViewController.view removeFromSuperview];
+    self.introViewController = nil;
+    
+    answersWebView.hidden = NO;
+    wikiWebView.hidden = YES;
     gridViewController.view.hidden = YES;
 }
 
 - (void)toggleView:(id)sender {
-    if (!gridViewController.view.hidden) {
-        [self displayWebView];
-    }
-    else {
-        [self displayGrid];
+    switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            [self displayGrid];
+            break;
+        case 1:
+            // Check if Answers is enabled
+            if ([Config currentConfig].answersEnabled)
+                [self displayAnswersView];
+            else
+                [self displayWikiView];
+            break;
+        case 2:
+            [self displayWikiView];
+            break;
     }
 }
 
 - (void)setDevice:(NSString *)device {
-    if ([self.toolbar.items count] <= 2)
-        self.toolbar.items = [self.toolbar.items arrayByAddingObjectsFromArray:self.deviceToolbarItems];    
-    
     gridViewController.device = device;
     segmentedControl.selectedSegmentIndex = 0;
     [self displayGrid];
@@ -135,13 +152,16 @@
 - (void)reset {
     [popoverController dismissPopoverAnimated:YES];
 
+    gridViewController.device = nil;
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]];        
-    [webView loadRequest:request];
+    [wikiWebView loadRequest:request];
+    [answersWebView loadRequest:request];
 
-    self.toolbar.items = [NSArray array];
+    self.toolbar.items = self.deviceToolbarItems;    
     [self updateOrientation];
     
-    [self displayWebView];
+    [self displayWikiView];
 }
 
 - (void)createFistView {
@@ -160,28 +180,34 @@
     
     self.toolbar.tintColor = [Config currentConfig].toolbarColor;
     
-	webView.delegate = self;
-    webView.hidden = YES;
+    wikiWebView.hidden = YES;
     
     // Restore the last URL if our view unloaded from a memory warning.
     if (lastURL) {
         NSURLRequest *request = [NSURLRequest requestWithURL:lastURL];
-        [webView loadRequest:request];
+        [wikiWebView loadRequest:request];
     }
     else {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[Config baseURL]]];
-        [webView loadRequest:request]; 
+        [wikiWebView loadRequest:request]; 
     }
 
     // Add the segmented control to the navigation bar.
     NSMutableArray *items = [NSMutableArray array];
-    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Guides", @"More Info", nil]] autorelease];
+    
+    NSString *guidesText = [Config currentConfig].site == ConfigMake ? @"Projects" : @"Guides";
+    NSArray *titleItems = [NSArray arrayWithObjects:guidesText, @"More Info", nil];
+    // Add Answers if it's enabled
+    if ([Config currentConfig].answersEnabled)
+        titleItems = [NSArray arrayWithObjects:guidesText, @"Answers", @"More Info", nil];
+    
+    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:titleItems] autorelease];
     segmentedControl.selectedSegmentIndex = 0;
     [segmentedControl addTarget:self action:@selector(toggleView:) forControlEvents:UIControlEventValueChanged];
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     segmentedControl.tintColor = [[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]] ? [UIColor darkGrayColor] : [Config currentConfig].toolbarColor;
     CGRect frame = segmentedControl.frame;
-    frame.size.width = 220.0;
+    frame.size.width = [Config currentConfig].answersEnabled ? 300.0 : 250.0;
     segmentedControl.frame = frame;
     
     UIBarButtonItem *segmentedItem = [[UIBarButtonItem alloc] initWithCustomView:segmentedControl];
@@ -198,10 +224,13 @@
     
     self.deviceToolbarItems = items;
         
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
+    if ([[Config currentConfig].backgroundColor isEqual:[UIColor whiteColor]])
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackgroundWhite.png"]];
+    else
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
 
     // Size the grid view appropriately prepare it for display.
-    gridViewController.view.frame = webView.frame;
+    gridViewController.view.frame = wikiWebView.frame;
     gridViewController.view.hidden = YES;
     [self.view addSubview:gridViewController.view];
 
@@ -242,7 +271,7 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     self.toolbar = nil;
-    self.webView = nil;
+    self.wikiWebView = nil;
     self.segmentedControl = nil;
 }
 
@@ -260,16 +289,17 @@
 
 - (void)detailGrid:(DetailGridViewController *)detailGrid gotGuideCount:(NSInteger)count {
     if (!count) {
-        segmentedControl.selectedSegmentIndex = 1;
-        [self displayWebView];
+        // Select the "More Info" tab
+        segmentedControl.selectedSegmentIndex = [Config currentConfig].answersEnabled ? 2 : 1;
+        [self displayWikiView];
     }
 }
 
 - (void)dealloc {
-    webView.delegate = nil;
+    wikiWebView.delegate = nil;
     
     [toolbar release];
-    [webView release];
+    [wikiWebView release];
     [lastURL release];
     [popoverController release];
     [introViewController release];

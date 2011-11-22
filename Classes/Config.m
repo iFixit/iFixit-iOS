@@ -12,7 +12,8 @@ static Config *currentConfig = nil;
 
 @implementation Config
 
-@synthesize dozuki, site, host, baseURL, backgroundColor, textColor, toolbarColor, introCSS, stepCSS;
+@synthesize dozuki, answersEnabled, collectionsEnabled;
+@synthesize site, siteData, host, baseURL, backgroundColor, textColor, toolbarColor, introCSS, stepCSS;
 
 + (Config *)currentConfig {
     if (!currentConfig) {
@@ -31,22 +32,32 @@ static Config *currentConfig = nil;
         case ConfigIFixit:
             self.host = @"www.ifixit.com";
             self.baseURL = @"http://www.ifixit.com/Guide";
+            answersEnabled = YES;
+            collectionsEnabled = YES;
             break;
         case ConfigIFixitDev:
             self.host = @"www.cominor.com";
             self.baseURL = @"http://www.cominor.com/Guide";
+            answersEnabled = YES;
+            collectionsEnabled = YES;
             break;
         case ConfigMake:
             self.host = @"makeprojects.com";
             self.baseURL = @"http://makeproject.com";
+            answersEnabled = NO;
+            collectionsEnabled = YES;
             break;
         case ConfigMakeDev:
             self.host = @"make.cominor.com";
             self.baseURL = @"http://make.cominor.com";
+            answersEnabled = NO;
+            collectionsEnabled = YES;
             break;
         default:
             self.host = nil;
             self.baseURL = nil;
+            answersEnabled = NO;
+            collectionsEnabled = NO;
     }
     
     switch (site) {

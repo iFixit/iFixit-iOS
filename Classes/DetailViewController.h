@@ -20,7 +20,8 @@
 @property (nonatomic, retain) UIPopoverController *popoverController;
 
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
-@property (nonatomic, retain) IBOutlet GuideCatchingWebView *webView;
+@property (nonatomic, retain) IBOutlet GuideCatchingWebView *wikiWebView;
+@property (nonatomic, retain) IBOutlet GuideCatchingWebView *answersWebView;
 @property (nonatomic, retain) NSURL *lastURL;
 
 @property (nonatomic, retain) DetailGridViewController *gridViewController;

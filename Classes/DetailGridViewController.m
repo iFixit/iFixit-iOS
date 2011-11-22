@@ -90,7 +90,8 @@
     self.guides = nil;
     [self.tableView reloadData];
     
-    [self loadDevice];
+    if (device)
+        [self loadDevice];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
