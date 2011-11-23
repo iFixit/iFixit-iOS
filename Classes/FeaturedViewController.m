@@ -130,16 +130,17 @@
     titleLabel.adjustsFontSizeToFitWidth = YES;
     titleLabel.minimumFontSize = 50.0;
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    if ([Config currentConfig].dozuki) {
-        titleLabel.font = [UIFont fontWithName:@"Lobster" size:120.0];
-        titleLabel.frame = CGRectMake(120.0, 150.0, self.view.frame.size.width - 130.0, 106.0);
-        titleLabel.text = [_collection valueForKey:@"title"];
-    }
-    else {
+    if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigMake) {
         titleLabel.font = [UIFont fontWithName:@"Ubuntu-Italic" size:120.0];
         titleLabel.frame = CGRectMake(120.0, 150.0, self.view.frame.size.width - 110.0, 106.0);
         titleLabel.text = [[_collection valueForKey:@"title"] stringByAppendingString:@" "];
     }
+    else {     
+        titleLabel.font = [UIFont fontWithName:@"Lobster" size:120.0];
+        titleLabel.frame = CGRectMake(120.0, 150.0, self.view.frame.size.width - 130.0, 106.0);
+        titleLabel.text = [_collection valueForKey:@"title"];
+    }
+
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = UITextAlignmentRight;

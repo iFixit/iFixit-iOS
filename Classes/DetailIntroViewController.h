@@ -11,6 +11,7 @@
 
 @property (retain, nonatomic) IBOutlet UIImageView *image;
 @property (retain, nonatomic) IBOutlet UIImageView *text;
+@property (retain, nonatomic) IBOutlet UILabel *siteLabel;
 @property (nonatomic) UIInterfaceOrientation orientationOverride;
 
 - (void)positionImages;

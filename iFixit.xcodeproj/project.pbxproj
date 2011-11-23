@@ -33,6 +33,9 @@
 		C1D980AD120DFB5500509D18 /* GuideStepLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D980AC120DFB5500509D18 /* GuideStepLine.m */; };
 		C1D98150120E09BA00509D18 /* GuideStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9814E120E09BA00509D18 /* GuideStepViewController.m */; };
 		DA05677B138D976600660C86 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA05677A138D976600660C86 /* User.m */; };
+		DA086C7B147CA39900BD9A2F /* detailViewArrowDark.png in Resources */ = {isa = PBXBuildFile; fileRef = DA086C79147CA39900BD9A2F /* detailViewArrowDark.png */; };
+		DA086C7C147CA39900BD9A2F /* detailViewArrowLight.png in Resources */ = {isa = PBXBuildFile; fileRef = DA086C7A147CA39900BD9A2F /* detailViewArrowLight.png */; };
+		DA086C7E147CA39E00BD9A2F /* make_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = DA086C7D147CA39E00BD9A2F /* make_logo_transparent.png */; };
 		DA0877BD142D3E6200954482 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0877BC142D3E6200954482 /* UIColor+Hex.m */; };
 		DA0877C3142D4BBB00954482 /* vignette.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0877C2142D4BBB00954482 /* vignette.png */; };
 		DA0877C6142D4EAB00954482 /* vignette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0877C4142D4EAB00954482 /* vignette@2x.png */; };
@@ -92,6 +95,7 @@
 		DA61C54E13383043000028C3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C54D13383043000028C3 /* Default@2x.png */; };
 		DA61C55713383571000028C3 /* titleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C55513383571000028C3 /* titleImage.png */; };
 		DA61C55813383571000028C3 /* titleImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C55613383571000028C3 /* titleImage@2x.png */; };
+		DA6303AA147D712B006D8A2B /* tabBarItemPricetag.png in Resources */ = {isa = PBXBuildFile; fileRef = DA6303A9147D712B006D8A2B /* tabBarItemPricetag.png */; };
 		DA666AF31360E2A4002B1D62 /* GuideCatchingWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA666AF21360E2A4002B1D62 /* GuideCatchingWebView.m */; };
 		DA6A0D1B14218973003B8BAD /* UIImage+Coder.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A0D1A14218973003B8BAD /* UIImage+Coder.m */; };
 		DA881857134A5AFE004387CE /* BookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA881855134A5AFE004387CE /* BookmarksViewController.m */; };
@@ -224,6 +228,9 @@
 		C1D9814E120E09BA00509D18 /* GuideStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideStepViewController.m; sourceTree = "<group>"; };
 		DA056779138D976600660C86 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DA05677A138D976600660C86 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		DA086C79147CA39900BD9A2F /* detailViewArrowDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = detailViewArrowDark.png; path = Graphics/detailViewArrowDark.png; sourceTree = "<group>"; };
+		DA086C7A147CA39900BD9A2F /* detailViewArrowLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = detailViewArrowLight.png; path = Graphics/detailViewArrowLight.png; sourceTree = "<group>"; };
+		DA086C7D147CA39E00BD9A2F /* make_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = make_logo_transparent.png; path = Graphics/make_logo_transparent.png; sourceTree = "<group>"; };
 		DA0877BB142D3E6200954482 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		DA0877BC142D3E6200954482 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		DA0877C2142D4BBB00954482 /* vignette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vignette.png; path = Graphics/vignette.png; sourceTree = "<group>"; };
@@ -302,6 +309,7 @@
 		DA61C54D13383043000028C3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DA61C55513383571000028C3 /* titleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titleImage.png; path = Graphics/titleImage.png; sourceTree = "<group>"; };
 		DA61C55613383571000028C3 /* titleImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "titleImage@2x.png"; path = "Graphics/titleImage@2x.png"; sourceTree = "<group>"; };
+		DA6303A9147D712B006D8A2B /* tabBarItemPricetag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarItemPricetag.png; path = Graphics/tabBarItemPricetag.png; sourceTree = "<group>"; };
 		DA666AF11360E2A4002B1D62 /* GuideCatchingWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCatchingWebView.h; sourceTree = "<group>"; };
 		DA666AF21360E2A4002B1D62 /* GuideCatchingWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCatchingWebView.m; sourceTree = "<group>"; };
 		DA6A0D1A14218973003B8BAD /* UIImage+Coder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Coder.m"; sourceTree = "<group>"; };
@@ -598,6 +606,10 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DA6303A9147D712B006D8A2B /* tabBarItemPricetag.png */,
+				DA086C7D147CA39E00BD9A2F /* make_logo_transparent.png */,
+				DA086C79147CA39900BD9A2F /* detailViewArrowDark.png */,
+				DA086C7A147CA39900BD9A2F /* detailViewArrowLight.png */,
 				DAA10464147C3EEC00DED9DF /* concreteBackgroundWhite.png */,
 				DA3562B0147731C500683947 /* noGuides.png */,
 				DA3562AE14772D1200683947 /* logo_ifixit.png */,
@@ -1070,6 +1082,10 @@
 				DA3562AF14772D1200683947 /* logo_ifixit.png in Resources */,
 				DA3562B1147731C500683947 /* noGuides.png in Resources */,
 				DAA10465147C3EEC00DED9DF /* concreteBackgroundWhite.png in Resources */,
+				DA086C7B147CA39900BD9A2F /* detailViewArrowDark.png in Resources */,
+				DA086C7C147CA39900BD9A2F /* detailViewArrowLight.png in Resources */,
+				DA086C7E147CA39E00BD9A2F /* make_logo_transparent.png in Resources */,
+				DA6303AA147D712B006D8A2B /* tabBarItemPricetag.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

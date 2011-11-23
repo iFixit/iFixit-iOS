@@ -292,12 +292,17 @@
     int base = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && 
         ![self.title isEqual:@"Categories"] ? 0 : 1;
     
+    // TODO: Fill this in with data from the sites API
+    NSString *topicsTitle = @"Topics";
+    if ([Config currentConfig].site == ConfigIFixit)
+        topicsTitle = @"Devices";
+    
     if (section == 0 - base)
         return self.title;
     if (section == 1 - base)
-        return [keys count] ? @"Categories" : @"Devices";
+        return [keys count] ? @"Categories" : topicsTitle;
     if (section == 2 - base)
-        return @"Devices";
+        return topicsTitle;
     
     return nil;
 }

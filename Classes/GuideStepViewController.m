@@ -72,6 +72,8 @@
 
     // Load the step contents as HTML.
     NSString *bodyClass = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? @"big" : @"small";
+    if ([UIScreen mainScreen].scale == 2.0)
+        bodyClass = [bodyClass stringByAppendingString:@" retina"];
     NSString *header = [NSString stringWithFormat:@"<html><head><style type=\"text/css\"> %@ </style></head><body class=\"%@\"><ul>",
                         [Config currentConfig].stepCSS,
                         bodyClass];

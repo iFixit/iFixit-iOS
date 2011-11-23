@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
-	<string>iFixit</string>
+	<string>Dozuki</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
@@ -36,7 +36,7 @@
 			<string>com.ifixit.ifixit</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>ifixit</string>
+				<string>dozuki</string>
 			</array>
 		</dict>
 	</array>

@@ -19,6 +19,7 @@ enum {
 @property (nonatomic) BOOL dozuki;
 @property (nonatomic) BOOL answersEnabled;
 @property (nonatomic) BOOL collectionsEnabled;
+@property (nonatomic, retain) NSString *store;
 @property (nonatomic) NSInteger site;
 @property (nonatomic, retain) NSDictionary *siteData;
 @property (nonatomic, retain) NSString *host;
