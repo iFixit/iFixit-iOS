@@ -67,7 +67,7 @@ static int volatile openConnections = 0;
 }
 
 - (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
-	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/sites?limit=%d&offset=%d", @"dpatierno.cominor.com", limit, offset];	
+	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/sites?limit=%d&offset=%d", [Config host], limit, offset];	
 	
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{
