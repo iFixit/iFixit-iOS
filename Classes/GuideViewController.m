@@ -62,12 +62,7 @@
     
     self.view.backgroundColor = bgColor;
 
-    if ([[Config currentConfig].backgroundColor isEqual:[UIColor whiteColor]] && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        navBar.tintColor = nil;
-    }
-    else {
-        navBar.tintColor = [Config currentConfig].toolbarColor;
-    }
+    navBar.tintColor = [Config currentConfig].toolbarColor;
     
     if (self.guide) {
         [self gotGuide:self.guide];

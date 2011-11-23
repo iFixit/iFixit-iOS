@@ -5,3 +5,4 @@ iFixit.xcodeproj/project.xcworkspace
 iFixit.xcodeproj/xcuserdata
 .svn
 .gitignore
+*.bak

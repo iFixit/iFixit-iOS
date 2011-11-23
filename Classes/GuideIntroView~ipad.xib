@@ -140,7 +140,7 @@
 					<object class="IBUIImageView" id="284432824">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{68, 40}, {329, 71}}</string>
+						<string key="NSFrame">{{38, 40}, {329, 71}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="860367058"/>
@@ -149,7 +149,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">logo_make.png</string>
+							<string key="NSResourceName">make_logo_transparent.png</string>
 						</object>
 					</object>
 				</object>
@@ -441,12 +441,12 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>logo_ifixit.png</string>
-				<string>logo_make.png</string>
+				<string>make_logo_transparent.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{327, 113}</string>
-				<string>{329, 71}</string>
+				<string>{455, 97}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>

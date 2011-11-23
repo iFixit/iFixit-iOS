@@ -69,7 +69,7 @@ static int volatile openConnections = 0;
 - (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/sites?limit=%d&offset=%d", [Config host], limit, offset];	
 	
-    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{
         NSArray *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -83,7 +83,7 @@ static int volatile openConnections = 0;
 - (void)getCollectionsWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/collections?limit=%d&offset=%d", [Config host], limit, offset];
 	
-    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{
         NSArray *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -97,7 +97,7 @@ static int volatile openConnections = 0;
 - (void)getGuide:(NSInteger)guideid forObject:(id)object withSelector:(SEL)selector {
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guide/%d", [Config host], guideid];	
 
-    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{
         NSDictionary *result = [[request responseString] JSONValue];
         Guide *guide = result ? [Guide guideWithDictionary:result] : nil;
@@ -120,7 +120,7 @@ static int volatile openConnections = 0;
 	
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/areas/%@%@", [Config host], parent, requireGuides];	
 	
-    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -135,7 +135,7 @@ static int volatile openConnections = 0;
     device = [device stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/device/%@", [Config host], device];	
     
-    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -151,7 +151,7 @@ static int volatile openConnections = 0;
 	
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guides/%@?limit=%d", [Config host], type, limit];	
     
-    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{
         NSArray *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -166,7 +166,7 @@ static int volatile openConnections = 0;
     NSString *guideidsString = [guideids componentsJoinedByString:@","];
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/guides?guideids=%@", [Config host], guideidsString];
     
-    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{
         NSArray *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -184,7 +184,7 @@ static int volatile openConnections = 0;
 	
     NSString *url =	[NSString stringWithFormat:@"http://%@/api/0.1/search/%@?filter=device&limit=50", [Config host], search];	
 	
-    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
