@@ -15,7 +15,7 @@
 
 @implementation GuideCatchingWebView
 
-@synthesize externalDelegate, externalURL, formatter, modalDelegate;
+@synthesize externalDelegate, externalURL, formatter, modalDelegate, linksOpenInSameWindow;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if ((self = [super initWithCoder:aDecoder])) {
@@ -85,43 +85,20 @@
         shouldStart = [externalDelegate webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
     
     if (shouldStart) {
-        // Open all other URLs with Safari.
-        NSString *host = [[request URL] host];
-        if (![host isEqual:[Config host]] && navigationType == UIWebViewNavigationTypeLinkClicked) {
+        if (linksOpenInSameWindow)
+            return YES;
+        
+        // Open all other URLs with modal view.
+        if (navigationType == UIWebViewNavigationTypeLinkClicked) {
             SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:[[request URL] absoluteString]];
             if (!modalDelegate)
                 [delegate.window.rootViewController presentModalViewController:webViewController animated:YES];   
             else
                 [modalDelegate presentModalViewController:webViewController animated:YES];    
             [webViewController release];
-        }
-    }
-	
-	// Add custom headers if needed, and restart the request.
-    /*
-    if ([host isEqual:[Config host]]) {
-        NSDictionary *headers = [request allHTTPHeaderFields];
-        BOOL hasCustomHeader = NO; 
-        for (NSString *key in [headers allKeys]) {
-            if ([key isEqualToString:@"Mobile-Client"]) {
-                hasCustomHeader = YES;
-                break;
-            }   
-        }
-        
-        if (!hasCustomHeader) {
-            NSString *device = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? 
-                @"Wide iFixit" : @"Thin iFixit";
-            NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];	
-            NSString *mobileClient = [NSString stringWithFormat:@"%@ %@", device, version];
-            
-            NSMutableURLRequest *newRequest = [request mutableCopy];
-            [newRequest setValue:mobileClient forHTTPHeaderField:@"Mobile-Client"];
-            [webView loadRequest:newRequest];
             return NO;
         }
     }
-     */
     
 	return shouldStart;
 }

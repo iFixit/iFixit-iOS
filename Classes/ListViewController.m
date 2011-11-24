@@ -51,8 +51,9 @@
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         int diff = 20 + 44;
-        // Adjust for iFixit's tab bar.
-        if (![Config currentConfig].dozuki)
+        // Adjust for the tab bar.
+        iFixitAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        if (appDelegate.showsTabBar)
             diff += 49;
         toolbar.frame = CGRectMake(0, 768 - diff, 320, 44);
     }

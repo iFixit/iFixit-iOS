@@ -404,6 +404,7 @@
     
     if (!rWebView) {
         rWebView = [[GuideCatchingWebView alloc] initWithFrame:self.view.bounds];
+        rWebView.linksOpenInSameWindow = YES;
         rWebView.modalDelegate = self;
         rWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin;
         rWebView.delegate = self;

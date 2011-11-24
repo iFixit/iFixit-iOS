@@ -7,12 +7,12 @@ html, body {
 }
 
 a, a:visited {
-   color: #aaf;
+   color: #2AA3D8;
 }
 
 body {
    margin-right: 20px;
-   margin-top: -20px;
+   margin-top: -15px;
 }
 
 body.small {

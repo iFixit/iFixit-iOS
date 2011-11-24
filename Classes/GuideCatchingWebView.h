@@ -12,5 +12,6 @@
 @property (nonatomic, retain) NSNumberFormatter *formatter;
 @property (nonatomic, retain) NSURL *externalURL;
 @property (nonatomic, assign) UIViewController *modalDelegate;
+@property (nonatomic) BOOL linksOpenInSameWindow;
 
 @end

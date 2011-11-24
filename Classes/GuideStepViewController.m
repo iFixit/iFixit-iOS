@@ -8,6 +8,7 @@
 
 #import "GuideStepViewController.h"
 #import "GuideImageViewController.h"
+#import "GuideCatchingWebView.h"
 #import "GuideStep.h"
 #import "GuideImage.h"
 #import "Config.h"
@@ -60,6 +61,7 @@
     UIColor *bgColor = [UIColor clearColor];
     
     self.view.backgroundColor = bgColor;
+    webView.modalDelegate = delegate;
 	webView.backgroundColor = bgColor;    
     webView.opaque = NO;
 
@@ -139,19 +141,6 @@
 
     // Switch to the new image, but delay the spinner for a short time.
     [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
-}
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-
-    if (navigationType != UIWebViewNavigationTypeLinkClicked)
-       return YES;
-   
-    // Load all URLs in popup browser.
-    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:[[request URL] absoluteString]];
-    [self.delegate presentModalViewController:webViewController animated:YES];   
-    [webViewController release];
-    
-    return NO;
 }
 
 // Because the web view has a white background, it starts hidden.

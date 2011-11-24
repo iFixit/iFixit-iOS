@@ -7,6 +7,7 @@
 //
 
 #import "GuideIntroViewController.h"
+#import "GuideCatchingWebView.h"
 #import "Guide.h"
 #import "UIImageView+WebCache.h"
 #import "Config.h"
@@ -14,8 +15,10 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation GuideIntroViewController
+@synthesize headerTextDozuki;
 
 @synthesize delegate, headerImageIFixit, headerImageMake, swipeLabel;
+@synthesize overlayView;
 @synthesize guide=_guide;
 @synthesize device, mainImage, webView, huge, html;
 
@@ -56,24 +59,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    swipeLabel.font = [UIFont fontWithName:@"Ubuntu-BoldItalic" size:48.0];
 
     // Set the appropriate header image.
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
             headerImageMake.hidden = NO;
-            swipeLabel.textColor = [UIColor redColor];
         }
         else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
             headerImageIFixit.hidden = NO;
         }
-        // If this is a Dozuki site, we have no logo, so move the intro up to fill the space.
         else {
-            CGRect frame = self.webView.frame;
-            frame.origin.y -= 80.0;
-            frame.size.height += 80.0;
-            self.webView.frame = frame;
+            headerTextDozuki.font = [UIFont fontWithName:@"Lobster" size:75.0];
+            headerTextDozuki.text = [[Config currentConfig].siteData valueForKey:@"title"];
+            headerTextDozuki.hidden = NO;
         }
     }
     
@@ -82,15 +80,21 @@
         swipeLabel.hidden = YES;
     
     UIColor *bgColor = [UIColor clearColor];
+    
+    if ([[Config currentConfig].backgroundColor isEqual:[UIColor whiteColor]]) {
+        overlayView.backgroundColor = [UIColor whiteColor];
+        overlayView.alpha = 0.3;
+    }
 
     self.view.backgroundColor = bgColor;
+    webView.modalDelegate = delegate;
 	webView.backgroundColor = bgColor;
     webView.opaque = NO;
 	
 	// Load the intro contents as HTML.
 	NSString *header = [NSString stringWithFormat:@"<html><head><style type=\"text/css\"> %@ </style></head><body class=\"%@\">",
                         [Config currentConfig].introCSS,
-                        (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"big" : @"small"];
+                        ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? @"big" : @"small"];
 	NSString *footer = @"</body></html>";
 
 	NSString *body = self.guide.introduction_rendered;
@@ -107,18 +111,6 @@
     [self addViewShadow:mainImage];
 
     [mainImage setImageWithURL:[self.guide.image URLForSize:@"standard"] placeholderImage:nil];
-}
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    if (navigationType != UIWebViewNavigationTypeLinkClicked)
-       return YES;
-   
-    // Load all URLs in popup browser.
-    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:[[request URL] absoluteString]];
-    [self.delegate presentModalViewController:webViewController animated:YES];   
-    [webViewController release];
-    
-    return NO;
 }
 
 // Because the web view has a white background, it starts hidden.
@@ -144,8 +136,8 @@
 - (void)layoutLandscape {
     // iPad
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        swipeLabel.frame = CGRectMake(617.0, 588.0, 387.0, 65.0);
-        webView.frame = CGRectMake(20.0, 160.0, 984.0, 420.0);
+        swipeLabel.frame = CGRectMake(600.0, 563.0, 375.0, 84.0);
+        webView.frame = CGRectMake(20.0, 160.0, 984.0, 395.0);
     }
     // iPhone
     else {
@@ -157,8 +149,8 @@
 - (void)layoutPortrait {
     // iPad
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        swipeLabel.frame = CGRectMake(360.0, 800.0, 387.0, 65.0);
-        webView.frame = CGRectMake(20.0, 160.0, 728.0, 640.0);
+        swipeLabel.frame = CGRectMake(340.0, 790.0, 375.0, 84.0);
+        webView.frame = CGRectMake(20.0, 160.0, 728.0, 605.0);
     }
     // iPhone
     else {
@@ -189,6 +181,8 @@
 
 
 - (void)viewDidUnload {
+    [self setOverlayView:nil];
+    [self setHeaderTextDozuki:nil];
     [super viewDidUnload];
     self.headerImageIFixit = nil;
     self.headerImageMake = nil;
@@ -215,6 +209,8 @@
     [mainImage release];
     [webView release];
     
+    [overlayView release];
+    [headerTextDozuki release];
     [super dealloc];
 }
 

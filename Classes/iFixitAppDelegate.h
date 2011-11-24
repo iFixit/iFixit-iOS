@@ -24,6 +24,7 @@
 
 @property (nonatomic, retain) iFixitAPI *api;
 @property (nonatomic) BOOL firstLoad;
+@property (nonatomic) BOOL showsTabBar;
 
 - (void)showDozukiSplash;
 - (void)showSiteSplash;

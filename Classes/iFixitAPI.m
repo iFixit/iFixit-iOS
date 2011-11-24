@@ -218,6 +218,8 @@ static int volatile openConnections = 0;
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/0.1/login", [Config host]];	
 
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    if ([Config currentConfig].dozuki && [Config currentConfig].site != ConfigMake && [Config currentConfig].site != ConfigIFixit)
+        [request setValidatesSecureCertificate:NO];
     [request setRequestMethod:@"POST"];
     [request setPostValue:login forKey:@"login"];
     [request setPostValue:password forKey:@"password"];
@@ -238,15 +240,17 @@ static int volatile openConnections = 0;
 - (void)registerWithLogin:(NSString *)login andPassword:(NSString *)password andName:(NSString *)name forObject:(id)object withSelector:(SEL)selector {
     [TestFlight passCheckpoint:@"Register"];
 
-    NSString *url =	[NSString stringWithFormat:@"https://%@/api/0.1/register", [Config host]];	
+    NSString *url =	[NSString stringWithFormat:@"https://%@/api/0.1/register", [Config currentConfig].host];	
     
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];    
+    if ([Config currentConfig].dozuki && [Config currentConfig].site != ConfigMake && [Config currentConfig].site != ConfigIFixit)
+        [request setValidatesSecureCertificate:NO];
     [request setRequestMethod:@"POST"];
     [request setPostValue:login forKey:@"login"];
     [request setPostValue:password forKey:@"password"];
     [request setPostValue:name forKey:@"username"];
     
-    [request setCompletionBlock:^{
+    [request setCompletionBlock:^{        
         NSDictionary *results = [[request responseString] JSONValue];
         [self checkLogin:results];
         [object performSelector:selector withObject:results];

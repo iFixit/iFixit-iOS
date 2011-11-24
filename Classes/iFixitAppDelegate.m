@@ -35,7 +35,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 @implementation iFixitAppDelegate
 
 @synthesize window, splitViewController, areasViewController, detailViewController;
-@synthesize api, firstLoad;
+@synthesize api, firstLoad, showsTabBar;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -136,6 +136,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 }
 
 - (UIViewController *)iPadRoot {
+    self.showsTabBar = [Config currentConfig].collectionsEnabled || [Config currentConfig].store;
+    
     // Create the split controller children.
     AreasViewController *rvc = [[AreasViewController alloc] init];
     self.areasViewController = rvc;
@@ -158,8 +160,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     areasViewController.delegate = self;
     
-    // Dozuki ends here, but iFixit gets a fancy tab bar at the bottom.
-    if (![Config currentConfig].collectionsEnabled && ![Config currentConfig].store)
+    // Stop here, or put a fancy tab bar at the bottom.
+    if (!self.showsTabBar)
         return splitViewController;
     
     // Initialize the tab bar items.
@@ -228,9 +230,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 - (void)loadSite:(NSDictionary *)site {
     NSString *domain = [site valueForKey:@"domain"];
-    NSString *colorHex = [site valueForKey:@"color"];
-    UIColor *color = [UIColor colorFromHexString:colorHex];
-    
+    //NSString *colorHex = [site valueForKey:@"color"];
+    //UIColor *color = [UIColor colorFromHexString:colorHex];
+
     // Load the right site
     if ([domain isEqual:@"www.ifixit.com"]) {
         [[Config currentConfig] setSite:ConfigIFixit];
@@ -246,8 +248,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [Config currentConfig].host = domain;
         [Config currentConfig].baseURL = [NSString stringWithFormat:@"http://%@/Guide", domain];
         
-        if (color)
-            [Config currentConfig].toolbarColor = color;
+        //if (color)
+        //    [Config currentConfig].toolbarColor = color;
     }
     
     // Enable/disable Answers and/or Collections

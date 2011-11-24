@@ -12,6 +12,7 @@
 #import "GuideCell.h"
 #import "UIImageView+WebCache.h"
 #import "iFixitAppDelegate.h"
+#import "DetailViewController.h"
 #import "GuideViewController.h"
 #import "Config.h"
 
@@ -228,9 +229,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger guideid = [[[self.guides objectAtIndex:indexPath.row] valueForKey:@"guideid"] intValue];
-    
+
+    iFixitAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate.detailViewController.popoverController dismissPopoverAnimated:YES];
+
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
-    [self presentModalViewController:vc animated:YES];
+    [appDelegate.window.rootViewController presentModalViewController:vc animated:YES];
     [vc release];
 
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];

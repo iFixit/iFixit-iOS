@@ -7,18 +7,21 @@
 //
 
 @class Guide;
+@class GuideCatchingWebView;
 
 @interface GuideIntroViewController : UIViewController <UIWebViewDelegate>
 
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) IBOutlet UIImageView *headerImageIFixit;
 @property (nonatomic, retain) IBOutlet UIImageView *headerImageMake;
-@property (nonatomic, retain) IBOutlet UILabel *swipeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *headerTextDozuki;
+@property (nonatomic, retain) IBOutlet UIImageView *swipeLabel;
+@property (retain, nonatomic) IBOutlet UIView *overlayView;
 
 @property (nonatomic, retain) Guide *guide;
 @property (nonatomic, retain) IBOutlet UILabel *device;
 @property (nonatomic, retain) IBOutlet UIImageView *mainImage;
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (nonatomic, retain) IBOutlet GuideCatchingWebView *webView;
 @property (nonatomic, retain) UIImage *huge;
 @property (nonatomic, retain) NSString *html;
 

@@ -7,6 +7,7 @@
 //
 
 @class GuideStep;
+@class GuideCatchingWebView;
 
 @interface GuideStepViewController : UIViewController <UIWebViewDelegate>
 
@@ -14,7 +15,7 @@
 @property (nonatomic, retain) GuideStep *step;
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property (nonatomic, retain) IBOutlet UIButton *mainImage;
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (nonatomic, retain) IBOutlet GuideCatchingWebView *webView;
 
 @property (nonatomic, retain) IBOutlet UIButton *image1;
 @property (nonatomic, retain) IBOutlet UIButton *image2;

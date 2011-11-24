@@ -382,6 +382,9 @@
     [self.view endEditing:YES];
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (searching && ![searchResults count])
+        return;
+    
     int base = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad &&
         ![self.title isEqual:@"Categories"] ? 0 : 1;
     

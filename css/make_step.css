@@ -5,16 +5,18 @@ html, body {
    margin: 0;
 }
 
-body.small {
-   font-size: 0.8em;
-}
-
 a, a:visited {
-   color: #33a;
+   color: #2AA3D8;
 }
 
 body {
    margin-right: 20px;
+   margin-top: -15px;
+}
+
+body.small {
+   font-size: 0.8em;
+   margin-top: 0px;
 }
 
 ul {
