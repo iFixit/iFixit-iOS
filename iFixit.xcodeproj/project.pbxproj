@@ -1341,7 +1341,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B9A9CAAC-5BB7-45DF-9098-F1D1BA47D27D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C99256FC-6705-4BE3-8F22-7D5AD659AC89";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";

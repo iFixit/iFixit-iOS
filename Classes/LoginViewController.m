@@ -231,14 +231,12 @@
 
 - (void)tapGoogle {
     OpenIDViewController *vc = [OpenIDViewController viewControllerForHost:@"google" delegate:delegate];
-    UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [rootViewController presentModalViewController:vc animated:YES];
+    [delegate presentModalViewController:vc animated:YES];
 }
 
 - (void)tapYahoo {
     OpenIDViewController *vc = [OpenIDViewController viewControllerForHost:@"yahoo" delegate:delegate];
-    UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [rootViewController presentModalViewController:vc animated:YES];
+    [delegate presentModalViewController:vc animated:YES];
 }
 
 - (void)toggleRegister {

@@ -185,6 +185,11 @@
     [bookmarkedLabel release];
 }
 
+- (void)presentModalViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    [delegate presentModalViewController:viewController animated:animated];
+    [poc dismissPopoverAnimated:YES];
+}
+
 - (void)dealloc
 {
     self.navItem = nil;
