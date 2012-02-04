@@ -205,7 +205,7 @@
     [gb addTarget:self action:@selector(tapGoogle) forControlEvents:UIControlEventTouchUpInside];
 
     // Yahoo
-    UIButton *yb = [[UIButton alloc] initWithFrame:CGRectMake(165, 110, 140, 50)];
+    UIButton *yb = [[UIButton alloc] initWithFrame:CGRectMake(165, 110, 143, 50)];
     [yb setBackgroundImage:[UIImage imageNamed:@"login-yahoo.png"] forState:UIControlStateNormal];
     yb.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     [yb addTarget:self action:@selector(tapYahoo) forControlEvents:UIControlEventTouchUpInside];
