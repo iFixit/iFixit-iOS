@@ -45,6 +45,10 @@
 		DA0A0C07138B023C0027721E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C06138B023C0027721E /* MobileCoreServices.framework */; };
 		DA0A0C16138B07DA0027721E /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C15138B07DA0027721E /* libxml2.2.dylib */; };
 		DA1977221473009A00CD6305 /* DetailGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1977211473009A00CD6305 /* DetailGridViewController.m */; };
+		DA23783714DDCD96000AAA53 /* login-google@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA23783514DDCD96000AAA53 /* login-google@2x.png */; };
+		DA23783814DDCD96000AAA53 /* login-yahoo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA23783614DDCD96000AAA53 /* login-yahoo@2x.png */; };
+		DA23783B14DDCE06000AAA53 /* login-google.png in Resources */ = {isa = PBXBuildFile; fileRef = DA23783914DDCE06000AAA53 /* login-google.png */; };
+		DA23783C14DDCE06000AAA53 /* login-yahoo.png in Resources */ = {isa = PBXBuildFile; fileRef = DA23783A14DDCE06000AAA53 /* login-yahoo.png */; };
 		DA2F767012FB87D900683D33 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2F766F12FB87D900683D33 /* Config.m */; };
 		DA35628B1476EDDD00683947 /* detailViewFist.png in Resources */ = {isa = PBXBuildFile; fileRef = DA35628A1476EDDD00683947 /* detailViewFist.png */; };
 		DA3562991476F65200683947 /* DetailIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3562971476F65200683947 /* DetailIntroViewController.m */; };
@@ -75,7 +79,7 @@
 		DA59296F13FB28B600504CD3 /* DozukiInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA59296D13FB28B600504CD3 /* DozukiInfoViewController.m */; };
 		DA59297013FB28B600504CD3 /* DozukiInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA59296E13FB28B600504CD3 /* DozukiInfoView.xib */; };
 		DA59297413FB2ED800504CD3 /* DozukiSelectSiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA59297213FB2ED800504CD3 /* DozukiSelectSiteViewController.m */; };
-		DA59297513FB2ED800504CD3 /* DozukiSelectSiteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA59297313FB2ED800504CD3 /* DozukiSelectSiteView.xib */; };
+		DA59297513FB2ED800504CD3 /* DozukiSelectSiteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA59297313FB2ED800504CD3 /* DozukiSelectSiteViewController.xib */; };
 		DA61C52513380E4C000028C3 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C50E13380E4C000028C3 /* back.png */; };
 		DA61C52613380E4C000028C3 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C50F13380E4C000028C3 /* back@2x.png */; };
 		DA61C52813380E4C000028C3 /* browse_manuals.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C51113380E4C000028C3 /* browse_manuals.png */; };
@@ -159,6 +163,7 @@
 		DAC0C1A7146B49AA00EF42DC /* Lobster.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAC0C1A6146B49AA00EF42DC /* Lobster.ttf */; };
 		DAC26873140842B300752982 /* backtosites.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC26871140842B300752982 /* backtosites.png */; };
 		DAC26874140842B300752982 /* backtosites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC26872140842B300752982 /* backtosites@2x.png */; };
+		DACD8FD714DDD7B80020A06C /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DACD8FD614DDD7B80020A06C /* OpenIDViewController.m */; };
 		DACE44381353B87E00F78360 /* x-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DACE44361353B87E00F78360 /* x-icon.png */; };
 		DACE44391353B87E00F78360 /* x-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DACE44371353B87E00F78360 /* x-icon@2x.png */; };
 		DACE44711353CE3700F78360 /* ifixit_intro.css in Resources */ = {isa = PBXBuildFile; fileRef = DACE446D1353CE3700F78360 /* ifixit_intro.css */; };
@@ -244,6 +249,10 @@
 		DA0A0C15138B07DA0027721E /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		DA1977201473009A00CD6305 /* DetailGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailGridViewController.h; sourceTree = "<group>"; };
 		DA1977211473009A00CD6305 /* DetailGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailGridViewController.m; sourceTree = "<group>"; };
+		DA23783514DDCD96000AAA53 /* login-google@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-google@2x.png"; path = "Graphics/login-google@2x.png"; sourceTree = "<group>"; };
+		DA23783614DDCD96000AAA53 /* login-yahoo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-yahoo@2x.png"; path = "Graphics/login-yahoo@2x.png"; sourceTree = "<group>"; };
+		DA23783914DDCE06000AAA53 /* login-google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-google.png"; path = "Graphics/login-google.png"; sourceTree = "<group>"; };
+		DA23783A14DDCE06000AAA53 /* login-yahoo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-yahoo.png"; path = "Graphics/login-yahoo.png"; sourceTree = "<group>"; };
 		DA2F766E12FB87D900683D33 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		DA2F766F12FB87D900683D33 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		DA35628A1476EDDD00683947 /* detailViewFist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = detailViewFist.png; path = Graphics/detailViewFist.png; sourceTree = "<group>"; };
@@ -291,7 +300,7 @@
 		DA59296E13FB28B600504CD3 /* DozukiInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DozukiInfoView.xib; sourceTree = "<group>"; };
 		DA59297113FB2ED800504CD3 /* DozukiSelectSiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DozukiSelectSiteViewController.h; sourceTree = "<group>"; };
 		DA59297213FB2ED800504CD3 /* DozukiSelectSiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DozukiSelectSiteViewController.m; sourceTree = "<group>"; };
-		DA59297313FB2ED800504CD3 /* DozukiSelectSiteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DozukiSelectSiteView.xib; sourceTree = "<group>"; };
+		DA59297313FB2ED800504CD3 /* DozukiSelectSiteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DozukiSelectSiteViewController.xib; sourceTree = "<group>"; };
 		DA61C50E13380E4C000028C3 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Graphics/back.png; sourceTree = "<group>"; };
 		DA61C50F13380E4C000028C3 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back@2x.png"; path = "Graphics/back@2x.png"; sourceTree = "<group>"; };
 		DA61C51113380E4C000028C3 /* browse_manuals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = browse_manuals.png; path = Graphics/browse_manuals.png; sourceTree = "<group>"; };
@@ -404,6 +413,8 @@
 		DAC0C1A6146B49AA00EF42DC /* Lobster.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lobster.ttf; sourceTree = "<group>"; };
 		DAC26871140842B300752982 /* backtosites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backtosites.png; path = Graphics/backtosites.png; sourceTree = "<group>"; };
 		DAC26872140842B300752982 /* backtosites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backtosites@2x.png"; path = "Graphics/backtosites@2x.png"; sourceTree = "<group>"; };
+		DACD8FD514DDD7B80020A06C /* OpenIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDViewController.h; sourceTree = "<group>"; };
+		DACD8FD614DDD7B80020A06C /* OpenIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDViewController.m; sourceTree = "<group>"; };
 		DACE44361353B87E00F78360 /* x-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "x-icon.png"; path = "Graphics/x-icon.png"; sourceTree = "<group>"; };
 		DACE44371353B87E00F78360 /* x-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "x-icon@2x.png"; path = "Graphics/x-icon@2x.png"; sourceTree = "<group>"; };
 		DACE446D1353CE3700F78360 /* ifixit_intro.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ifixit_intro.css; sourceTree = "<group>"; };
@@ -466,12 +477,10 @@
 				DA59293413FB250800504CD3 /* Dozuki */,
 				DAF3AF511422881B00913238 /* Navigation */,
 				DAAED15B146870E800C476C1 /* Featured Collections */,
+				DACD8FD414DDD7970020A06C /* Login */,
 				DA881854134A5AFE004387CE /* BookmarksViewController.h */,
 				DA881855134A5AFE004387CE /* BookmarksViewController.m */,
 				DA881856134A5AFE004387CE /* BookmarksView.xib */,
-				DAB93438137228AD00B6AA9A /* LoginViewController.h */,
-				DAB93439137228AD00B6AA9A /* LoginViewController.m */,
-				DAD77267138EAC4F00D107B8 /* LoginViewControllerDelegate.h */,
 				28042009108E984D000629CD /* DetailViewController.h */,
 				2804200A108E984D000629CD /* DetailViewController.m */,
 				DAAAC74C1433F49100CB90AF /* DetailViewController.xib */,
@@ -610,6 +619,10 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DA23783914DDCE06000AAA53 /* login-google.png */,
+				DA23783A14DDCE06000AAA53 /* login-yahoo.png */,
+				DA23783514DDCD96000AAA53 /* login-google@2x.png */,
+				DA23783614DDCD96000AAA53 /* login-yahoo@2x.png */,
 				DA6303AF147DDE03006D8A2B /* guideIntroOverlay.png */,
 				DA6303AB147DD38B006D8A2B /* swipeToBegin.png */,
 				DA6303A9147D712B006D8A2B /* tabBarItemPricetag.png */,
@@ -755,7 +768,7 @@
 				DA59296E13FB28B600504CD3 /* DozukiInfoView.xib */,
 				DA59297113FB2ED800504CD3 /* DozukiSelectSiteViewController.h */,
 				DA59297213FB2ED800504CD3 /* DozukiSelectSiteViewController.m */,
-				DA59297313FB2ED800504CD3 /* DozukiSelectSiteView.xib */,
+				DA59297313FB2ED800504CD3 /* DozukiSelectSiteViewController.xib */,
 			);
 			name = Dozuki;
 			sourceTree = "<group>";
@@ -896,6 +909,18 @@
 				DAF5750B142045130083B583 /* TestFlight */,
 			);
 			name = Packages;
+			sourceTree = "<group>";
+		};
+		DACD8FD414DDD7970020A06C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DAB93438137228AD00B6AA9A /* LoginViewController.h */,
+				DAB93439137228AD00B6AA9A /* LoginViewController.m */,
+				DAD77267138EAC4F00D107B8 /* LoginViewControllerDelegate.h */,
+				DACD8FD514DDD7B80020A06C /* OpenIDViewController.h */,
+				DACD8FD614DDD7B80020A06C /* OpenIDViewController.m */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		DACE446C1353CE3700F78360 /* css */ = {
@@ -1039,7 +1064,7 @@
 				DABE9CF913C5535200B778FE /* GuideStepView.xib in Resources */,
 				DA59293913FB253B00504CD3 /* DozukiSplashView~ipad.xib in Resources */,
 				DA59297013FB28B600504CD3 /* DozukiInfoView.xib in Resources */,
-				DA59297513FB2ED800504CD3 /* DozukiSelectSiteView.xib in Resources */,
+				DA59297513FB2ED800504CD3 /* DozukiSelectSiteViewController.xib in Resources */,
 				DAC26873140842B300752982 /* backtosites.png in Resources */,
 				DAC26874140842B300752982 /* backtosites@2x.png in Resources */,
 				DAF3AF581422897900913238 /* iPhoneDeviceView.xib in Resources */,
@@ -1094,6 +1119,10 @@
 				DA6303AA147D712B006D8A2B /* tabBarItemPricetag.png in Resources */,
 				DA6303AC147DD38B006D8A2B /* swipeToBegin.png in Resources */,
 				DA6303B0147DDE03006D8A2B /* guideIntroOverlay.png in Resources */,
+				DA23783714DDCD96000AAA53 /* login-google@2x.png in Resources */,
+				DA23783814DDCD96000AAA53 /* login-yahoo@2x.png in Resources */,
+				DA23783B14DDCE06000AAA53 /* login-google.png in Resources */,
+				DA23783C14DDCE06000AAA53 /* login-yahoo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1165,6 +1194,7 @@
 				DA8F60071469B29700482D29 /* DMPGridViewController.m in Sources */,
 				DA1977221473009A00CD6305 /* DetailGridViewController.m in Sources */,
 				DA3562991476F65200683947 /* DetailIntroViewController.m in Sources */,
+				DACD8FD714DDD7B80020A06C /* OpenIDViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1175,9 +1205,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Patierno (W7L35YGZ69)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Patierno (2V46BN5L82)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1193,7 +1226,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8081545A-70C0-470B-B9AE-0B055086A910";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B4D86C90-C845-4EC2-998A-A961B516DEA7";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1202,7 +1235,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit";
 				COPY_PHASE_STRIP = YES;
@@ -1284,7 +1320,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit";
 				COPY_PHASE_STRIP = NO;
@@ -1302,7 +1341,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C99256FC-6705-4BE3-8F22-7D5AD659AC89";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B9A9CAAC-5BB7-45DF-9098-F1D1BA47D27D";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";

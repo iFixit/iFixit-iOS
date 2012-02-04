@@ -19,7 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.dssvc = [[[DozukiSelectSiteViewController alloc] initWithNibName:@"DozukiSelectSiteView" bundle:nil] autorelease];
+        self.dssvc = [[[DozukiSelectSiteViewController alloc] initWithSimple:YES] autorelease];
         self.title = @"Back";
     }
     return self;
@@ -27,14 +27,6 @@
 
 - (void)showList {
     [self.navigationController pushViewController:dssvc animated:NO];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle

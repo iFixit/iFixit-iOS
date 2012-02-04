@@ -8,6 +8,7 @@
 
 #import "DozukiSplashViewController.h"
 #import "DozukiInfoViewController.h"
+#import "DozukiSelectSiteViewController.h"
 #import "iFixitAppDelegate.h"
 
 @implementation DozukiSplashViewController
@@ -96,7 +97,7 @@
       willShowViewController:(UIViewController *)viewController
                     animated:(BOOL)animated {
     
-    if (!showingList)
+    if ([viewController class] == [DozukiSelectSiteViewController class])
         return;
     
     [self dismissModalViewControllerAnimated:YES];

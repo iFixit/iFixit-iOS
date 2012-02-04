@@ -11,12 +11,13 @@
 #import "iFixitAPI.h"
 #import "BookmarksViewController.h"
 #import "Config.h"
+#import "OpenIDViewController.h"
 
 @implementation LoginViewController
 
 @synthesize delegate, message, loading, showRegister;
 @synthesize emailField, passwordField, passwordVerifyField, fullNameField;
-@synthesize loginButton, registerButton, cancelButton;
+@synthesize loginButton, registerButton, cancelButton, googleButton, yahooButton;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -115,6 +116,8 @@
     [loginButton release];
     [registerButton release];
     [cancelButton release];
+    [googleButton release];
+    [yahooButton release];
     
     [super dealloc];
 }
@@ -157,7 +160,7 @@
 }
 
 - (UIView *)createActionButtons {
-    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 140)];
+    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
     
     // Login
     UIButton *lb = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 300, 45)];
@@ -167,7 +170,8 @@
     lb.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
     
     [lb setTitle:@"Login" forState:UIControlStateNormal];
-    [lb setBackgroundImage:[UIImage imageNamed:@"login.png"] forState:UIControlStateNormal];
+    [lb setBackgroundImage:[[UIImage imageNamed:@"login.png"] stretchableImageWithLeftCapWidth:150 topCapHeight:22] forState:UIControlStateNormal];
+    [lb setContentMode:UIViewContentModeScaleToFill];
     [lb addTarget:self action:@selector(sendLogin) forControlEvents:UIControlEventTouchUpInside];
     
     // Register
@@ -178,7 +182,8 @@
     rb.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
     
     [rb setTitle:@"Create an Account" forState:UIControlStateNormal];
-    [rb setBackgroundImage:[UIImage imageNamed:@"register.png"] forState:UIControlStateNormal];
+    [rb setBackgroundImage:[[UIImage imageNamed:@"register.png"] stretchableImageWithLeftCapWidth:150 topCapHeight:22] forState:UIControlStateNormal];
+    [lb setContentMode:UIViewContentModeScaleToFill];
     [rb addTarget:self action:@selector(toggleRegister) forControlEvents:UIControlEventTouchUpInside];
     
     // Cancel
@@ -192,18 +197,48 @@
     [cb setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cb addTarget:self action:@selector(toggleRegister) forControlEvents:UIControlEventTouchUpInside];
     cb.alpha = 0.0;
-    
+
+    // Google
+    UIButton *gb = [[UIButton alloc] initWithFrame:CGRectMake(10, 110, 140, 50)];
+    [gb setBackgroundImage:[UIImage imageNamed:@"login-google.png"] forState:UIControlStateNormal];
+    gb.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+    [gb addTarget:self action:@selector(tapGoogle) forControlEvents:UIControlEventTouchUpInside];
+
+    // Yahoo
+    UIButton *yb = [[UIButton alloc] initWithFrame:CGRectMake(165, 110, 140, 50)];
+    [yb setBackgroundImage:[UIImage imageNamed:@"login-yahoo.png"] forState:UIControlStateNormal];
+    yb.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    [yb addTarget:self action:@selector(tapYahoo) forControlEvents:UIControlEventTouchUpInside];
+
     self.loginButton = lb;
     self.registerButton = rb;
     self.cancelButton = cb;
+    self.googleButton = gb;
+    self.yahooButton = yb;
     [lb release];
     [rb release];
     [cb release];
+    [gb release];
+    [yb release];
     
     [container addSubview:loginButton];
     [container addSubview:registerButton];
     [container addSubview:cancelButton];
+    [container addSubview:googleButton];
+    [container addSubview:yahooButton];
     return [container autorelease];
+}
+
+- (void)tapGoogle {
+    OpenIDViewController *vc = [OpenIDViewController viewControllerForHost:@"google" delegate:delegate];
+    UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    [rootViewController presentModalViewController:vc animated:YES];
+}
+
+- (void)tapYahoo {
+    OpenIDViewController *vc = [OpenIDViewController viewControllerForHost:@"yahoo" delegate:delegate];
+    UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    [rootViewController presentModalViewController:vc animated:YES];
 }
 
 - (void)toggleRegister {
@@ -220,6 +255,8 @@
         
         // Hide login
         loginButton.alpha = 0.0;
+        googleButton.alpha = 0.0;
+        yahooButton.alpha = 0.0;
         
         // Move Register up, change text, and change target
         CGRect frame = registerButton.frame;
@@ -241,7 +278,9 @@
         
         // Show Login
         loginButton.alpha = 1.0;
-        
+        googleButton.alpha = 1.0;
+        yahooButton.alpha = 1.0;
+
         // Move Register down, change text, and change target
         CGRect frame = registerButton.frame;
         frame.origin.y = 55;

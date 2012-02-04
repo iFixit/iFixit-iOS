@@ -12,39 +12,45 @@
 #import "iFixitAPI.h"
 #import "UIColor+Hex.h"
 
-#define SITES_REQUEST_LIMIT 25
+#define SITES_REQUEST_LIMIT 500
+
+static NSMutableArray *sites = nil;
+static NSMutableArray *prioritySites = nil;
+
+// Dismiss the keyboard when searchBar resigns first responder.
+@implementation UIViewController (DismissKeyboard)
+- (BOOL)disablesAutomaticKeyboardDismissal { return NO; }
+@end
 
 @implementation DozukiSelectSiteViewController
 
-@synthesize sites;
+@synthesize searchBar, searchResults;
+@synthesize simple;
 
 - (void)loadMore {
     if (!loading) {
         loading = YES;
         [self showLoading];
-        [[iFixitAPI sharedInstance] getSitesWithLimit:SITES_REQUEST_LIMIT andOffset:[sites count] forObject:self withSelector:@selector(gotSites:)];
+        [[iFixitAPI sharedInstance] getSitesWithLimit:SITES_REQUEST_LIMIT
+                                            andOffset:[sites count]
+                                            forObject:self
+                                         withSelector:@selector(gotSites:)];
     }
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+- (id)initWithSimple:(BOOL)simple_ {
+    if ((self = [super initWithNibName:nil bundle:nil])) {
         // Custom initialization
-        self.sites = [NSMutableArray array];
+        if (!sites) {
+            sites = [[NSMutableArray array] retain];
+            prioritySites = [[NSMutableArray array] retain];
+        }
         hasMoreSites = YES;
+        simple = simple_;
         self.title = @"Choose a Site";
         [self loadMore];
     }
     return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 - (void)showLoading {
@@ -76,16 +82,29 @@
 
         // Insert these new rows at the bottom.
         NSMutableArray *paths = [NSMutableArray array];
-        for (int i=0; i<[theSites count]; i++)
+        for (int i=0; i<[theSites count]; i++) {
             [paths addObject:[NSIndexPath indexPathForRow:(i + count) inSection:0]];
+            
+            // Check for priority sites and separate them off
+            NSDictionary *site = [theSites objectAtIndex:i];
+            if ([site objectForKey:@"priority"]) {
+                [prioritySites addObject:site];
+            }
+        }
         
-        [sites addObjectsFromArray:theSites];
+        // Populate the non-priority sites list.
+        for (NSDictionary *site in theSites) {
+            if (![site objectForKey:@"priority"])
+                [sites addObject:site];
+        }
+
         [self.tableView reloadData];
-        // I don't like this animation.
-        // [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     else {
         hasMoreSites = NO;
+        if ([sites count])
+            return;
+        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not load site list"
                                                         message:@"Please check your internet connection and try again."
                                                        delegate:self
@@ -107,40 +126,109 @@
         [self loadMore];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Add the search bar
+    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 36.0)];
+    searchBar.placeholder = @"Search";
+    searchBar.delegate = self;
+    self.tableView.tableHeaderView = searchBar;
+    searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     
+    // Update loading display status.
     if (loading)
         [self showLoading];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];  
+    
+    // Animate the table up.
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        [UIView beginAnimations:@"showSearch" context:nil];
+        [UIView setAnimationDuration:0.3];
+        CGRect bounds = self.navigationController.view.bounds;
+        bounds.origin.y = 44;
+        self.navigationController.view.bounds = bounds;
+        [UIView commitAnimations];
+    }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+- (void)searchBarTextDidEndEditing:(UISearchBar *)theSearchBar {
+    if ([theSearchBar.text isEqual:@""]) {
+        searching = NO;
+        noResults = NO;
+        [self.tableView reloadData];
+    }
+    
+    [searchBar setShowsCancelButton:NO animated:YES];    
+    
+    // Animate the table back down.
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        [UIView beginAnimations:@"showSearch" context:nil];
+        [UIView setAnimationDuration:0.3];
+        CGRect bounds = self.navigationController.view.bounds;
+        bounds.origin.y = 0;
+        self.navigationController.view.bounds = bounds;
+        [UIView commitAnimations];  
+    }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if ([searchText isEqual:@""]) {
+        searching = NO;
+        noResults = NO;
+        [self.tableView reloadData];    
+        self.searchResults = [NSArray array];
+        return;
+    }
+    
+    if (!searching) {
+        searching = YES;
+        [self.tableView reloadData];    
+    }
+
+    // Do the search in-memory.
+    self.searchResults = [NSMutableArray array];
+    NSMutableArray *combinedSites = [NSMutableArray arrayWithArray:prioritySites];
+    [combinedSites addObjectsFromArray:sites];
+    
+    for (NSDictionary *site in combinedSites) {
+        NSRange range = [[site objectForKey:@"title"] rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        if (range.location != NSNotFound) {
+            [searchResults addObject:site];
+        }
+        else {
+            range = [[site objectForKey:@"description"] rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            if (range.location != NSNotFound) {
+                [searchResults addObject:site];
+            }
+        }
+    }
+
+    noResults = [searchResults count] == 0;
+    
+    [self.tableView reloadData];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
+- (void)searchBarCancelButtonClicked:(UISearchBar *)theSearchBar {
+    searchBar.text = @"";
+    noResults = NO;
+    [self.view endEditing:YES];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
+    [self.view endEditing:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [searchBar setShowsCancelButton:NO animated:NO];
+    CGRect bounds = self.navigationController.view.bounds;
+    bounds.origin.y = 0;
+    self.navigationController.view.bounds = bounds;
+    
+    [self.view endEditing:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -151,11 +239,19 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (searching) {
+        if ([searchResults count])
+            return [searchResults count];
+        else if (noResults)
+            return 1;
+        else 
+            return 0;
+    }
+    
+    if (simple && [prioritySites count])
+        return [prioritySites count] + 1;
+    
     return [sites count];
 }
 
@@ -167,9 +263,32 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    // Configure the cell...
-    cell.textLabel.text = [[sites objectAtIndex:indexPath.row] valueForKey:@"title"];
-    cell.detailTextLabel.text = [[sites objectAtIndex:indexPath.row] valueForKey:@"description"];
+    if (searching) {
+        if ([searchResults count]) {
+            cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"title"];
+            cell.detailTextLabel.text = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"description"];
+        }
+        else {
+            cell.textLabel.text = @"No Results Found";
+            cell.detailTextLabel.text = nil;
+        }
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    else {
+        NSArray *sitesArray = simple ? prioritySites : sites;
+        
+        // Configure the cell...
+        if (simple && indexPath.row == [sitesArray count]) {
+            cell.textLabel.text = @"More Sites...";
+            cell.detailTextLabel.text = nil;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        else {
+            cell.textLabel.text = [[sitesArray objectAtIndex:indexPath.row] valueForKey:@"title"];
+            cell.detailTextLabel.text = [[sitesArray objectAtIndex:indexPath.row] valueForKey:@"description"];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+    }
     
     return cell;
 }
@@ -177,14 +296,31 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (searching && ![searchResults count])
+        return;
+    
+    NSArray *sitesArray = nil;
+    if (searching)
+        sitesArray = searchResults;
+    else if (simple)
+        sitesArray = prioritySites;
+    else
+        sitesArray = sites;
+
     [TestFlight passCheckpoint:@"Dozuki Site Select"];
 
-    NSDictionary *site = [sites objectAtIndex:indexPath.row];
-
-    iFixitAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate loadSite:site];
- 
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (!searching && simple && indexPath.row == [sitesArray count]) {
+        DozukiSelectSiteViewController *vc = [[DozukiSelectSiteViewController alloc] initWithSimple:NO];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc release];
+    }
+    else {
+        NSDictionary *site = [sitesArray objectAtIndex:indexPath.row];
+        
+        iFixitAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        [appDelegate loadSite:site];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -194,8 +330,12 @@
 }
 
 - (void)dealloc {
-    self.sites = nil;
+    [searchBar release];
+    [searchResults release];
     [super dealloc];
 }
-
+- (void)viewDidUnload {
+    [self setSearchBar:nil];
+    [super viewDidUnload];
+}
 @end

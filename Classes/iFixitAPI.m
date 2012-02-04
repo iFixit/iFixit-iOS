@@ -212,6 +212,30 @@ static int volatile openConnections = 0;
     }
 }
 
+- (void)loginWithSessionId:(NSString *)sessionId forObject:(id)object withSelector:(SEL)selector {
+    [TestFlight passCheckpoint:@"OpenID Login"];
+    
+    NSString *url =	[NSString stringWithFormat:@"https://%@/api/0.1/login", [Config host]];	
+    
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    if ([Config currentConfig].dozuki && [Config currentConfig].site != ConfigMake && [Config currentConfig].site != ConfigIFixit)
+        [request setValidatesSecureCertificate:NO];
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:sessionId forKey:@"sessionid"];
+    
+    [request setCompletionBlock:^{
+        NSDictionary *results = [[request responseString] JSONValue];
+        [self checkLogin:results];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
+        [object performSelector:selector withObject:results];
+    }];
+    
+    [request startAsynchronous];
+}
+
 - (void)loginWithLogin:(NSString *)login andPassword:(NSString *)password forObject:(id)object withSelector:(SEL)selector {
     [TestFlight passCheckpoint:@"Login"];
 

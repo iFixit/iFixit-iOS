@@ -24,6 +24,8 @@
 @property (nonatomic, retain) UIButton *loginButton;
 @property (nonatomic, retain) UIButton *registerButton;
 @property (nonatomic, retain) UIButton *cancelButton;
+@property (nonatomic, retain) UIButton *googleButton;
+@property (nonatomic, retain) UIButton *yahooButton;
 
 - (void)showLoading;
 - (void)sendLogin;
