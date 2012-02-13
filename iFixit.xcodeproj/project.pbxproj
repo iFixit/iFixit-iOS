@@ -131,6 +131,9 @@
 		DA9948A4142AC26900E4167D /* dozukiLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A3142AC26900E4167D /* dozukiLogo.png */; };
 		DA9948A6142AC34E00E4167D /* dozukiIntro.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A5142AC34E00E4167D /* dozukiIntro.png */; };
 		DA9948AA142AC55D00E4167D /* DozukiSplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */; };
+		DA99971E14E8546F00EAA4CC /* swipeToBeginiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = DA99971C14E8546F00EAA4CC /* swipeToBeginiPhone.png */; };
+		DA99971F14E8546F00EAA4CC /* swipeToBeginiPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA99971D14E8546F00EAA4CC /* swipeToBeginiPhone@2x.png */; };
+		DA9B290714E88E650093273B /* SSOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9B290614E88E640093273B /* SSOViewController.m */; };
 		DAA10465147C3EEC00DED9DF /* concreteBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA10464147C3EEC00DED9DF /* concreteBackgroundWhite.png */; };
 		DAA750881368DA87002AA546 /* WBFont.mm in Sources */ = {isa = PBXBuildFile; fileRef = DAA750801368DA87002AA546 /* WBFont.mm */; };
 		DAA750891368DA87002AA546 /* WBProgressHUD.mm in Sources */ = {isa = PBXBuildFile; fileRef = DAA750831368DA87002AA546 /* WBProgressHUD.mm */; };
@@ -372,6 +375,10 @@
 		DA9948A3142AC26900E4167D /* dozukiLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiLogo.png; path = Graphics/dozukiLogo.png; sourceTree = "<group>"; };
 		DA9948A5142AC34E00E4167D /* dozukiIntro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiIntro.png; path = Graphics/dozukiIntro.png; sourceTree = "<group>"; };
 		DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DozukiSplashView.xib; sourceTree = "<group>"; };
+		DA99971C14E8546F00EAA4CC /* swipeToBeginiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = swipeToBeginiPhone.png; path = Graphics/swipeToBeginiPhone.png; sourceTree = "<group>"; };
+		DA99971D14E8546F00EAA4CC /* swipeToBeginiPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "swipeToBeginiPhone@2x.png"; path = "Graphics/swipeToBeginiPhone@2x.png"; sourceTree = "<group>"; };
+		DA9B290514E88E640093273B /* SSOViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSOViewController.h; sourceTree = "<group>"; };
+		DA9B290614E88E640093273B /* SSOViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSOViewController.m; sourceTree = "<group>"; };
 		DAA10464147C3EEC00DED9DF /* concreteBackgroundWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = concreteBackgroundWhite.png; path = Graphics/concreteBackgroundWhite.png; sourceTree = "<group>"; };
 		DAA7507F1368DA87002AA546 /* WBFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBFont.h; sourceTree = "<group>"; };
 		DAA750801368DA87002AA546 /* WBFont.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WBFont.mm; sourceTree = "<group>"; };
@@ -625,6 +632,8 @@
 				DA23783614DDCD96000AAA53 /* login-yahoo@2x.png */,
 				DA6303AF147DDE03006D8A2B /* guideIntroOverlay.png */,
 				DA6303AB147DD38B006D8A2B /* swipeToBegin.png */,
+				DA99971C14E8546F00EAA4CC /* swipeToBeginiPhone.png */,
+				DA99971D14E8546F00EAA4CC /* swipeToBeginiPhone@2x.png */,
 				DA6303A9147D712B006D8A2B /* tabBarItemPricetag.png */,
 				DA086C7D147CA39E00BD9A2F /* make_logo_transparent.png */,
 				DA086C79147CA39900BD9A2F /* detailViewArrowDark.png */,
@@ -919,6 +928,8 @@
 				DAD77267138EAC4F00D107B8 /* LoginViewControllerDelegate.h */,
 				DACD8FD514DDD7B80020A06C /* OpenIDViewController.h */,
 				DACD8FD614DDD7B80020A06C /* OpenIDViewController.m */,
+				DA9B290514E88E640093273B /* SSOViewController.h */,
+				DA9B290614E88E640093273B /* SSOViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -1123,6 +1134,8 @@
 				DA23783814DDCD96000AAA53 /* login-yahoo@2x.png in Resources */,
 				DA23783B14DDCE06000AAA53 /* login-google.png in Resources */,
 				DA23783C14DDCE06000AAA53 /* login-yahoo.png in Resources */,
+				DA99971E14E8546F00EAA4CC /* swipeToBeginiPhone.png in Resources */,
+				DA99971F14E8546F00EAA4CC /* swipeToBeginiPhone@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1195,6 +1208,7 @@
 				DA1977221473009A00CD6305 /* DetailGridViewController.m in Sources */,
 				DA3562991476F65200683947 /* DetailIntroViewController.m in Sources */,
 				DACD8FD714DDD7B80020A06C /* OpenIDViewController.m in Sources */,
+				DA9B290714E88E650093273B /* SSOViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1210,7 +1224,7 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Patierno (2V46BN5L82)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1226,7 +1240,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B4D86C90-C845-4EC2-998A-A961B516DEA7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1341,7 +1355,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C99256FC-6705-4BE3-8F22-7D5AD659AC89";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DA1FC9DB-4286-415A-BC2A-8CA9EC1197F6";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";

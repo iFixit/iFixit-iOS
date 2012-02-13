@@ -202,8 +202,10 @@
             NSMutableArray *devicesOnly = [NSMutableArray array];
             
             for (NSDictionary *item in list) {
-                if ([[item objectForKey:@"class"] isEqual:@"DEVICE"])
+                if ([[item objectForKey:@"class"] isEqual:@"DEVICE"] ||
+                    [[item objectForKey:@"namespace"] isEqual:@"TOPIC"]) {
                     [devicesOnly addObject:item];
+                }
             }
             
             self.searchResults = [NSArray arrayWithArray:devicesOnly];

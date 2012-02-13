@@ -142,7 +142,7 @@
     // iPhone
     else {
         CGRect frame = webView.frame;
-        frame.size.height = 216;
+        frame.size.height = 180;
         webView.frame = frame;
     }
 }
@@ -155,7 +155,7 @@
     // iPhone
     else {
         CGRect frame = webView.frame;
-        frame.size.height = 375;
+        frame.size.height = 305;
         webView.frame = frame;
     }
 }

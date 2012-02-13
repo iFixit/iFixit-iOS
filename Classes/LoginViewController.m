@@ -12,6 +12,7 @@
 #import "BookmarksViewController.h"
 #import "Config.h"
 #import "OpenIDViewController.h"
+#import "SSOViewController.h"
 
 @implementation LoginViewController
 
@@ -222,10 +223,14 @@
     [yb release];
     
     [container addSubview:loginButton];
-    [container addSubview:registerButton];
-    [container addSubview:cancelButton];
-    [container addSubview:googleButton];
-    [container addSubview:yahooButton];
+
+    if (![Config currentConfig].sso) {
+        [container addSubview:registerButton];
+        [container addSubview:cancelButton];
+        [container addSubview:googleButton];
+        [container addSubview:yahooButton];
+    }
+
     return [container autorelease];
 }
 
@@ -340,35 +345,11 @@
         return @"Make: Projects Login";
     return @"Login";
 }
-/*
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 37)];
-    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 300, 20)];
-    l.font = [UIFont boldSystemFontOfSize:18];
-    l.textColor = [UIColor darkGrayColor];
-    l.shadowColor = [UIColor whiteColor];
-    l.shadowOffset = CGSizeMake(0.0, 1.0);
-    l.backgroundColor = [UIColor clearColor];
-    l.text = @"iFixit Login";
-    
-    [v addSubview:l];
-    [l release];
-    
-    return [v autorelease];
-}
-- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 37;
-}
- */
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if ([Config currentConfig].sso)
+        return 0;
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
     // Return the number of rows in the section.
     return showRegister ? 4 : 2;
 }

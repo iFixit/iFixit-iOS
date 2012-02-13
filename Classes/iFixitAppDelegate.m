@@ -262,6 +262,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [Config currentConfig].collectionsEnabled = [[site valueForKey:@"collections"] boolValue];
     }
 
+    [Config currentConfig].sso = [[site valueForKey:@"authentication"] valueForKey:@"sso"];
     [Config currentConfig].store = [site valueForKey:@"store"];
     
     // Save this choice for future launches, first removing any null values.
