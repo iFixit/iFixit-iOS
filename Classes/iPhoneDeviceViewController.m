@@ -230,7 +230,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger guideid = [[[self.guides objectAtIndex:indexPath.row] valueForKey:@"guideid"] intValue];
 
-    iFixitAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate.detailViewController.popoverController dismissPopoverAnimated:YES];
 
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];

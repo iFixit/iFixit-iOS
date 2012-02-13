@@ -52,7 +52,7 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         int diff = 20 + 44;
         // Adjust for the tab bar.
-        iFixitAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
         if (appDelegate.showsTabBar)
             diff += 49;
         toolbar.frame = CGRectMake(0, 768 - diff, 320, 44);
@@ -99,7 +99,7 @@
             self.viewControllers = allStack;
         }
         else {
-            iFixitAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];    
+            iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];    
             self.viewControllers = [NSArray arrayWithObject:appDelegate.areasViewController];
         }
     }

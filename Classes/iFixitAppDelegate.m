@@ -19,6 +19,7 @@
 #import "SVWebViewController.h"
 #import "GuideBookmarks.h"
 #import "Guide.h"
+#import "LoginViewController.h"
 #import "UIColor+Hex.h"
 #import "GANTracker.h"
 
@@ -127,12 +128,34 @@ static const NSInteger kGANDispatchPeriodSec = 10;
             [subview removeFromSuperview];
     }
     
-    UIViewController *root = 
-    [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ?
-        [self iPadRoot] : [self iPhoneRoot];
+    UIViewController *root = nil;
+    BOOL private = NO;
+
+    if (private) {
+        // Private sites require immediate login.
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        vc.message = @"Private site. Authentication required.";
+        vc.delegate = self;
+        root = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];
+        [vc release];
+    }
+    else {
+        root = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ?
+                [self iPadRoot] : [self iPhoneRoot];
+    }
  
     self.window.rootViewController = root;
     [window makeKeyAndVisible];
+}
+
+- (void)refresh {
+    if ([iFixitAPI sharedInstance].user) {
+        [self showSiteSplash];
+    }
+}
+
+- (void)presentModalViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    [self.window.rootViewController presentModalViewController:viewController animated:animated];    
 }
 
 - (UIViewController *)iPadRoot {
@@ -246,6 +269,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     else {
         [[Config currentConfig] setSite:ConfigDozuki];
         [Config currentConfig].host = domain;
+        [Config currentConfig].custom_domain = [site valueForKey:@"custom_domain"];
         [Config currentConfig].baseURL = [NSString stringWithFormat:@"http://%@/Guide", domain];
         
         //if (color)

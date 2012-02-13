@@ -13,7 +13,7 @@ static Config *currentConfig = nil;
 @implementation Config
 
 @synthesize dozuki, answersEnabled, sso, collectionsEnabled, store;
-@synthesize site, siteData, host, baseURL, backgroundColor, textColor, toolbarColor, introCSS, stepCSS;
+@synthesize site, siteData, host, custom_domain, baseURL, backgroundColor, textColor, toolbarColor, introCSS, stepCSS;
 
 + (Config *)currentConfig {
     if (!currentConfig) {
@@ -105,10 +105,14 @@ static Config *currentConfig = nil;
 }
 
 + (NSString *)host {
-    return [[Config currentConfig] host];
+    // SSO sites on a custom domain need access to their own sessionid.
+    if ([Config currentConfig].sso && [Config currentConfig].custom_domain)
+        return [Config currentConfig].custom_domain;
+    // Everyone else uses the main .dozuki.com host.
+    return [Config currentConfig].host;
 }
 + (NSString *)baseURL {
-    return [[Config currentConfig] baseURL];
+    return [Config currentConfig].baseURL;
 }
 
 @end

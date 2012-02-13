@@ -24,7 +24,7 @@ static int volatile openConnections = 0;
 
 - (NSString *)sessionFilePath {
     NSString *filename = [NSString stringWithFormat:@"%@_session.plist",
-                          [Config currentConfig].host];
+                          [Config host]];
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDirectory = [paths objectAtIndex:0];
@@ -214,12 +214,13 @@ static int volatile openConnections = 0;
 
 - (void)loginWithSessionId:(NSString *)sessionId forObject:(id)object withSelector:(SEL)selector {
     [TestFlight passCheckpoint:@"OpenID Login"];
-    
-    NSString *url =	[NSString stringWithFormat:@"https://%@/api/0.1/login", [Config host]];	
+
+    // .dozuki.com hosts force SSL, so we match that here. Otherwise, for SSO sites with custom domains,
+    // SSL doesn't exist so we just use HTTP.
+    NSString *s = ([Config currentConfig].sso && [Config currentConfig].custom_domain) ? @"" : @"s";
+    NSString *url =	[NSString stringWithFormat:@"http%@://%@/api/0.1/login", s, [Config host]];	
     
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
-    if ([Config currentConfig].dozuki && [Config currentConfig].site != ConfigMake && [Config currentConfig].site != ConfigIFixit)
-        [request setValidatesSecureCertificate:NO];
     [request setRequestMethod:@"POST"];
     [request setPostValue:sessionId forKey:@"sessionid"];
     

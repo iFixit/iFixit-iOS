@@ -122,11 +122,9 @@
 }
 
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.noGuides = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -160,7 +158,7 @@
     return title;
 }
 - (void)gridViewController:(DMPGridViewController *)gridViewController tappedCellAtIndex:(NSUInteger)index {
-    iFixitAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    iFixitAppDelegate *delegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];
 
     NSInteger guideid = [[[_guides objectAtIndex:index] valueForKey:@"guideid"] intValue];
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];

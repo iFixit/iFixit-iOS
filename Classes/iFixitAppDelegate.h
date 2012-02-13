@@ -8,13 +8,15 @@
 
 #import "iFixitAPI.h"
 
+#import "LoginViewControllerDelegate.h"
+
 @class AreasViewController;
 @class DetailViewController;
 @class GuideStepViewController;
 @class SplashViewController;
 @class Guide;
 
-@interface iFixitAppDelegate : NSObject <UIApplicationDelegate>
+@interface iFixitAppDelegate : NSObject <UIApplicationDelegate, LoginViewControllerDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 

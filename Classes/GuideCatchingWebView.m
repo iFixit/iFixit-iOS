@@ -68,7 +68,7 @@
 	// Open guides with the native viewer.
 	NSInteger guideid = [self parseGuideURL:[[request URL] absoluteString]];
     
-    iFixitAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    iFixitAppDelegate *delegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];
     
 	if (guideid != -1) {
         GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];

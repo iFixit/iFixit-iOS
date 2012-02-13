@@ -24,6 +24,7 @@ enum {
 @property (nonatomic, copy) NSString *sso;
 @property (nonatomic, retain) NSDictionary *siteData;
 @property (nonatomic, retain) NSString *host;
+@property (nonatomic, retain) NSString *custom_domain;
 @property (nonatomic, retain) NSString *baseURL;
 @property (nonatomic, retain) UIColor *backgroundColor;
 @property (nonatomic, retain) UIColor *textColor;

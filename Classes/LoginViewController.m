@@ -20,10 +20,8 @@
 @synthesize emailField, passwordField, passwordVerifyField, fullNameField;
 @synthesize loginButton, registerButton, cancelButton, googleButton, yahooButton;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
+- (id)init {
+    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         // Custom initialization
         self.delegate = nil;
         self.loading = nil;
@@ -43,7 +41,7 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     [UIView beginAnimations:@"repositionForm" context:nil];
     [UIView setAnimationDuration:0.3];
-    self.tableView.contentInset = UIEdgeInsetsMake(-60, 0, 200, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(-60, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 215, 0);
     [self.tableView scrollRectToVisible:CGRectMake(0.0, 60.0, 320.0, 100.0) animated:YES];
     [UIView commitAnimations];
@@ -505,7 +503,8 @@
     }
 }
 
-- (void)loginResults:(NSDictionary *)results {    
+- (void)loginResults:(NSDictionary *)results { 
+    NSLog(@"%@", delegate);
     if ([results objectForKey:@"error"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
                                                         message:[results objectForKey:@"msg"]

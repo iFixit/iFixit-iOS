@@ -318,7 +318,7 @@ static NSMutableArray *prioritySites = nil;
     else {
         NSDictionary *site = [sitesArray objectAtIndex:indexPath.row];
         
-        iFixitAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];
         [appDelegate loadSite:site];
     }
 }

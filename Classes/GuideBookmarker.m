@@ -21,7 +21,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        LoginViewController *vc = [[LoginViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        LoginViewController *vc = [[LoginViewController alloc] init];
         vc.delegate = self;
         self.lvc = vc;
         

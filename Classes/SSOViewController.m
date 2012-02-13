@@ -29,7 +29,8 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [super webViewDidFinishLoad:webView];
 
-    if ([[webView.request.URL host] isEqual:[Config currentConfig].host]) {
+    NSString *host = [webView.request.URL host];
+    if ([host isEqual:[Config currentConfig].host] || [host isEqual:[Config currentConfig].custom_domain]) {
         // Extract the sessionid.
         NSString *sessionid = nil;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -39,12 +40,13 @@
                 break;
             }
         }
+
         // Validate and obtain user data.
         [[iFixitAPI sharedInstance] loginWithSessionId:sessionid forObject:self withSelector:@selector(loginResults:)];
     }
 }
 
-- (void)loginResults:(NSDictionary *)results {    
+- (void)loginResults:(NSDictionary *)results {
     if ([results objectForKey:@"error"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
                                                         message:[results objectForKey:@"msg"]

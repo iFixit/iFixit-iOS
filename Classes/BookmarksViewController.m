@@ -26,7 +26,7 @@
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {    
         self.title = @"Favorites";
 
-        LoginViewController *vc = [[LoginViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        LoginViewController *vc = [[LoginViewController alloc] init];
         vc.delegate = self;
         self.lvc = vc;
         self.devices = [NSMutableArray array];
