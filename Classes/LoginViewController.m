@@ -461,6 +461,12 @@
 #pragma mark - Table view delegate
 
 - (void)sendLogin {
+    if ([Config currentConfig].sso) {
+        SSOViewController *vc = [SSOViewController viewControllerForURL:[Config currentConfig].sso delegate:delegate];
+        [delegate presentModalViewController:vc animated:YES];
+        return;
+    }
+
     if (!emailField.text || !passwordField.text)
         return;
     
