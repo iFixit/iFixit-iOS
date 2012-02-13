@@ -129,9 +129,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
     
     UIViewController *root = nil;
-    BOOL private = NO;
 
-    if (private) {
+    if ([Config currentConfig].private) {
         // Private sites require immediate login.
         LoginViewController *vc = [[LoginViewController alloc] init];
         vc.message = @"Private site. Authentication required.";
@@ -286,6 +285,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [Config currentConfig].collectionsEnabled = [[site valueForKey:@"collections"] boolValue];
     }
 
+    [Config currentConfig].private = [[site valueForKey:@"private"] boolValue];
     [Config currentConfig].sso = [[site valueForKey:@"authentication"] valueForKey:@"sso"];
     [Config currentConfig].store = [site valueForKey:@"store"];
     

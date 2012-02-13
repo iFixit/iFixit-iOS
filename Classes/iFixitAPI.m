@@ -300,7 +300,6 @@ static int volatile openConnections = 0;
     
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];    
     [request setRequestMethod:@"POST"];
-    [request setPostValue:user.session forKey:@"sessionid"];
     
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];

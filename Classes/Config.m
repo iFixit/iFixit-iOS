@@ -12,7 +12,7 @@ static Config *currentConfig = nil;
 
 @implementation Config
 
-@synthesize dozuki, answersEnabled, sso, collectionsEnabled, store;
+@synthesize dozuki, answersEnabled, sso, collectionsEnabled, private, store;
 @synthesize site, siteData, host, custom_domain, baseURL, backgroundColor, textColor, toolbarColor, introCSS, stepCSS;
 
 + (Config *)currentConfig {
