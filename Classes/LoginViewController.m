@@ -537,6 +537,11 @@
         [alert release];
     }
     else {
+        [emailField resignFirstResponder];
+        [passwordField resignFirstResponder];
+        [passwordVerifyField resignFirstResponder];
+        [fullNameField resignFirstResponder];
+
         // The delegate is responsible for removing the login view.
         [delegate refresh];
     }

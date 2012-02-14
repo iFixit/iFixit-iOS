@@ -394,11 +394,11 @@
         NSString *area = self.title;
 
         // Build the Area URL (if we want to show a webview).
-		NSString *wikiUrl = [NSString stringWithFormat:@"http://%@/Area/%@", 
+		NSString *wikiUrl = [NSString stringWithFormat:@"http://%@/Device/%@", 
                          [Config host],
                          [area stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
         
-		NSString *answersUrl = [NSString stringWithFormat:@"http://%@/Answers/Device/%@", 
+		NSString *answersUrl = [NSString stringWithFormat:@"http://%@/Answers/Topic/%@", 
                          [Config host],
                          [area stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
         

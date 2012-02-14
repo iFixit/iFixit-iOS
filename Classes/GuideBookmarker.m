@@ -87,8 +87,14 @@
         return;
     }
     else {
-        [poc dismissPopoverAnimated:YES];
-        [lvc dismissModalViewControllerAnimated:YES];
+        if (poc) {
+            [poc dismissPopoverAnimated:YES];
+            [lvc dismissModalViewControllerAnimated:YES];
+        }
+        else {
+            [lvc dismissModalViewControllerAnimated:YES];
+            [self performSelector:@selector(hideLogin) withObject:nil afterDelay:0.5];
+        }
     }
     
     // Show a spinner
