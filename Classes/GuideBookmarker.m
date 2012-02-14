@@ -74,6 +74,7 @@
             nvc.navigationBar.tintColor = [UIColor blackColor];
             nvc.title = @"Login";
             
+            lvc.modal = YES;
             [delegate presentModalViewController:nvc animated:YES];
             
             // Add a Cancel button

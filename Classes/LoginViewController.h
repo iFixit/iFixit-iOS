@@ -15,6 +15,7 @@
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, retain) WBProgressHUD *loading;
 @property (nonatomic) BOOL showRegister;
+@property (nonatomic) BOOL modal;
 
 @property (nonatomic, retain) UITextField *emailField;
 @property (nonatomic, retain) UITextField *passwordField;

@@ -119,6 +119,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [dsvc release];
 
     [window makeKeyAndVisible];
+    if (!firstLoad) {
+        [dsvc getStarted:nil];
+    }
 }
 
 - (void)showSiteSplash {
@@ -132,7 +135,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     UIViewController *root = nil;
     UINavigationController *nvc = nil;
 
-    if ([Config currentConfig].private) {
+    if (![iFixitAPI sharedInstance].user && [Config currentConfig].private) {
         // Private sites require immediate login.
         LoginViewController *vc = [[LoginViewController alloc] init];
         vc.message = @"Private site. Authentication required.";
@@ -154,6 +157,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
             root = [[[LoginBackgroundViewController alloc] init] autorelease];
             self.window.rootViewController = root;
             [window makeKeyAndVisible];
+            vc.modal = YES;
             [root presentModalViewController:nvc animated:NO];
             return;
         }

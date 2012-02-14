@@ -17,7 +17,7 @@
 
 @implementation LoginViewController
 
-@synthesize delegate, message, loading, showRegister;
+@synthesize delegate, message, loading, showRegister, modal;
 @synthesize emailField, passwordField, passwordVerifyField, fullNameField;
 @synthesize loginButton, registerButton, cancelButton, googleButton, yahooButton;
 
@@ -246,12 +246,22 @@
 
 - (void)tapGoogle {
     OpenIDViewController *vc = [OpenIDViewController viewControllerForHost:@"google" delegate:delegate];
-    [delegate presentModalViewController:vc animated:YES];
+    if (modal) {
+        [self presentModalViewController:vc animated:YES];
+    }
+    else {
+        [delegate presentModalViewController:vc animated:YES];
+    }
 }
 
 - (void)tapYahoo {
     OpenIDViewController *vc = [OpenIDViewController viewControllerForHost:@"yahoo" delegate:delegate];
-    [delegate presentModalViewController:vc animated:YES];
+    if (modal) {
+        [self presentModalViewController:vc animated:YES];
+    }
+    else {
+        [delegate presentModalViewController:vc animated:YES];
+    }
 }
 
 - (void)toggleRegister {

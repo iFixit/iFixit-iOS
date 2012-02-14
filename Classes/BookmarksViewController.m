@@ -356,7 +356,12 @@
     
     [[iFixitAPI sharedInstance] logout];
     
-    [self showLogin]; 
+    if ([Config currentConfig].private) {
+        [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showDozukiSplash];
+    }
+    else {
+        [self showLogin]; 
+    }
 }
 
 @end
