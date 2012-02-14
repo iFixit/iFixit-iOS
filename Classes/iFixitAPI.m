@@ -289,6 +289,12 @@ static int volatile openConnections = 0;
 }
 
 - (void)logout {
+    // Clear all cookies.
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
+
     self.user = nil;
     [self saveSession];
     // Reset GuideBookmarks static object.

@@ -74,6 +74,7 @@
 		DA3E3E3B133C1A8E0070615F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3E3E3A133C1A8E0070615F /* MainWindow.xib */; };
 		DA53FA73141366AA00D5388F /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = DA53FA72141366AA00D5388F /* RegexKitLite.m */; };
 		DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA53FA74141368BB00D5388F /* libicucore.dylib */; };
+		DA58CB3414EA17F400A2CBAB /* LoginBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA58CB3314EA17F400A2CBAB /* LoginBackgroundViewController.m */; };
 		DA59293813FB253B00504CD3 /* DozukiSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA59293613FB253B00504CD3 /* DozukiSplashViewController.m */; };
 		DA59293913FB253B00504CD3 /* DozukiSplashView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA59293713FB253B00504CD3 /* DozukiSplashView~ipad.xib */; };
 		DA59296F13FB28B600504CD3 /* DozukiInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA59296D13FB28B600504CD3 /* DozukiInfoViewController.m */; };
@@ -295,6 +296,8 @@
 		DA53FA71141366AA00D5388F /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		DA53FA72141366AA00D5388F /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		DA53FA74141368BB00D5388F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		DA58CB3214EA17F400A2CBAB /* LoginBackgroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBackgroundViewController.h; sourceTree = "<group>"; };
+		DA58CB3314EA17F400A2CBAB /* LoginBackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBackgroundViewController.m; sourceTree = "<group>"; };
 		DA59293513FB253B00504CD3 /* DozukiSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DozukiSplashViewController.h; sourceTree = "<group>"; };
 		DA59293613FB253B00504CD3 /* DozukiSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DozukiSplashViewController.m; sourceTree = "<group>"; };
 		DA59293713FB253B00504CD3 /* DozukiSplashView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DozukiSplashView~ipad.xib"; sourceTree = "<group>"; };
@@ -926,6 +929,8 @@
 				DAB93438137228AD00B6AA9A /* LoginViewController.h */,
 				DAB93439137228AD00B6AA9A /* LoginViewController.m */,
 				DAD77267138EAC4F00D107B8 /* LoginViewControllerDelegate.h */,
+				DA58CB3214EA17F400A2CBAB /* LoginBackgroundViewController.h */,
+				DA58CB3314EA17F400A2CBAB /* LoginBackgroundViewController.m */,
 				DACD8FD514DDD7B80020A06C /* OpenIDViewController.h */,
 				DACD8FD614DDD7B80020A06C /* OpenIDViewController.m */,
 				DA9B290514E88E640093273B /* SSOViewController.h */,
@@ -1209,6 +1214,7 @@
 				DA3562991476F65200683947 /* DetailIntroViewController.m in Sources */,
 				DACD8FD714DDD7B80020A06C /* OpenIDViewController.m in Sources */,
 				DA9B290714E88E650093273B /* SSOViewController.m in Sources */,
+				DA58CB3414EA17F400A2CBAB /* LoginBackgroundViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1355,7 +1361,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DA1FC9DB-4286-415A-BC2A-8CA9EC1197F6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "93BA536F-E5EF-4345-90AE-F3BBDD665B95";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";

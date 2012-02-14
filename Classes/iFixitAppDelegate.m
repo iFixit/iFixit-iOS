@@ -20,6 +20,7 @@
 #import "GuideBookmarks.h"
 #import "Guide.h"
 #import "LoginViewController.h"
+#import "LoginBackgroundViewController.h"
 #import "UIColor+Hex.h"
 #import "GANTracker.h"
 
@@ -129,14 +130,37 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
     
     UIViewController *root = nil;
+    UINavigationController *nvc = nil;
 
     if ([Config currentConfig].private) {
         // Private sites require immediate login.
         LoginViewController *vc = [[LoginViewController alloc] init];
         vc.message = @"Private site. Authentication required.";
         vc.delegate = self;
-        root = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];
+        nvc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];        
+        nvc.modalPresentationStyle = UIModalPresentationFormSheet;
+        nvc.navigationBar.tintColor = [Config currentConfig].toolbarColor;
         [vc release];
+
+        UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
+        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(showDozukiSplash)];
+        vc.navigationItem.leftBarButtonItem = button;
+        [button release];
+
+        // iPad: display in form sheet
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            root = [[[LoginBackgroundViewController alloc] init] autorelease];
+            self.window.rootViewController = root;
+            [window makeKeyAndVisible];
+            [root presentModalViewController:nvc animated:NO];
+            return;
+        }
+        else {
+            // iPhone: set as root
+            root = nvc;
+        }
     }
     else {
         root = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ?

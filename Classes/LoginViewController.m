@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "LoginBackgroundViewController.h"
 #import "WBProgressHUD.h"
 #import "iFixitAPI.h"
 #import "BookmarksViewController.h"
@@ -86,10 +87,16 @@
 
 - (void)showLoading {
     if (!loading) {
-        const CGRect rect = CGRectMake(80, 60, 160, 120);
-        self.loading = [[[WBProgressHUD alloc] initWithFrame:rect] autorelease];
+        self.loading = [[[WBProgressHUD alloc] init] autorelease];
     }
     
+    CGFloat width = 160;
+    CGFloat height = 120;
+    self.loading.frame = CGRectMake((self.view.frame.size.width - width) / 2.0,
+                                    (self.view.frame.size.height - height) / 4.0,
+                                    width,
+                                    height);
+
     // Hide the keyboard and prevent further editing.
     self.view.userInteractionEnabled = NO;
     [self.view endEditing:YES];
@@ -172,6 +179,11 @@
     [lb setBackgroundImage:[[UIImage imageNamed:@"login.png"] stretchableImageWithLeftCapWidth:150 topCapHeight:22] forState:UIControlStateNormal];
     [lb setContentMode:UIViewContentModeScaleToFill];
     [lb addTarget:self action:@selector(sendLogin) forControlEvents:UIControlEventTouchUpInside];
+
+    // Adjust the frame for modal sheet presentation.
+    if ([[[[UIApplication sharedApplication].delegate window] rootViewController] isKindOfClass:[LoginBackgroundViewController class]]) {
+        lb.frame = CGRectMake(30, 0, 260, 45);
+    }
     
     // Register
     UIButton *rb = [[UIButton alloc] initWithFrame:CGRectMake(10, 55, 300, 45)];
@@ -222,7 +234,7 @@
     
     [container addSubview:loginButton];
 
-    if (![Config currentConfig].sso) {
+    if (![Config currentConfig].sso && ![Config currentConfig].private) {
         [container addSubview:registerButton];
         [container addSubview:cancelButton];
         [container addSubview:googleButton];
@@ -330,8 +342,9 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        return YES;
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 #pragma mark - Table view data source
@@ -358,7 +371,7 @@
     inputField.font = [UIFont systemFontOfSize:16.0];
     inputField.adjustsFontSizeToFitWidth = YES;
     inputField.textColor = [UIColor darkGrayColor];
-    CGRect rect = CGRectMake(120, 12, 175, 20);
+    CGRect rect = CGRectMake(120, 12, 175, 30);
     
     if (row == 0) {
         if (emailField) {
@@ -451,7 +464,7 @@
             [v removeFromSuperview];
     }
     
-    [cell addSubview:[self inputFieldForRow:indexPath.row]];
+    [cell.contentView addSubview:[self inputFieldForRow:indexPath.row]];
     
     return cell;
 }
@@ -504,7 +517,6 @@
 }
 
 - (void)loginResults:(NSDictionary *)results { 
-    NSLog(@"%@", delegate);
     if ([results objectForKey:@"error"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
                                                         message:[results objectForKey:@"msg"]

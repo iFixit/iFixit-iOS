@@ -21,6 +21,15 @@
         [storage deleteCookie:cookie];
     }
 
+    // Set a custom cookie for simple success SSO redirect: sso-origin=SHOW_SUCCESS
+    NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:
+                            [NSDictionary dictionaryWithObjectsAndKeys:@"sso-origin", NSHTTPCookieName,
+                                                                       @"SHOW_SUCCESS", NSHTTPCookieValue,
+                                                                       [Config host], NSHTTPCookieDomain,
+                                                                       @"/", NSHTTPCookiePath,
+                                                                       nil]];
+    [storage setCookie:cookie];
+
     SSOViewController* vc = [[SSOViewController alloc] initWithAddress:url];
     vc.delegate = delegate;
     return [vc autorelease];
