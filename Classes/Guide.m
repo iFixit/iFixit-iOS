@@ -18,13 +18,12 @@
 + (NSDictionary *)repairNullsForDict:(NSDictionary *)dict {
     NSDictionary *guideData = [dict objectForKey:@"guide"];
     
-    // I think this are the only fields that may be null.
-    if ([[guideData objectForKey:@"summary"] isEqual:[NSNull null]])
-        [guideData setValue:@"" forKey:@"summary"];
-    
-    if ([[guideData objectForKey:@"subject"] isEqual:[NSNull null]])
-        [guideData setValue:@"" forKey:@"subject"]; 
-    
+    // Remove all nulls so the data can be written to disk.
+    for (NSString *key in [guideData allKeys]) {
+        if ([[guideData objectForKey:key] isEqual:[NSNull null]])
+            [guideData setValue:@"" forKey:key];
+    }
+
     return dict;
 }
 
