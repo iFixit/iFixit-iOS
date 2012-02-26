@@ -355,7 +355,10 @@
         return;
     
     [[iFixitAPI sharedInstance] logout];
-    
+
+    // Remove the edit button.
+    self.navigationItem.rightBarButtonItem = nil;
+
     if ([Config currentConfig].private) {
         [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showDozukiSplash];
     }
