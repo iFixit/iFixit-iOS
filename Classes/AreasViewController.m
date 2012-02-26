@@ -150,7 +150,7 @@
         [UIView beginAnimations:@"showSearch" context:nil];
         [UIView setAnimationDuration:0.3];
         CGRect bounds = self.navigationController.view.bounds;
-        bounds.origin.y = 44;
+        bounds.origin.y = self.navigationController.navigationBar.frame.size.height;
         self.navigationController.view.bounds = bounds;
         [UIView commitAnimations];
     }
@@ -256,6 +256,13 @@
     else {
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 32, 0);
         self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 32, 0);
+    }
+
+    // Reset the searching view offset to prevent rotating weirdness.
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        CGRect bounds = self.navigationController.view.bounds;
+        bounds.origin.y = 0.0;
+        self.navigationController.view.bounds = bounds;
     }
 }
 
