@@ -34,6 +34,30 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 @end
 
+@implementation UITabBarController (Rotate)
+
+// Hack fix for wonky landscape/portrait orientation on iOS 4.x iPads after Dozuki site select.
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    // Only apply this hack to iPads...
+    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad)
+        return;
+
+    // ...running iOS <5.0
+    NSString* version = [[UIDevice currentDevice] systemVersion];
+    if ([version compare:@"5.0" options:NSNumericSearch] != NSOrderedAscending)
+        return;
+
+    // If we're in landscape, force portrait!
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO];
+    }
+}
+
+@end
+
 @implementation iFixitAppDelegate
 
 @synthesize window, splitViewController, areasViewController, detailViewController;
