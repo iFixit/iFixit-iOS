@@ -27,6 +27,12 @@ static NSMutableArray *prioritySites = nil;
 @synthesize searchBar, searchResults;
 @synthesize simple;
 
+- (NSString*)storedListPath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDirectory = [paths objectAtIndex:0];
+    return [docDirectory stringByAppendingPathComponent:@"dozukiSiteList.plist"];
+}
+
 - (void)loadMore {
     if (!loading) {
         loading = YES;
@@ -99,19 +105,37 @@ static NSMutableArray *prioritySites = nil;
         }
 
         [self.tableView reloadData];
+
+        // Cache to disk.
+        NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              prioritySites, @"prioritySites",
+                              sites, @"sites",
+                              nil];
+        [dict writeToFile:[self storedListPath] atomically:YES];
     }
     else {
         hasMoreSites = NO;
         if ([sites count])
             return;
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not load site list"
-                                                        message:@"Please check your internet connection and try again."
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Retry", nil];
-        [alert show];
-        [alert release];
+
+        // If we failed to get fresh data, use the cached site list if available.
+        NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[self storedListPath]];
+        if (![sites count] && dict) {
+            [sites release];
+            [prioritySites release];
+            sites = [[dict objectForKey:@"sites"] mutableCopy];
+            prioritySites = [[dict objectForKey:@"prioritySites"] mutableCopy];
+            [self.tableView reloadData];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not load site list"
+                                                            message:@"Please check your internet connection and try again."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Retry", nil];
+            [alert show];
+            [alert release];
+        }
     }
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
