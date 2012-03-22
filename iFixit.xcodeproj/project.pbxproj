@@ -87,6 +87,7 @@
 		DA3E3E23133C0F580070615F /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3E3E1D133C0F580070615F /* UIImageView+WebCache.m */; };
 		DA3E3E37133C17060070615F /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3E3E36133C17050070615F /* ListViewController.m */; };
 		DA3E3E3B133C1A8E0070615F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3E3E3A133C1A8E0070615F /* MainWindow.xib */; };
+		DA4D2870151AC69700448914 /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4D286F151AC69700448914 /* icon144.png */; };
 		DA53FA73141366AA00D5388F /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = DA53FA72141366AA00D5388F /* RegexKitLite.m */; };
 		DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA53FA74141368BB00D5388F /* libicucore.dylib */; };
 		DA58CB3414EA17F400A2CBAB /* LoginBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA58CB3314EA17F400A2CBAB /* LoginBackgroundViewController.m */; };
@@ -327,6 +328,7 @@
 		DA3E3E35133C17050070615F /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		DA3E3E36133C17050070615F /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		DA3E3E3A133C1A8E0070615F /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		DA4D286F151AC69700448914 /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		DA53FA71141366AA00D5388F /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		DA53FA72141366AA00D5388F /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		DA53FA74141368BB00D5388F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -574,6 +576,7 @@
 				DAE7D7C0142A9FC900C07529 /* icon57.png */,
 				DAE7D7C1142A9FC900C07529 /* icon72.png */,
 				DAE7D7C2142A9FC900C07529 /* icon114.png */,
+				DA4D286F151AC69700448914 /* icon144.png */,
 				DAE7D7C3142A9FC900C07529 /* icon512.png */,
 				DA61C54D13383043000028C3 /* Default@2x.png */,
 				DA61C54B1338303C000028C3 /* Default.png */,
@@ -1217,6 +1220,7 @@
 				DAD2EBA0151671FD0053CC40 /* tabBarItemGears@2x.png in Resources */,
 				DAD2EBA1151671FD0053CC40 /* tabBarItemPricetag@2x.png in Resources */,
 				DAD2EBA2151671FD0053CC40 /* tabBarItemWrench@2x.png in Resources */,
+				DA4D2870151AC69700448914 /* icon144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
