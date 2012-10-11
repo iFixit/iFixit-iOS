@@ -17,8 +17,8 @@
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
 		AB0B27AD15E7E3550088BA07 /* titleImageZeal.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */; };
 		AB0B27B015E7E36B0088BA07 /* titleImageZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */; };
-		AB11501215FEBF3200846987 /* dozukiLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB11501015FEBF3000846987 /* dozukiLogo@2x.png */; };
-		AB11501315FEBF3200846987 /* dozukiLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB11501115FEBF3100846987 /* dozukiLogo.png */; };
+		AB3C1776162718AD00323A1E /* dozukiLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1774162718AD00323A1E /* dozukiLogo.png */; };
+		AB3C1777162718AD00323A1E /* dozukiLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */; };
 		ABC5397E15EC4AA9004B2865 /* zeal_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC5397D15EC4AA9004B2865 /* zeal_logo_transparent.png */; };
 		ABC5399215ED7934004B2865 /* detailViewTextZeal.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC5399115ED7933004B2865 /* detailViewTextZeal.png */; };
 		ABC5399415ED793A004B2865 /* detailViewTextZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC5399315ED7939004B2865 /* detailViewTextZeal@2x.png */; };
@@ -149,10 +149,8 @@
 		DA99489B142ABDDB00E4167D /* dozukiGetStarted~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA994897142ABDDB00E4167D /* dozukiGetStarted~ipad.png */; };
 		DA99489C142ABDDB00E4167D /* dozukiIntro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA994898142ABDDB00E4167D /* dozukiIntro@2x.png */; };
 		DA99489D142ABDDB00E4167D /* dozukiIntro~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA994899142ABDDB00E4167D /* dozukiIntro~ipad.png */; };
-		DA99489E142ABDDB00E4167D /* dozukiLogoOld@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA99489A142ABDDB00E4167D /* dozukiLogoOld@2x.png */; };
 		DA9948A0142AC01A00E4167D /* dozukiGetStarted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA99489F142AC01A00E4167D /* dozukiGetStarted@2x.png */; };
 		DA9948A2142AC24B00E4167D /* dozukiGetStarted.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A1142AC24B00E4167D /* dozukiGetStarted.png */; };
-		DA9948A4142AC26900E4167D /* dozukiLogoOld.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A3142AC26900E4167D /* dozukiLogoOld.png */; };
 		DA9948A6142AC34E00E4167D /* dozukiIntro.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A5142AC34E00E4167D /* dozukiIntro.png */; };
 		DA9948AA142AC55D00E4167D /* DozukiSplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */; };
 		DA99971E14E8546F00EAA4CC /* swipeToBeginiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = DA99971C14E8546F00EAA4CC /* swipeToBeginiPhone.png */; };
@@ -232,8 +230,8 @@
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageZeal.png; sourceTree = "<group>"; };
 		AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImageZeal@2x.png"; sourceTree = "<group>"; };
-		AB11501015FEBF3000846987 /* dozukiLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dozukiLogo@2x.png"; sourceTree = "<group>"; };
-		AB11501115FEBF3100846987 /* dozukiLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dozukiLogo.png; sourceTree = "<group>"; };
+		AB3C1774162718AD00323A1E /* dozukiLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiLogo.png; path = Graphics/dozukiLogo.png; sourceTree = "<group>"; };
+		AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiLogo@2x.png"; path = "Graphics/dozukiLogo@2x.png"; sourceTree = "<group>"; };
 		ABC5397D15EC4AA9004B2865 /* zeal_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zeal_logo_transparent.png; sourceTree = "<group>"; };
 		ABC5399115ED7933004B2865 /* detailViewTextZeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detailViewTextZeal.png; sourceTree = "<group>"; };
 		ABC5399315ED7939004B2865 /* detailViewTextZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detailViewTextZeal@2x.png"; sourceTree = "<group>"; };
@@ -422,10 +420,8 @@
 		DA994897142ABDDB00E4167D /* dozukiGetStarted~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiGetStarted~ipad.png"; path = "Graphics/dozukiGetStarted~ipad.png"; sourceTree = "<group>"; };
 		DA994898142ABDDB00E4167D /* dozukiIntro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiIntro@2x.png"; path = "Graphics/dozukiIntro@2x.png"; sourceTree = "<group>"; };
 		DA994899142ABDDB00E4167D /* dozukiIntro~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiIntro~ipad.png"; path = "Graphics/dozukiIntro~ipad.png"; sourceTree = "<group>"; };
-		DA99489A142ABDDB00E4167D /* dozukiLogoOld@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiLogoOld@2x.png"; path = "Graphics/dozukiLogoOld@2x.png"; sourceTree = "<group>"; };
 		DA99489F142AC01A00E4167D /* dozukiGetStarted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiGetStarted@2x.png"; path = "Graphics/dozukiGetStarted@2x.png"; sourceTree = "<group>"; };
 		DA9948A1142AC24B00E4167D /* dozukiGetStarted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiGetStarted.png; path = Graphics/dozukiGetStarted.png; sourceTree = "<group>"; };
-		DA9948A3142AC26900E4167D /* dozukiLogoOld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiLogoOld.png; path = Graphics/dozukiLogoOld.png; sourceTree = "<group>"; };
 		DA9948A5142AC34E00E4167D /* dozukiIntro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiIntro.png; path = Graphics/dozukiIntro.png; sourceTree = "<group>"; };
 		DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DozukiSplashView.xib; sourceTree = "<group>"; };
 		DA99971C14E8546F00EAA4CC /* swipeToBeginiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = swipeToBeginiPhone.png; path = Graphics/swipeToBeginiPhone.png; sourceTree = "<group>"; };
@@ -937,10 +933,8 @@
 				DA9948A5142AC34E00E4167D /* dozukiIntro.png */,
 				DA994898142ABDDB00E4167D /* dozukiIntro@2x.png */,
 				DA994899142ABDDB00E4167D /* dozukiIntro~ipad.png */,
-				DA9948A3142AC26900E4167D /* dozukiLogoOld.png */,
-				AB11501015FEBF3000846987 /* dozukiLogo@2x.png */,
-				AB11501115FEBF3100846987 /* dozukiLogo.png */,
-				DA99489A142ABDDB00E4167D /* dozukiLogoOld@2x.png */,
+				AB3C1774162718AD00323A1E /* dozukiLogo.png */,
+				AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */,
 				DA994895142ABB7700E4167D /* dozukiSplash~ipad.png */,
 				DA275DB015104C8A00A8A09C /* dozukiSplash@2x~ipad.png */,
 				DA994893142ABA7D00E4167D /* dozukiSplash.png */,
@@ -1176,10 +1170,8 @@
 				DA99489B142ABDDB00E4167D /* dozukiGetStarted~ipad.png in Resources */,
 				DA99489C142ABDDB00E4167D /* dozukiIntro@2x.png in Resources */,
 				DA99489D142ABDDB00E4167D /* dozukiIntro~ipad.png in Resources */,
-				DA99489E142ABDDB00E4167D /* dozukiLogoOld@2x.png in Resources */,
 				DA9948A0142AC01A00E4167D /* dozukiGetStarted@2x.png in Resources */,
 				DA9948A2142AC24B00E4167D /* dozukiGetStarted.png in Resources */,
-				DA9948A4142AC26900E4167D /* dozukiLogoOld.png in Resources */,
 				DA9948A6142AC34E00E4167D /* dozukiIntro.png in Resources */,
 				DA9948AA142AC55D00E4167D /* DozukiSplashView.xib in Resources */,
 				DA0877C3142D4BBB00954482 /* vignette.png in Resources */,
@@ -1247,8 +1239,8 @@
 				ABC5397E15EC4AA9004B2865 /* zeal_logo_transparent.png in Resources */,
 				ABC5399215ED7934004B2865 /* detailViewTextZeal.png in Resources */,
 				ABC5399415ED793A004B2865 /* detailViewTextZeal@2x.png in Resources */,
-				AB11501215FEBF3200846987 /* dozukiLogo@2x.png in Resources */,
-				AB11501315FEBF3200846987 /* dozukiLogo.png in Resources */,
+				AB3C1776162718AD00323A1E /* dozukiLogo.png in Resources */,
+				AB3C1777162718AD00323A1E /* dozukiLogo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
