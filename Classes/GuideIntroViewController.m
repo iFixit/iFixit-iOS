@@ -17,7 +17,7 @@
 @implementation GuideIntroViewController
 @synthesize headerTextDozuki;
 
-@synthesize delegate, headerImageIFixit, headerImageMake, swipeLabel;
+@synthesize delegate, headerImageIFixit, headerImageMake, swipeLabel, headerImageZeal;
 @synthesize overlayView;
 @synthesize guide=_guide;
 @synthesize device, mainImage, webView, huge, html;
@@ -67,6 +67,9 @@
         }
         else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
             headerImageIFixit.hidden = NO;
+        }
+        else if ([Config currentConfig].site == ConfigZeal || [Config currentConfig].site == ConfigZeal) {
+            headerImageZeal.hidden = NO;
         }
         else {
             headerTextDozuki.font = [UIFont fontWithName:@"Lobster" size:75.0];

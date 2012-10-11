@@ -364,6 +364,8 @@
         return @"iFixit Login";
     else if ([Config currentConfig].site == ConfigMake)
         return @"Make: Projects Login";
+    else if ([Config currentConfig].site == ConfigZeal)
+        return @"Zeal Optics Login";
     return @"Login";
 }
 
