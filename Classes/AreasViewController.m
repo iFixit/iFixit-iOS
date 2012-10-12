@@ -48,8 +48,7 @@
             self.navigationItem.titleView = imageTitle;
             [imageTitle release];
         } else if ([Config currentConfig].site != ConfigIFixit && [Config currentConfig].site != ConfigIFixitDev) {
-        }
-        else {
+        } else {
             UIImage *titleImage = [UIImage imageNamed:@"titleImage.png"];
             UIImageView *imageTitle = [[UIImageView alloc] initWithImage:titleImage];
             self.navigationItem.titleView = imageTitle;
@@ -513,6 +512,8 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
+    self.searchBar = nil;
+
     
     // Relinquish ownership any cached data, images, etc. that aren't in use.
 }

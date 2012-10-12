@@ -98,6 +98,12 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)didReceiveMemoryWarning {
+    [self setImage:nil];
+    [self setText:nil];
+    [self setSiteLabel:nil];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
 	return YES;

@@ -362,6 +362,10 @@ static NSMutableArray *prioritySites = nil;
     [searchResults release];
     [super dealloc];
 }
+
+- (void)didReceiveMemoryWarning {
+    [self setSearchBar:nil];
+}
 - (void)viewDidUnload {
     [self setSearchBar:nil];
     [super viewDidUnload];

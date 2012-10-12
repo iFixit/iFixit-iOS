@@ -127,6 +127,10 @@
     self.noGuides = nil;
 }
 
+- (void)didReceiveMemoryWarning {
+    self.noGuides = nil;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return YES;

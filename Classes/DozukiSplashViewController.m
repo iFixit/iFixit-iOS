@@ -66,6 +66,10 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)didReceiveMemoryWarning {
+    [self setIntroView:nil];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
         return YES;

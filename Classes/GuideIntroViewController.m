@@ -179,6 +179,15 @@
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
+    self.headerImageIFixit = nil;
+    self.headerImageMake = nil;
+    self.swipeLabel = nil;
+    self.device = nil;
+    self.mainImage = nil;
+    self.webView = nil;
+    [self setOverlayView:nil];
+    [self setHeaderTextDozuki:nil];
+    
     // Release any cached data, images, etc that aren't in use.
 }
 
