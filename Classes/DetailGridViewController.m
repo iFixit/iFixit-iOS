@@ -60,8 +60,8 @@
 
     if (!_guides) {
         [self.loading hide];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"Could not load guide list."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not load guide list."
+                                                        message:@"Please check your internet and try again."
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Retry", nil];
@@ -124,6 +124,10 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    self.noGuides = nil;
+}
+
+- (void)didReceiveMemoryWarning {
     self.noGuides = nil;
 }
 

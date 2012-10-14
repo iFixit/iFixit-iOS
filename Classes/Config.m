@@ -57,6 +57,13 @@ static Config *currentConfig = nil;
             collectionsEnabled = YES;
             self.store = nil;
             break;
+        case ConfigZeal:
+            self.host = @"zealoptics.dozuki.com";
+            self.baseURL = @"http://zealoptics.dozuki.com";
+            answersEnabled = NO;
+            collectionsEnabled = NO;
+            self.store = nil;
+            break;
         default:
             self.host = nil;
             self.baseURL = nil;
@@ -90,6 +97,7 @@ static Config *currentConfig = nil;
             self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             break;
         // Dozuki
+        case ConfigZeal:
         default:
             self.backgroundColor = [UIColor blackColor];
             self.textColor = [UIColor whiteColor];

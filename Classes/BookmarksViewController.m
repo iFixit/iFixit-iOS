@@ -119,7 +119,11 @@
 
 - (UIView *)headerView {
     UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    
     b.backgroundColor = [UIColor colorWithRed:0.20 green:0.38 blue:0.68 alpha:1.0];
+    if ([Config currentConfig].site == ConfigZeal)
+        b.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
+
     b.titleLabel.font = [UIFont italicSystemFontOfSize:14];
     b.titleLabel.textColor = [UIColor whiteColor];
     b.titleLabel.shadowColor = [UIColor blackColor];

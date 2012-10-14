@@ -40,15 +40,20 @@
     if (!self.title) {
         self.title = @"Categories";
         
-        if ([Config currentConfig].site != ConfigIFixit && [Config currentConfig].site != ConfigIFixitDev) {
-            
-        }
-        else {
+        // I want to rewrite this setup, could get bloated with lots of custom apps, also the
+        // if else is awkward
+        if ([Config currentConfig].site == ConfigZeal) {
+            UIImage *titleImage = [UIImage imageNamed:@"titleImageZeal.png"];
+            UIImageView *imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+            self.navigationItem.titleView = imageTitle;
+            [imageTitle release];
+        } else if ([Config currentConfig].site != ConfigIFixit && [Config currentConfig].site != ConfigIFixitDev) {
+        } else {
             UIImage *titleImage = [UIImage imageNamed:@"titleImage.png"];
             UIImageView *imageTitle = [[UIImageView alloc] initWithImage:titleImage];
             self.navigationItem.titleView = imageTitle;
             [imageTitle release];
-        }
+        }        
     }
     
     // Color the searchbar.
@@ -122,10 +127,24 @@
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+  //  CGRect frame = self.navigationItem.titleView.frame;
     if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
         
-    }
-    else {
+    } else if ([Config currentConfig].site == ConfigZeal) {
+        
+        CGRect frame = self.navigationItem.titleView.frame;
+        
+        if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+            frame.size.width = 100;
+            frame.size.height = 25;
+        } else {
+            frame.size.width = 137;
+            frame.size.height = 35;
+        }
+        
+        self.navigationItem.titleView.frame = frame;
+        
+    } else {
         CGRect frame = self.navigationItem.titleView.frame;
         
         if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
@@ -302,7 +321,7 @@
         ![self.title isEqual:@"Categories"] ? 0 : 1;
     
     // TODO: Fill this in with data from the sites API
-    NSString *topicsTitle = @"Topics";
+    NSString *topicsTitle = @"Categories";
     if ([Config currentConfig].site == ConfigIFixit)
         topicsTitle = @"Devices";
     
@@ -378,7 +397,7 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }
-	
+    	
     return cell;
 }
 
@@ -493,6 +512,8 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
+    self.searchBar = nil;
+
     
     // Relinquish ownership any cached data, images, etc. that aren't in use.
 }

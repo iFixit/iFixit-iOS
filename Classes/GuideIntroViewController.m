@@ -17,7 +17,7 @@
 @implementation GuideIntroViewController
 @synthesize headerTextDozuki;
 
-@synthesize delegate, headerImageIFixit, headerImageMake, swipeLabel;
+@synthesize delegate, headerImageIFixit, headerImageMake, swipeLabel, headerImageZeal;
 @synthesize overlayView;
 @synthesize guide=_guide;
 @synthesize device, mainImage, webView, huge, html;
@@ -64,11 +64,11 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
             headerImageMake.hidden = NO;
-        }
-        else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
+        } else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
             headerImageIFixit.hidden = NO;
-        }
-        else {
+        } else if ([Config currentConfig].site == ConfigZeal) {
+            headerImageZeal.hidden = NO;
+        } else {
             headerTextDozuki.font = [UIFont fontWithName:@"Lobster" size:75.0];
             headerTextDozuki.text = [[Config currentConfig].siteData valueForKey:@"title"];
             headerTextDozuki.hidden = NO;
@@ -175,6 +175,15 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
+    
+    self.headerImageIFixit = nil;
+    self.headerImageMake = nil;
+    self.swipeLabel = nil;
+    self.device = nil;
+    self.mainImage = nil;
+    self.webView = nil;
+    [self setOverlayView:nil];
+    [self setHeaderTextDozuki:nil];
     
     // Release any cached data, images, etc that aren't in use.
 }

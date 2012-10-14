@@ -133,6 +133,14 @@
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
+    self.emailField = nil;
+    self.passwordField = nil;
+    self.passwordVerifyField = nil;
+    self.fullNameField = nil;
+    self.loginButton = nil;
+    self.registerButton = nil;
+    self.cancelButton = nil;
+    
     // Release any cached data, images, etc that aren't in use.
 }
 
@@ -364,6 +372,8 @@
         return @"iFixit Login";
     else if ([Config currentConfig].site == ConfigMake)
         return @"Make: Projects Login";
+    else if ([Config currentConfig].site == ConfigZeal)
+        return @"Zeal Optics Login";
     return @"Login";
 }
 

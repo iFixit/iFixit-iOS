@@ -35,6 +35,8 @@ static NSMutableArray *prioritySites = nil;
 
 - (void)loadMore {
     if (!loading) {
+        [sites removeAllObjects];
+        [prioritySites removeAllObjects];
         loading = YES;
         [self showLoading];
         [[iFixitAPI sharedInstance] getSitesWithLimit:SITES_REQUEST_LIMIT
@@ -89,19 +91,21 @@ static NSMutableArray *prioritySites = nil;
         // Insert these new rows at the bottom.
         NSMutableArray *paths = [NSMutableArray array];
         for (int i=0; i<[theSites count]; i++) {
+            
             [paths addObject:[NSIndexPath indexPathForRow:(i + count) inSection:0]];
             
             // Check for priority sites and separate them off
             NSDictionary *site = [theSites objectAtIndex:i];
-            if ([site objectForKey:@"priority"]) {
+            if ([site objectForKey:@"priority"] && ![site objectForKey:@"hideFromiOS"]) {
                 [prioritySites addObject:site];
             }
         }
         
         // Populate the non-priority sites list.
         for (NSDictionary *site in theSites) {
-            if (![site objectForKey:@"priority"])
+            if (![site objectForKey:@"priority"] && ![site objectForKey:@"hideFromiOS"]) {
                 [sites addObject:site];
+            }
         }
 
         [self.tableView reloadData];
@@ -357,6 +361,10 @@ static NSMutableArray *prioritySites = nil;
     [searchBar release];
     [searchResults release];
     [super dealloc];
+}
+
+- (void)didReceiveMemoryWarning {
+    [self setSearchBar:nil];
 }
 - (void)viewDidUnload {
     [self setSearchBar:nil];

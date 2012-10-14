@@ -275,6 +275,12 @@
     self.segmentedControl = nil;
 }
 
+- (void) didReceiveMemoryWarning {
+    self.toolbar = nil;
+    self.wikiWebView = nil;
+    self.segmentedControl = nil;
+}
+
 #pragma mark -
 #pragma mark Memory management
 
