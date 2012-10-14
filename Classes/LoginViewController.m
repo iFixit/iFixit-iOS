@@ -325,15 +325,13 @@
     passwordField.returnKeyType = showRegister ? UIReturnKeyNext : UIReturnKeyDone;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
-    //Adds ability to check when a user touches UITableView only
+    // Adds ability to check when a user touches UITableView only
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]
                                           initWithTarget:self
                                           action:@selector(tableViewTapped:)];
-
     [[self tableView] addGestureRecognizer:tapGesture];
 
     self.title = @"Login";
@@ -347,8 +345,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
-- (void)tableViewTapped:(UITapGestureRecognizer *)tapGesture
-{
+- (void)tableViewTapped:(UITapGestureRecognizer *)tapGesture {
     // Remove keyboard
     [self.view endEditing:YES];
 }
