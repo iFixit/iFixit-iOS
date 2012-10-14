@@ -64,14 +64,11 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
             headerImageMake.hidden = NO;
-        }
-        else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
+        } else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
             headerImageIFixit.hidden = NO;
-        }
-        else if ([Config currentConfig].site == ConfigZeal || [Config currentConfig].site == ConfigZeal) {
+        } else if ([Config currentConfig].site == ConfigZeal) {
             headerImageZeal.hidden = NO;
-        }
-        else {
+        } else {
             headerTextDozuki.font = [UIFont fontWithName:@"Lobster" size:75.0];
             headerTextDozuki.text = [[Config currentConfig].siteData valueForKey:@"title"];
             headerTextDozuki.hidden = NO;
