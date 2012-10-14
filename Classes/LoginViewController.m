@@ -330,7 +330,10 @@
     [super viewDidLoad];
 
     //Adds ability to check when a user touches UITableView only
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tableViewTapped:)];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]
+                                          initWithTarget:self
+                                          action:@selector(tableViewTapped:)];
+
     [[self tableView] addGestureRecognizer:tapGesture];
 
     self.title = @"Login";
