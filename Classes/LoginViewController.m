@@ -334,6 +334,8 @@
                                           action:@selector(tableViewTapped:)];
     [[self tableView] addGestureRecognizer:tapGesture];
 
+    [tapGesture release];
+
     self.title = @"Login";
     self.tableView.backgroundView = nil;
     self.view.backgroundColor = [UIColor colorWithRed:0.86 green:0.86 blue:0.86 alpha:1.0];
