@@ -506,8 +506,17 @@
                                               otherButtonTitles:@"Okay", nil];
         [alert show];
         [alert release];
-    }
-    else if (![passwordVerifyField.text isEqual:passwordField.text]) {
+    } else if ([[passwordField.text stringByTrimmingCharactersInSet:
+                 [NSCharacterSet whitespaceAndNewlineCharacterSet]] length] < 6) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Passwords must be at least 6 characters and contain a non-space character."
+                                                       delegate:nil
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"Okay", nil];
+        [alert show];
+        [alert release];
+
+    } else if (![passwordVerifyField.text isEqual:passwordField.text]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
                                                         message:@"Passwords don't match"
                                                        delegate:nil
@@ -515,8 +524,7 @@
                                               otherButtonTitles:@"Okay", nil];
         [alert show];
         [alert release];
-    }
-    else {
+    } else {
         [self showLoading];
         [[iFixitAPI sharedInstance] registerWithLogin:emailField.text
                                           andPassword:passwordField.text 
