@@ -108,31 +108,32 @@
 }
 
 - (void)adjustScrollViewContentSizeForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	NSInteger numPages = [self.guide.steps count] + 1;
+    NSInteger numPages = [self.guide.steps count] + 1;
     CGRect frame;
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
 
     // iPad
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         // Landscape
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
             spinner.frame = CGRectMake(494.0, 333.0, 37.0, 37.0);
-            frame = CGRectMake(0, 44, 1024, 768 - 44);
+            frame = CGRectMake(0, 44, screenSize.height, screenSize.width - 44);
         }
         // Portrait
         else {
             spinner.frame = CGRectMake(365.0, 450.0, 37.0, 37.0);
-            frame = CGRectMake(0, 44, 768, 1024 - 44);
+            frame = CGRectMake(0, 44, screenSize.width, screenSize.height - 44);
         }        
     }
     // iPhone
     else {        
         // Landscape
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-            frame = CGRectMake(0, 44, 480, 320 - 44);
+            frame = CGRectMake(0, 44, screenSize.height, screenSize.width - 44);
         }
         // Portrait
         else {
-            frame = CGRectMake(0, 44, 320, 480 - 64);
+            frame = CGRectMake(0, 44, screenSize.width, screenSize.height - 64);
         }
     }
 
@@ -226,7 +227,7 @@
     if (page < 0 || page >= pageControl.numberOfPages)
        return;
 	
-	NSInteger stepNumber = page - 1;
+    NSInteger stepNumber = page - 1;
 	
     // replace the placeholder if necessary
     UIViewController *controller = [viewControllers objectAtIndex:page];
@@ -271,7 +272,7 @@
 	
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
     //[self performSelector:@selector(preloadForCurrentPage:) withObject:[NSNumber numberWithInt:page] afterDelay:0.1];
-	[self preloadForCurrentPage:[NSNumber numberWithInt:page]];
+    [self preloadForCurrentPage:[NSNumber numberWithInt:page]];
 	
     // Unload the views+controllers which are no longer visible
    for (int i = 2; i < pageControl.numberOfPages; i++) {
@@ -279,6 +280,7 @@
       if (distance > 2.0) {
          UIViewController *vc = [viewControllers objectAtIndex:i];
          if ((NSNull *)vc != [NSNull null]) {
+            [vc viewWillDisappear:NO];
             [vc.view removeFromSuperview];
             vc.view = nil;
             [viewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
@@ -351,15 +353,6 @@
     
     [self showPage:pageControl.currentPage];
 }
-
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 
 - (void)viewDidUnload {
     [super viewDidUnload];

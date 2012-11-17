@@ -51,14 +51,14 @@
     NSArray *allBookmarks = [[GuideBookmarks sharedBookmarks].guides allValues];
     for (NSDictionary *guideData in allBookmarks) {
         Guide *guide = [Guide guideWithDictionary:guideData];
-        NSMutableArray *guides = [b objectForKey:guide.device];
+        NSMutableArray *guides = [b objectForKey:guide.topic];
         
         if (guides) {
             [guides addObject:guide];
         }
         else {
             guides = [NSMutableArray arrayWithObject:guide];
-            [b setObject:guides forKey:guide.device];
+            [b setObject:guides forKey:guide.topic];
         }
     }
     

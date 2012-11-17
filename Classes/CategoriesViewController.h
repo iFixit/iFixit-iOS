@@ -1,5 +1,5 @@
 //
-//  AreasViewController.h
+//  CategoriesViewController.h
 //  iFixit
 //
 //  Created by David Patierno on 8/6/10.
@@ -8,7 +8,7 @@
 
 @class DetailViewController;
 
-@interface AreasViewController : UITableViewController <UISearchBarDelegate, UIAlertViewDelegate, UITextFieldDelegate>
+@interface CategoriesViewController : UITableViewController <UISearchBarDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;

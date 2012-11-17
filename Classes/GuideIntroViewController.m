@@ -24,7 +24,7 @@
 
 // Load the view nib and initialize the guide.
 - (id)initWithGuide:(Guide *)guide {
-    if ((self = [super initWithNibName:@"GuideIntroView" bundle:nil])) {
+    if ((self = [super initWithNibName:nil bundle:nil])) {
         self.guide = guide;
         self.huge = nil;
     }	
@@ -88,24 +88,24 @@
 
     self.view.backgroundColor = bgColor;
     webView.modalDelegate = delegate;
-	webView.backgroundColor = bgColor;
+    webView.backgroundColor = bgColor;
     webView.opaque = NO;
 	
-	// Load the intro contents as HTML.
-	NSString *header = [NSString stringWithFormat:@"<html><head><style type=\"text/css\"> %@ </style></head><body class=\"%@\">",
-                        [Config currentConfig].introCSS,
-                        ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? @"big" : @"small"];
-	NSString *footer = @"</body></html>";
+    // Load the intro contents as HTML.
+    NSString *header = [NSString stringWithFormat:@"<html><head><style type=\"text/css\"> %@ </style></head><body class=\"%@\">",
+                          [Config currentConfig].introCSS,
+                          ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? @"big" : @"small"];
+    NSString *footer = @"</body></html>";
 
-	NSString *body = self.guide.introduction_rendered;
+    NSString *body = self.guide.introduction_rendered;
    //NSString *body = guide.introduction;
 	
     self.html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
-	[webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
+    [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
     
     [self removeWebViewShadows];
     
-	[device setText:self.guide.device];
+    [device setText:self.guide.topic];
     
     // Add a shadow to the image
     [self addViewShadow:mainImage];
@@ -116,10 +116,10 @@
 // Because the web view has a white background, it starts hidden.
 // After the content is loaded, we wait a small amount of time before showing it to prevent flicker.
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-	[self performSelector:@selector(showWebView:) withObject:nil afterDelay:0.2];
+    [self performSelector:@selector(showWebView:) withObject:nil afterDelay:0.2];
 }
 - (void)showWebView:(id)sender {
-	webView.hidden = NO;	
+    webView.hidden = NO;	
 }
 
 - (IBAction)zoomImage:(id)sender {
@@ -147,6 +147,8 @@
     }
 }
 - (void)layoutPortrait {
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+
     // iPad
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         swipeLabel.frame = CGRectMake(340.0, 790.0, 375.0, 84.0);
@@ -155,8 +157,10 @@
     // iPhone
     else {
         CGRect frame = webView.frame;
-        frame.size.height = 305;
+        frame.size.height = screenSize.height - 175;// 305;
         webView.frame = frame;
+      
+        swipeLabel.frame = CGRectMake(0.0, screenSize.height - 20.0, 320.0, 45.0);
     }
 }
 
@@ -171,14 +175,6 @@
     // Re-flow HTML
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
 }
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 
 - (void)viewDidUnload {
     [self setOverlayView:nil];

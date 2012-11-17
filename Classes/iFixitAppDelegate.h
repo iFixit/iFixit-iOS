@@ -10,7 +10,7 @@
 
 #import "LoginViewControllerDelegate.h"
 
-@class AreasViewController;
+@class CategoriesViewController;
 @class DetailViewController;
 @class GuideStepViewController;
 @class SplashViewController;
@@ -21,7 +21,7 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
 @property (nonatomic, retain) UISplitViewController *splitViewController;
-@property (nonatomic, retain) AreasViewController *areasViewController;
+@property (nonatomic, retain) CategoriesViewController *categoriesViewController;
 @property (nonatomic, retain) DetailViewController *detailViewController;
 
 @property (nonatomic, retain) iFixitAPI *api;

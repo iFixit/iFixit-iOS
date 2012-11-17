@@ -10,7 +10,7 @@
 #import "Config.h"
 
 #import "ListViewController.h"
-#import "AreasViewController.h"
+#import "CategoriesViewController.h"
 #import "DetailViewController.h"
 #import "FeaturedViewController.h"
 #import "GuideViewController.h"
@@ -60,7 +60,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 @implementation iFixitAppDelegate
 
-@synthesize window, splitViewController, areasViewController, detailViewController;
+@synthesize window, splitViewController, categoriesViewController, detailViewController;
 @synthesize api, firstLoad, showsTabBar;
 
 #pragma mark -
@@ -90,7 +90,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     /* Configure. */
     [Config currentConfig].dozuki = NO;
-    
+
     /* Track. */
     [TestFlight takeOff:@"6b356258f037dc15f6d69d0e5d27fdf7_MzAyOTUyMDEyLTAyLTEyIDE1OjQ2OjUwLjA0NTg5OQ"];
     [self setupAnalytics];
@@ -213,8 +213,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     self.showsTabBar = [Config currentConfig].collectionsEnabled || [Config currentConfig].store;
     
     // Create the split controller children.
-    AreasViewController *rvc = [[AreasViewController alloc] init];
-    self.areasViewController = rvc;
+    CategoriesViewController *rvc = [[CategoriesViewController alloc] init];
+    self.categoriesViewController = rvc;
     [rvc release];
     DetailViewController *dvc = [[DetailViewController alloc] init];
     self.detailViewController = dvc;
@@ -226,13 +226,13 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     self.splitViewController = svc;
     [svc release];
     
-    areasViewController.detailViewController = detailViewController;
+    categoriesViewController.detailViewController = detailViewController;
     
-    ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:areasViewController];
+    ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:categoriesViewController];
     splitViewController.viewControllers = [NSArray arrayWithObjects:lvc, detailViewController, nil];
     [lvc release];
     
-    areasViewController.delegate = self;
+    categoriesViewController.delegate = self;
     
     // Stop here, or put a fancy tab bar at the bottom.
     if (!self.showsTabBar)
@@ -287,11 +287,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 }
 
 - (UIViewController *)iPhoneRoot {
-    AreasViewController *avc = [[AreasViewController alloc] init];
-    self.areasViewController = avc;
-    [avc release];
+    CategoriesViewController *cvc = [[CategoriesViewController alloc] init];
+    self.categoriesViewController = cvc;
+    [cvc release];
     
-    ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:areasViewController];
+    ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:categoriesViewController];
 
     lvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     return [lvc autorelease];
@@ -420,7 +420,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive.
      */
-    [areasViewController viewWillAppear:NO];
+    [categoriesViewController viewWillAppear:NO];
 }
 
 

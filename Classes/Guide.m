@@ -11,7 +11,7 @@
 
 @implementation Guide
 
-@synthesize data, guideid, device, subject, title, author, timeRequired, difficulty, introduction, introduction_rendered, summary, image;
+@synthesize data, guideid, topic, subject, title, author, timeRequired, difficulty, introduction, introduction_rendered, summary, image;
 @synthesize documents, parts, tools, flags;
 @synthesize prereqs, steps;
 
@@ -37,7 +37,7 @@
 	
 	// Meta information
 	guide.title          = [guideData valueForKey:@"title"];
-	guide.device         = [dict valueForKey:@"device"];
+	guide.topic          = [dict valueForKey:@"topic"];
 	guide.subject        = [guideData valueForKey:@"subject"];
 	guide.author         = [guideData valueForKey:@"author"];
 	guide.timeRequired   = [guideData valueForKey:@"time"];
@@ -70,7 +70,7 @@
 - (void)dealloc {
     [data release];
     [title release];
-    [device release];
+    [topic release];
     [subject release];
     [author release];
     [timeRequired release];

@@ -20,11 +20,11 @@
 - (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector;
 - (void)getCollectionsWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector;
 - (void)getGuide:(NSInteger)guideid forObject:(id)object withSelector:(SEL)selector;
-- (void)getAreas:(NSString *)parent forObject:(id)object withSelector:(SEL)selector;
+- (void)getCategories:(NSString *)parent forObject:(id)object withSelector:(SEL)selector;
 - (void)getGuides:(NSString *)type forObject:(id)object withSelector:(SEL)selector;
 - (void)getGuidesByIds:(NSArray *)guideids forObject:(id)object withSelector:(SEL)selector;
 - (void)getSearchResults:(NSString *)search forObject:(id)object withSelector:(SEL)selector;
-- (void)getDevice:(NSString *)device forObject:(id)object withSelector:(SEL)selector;
+- (void)getTopic:(NSString *)device forObject:(id)object withSelector:(SEL)selector;
 
 // Session management
 - (void)loginWithSessionId:(NSString *)sessionId forObject:(id)object withSelector:(SEL)selector;

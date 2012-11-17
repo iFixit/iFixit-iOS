@@ -51,7 +51,7 @@
 
 - (void)loadDevice {
     [self showLoading];
-    [[iFixitAPI sharedInstance] getDevice:_device forObject:self withSelector:@selector(gotDevice:)];
+    [[iFixitAPI sharedInstance] getTopic:_device forObject:self withSelector:@selector(gotDevice:)];
 }
 
 - (void)gotDevice:(NSDictionary *)data {

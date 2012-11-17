@@ -1,5 +1,5 @@
 //
-//  AreasViewController.m
+//  CategoriesViewController.m
 //  iFixit
 //
 //  Created by David Patierno on 8/6/10.
@@ -8,17 +8,17 @@
 
 #import "iFixitAppDelegate.h"
 #import "Config.h"
-#import "AreasViewController.h"
+#import "CategoriesViewController.h"
 #import "DetailViewController.h"
 #import "iPhoneDeviceViewController.h"
 #import "DetailGridViewController.h"
 
-@implementation AreasViewController
+@implementation CategoriesViewController
 
 @synthesize delegate, searchBar, searching, searchResults, detailViewController, data, tree, keys, leafs, noResults, inPopover;
 
 - (id)init {
-    if ((self = [super initWithNibName:@"AreasViewController" bundle:nil])) {        
+    if ((self = [super initWithNibName:nil bundle:nil])) {
         self.tree = nil;
         searching = NO;
         self.searchResults = [NSArray array];
@@ -46,6 +46,7 @@
         else {
             UIImage *titleImage = [UIImage imageNamed:@"titleImage.png"];
             UIImageView *imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+            imageTitle.contentMode = UIViewContentModeScaleAspectFit;
             self.navigationItem.titleView = imageTitle;
             [imageTitle release];
         }
@@ -94,7 +95,7 @@
 }
 - (void)getAreas {
     [self showLoading];
-    [[iFixitAPI sharedInstance] getAreas:nil forObject:self withSelector:@selector(gotAreas:)];
+    [[iFixitAPI sharedInstance] getCategories:nil forObject:self withSelector:@selector(gotAreas:)];
 }
 
 - (void)gotAreas:(NSDictionary *)areas {
@@ -107,7 +108,7 @@
     else {
         // If there is no area hierarchy, show a guide list instead
         if ([areas isKindOfClass:[NSArray class]] && ![areas count]) {
-            iPhoneDeviceViewController *dvc = [[iPhoneDeviceViewController alloc] initWithDevice:nil];
+            iPhoneDeviceViewController *dvc = [[iPhoneDeviceViewController alloc] initWithTopic:nil];
             [self.navigationController pushViewController:dvc animated:YES];
             [dvc release];
         }
@@ -247,7 +248,7 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     if (inPopover)
         return;
-    
+  
     // Make room for the toolbar
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad || UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
@@ -276,8 +277,8 @@
     
 	// Separate the leafs.
 	self.tree = [NSMutableDictionary dictionaryWithDictionary:dict];
-	self.leafs = [[tree objectForKey:@"DEVICES"] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-	[tree removeObjectForKey:@"DEVICES"];
+	self.leafs = [[tree objectForKey:@"TOPICS"] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+	[tree removeObjectForKey:@"TOPICS"];
 	self.keys = [[tree allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }
 
@@ -424,7 +425,7 @@
         }
     }
     else if (indexPath.section == 1 - base && [keys count] && !searching) {
-		AreasViewController *vc = [[AreasViewController alloc] init];
+		CategoriesViewController *vc = [[CategoriesViewController alloc] init];
         vc.inPopover = inPopover;
 		vc.detailViewController = detailViewController;
 
@@ -467,7 +468,7 @@
         
         // iPhone: Push a webView onto the stack.
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-            iPhoneDeviceViewController *vc = [[iPhoneDeviceViewController alloc] initWithDevice:title];
+            iPhoneDeviceViewController *vc = [[iPhoneDeviceViewController alloc] initWithTopic:title];
             vc.title = display_title;
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
