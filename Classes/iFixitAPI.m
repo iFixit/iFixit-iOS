@@ -243,7 +243,7 @@ static int volatile openConnections = 0;
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/1.0/login", [Config host]];	
 
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
-    if ([Config currentConfig].dozuki && [Config currentConfig].site != ConfigMake && [Config currentConfig].site != ConfigIFixit)
+    if ([Config currentConfig].site == ConfigIFixitDev || [Config currentConfig].site == ConfigMakeDev)
         [request setValidatesSecureCertificate:NO];
     [request setRequestMethod:@"POST"];
     [request setPostValue:login forKey:@"login"];
@@ -268,7 +268,7 @@ static int volatile openConnections = 0;
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/1.0/register", [Config currentConfig].host];	
     
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];    
-    if ([Config currentConfig].dozuki && [Config currentConfig].site != ConfigMake && [Config currentConfig].site != ConfigIFixit)
+    if ([Config currentConfig].site == ConfigIFixitDev || [Config currentConfig].site == ConfigMakeDev)
         [request setValidatesSecureCertificate:NO];
     [request setRequestMethod:@"POST"];
     [request setPostValue:login forKey:@"login"];
