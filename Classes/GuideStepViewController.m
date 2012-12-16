@@ -101,7 +101,8 @@
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
     
     [self removeWebViewShadows];
-    
+  
+    // Images
     if (self.step.images) {
         // Add a shadow to the images
         [self addViewShadow:mainImage];
@@ -111,22 +112,28 @@
       
         [self startImageDownloads];
     }
+    // Videos
     else if (self.step.video) {
         CGRect frame = mainImage.frame;
         frame.origin.x = 10.0;
+
         NSURL *url = [NSURL URLWithString:self.step.video.url];
         self.moviePlayer = [[[MPMoviePlayerController alloc] init] autorelease];
         moviePlayer.shouldAutoplay = NO;
         moviePlayer.contentURL = url;
         moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
         moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+        // Play full screen on iPhones and iPods.
+        moviePlayer.fullscreen = [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad;
         [moviePlayer.view setFrame:frame];
         [moviePlayer prepareToPlay];
         [self.view addSubview:moviePlayer.view];
     }
+    // Embeds
     else if (self.step.embed) {
         CGRect frame = mainImage.frame;
         frame.origin.x = 10.0;
+
         self.embedView = [[[UIWebView alloc] initWithFrame:frame] autorelease];
         self.embedView.backgroundColor = [UIColor clearColor];
         self.embedView.opaque = NO;
@@ -152,7 +159,19 @@
         }];
         [request startAsynchronous];
     }
+
+    // Fix for rotation while playing video.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_moviePlayerWillExitFullscreen:)
+                                                 name:MPMoviePlayerWillExitFullscreenNotification
+                                               object:nil];
+
 }
+
+- (void)_moviePlayerWillExitFullscreen:(NSNotification *)notification {
+  [self.delegate willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated {
   [moviePlayer stop];
@@ -355,6 +374,8 @@
     [image3 release];
     [moviePlayer release];
     [embedView release];
+  
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
   
     [super dealloc];
 }
