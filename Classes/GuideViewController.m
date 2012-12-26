@@ -194,7 +194,10 @@
                                                                                 target:self action:@selector(closeGuide)];
     thisItem.leftBarButtonItem = doneButton;
     [doneButton release];
-    [bookmarker setNavItem:thisItem andGuideid:self.guide.guideid];
+
+    // Don't create the bookmark button for Crucial, they want to disable login
+    if ([Config currentConfig].site != ConfigCrucial)
+        [bookmarker setNavItem:thisItem andGuideid:self.guide.guideid];
     
 	NSArray *navItems = [NSArray arrayWithObjects:thisItem, nil];
 	[navBar setItems:navItems animated:NO];

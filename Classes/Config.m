@@ -18,7 +18,7 @@ static Config *currentConfig = nil;
 + (Config *)currentConfig {
     if (!currentConfig) {
         currentConfig = [[self alloc] init];
-        currentConfig.site = ConfigIFixit;
+        currentConfig.site = ConfigCrucial;
         currentConfig.dozuki = NO;
     }
     return currentConfig;
@@ -57,6 +57,13 @@ static Config *currentConfig = nil;
             collectionsEnabled = YES;
             self.store = nil;
             break;
+        case ConfigCrucial:
+            self.host = @"crucial.dozuki.com";
+            self.baseURL = @"http://crucial.dozuki.com/Guide";
+            answersEnabled = NO;
+            collectionsEnabled = NO;
+            self.store = nil;
+            break;
         default:
             self.host = nil;
             self.baseURL = nil;
@@ -69,6 +76,7 @@ static Config *currentConfig = nil;
         // Make
         case ConfigMake:
         case ConfigMakeDev:
+        case ConfigCrucial:
             self.backgroundColor = [UIColor whiteColor];
             self.textColor = [UIColor blackColor];
             self.toolbarColor = [UIColor colorWithRed:0.16 green:0.67 blue:0.89 alpha:1.0];

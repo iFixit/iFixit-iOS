@@ -15,6 +15,14 @@
 		2804200C108E984D000629CD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2804200A108E984D000629CD /* DetailViewController.m */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
+		ABEB2C991689247E00D1070D /* logo_crucial_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = ABEB2C951689247D00D1070D /* logo_crucial_transparent.png */; };
+		ABEB2C9A1689247E00D1070D /* logo_crucial_transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABEB2C961689247D00D1070D /* logo_crucial_transparent@2x.png */; };
+		ABEB2C9B1689247E00D1070D /* logo_crucial.png in Resources */ = {isa = PBXBuildFile; fileRef = ABEB2C971689247D00D1070D /* logo_crucial.png */; };
+		ABEB2C9C1689247E00D1070D /* logo_crucial@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABEB2C981689247E00D1070D /* logo_crucial@2x.png */; };
+		ABEB2C9F168925D800D1070D /* titleImage_crucial.png in Resources */ = {isa = PBXBuildFile; fileRef = ABEB2C9D168925D600D1070D /* titleImage_crucial.png */; };
+		ABEB2CA0168925D800D1070D /* titleImage_crucial@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABEB2C9E168925D700D1070D /* titleImage_crucial@2x.png */; };
+		ABEB2CA3168928E100D1070D /* detailViewTextGeneric.png in Resources */ = {isa = PBXBuildFile; fileRef = ABEB2CA1168928DE00D1070D /* detailViewTextGeneric.png */; };
+		ABEB2CA4168928E100D1070D /* detailViewTextGeneric@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABEB2CA2168928E000D1070D /* detailViewTextGeneric@2x.png */; };
 		C10F2708120CE5140027A28D /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F26FF120CE5140027A28D /* NSObject+SBJSON.m */; };
 		C10F2709120CE5140027A28D /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2701120CE5140027A28D /* NSString+SBJSON.m */; };
 		C10F270A120CE5140027A28D /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2703120CE5140027A28D /* SBJsonBase.m */; };
@@ -227,6 +235,14 @@
 		28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		ABEB2C951689247D00D1070D /* logo_crucial_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_crucial_transparent.png; path = Graphics/logo_crucial_transparent.png; sourceTree = "<group>"; };
+		ABEB2C961689247D00D1070D /* logo_crucial_transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo_crucial_transparent@2x.png"; path = "Graphics/logo_crucial_transparent@2x.png"; sourceTree = "<group>"; };
+		ABEB2C971689247D00D1070D /* logo_crucial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_crucial.png; path = Graphics/logo_crucial.png; sourceTree = "<group>"; };
+		ABEB2C981689247E00D1070D /* logo_crucial@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo_crucial@2x.png"; path = "Graphics/logo_crucial@2x.png"; sourceTree = "<group>"; };
+		ABEB2C9D168925D600D1070D /* titleImage_crucial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImage_crucial.png; sourceTree = "<group>"; };
+		ABEB2C9E168925D700D1070D /* titleImage_crucial@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImage_crucial@2x.png"; sourceTree = "<group>"; };
+		ABEB2CA1168928DE00D1070D /* detailViewTextGeneric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detailViewTextGeneric.png; sourceTree = "<group>"; };
+		ABEB2CA2168928E000D1070D /* detailViewTextGeneric@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detailViewTextGeneric@2x.png"; sourceTree = "<group>"; };
 		C10E3EB1120E369E008CE3AE /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		C10F26FD120CE5140027A28D /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		C10F26FE120CE5140027A28D /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
@@ -704,6 +720,8 @@
 				DA275DAA15104C6200A8A09C /* detailViewFist@2x.png */,
 				DA35629B1476F84C00683947 /* detailViewText.png */,
 				DA275DAB15104C6200A8A09C /* detailViewText@2x.png */,
+				ABEB2CA1168928DE00D1070D /* detailViewTextGeneric.png */,
+				ABEB2CA2168928E000D1070D /* detailViewTextGeneric@2x.png */,
 				DA61C51713380E4C000028C3 /* forward.png */,
 				DA61C51813380E4C000028C3 /* forward@2x.png */,
 				DA6303AF147DDE03006D8A2B /* guideIntroOverlay.png */,
@@ -719,6 +737,10 @@
 				DA61C51F13380E4C000028C3 /* logo_make.png */,
 				DA275DB315104CA400A8A09C /* logo_make@2x.png */,
 				DA61C51E13380E4C000028C3 /* logo_make_black.png */,
+				ABEB2C951689247D00D1070D /* logo_crucial_transparent.png */,
+				ABEB2C961689247D00D1070D /* logo_crucial_transparent@2x.png */,
+				ABEB2C971689247D00D1070D /* logo_crucial.png */,
+				ABEB2C981689247E00D1070D /* logo_crucial@2x.png */,
 				DA086C7D147CA39E00BD9A2F /* make_logo_transparent.png */,
 				DA275DB415104CA400A8A09C /* make_logo_transparent@2x.png */,
 				DA3562B0147731C500683947 /* noGuides.png */,
@@ -748,6 +770,8 @@
 				DA61C55513383571000028C3 /* titleImage.png */,
 				DA61C55613383571000028C3 /* titleImage@2x.png */,
 				DAA750901368F45D002AA546 /* titleImage_make.png */,
+				ABEB2C9D168925D600D1070D /* titleImage_crucial.png */,
+				ABEB2C9E168925D700D1070D /* titleImage_crucial@2x.png */,
 				DACE44361353B87E00F78360 /* x-icon.png */,
 				DACE44371353B87E00F78360 /* x-icon@2x.png */,
 			);
@@ -1247,6 +1271,14 @@
 				DA4D2870151AC69700448914 /* icon144.png in Resources */,
 				DACE7FF016571F560013FFFD /* Default-568h@2x.png in Resources */,
 				DACE7FF2165722710013FFFD /* GuideStepViewController.xib in Resources */,
+				ABEB2C991689247E00D1070D /* logo_crucial_transparent.png in Resources */,
+				ABEB2C9A1689247E00D1070D /* logo_crucial_transparent@2x.png in Resources */,
+				ABEB2C9B1689247E00D1070D /* logo_crucial.png in Resources */,
+				ABEB2C9C1689247E00D1070D /* logo_crucial@2x.png in Resources */,
+				ABEB2C9F168925D800D1070D /* titleImage_crucial.png in Resources */,
+				ABEB2CA0168925D800D1070D /* titleImage_crucial@2x.png in Resources */,
+				ABEB2CA3168928E100D1070D /* detailViewTextGeneric.png in Resources */,
+				ABEB2CA4168928E100D1070D /* detailViewTextGeneric@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1368,7 +1400,7 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
@@ -1382,7 +1414,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F238D36E-8CCC-43CD-9087-6BDFAF00F717";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "53E6B131-FF2B-427E-A201-643E933B01A9";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1453,7 +1485,7 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1469,7 +1501,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F238D36E-8CCC-43CD-9087-6BDFAF00F717";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";

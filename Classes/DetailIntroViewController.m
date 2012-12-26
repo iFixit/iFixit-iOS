@@ -32,12 +32,13 @@
         if ([Config currentConfig].site == ConfigMake) {
             frame.origin.y = 270.0;
             frame.origin.x = 126.0;
-        }
-        else {
+        } else if ([Config currentConfig].site == ConfigCrucial) {
+            frame.origin.y = 255.0;
+            frame.origin.x = 12.0;
+        } else {
             frame.origin.y = -60.0;
         }
-    }
-    else {
+    } else {
         text.alpha = 1.0;
         siteLabel.frame = CGRectMake(40.0, 200.0, 688.0, 150.0);
         
@@ -45,8 +46,10 @@
         if ([Config currentConfig].site == ConfigMake) {
             frame.origin.y = 210.0;
             frame.origin.x = 156.0;
-        }
-        else {
+        } else if ([Config currentConfig].site == ConfigCrucial) {
+            frame.origin.y = 360.0;
+            frame.origin.x = 47.0;
+        } else {
             frame.origin.y = 192.0;
         }
     }
@@ -64,11 +67,16 @@
         image.image = [UIImage imageNamed:@"make_logo_transparent.png"];
         image.frame = CGRectMake(image.frame.origin.x, image.frame.origin.y, 455.0, 97.0);
         image.center = self.view.center;
-        
+
         text.image = [UIImage imageNamed:@"detailViewArrowLight.png"];
         text.frame = CGRectMake(text.frame.origin.x, text.frame.origin.y, 313.0, 174.0);
-    }
-    else if ([Config currentConfig].site != ConfigIFixit) {
+    } else if ([Config currentConfig].site == ConfigCrucial) {
+        image.image = [UIImage imageNamed:@"logo_crucial_transparent.png"];
+        image.frame = CGRectMake(image.frame.origin.x, image.frame.origin.y, 680.0, 154.0);
+        image.center = self.view.center;
+
+        text.image = [UIImage imageNamed:@"detailViewTextGeneric.png"];
+    } else if ([Config currentConfig].site != ConfigIFixit) {
         text.image = [UIImage imageNamed:@"detailViewArrowDark.png"];
         text.frame = CGRectMake(text.frame.origin.x, text.frame.origin.y, 313.0, 174.0);
         siteLabel.font = [UIFont fontWithName:@"Lobster" size:120.0];

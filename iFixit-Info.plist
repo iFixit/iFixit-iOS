@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
-	<string>iFixit</string>
+	<string>Crucial</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
@@ -17,7 +17,7 @@
 		<string>icon512.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.ifixit.ifixit</string>
+	<string>com.dozuki.crucial</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -34,10 +34,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>CFBundleURLName</key>
-			<string>com.ifixit.ifixit</string>
+			<string>com.dozuki.crucial</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>ifixit</string>
+				<string>crucial</string>
 			</array>
 		</dict>
 	</array>

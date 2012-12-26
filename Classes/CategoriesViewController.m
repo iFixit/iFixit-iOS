@@ -39,11 +39,15 @@
     
     if (!self.title) {
         self.title = @"Categories";
-        
-        if ([Config currentConfig].site != ConfigIFixit && [Config currentConfig].site != ConfigIFixitDev) {
+        if ([Config currentConfig].site == ConfigCrucial) {
+            UIImage *titleImage = [UIImage imageNamed:@"titleImage_crucial.png"];
+            UIImageView *imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+            imageTitle.contentMode = UIViewContentModeScaleAspectFit;
+            self.navigationItem.titleView = imageTitle;
+            [imageTitle release];
+        } else if ([Config currentConfig].site != ConfigIFixit && [Config currentConfig].site != ConfigIFixitDev) {
             
-        }
-        else {
+        } else {
             UIImage *titleImage = [UIImage imageNamed:@"titleImage.png"];
             UIImageView *imageTitle = [[UIImageView alloc] initWithImage:titleImage];
             imageTitle.contentMode = UIViewContentModeScaleAspectFit;
@@ -303,7 +307,7 @@
         ![self.title isEqual:@"Categories"] ? 0 : 1;
     
     // TODO: Fill this in with data from the sites API
-    NSString *topicsTitle = @"Topics";
+    NSString *topicsTitle = @"Categories";
     if ([Config currentConfig].site == ConfigIFixit)
         topicsTitle = @"Devices";
     

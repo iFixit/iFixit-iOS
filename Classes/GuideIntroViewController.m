@@ -15,9 +15,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation GuideIntroViewController
-@synthesize headerTextDozuki;
 
-@synthesize delegate, headerImageIFixit, headerImageMake, swipeLabel;
+@synthesize delegate, headerImageIFixit, headerImageMake, headerImageCrucial, headerTextDozuki, swipeLabel;
 @synthesize overlayView;
 @synthesize guide=_guide;
 @synthesize device, mainImage, webView, huge, html;
@@ -64,11 +63,11 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
             headerImageMake.hidden = NO;
-        }
-        else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
+        } else if ([Config currentConfig].site == ConfigCrucial) {
+            headerImageCrucial.hidden = NO;
+        } else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
             headerImageIFixit.hidden = NO;
-        }
-        else {
+        } else {
             headerTextDozuki.font = [UIFont fontWithName:@"Lobster" size:75.0];
             headerTextDozuki.text = [[Config currentConfig].siteData valueForKey:@"title"];
             headerTextDozuki.hidden = NO;
@@ -179,6 +178,7 @@
 - (void)viewDidUnload {
     [self setOverlayView:nil];
     [self setHeaderTextDozuki:nil];
+    [self setHeaderImageCrucial:nil];
     [super viewDidUnload];
     self.headerImageIFixit = nil;
     self.headerImageMake = nil;
@@ -207,6 +207,7 @@
     
     [overlayView release];
     [headerTextDozuki release];
+    [headerImageCrucial release];
     [super dealloc];
 }
 
