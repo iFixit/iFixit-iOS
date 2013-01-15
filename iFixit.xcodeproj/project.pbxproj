@@ -15,6 +15,10 @@
 		2804200C108E984D000629CD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2804200A108E984D000629CD /* DetailViewController.m */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
+		AB02242716A4CB110025C30B /* titleImage_crucial_white.png in Resources */ = {isa = PBXBuildFile; fileRef = AB02242516A4CB110025C30B /* titleImage_crucial_white.png */; };
+		AB02242816A4CB110025C30B /* titleImage_crucial_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB02242616A4CB110025C30B /* titleImage_crucial_white@2x.png */; };
+		AB02242A16A4F71B0025C30B /* titleImage_crucial_white_centered.png in Resources */ = {isa = PBXBuildFile; fileRef = AB02242916A4F71B0025C30B /* titleImage_crucial_white_centered.png */; };
+		AB02242C16A4F8650025C30B /* titleImage_crucial_white_centered@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB02242B16A4F8650025C30B /* titleImage_crucial_white_centered@2x.png */; };
 		ABEB2C991689247E00D1070D /* logo_crucial_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = ABEB2C951689247D00D1070D /* logo_crucial_transparent.png */; };
 		ABEB2C9A1689247E00D1070D /* logo_crucial_transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABEB2C961689247D00D1070D /* logo_crucial_transparent@2x.png */; };
 		ABEB2C9B1689247E00D1070D /* logo_crucial.png in Resources */ = {isa = PBXBuildFile; fileRef = ABEB2C971689247D00D1070D /* logo_crucial.png */; };
@@ -235,6 +239,10 @@
 		28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		AB02242516A4CB110025C30B /* titleImage_crucial_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImage_crucial_white.png; sourceTree = "<group>"; };
+		AB02242616A4CB110025C30B /* titleImage_crucial_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImage_crucial_white@2x.png"; sourceTree = "<group>"; };
+		AB02242916A4F71B0025C30B /* titleImage_crucial_white_centered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImage_crucial_white_centered.png; sourceTree = "<group>"; };
+		AB02242B16A4F8650025C30B /* titleImage_crucial_white_centered@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImage_crucial_white_centered@2x.png"; sourceTree = "<group>"; };
 		ABEB2C951689247D00D1070D /* logo_crucial_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_crucial_transparent.png; path = Graphics/logo_crucial_transparent.png; sourceTree = "<group>"; };
 		ABEB2C961689247D00D1070D /* logo_crucial_transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo_crucial_transparent@2x.png"; path = "Graphics/logo_crucial_transparent@2x.png"; sourceTree = "<group>"; };
 		ABEB2C971689247D00D1070D /* logo_crucial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_crucial.png; path = Graphics/logo_crucial.png; sourceTree = "<group>"; };
@@ -557,13 +565,13 @@
 				DACD8FD414DDD7970020A06C /* Login */,
 				DA881854134A5AFE004387CE /* BookmarksViewController.h */,
 				DA881855134A5AFE004387CE /* BookmarksViewController.m */,
-				DA881856134A5AFE004387CE /* BookmarksView.xib */,
 				28042009108E984D000629CD /* DetailViewController.h */,
 				2804200A108E984D000629CD /* DetailViewController.m */,
 				DAAAC74C1433F49100CB90AF /* DetailViewController.xib */,
 				DA3562961476F65200683947 /* DetailIntroViewController.h */,
 				DA3562971476F65200683947 /* DetailIntroViewController.m */,
 				DA3562981476F65200683947 /* DetailIntroViewController.xib */,
+				DA881856134A5AFE004387CE /* BookmarksView.xib */,
 				DA1977201473009A00CD6305 /* DetailGridViewController.h */,
 				DA1977211473009A00CD6305 /* DetailGridViewController.m */,
 				DA38111B147AE2C000BBFB9C /* DetailGridViewControllerDelegate.h */,
@@ -705,6 +713,8 @@
 				DA61C50E13380E4C000028C3 /* back.png */,
 				DA61C50F13380E4C000028C3 /* back@2x.png */,
 				DAC26871140842B300752982 /* backtosites.png */,
+				AB02242916A4F71B0025C30B /* titleImage_crucial_white_centered.png */,
+				AB02242B16A4F8650025C30B /* titleImage_crucial_white_centered@2x.png */,
 				DAC26872140842B300752982 /* backtosites@2x.png */,
 				DA61C51113380E4C000028C3 /* browse_manuals.png */,
 				DA61C51413380E4C000028C3 /* browse_projects.png */,
@@ -741,6 +751,8 @@
 				ABEB2C961689247D00D1070D /* logo_crucial_transparent@2x.png */,
 				ABEB2C971689247D00D1070D /* logo_crucial.png */,
 				ABEB2C981689247E00D1070D /* logo_crucial@2x.png */,
+				AB02242516A4CB110025C30B /* titleImage_crucial_white.png */,
+				AB02242616A4CB110025C30B /* titleImage_crucial_white@2x.png */,
 				DA086C7D147CA39E00BD9A2F /* make_logo_transparent.png */,
 				DA275DB415104CA400A8A09C /* make_logo_transparent@2x.png */,
 				DA3562B0147731C500683947 /* noGuides.png */,
@@ -1279,6 +1291,10 @@
 				ABEB2CA0168925D800D1070D /* titleImage_crucial@2x.png in Resources */,
 				ABEB2CA3168928E100D1070D /* detailViewTextGeneric.png in Resources */,
 				ABEB2CA4168928E100D1070D /* detailViewTextGeneric@2x.png in Resources */,
+				AB02242716A4CB110025C30B /* titleImage_crucial_white.png in Resources */,
+				AB02242816A4CB110025C30B /* titleImage_crucial_white@2x.png in Resources */,
+				AB02242A16A4F71B0025C30B /* titleImage_crucial_white_centered.png in Resources */,
+				AB02242C16A4F8650025C30B /* titleImage_crucial_white_centered@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1370,7 +1386,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dozuki";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dozuki";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1379,15 +1396,17 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
 				INFOPLIST_FILE = "iFixit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlight\"",
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "84025A3B-EA0E-4435-9F53-3C54874983E3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "84025A3B-EA0E-4435-9F53-3C54874983E3";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -1400,21 +1419,23 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dozuki";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dozuki";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
 				INFOPLIST_FILE = "iFixit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlight\"",
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "53E6B131-FF2B-427E-A201-643E933B01A9";
+				PROVISIONING_PROFILE = "84025A3B-EA0E-4435-9F53-3C54874983E3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "84025A3B-EA0E-4435-9F53-3C54874983E3";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1425,16 +1446,18 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Patierno (W7L35YGZ69)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dozuki";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dozuki";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5DF6B989-29D2-477D-AEF8-1DA413BFA5BB";
+				PROVISIONING_PROFILE = "84025A3B-EA0E-4435-9F53-3C54874983E3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "84025A3B-EA0E-4435-9F53-3C54874983E3";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1445,14 +1468,16 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kyle Wiens";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dozuki";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dozuki";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "29994DB8-7EA9-4B01-BA6C-EE4F070DDD8A";
+				PROVISIONING_PROFILE = "84025A3B-EA0E-4435-9F53-3C54874983E3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "84025A3B-EA0E-4435-9F53-3C54874983E3";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1463,14 +1488,16 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dozuki";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dozuki";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CODE_SIGN_FLAGS = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CFC3F736-175A-4795-A1DD-9011AA491EFE";
+				PROVISIONING_PROFILE = "84025A3B-EA0E-4435-9F53-3C54874983E3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "84025A3B-EA0E-4435-9F53-3C54874983E3";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1485,7 +1512,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dozuki";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dozuki";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1494,15 +1522,17 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
 				INFOPLIST_FILE = "iFixit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlight\"",
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "84025A3B-EA0E-4435-9F53-3C54874983E3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "84025A3B-EA0E-4435-9F53-3C54874983E3";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = "Ad-Hoc";
 		};

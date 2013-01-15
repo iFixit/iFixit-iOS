@@ -76,7 +76,6 @@ static Config *currentConfig = nil;
         // Make
         case ConfigMake:
         case ConfigMakeDev:
-        case ConfigCrucial:
             self.backgroundColor = [UIColor whiteColor];
             self.textColor = [UIColor blackColor];
             self.toolbarColor = [UIColor colorWithRed:0.16 green:0.67 blue:0.89 alpha:1.0];
@@ -85,12 +84,22 @@ static Config *currentConfig = nil;
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             break;
+        // Crucial
+        case ConfigCrucial:
+            self.backgroundColor = [UIColor whiteColor];
+            self.textColor = [UIColor blackColor];
+            self.toolbarColor = [UIColor colorWithRed:.19 green:.21 blue:.23 alpha:1.0];
+            
+            // Load intro and step css from the css folder.
+            self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
+            self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            break;
+            
         // iFixit
         case ConfigIFixit:
         case ConfigIFixitDev:
             self.backgroundColor = [UIColor blackColor];
             self.textColor = [UIColor whiteColor];
-            //self.toolbarColor = [UIColor blackColor];
             self.toolbarColor = [UIColor colorWithRed:0.20 green:0.43 blue:0.66 alpha:1.0];
 
             // Load intro and step css from the css folder.        
@@ -101,7 +110,6 @@ static Config *currentConfig = nil;
         default:
             self.backgroundColor = [UIColor blackColor];
             self.textColor = [UIColor whiteColor];
-            //self.toolbarColor = [UIColor darkGrayColor];
             self.toolbarColor = [UIColor colorWithRed:.19 green:.21 blue:.23 alpha:1.0];
             
             // Load intro and step css from the css folder.        

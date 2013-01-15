@@ -29,9 +29,14 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-- (void)viewWillAppear:(BOOL)animated {    
+- (void)viewWillAppear:(BOOL)animated {
+    // We reuse this view, and only want to create the infoButton when
+    // the tree is empty
     if (!tree)
         [self getAreas];
+    else if ([Config currentConfig].site == ConfigCrucial) {
+        [self createInfoButton];
+    }
 }
 
 - (void)viewDidLoad {
@@ -40,7 +45,7 @@
     if (!self.title) {
         self.title = @"Categories";
         if ([Config currentConfig].site == ConfigCrucial) {
-            UIImage *titleImage = [UIImage imageNamed:@"titleImage_crucial.png"];
+            UIImage *titleImage = [UIImage imageNamed:@"titleImage_crucial_white_centered.png"];
             UIImageView *imageTitle = [[UIImageView alloc] initWithImage:titleImage];
             imageTitle.contentMode = UIViewContentModeScaleAspectFit;
             self.navigationItem.titleView = imageTitle;
@@ -103,7 +108,11 @@
 }
 
 - (void)gotAreas:(NSDictionary *)areas {
-    self.navigationItem.rightBarButtonItem = nil;
+    if ([Config currentConfig].site == ConfigCrucial) {
+        [self createInfoButton];
+    } else {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
     
     if ([areas isKindOfClass:[NSDictionary class]]) {
         [self setData:areas];
@@ -126,6 +135,34 @@
     self.navigationItem.titleView = nil;
 }
 
+- (void)createInfoButton {
+    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [infoButton addTarget:self action:@selector(infoButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+    
+    self.navigationItem.rightBarButtonItem = infoItem;
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex; {
+    
+    // Take the user to Dozuki.com - This is only for Crucial. This will only be called from a Crucial
+    // So no need to check to see for their site until we add more custom sites that want an info button.
+    if (buttonIndex == 1) {
+        NSURL *url = [NSURL URLWithString:@"http://www.dozuki.com"];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+    
+}
+
+- (void)infoButtonTouched {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Powered by Dozuki"
+                                                    message:@"This app is powered by the Dozuki platform. Create, update, and distribute all of your service documentation to the field instantly. Find out more at Dozuki.com"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Visit Dozuki", nil];
+    [alert show];
+}
+\
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
         

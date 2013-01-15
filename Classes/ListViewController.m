@@ -46,42 +46,42 @@
     [super viewDidLoad];
     self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
 
+    // Crucial does not want a login screen, which means we shouldn't create a segmented control or a toolbar.
+    // We return early.
+    if ([Config currentConfig].site == ConfigCrucial) {
+        return;
+    } 
+    
     // Add the toolbar with bookmarks toggle.
     UIToolbar *toolbar = [[UIToolbar alloc] init];
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
 
-    // Crucial does not want a login screen, so we shouldn't create a UISegmented Control
-    // if we are only going to display one option @"All", this will change if we ever
-    // want to add more than two options.
-    if ([Config currentConfig].site != ConfigCrucial) {
-        // Create the Segmented Control and populate the options
-        NSArray *toggleItems = [NSArray arrayWithObjects:@"All", @"Favorites", nil];
-        UISegmentedControl *toggle = [[UISegmentedControl alloc] initWithItems:toggleItems];
-        toggle.selectedSegmentIndex = bookmarksTVC && self.topViewController == bookmarksTVC ? 1 : 0;
-        toggle.segmentedControlStyle = UISegmentedControlStyleBar;
-        [toggle addTarget:self action:@selector(toggleBookmarks:) forControlEvents:UIControlEventValueChanged];
+    // Create the Segmented Control and populate the options
+    NSArray *toggleItems = [NSArray arrayWithObjects:@"All", @"Favorites", nil];
+    UISegmentedControl *toggle = [[UISegmentedControl alloc] initWithItems:toggleItems];
+    toggle.selectedSegmentIndex = bookmarksTVC && self.topViewController == bookmarksTVC ? 1 : 0;
+    toggle.segmentedControlStyle = UISegmentedControlStyleBar;
+    [toggle addTarget:self action:@selector(toggleBookmarks:) forControlEvents:UIControlEventValueChanged];
 
-        UIBarButtonItem *toggleItem = [[UIBarButtonItem alloc] initWithCustomView:toggle];
-        UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                                target:nil
-                                                                                action:nil
-        ];
-        [spacer release];
-        [toggleItem release];
+    UIBarButtonItem *toggleItem = [[UIBarButtonItem alloc] initWithCustomView:toggle];
+    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                            target:nil
+                                                                            action:nil
+    ];
+    [spacer release];
+    [toggleItem release];
 
-        // Add the Segmented control to our toolbar
-        NSArray *toolbarItems = [NSArray arrayWithObjects:spacer, toggleItem, spacer, nil];
-        [toolbar setItems:toolbarItems];
+    // Add the Segmented control to our toolbar
+    NSArray *toolbarItems = [NSArray arrayWithObjects:spacer, toggleItem, spacer, nil];
+    [toolbar setItems:toolbarItems];
 
-        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-            toggle.tintColor = [UIColor lightGrayColor];
-        } else {
-            toggle.tintColor = [[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]] ? [UIColor darkGrayColor] : [Config currentConfig].toolbarColor;
-        }
-
-        [toggle release];
-
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        toggle.tintColor = [UIColor lightGrayColor];
+    } else {
+        toggle.tintColor = [[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]] ? [UIColor darkGrayColor] : [Config currentConfig].toolbarColor;
     }
+
+    [toggle release];
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         int diff = 20 + 44;
@@ -91,12 +91,7 @@
             diff += 49;
         toolbar.frame = CGRectMake(0, screenSize.width - diff, 320, 44);
 
-        // Not sure why we always default to a light gray color on all iPads, but just to be safe I am
-        // leaving this here and just making a special case for Crucial. I will look into this further.
-        if ([Config currentConfig].site == ConfigCrucial)
-            toolbar.tintColor = [Config currentConfig].toolbarColor;
-        else
-            toolbar.tintColor = [UIColor lightGrayColor];
+        toolbar.tintColor = [UIColor lightGrayColor];
     } else {
         toolbar.frame = CGRectMake(0, screenSize.height - 43, screenSize.width, 44);
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

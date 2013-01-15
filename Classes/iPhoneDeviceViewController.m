@@ -62,7 +62,34 @@
 }
 - (void)hideLoading {
     loading = NO;
-    self.navigationItem.rightBarButtonItem = nil;
+    if ([Config currentConfig].site == ConfigCrucial) {
+        UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+        [infoButton addTarget:self action:@selector(infoButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+        self.navigationItem.rightBarButtonItem = infoItem;
+    } else {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+}
+
+- (void)infoButtonTouched {    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Powered by Dozuki"
+                                                    message:@"This app is powered by the Dozuki platform. Create, update, and distribute all of your service documentation to the field instantly. Find out more at Dozuki.com"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Visit Dozuki", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex; {
+    
+    // Take the user to Dozuki.com - This is only for Crucial. This will only be called from a Crucial
+    // So no need to check to see for their site until we add more custom sites that want an info button.
+    if (buttonIndex == 1) {
+        NSURL *url = [NSURL URLWithString:@"http://www.dozuki.com"];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+    
 }
 
 - (void)getGuides {

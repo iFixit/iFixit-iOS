@@ -16,5 +16,6 @@
 - (id)initWithTopic:(NSString *)topic;
 - (void)getGuides;
 - (void)showLoading;
+- (void)createInfoButton;
 
 @end

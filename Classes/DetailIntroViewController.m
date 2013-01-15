@@ -33,8 +33,8 @@
             frame.origin.y = 270.0;
             frame.origin.x = 126.0;
         } else if ([Config currentConfig].site == ConfigCrucial) {
-            frame.origin.y = 255.0;
-            frame.origin.x = 12.0;
+            frame.origin.y = 280.0;
+            frame.origin.x = 170.0;
         } else {
             frame.origin.y = -60.0;
         }
@@ -47,8 +47,8 @@
             frame.origin.y = 210.0;
             frame.origin.x = 156.0;
         } else if ([Config currentConfig].site == ConfigCrucial) {
-            frame.origin.y = 360.0;
-            frame.origin.x = 47.0;
+            frame.origin.y = 420.0;
+            frame.origin.x = 200.0;
         } else {
             frame.origin.y = 192.0;
         }
@@ -72,7 +72,7 @@
         text.frame = CGRectMake(text.frame.origin.x, text.frame.origin.y, 313.0, 174.0);
     } else if ([Config currentConfig].site == ConfigCrucial) {
         image.image = [UIImage imageNamed:@"logo_crucial_transparent.png"];
-        image.frame = CGRectMake(image.frame.origin.x, image.frame.origin.y, 680.0, 154.0);
+        image.frame = CGRectMake(image.frame.origin.x, image.frame.origin.y, 380.0, 86.0);
         image.center = self.view.center;
 
         text.image = [UIImage imageNamed:@"detailViewTextGeneric.png"];
