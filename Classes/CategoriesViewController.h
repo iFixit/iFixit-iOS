@@ -26,5 +26,6 @@
 - (void)getAreas;
 - (void)showLoading;
 - (void)setData:(NSDictionary *)dict;
+- (void)createInfoButton;
 
 @end

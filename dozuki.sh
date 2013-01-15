@@ -12,6 +12,13 @@ elif [ "$1" == "make" ]; then
    cp Graphics/Sites/Make/*png .
 # Need to manually fix up iFixit-Info.plist
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
+elif [ "$1" == "crucial" ]; then
+   echo "Crucial"
+   cp Graphics/Sites/Crucial/*png .
+   sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.crucial/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/iFixit/Crucial/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/>ifixit</>crucial</g' iFixit-Info.plist
+   sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
 else
    echo "Dozuki"
    cp Graphics/Sites/Dozuki/*png .

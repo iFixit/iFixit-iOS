@@ -11,7 +11,8 @@ enum {
     ConfigIFixitDev,
     ConfigMake,
     ConfigMakeDev,
-    ConfigDozuki
+    ConfigDozuki,
+    ConfigCrucial
 };
 
 @interface Config : NSObject
