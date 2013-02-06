@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GuideEmbed.h"
 #import "GuideImage.h"
+#import "GuideVideo.h"
 #import "GuideStepLine.h"
 
 @interface GuideStep : NSObject
@@ -16,6 +18,8 @@
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSMutableArray *lines;
 @property (nonatomic, retain) NSMutableArray *images;
+@property (nonatomic, retain) GuideVideo *video;
+@property (nonatomic, retain) GuideEmbed *embed;
 
 + (GuideStep *)guideStepWithDictionary:(NSDictionary *)dict;
 

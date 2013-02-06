@@ -11,7 +11,7 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		2804200B108E984D000629CD /* AreasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28042008108E984D000629CD /* AreasViewController.m */; };
+		2804200B108E984D000629CD /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28042008108E984D000629CD /* CategoriesViewController.m */; };
 		2804200C108E984D000629CD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2804200A108E984D000629CD /* DetailViewController.m */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
@@ -112,8 +112,8 @@
 		DA61C52F13380E4C000028C3 /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C51813380E4C000028C3 /* forward@2x.png */; };
 		DA61C53513380E4C000028C3 /* logo_make_black.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C51E13380E4C000028C3 /* logo_make_black.png */; };
 		DA61C53613380E4C000028C3 /* logo_make.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C51F13380E4C000028C3 /* logo_make.png */; };
-		DA61C53713380E4C000028C3 /* NoImage_300x225.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA61C52013380E4C000028C3 /* NoImage_300x225.jpg */; };
-		DA61C53813380E4C000028C3 /* NoImage_592x444.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA61C52113380E4C000028C3 /* NoImage_592x444.jpg */; };
+		DA61C53713380E4C000028C3 /* NoImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA61C52013380E4C000028C3 /* NoImage.jpg */; };
+		DA61C53813380E4C000028C3 /* NoImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA61C52113380E4C000028C3 /* NoImage@2x.jpg */; };
 		DA61C53913380E4C000028C3 /* splash_header_make_black.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C52213380E4C000028C3 /* splash_header_make_black.png */; };
 		DA61C53A13380E4C000028C3 /* splash_header_make.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C52313380E4C000028C3 /* splash_header_make.png */; };
 		DA61C53B13380E4C000028C3 /* splash_header.png in Resources */ = {isa = PBXBuildFile; fileRef = DA61C52413380E4C000028C3 /* splash_header.png */; };
@@ -166,8 +166,8 @@
 		DAA750911368F45D002AA546 /* titleImage_make.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA750901368F45D002AA546 /* titleImage_make.png */; };
 		DAAAC7461433DF7600CB90AF /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAAC7451433DF7600CB90AF /* libGoogleAnalytics.a */; };
 		DAAAC7481433E03B00CB90AF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAAC7471433E03B00CB90AF /* libsqlite3.dylib */; };
-		DAAAC74A1433F43C00CB90AF /* GuideStepView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC7491433F43C00CB90AF /* GuideStepView~ipad.xib */; };
-		DAAAC74D1433F49300CB90AF /* AreasViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC74B1433F49000CB90AF /* AreasViewController.xib */; };
+		DAAAC74A1433F43C00CB90AF /* GuideStepViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC7491433F43C00CB90AF /* GuideStepViewController~ipad.xib */; };
+		DAAAC74D1433F49300CB90AF /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC74B1433F49000CB90AF /* CategoriesViewController.xib */; };
 		DAAAC74E1433F49300CB90AF /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC74C1433F49100CB90AF /* DetailViewController.xib */; };
 		DAAED15914686A2D00C476C1 /* FeaturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAED15714686A2D00C476C1 /* FeaturedViewController.m */; };
 		DAAED15E1468710C00C476C1 /* PastFeaturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAED15D1468710C00C476C1 /* PastFeaturesViewController.m */; };
@@ -179,8 +179,7 @@
 		DAB9344413722AEB00B6AA9A /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = DAB9344313722AEB00B6AA9A /* login.png */; };
 		DAB9344613722FB300B6AA9A /* register.png in Resources */ = {isa = PBXBuildFile; fileRef = DAB9344513722FB300B6AA9A /* register.png */; };
 		DABE9CF513C54D2200B778FE /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF413C54D2200B778FE /* GuideView.xib */; };
-		DABE9CF713C5519800B778FE /* GuideIntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF613C5519800B778FE /* GuideIntroView.xib */; };
-		DABE9CF913C5535200B778FE /* GuideStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF813C5535200B778FE /* GuideStepView.xib */; };
+		DABE9CF713C5519800B778FE /* GuideIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF613C5519800B778FE /* GuideIntroViewController.xib */; };
 		DAC0C19D146B182000EF42DC /* collectionsImagePlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC0C19C146B182000EF42DC /* collectionsImagePlaceholder.png */; };
 		DAC0C1A1146B37E000EF42DC /* concreteBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC0C1A0146B37E000EF42DC /* concreteBackground.png */; };
 		DAC0C1A3146B3F6F00EF42DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC0C1A2146B3F6F00EF42DC /* QuartzCore.framework */; };
@@ -195,6 +194,11 @@
 		DACE44721353CE3700F78360 /* ifixit_step.css in Resources */ = {isa = PBXBuildFile; fileRef = DACE446E1353CE3700F78360 /* ifixit_step.css */; };
 		DACE44731353CE3700F78360 /* make_intro.css in Resources */ = {isa = PBXBuildFile; fileRef = DACE446F1353CE3700F78360 /* make_intro.css */; };
 		DACE44741353CE3700F78360 /* make_step.css in Resources */ = {isa = PBXBuildFile; fileRef = DACE44701353CE3700F78360 /* make_step.css */; };
+		DACE7FF016571F560013FFFD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DACE7FEF16571F560013FFFD /* Default-568h@2x.png */; };
+		DACE7FF2165722710013FFFD /* GuideStepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DACE7FF1165722710013FFFD /* GuideStepViewController.xib */; };
+		DACE7FF5165727FA0013FFFD /* GuideVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = DACE7FF4165727F90013FFFD /* GuideVideo.m */; };
+		DACE7FF9165728CD0013FFFD /* GuideEmbed.m in Sources */ = {isa = PBXBuildFile; fileRef = DACE7FF8165728CD0013FFFD /* GuideEmbed.m */; };
+		DACE7FFB16572C710013FFFD /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACE7FFA16572C710013FFFD /* MediaPlayer.framework */; };
 		DAD2EB9F151671FD0053CC40 /* tabBarItemBook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD2EB9B151671FD0053CC40 /* tabBarItemBook@2x.png */; };
 		DAD2EBA0151671FD0053CC40 /* tabBarItemGears@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD2EB9C151671FD0053CC40 /* tabBarItemGears@2x.png */; };
 		DAD2EBA1151671FD0053CC40 /* tabBarItemPricetag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD2EB9D151671FD0053CC40 /* tabBarItemPricetag@2x.png */; };
@@ -207,7 +211,7 @@
 		DAE7D7C9142AA12E00C07529 /* dozukiSplash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE7D7C8142AA12E00C07529 /* dozukiSplash@2x.png */; };
 		DAF0C6D3134E62BF003B4DF6 /* GuideBookmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.m */; };
 		DAF3AF571422897900913238 /* iPhoneDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF551422897900913238 /* iPhoneDeviceViewController.m */; };
-		DAF3AF581422897900913238 /* iPhoneDeviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF3AF561422897900913238 /* iPhoneDeviceView.xib */; };
+		DAF3AF581422897900913238 /* iPhoneDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */; };
 		DAF3AF5C1422A2E900913238 /* DictionaryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF5B1422A2E900913238 /* DictionaryHelper.m */; };
 		DAF3AF621422AF4800913238 /* GuideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF611422AF4800913238 /* GuideCell.m */; };
 		DAF5750E142045130083B583 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5750C142045130083B583 /* libTestFlight.a */; };
@@ -219,8 +223,8 @@
 		1D3623250D0F684500981E51 /* iFixitAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iFixitAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* iFixit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFixit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		28042007108E984D000629CD /* AreasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreasViewController.h; sourceTree = "<group>"; };
-		28042008108E984D000629CD /* AreasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreasViewController.m; sourceTree = "<group>"; };
+		28042007108E984D000629CD /* CategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesViewController.h; sourceTree = "<group>"; };
+		28042008108E984D000629CD /* CategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesViewController.m; sourceTree = "<group>"; };
 		28042009108E984D000629CD /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		2804200A108E984D000629CD /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -363,8 +367,8 @@
 		DA61C51813380E4C000028C3 /* forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forward@2x.png"; path = "Graphics/forward@2x.png"; sourceTree = "<group>"; };
 		DA61C51E13380E4C000028C3 /* logo_make_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_make_black.png; path = Graphics/logo_make_black.png; sourceTree = "<group>"; };
 		DA61C51F13380E4C000028C3 /* logo_make.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_make.png; path = Graphics/logo_make.png; sourceTree = "<group>"; };
-		DA61C52013380E4C000028C3 /* NoImage_300x225.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = NoImage_300x225.jpg; path = Graphics/NoImage_300x225.jpg; sourceTree = "<group>"; };
-		DA61C52113380E4C000028C3 /* NoImage_592x444.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = NoImage_592x444.jpg; path = Graphics/NoImage_592x444.jpg; sourceTree = "<group>"; };
+		DA61C52013380E4C000028C3 /* NoImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = NoImage.jpg; path = Graphics/NoImage.jpg; sourceTree = "<group>"; };
+		DA61C52113380E4C000028C3 /* NoImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "NoImage@2x.jpg"; path = "Graphics/NoImage@2x.jpg"; sourceTree = "<group>"; };
 		DA61C52213380E4C000028C3 /* splash_header_make_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_header_make_black.png; path = Graphics/splash_header_make_black.png; sourceTree = "<group>"; };
 		DA61C52313380E4C000028C3 /* splash_header_make.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_header_make.png; path = Graphics/splash_header_make.png; sourceTree = "<group>"; };
 		DA61C52413380E4C000028C3 /* splash_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_header.png; path = Graphics/splash_header.png; sourceTree = "<group>"; };
@@ -444,8 +448,8 @@
 		DAAAC7441433DF7600CB90AF /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
 		DAAAC7451433DF7600CB90AF /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
 		DAAAC7471433E03B00CB90AF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		DAAAC7491433F43C00CB90AF /* GuideStepView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuideStepView~ipad.xib"; sourceTree = "<group>"; };
-		DAAAC74B1433F49000CB90AF /* AreasViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AreasViewController.xib; sourceTree = "<group>"; };
+		DAAAC7491433F43C00CB90AF /* GuideStepViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuideStepViewController~ipad.xib"; sourceTree = "<group>"; };
+		DAAAC74B1433F49000CB90AF /* CategoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
 		DAAAC74C1433F49100CB90AF /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		DAAED15614686A2D00C476C1 /* FeaturedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedViewController.h; sourceTree = "<group>"; };
 		DAAED15714686A2D00C476C1 /* FeaturedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedViewController.m; sourceTree = "<group>"; };
@@ -460,8 +464,7 @@
 		DAB9344313722AEB00B6AA9A /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login.png; path = Graphics/login.png; sourceTree = "<group>"; };
 		DAB9344513722FB300B6AA9A /* register.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = register.png; path = Graphics/register.png; sourceTree = "<group>"; };
 		DABE9CF413C54D2200B778FE /* GuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideView.xib; sourceTree = "<group>"; };
-		DABE9CF613C5519800B778FE /* GuideIntroView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideIntroView.xib; sourceTree = "<group>"; };
-		DABE9CF813C5535200B778FE /* GuideStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideStepView.xib; sourceTree = "<group>"; };
+		DABE9CF613C5519800B778FE /* GuideIntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideIntroViewController.xib; sourceTree = "<group>"; };
 		DAC0C19C146B182000EF42DC /* collectionsImagePlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = collectionsImagePlaceholder.png; path = Graphics/collectionsImagePlaceholder.png; sourceTree = "<group>"; };
 		DAC0C1A0146B37E000EF42DC /* concreteBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = concreteBackground.png; path = Graphics/concreteBackground.png; sourceTree = "<group>"; };
 		DAC0C1A2146B3F6F00EF42DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -477,6 +480,13 @@
 		DACE446E1353CE3700F78360 /* ifixit_step.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ifixit_step.css; sourceTree = "<group>"; };
 		DACE446F1353CE3700F78360 /* make_intro.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = make_intro.css; sourceTree = "<group>"; };
 		DACE44701353CE3700F78360 /* make_step.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = make_step.css; sourceTree = "<group>"; };
+		DACE7FEF16571F560013FFFD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		DACE7FF1165722710013FFFD /* GuideStepViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideStepViewController.xib; sourceTree = "<group>"; };
+		DACE7FF3165727F90013FFFD /* GuideVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideVideo.h; sourceTree = "<group>"; };
+		DACE7FF4165727F90013FFFD /* GuideVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideVideo.m; sourceTree = "<group>"; };
+		DACE7FF7165728CD0013FFFD /* GuideEmbed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideEmbed.h; sourceTree = "<group>"; };
+		DACE7FF8165728CD0013FFFD /* GuideEmbed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideEmbed.m; sourceTree = "<group>"; };
+		DACE7FFA16572C710013FFFD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		DAD2EB9B151671FD0053CC40 /* tabBarItemBook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabBarItemBook@2x.png"; path = "Graphics/tabBarItemBook@2x.png"; sourceTree = "<group>"; };
 		DAD2EB9C151671FD0053CC40 /* tabBarItemGears@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabBarItemGears@2x.png"; path = "Graphics/tabBarItemGears@2x.png"; sourceTree = "<group>"; };
 		DAD2EB9D151671FD0053CC40 /* tabBarItemPricetag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabBarItemPricetag@2x.png"; path = "Graphics/tabBarItemPricetag@2x.png"; sourceTree = "<group>"; };
@@ -492,7 +502,7 @@
 		DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideBookmarks.m; sourceTree = "<group>"; };
 		DAF3AF541422897900913238 /* iPhoneDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneDeviceViewController.h; sourceTree = "<group>"; };
 		DAF3AF551422897900913238 /* iPhoneDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPhoneDeviceViewController.m; sourceTree = "<group>"; };
-		DAF3AF561422897900913238 /* iPhoneDeviceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPhoneDeviceView.xib; sourceTree = "<group>"; };
+		DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPhoneDeviceViewController.xib; sourceTree = "<group>"; };
 		DAF3AF5A1422A2E900913238 /* DictionaryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryHelper.h; sourceTree = "<group>"; };
 		DAF3AF5B1422A2E900913238 /* DictionaryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryHelper.m; sourceTree = "<group>"; };
 		DAF3AF601422AF4800913238 /* GuideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCell.h; sourceTree = "<group>"; };
@@ -506,6 +516,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DACE7FFB16572C710013FFFD /* MediaPlayer.framework in Frameworks */,
 				DAC0C1A3146B3F6F00EF42DC /* QuartzCore.framework in Frameworks */,
 				DAAAC7481433E03B00CB90AF /* libsqlite3.dylib in Frameworks */,
 				DA8860E51427DE590030F52C /* MessageUI.framework in Frameworks */,
@@ -536,7 +547,6 @@
 				C1C894F9121B44FA0036FAFC /* Image View */,
 				DA59293413FB250800504CD3 /* Dozuki */,
 				DAF3AF511422881B00913238 /* Navigation */,
-				DAAED15B146870E800C476C1 /* Featured Collections */,
 				DACD8FD414DDD7970020A06C /* Login */,
 				DA881854134A5AFE004387CE /* BookmarksViewController.h */,
 				DA881855134A5AFE004387CE /* BookmarksViewController.m */,
@@ -588,6 +598,7 @@
 				DAE7D7C2142A9FC900C07529 /* icon114.png */,
 				DA4D286F151AC69700448914 /* icon144.png */,
 				DAE7D7C3142A9FC900C07529 /* icon512.png */,
+				DACE7FEF16571F560013FFFD /* Default-568h@2x.png */,
 				DA61C54D13383043000028C3 /* Default@2x.png */,
 				DA61C54B1338303C000028C3 /* Default.png */,
 				DA61C5491338300C000028C3 /* Default-Portrait~ipad.png */,
@@ -615,6 +626,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DACE7FFA16572C710013FFFD /* MediaPlayer.framework */,
 				DAC0C1A2146B3F6F00EF42DC /* QuartzCore.framework */,
 				DA8860E41427DE590030F52C /* MessageUI.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -652,18 +664,18 @@
 		C10F270F120CE5820027A28D /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				DACE7FF6165728010013FFFD /* Media Types */,
 				C10F2710120CE5900027A28D /* Guide.h */,
 				C10F2711120CE5900027A28D /* Guide.m */,
 				C1D980A8120DFB2900509D18 /* GuideStep.h */,
 				C1D980A9120DFB2900509D18 /* GuideStep.m */,
 				C1D980AB120DFB5500509D18 /* GuideStepLine.h */,
 				C1D980AC120DFB5500509D18 /* GuideStepLine.m */,
-				C1D9809F120DFA5B00509D18 /* GuideImage.h */,
-				C1D980A0120DFA5B00509D18 /* GuideImage.m */,
 				DAF0C6D1134E62BF003B4DF6 /* GuideBookmarks.h */,
 				DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.m */,
-				DA2F766E12FB87D900683D33 /* Config.h */,
+				DAAED15B146870E800C476C1 /* Featured Collections */,
 				DA2F766F12FB87D900683D33 /* Config.m */,
+				DA2F766E12FB87D900683D33 /* Config.h */,
 				DA056779138D976600660C86 /* User.h */,
 				DA05677A138D976600660C86 /* User.m */,
 			);
@@ -722,8 +734,8 @@
 				DA275DB415104CA400A8A09C /* make_logo_transparent@2x.png */,
 				DA3562B0147731C500683947 /* noGuides.png */,
 				DA275DB815104CB400A8A09C /* noGuides@2x.png */,
-				DA61C52013380E4C000028C3 /* NoImage_300x225.jpg */,
-				DA61C52113380E4C000028C3 /* NoImage_592x444.jpg */,
+				DA61C52013380E4C000028C3 /* NoImage.jpg */,
+				DA61C52113380E4C000028C3 /* NoImage@2x.jpg */,
 				DAB9344513722FB300B6AA9A /* register.png */,
 				DA61C52413380E4C000028C3 /* splash_header.png */,
 				DA61C52313380E4C000028C3 /* splash_header_make.png */,
@@ -772,17 +784,17 @@
 			isa = PBXGroup;
 			children = (
 				DABE9CF413C54D2200B778FE /* GuideView.xib */,
-				DABE9CF613C5519800B778FE /* GuideIntroView.xib */,
-				DABE9CF813C5535200B778FE /* GuideStepView.xib */,
 				C184D4C51210CDB900953C39 /* GuideView~ipad.xib */,
 				C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */,
-				DAAAC7491433F43C00CB90AF /* GuideStepView~ipad.xib */,
 				C184D4C31210CDB900953C39 /* GuideViewController.h */,
 				C184D4C41210CDB900953C39 /* GuideViewController.m */,
 				C184D5351210D8CD00953C39 /* GuideIntroViewController.h */,
 				C184D5361210D8CD00953C39 /* GuideIntroViewController.m */,
+				DABE9CF613C5519800B778FE /* GuideIntroViewController.xib */,
 				C1D9814D120E09BA00509D18 /* GuideStepViewController.h */,
 				C1D9814E120E09BA00509D18 /* GuideStepViewController.m */,
+				DACE7FF1165722710013FFFD /* GuideStepViewController.xib */,
+				DAAAC7491433F43C00CB90AF /* GuideStepViewController~ipad.xib */,
 				DA3DE74A134CF57000AD5050 /* GuideBookmarker.h */,
 				DA3DE74B134CF57000AD5050 /* GuideBookmarker.m */,
 				DA6A0D1A14218973003B8BAD /* UIImage+Coder.m */,
@@ -1025,6 +1037,19 @@
 			path = css;
 			sourceTree = "<group>";
 		};
+		DACE7FF6165728010013FFFD /* Media Types */ = {
+			isa = PBXGroup;
+			children = (
+				DACE7FF7165728CD0013FFFD /* GuideEmbed.h */,
+				DACE7FF8165728CD0013FFFD /* GuideEmbed.m */,
+				C1D9809F120DFA5B00509D18 /* GuideImage.h */,
+				C1D980A0120DFA5B00509D18 /* GuideImage.m */,
+				DACE7FF3165727F90013FFFD /* GuideVideo.h */,
+				DACE7FF4165727F90013FFFD /* GuideVideo.m */,
+			);
+			name = "Media Types";
+			sourceTree = "<group>";
+		};
 		DAF3AF511422881B00913238 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1032,12 +1057,12 @@
 				DA666AF21360E2A4002B1D62 /* GuideCatchingWebView.m */,
 				DA3E3E35133C17050070615F /* ListViewController.h */,
 				DA3E3E36133C17050070615F /* ListViewController.m */,
-				28042007108E984D000629CD /* AreasViewController.h */,
-				28042008108E984D000629CD /* AreasViewController.m */,
-				DAAAC74B1433F49000CB90AF /* AreasViewController.xib */,
+				28042007108E984D000629CD /* CategoriesViewController.h */,
+				28042008108E984D000629CD /* CategoriesViewController.m */,
+				DAAAC74B1433F49000CB90AF /* CategoriesViewController.xib */,
 				DAF3AF541422897900913238 /* iPhoneDeviceViewController.h */,
 				DAF3AF551422897900913238 /* iPhoneDeviceViewController.m */,
-				DAF3AF561422897900913238 /* iPhoneDeviceView.xib */,
+				DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */,
 				DAF3AF601422AF4800913238 /* GuideCell.h */,
 				DAF3AF611422AF4800913238 /* GuideCell.m */,
 			);
@@ -1088,7 +1113,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iFixit" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1126,8 +1151,8 @@
 				DA61C52F13380E4C000028C3 /* forward@2x.png in Resources */,
 				DA61C53513380E4C000028C3 /* logo_make_black.png in Resources */,
 				DA61C53613380E4C000028C3 /* logo_make.png in Resources */,
-				DA61C53713380E4C000028C3 /* NoImage_300x225.jpg in Resources */,
-				DA61C53813380E4C000028C3 /* NoImage_592x444.jpg in Resources */,
+				DA61C53713380E4C000028C3 /* NoImage.jpg in Resources */,
+				DA61C53813380E4C000028C3 /* NoImage@2x.jpg in Resources */,
 				DA61C53913380E4C000028C3 /* splash_header_make_black.png in Resources */,
 				DA61C53A13380E4C000028C3 /* splash_header_make.png in Resources */,
 				DA61C53B13380E4C000028C3 /* splash_header.png in Resources */,
@@ -1151,14 +1176,13 @@
 				DAB9344413722AEB00B6AA9A /* login.png in Resources */,
 				DAB9344613722FB300B6AA9A /* register.png in Resources */,
 				DABE9CF513C54D2200B778FE /* GuideView.xib in Resources */,
-				DABE9CF713C5519800B778FE /* GuideIntroView.xib in Resources */,
-				DABE9CF913C5535200B778FE /* GuideStepView.xib in Resources */,
+				DABE9CF713C5519800B778FE /* GuideIntroViewController.xib in Resources */,
 				DA59293913FB253B00504CD3 /* DozukiSplashView~ipad.xib in Resources */,
 				DA59297013FB28B600504CD3 /* DozukiInfoView.xib in Resources */,
 				DA59297513FB2ED800504CD3 /* DozukiSelectSiteViewController.xib in Resources */,
 				DAC26873140842B300752982 /* backtosites.png in Resources */,
 				DAC26874140842B300752982 /* backtosites@2x.png in Resources */,
-				DAF3AF581422897900913238 /* iPhoneDeviceView.xib in Resources */,
+				DAF3AF581422897900913238 /* iPhoneDeviceViewController.xib in Resources */,
 				DA8860E21427DD490030F52C /* SVWebViewController.bundle in Resources */,
 				DAE7D7C4142A9FC900C07529 /* icon57.png in Resources */,
 				DAE7D7C5142A9FC900C07529 /* icon72.png in Resources */,
@@ -1177,8 +1201,8 @@
 				DA0877C3142D4BBB00954482 /* vignette.png in Resources */,
 				DA0877C6142D4EAB00954482 /* vignette@2x.png in Resources */,
 				DA0877C7142D4EAB00954482 /* vignette~ipad.png in Resources */,
-				DAAAC74A1433F43C00CB90AF /* GuideStepView~ipad.xib in Resources */,
-				DAAAC74D1433F49300CB90AF /* AreasViewController.xib in Resources */,
+				DAAAC74A1433F43C00CB90AF /* GuideStepViewController~ipad.xib in Resources */,
+				DAAAC74D1433F49300CB90AF /* CategoriesViewController.xib in Resources */,
 				DAAAC74E1433F49300CB90AF /* DetailViewController.xib in Resources */,
 				DAC0C19D146B182000EF42DC /* collectionsImagePlaceholder.png in Resources */,
 				DAC0C1A1146B37E000EF42DC /* concreteBackground.png in Resources */,
@@ -1241,6 +1265,8 @@
 				ABC5399415ED793A004B2865 /* detailViewTextZeal@2x.png in Resources */,
 				AB3C1776162718AD00323A1E /* dozukiLogo.png in Resources */,
 				AB3C1777162718AD00323A1E /* dozukiLogo@2x.png in Resources */,
+				DACE7FF016571F560013FFFD /* Default-568h@2x.png in Resources */,
+				DACE7FF2165722710013FFFD /* GuideStepViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1253,7 +1279,7 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* iFixitAppDelegate.m in Sources */,
-				2804200B108E984D000629CD /* AreasViewController.m in Sources */,
+				2804200B108E984D000629CD /* CategoriesViewController.m in Sources */,
 				2804200C108E984D000629CD /* DetailViewController.m in Sources */,
 				C10F2708120CE5140027A28D /* NSObject+SBJSON.m in Sources */,
 				C10F2709120CE5140027A28D /* NSString+SBJSON.m in Sources */,
@@ -1315,6 +1341,8 @@
 				DACD8FD714DDD7B80020A06C /* OpenIDViewController.m in Sources */,
 				DA9B290714E88E650093273B /* SSOViewController.m in Sources */,
 				DA58CB3414EA17F400A2CBAB /* LoginBackgroundViewController.m in Sources */,
+				DACE7FF5165727FA0013FFFD /* GuideVideo.m in Sources */,
+				DACE7FF9165728CD0013FFFD /* GuideEmbed.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1330,14 +1358,15 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dozuki";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
 				INFOPLIST_FILE = "iFixit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -1347,8 +1376,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "EE60FC37-AAD5-494D-AFF6-E2B90441A144";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B0DE2BDF-8A7A-4E35-9139-D2B6D5ECE4DB";
+				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1362,12 +1391,13 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dozuki";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dozuki";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
 				INFOPLIST_FILE = "iFixit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -1377,8 +1407,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "EE60FC37-AAD5-494D-AFF6-E2B90441A144";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EE60FC37-AAD5-494D-AFF6-E2B90441A144";
+				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1389,18 +1419,18 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dozuki";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Patierno (W7L35YGZ69)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "";
-				PROVISIONING_PROFILE = "EE60FC37-AAD5-494D-AFF6-E2B90441A144";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5DF6B989-29D2-477D-AEF8-1DA413BFA5BB";
+				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1411,16 +1441,16 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dozuki";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dozuki";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "EE60FC37-AAD5-494D-AFF6-E2B90441A144";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "31AE6F9A-0B9E-44A9-989B-DF935669BD01";
+				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1431,16 +1461,16 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dozuki";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CODE_SIGN_FLAGS = "";
-				PROVISIONING_PROFILE = "EE60FC37-AAD5-494D-AFF6-E2B90441A144";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CFC3F736-175A-4795-A1DD-9011AA491EFE";
+				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1455,14 +1485,15 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dozuki";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
 				INFOPLIST_FILE = "iFixit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -1472,8 +1503,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "EE60FC37-AAD5-494D-AFF6-E2B90441A144";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F238D36E-8CCC-43CD-9087-6BDFAF00F717";
+				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";

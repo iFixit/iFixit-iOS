@@ -9,7 +9,7 @@
 #import "iFixitAppDelegate.h"
 #import "Config.h"
 #import "DetailViewController.h"
-#import "AreasViewController.h"
+#import "CategoriesViewController.h"
 #import "ListViewController.h"
 #import "GuideCatchingWebView.h"
 #import "WBProgressHUD.h"
@@ -32,7 +32,7 @@
         gridViewController.gridDelegate = self;
 
         // Initialize the Browse button.
-        AreasViewController *avc = [[AreasViewController alloc] init];
+        CategoriesViewController *avc = [[CategoriesViewController alloc] init];
         avc.inPopover = YES;
         ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:avc];
         avc.detailViewController = self;

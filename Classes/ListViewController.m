@@ -48,17 +48,18 @@
     
     // Add the toolbar with bookmarks toggle.
     UIToolbar *toolbar = [[UIToolbar alloc] init];
-    
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         int diff = 20 + 44;
         // Adjust for the tab bar.
         iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
         if (appDelegate.showsTabBar)
             diff += 49;
-        toolbar.frame = CGRectMake(0, 768 - diff, 320, 44);
+        toolbar.frame = CGRectMake(0, screenSize.width - diff, 320, 44);
     }
     else {
-        toolbar.frame = CGRectMake(0, 480 - 43, 320, 44);
+        toolbar.frame = CGRectMake(0, screenSize.height - 43, screenSize.width, 44);
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     
@@ -100,7 +101,7 @@
         }
         else {
             iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];    
-            self.viewControllers = [NSArray arrayWithObject:appDelegate.areasViewController];
+            self.viewControllers = [NSArray arrayWithObject:appDelegate.categoriesViewController];
         }
     }
     // Bookmarks

@@ -96,7 +96,7 @@ static Config *currentConfig = nil;
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             break;
-        // Dozuki
+        // Dozuki, Zeal
         case ConfigZeal:
         default:
             self.backgroundColor = [UIColor blackColor];

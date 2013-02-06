@@ -10,10 +10,10 @@
     BOOL loading;
 }
     
-@property (nonatomic, copy) NSString *device;
+@property (nonatomic, copy) NSString *topic;
 @property (nonatomic, retain) NSArray *guides;
 
-- (id)initWithDevice:(NSString *)device;
+- (id)initWithTopic:(NSString *)topic;
 - (void)getGuides;
 - (void)showLoading;
 

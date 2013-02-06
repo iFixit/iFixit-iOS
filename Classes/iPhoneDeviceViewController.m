@@ -18,28 +18,20 @@
 
 @implementation iPhoneDeviceViewController
 
-@synthesize device=_device;
+@synthesize topic=_topic;
 @synthesize guides=_guides;
 
-- (id)initWithDevice:(NSString *)device {
-    if ((self = [super initWithNibName:@"iPhoneDeviceView" bundle:nil])) {
-        self.device = device;
+- (id)initWithTopic:(NSString *)topic {
+    if ((self = [super initWithNibName:nil bundle:nil])) {
+        self.topic = topic;
         self.guides = [NSArray array];
         
-        if (!device)
+        if (!topic)
             self.title = @"Guides";
         
         [self getGuides];
     }
     return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
@@ -78,8 +70,8 @@
         loading = YES;
         [self showLoading];
         
-        if (self.device)
-            [[iFixitAPI sharedInstance] getDevice:self.device forObject:self withSelector:@selector(gotDevice:)];
+        if (self.topic)
+            [[iFixitAPI sharedInstance] getTopic:self.topic forObject:self withSelector:@selector(gotDevice:)];
         else
             [[iFixitAPI sharedInstance] getGuides:nil forObject:self withSelector:@selector(gotGuides:)];
     }
@@ -125,7 +117,7 @@
         [self showLoading];
     
     // Show the Dozuki sites select button if needed.
-    if ([Config currentConfig].dozuki && !self.device) {
+    if ([Config currentConfig].dozuki && !self.topic) {
         UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
         UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
                                                                   target:[[UIApplication sharedApplication] delegate]
@@ -147,35 +139,7 @@
     }
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -192,8 +156,7 @@
     return [self.guides count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"GuideCell";
     
     GuideCell *cell = (GuideCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -220,7 +183,7 @@
     cell.textLabel.text = subject;
     
     NSString *thumbnailURL = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"thumbnail"];
-    [cell.imageView setImageWithURL:[NSURL URLWithString:thumbnailURL] placeholderImage:[UIImage imageNamed:@"NoImage_300x225.jpg"]];
+    [cell.imageView setImageWithURL:[NSURL URLWithString:thumbnailURL] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
     
     return cell;
 }
@@ -241,7 +204,7 @@
 }
 
 - (void)dealloc {
-    [_device release];
+    [_topic release];
     [_guides release];
     [super dealloc];
 }

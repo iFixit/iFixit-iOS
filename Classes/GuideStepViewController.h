@@ -6,6 +6,8 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
+#import <MediaPlayer/MediaPlayer.h>
+
 @class GuideStep;
 @class GuideCatchingWebView;
 
@@ -16,6 +18,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property (nonatomic, retain) IBOutlet UIButton *mainImage;
 @property (nonatomic, retain) IBOutlet GuideCatchingWebView *webView;
+@property (nonatomic, retain) MPMoviePlayerController *moviePlayer;
+@property (nonatomic, retain) UIWebView *embedView;
 
 @property (nonatomic, retain) IBOutlet UIButton *image1;
 @property (nonatomic, retain) IBOutlet UIButton *image2;

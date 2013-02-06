@@ -51,7 +51,7 @@
 
 - (void)loadDevice {
     [self showLoading];
-    [[iFixitAPI sharedInstance] getDevice:_device forObject:self withSelector:@selector(gotDevice:)];
+    [[iFixitAPI sharedInstance] getTopic:_device forObject:self withSelector:@selector(gotDevice:)];
 }
 
 - (void)gotDevice:(NSDictionary *)data {
@@ -143,6 +143,7 @@
 - (NSString *)gridViewController:(DMPGridViewController *)gridViewController imageURLForCellAtIndex:(NSUInteger)index {
     if (![_guides count])
         return nil;
+
     return [[[_guides objectAtIndex:index] valueForKey:@"image_url"] stringByAppendingString:@".medium"];
 }
 - (NSString *)gridViewController:(DMPGridViewController *)gridViewController titleForCellAtIndex:(NSUInteger)index {

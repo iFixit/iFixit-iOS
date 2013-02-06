@@ -7,6 +7,11 @@
 //
 
 #import "GuideStepViewController.h"
+
+#import <QuartzCore/QuartzCore.h>
+
+#import "ASIHTTPRequest.h"
+#import "JSON.h"
 #import "GuideImageViewController.h"
 #import "GuideCatchingWebView.h"
 #import "GuideStep.h"
@@ -15,16 +20,15 @@
 #import "SDWebImageDownloader.h"
 #import "UIButton+WebCache.h"
 #import "SVWebViewController.h"
-#import <QuartzCore/QuartzCore.h>
 
 @implementation GuideStepViewController
 
-@synthesize delegate, step=_step, titleLabel, mainImage, webView;
+@synthesize delegate, step=_step, titleLabel, mainImage, webView, moviePlayer, embedView;
 @synthesize image1, image2, image3, numImagesLoaded, bigImages, html;
 
 // Load the view nib and initialize the pageNumber ivar.
 - (id)initWithStep:(GuideStep *)step {
-    if ((self = [super initWithNibName:@"GuideStepView" bundle:nil])) {
+    if ((self = [super initWithNibName:nil bundle:nil])) {
         self.step = step;
         self.numImagesLoaded = 0;
         self.bigImages = [NSMutableArray array];
@@ -62,14 +66,14 @@
     
     self.view.backgroundColor = bgColor;
     webView.modalDelegate = delegate;
-	webView.backgroundColor = bgColor;    
+    webView.backgroundColor = bgColor;    
     webView.opaque = NO;
 
-	NSString *stepTitle = [NSString stringWithFormat:@"Step %d", self.step.number];
-	if (![self.step.title isEqual:@""])
-		stepTitle = [NSString stringWithFormat:@"%@ - %@", stepTitle, self.step.title];
+    NSString *stepTitle = [NSString stringWithFormat:@"Step %d", self.step.number];
+    if (![self.step.title isEqual:@""])
+      stepTitle = [NSString stringWithFormat:@"%@ - %@", stepTitle, self.step.title];
 	
-	[titleLabel setText:stepTitle];
+    [titleLabel setText:stepTitle];
     titleLabel.textColor = [Config currentConfig].textColor;
 
     // Load the step contents as HTML.
@@ -97,14 +101,80 @@
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
     
     [self removeWebViewShadows];
-    
-    // Add a shadow to the images
-    [self addViewShadow:mainImage];
-    [self addViewShadow:image1];
-    [self addViewShadow:image2];
-    [self addViewShadow:image3];
-    
-    [self startImageDownloads];
+  
+    // Images
+    if (self.step.images) {
+        // Add a shadow to the images
+        [self addViewShadow:mainImage];
+        [self addViewShadow:image1];
+        [self addViewShadow:image2];
+        [self addViewShadow:image3];
+      
+        [self startImageDownloads];
+    }
+    // Videos
+    else if (self.step.video) {
+        CGRect frame = mainImage.frame;
+        frame.origin.x = 10.0;
+
+        NSURL *url = [NSURL URLWithString:self.step.video.url];
+        self.moviePlayer = [[[MPMoviePlayerController alloc] init] autorelease];
+        moviePlayer.shouldAutoplay = NO;
+        moviePlayer.contentURL = url;
+        moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
+        moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+        // Play full screen on iPhones and iPods.
+        moviePlayer.fullscreen = [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad;
+        [moviePlayer.view setFrame:frame];
+        [moviePlayer prepareToPlay];
+        [self.view addSubview:moviePlayer.view];
+    }
+    // Embeds
+    else if (self.step.embed) {
+        CGRect frame = mainImage.frame;
+        frame.origin.x = 10.0;
+
+        self.embedView = [[[UIWebView alloc] initWithFrame:frame] autorelease];
+        self.embedView.backgroundColor = [UIColor clearColor];
+        self.embedView.opaque = NO;
+        [self.view addSubview:embedView];
+
+        NSString *oembedURL = [NSString stringWithFormat:@"%@&maxwidth=%d&maxheight=%d",
+                               self.step.embed.url,
+                               (int)self.embedView.frame.size.width,
+                               (int)self.embedView.frame.size.height];
+        NSURL *url = [NSURL URLWithString:oembedURL];
+        [ASIHTTPRequest requestWithURL:url];
+
+        __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+        [request setCompletionBlock:^{
+            NSDictionary *json = [[request responseString] JSONValue];
+            NSString *embedHtml = [json objectForKey:@"html"];
+            NSString *header = [NSString stringWithFormat:@"<html><head><style type=\"text/css\"> %@ </style></head><body>",
+                                [Config currentConfig].stepCSS, nil];
+            NSString *htmlString = [NSString stringWithFormat:@"%@ %@", header, embedHtml, nil];
+
+            [embedView loadHTMLString:htmlString
+                              baseURL:[NSURL URLWithString:[json objectForKey:@"provider_url"]]];
+        }];
+        [request startAsynchronous];
+    }
+
+    // Fix for rotation while playing video.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_moviePlayerWillExitFullscreen:)
+                                                 name:MPMoviePlayerWillExitFullscreenNotification
+                                               object:nil];
+
+}
+
+- (void)_moviePlayerWillExitFullscreen:(NSNotification *)notification {
+  [self.delegate willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [moviePlayer stop];
 }
 
 - (void)startImageDownloads {
@@ -175,8 +245,13 @@
         webView.frame = CGRectMake(620.0, 103.0, 404.0, 562.0);
         titleLabel.frame = CGRectMake(30.0, 30.0, 975.0, 65.0);
         titleLabel.textAlignment = UITextAlignmentRight;
-        
-        CGRect frame = image1.frame;
+
+        CGRect frame = mainImage.frame;
+        frame.origin.x = 10.0;
+        moviePlayer.view.frame = frame;
+        embedView.frame = frame;
+      
+        frame = image1.frame;
         frame.origin.y = 560.0;
         
         frame.origin.x = 20.0;
@@ -190,6 +265,8 @@
     }
     // iPhone
     else {
+        CGSize screenSize = [UIScreen mainScreen].bounds.size;
+
         // These dimensions represent the object's position BEFORE rotation,
         // and are automatically tweaked during animation with respect to their resize masks.
         CGRect frame = image1.frame;
@@ -204,7 +281,7 @@
         frame.origin.x = 160;
         image3.frame = frame;
         
-        webView.frame = CGRectMake(230, 0, 250, 236);
+        webView.frame = CGRectMake(230, 0, screenSize.height - 230, 236);
     }
 }
 - (void)layoutPortrait {
@@ -215,7 +292,12 @@
         titleLabel.frame = CGRectMake(30.0, 489.0, 708.0, 65.0);
         titleLabel.textAlignment = UITextAlignmentLeft;
 
-        CGRect frame = image1.frame;
+        CGRect frame = mainImage.frame;
+        frame.origin.x = 10.0;
+        moviePlayer.view.frame = frame;
+        embedView.frame = frame;
+
+        frame = image1.frame;
         frame.origin.x = 626.0;
         
         frame.origin.y = 30.0;
@@ -229,6 +311,8 @@
     }
     // iPhone
     else {
+        CGSize screenSize = [UIScreen mainScreen].bounds.size;
+  
         // These dimensions represent the object's position BEFORE rotation,
         // and are automatically tweaked during animation with respect to their resize masks.
         CGRect frame = image1.frame;
@@ -243,7 +327,7 @@
         frame.origin.y = 115;
         image3.frame = frame;
         
-        webView.frame = CGRectMake(0, 168, 320, 225);
+        webView.frame = CGRectMake(0, 168, 320, screenSize.height - 255);
     }
 }
 
@@ -259,20 +343,13 @@
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-
 - (void)viewDidUnload {
     [super viewDidUnload];
     self.titleLabel = nil;
     self.mainImage = nil;
     self.webView = nil;
+    self.moviePlayer = nil;
+    self.embedView = nil;
     self.image1 = nil;
     self.image2 = nil;
     self.image3 = nil;
@@ -295,7 +372,11 @@
     [image1 release];
     [image2 release];
     [image3 release];
-   
+    [moviePlayer release];
+    [embedView release];
+  
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+  
     [super dealloc];
 }
 
