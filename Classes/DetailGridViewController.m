@@ -60,8 +60,8 @@
 
     if (!_guides) {
         [self.loading hide];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"Could not load guide list."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not load guide list."
+                                                        message:@"Please check your internet and try again."
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Retry", nil];
@@ -143,6 +143,7 @@
 - (NSString *)gridViewController:(DMPGridViewController *)gridViewController imageURLForCellAtIndex:(NSUInteger)index {
     if (![_guides count])
         return nil;
+
     return [[[_guides objectAtIndex:index] valueForKey:@"image_url"] stringByAppendingString:@".medium"];
 }
 - (NSString *)gridViewController:(DMPGridViewController *)gridViewController titleForCellAtIndex:(NSUInteger)index {
