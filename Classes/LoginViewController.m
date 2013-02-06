@@ -47,9 +47,11 @@
     [self.tableView scrollRectToVisible:CGRectMake(0.0, 60.0, 320.0, 100.0) animated:YES];
     [UIView commitAnimations];
 }
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [self performSelector:@selector(showMessage) withObject:nil afterDelay:0.1];
 }
+
 - (void)showMessage {
     if ([emailField isFirstResponder] || [passwordField isFirstResponder] || 
         [passwordVerifyField isFirstResponder] || [fullNameField isFirstResponder])
@@ -103,6 +105,7 @@
     
     [loading showInView:self.tableView];
 }
+
 - (void)hideLoading {
     [loading removeFromSuperview];
     
@@ -322,9 +325,16 @@
     passwordField.returnKeyType = showRegister ? UIReturnKeyNext : UIReturnKeyDone;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+
+    // Adds ability to check when a user touches UITableView only
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]
+                                          initWithTarget:self
+                                          action:@selector(tableViewTapped:)];
+    [[self tableView] addGestureRecognizer:tapGesture];
+
+    [tapGesture release];
 
     self.title = @"Login";
     self.tableView.backgroundView = nil;
@@ -332,9 +342,14 @@
     
     self.tableView.tableHeaderView = [self createMessage];
     self.tableView.tableFooterView = [self createActionButtons];
-    
+
     self.tableView.contentInset = UIEdgeInsetsMake(5, 0, 0, 0);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+- (void)tableViewTapped:(UITapGestureRecognizer *)tapGesture {
+    // Remove keyboard
+    [self.view endEditing:YES];
 }
 
 - (void)viewDidUnload {
@@ -499,6 +514,7 @@
                                      forObject:self 
                                   withSelector:@selector(loginResults:)];
 }
+
 - (void)sendRegister {
     if (!emailField.text || !passwordField.text || !passwordVerifyField.text || !fullNameField.text) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
