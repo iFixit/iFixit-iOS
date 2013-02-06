@@ -40,8 +40,14 @@
     if (!self.title) {
         self.title = @"Categories";
         
-        if ([Config currentConfig].site != ConfigIFixit && [Config currentConfig].site != ConfigIFixitDev) {
-            
+        // I want to rewrite this setup, could get bloated with lots of custom apps, also the
+        // if else is awkward
+        if ([Config currentConfig].site == ConfigZeal) {
+            UIImage *titleImage = [UIImage imageNamed:@"titleImageZeal.png"];
+            UIImageView *imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+            self.navigationItem.titleView = imageTitle;
+            [imageTitle release];
+        } else if ([Config currentConfig].site != ConfigIFixit && [Config currentConfig].site != ConfigIFixitDev) {
         }
         else {
             UIImage *titleImage = [UIImage imageNamed:@"titleImage.png"];
@@ -49,7 +55,7 @@
             imageTitle.contentMode = UIViewContentModeScaleAspectFit;
             self.navigationItem.titleView = imageTitle;
             [imageTitle release];
-        }
+        }        
     }
     
     // Color the searchbar.
@@ -70,6 +76,8 @@
         self.navigationItem.leftBarButtonItem = button;
         [button release];
     }
+
+    self.navigationItem.titleView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 - (void)showLoading {
@@ -122,14 +130,31 @@
     self.navigationItem.titleView = nil;
 }
 
+// This is a deprecated method as of iOS 6.0, keeping this in to support older iOS versions
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+  //  CGRect frame = self.navigationItem.titleView.frame;
     if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
         
-    }
-    else {
+    } else if ([Config currentConfig].site == ConfigZeal) {
+
         CGRect frame = self.navigationItem.titleView.frame;
         
-        if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+        // Only resize the image title on iPhone/iTouch in landscape
+        if ((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            frame.size.width = 100;
+            frame.size.height = 25;
+        } else {
+            frame.size.width = 137;
+            frame.size.height = 35;
+
+        }
+
+        self.navigationItem.titleView.frame = frame;
+
+    } else {
+        CGRect frame = self.navigationItem.titleView.frame;
+        
+        if ((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
             frame.size.width = 75;
             frame.size.height = 24;
         }
@@ -303,7 +328,7 @@
         ![self.title isEqual:@"Categories"] ? 0 : 1;
     
     // TODO: Fill this in with data from the sites API
-    NSString *topicsTitle = @"Topics";
+    NSString *topicsTitle = @"Categories";
     if ([Config currentConfig].site == ConfigIFixit)
         topicsTitle = @"Devices";
     
@@ -379,7 +404,7 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }
-	
+    	
     return cell;
 }
 

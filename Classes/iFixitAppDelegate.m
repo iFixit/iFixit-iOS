@@ -306,7 +306,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     NSString *domain = [site valueForKey:@"domain"];
     //NSString *colorHex = [site valueForKey:@"color"];
     //UIColor *color = [UIColor colorFromHexString:colorHex];
-
+    
     // Load the right site
     if ([domain isEqual:@"www.ifixit.com"]) {
         [[Config currentConfig] setSite:ConfigIFixit];
