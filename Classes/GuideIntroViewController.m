@@ -17,7 +17,7 @@
 @implementation GuideIntroViewController
 @synthesize headerTextDozuki;
 
-@synthesize delegate, headerImageIFixit, headerImageMake, swipeLabel, headerImageZeal;
+@synthesize delegate, headerImageLogo, swipeLabel;
 @synthesize overlayView;
 @synthesize guide=_guide;
 @synthesize device, mainImage, webView, huge, html;
@@ -62,17 +62,32 @@
 
     // Set the appropriate header image.
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
-            headerImageMake.hidden = NO;
-        } else if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigIFixitDev) {
-            headerImageIFixit.hidden = NO;
-        } else if ([Config currentConfig].site == ConfigZeal) {
-            headerImageZeal.hidden = NO;
-        } else {
-            headerTextDozuki.font = [UIFont fontWithName:@"Lobster" size:75.0];
-            headerTextDozuki.text = [[Config currentConfig].siteData valueForKey:@"title"];
-            headerTextDozuki.hidden = NO;
+        UIImage *image;
+        switch ([Config currentConfig].site) {
+            case ConfigMake:
+                image = [UIImage imageNamed:@"logo_make.png"];
+                headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);
+                headerImageLogo.image = image;
+                [image release];
+                break;
+            case ConfigZeal:
+                image = [UIImage imageNamed:@"logo_zeal@2x.png"];
+                headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);
+                headerImageLogo.image = image;
+                [image release];
+                break;
+            /*EAOGuideIntro*/
+            case !ConfigIFixit:
+                headerImageLogo.hidden = YES;
+                headerTextDozuki.font = [UIFont fontWithName:@"Lobster" size:75.0];
+                headerTextDozuki.text = [[Config currentConfig].siteData valueForKey:@"title"];
+                headerTextDozuki.hidden = NO;
+                [image release];
+                break;
+            default:
+                break;
         }
+
     }
     
     // Hide the swipe label if there are no steps.
@@ -180,8 +195,7 @@
     [self setOverlayView:nil];
     [self setHeaderTextDozuki:nil];
     [super viewDidUnload];
-    self.headerImageIFixit = nil;
-    self.headerImageMake = nil;
+    self.headerImageLogo = nil;
     self.swipeLabel = nil;
     self.device = nil;
     self.mainImage = nil;
@@ -198,8 +212,7 @@
     [huge release];
     [html release];
 
-    [headerImageIFixit release];
-    [headerImageMake release];
+    [headerImageLogo release];
     [swipeLabel release];
     [device release];
     [mainImage release];

@@ -12,9 +12,7 @@
 @interface GuideIntroViewController : UIViewController <UIWebViewDelegate>
 
 @property (nonatomic, assign) id delegate;
-@property (nonatomic, retain) IBOutlet UIImageView *headerImageIFixit;
-@property (nonatomic, retain) IBOutlet UIImageView *headerImageMake;
-@property (nonatomic, retain) IBOutlet UIImageView *headerImageZeal;
+@property (nonatomic, retain) IBOutlet UIImageView *headerImageLogo;
 @property (retain, nonatomic) IBOutlet UILabel *headerTextDozuki;
 @property (nonatomic, retain) IBOutlet UIImageView *swipeLabel;
 @property (retain, nonatomic) IBOutlet UIView *overlayView;
