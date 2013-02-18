@@ -20,7 +20,7 @@ puts "Easy App Oven!"
 configName = nanoSite = appName = ''
 
 # Ask the user for nanosite
-until nanoSite.match(/^[a-z]+/)
+until nanoSite.match(/^[a-z-]+/)
    puts "\nEnter the nanosite (ie: failfactory)"
    nanoSite = gets.chomp
 end
