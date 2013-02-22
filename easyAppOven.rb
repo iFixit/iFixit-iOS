@@ -122,7 +122,7 @@ recipes = [
                      "\s" * 3 + "sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.#{nanoSite}/g' iFixit-Info.plist\n" +
                      "\s" * 3 + "sed -i '.bak' -e 's/iFixit/#{appName}/g' iFixit-Info.plist\n" +
                      "\s" * 3 + "sed -i '.bak' -e 's/>ifixit</>#{nanoSite}</g' iFixit-Info.plist\n" +
-                     "\s" * 3 + "sed -i '.bak' -e 's/\\[Config currentConfig\\].dozuki = NO;/\\[Config currentConfig\\].dozuki = YES;/' Classes/iFixitAppDelegate.m\n" +
+                     "\s" * 3 + "sed -i '.bak' -e 's/\\[Config currentConfig\\].dozuki = YES;/\\[Config currentConfig\\].dozuki = NO;/' Classes/iFixitAppDelegate.m\n" +
                      "#EAOPlist"}
 ]
 
