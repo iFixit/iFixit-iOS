@@ -22,6 +22,8 @@
 		ABC5397E15EC4AA9004B2865 /* zeal_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC5397D15EC4AA9004B2865 /* zeal_logo_transparent.png */; };
 		ABC5399215ED7934004B2865 /* detailViewTextZeal.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC5399115ED7933004B2865 /* detailViewTextZeal.png */; };
 		ABC5399415ED793A004B2865 /* detailViewTextZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC5399315ED7939004B2865 /* detailViewTextZeal@2x.png */; };
+		ABC63D5516CF16140041A995 /* logo_zeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC63D5316CF16110041A995 /* logo_zeal@2x.png */; };
+		ABC63D5616CF16140041A995 /* logo_zeal.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC63D5416CF16130041A995 /* logo_zeal.png */; };
 		C10F2708120CE5140027A28D /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F26FF120CE5140027A28D /* NSObject+SBJSON.m */; };
 		C10F2709120CE5140027A28D /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2701120CE5140027A28D /* NSString+SBJSON.m */; };
 		C10F270A120CE5140027A28D /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2703120CE5140027A28D /* SBJsonBase.m */; };
@@ -239,6 +241,8 @@
 		ABC5397D15EC4AA9004B2865 /* zeal_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zeal_logo_transparent.png; sourceTree = "<group>"; };
 		ABC5399115ED7933004B2865 /* detailViewTextZeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detailViewTextZeal.png; sourceTree = "<group>"; };
 		ABC5399315ED7939004B2865 /* detailViewTextZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detailViewTextZeal@2x.png"; sourceTree = "<group>"; };
+		ABC63D5316CF16110041A995 /* logo_zeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_zeal@2x.png"; sourceTree = "<group>"; };
+		ABC63D5416CF16130041A995 /* logo_zeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_zeal.png; sourceTree = "<group>"; };
 		C10E3EB1120E369E008CE3AE /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		C10F26FD120CE5140027A28D /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		C10F26FE120CE5140027A28D /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
@@ -758,6 +762,8 @@
 				DAD2EB9E151671FD0053CC40 /* tabBarItemWrench@2x.png */,
 				DA61C55513383571000028C3 /* titleImage.png */,
 				AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */,
+				ABC63D5316CF16110041A995 /* logo_zeal@2x.png */,
+				ABC63D5416CF16130041A995 /* logo_zeal.png */,
 				AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */,
 				DA61C55613383571000028C3 /* titleImage@2x.png */,
 				ABC5399115ED7933004B2865 /* detailViewTextZeal.png */,
@@ -1267,6 +1273,8 @@
 				AB3C1777162718AD00323A1E /* dozukiLogo@2x.png in Resources */,
 				DACE7FF016571F560013FFFD /* Default-568h@2x.png in Resources */,
 				DACE7FF2165722710013FFFD /* GuideStepViewController.xib in Resources */,
+				ABC63D5516CF16140041A995 /* logo_zeal@2x.png in Resources */,
+				ABC63D5616CF16140041A995 /* logo_zeal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

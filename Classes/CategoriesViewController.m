@@ -38,26 +38,31 @@
     [super viewDidLoad];
     
     if (!self.title) {
-        self.title = @"Categories";
-        
-        // I want to rewrite this setup, could get bloated with lots of custom apps, also the
-        // if else is awkward
-        if ([Config currentConfig].site == ConfigZeal) {
-            UIImage *titleImage = [UIImage imageNamed:@"titleImageZeal.png"];
-            UIImageView *imageTitle = [[UIImageView alloc] initWithImage:titleImage];
-            self.navigationItem.titleView = imageTitle;
-            [imageTitle release];
-        } else if ([Config currentConfig].site != ConfigIFixit && [Config currentConfig].site != ConfigIFixitDev) {
+        UIImage *titleImage;
+        UIImageView *imageTitle;
+        switch ([Config currentConfig].site) {
+            case ConfigIFixit:
+                titleImage = [UIImage imageNamed:@"titleImage.png"];
+                imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+                imageTitle.contentMode = UIViewContentModeScaleAspectFit;
+                self.navigationItem.titleView = imageTitle;
+                [imageTitle release];
+                [titleImage release];
+                break;
+            case ConfigZeal:
+                titleImage = [UIImage imageNamed:@"titleImageZeal.png"];
+                imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+                self.navigationItem.titleView = imageTitle;
+                [imageTitle release];
+                [titleImage release];
+                break;
+            /*EAOTitle*/
+            default:
+                self.title = @"Categories";
+                break;
         }
-        else {
-            UIImage *titleImage = [UIImage imageNamed:@"titleImage.png"];
-            UIImageView *imageTitle = [[UIImageView alloc] initWithImage:titleImage];
-            imageTitle.contentMode = UIViewContentModeScaleAspectFit;
-            self.navigationItem.titleView = imageTitle;
-            [imageTitle release];
-        }        
     }
-    
+
     // Color the searchbar.
     //searchBar.tintColor = [Config currentConfig].toolbarColor;
     
@@ -132,38 +137,42 @@
 
 // This is a deprecated method as of iOS 6.0, keeping this in to support older iOS versions
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-  //  CGRect frame = self.navigationItem.titleView.frame;
-    if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
-        
-    } else if ([Config currentConfig].site == ConfigZeal) {
-
-        CGRect frame = self.navigationItem.titleView.frame;
-        
-        // Only resize the image title on iPhone/iTouch in landscape
-        if ((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-            frame.size.width = 100;
-            frame.size.height = 25;
-        } else {
-            frame.size.width = 137;
-            frame.size.height = 35;
-
+    CGRect frame;
+    if ((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        switch ([Config currentConfig].site) {
+            case ConfigMake:
+                break;
+            case ConfigZeal:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 100;
+                frame.size.height = 25;
+                self.navigationItem.titleView.frame = frame;
+                break;
+            /*EAOLandscapeResize*/
+            default:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 75;
+                frame.size.height = 24;
+                self.navigationItem.titleView.frame = frame;
         }
-
-        self.navigationItem.titleView.frame = frame;
-
     } else {
-        CGRect frame = self.navigationItem.titleView.frame;
-        
-        if ((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-            frame.size.width = 75;
-            frame.size.height = 24;
+        switch ([Config currentConfig].site) {
+            case ConfigMake:
+                break;
+            case ConfigZeal:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 137;
+                frame.size.height = 35;
+                self.navigationItem.titleView.frame = frame;
+                break;
+            /*EAOPortraitResize*/
+            default:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 98;
+                frame.size.height = 34;
+                self.navigationItem.titleView.frame = frame;
+
         }
-        else {
-            frame.size.width = 98;
-            frame.size.height = 34;
-        }
-        
-        self.navigationItem.titleView.frame = frame;
     }
 }
 
