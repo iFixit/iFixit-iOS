@@ -12,7 +12,8 @@ enum {
     ConfigMake,
     ConfigMakeDev,
     ConfigDozuki,
-    ConfigZeal
+    ConfigZeal,
+    /*EAOConfig*/
 };
 
 @interface Config : NSObject
