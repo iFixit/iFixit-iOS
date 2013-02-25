@@ -19,6 +19,13 @@ elif [ "$1" == "zeal" ]; then
    sed -i '.bak' -e 's/iFixit/Zeal/g' iFixit-Info.plist
    sed -i '.bak' -e 's/>ifixit</>zeal</g' iFixit-Info.plist
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
+elif [ "$1" == "haas2" ]; then
+   echo "Haas2"
+   cp Graphics/Sites/Haas2/*png .
+   sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.haas2/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/iFixit/HAAS/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/>ifixit</>haas2</g' iFixit-Info.plist
+   sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
 #EAOPlist
 else
    echo "Dozuki"

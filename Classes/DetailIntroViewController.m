@@ -39,6 +39,10 @@
                 frame.origin.y = -110.0;
                 frame.origin.x = -30.0;
                 break;
+            case ConfigHaas2:
+                frame.origin.y = 260.0;
+                frame.origin.x = 270.0;
+                break;
             /*EAOLandscape*/
             default:
                 frame.origin.y = -60.0;
@@ -59,6 +63,10 @@
             case ConfigZeal:
                 frame.origin.y = 0.0;
                 frame.origin.x = 0.0;
+                break;
+            case ConfigHaas2:
+                frame.origin.y = 350.0;
+                frame.origin.x = 300.0;
                 break;
             /*EAOPortrait*/
             default:
@@ -91,6 +99,12 @@
             image.frame = CGRectMake(image.frame.origin.x, image.frame.origin.y, 768.0, 768.0);
             image.center = self.view.center;
             text.image = [UIImage imageNamed:@"detailViewTextZeal.png"];
+            break;
+        case ConfigHaas2:
+            image.image = [UIImage imageNamed:@"haas2_logo_transparent.png"];
+            image.frame = CGRectMake(image.frame.origin.x, image.frame.origin.y, image.image.size.width, image.image.size.height);
+            image.center = self.view.center;
+            text.image = [UIImage imageNamed:@"detailViewTextHaas2.png"];
             break;
         /*EAOiPadLogo*/
         // Dozuki
