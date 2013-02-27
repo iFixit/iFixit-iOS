@@ -46,21 +46,18 @@
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 imageTitle.contentMode = UIViewContentModeScaleAspectFit;
                 self.navigationItem.titleView = imageTitle;
-                [imageTitle release];
                 [titleImage release];
                 break;
             case ConfigZeal:
                 titleImage = [UIImage imageNamed:@"titleImageZeal.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
-                [imageTitle release];
                 [titleImage release];
                 break;
             case ConfigHaas2:
                 titleImage = [UIImage imageNamed:@"titleImageHaas2.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
-                [imageTitle release];
                 [titleImage release];
                 break;
             /*EAOTitle*/
