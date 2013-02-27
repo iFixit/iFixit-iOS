@@ -76,6 +76,12 @@
                 headerImageLogo.image = image;
                 [image release];
                 break;
+            case ConfigHaas2:
+                image = [UIImage imageNamed:@"logo_haas2.png"];
+                headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);
+                headerImageLogo.image = image;
+                [image release];
+                break;
             /*EAOGuideIntro*/
             case !ConfigIFixit:
                 headerImageLogo.hidden = YES;

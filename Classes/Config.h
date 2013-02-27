@@ -13,6 +13,7 @@ enum {
     ConfigMakeDev,
     ConfigDozuki,
     ConfigZeal,
+    ConfigHaas2,
     /*EAOConfig*/
 };
 

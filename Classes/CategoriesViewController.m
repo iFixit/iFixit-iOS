@@ -46,14 +46,18 @@
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 imageTitle.contentMode = UIViewContentModeScaleAspectFit;
                 self.navigationItem.titleView = imageTitle;
-                [imageTitle release];
                 [titleImage release];
                 break;
             case ConfigZeal:
                 titleImage = [UIImage imageNamed:@"titleImageZeal.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
-                [imageTitle release];
+                [titleImage release];
+                break;
+            case ConfigHaas2:
+                titleImage = [UIImage imageNamed:@"titleImageHaas2.png"];
+                imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+                self.navigationItem.titleView = imageTitle;
                 [titleImage release];
                 break;
             /*EAOTitle*/
@@ -148,6 +152,12 @@
                 frame.size.height = 25;
                 self.navigationItem.titleView.frame = frame;
                 break;
+            case ConfigHaas2:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 70.0;
+                frame.size.height = 24.0;
+                self.navigationItem.titleView.frame = frame;
+                break;
             /*EAOLandscapeResize*/
             default:
                 frame = self.navigationItem.titleView.frame;
@@ -163,6 +173,12 @@
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 137;
                 frame.size.height = 35;
+                self.navigationItem.titleView.frame = frame;
+                break;
+            case ConfigHaas2:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 90.0;
+                frame.size.height = 31.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
             /*EAOPortraitResize*/

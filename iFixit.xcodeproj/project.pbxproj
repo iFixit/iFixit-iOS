@@ -15,10 +15,16 @@
 		2804200C108E984D000629CD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2804200A108E984D000629CD /* DetailViewController.m */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
+		AB06E0AF16D8487A00D28735 /* titleImageHaas2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB06E0AD16D8487900D28735 /* titleImageHaas2@2x.png */; };
+		AB06E0B016D8487A00D28735 /* titleImageHaas2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB06E0AE16D8487900D28735 /* titleImageHaas2.png */; };
+		AB06E0B316D84CC600D28735 /* haas2_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AB06E0B116D84CC400D28735 /* haas2_logo_transparent.png */; };
+		AB06E0B416D84CC600D28735 /* haas2_logo_transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB06E0B216D84CC500D28735 /* haas2_logo_transparent@2x.png */; };
 		AB0B27AD15E7E3550088BA07 /* titleImageZeal.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */; };
 		AB0B27B015E7E36B0088BA07 /* titleImageZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */; };
 		AB3C1776162718AD00323A1E /* dozukiLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1774162718AD00323A1E /* dozukiLogo.png */; };
 		AB3C1777162718AD00323A1E /* dozukiLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */; };
+		AB675AD316DBF6B20074F97E /* logo_haas2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB675AD216DBF6B20074F97E /* logo_haas2@2x.png */; };
+		AB675AD516DBF7D40074F97E /* logo_haas2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB675AD416DBF7D40074F97E /* logo_haas2.png */; };
 		ABC5397E15EC4AA9004B2865 /* zeal_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC5397D15EC4AA9004B2865 /* zeal_logo_transparent.png */; };
 		ABC5399215ED7934004B2865 /* detailViewTextZeal.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC5399115ED7933004B2865 /* detailViewTextZeal.png */; };
 		ABC5399415ED793A004B2865 /* detailViewTextZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC5399315ED7939004B2865 /* detailViewTextZeal@2x.png */; };
@@ -234,10 +240,16 @@
 		28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		AB06E0AD16D8487900D28735 /* titleImageHaas2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImageHaas2@2x.png"; sourceTree = "<group>"; };
+		AB06E0AE16D8487900D28735 /* titleImageHaas2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageHaas2.png; sourceTree = "<group>"; };
+		AB06E0B116D84CC400D28735 /* haas2_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = haas2_logo_transparent.png; sourceTree = "<group>"; };
+		AB06E0B216D84CC500D28735 /* haas2_logo_transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "haas2_logo_transparent@2x.png"; sourceTree = "<group>"; };
 		AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageZeal.png; sourceTree = "<group>"; };
 		AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImageZeal@2x.png"; sourceTree = "<group>"; };
 		AB3C1774162718AD00323A1E /* dozukiLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiLogo.png; path = Graphics/dozukiLogo.png; sourceTree = "<group>"; };
 		AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiLogo@2x.png"; path = "Graphics/dozukiLogo@2x.png"; sourceTree = "<group>"; };
+		AB675AD216DBF6B20074F97E /* logo_haas2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_haas2@2x.png"; sourceTree = "<group>"; };
+		AB675AD416DBF7D40074F97E /* logo_haas2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_haas2.png; sourceTree = "<group>"; };
 		ABC5397D15EC4AA9004B2865 /* zeal_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zeal_logo_transparent.png; sourceTree = "<group>"; };
 		ABC5399115ED7933004B2865 /* detailViewTextZeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detailViewTextZeal.png; sourceTree = "<group>"; };
 		ABC5399315ED7939004B2865 /* detailViewTextZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detailViewTextZeal@2x.png"; sourceTree = "<group>"; };
@@ -701,6 +713,8 @@
 				DA9948AB142ACC6000E4167D /* Dozuki Splash */,
 				DA35629F147718FA00683947 /* webNavBar */,
 				DA61C50E13380E4C000028C3 /* back.png */,
+				AB675AD416DBF7D40074F97E /* logo_haas2.png */,
+				AB675AD216DBF6B20074F97E /* logo_haas2@2x.png */,
 				DA61C50F13380E4C000028C3 /* back@2x.png */,
 				DAC26871140842B300752982 /* backtosites.png */,
 				DAC26872140842B300752982 /* backtosites@2x.png */,
@@ -728,6 +742,8 @@
 				DAB9344313722AEB00B6AA9A /* login.png */,
 				DA275DBF1510510700A8A09C /* login@2x.png */,
 				DA275DC01510510700A8A09C /* register@2x.png */,
+				AB06E0AD16D8487900D28735 /* titleImageHaas2@2x.png */,
+				AB06E0AE16D8487900D28735 /* titleImageHaas2.png */,
 				DA3562AE14772D1200683947 /* logo_ifixit.png */,
 				DA275DB215104CA400A8A09C /* logo_ifixit@2x.png */,
 				DA61C51F13380E4C000028C3 /* logo_make.png */,
@@ -736,6 +752,8 @@
 				ABC5397D15EC4AA9004B2865 /* zeal_logo_transparent.png */,
 				DA086C7D147CA39E00BD9A2F /* make_logo_transparent.png */,
 				DA275DB415104CA400A8A09C /* make_logo_transparent@2x.png */,
+				AB06E0B116D84CC400D28735 /* haas2_logo_transparent.png */,
+				AB06E0B216D84CC500D28735 /* haas2_logo_transparent@2x.png */,
 				DA3562B0147731C500683947 /* noGuides.png */,
 				DA275DB815104CB400A8A09C /* noGuides@2x.png */,
 				DA61C52013380E4C000028C3 /* NoImage.jpg */,
@@ -1275,6 +1293,12 @@
 				DACE7FF2165722710013FFFD /* GuideStepViewController.xib in Resources */,
 				ABC63D5516CF16140041A995 /* logo_zeal@2x.png in Resources */,
 				ABC63D5616CF16140041A995 /* logo_zeal.png in Resources */,
+				AB06E0AF16D8487A00D28735 /* titleImageHaas2@2x.png in Resources */,
+				AB06E0B016D8487A00D28735 /* titleImageHaas2.png in Resources */,
+				AB06E0B316D84CC600D28735 /* haas2_logo_transparent.png in Resources */,
+				AB06E0B416D84CC600D28735 /* haas2_logo_transparent@2x.png in Resources */,
+				AB675AD316DBF6B20074F97E /* logo_haas2@2x.png in Resources */,
+				AB675AD516DBF7D40074F97E /* logo_haas2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

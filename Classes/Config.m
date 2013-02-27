@@ -64,6 +64,13 @@ static Config *currentConfig = nil;
             collectionsEnabled = NO;
             self.store = nil;
             break;
+        case ConfigHaas2:
+            self.host = @"haas2.dozuki.com";
+            self.baseURL = @"http://haas2.dozuki.com";
+            answersEnabled = NO;
+            collectionsEnabled = NO;
+            self.store = nil;
+            break;
         /*EAOOptions*/
         default:
             self.host = nil;
@@ -96,6 +103,15 @@ static Config *currentConfig = nil;
             // Load intro and step css from the css folder.        
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            break;
+        case ConfigHaas2:
+            self.backgroundColor = [UIColor whiteColor];
+            self.textColor = [UIColor blackColor];
+            self.toolbarColor = [UIColor colorWithRed:.19 green:.21 blue:.23 alpha:1.0];
+      
+            // Load intro and step css from the css folder.
+            self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
+            self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             break;
         default:
             self.backgroundColor = [UIColor blackColor];
