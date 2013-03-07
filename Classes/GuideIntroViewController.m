@@ -77,12 +77,11 @@
                 [image release];
                 break;
             /*EAOGuideIntro*/
-            case !ConfigIFixit:
+            case ConfigDozuki:
                 headerImageLogo.hidden = YES;
                 headerTextDozuki.font = [UIFont fontWithName:@"Lobster" size:75.0];
                 headerTextDozuki.text = [[Config currentConfig].siteData valueForKey:@"title"];
                 headerTextDozuki.hidden = NO;
-                [image release];
                 break;
             default:
                 break;
