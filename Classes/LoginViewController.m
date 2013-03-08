@@ -328,14 +328,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Adds ability to check when a user touches UITableView only
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]
-                                          initWithTarget:self
-                                          action:@selector(tableViewTapped:)];
-    [[self tableView] addGestureRecognizer:tapGesture];
-
-    [tapGesture release];
-
     self.title = @"Login";
     self.tableView.backgroundView = nil;
     self.view.backgroundColor = [UIColor colorWithRed:0.86 green:0.86 blue:0.86 alpha:1.0];
@@ -345,6 +337,19 @@
 
     self.tableView.contentInset = UIEdgeInsetsMake(5, 0, 0, 0);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    // Adds ability to check when a user touches UITableView only
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]
+                                          initWithTarget:self
+                                          action:@selector(tableViewTapped:)];
+    tapGesture.delegate = self;
+    [[self tableView] addGestureRecognizer:tapGesture];
+    [tapGesture release];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    // If the user is trying to hit a button, don't return a touch event 
+    return ![touch.view isKindOfClass:[UIButton class]];
 }
 
 - (void)tableViewTapped:(UITapGestureRecognizer *)tapGesture {

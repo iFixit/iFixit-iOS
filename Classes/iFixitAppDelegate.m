@@ -170,11 +170,15 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [vc release];
 
         UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
-                                                                  target:self
-                                                                  action:@selector(showDozukiSplash)];
-        vc.navigationItem.leftBarButtonItem = button;
-        [button release];
+        
+        // We only need this button if on Dozuki
+        if ([Config currentConfig].dozuki) {
+            UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
+                                                                      target:self
+                                                                      action:@selector(showDozukiSplash)];
+            vc.navigationItem.leftBarButtonItem = button;
+            [button release];
+        }
 
         // iPad: display in form sheet
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {

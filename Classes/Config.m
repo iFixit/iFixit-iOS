@@ -70,6 +70,7 @@ static Config *currentConfig = nil;
             answersEnabled = NO;
             collectionsEnabled = NO;
             self.store = nil;
+            self.private = YES;
             break;
         /*EAOOptions*/
         default:
