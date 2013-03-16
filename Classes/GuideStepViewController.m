@@ -198,7 +198,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    // In iOS 6 and up, this method get's called when the video player goes into full screen.
+    // In iOS 6 and up, this method gets called when the video player goes into full screen.
     // This prevents the movie player from stopping itself by only stopping the video if not in
     // full screen (meaning the view has actually disappeared).
     if (!self.moviePlayer.fullscreen)
