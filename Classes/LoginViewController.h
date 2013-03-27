@@ -12,6 +12,7 @@
 @interface LoginViewController : UITableViewController <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, assign) id<LoginViewControllerDelegate> delegate;
+@property (nonatomic, retain) id viewToPresentOnSuccess;
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, retain) WBProgressHUD *loading;
 @property (nonatomic) BOOL showRegister;

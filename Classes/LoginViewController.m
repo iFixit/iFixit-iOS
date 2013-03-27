@@ -14,6 +14,7 @@
 #import "Config.h"
 #import "OpenIDViewController.h"
 #import "SSOViewController.h"
+#import "GuideViewController.h"
 
 @implementation LoginViewController
 
@@ -35,6 +36,7 @@
         self.loginButton = nil;
         self.registerButton = nil;
         self.cancelButton = nil;
+        self.viewToPresentOnSuccess = nil;
     }
     return self;
 }
@@ -567,6 +569,11 @@
 
         // The delegate is responsible for removing the login view.
         [delegate refresh];
+        
+        // If we were given a view controller to present, lets use it
+        if (self.viewToPresentOnSuccess) {
+            [delegate presentModalViewController:self.viewToPresentOnSuccess animated:NO];
+        }
     }
     
     [self hideLoading];

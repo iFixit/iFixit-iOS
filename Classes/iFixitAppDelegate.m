@@ -69,11 +69,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (void)setupAnalytics {
     if ([Config currentConfig].dozuki)
         return;
-    
+
     [[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-30506-9"
                                            dispatchPeriod:kGANDispatchPeriodSec
                                                  delegate:nil];
-    
+
     [[GANTracker sharedTracker] setCustomVariableAtIndex:1
                                                     name:@"model"
                                                    value:[UIDevice currentDevice].model
@@ -82,7 +82,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
                                                     name:@"systemVersion"
                                                    value:[UIDevice currentDevice].systemVersion
                                                withError:NULL];
-    
+
     [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/launch/%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]] withError:NULL];
 }
 
@@ -94,11 +94,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     /* Track. */
     [TestFlight takeOff:@"6b356258f037dc15f6d69d0e5d27fdf7_MzAyOTUyMDEyLTAyLTEyIDE1OjQ2OjUwLjA0NTg5OQ"];
     [self setupAnalytics];
-    
+
     /* iOS 5 appearance */
     if ([UITabBar respondsToSelector:@selector(appearance)])
         [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"customTabBarBackground.png"]];
-    
+
     /* Setup and launch. */
     self.window.rootViewController = nil;
     firstLoad = YES;
@@ -118,24 +118,24 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         else {
             [self showDozukiSplash];
         }
-        
+
         firstLoad = NO;
     }
-    
+
     return YES;
 }
 
 - (void)showDozukiSplash {
     [detailViewController.popoverController dismissPopoverAnimated:NO];
-    
+
     // Make sure we're not pointing at a site requiring setup.
     [[Config currentConfig] setSite:ConfigIFixit];
-    
+
     // Reset the saved choice.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setValue:nil forKey:@"site"];
     [defaults synchronize];
-    
+
     // Dozuki splash
     DozukiSplashViewController *dsvc = [[DozukiSplashViewController alloc] init];
     dsvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -155,7 +155,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         for (UIView *subview in self.window.subviews)
             [subview removeFromSuperview];
     }
-    
+
     UIViewController *root = nil;
     UINavigationController *nvc = nil;
 
@@ -164,13 +164,13 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         LoginViewController *vc = [[LoginViewController alloc] init];
         vc.message = @"Private site. Authentication required.";
         vc.delegate = self;
-        nvc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];        
+        nvc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];
         nvc.modalPresentationStyle = UIModalPresentationFormSheet;
         nvc.navigationBar.tintColor = [Config currentConfig].toolbarColor;
         [vc release];
 
         UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
-        
+
         // We only need this button if on Dozuki
         if ([Config currentConfig].dozuki) {
             UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
@@ -198,7 +198,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         root = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ?
                 [self iPadRoot] : [self iPhoneRoot];
     }
- 
+
     self.window.rootViewController = root;
     [window makeKeyAndVisible];
 }
@@ -210,12 +210,12 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 }
 
 - (void)presentModalViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    [self.window.rootViewController presentModalViewController:viewController animated:animated];    
+    [self.window.rootViewController presentModalViewController:viewController animated:animated];
 }
 
 - (UIViewController *)iPadRoot {
     self.showsTabBar = [Config currentConfig].collectionsEnabled || [Config currentConfig].store;
-    
+
     // Create the split controller children.
     CategoriesViewController *rvc = [[CategoriesViewController alloc] init];
     self.categoriesViewController = rvc;
@@ -223,39 +223,39 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     DetailViewController *dvc = [[DetailViewController alloc] init];
     self.detailViewController = dvc;
     [dvc release];
-    
+
     // Create the split view controller.
     UISplitViewController *svc = [[UISplitViewController alloc] init];
     svc.delegate = detailViewController;
     self.splitViewController = svc;
     [svc release];
-    
+
     categoriesViewController.detailViewController = detailViewController;
-    
+
     ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:categoriesViewController];
     splitViewController.viewControllers = [NSArray arrayWithObjects:lvc, detailViewController, nil];
     [lvc release];
-    
+
     categoriesViewController.delegate = self;
-    
+
     // Stop here, or put a fancy tab bar at the bottom.
     if (!self.showsTabBar)
         return splitViewController;
-    
+
     // Initialize the tab bar items.
     NSString *guideTitle = @"Guides";
     if ([Config currentConfig].site == ConfigMake)
         guideTitle = @"Projects";
     else if ([Config currentConfig].site == ConfigIFixit)
         guideTitle = @"Repair Manuals";
-    
+
     if ([Config currentConfig].site == ConfigIFixit) {
         splitViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:guideTitle image:[UIImage imageNamed:@"tabBarItemWrench.png"] tag:0] autorelease];
     }
     else {
         splitViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:guideTitle image:[UIImage imageNamed:@"tabBarItemBook.png"] tag:0] autorelease];
     }
-    
+
     // Optionally add the store button.
     SVWebViewController *storeViewController = nil;
     NSString *storeTitle = @"Store";
@@ -268,15 +268,15 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         }
         storeViewController = [[SVWebViewController alloc] initWithAddress:[Config currentConfig].store];
         storeViewController.tintColor = [Config currentConfig].toolbarColor;
-        storeViewController.showsDoneButton = NO;        
+        storeViewController.showsDoneButton = NO;
         storeViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:storeTitle image:storeImage tag:0] autorelease];
     }
 
     // Create the tab bar.
     UITabBarController *tbc = [[UITabBarController alloc] init];
-    
+
     if ([Config currentConfig].collectionsEnabled) {
-        FeaturedViewController *featuredViewController = [[FeaturedViewController alloc] init];    
+        FeaturedViewController *featuredViewController = [[FeaturedViewController alloc] init];
         featuredViewController.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0] autorelease];
         tbc.viewControllers = [NSArray arrayWithObjects:featuredViewController, splitViewController, storeViewController, nil];
         [featuredViewController release];
@@ -286,7 +286,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
 
     [storeViewController release];
-    
+
     return [tbc autorelease];
 }
 
@@ -294,7 +294,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     CategoriesViewController *cvc = [[CategoriesViewController alloc] init];
     self.categoriesViewController = cvc;
     [cvc release];
-    
+
     ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:categoriesViewController];
 
     lvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -310,7 +310,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     NSString *domain = [site valueForKey:@"domain"];
     //NSString *colorHex = [site valueForKey:@"color"];
     //UIColor *color = [UIColor colorFromHexString:colorHex];
-    
+
     // Load the right site
     if ([domain isEqual:@"www.ifixit.com"]) {
         [[Config currentConfig] setSite:ConfigIFixit];
@@ -326,11 +326,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [Config currentConfig].host = domain;
         [Config currentConfig].custom_domain = [site valueForKey:@"custom_domain"];
         [Config currentConfig].baseURL = [NSString stringWithFormat:@"http://%@/Guide", domain];
-        
+
         //if (color)
         //    [Config currentConfig].toolbarColor = color;
     }
-    
+
     // Enable/disable Answers and/or Collections
     if ([Config currentConfig].site == ConfigIFixit) {
         [Config currentConfig].answersEnabled = YES;
@@ -344,7 +344,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [Config currentConfig].private = [[site valueForKey:@"private"] boolValue];
     [Config currentConfig].sso = [[site valueForKey:@"authentication"] valueForKey:@"sso"];
     [Config currentConfig].store = [site valueForKey:@"store"];
-    
+
     // Save this choice for future launches, first removing any null values.
     NSMutableDictionary *simpleSite = [NSMutableDictionary dictionary];
     for (NSString *key in [site allKeys]) {
@@ -354,16 +354,15 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
     [[NSUserDefaults standardUserDefaults] setValue:simpleSite forKey:@"site"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
+
     [Config currentConfig].siteData = simpleSite;
-    
+
     // Show the main app!
     [[iFixitAPI sharedInstance] loadSession];
     [self showSiteSplash];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    
     NSString *urlString = [url absoluteString];
 
     // Pull out the site name with a regex.
@@ -373,26 +372,58 @@ static const NSInteger kGANDispatchPeriodSec = 10;
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^dozuki://(.*?)$"
                                                                                    options:NSRegularExpressionCaseInsensitive error:&error];
             NSTextCheckingResult *match = [regex firstMatchInString:urlString options:0 range:NSMakeRange(0, [urlString length])];
-            
+
             if (match) {
                 NSRange keyRange = [match rangeAtIndex:1];
                 NSString *domain = [urlString substringWithRange:keyRange];
                 NSDictionary *site = [NSDictionary dictionaryWithObject:domain forKey:@"domain"];
-                
+
                 [[NSUserDefaults standardUserDefaults] setValue:site forKey:@"site"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
-                
+
                 [self loadSite:site];
                 return YES;
             }
         }
-    }
-    else {
+    } else if ([Config currentConfig].site == ConfigHaas2) {
+        // Flesh this out if we ever want to put this into production, for demo purposes this is OKAY
+        // I hate myself for coding it this way but again, demo purposes! I am crying as I type this.
+        int guideid = [[urlString stringByReplacingOccurrencesOfString:@"haas2:guideid=" withString:@""] intValue];
+
+        // kill an ant with a cannon. Essentially resetting the app to avoid weird edge cases. If
+        // we put this into production, make this smarter
+        [self application:application didFinishLaunchingWithOptions:nil];
+
+        GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
+
+        // Present view if user is already logged in
+        if ([iFixitAPI sharedInstance].user) {
+            [self.window.rootViewController presentModalViewController:vc animated:NO];
+        } else {
+            // Create login view controller
+            LoginViewController *lvc = [[LoginViewController alloc] init];
+            lvc.message = @"Private site. Authentication Required.";
+            lvc.delegate = self;
+            lvc.viewToPresentOnSuccess = vc;
+
+            // Create navigation view controller, init with newly created view controller
+            UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:lvc];
+            nvc.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+
+            // Present navigation controller
+            [self.window.rootViewController presentModalViewController:nvc animated:NO];
+            [nvc release];
+        }
+            [vc release];
+
+        return YES;
+    // iFixit
+    } else {
         NSError *error = nil;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^ifixit://guide/(.*?)$"
                                                                                options:NSRegularExpressionCaseInsensitive error:&error];
         NSTextCheckingResult *match = [regex firstMatchInString:urlString options:0 range:NSMakeRange(0, [urlString length])];
-        
+
         if (match) {
             NSRange keyRange = [match rangeAtIndex:1];
             NSString *guideidString = [urlString substringWithRange:keyRange];
@@ -400,15 +431,15 @@ static const NSInteger kGANDispatchPeriodSec = 10;
             [f setNumberStyle:NSNumberFormatterDecimalStyle];
             NSNumber *guideid = [f numberFromString:guideidString];
             [f release];
-            
+
             GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:[guideid intValue]];
             [self.window.rootViewController presentModalViewController:vc animated:NO];
             [vc release];
-            
+
             return YES;
         }
     }
-	
+
 	return NO;
 }
 

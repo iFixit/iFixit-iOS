@@ -53,7 +53,7 @@
 			<string>com.ifixit.ifixit</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>ifixit</string>
+				<string>haas2</string>
 			</array>
 		</dict>
 	</array>
