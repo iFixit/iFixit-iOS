@@ -183,7 +183,7 @@
 }
 
 - (void)_moviePlayerPlaybackDidFinish:(NSNotification *)notification {
-    if (self.moviePlayer.fullscreen);
+    if (self.moviePlayer.fullscreen)
         [self.moviePlayer setFullscreen:NO animated:YES];
 }
 
