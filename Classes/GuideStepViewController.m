@@ -194,7 +194,7 @@
 }
 
 - (void)_moviePlayerWillExitFullscreen:(NSNotification *)notification {
-    [self.delegate willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
+    [self.delegate willRotateToInterfaceOrientation:[self.delegate interfaceOrientation] duration:0];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -360,6 +360,11 @@
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    // Really stupid hack. This prevents the status bar from overlapping with the view controller on iOS
+    // versions < 6.0. This works by forcing the status bar to always appear before we manipulate the view,
+    // otherwise the view thinks that it does not exist and creates the overlapping issue.
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    
     if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
         [self layoutLandscape];
     }
