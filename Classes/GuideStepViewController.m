@@ -216,7 +216,8 @@
 // Because the web view has a white background, it starts hidden.
 // After the content is loaded, we wait a small amount of time before showing it to prevent flicker.
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-	[self performSelector:@selector(showWebView:) withObject:nil afterDelay:0.2];
+    [self performSelector:@selector(showWebView:) withObject:nil afterDelay:0.2];
+    [self.webView shouldEnableScrolling];
 }
 - (void)showWebView:(id)sender {
 	webView.hidden = NO;	

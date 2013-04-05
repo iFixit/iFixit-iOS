@@ -117,6 +117,10 @@
         [externalDelegate webViewDidStartLoad:webView];
 }
 
+- (void)shouldEnableScrolling {
+    self.scrollView.scrollEnabled = (self.scrollView.contentSize.height > self.frame.size.height);
+}
+
 - (void)dealloc {
     [formatter release];
     [externalURL release];
