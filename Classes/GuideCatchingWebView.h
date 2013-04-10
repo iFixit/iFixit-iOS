@@ -14,6 +14,6 @@
 @property (nonatomic, assign) UIViewController *modalDelegate;
 @property (nonatomic) BOOL linksOpenInSameWindow;
 
-- (void)shouldEnableScrolling;
+- (void)enableScrollingIfNeeded;
 
 @end

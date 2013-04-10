@@ -117,7 +117,7 @@
         [externalDelegate webViewDidStartLoad:webView];
 }
 
-- (void)shouldEnableScrolling {
+- (void)enableScrollingIfNeeded {
     self.scrollView.scrollEnabled = (self.scrollView.contentSize.height > self.frame.size.height);
 }
 
