@@ -1466,9 +1466,13 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Stefan Ayala (WDYA2Q8SKM)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1484,8 +1488,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				PROVISIONING_PROFILE = "DC3CF307-69E4-4581-8AA7-EFFD1DF7093B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FF7BD518-FF4C-44BD-A58A-A1C8729CDDB6";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1499,9 +1503,13 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
@@ -1515,7 +1523,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				PROVISIONING_PROFILE = "DC3CF307-69E4-4581-8AA7-EFFD1DF7093B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1593,9 +1601,13 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1611,7 +1623,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				PROVISIONING_PROFILE = "DC3CF307-69E4-4581-8AA7-EFFD1DF7093B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

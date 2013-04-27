@@ -52,7 +52,6 @@
 								<string key="NSFrame">{{620, 103}, {404, 562}}</string>
 								<reference key="NSSuperview" ref="421469842"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="560708408">
 									<int key="NSColorSpace">6</int>
 									<string key="NSCatalogName">System</string>

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GuideImage.h"
 #import "TapDetectingImageView.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface GuideImageViewController : UIViewController <UIScrollViewDelegate, TapDetectingImageViewDelegate> {
 	BOOL doubleTap;

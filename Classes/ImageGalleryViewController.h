@@ -11,5 +11,6 @@
 @interface ImageGalleryViewController : UICollectionViewController
 @property (retain, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, retain) NSArray *userImages;
+@property (nonatomic, retain) id delegate;
 
 @end

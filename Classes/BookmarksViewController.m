@@ -185,11 +185,13 @@
     ];
     
     self.navigationItem.leftBarButtonItem = imageGalleryButton;
+    self.navigationItem.leftBarButtonItem.enabled = NO;
 }
 
 - (void)presentImageGallery {
     ImageGalleryViewController *igvc = [[ImageGalleryViewController alloc] initWithNibName:@"ImageGalleryViewController" bundle:nil];
     [self.navigationController pushViewController:igvc animated:YES];
+    [igvc release];
 }
 
 
@@ -349,10 +351,16 @@
         [self hideLogin];
         
         [[GuideBookmarks sharedBookmarks] update];
+        
     }
     
-    self.navigationItem.rightBarButtonItem = [iFixitAPI sharedInstance].user ?
-        self.editButtonItem : nil;
+    if ([iFixitAPI sharedInstance].user) {
+       self.navigationItem.leftBarButtonItem.enabled = YES;
+       self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    } else {
+       self.navigationItem.leftBarButtonItem.enabled = NO;
+       self.navigationItem.rightBarButtonItem = nil;
+    }
     
     [self performSelectorInBackground:@selector(refreshHierarchy) withObject:nil];
 }
@@ -365,6 +373,8 @@
                                               otherButtonTitles:nil];
     [sheet showFromRect:self.tableView.tableHeaderView.frame inView:self.view animated:YES];
     [sheet release];
+    
+    self.navigationItem.leftBarButtonItem.enabled = NO;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {

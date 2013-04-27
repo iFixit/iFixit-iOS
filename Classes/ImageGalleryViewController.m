@@ -9,13 +9,12 @@
 #import "ImageGalleryViewController.h"
 #import "iFixitAPI.h"
 #import "UIImageView+WebCache.h"
+#import "GuideImageViewController.h"
 
 @interface ImageGalleryViewController () < UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @end
 
 @implementation ImageGalleryViewController
-
-int numberOfItemsInSection = 2;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +34,7 @@ int numberOfItemsInSection = 2;
     [self setUpView];
     [self getUserImages];
     [loadingAlertView dismissWithClickedButtonIndex:-1 animated:YES];
+    [loadingAlertView release];
 }
 
 - (void)setUpView {
@@ -42,6 +42,7 @@ int numberOfItemsInSection = 2;
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
     
     self.title = @"Image Gallery";
+    self.delegate = self;
 }
 
 - (void)getUserImages {
@@ -73,19 +74,34 @@ int numberOfItemsInSection = 2;
     UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"ImageCell" forIndexPath:indexPath];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
     
-    [imageView setImageWithURL:[NSURL URLWithString:self.userImages[indexPath.row][@"guid"]] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+    [imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@.standard", self.userImages[indexPath.row][@"guid"]]] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     
-    cell.backgroundColor = [UIColor whiteColor];
     cell.clipsToBounds = YES;
     [cell.contentView addSubview:imageView];
     
+    [imageView release];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO: Select Item
+    UIImage *image;
+    UIAlertView *alertView = [self createSpinnerAnimation];
+    
+    [alertView show];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
+    // Download image synchronously
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@.large", self.userImages[indexPath.row][@"guid"]]]];
+    image = [UIImage imageWithData:data];
+    
+    
+    GuideImageViewController *imageVC = [GuideImageViewController zoomWithUIImage:image delegate:self];
+    [self presentModalViewController:imageVC animated:YES];
+    
+    [alertView dismissWithClickedButtonIndex:-1 animated:YES];
+    [alertView release];
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     // TODO: Deselect item
@@ -106,12 +122,9 @@ int numberOfItemsInSection = 2;
     [super dealloc];
 }
 - (void)viewDidUnload {
+    NSLog(@"was this called?");
     [self setCollectionView:nil];
     [super viewDidUnload];
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    
 }
 
 /* Returns an alert view with a spinner animation subviewed. */
@@ -127,11 +140,8 @@ int numberOfItemsInSection = 2;
     [alertView addSubview:spinner];
     [spinner startAnimating];
     
+    [spinner release];
     return alertView;
-}
-
-- (void)refreshCollectionView {
-    [self.collectionView reloadData];
 }
 
 @end
