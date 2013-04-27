@@ -29,15 +29,19 @@ int numberOfItemsInSection = 2;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"ImageCell"];
-    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
-    //self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NoImage.jpg"]];
+    
     UIAlertView *loadingAlertView = [self createSpinnerAnimation];
     [loadingAlertView show];
+    [self setUpView];
     [self getUserImages];
     [loadingAlertView dismissWithClickedButtonIndex:-1 animated:YES];
+}
+
+- (void)setUpView {
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"ImageCell"];
+    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
     
+    self.title = @"Image Gallery";
 }
 
 - (void)getUserImages {
@@ -108,9 +112,6 @@ int numberOfItemsInSection = 2;
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     
-    // If we are going landscape, lets have 3 numbers of items per section, else default to 2 for portrait
-    numberOfItemsInSection = (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) ? 3 : 2;
-    [self refreshCollectionView];
 }
 
 /* Returns an alert view with a spinner animation subviewed. */
