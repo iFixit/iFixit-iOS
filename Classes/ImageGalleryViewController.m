@@ -10,8 +10,9 @@
 #import "iFixitAPI.h"
 #import "UIImageView+WebCache.h"
 #import "GuideImageViewController.h"
+#import "Config.h"
 
-@interface ImageGalleryViewController () < UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface ImageGalleryViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @end
 
 @implementation ImageGalleryViewController
@@ -43,6 +44,18 @@
     
     self.title = @"Image Gallery";
     self.delegate = self;
+    
+    self.navigationController.navigationBar.backgroundColor = [Config currentConfig].toolbarColor;
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissView)];
+        self.navigationItem.leftBarButtonItem = doneButton;
+        self.navigationController.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+    }
+}
+
+- (void)dismissView {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)getUserImages {
@@ -109,12 +122,25 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    CGSize retval = CGSizeMake(145, 145);
+    CGSize retval;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
+            retval = CGSizeMake(190, 195);
+        else
+            retval = CGSizeMake(140, 140);
+    } else {
+        retval = CGSizeMake(145, 145);
+    }
+    
     return retval;
 }
 
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+        return UIEdgeInsetsMake(5, 10, 5, 10);
+    }
+    
     return UIEdgeInsetsMake(5, 10, 5, 10);
 }
 - (void)dealloc {
@@ -122,7 +148,6 @@
     [super dealloc];
 }
 - (void)viewDidUnload {
-    NSLog(@"was this called?");
     [self setCollectionView:nil];
     [super viewDidUnload];
 }
@@ -142,6 +167,12 @@
     
     [spinner release];
     return alertView;
+}
+
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        [self.collectionView reloadData];
 }
 
 @end

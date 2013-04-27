@@ -190,7 +190,14 @@
 
 - (void)presentImageGallery {
     ImageGalleryViewController *igvc = [[ImageGalleryViewController alloc] initWithNibName:@"ImageGalleryViewController" bundle:nil];
-    [self.navigationController pushViewController:igvc animated:YES];
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:igvc];
+        [self.view.window.rootViewController presentModalViewController:nc animated:YES];
+        [nc release];
+    } else {
+        [self.navigationController pushViewController:igvc animated:YES];
+    }
     [igvc release];
 }
 
