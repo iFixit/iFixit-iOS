@@ -17,6 +17,7 @@
 #import "iFixitAPI.h"
 #import "Config.h"
 #import "GuideViewController.h"
+#import "ImageGalleryViewController.h"
 
 @implementation BookmarksViewController
 
@@ -176,7 +177,20 @@
         self.navigationItem.leftBarButtonItem = button;
         [button release];
     }
+    
+    UIBarButtonItem *imageGalleryButton = [[UIBarButtonItem alloc] initWithTitle:@"Image Gallery"
+                                                                           style:UIBarButtonItemStyleDone
+                                                                          target:self
+                                                                          action:@selector(presentImageGallery)
+    ];
+    
+    self.navigationItem.leftBarButtonItem = imageGalleryButton;
+}
 
+- (void)presentImageGallery {
+    ImageGalleryViewController *igvc = [[ImageGalleryViewController alloc] initWithNibName:@"ImageGalleryViewController" bundle:nil];
+    [self presentModalViewController:igvc animated:YES];
+    
 }
 
 

@@ -37,5 +37,6 @@
 - (void)like:(NSNumber *)guideid forObject:(id)object withSelector:(SEL)selector;
 - (void)unlike:(NSNumber *)guideid forObject:(id)object withSelector:(SEL)selector;
 - (void)loadSession;
+- (void)getUserImagesForObject:(id)object withSelector:(SEL)selector;
 
 @end
