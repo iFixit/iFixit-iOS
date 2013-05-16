@@ -8,6 +8,15 @@
 
 @class DetailViewController;
 
+enum {
+    Device,
+    Category
+};
+
+#define TOPICS @"TOPICS"
+#define CATEGORIES @"categories"
+#define DEVICES @"devices"
+
 @interface CategoriesViewController : UITableViewController <UISearchBarDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, assign) id delegate;
@@ -18,10 +27,9 @@
 @property (nonatomic) BOOL inPopover;
 
 @property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
-@property (nonatomic, retain) NSDictionary *data;
-@property (nonatomic, retain) NSMutableDictionary *tree;
-@property (nonatomic, retain) NSArray *keys;
-@property (nonatomic, retain) NSArray *leafs;
+@property (nonatomic, retain) NSDictionary *categories;
+@property (nonatomic, retain) NSArray *categoryTypes;
+@property (nonatomic, retain) NSDictionary *categoryResults;
 
 - (void)getAreas;
 - (void)showLoading;
