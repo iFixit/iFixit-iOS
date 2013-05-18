@@ -17,6 +17,7 @@
 #import "iFixitAPI.h"
 #import "Config.h"
 #import "GuideViewController.h"
+#import "ImageGalleryViewController.h"
 
 @implementation BookmarksViewController
 
@@ -176,7 +177,28 @@
         self.navigationItem.leftBarButtonItem = button;
         [button release];
     }
+    
+    UIBarButtonItem *imageGalleryButton = [[UIBarButtonItem alloc] initWithTitle:@"Gallery"
+                                                                           style:UIBarButtonItemStyleDone
+                                                                          target:self
+                                                                          action:@selector(presentImageGallery)
+    ];
+    
+    self.navigationItem.leftBarButtonItem = imageGalleryButton;
+    self.navigationItem.leftBarButtonItem.enabled = NO;
+}
 
+- (void)presentImageGallery {
+    ImageGalleryViewController *igvc = [[ImageGalleryViewController alloc] initWithNibName:@"ImageGalleryViewController" bundle:nil];
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:igvc];
+        [self.view.window.rootViewController presentModalViewController:nc animated:YES];
+        [nc release];
+    } else {
+        [self.navigationController pushViewController:igvc animated:YES];
+    }
+    [igvc release];
 }
 
 
@@ -336,10 +358,16 @@
         [self hideLogin];
         
         [[GuideBookmarks sharedBookmarks] update];
+        
     }
     
-    self.navigationItem.rightBarButtonItem = [iFixitAPI sharedInstance].user ?
-        self.editButtonItem : nil;
+    if ([iFixitAPI sharedInstance].user) {
+       self.navigationItem.leftBarButtonItem.enabled = YES;
+       self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    } else {
+       self.navigationItem.leftBarButtonItem.enabled = NO;
+       self.navigationItem.rightBarButtonItem = nil;
+    }
     
     [self performSelectorInBackground:@selector(refreshHierarchy) withObject:nil];
 }
@@ -352,6 +380,8 @@
                                               otherButtonTitles:nil];
     [sheet showFromRect:self.tableView.tableHeaderView.frame inView:self.view animated:YES];
     [sheet release];
+    
+    self.navigationItem.leftBarButtonItem.enabled = NO;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {

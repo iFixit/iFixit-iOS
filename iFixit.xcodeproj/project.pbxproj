@@ -17,6 +17,21 @@
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
 		AB0B27AD15E7E3550088BA07 /* titleImageZeal.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */; };
 		AB0B27B015E7E36B0088BA07 /* titleImageZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */; };
+		AB33D5C3172A63000002E30F /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5A8172A63000002E30F /* NSIndexPath+PSTCollectionViewAdditions.m */; };
+		AB33D5C4172A63000002E30F /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5AA172A63000002E30F /* PSTCollectionView.m */; };
+		AB33D5C5172A63000002E30F /* PSTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5AC172A63000002E30F /* PSTCollectionViewCell.m */; };
+		AB33D5C6172A63000002E30F /* PSTCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5AF172A63000002E30F /* PSTCollectionViewController.m */; };
+		AB33D5C7172A63000002E30F /* PSTCollectionViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5B1172A63000002E30F /* PSTCollectionViewData.m */; };
+		AB33D5C8172A63000002E30F /* PSTCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5B3172A63000002E30F /* PSTCollectionViewFlowLayout.m */; };
+		AB33D5C9172A63000002E30F /* PSTCollectionViewItemKey.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5B5172A63000002E30F /* PSTCollectionViewItemKey.m */; };
+		AB33D5CA172A63000002E30F /* PSTCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5B8172A63000002E30F /* PSTCollectionViewLayout.m */; };
+		AB33D5CB172A63000002E30F /* PSTCollectionViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5BA172A63000002E30F /* PSTCollectionViewUpdateItem.m */; };
+		AB33D5CC172A63000002E30F /* PSTGridLayoutInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5BC172A63000002E30F /* PSTGridLayoutInfo.m */; };
+		AB33D5CD172A63000002E30F /* PSTGridLayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5BE172A63000002E30F /* PSTGridLayoutItem.m */; };
+		AB33D5CE172A63000002E30F /* PSTGridLayoutRow.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5C0172A63000002E30F /* PSTGridLayoutRow.m */; };
+		AB33D5CF172A63000002E30F /* PSTGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5C2172A63000002E30F /* PSTGridLayoutSection.m */; };
+		AB33D5D8172ADE8E0002E30F /* ImageGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D5D6172ADE8D0002E30F /* ImageGalleryViewController.m */; };
+		AB33D5D9172ADE8E0002E30F /* ImageGalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB33D5D7172ADE8E0002E30F /* ImageGalleryViewController.xib */; };
 		AB3C1776162718AD00323A1E /* dozukiLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1774162718AD00323A1E /* dozukiLogo.png */; };
 		AB3C1777162718AD00323A1E /* dozukiLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */; };
 		ABC5397E15EC4AA9004B2865 /* zeal_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC5397D15EC4AA9004B2865 /* zeal_logo_transparent.png */; };
@@ -236,6 +251,37 @@
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageZeal.png; sourceTree = "<group>"; };
 		AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImageZeal@2x.png"; sourceTree = "<group>"; };
+		AB33D5A7172A63000002E30F /* NSIndexPath+PSTCollectionViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+PSTCollectionViewAdditions.h"; sourceTree = "<group>"; };
+		AB33D5A8172A63000002E30F /* NSIndexPath+PSTCollectionViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+PSTCollectionViewAdditions.m"; sourceTree = "<group>"; };
+		AB33D5A9172A63000002E30F /* PSTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionView.h; sourceTree = "<group>"; };
+		AB33D5AA172A63000002E30F /* PSTCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionView.m; sourceTree = "<group>"; };
+		AB33D5AB172A63000002E30F /* PSTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewCell.h; sourceTree = "<group>"; };
+		AB33D5AC172A63000002E30F /* PSTCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewCell.m; sourceTree = "<group>"; };
+		AB33D5AD172A63000002E30F /* PSTCollectionViewCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewCommon.h; sourceTree = "<group>"; };
+		AB33D5AE172A63000002E30F /* PSTCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewController.h; sourceTree = "<group>"; };
+		AB33D5AF172A63000002E30F /* PSTCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewController.m; sourceTree = "<group>"; };
+		AB33D5B0172A63000002E30F /* PSTCollectionViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewData.h; sourceTree = "<group>"; };
+		AB33D5B1172A63000002E30F /* PSTCollectionViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewData.m; sourceTree = "<group>"; };
+		AB33D5B2172A63000002E30F /* PSTCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		AB33D5B3172A63000002E30F /* PSTCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		AB33D5B4172A63000002E30F /* PSTCollectionViewItemKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewItemKey.h; sourceTree = "<group>"; };
+		AB33D5B5172A63000002E30F /* PSTCollectionViewItemKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewItemKey.m; sourceTree = "<group>"; };
+		AB33D5B6172A63000002E30F /* PSTCollectionViewLayout+Internals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PSTCollectionViewLayout+Internals.h"; sourceTree = "<group>"; };
+		AB33D5B7172A63000002E30F /* PSTCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewLayout.h; sourceTree = "<group>"; };
+		AB33D5B8172A63000002E30F /* PSTCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewLayout.m; sourceTree = "<group>"; };
+		AB33D5B9172A63000002E30F /* PSTCollectionViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewUpdateItem.h; sourceTree = "<group>"; };
+		AB33D5BA172A63000002E30F /* PSTCollectionViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewUpdateItem.m; sourceTree = "<group>"; };
+		AB33D5BB172A63000002E30F /* PSTGridLayoutInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutInfo.h; sourceTree = "<group>"; };
+		AB33D5BC172A63000002E30F /* PSTGridLayoutInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutInfo.m; sourceTree = "<group>"; };
+		AB33D5BD172A63000002E30F /* PSTGridLayoutItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutItem.h; sourceTree = "<group>"; };
+		AB33D5BE172A63000002E30F /* PSTGridLayoutItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutItem.m; sourceTree = "<group>"; };
+		AB33D5BF172A63000002E30F /* PSTGridLayoutRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutRow.h; sourceTree = "<group>"; };
+		AB33D5C0172A63000002E30F /* PSTGridLayoutRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutRow.m; sourceTree = "<group>"; };
+		AB33D5C1172A63000002E30F /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
+		AB33D5C2172A63000002E30F /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
+		AB33D5D5172ADE8D0002E30F /* ImageGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryViewController.h; sourceTree = "<group>"; };
+		AB33D5D6172ADE8D0002E30F /* ImageGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGalleryViewController.m; sourceTree = "<group>"; };
+		AB33D5D7172ADE8E0002E30F /* ImageGalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageGalleryViewController.xib; sourceTree = "<group>"; };
 		AB3C1774162718AD00323A1E /* dozukiLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiLogo.png; path = Graphics/dozukiLogo.png; sourceTree = "<group>"; };
 		AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiLogo@2x.png"; path = "Graphics/dozukiLogo@2x.png"; sourceTree = "<group>"; };
 		ABC5397D15EC4AA9004B2865 /* zeal_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zeal_logo_transparent.png; sourceTree = "<group>"; };
@@ -554,6 +600,9 @@
 				DACD8FD414DDD7970020A06C /* Login */,
 				DA881854134A5AFE004387CE /* BookmarksViewController.h */,
 				DA881855134A5AFE004387CE /* BookmarksViewController.m */,
+				AB33D5D5172ADE8D0002E30F /* ImageGalleryViewController.h */,
+				AB33D5D6172ADE8D0002E30F /* ImageGalleryViewController.m */,
+				AB33D5D7172ADE8E0002E30F /* ImageGalleryViewController.xib */,
 				DA881856134A5AFE004387CE /* BookmarksView.xib */,
 				28042009108E984D000629CD /* DetailViewController.h */,
 				2804200A108E984D000629CD /* DetailViewController.m */,
@@ -647,6 +696,41 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AB33D5A6172A63000002E30F /* PSTCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				AB33D5A7172A63000002E30F /* NSIndexPath+PSTCollectionViewAdditions.h */,
+				AB33D5A8172A63000002E30F /* NSIndexPath+PSTCollectionViewAdditions.m */,
+				AB33D5A9172A63000002E30F /* PSTCollectionView.h */,
+				AB33D5AA172A63000002E30F /* PSTCollectionView.m */,
+				AB33D5AB172A63000002E30F /* PSTCollectionViewCell.h */,
+				AB33D5AC172A63000002E30F /* PSTCollectionViewCell.m */,
+				AB33D5AD172A63000002E30F /* PSTCollectionViewCommon.h */,
+				AB33D5AE172A63000002E30F /* PSTCollectionViewController.h */,
+				AB33D5AF172A63000002E30F /* PSTCollectionViewController.m */,
+				AB33D5B0172A63000002E30F /* PSTCollectionViewData.h */,
+				AB33D5B1172A63000002E30F /* PSTCollectionViewData.m */,
+				AB33D5B2172A63000002E30F /* PSTCollectionViewFlowLayout.h */,
+				AB33D5B3172A63000002E30F /* PSTCollectionViewFlowLayout.m */,
+				AB33D5B4172A63000002E30F /* PSTCollectionViewItemKey.h */,
+				AB33D5B5172A63000002E30F /* PSTCollectionViewItemKey.m */,
+				AB33D5B6172A63000002E30F /* PSTCollectionViewLayout+Internals.h */,
+				AB33D5B7172A63000002E30F /* PSTCollectionViewLayout.h */,
+				AB33D5B8172A63000002E30F /* PSTCollectionViewLayout.m */,
+				AB33D5B9172A63000002E30F /* PSTCollectionViewUpdateItem.h */,
+				AB33D5BA172A63000002E30F /* PSTCollectionViewUpdateItem.m */,
+				AB33D5BB172A63000002E30F /* PSTGridLayoutInfo.h */,
+				AB33D5BC172A63000002E30F /* PSTGridLayoutInfo.m */,
+				AB33D5BD172A63000002E30F /* PSTGridLayoutItem.h */,
+				AB33D5BE172A63000002E30F /* PSTGridLayoutItem.m */,
+				AB33D5BF172A63000002E30F /* PSTGridLayoutRow.h */,
+				AB33D5C0172A63000002E30F /* PSTGridLayoutRow.m */,
+				AB33D5C1172A63000002E30F /* PSTGridLayoutSection.h */,
+				AB33D5C2172A63000002E30F /* PSTGridLayoutSection.m */,
+			);
+			path = PSTCollectionView;
+			sourceTree = "<group>";
+		};
 		C10F26FC120CE5140027A28D /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -669,6 +753,7 @@
 			isa = PBXGroup;
 			children = (
 				DACE7FF6165728010013FFFD /* Media Types */,
+				AB33D5A6172A63000002E30F /* PSTCollectionView */,
 				C10F2710120CE5900027A28D /* Guide.h */,
 				C10F2711120CE5900027A28D /* Guide.m */,
 				C1D980A8120DFB2900509D18 /* GuideStep.h */,
@@ -1275,6 +1360,7 @@
 				DACE7FF2165722710013FFFD /* GuideStepViewController.xib in Resources */,
 				ABC63D5516CF16140041A995 /* logo_zeal@2x.png in Resources */,
 				ABC63D5616CF16140041A995 /* logo_zeal.png in Resources */,
+				AB33D5D9172ADE8E0002E30F /* ImageGalleryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1351,6 +1437,20 @@
 				DA58CB3414EA17F400A2CBAB /* LoginBackgroundViewController.m in Sources */,
 				DACE7FF5165727FA0013FFFD /* GuideVideo.m in Sources */,
 				DACE7FF9165728CD0013FFFD /* GuideEmbed.m in Sources */,
+				AB33D5C3172A63000002E30F /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
+				AB33D5C4172A63000002E30F /* PSTCollectionView.m in Sources */,
+				AB33D5C5172A63000002E30F /* PSTCollectionViewCell.m in Sources */,
+				AB33D5C6172A63000002E30F /* PSTCollectionViewController.m in Sources */,
+				AB33D5C7172A63000002E30F /* PSTCollectionViewData.m in Sources */,
+				AB33D5C8172A63000002E30F /* PSTCollectionViewFlowLayout.m in Sources */,
+				AB33D5C9172A63000002E30F /* PSTCollectionViewItemKey.m in Sources */,
+				AB33D5CA172A63000002E30F /* PSTCollectionViewLayout.m in Sources */,
+				AB33D5CB172A63000002E30F /* PSTCollectionViewUpdateItem.m in Sources */,
+				AB33D5CC172A63000002E30F /* PSTGridLayoutInfo.m in Sources */,
+				AB33D5CD172A63000002E30F /* PSTGridLayoutItem.m in Sources */,
+				AB33D5CE172A63000002E30F /* PSTGridLayoutRow.m in Sources */,
+				AB33D5CF172A63000002E30F /* PSTGridLayoutSection.m in Sources */,
+				AB33D5D8172ADE8E0002E30F /* ImageGalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1366,9 +1466,13 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Stefan Ayala (WDYA2Q8SKM)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1384,8 +1488,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				PROVISIONING_PROFILE = "DC3CF307-69E4-4581-8AA7-EFFD1DF7093B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FF7BD518-FF4C-44BD-A58A-A1C8729CDDB6";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1399,9 +1503,13 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
@@ -1415,7 +1523,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				PROVISIONING_PROFILE = "DC3CF307-69E4-4581-8AA7-EFFD1DF7093B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1493,9 +1601,13 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1511,7 +1623,7 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				PROVISIONING_PROFILE = "DC3CF307-69E4-4581-8AA7-EFFD1DF7093B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

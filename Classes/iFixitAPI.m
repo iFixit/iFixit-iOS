@@ -320,6 +320,26 @@ static int volatile openConnections = 0;
     [request startAsynchronous];
 }
 
+- (void)getUserImagesForObject:(id)object withSelector:(SEL)selector {
+    NSString *url = [NSString stringWithFormat:@"http://%@/api/1.0/image/user", [Config host]];
+    
+    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setRequestMethod:@"POST"];
+    
+    [request setCompletionBlock:^{
+        NSDictionary *results = [[request responseString] JSONValue];
+        [self checkSession:results];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
+        [object performSelector:selector withObject:results];
+    }];
+    
+    [request startAsynchronous];
+    
+}
+
 - (void)like:(NSNumber *)guideid forObject:(id)object withSelector:(SEL)selector {
     [TestFlight passCheckpoint:@"Like"];
 
