@@ -27,7 +27,7 @@
         self.guides = [NSArray array];
         
         if (!topic)
-            self.title = @"Guides";
+            self.title = NSLocalizedString(@"Guides", nil);
         
         [self getGuides];
     }
@@ -93,11 +93,11 @@
     if (!self.guides)
         [self showRefreshButton];
     else if (![self.guides count]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No guides found"
-                                                        message:@"This device has no guides."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No guides found", nil)
+                                                        message:NSLocalizedString(@"This device has no guides.", nil)
                                                        delegate:self
                                               cancelButtonTitle:nil
-                                              otherButtonTitles:@"Okay", nil];
+                                              otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
         [alert show];
         [alert release];
     }
@@ -172,7 +172,7 @@
         subject = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"thing"];
 
     if (!subject || [subject isEqual:[NSNull null]] || [subject isEqual:@""]) {
-        subject = @"Untitled";
+        subject = NSLocalizedString(@"Untitled", nil);
     }
     else {
         subject = [subject stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];

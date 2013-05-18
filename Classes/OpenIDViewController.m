@@ -48,11 +48,11 @@
 
 - (void)loginResults:(NSDictionary *)results {    
     if ([results objectForKey:@"error"]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
                                                         message:[results objectForKey:@"msg"]
                                                        delegate:self
                                               cancelButtonTitle:nil
-                                              otherButtonTitles:@"Okay", nil];
+                                              otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
         [alert show];
         [alert release];
     }

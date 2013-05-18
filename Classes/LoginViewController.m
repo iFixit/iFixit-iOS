@@ -26,7 +26,7 @@
         // Custom initialization
         self.delegate = nil;
         self.loading = nil;
-        self.message = @"Favorites are synced across devices and saved locally for offline browsing. Please login or register to access this feature.";
+        self.message = NSLocalizedString(@"Favorites are synced across devices and saved locally for offline browsing. Please login or register to access this feature.", nil);
         showRegister = NO;
         self.emailField = nil;
         self.passwordField = nil;
@@ -178,7 +178,7 @@
     lb.titleLabel.shadowColor = [UIColor blackColor];
     lb.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
     
-    [lb setTitle:@"Login" forState:UIControlStateNormal];
+    [lb setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
     [lb setBackgroundImage:[[UIImage imageNamed:@"login.png"] stretchableImageWithLeftCapWidth:150 topCapHeight:22] forState:UIControlStateNormal];
     [lb setContentMode:UIViewContentModeScaleToFill];
     [lb addTarget:self action:@selector(sendLogin) forControlEvents:UIControlEventTouchUpInside];
@@ -195,7 +195,7 @@
     rb.titleLabel.shadowColor = [UIColor blackColor];
     rb.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
     
-    [rb setTitle:@"Create an Account" forState:UIControlStateNormal];
+    [rb setTitle:NSLocalizedString(@"Create an Account", nil) forState:UIControlStateNormal];
     [rb setBackgroundImage:[[UIImage imageNamed:@"register.png"] stretchableImageWithLeftCapWidth:150 topCapHeight:22] forState:UIControlStateNormal];
     [lb setContentMode:UIViewContentModeScaleToFill];
     [rb addTarget:self action:@selector(toggleRegister) forControlEvents:UIControlEventTouchUpInside];
@@ -206,7 +206,7 @@
     cb.titleLabel.font = [UIFont systemFontOfSize:16.0];
     cb.titleLabel.shadowOffset = CGSizeMake(0.0, 1.0);
     
-    [cb setTitle:@"Cancel" forState:UIControlStateNormal];
+    [cb setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
     [cb setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [cb setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cb addTarget:self action:@selector(toggleRegister) forControlEvents:UIControlEventTouchUpInside];
@@ -288,7 +288,7 @@
         CGRect frame = registerButton.frame;
         frame.origin.y = 0;
         registerButton.frame = frame;
-        [registerButton setTitle:@"Register" forState:UIControlStateNormal];
+        [registerButton setTitle:NSLocalizedString(@"Register", nil) forState:UIControlStateNormal];
         [registerButton removeTarget:self action:NULL forControlEvents:UIControlEventTouchUpInside];
         [registerButton addTarget:self action:@selector(sendRegister) forControlEvents:UIControlEventTouchUpInside];
 
@@ -311,7 +311,7 @@
         CGRect frame = registerButton.frame;
         frame.origin.y = 55;
         registerButton.frame = frame;
-        [registerButton setTitle:@"Create an Account" forState:UIControlStateNormal];
+        [registerButton setTitle:NSLocalizedString(@"Create an Account", nil) forState:UIControlStateNormal];
         [registerButton removeTarget:self action:NULL forControlEvents:UIControlEventTouchUpInside];
         [registerButton addTarget:self action:@selector(toggleRegister) forControlEvents:UIControlEventTouchUpInside];
 
@@ -336,7 +336,7 @@
 
     [tapGesture release];
 
-    self.title = @"Login";
+    self.title = NSLocalizedString(@"Login", nil);
     self.tableView.backgroundView = nil;
     self.view.backgroundColor = [UIColor colorWithRed:0.86 green:0.86 blue:0.86 alpha:1.0];
     
@@ -375,13 +375,8 @@
 #pragma mark - Table view data source
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if ([Config currentConfig].site == ConfigIFixit)
-        return @"iFixit Login";
-    else if ([Config currentConfig].site == ConfigMake)
-        return @"Make: Projects Login";
-    else if ([Config currentConfig].site == ConfigZeal)
-        return @"Zeal Optics Login";
-    return @"Login";
+   
+    return NSLocalizedString(@"Login", nil);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -409,7 +404,7 @@
         self.emailField = inputField;
         rect.origin.y += 1;
         inputField.frame = rect;
-        inputField.placeholder = @"email@example.com";
+        inputField.placeholder = NSLocalizedString(@"email@example.com", nil);
         inputField.keyboardType = UIKeyboardTypeEmailAddress;
         inputField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         inputField.returnKeyType = UIReturnKeyNext;
@@ -423,7 +418,7 @@
         
         self.passwordField = inputField;
         inputField.frame = rect;
-        inputField.placeholder = @"Required";
+        inputField.placeholder = NSLocalizedString(@"Required", nil);
         inputField.keyboardType = UIKeyboardTypeDefault;
         inputField.returnKeyType = showRegister ? UIReturnKeyNext : UIReturnKeyDone;
         inputField.secureTextEntry = YES;
@@ -436,7 +431,7 @@
         
         self.passwordVerifyField = inputField;
         inputField.frame = rect;
-        inputField.placeholder = @"(again)";
+        inputField.placeholder = [NSString stringWithFormat:@"(%@)", NSLocalizedString(@"again", nil)];
         inputField.keyboardType = UIKeyboardTypeDefault;
         inputField.returnKeyType = UIReturnKeyNext;
         inputField.secureTextEntry = YES;
@@ -477,13 +472,13 @@
     
     // Set the label
     if (indexPath.row == 0)
-        cell.textLabel.text = @"Email";
+        cell.textLabel.text = NSLocalizedString(@"Email", nil);
     else if (indexPath.row == 1)
-        cell.textLabel.text = @"Password";
+        cell.textLabel.text = NSLocalizedString(@"Password", nil);
     else if (indexPath.row == 2)
-        cell.textLabel.text = @"Password";
+        cell.textLabel.text = NSLocalizedString(@"Password", nil);
     else if (indexPath.row == 3)
-        cell.textLabel.text = @"Your Name";
+        cell.textLabel.text = NSLocalizedString(@"Your Name", nil);
     
     // Add the text field
     for (UIView *v in cell.subviews) {
@@ -517,20 +512,20 @@
 
 - (void)sendRegister {
     if (!emailField.text || !passwordField.text || !passwordVerifyField.text || !fullNameField.text) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
-                                                        message:@"All fields are required"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                        message:NSLocalizedString(@"All fields are required", nil)
                                                        delegate:nil
                                               cancelButtonTitle:nil
-                                              otherButtonTitles:@"Okay", nil];
+                                              otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
         [alert show];
         [alert release];
     }
     else if (![passwordVerifyField.text isEqual:passwordField.text]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
-                                                        message:@"Passwords don't match"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                        message:NSLocalizedString(@"Passwords don't match", nil)
                                                        delegate:nil
                                               cancelButtonTitle:nil
-                                              otherButtonTitles:@"Okay", nil];
+                                              otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
         [alert show];
         [alert release];
     }
@@ -546,11 +541,11 @@
 
 - (void)loginResults:(NSDictionary *)results { 
     if ([results objectForKey:@"error"]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
                                                         message:[results objectForKey:@"msg"]
                                                        delegate:nil
                                               cancelButtonTitle:nil
-                                              otherButtonTitles:@"Okay", nil];
+                                              otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
         [alert show];
         [alert release];
     }

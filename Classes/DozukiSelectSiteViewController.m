@@ -55,7 +55,7 @@ static NSMutableArray *prioritySites = nil;
         }
         hasMoreSites = YES;
         simple = simple_;
-        self.title = @"Choose a Site";
+        self.title = NSLocalizedString(@"Choose a Site", nil);
         [self loadMore];
     }
     return self;
@@ -132,11 +132,11 @@ static NSMutableArray *prioritySites = nil;
             [self.tableView reloadData];
         }
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not load site list"
-                                                            message:@"Please check your internet connection and try again."
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Could not load site list.", nil)
+                                                            message:NSLocalizedString(@"Please check your internet connection and try again.", nil)
                                                            delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"Retry", nil];
+                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                  otherButtonTitles:NSLocalizedString(@"Retry", nil), nil];
             [alert show];
             [alert release];
         }
@@ -159,7 +159,7 @@ static NSMutableArray *prioritySites = nil;
 
     // Add the search bar
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 36.0)];
-    searchBar.placeholder = @"Search";
+    searchBar.placeholder = NSLocalizedString(@"Search", nil);
     searchBar.delegate = self;
     self.tableView.tableHeaderView = searchBar;
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -297,7 +297,7 @@ static NSMutableArray *prioritySites = nil;
             cell.detailTextLabel.text = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"description"];
         }
         else {
-            cell.textLabel.text = @"No Results Found";
+            cell.textLabel.text = NSLocalizedString(@"No Results Found", nil);
             cell.detailTextLabel.text = nil;
         }
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -307,7 +307,7 @@ static NSMutableArray *prioritySites = nil;
         
         // Configure the cell...
         if (simple && indexPath.row == [sitesArray count]) {
-            cell.textLabel.text = @"More Sites...";
+            cell.textLabel.text = NSLocalizedString(@"More Sites...", nil);
             cell.detailTextLabel.text = nil;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }

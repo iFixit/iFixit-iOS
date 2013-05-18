@@ -44,7 +44,7 @@
     self.guideid = [NSNumber numberWithInt:newGuideid];
     
     if (![[GuideBookmarks sharedBookmarks] guideForGuideid:guideid]) {
-        UIBarButtonItem *bookmarkButton = [[UIBarButtonItem alloc] initWithTitle:@"Favorite" 
+        UIBarButtonItem *bookmarkButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Favorite", nil)
                                                                            style:UIBarButtonItemStyleBordered 
                                                                           target:self 
                                                                           action:@selector(bookmark:)];
@@ -72,7 +72,7 @@
         else {
             UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:lvc];
             nvc.navigationBar.tintColor = [UIColor blackColor];
-            nvc.title = @"Login";
+            nvc.title = NSLocalizedString(@"Login", nil);
             
             lvc.modal = YES;
             [delegate presentModalViewController:nvc animated:YES];
@@ -140,7 +140,7 @@
     }
     
     progressLabel.shadowOffset = CGSizeMake(0.0f, -1.0f);
-    progressLabel.text = @"Downloading...";
+    progressLabel.text = NSLocalizedString(@"Downloading...", nil);
     [progressContainer addSubview:progressLabel];
     [progressLabel release];
     
@@ -184,7 +184,7 @@
     }
     
     bookmarkedLabel.shadowOffset = CGSizeMake(0.0f, -1.0f);
-    bookmarkedLabel.text = @" Saved";
+    bookmarkedLabel.text = [NSString stringWithFormat:@" %@", NSLocalizedString(@"Saved", nil)];
     
     UIBarButtonItem *bookmarkedItem = [[UIBarButtonItem alloc] initWithCustomView:bookmarkedLabel];
     navItem.rightBarButtonItem = bookmarkedItem;

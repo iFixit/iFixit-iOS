@@ -63,7 +63,7 @@
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     
-    NSArray *toggleItems = [NSArray arrayWithObjects:@"All", @"Favorites", nil];
+    NSArray *toggleItems = [NSArray arrayWithObjects:NSLocalizedString(@"All", nil), NSLocalizedString(@"Favorites", nil), nil];
     UISegmentedControl *toggle = [[UISegmentedControl alloc] initWithItems:toggleItems];
     toggle.selectedSegmentIndex = bookmarksTVC && self.topViewController == bookmarksTVC ? 1 : 0;
     toggle.segmentedControlStyle = UISegmentedControlStyleBar;

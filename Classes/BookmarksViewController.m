@@ -24,7 +24,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {    
-        self.title = @"Favorites";
+        self.title = NSLocalizedString(@"Favorites", nil);
 
         LoginViewController *vc = [[LoginViewController alloc] init];
         vc.delegate = self;
@@ -87,7 +87,7 @@
             label.shadowOffset = CGSizeMake(0.0f, -1.0f);
             label.shadowColor = [UIColor whiteColor];
             label.backgroundColor = [UIColor clearColor];
-            label.text = @"You haven't saved any guides for offline view yet. When you do, they'll appear here.";
+            label.text = NSLocalizedString(@"You haven't saved any guides for offline view yet. When you do, they'll appear here.", nil);
             [footer addSubview:label];
             self.tableView.tableFooterView = footer;
             [label release];
@@ -129,7 +129,7 @@
     b.titleLabel.shadowColor = [UIColor blackColor];
     b.titleLabel.shadowOffset = CGSizeMake(0, 1);
     b.titleLabel.backgroundColor = [UIColor clearColor];
-    [b setTitle:[NSString stringWithFormat:@"Logged in as %@", [iFixitAPI sharedInstance].user.username] forState:UIControlStateNormal];
+    [b setTitle:[NSString stringWithFormat:NSLocalizedString(@"Logged in as %@", nil), [iFixitAPI sharedInstance].user.username] forState:UIControlStateNormal];
 
     [b addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     
@@ -347,8 +347,8 @@
 - (void)logout {
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil
                                                        delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                         destructiveButtonTitle:@"Logout"
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                         destructiveButtonTitle:NSLocalizedString(@"Logout", nil)
                                               otherButtonTitles:nil];
     [sheet showFromRect:self.tableView.tableHeaderView.frame inView:self.view animated:YES];
     [sheet release];

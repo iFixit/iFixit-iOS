@@ -162,7 +162,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     if (![iFixitAPI sharedInstance].user && [Config currentConfig].private) {
         // Private sites require immediate login.
         LoginViewController *vc = [[LoginViewController alloc] init];
-        vc.message = @"Private site. Authentication required.";
+        vc.message = NSLocalizedString(@"Private site. Authentication required.", nil);
         vc.delegate = self;
         nvc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];        
         nvc.modalPresentationStyle = UIModalPresentationFormSheet;
@@ -239,11 +239,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         return splitViewController;
     
     // Initialize the tab bar items.
-    NSString *guideTitle = @"Guides";
+    NSString *guideTitle = NSLocalizedString(@"Guides", nil);
     if ([Config currentConfig].site == ConfigMake)
-        guideTitle = @"Projects";
+        guideTitle = NSLocalizedString(@"Projects", nil);
     else if ([Config currentConfig].site == ConfigIFixit)
-        guideTitle = @"Repair Manuals";
+        guideTitle = NSLocalizedString(@"Repair Manuals", nil);
     
     if ([Config currentConfig].site == ConfigIFixit) {
         splitViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:guideTitle image:[UIImage imageNamed:@"tabBarItemWrench.png"] tag:0] autorelease];
@@ -254,12 +254,12 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     // Optionally add the store button.
     SVWebViewController *storeViewController = nil;
-    NSString *storeTitle = @"Store";
+    NSString *storeTitle = NSLocalizedString(@"Store", nil);
     UIImage *storeImage = [UIImage imageNamed:@"tabBarItemPricetag.png"];
 
     if ([Config currentConfig].store) {
         if ([Config currentConfig].site == ConfigIFixit) {
-            storeTitle = @"Parts & Tools";
+            storeTitle = NSLocalizedString(@"Parts & Tools", nil);
             storeImage = [UIImage imageNamed:@"tabBarItemGears.png"];
         }
         storeViewController = [[SVWebViewController alloc] initWithAddress:[Config currentConfig].store];

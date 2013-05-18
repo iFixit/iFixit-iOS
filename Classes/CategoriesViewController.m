@@ -56,13 +56,13 @@
                 break;
             /*EAOTitle*/
             default:
-                self.title = @"Categories";
+                self.title = NSLocalizedString(@"Categories", nil);
                 break;
         }
     }
 
-    // Color the searchbar.
-    //searchBar.tintColor = [Config currentConfig].toolbarColor;
+    // Placeholder text for searchbar
+    self.searchBar.placeholder = NSLocalizedString(@"Search", nil);
     
     // Make room for the toolbar
     [self willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
@@ -71,7 +71,7 @@
     self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     
     // Show the Dozuki sites select button if needed.
-    if ([Config currentConfig].dozuki && [self.title isEqual:@"Categories"]) {
+    if ([Config currentConfig].dozuki && self.navigationController.viewControllers.count == 1) {
         UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
         UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
                                                                   target:[[UIApplication sharedApplication] delegate]
@@ -329,15 +329,15 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (searching)
-        return @"Search Results";
+        return NSLocalizedString(@"Search Results", nil);
 	
     int base = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && 
         ![self.title isEqual:@"Categories"] ? 0 : 1;
     
     // TODO: Fill this in with data from the sites API
-    NSString *topicsTitle = @"Categories";
+    NSString *topicsTitle = NSLocalizedString(@"Categories", nil);
     if ([Config currentConfig].site == ConfigIFixit)
-        topicsTitle = @"Devices";
+        topicsTitle = NSLocalizedString(@"Devices", nil);
     
     if (section == 0 - base)
         return self.title;
@@ -390,7 +390,7 @@
             cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"display_title"];
         }
         else {
-            cell.textLabel.text = @"No Results Found";
+            cell.textLabel.text = NSLocalizedString(@"No Results Found", nil);
         }
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
@@ -400,7 +400,7 @@
 
         // Configure the cell.
         if (indexPath.section == 0 - base) {
-            cell.textLabel.text = @"General Information";
+            cell.textLabel.text = NSLocalizedString(@"General Information", nil);
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
         else if (indexPath.section == 1 - base && [keys count]) {

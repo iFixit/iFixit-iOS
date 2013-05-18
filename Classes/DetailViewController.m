@@ -53,7 +53,7 @@
     
     if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         if (!browseButton)
-            self.browseButton = [[[UIBarButtonItem alloc] initWithTitle:@"Browse"
+            self.browseButton = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Browse", nil)
                                                                   style:UIBarButtonItemStyleBordered
                                                                  target:self
                                                                  action:@selector(popupAreas)] autorelease];
@@ -195,11 +195,11 @@
     // Add the segmented control to the navigation bar.
     NSMutableArray *items = [NSMutableArray array];
     
-    NSString *guidesText = [Config currentConfig].site == ConfigMake ? @"Projects" : @"Guides";
-    NSArray *titleItems = [NSArray arrayWithObjects:guidesText, @"More Info", nil];
+    NSString *guidesText = [Config currentConfig].site == ConfigMake ? NSLocalizedString(@"Projects", nil) : NSLocalizedString(@"Guides", nil);
+    NSArray *titleItems = [NSArray arrayWithObjects:guidesText, NSLocalizedString(@"More Info", nil), nil];
     // Add Answers if it's enabled
     if ([Config currentConfig].answersEnabled)
-        titleItems = [NSArray arrayWithObjects:guidesText, @"Answers", @"More Info", nil];
+        titleItems = [NSArray arrayWithObjects:guidesText, NSLocalizedString(@"Answers", nil), NSLocalizedString(@"More Info", nil), nil];
     
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:titleItems] autorelease];
     segmentedControl.selectedSegmentIndex = 0;

@@ -60,11 +60,11 @@
 
     if (!_guides) {
         [self.loading hide];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not load guide list."
-                                                        message:@"Please check your internet and try again."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Could not load guide list.", nil)
+                                                        message:NSLocalizedString(@"Please check your internet connection and try again.", nil)
                                                        delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Retry", nil];
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                              otherButtonTitles:NSLocalizedString(@"Retry", nil), nil];
         [alert show];
         [alert release];
         return;
@@ -148,7 +148,7 @@
 }
 - (NSString *)gridViewController:(DMPGridViewController *)gridViewController titleForCellAtIndex:(NSUInteger)index {
     if (![_guides count])
-        return @"Loading...";
+        return NSLocalizedString(@"Loading...", nil);
 
     NSDictionary *guide = [_guides objectAtIndex:index];
     NSString *title = [guide valueForKey:@"subject"];
