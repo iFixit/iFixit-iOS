@@ -180,21 +180,21 @@
 - (void)startImageDownloads {
     
     if ([self.step.images count] > 0) {
-        [mainImage setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
+        [mainImage setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
         
         if ([self.step.images count] > 1) {
-            [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
+            [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
             image1.hidden = NO;
         }
     }
     
     if ([self.step.images count] > 1) {
-        [image2 setImageWithURL:[[self.step.images objectAtIndex:1] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
+        [image2 setImageWithURL:[[self.step.images objectAtIndex:1] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
         image2.hidden = NO;
     }
     
     if ([self.step.images count] > 2) {
-        [image3 setImageWithURL:[[self.step.images objectAtIndex:2] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
+        [image3 setImageWithURL:[[self.step.images objectAtIndex:2] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
         image3.hidden = NO;
     }
 }
@@ -210,7 +210,7 @@
         guideImage = [self.step.images objectAtIndex:2];
 
     // Switch to the new image, but delay the spinner for a short time.
-    [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
+    [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
 }
 
 // Because the web view has a white background, it starts hidden.
