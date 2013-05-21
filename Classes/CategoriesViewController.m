@@ -447,7 +447,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         [vc.tableView reloadData];
         [vc release];
-    } else if (category[@"type"] == @(Device)) {
+    } else {
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
             iPhoneDeviceViewController *vc = [[iPhoneDeviceViewController alloc] initWithTopic:category[@"name"]];
             vc.title = category[@"name"];
