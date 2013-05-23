@@ -363,10 +363,14 @@
     // Remove the edit button.
     self.navigationItem.rightBarButtonItem = nil;
 
-    if ([Config currentConfig].private) {
+    // On Dozuki App
+    if ([Config currentConfig].dozuki && [Config currentConfig].private) {
         [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showDozukiSplash];
-    }
-    else {
+    // On a custom private app
+    } else if ([Config currentConfig].private) {
+        [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showSiteSplash];
+    // Everyone else who is public
+    } else {
         [self showLogin]; 
     }
 }
