@@ -13,7 +13,7 @@
 
 @interface GuideStepViewController : UIViewController <UIWebViewDelegate>
 
-@property (nonatomic, assign) id delegate;
+@property (nonatomic, retain) id delegate;
 @property (nonatomic, retain) GuideStep *step;
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property (nonatomic, retain) IBOutlet UIButton *mainImage;
