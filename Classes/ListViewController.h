@@ -6,10 +6,19 @@
 //  Copyright 2011. All rights reserved.
 //
 
+#import "CategoryWebViewController.h"
+#import "CategoriesViewController.h"
 
-@interface ListViewController : UINavigationController
+@interface ListViewController : UINavigationController <UINavigationControllerDelegate, UINavigationBarDelegate>
 
-@property (nonatomic, retain) NSArray *allStack;
 @property (nonatomic, retain) UIViewController *bookmarksTVC;
+@property (nonatomic, retain) UISegmentedControl *segmentedControl;
+@property (nonatomic, retain) CategoryWebViewController *categoryInfoViewController;
+@property (nonatomic, retain) CategoryWebViewController *categoryAnswersViewController;
+@property (nonatomic, retain) id currentCategoryViewController;
+
+@property int GUIDES;
+@property int ANSWERS;
+@property int MORE_INFO;
 
 @end

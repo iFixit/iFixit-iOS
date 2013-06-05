@@ -24,6 +24,10 @@
 		ABC5399415ED793A004B2865 /* detailViewTextZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC5399315ED7939004B2865 /* detailViewTextZeal@2x.png */; };
 		ABC63D5516CF16140041A995 /* logo_zeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC63D5316CF16110041A995 /* logo_zeal@2x.png */; };
 		ABC63D5616CF16140041A995 /* logo_zeal.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC63D5416CF16130041A995 /* logo_zeal.png */; };
+		ABDB16C0175589B500053573 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDB16BF175589B500053573 /* Utils.m */; };
+		ABDB16C41756AE2D00053573 /* CategoryWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDB16C21756AE2C00053573 /* CategoryWebViewController.m */; };
+		ABDB16C51756AE2D00053573 /* CategoryWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */; };
+		ABFA359C175E6D19000908E8 /* UINavigationBarDefaultBack.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFA359B175E6D18000908E8 /* UINavigationBarDefaultBack.png */; };
 		C10F2708120CE5140027A28D /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F26FF120CE5140027A28D /* NSObject+SBJSON.m */; };
 		C10F2709120CE5140027A28D /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2701120CE5140027A28D /* NSString+SBJSON.m */; };
 		C10F270A120CE5140027A28D /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2703120CE5140027A28D /* SBJsonBase.m */; };
@@ -243,6 +247,12 @@
 		ABC5399315ED7939004B2865 /* detailViewTextZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detailViewTextZeal@2x.png"; sourceTree = "<group>"; };
 		ABC63D5316CF16110041A995 /* logo_zeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_zeal@2x.png"; sourceTree = "<group>"; };
 		ABC63D5416CF16130041A995 /* logo_zeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_zeal.png; sourceTree = "<group>"; };
+		ABDB16BE175589B400053573 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		ABDB16BF175589B500053573 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		ABDB16C11756AE2C00053573 /* CategoryWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryWebViewController.h; sourceTree = "<group>"; };
+		ABDB16C21756AE2C00053573 /* CategoryWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryWebViewController.m; sourceTree = "<group>"; };
+		ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryWebViewController.xib; sourceTree = "<group>"; };
+		ABFA359B175E6D18000908E8 /* UINavigationBarDefaultBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UINavigationBarDefaultBack.png; path = Classes/UINavigationBarDefaultBack.png; sourceTree = "<group>"; };
 		C10E3EB1120E369E008CE3AE /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		C10F26FD120CE5140027A28D /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		C10F26FE120CE5140027A28D /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
@@ -668,6 +678,8 @@
 		C10F270F120CE5820027A28D /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				ABDB16BE175589B400053573 /* Utils.h */,
+				ABDB16BF175589B500053573 /* Utils.m */,
 				DACE7FF6165728010013FFFD /* Media Types */,
 				C10F2710120CE5900027A28D /* Guide.h */,
 				C10F2711120CE5900027A28D /* Guide.m */,
@@ -700,6 +712,7 @@
 			children = (
 				DA9948AB142ACC6000E4167D /* Dozuki Splash */,
 				DA35629F147718FA00683947 /* webNavBar */,
+				ABFA359B175E6D18000908E8 /* UINavigationBarDefaultBack.png */,
 				DA61C50E13380E4C000028C3 /* back.png */,
 				DA61C50F13380E4C000028C3 /* back@2x.png */,
 				DAC26871140842B300752982 /* backtosites.png */,
@@ -1063,6 +1076,9 @@
 				DA666AF21360E2A4002B1D62 /* GuideCatchingWebView.m */,
 				DA3E3E35133C17050070615F /* ListViewController.h */,
 				DA3E3E36133C17050070615F /* ListViewController.m */,
+				ABDB16C11756AE2C00053573 /* CategoryWebViewController.h */,
+				ABDB16C21756AE2C00053573 /* CategoryWebViewController.m */,
+				ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */,
 				28042007108E984D000629CD /* CategoriesViewController.h */,
 				28042008108E984D000629CD /* CategoriesViewController.m */,
 				DAAAC74B1433F49000CB90AF /* CategoriesViewController.xib */,
@@ -1275,6 +1291,8 @@
 				DACE7FF2165722710013FFFD /* GuideStepViewController.xib in Resources */,
 				ABC63D5516CF16140041A995 /* logo_zeal@2x.png in Resources */,
 				ABC63D5616CF16140041A995 /* logo_zeal.png in Resources */,
+				ABDB16C51756AE2D00053573 /* CategoryWebViewController.xib in Resources */,
+				ABFA359C175E6D19000908E8 /* UINavigationBarDefaultBack.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1351,6 +1369,8 @@
 				DA58CB3414EA17F400A2CBAB /* LoginBackgroundViewController.m in Sources */,
 				DACE7FF5165727FA0013FFFD /* GuideVideo.m in Sources */,
 				DACE7FF9165728CD0013FFFD /* GuideEmbed.m in Sources */,
+				ABDB16C0175589B500053573 /* Utils.m in Sources */,
+				ABDB16C41756AE2D00053573 /* CategoryWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1366,8 +1386,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1384,8 +1404,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				PROVISIONING_PROFILE = "39DB05E8-4C26-4C72-B2E6-89C8E11D6DE8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "30239DFD-ADD3-405F-9F4D-34B04C1C741B";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1399,8 +1419,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
@@ -1415,8 +1435,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				PROVISIONING_PROFILE = "39DB05E8-4C26-4C72-B2E6-89C8E11D6DE8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "53E6B131-FF2B-427E-A201-643E933B01A9";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1427,18 +1447,18 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "";
-				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				PROVISIONING_PROFILE = "DC3CF307-69E4-4581-8AA7-EFFD1DF7093B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "53E6B131-FF2B-427E-A201-643E933B01A9";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1449,16 +1469,16 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				PROVISIONING_PROFILE = "DC3CF307-69E4-4581-8AA7-EFFD1DF7093B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39DB05E8-4C26-4C72-B2E6-89C8E11D6DE8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1469,16 +1489,16 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CODE_SIGN_FLAGS = "";
-				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				PROVISIONING_PROFILE = "DC3CF307-69E4-4581-8AA7-EFFD1DF7093B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39DB05E8-4C26-4C72-B2E6-89C8E11D6DE8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1493,8 +1513,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kyle Wiens (7GRS5242V4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stefan Ayala (8Y4Z9JAKJ9)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1511,8 +1531,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E21E23C7-2ECC-4927-B0E6-8DE40CCB8BA1";
+				PROVISIONING_PROFILE = "39DB05E8-4C26-4C72-B2E6-89C8E11D6DE8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "94FE13CF-F8A0-4E4F-A10C-19D4BF2F4409";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";

@@ -12,6 +12,8 @@
 #import "DetailViewController.h"
 #import "iPhoneDeviceViewController.h"
 #import "DetailGridViewController.h"
+#import "BookmarksViewController.h"
+#import "ListViewController.h"
 
 @implementation CategoriesViewController
 
@@ -37,6 +39,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Create a reference to the navigation controller
+    self.listViewController = (ListViewController*)self.navigationController;
+    
     if (!self.title) {
         UIImage *titleImage;
         UIImageView *imageTitle;
@@ -46,13 +51,11 @@
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 imageTitle.contentMode = UIViewContentModeScaleAspectFit;
                 self.navigationItem.titleView = imageTitle;
-                [titleImage release];
                 break;
             case ConfigZeal:
                 titleImage = [UIImage imageNamed:@"titleImageZeal.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
-                [titleImage release];
                 break;
             /*EAOTitle*/
             default:
@@ -78,6 +81,16 @@
     }
 
     self.navigationItem.titleView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    // Display the favorites button on the top right
+    [self showFavoritesButton];
+    
+    NSLog(@"view controllers count: %i", self.navigationController.viewControllers.count);
+    
+    // Change back button
+    if (self.navigationController.viewControllers.count == 2) {
+        self.navigationController.navigationBar.backItem.title = @"balls";
+    }
 }
 
 - (void)showLoading {
@@ -106,17 +119,42 @@
     [[iFixitAPI sharedInstance] getCategories:nil forObject:self withSelector:@selector(gotAreas:)];
 }
 
+- (void)showFavoritesButton {
+    // Create Favorites button and add to navigation controller
+    UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc]
+                                        initWithTitle:NSLocalizedString(@"Favorites", nil)
+                                        style:UIBarButtonItemStyleBordered
+                                        target:self action:@selector(favoritesButtonPushed)];
+    
+    self.navigationItem.rightBarButtonItem = favoritesButton;
+    [favoritesButton release];
+}
+
+- (void)favoritesButtonPushed {
+    BookmarksViewController *bvc = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:bvc];
+    
+    // Use deprecated method on purpose to preserve iOS 4.3
+    [self presentModalViewController:nvc animated:YES];
+    
+    [bvc release];
+    [nvc release];
+}
+
 - (void)gotAreas:(NSDictionary *)areas {
     self.navigationItem.rightBarButtonItem = nil;
     
     if ([areas isKindOfClass:[NSDictionary class]]) {
         [self setData:areas];
         [self.tableView reloadData];
+        [self showFavoritesButton];
     }
     else {
         // If there is no area hierarchy, show a guide list instead
         if ([areas isKindOfClass:[NSArray class]] && ![areas count]) {
             iPhoneDeviceViewController *dvc = [[iPhoneDeviceViewController alloc] initWithTopic:nil];
+            NSLog(@"current category %@", self.currentCategory);
+            dvc.currentCategory = self.currentCategory;
             [self.navigationController pushViewController:dvc animated:YES];
             [dvc release];
         }
@@ -223,6 +261,7 @@
     
     [[iFixitAPI sharedInstance] getSearchResults:searchText forObject:self withSelector:@selector(gotSearchResults:)];
 }
+
 
 - (void)gotSearchResults:(NSDictionary *)results {
     if ([[results objectForKey:@"search"] isEqual:searchBar.text]) {
@@ -426,7 +465,7 @@
     if (searching && ![searchResults count])
         return;
     
-    NSDictionary *category = [[[NSDictionary alloc] init] autorelease];
+    NSDictionary *category = [[[NSDictionary alloc] init]autorelease];
     
     // We limit our searches to devices for now
     if (searching && [searchResults count]) {
@@ -439,7 +478,7 @@
 
     if (category[@"type"] == @(Category)) {
         CategoriesViewController *vc = [[CategoriesViewController alloc] init];
-        vc.title = category[@"name"];
+        vc.title = vc.currentCategory = category[@"name"];
         vc.detailViewController = detailViewController;
         vc.inPopover = inPopover;
         
@@ -450,7 +489,7 @@
     } else {
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
             iPhoneDeviceViewController *vc = [[iPhoneDeviceViewController alloc] initWithTopic:category[@"name"]];
-            vc.title = category[@"name"];
+            vc.title = vc.currentCategory = category[@"name"];
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
         // We show more information on iPad, so we need to build the URL's for the given device
@@ -466,6 +505,7 @@
             [detailViewController.answersWebView loadRequest:request];
         }
     }
+    
 }
 
 // For iPad mostly, build the Wiki URL for a device
@@ -500,6 +540,7 @@
     [searchBar release];
     [searchResults release];
     [detailViewController release];
+    [self.listViewController release];
     [self.categories release];
     [self.categoryTypes release];
     [self.categoryResults release];

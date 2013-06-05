@@ -149,8 +149,12 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
+    // Configure Navigation Bar
+    self.navigationController.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+    
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
         [self applyPaddedFooter];
+    
 
     self.navigationItem.rightBarButtonItem = [iFixitAPI sharedInstance].user ?
         self.editButtonItem : nil;
@@ -168,17 +172,28 @@
     }
     
     // Show the Dozuki sites select button if needed.
+    UIBarButtonItem *button;
+    
     if ([Config currentConfig].dozuki) {
         UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
+        button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
                                                                   target:[[UIApplication sharedApplication] delegate]
                                                                   action:@selector(showDozukiSplash)];
-        self.navigationItem.leftBarButtonItem = button;
-        [button release];
+    } else {
+        button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
+                                                                    style:UIBarButtonItemStyleBordered
+                                                                   target:self
+                                                                   action:@selector(doneButtonPushed)];
     }
-
+    
+    self.navigationItem.leftBarButtonItem = button;
+    [button release];
 }
 
+- (void)doneButtonPushed {
+    // Use deprecated method for 4.3+ support
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 - (void)viewDidUnload
 {

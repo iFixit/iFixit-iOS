@@ -6,7 +6,10 @@
 //  Copyright iFixit 2010. All rights reserved.
 //
 
+#import "ListViewController.h"
+
 @class DetailViewController;
+@class ListViewController;
 
 enum {
     Device,
@@ -30,6 +33,12 @@ enum {
 @property (nonatomic, retain) NSDictionary *categories;
 @property (nonatomic, retain) NSArray *categoryTypes;
 @property (nonatomic, retain) NSDictionary *categoryResults;
+@property (nonatomic, retain) NSString *currentCategory;
+@property (nonatomic, retain) ListViewController *listViewController;
+@property (nonatomic, retain) NSString *moreInfoHTML;
+@property (nonatomic, retain) NSDictionary *categoryMetaData;
+
+@property BOOL showAnswers;
 
 - (void)getAreas;
 - (void)showLoading;

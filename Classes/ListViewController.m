@@ -10,10 +10,15 @@
 #import "iFixitAppDelegate.h"
 #import "BookmarksViewController.h"
 #import "Config.h"
+#import "Utils.h"
+#import "CategoriesViewController.h"
 
 @implementation ListViewController
 
-@synthesize allStack, bookmarksTVC;
+@synthesize bookmarksTVC, segmentedControl, categoryInfoViewController, categoryAnswersViewController, currentCategoryViewController;
+
+int lastSelectedSegmentedControlIndex = 0;
+BOOL segmentedControlTouched = NO;
 
 - (id)initWithRootViewController:(UIViewController *)rvc {
     if ((self = [super initWithRootViewController:rvc])) {
@@ -21,17 +26,62 @@
         BookmarksViewController *bvc = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
         self.bookmarksTVC = bvc;
         [bvc release];
+        
+        // Create the Category WebView Info Viewcontroller
+        CategoryWebViewController *civc = [[CategoryWebViewController alloc] initWithNibName:@"CategoryWebViewController" bundle:nil];
+        civc.webViewType = @"info";
+        self.categoryInfoViewController = civc;
+        [self.categoryInfoViewController loadView];
+        [civc release];
+        
+        CategoryWebViewController *cavc = [[CategoryWebViewController alloc] initWithNibName:@"CategoryWebViewController" bundle:nil];
+        cavc.webViewType = @"answers";
+        self.categoryAnswersViewController = cavc;
+        [self.categoryAnswersViewController loadView];
+        [cavc release];
+        
+        self.delegate = self;
     }
+    
     return self;
 }
-
 - (void)dealloc {
-    [allStack release];
     [bookmarksTVC release];
+    [segmentedControl release];
+    [categoryInfoViewController release];
+    [categoryAnswersViewController release];
+    [currentCategoryViewController release];
     
     [super dealloc];
 }
 
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    
+    if (![viewController isKindOfClass:[CategoryWebViewController class]]) {
+        
+        currentCategoryViewController = viewController;
+        // Only query if we need to, otherwise just update the segmented control options
+        if (navigationController.viewControllers.count > 1 && ![currentCategoryViewController categoryMetaData]) {
+            [[iFixitAPI sharedInstance] getTopic:[currentCategoryViewController currentCategory] forObject:self withSelector:@selector(gotTopic:)];
+        } else {
+            [self enableOrDisableSegmentedControlOptions];
+        }
+    }
+}
+
+// Override parent method, this allows us to do custom things with our view controller
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated {
+    // Basically find out if a touch event was called
+    NSLog(@"segmented control touched %i", segmentedControlTouched);
+    if (self.segmentedControl.selectedSegmentIndex == self.GUIDES || segmentedControlTouched) {
+        return [super popViewControllerAnimated:animated];
+    } else {
+        [self popToViewController:self.viewControllers[self.viewControllers.count - 3] animated:YES];
+        self.segmentedControl.selectedSegmentIndex = lastSelectedSegmentedControlIndex = self.GUIDES;
+    }
+    
+    return nil;
+}
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -46,10 +96,12 @@
     [super viewDidLoad];
     self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
     
+    
     // Add the toolbar with bookmarks toggle.
     UIToolbar *toolbar = [[UIToolbar alloc] init];
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
-
+    
+    
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         int diff = 20 + 44;
         // Adjust for the tab bar.
@@ -63,60 +115,123 @@
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     
-    NSArray *toggleItems = [NSArray arrayWithObjects:@"All", @"Favorites", nil];
-    UISegmentedControl *toggle = [[UISegmentedControl alloc] initWithItems:toggleItems];
-    toggle.selectedSegmentIndex = bookmarksTVC && self.topViewController == bookmarksTVC ? 1 : 0;
-    toggle.segmentedControlStyle = UISegmentedControlStyleBar;
-    [toggle addTarget:self action:@selector(toggleBookmarks:) forControlEvents:UIControlEventValueChanged];
+    NSMutableArray *toggleItems = [NSMutableArray arrayWithObject:NSLocalizedString(@"Guides", nil)];
+    
+    // If answers are enabled, lets add it to the tab and set up our "Constants"
+    // A lame attempt at dynamic constants.
+    if ([Config currentConfig].answersEnabled) {
+        self.GUIDES = 0;
+        self.ANSWERS = 1;
+        self.MORE_INFO = 2;
+        [toggleItems addObject:NSLocalizedString(@"Answers", nil)];
+    } else {
+        self.GUIDES = 0;
+        self.MORE_INFO = 1;
+    }
+    [toggleItems addObject:NSLocalizedString(@"More Info", nil)];
+    
+    segmentedControl = [[UISegmentedControl alloc] initWithItems:toggleItems];
+    segmentedControl.selectedSegmentIndex = bookmarksTVC && self.topViewController == bookmarksTVC ? 1 : 0;
+    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    [segmentedControl addTarget:self action:@selector(toggleViews:) forControlEvents:UIControlEventValueChanged];
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         toolbar.tintColor = [UIColor lightGrayColor];
-        toggle.tintColor = [UIColor lightGrayColor];
+        segmentedControl.tintColor = [UIColor lightGrayColor];
     }
     else {
         toolbar.tintColor = [Config currentConfig].toolbarColor;
-        toggle.tintColor = [[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]] ? [UIColor darkGrayColor] : [Config currentConfig].toolbarColor;
+        segmentedControl.tintColor = [[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]] ? [UIColor darkGrayColor] : [Config currentConfig].toolbarColor;
     }
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                             target:nil
                                                                             action:nil];
-    UIBarButtonItem *toggleItem = [[UIBarButtonItem alloc] initWithCustomView:toggle];
+    UIBarButtonItem *toggleItem = [[UIBarButtonItem alloc] initWithCustomView:segmentedControl];
     NSArray *toolbarItems = [NSArray arrayWithObjects:spacer, toggleItem, spacer, nil];
+    
     [toolbar setItems:toolbarItems];
     [spacer release];
     [toggleItem release];
-    [toggle release];
     
     [self.view addSubview:toolbar];
     [toolbar release];
 }
 
-- (void)toggleBookmarks:(UISegmentedControl *)toggle { 
-    // All
-    if (toggle.selectedSegmentIndex == 0) {
-        // Restore the saved stack.
-        if ([allStack count] > 1) {
-            self.viewControllers = allStack;
-        }
-        else {
-            iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];    
-            self.viewControllers = [NSArray arrayWithObject:appDelegate.categoriesViewController];
-        }
-    }
-    // Bookmarks
-    else if (toggle.selectedSegmentIndex == 1) {
-        // Save the full stack for later.
-        self.allStack = self.viewControllers;
-
-        // Show bookmarks.
-        self.viewControllers = [NSArray arrayWithObject:bookmarksTVC];
+- (void)gotTopic:(NSDictionary *)results {
+    [currentCategoryViewController setCategoryMetaData:results];
+    [currentCategoryViewController setShowAnswers:([Config currentConfig].answersEnabled && [results[@"solutions"][@"count"] integerValue] > 0)];
+    
+    if ([results[@"contents"] length]) {
+        [currentCategoryViewController setMoreInfoHTML:results[@"contents"]];
     }
     
+    [self enableOrDisableSegmentedControlOptions];
 }
 
+- (void)enableOrDisableSegmentedControlOptions {
+    [UIView transitionWithView:self.segmentedControl
+                       duration:0.3f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        if ([currentCategoryViewController showAnswers])
+                            [segmentedControl setEnabled:YES forSegmentAtIndex:self.ANSWERS];
+                        else
+                            [segmentedControl setEnabled:NO forSegmentAtIndex:self.ANSWERS];
+                        
+                        if ([[currentCategoryViewController moreInfoHTML] length])
+                            [segmentedControl setEnabled:YES forSegmentAtIndex:self.MORE_INFO];
+                        else 
+                            [segmentedControl setEnabled:NO forSegmentAtIndex:self.MORE_INFO];
+    } completion:nil];
+}
+
+- (void)toggleViews:(UISegmentedControl *)toggle {
+    NSLog(@"views being toggled?");
+    segmentedControlTouched = YES;
+    
+    // Guides
+    if (toggle.selectedSegmentIndex == self.GUIDES) {
+        [self popViewControllerAnimated:NO];
+    // More Info
+    } else if (toggle.selectedSegmentIndex == self.MORE_INFO) {
+        if (!lastSelectedSegmentedControlIndex == self.GUIDES)
+            [self popViewControllerAnimated:NO];
+        
+        [self configureAndPushViewController:categoryInfoViewController];
+    // Answers
+    } else {
+        if (!lastSelectedSegmentedControlIndex == self.GUIDES)
+            [self popViewControllerAnimated:NO];
+        
+        [self configureAndPushViewController:categoryAnswersViewController];
+    }
+    
+    lastSelectedSegmentedControlIndex = toggle.selectedSegmentIndex;
+    segmentedControlTouched = NO;
+}
+
+// Configure the view we want and push it on our navigational stack
+- (void)configureAndPushViewController:(id)viewController {
+    NSString *currentCategory = [currentCategoryViewController currentCategory];
+    NSString *previousCategory = self.navigationBar.backItem.title;
+    
+    
+    // Don't reload the page if we are already looking at the same category
+    if (![[viewController category] isEqualToString:currentCategory]) {
+        [viewController setTitle:currentCategory];
+        [viewController setCategory:currentCategory];
+        
+        [[viewController webView] loadRequest:[Utils buildCategoryWebViewURL:currentCategory webViewType:[viewController webViewType]]];
+    }
+    
+    [self pushViewController:viewController animated:NO];
+    self.navigationBar.backItem.title = previousCategory;
+}
 - (void)viewDidUnload {
     [super viewDidUnload];
+    [categoryAnswersViewController release];
+    [categoryInfoViewController release];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
