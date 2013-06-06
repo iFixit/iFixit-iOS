@@ -72,7 +72,6 @@ BOOL segmentedControlTouched = NO;
 // Override parent method, this allows us to do custom things with our view controller
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated {
     // Basically find out if a touch event was called
-    NSLog(@"segmented control touched %i", segmentedControlTouched);
     if (self.segmentedControl.selectedSegmentIndex == self.GUIDES || segmentedControlTouched) {
         return [super popViewControllerAnimated:animated];
     } else {
@@ -187,7 +186,6 @@ BOOL segmentedControlTouched = NO;
 }
 
 - (void)toggleViews:(UISegmentedControl *)toggle {
-    NSLog(@"views being toggled?");
     segmentedControlTouched = YES;
     
     // Guides
@@ -216,18 +214,26 @@ BOOL segmentedControlTouched = NO;
     NSString *currentCategory = [currentCategoryViewController currentCategory];
     NSString *previousCategory = self.navigationBar.backItem.title;
     
-    
-    // Don't reload the page if we are already looking at the same category
+    // Only load the URL if we haven't seen it before
     if (![[viewController category] isEqualToString:currentCategory]) {
         [viewController setTitle:currentCategory];
         [viewController setCategory:currentCategory];
         
-        [[viewController webView] loadRequest:[Utils buildCategoryWebViewURL:currentCategory webViewType:[viewController webViewType]]];
+        // Clear the view before diplaying a new one
+        if ([[viewController webViewType] isEqualToString:@"info"]) {
+            [[viewController webView] loadHTMLString:[Utils configureHtmlForWebview:[currentCategoryViewController categoryMetaData]] baseURL:nil];
+        } else {
+            [[viewController webView] loadRequest:[Utils buildCategoryWebViewURL:currentCategory webViewType:[viewController webViewType]]];
+        }
+        
+        // Pass a reference to the view controller
+        [viewController setListViewController:self];
     }
     
     [self pushViewController:viewController animated:NO];
     self.navigationBar.backItem.title = previousCategory;
 }
+
 - (void)viewDidUnload {
     [super viewDidUnload];
     [categoryAnswersViewController release];
@@ -239,6 +245,28 @@ BOOL segmentedControlTouched = NO;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (void)showFavoritesButton:(id)viewController {
+    // Create Favorites button and add to navigation controller
+    UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc]
+                                        initWithTitle:NSLocalizedString(@"Favorites", nil)
+                                        style:UIBarButtonItemStyleBordered
+                                        target:self action:@selector(favoritesButtonPushed)];
+    
+    [viewController navigationItem].rightBarButtonItem = favoritesButton;
+    [favoritesButton release];
+}
+
+- (void)favoritesButtonPushed {
+    BookmarksViewController *bvc = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:bvc];
+    
+    // Use deprecated method on purpose to preserve iOS 4.3
+    [self presentModalViewController:nvc animated:YES];
+    
+    [bvc release];
+    [nvc release];
 }
 
 @end

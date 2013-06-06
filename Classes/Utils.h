@@ -12,5 +12,6 @@
 
 +(void)showLoading:(UINavigationItem*)navigationItem;
 +(NSURLRequest*)buildCategoryWebViewURL:(NSString*)category webViewType:(NSString*)type;
++(NSString*)configureHtmlForWebview:(NSDictionary*)bodyHTML;
 
 @end

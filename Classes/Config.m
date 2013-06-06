@@ -75,6 +75,7 @@ static Config *currentConfig = nil;
     
     switch (site) {
         // Make
+        // We should probably remove this
         case ConfigMake:
         case ConfigMakeDev:
             self.backgroundColor = [UIColor whiteColor];
@@ -94,8 +95,9 @@ static Config *currentConfig = nil;
             self.toolbarColor = [UIColor colorWithRed:0.20 green:0.43 blue:0.66 alpha:1.0];
 
             // Load intro and step css from the css folder.        
-            self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
-            self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            self.introCSS    = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
+            self.stepCSS     = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            self.moreInfoCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             break;
         default:
             self.backgroundColor = [UIColor blackColor];
@@ -106,6 +108,7 @@ static Config *currentConfig = nil;
             // Load intro and step css from the css folder.        
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            self.moreInfoCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             break;
             
     }

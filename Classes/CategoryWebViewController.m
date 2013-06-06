@@ -8,6 +8,8 @@
 
 #import "CategoryWebViewController.h"
 #import "Utils.h"
+#import "ListViewController.h"
+#import "BookmarksViewController.h"
 @interface CategoryWebViewController ()
 
 @end
@@ -35,10 +37,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    //self.navigationController.navigationBar.backItem.title = self.backButtonTitle;
-}
-
 - (void)dealloc {
     [_webView release];
     [super dealloc];
@@ -54,6 +52,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     self.navigationItem.rightBarButtonItem = nil;
+    [self.listViewController showFavoritesButton:self];
 }
 
 @end

@@ -1,0 +1,32 @@
+h2 {
+    font: 600 24px "Open Sans", sans-serif;
+    color: #333;
+    margin: 26px 0;
+    border-bottom: 2px solid #CCCCCC;
+    font-size: 54px;
+}
+
+p, a, li {
+    font-size: 34px;
+}
+
+#moreInfoContent {
+    padding: 8px;
+}
+
+#categoryImage {
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.anchor {
+    display: none;
+}
+
+html, body {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    padding: 8px;
+}

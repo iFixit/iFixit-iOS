@@ -34,6 +34,9 @@
 - (void)viewWillAppear:(BOOL)animated {    
     if (!self.categories)
         [self getAreas];
+    
+    if (self.currentCategory)
+        self.navigationItem.title = self.currentCategory;
 }
 
 - (void)viewDidLoad {
@@ -83,14 +86,8 @@
     self.navigationItem.titleView.contentMode = UIViewContentModeScaleAspectFit;
     
     // Display the favorites button on the top right
-    [self showFavoritesButton];
+    [self.listViewController showFavoritesButton:self];
     
-    NSLog(@"view controllers count: %i", self.navigationController.viewControllers.count);
-    
-    // Change back button
-    if (self.navigationController.viewControllers.count == 2) {
-        self.navigationController.navigationBar.backItem.title = @"balls";
-    }
 }
 
 - (void)showLoading {
@@ -119,27 +116,6 @@
     [[iFixitAPI sharedInstance] getCategories:nil forObject:self withSelector:@selector(gotAreas:)];
 }
 
-- (void)showFavoritesButton {
-    // Create Favorites button and add to navigation controller
-    UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc]
-                                        initWithTitle:NSLocalizedString(@"Favorites", nil)
-                                        style:UIBarButtonItemStyleBordered
-                                        target:self action:@selector(favoritesButtonPushed)];
-    
-    self.navigationItem.rightBarButtonItem = favoritesButton;
-    [favoritesButton release];
-}
-
-- (void)favoritesButtonPushed {
-    BookmarksViewController *bvc = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:bvc];
-    
-    // Use deprecated method on purpose to preserve iOS 4.3
-    [self presentModalViewController:nvc animated:YES];
-    
-    [bvc release];
-    [nvc release];
-}
 
 - (void)gotAreas:(NSDictionary *)areas {
     self.navigationItem.rightBarButtonItem = nil;
@@ -147,25 +123,17 @@
     if ([areas isKindOfClass:[NSDictionary class]]) {
         [self setData:areas];
         [self.tableView reloadData];
-        [self showFavoritesButton];
-    }
-    else {
+        [self.listViewController showFavoritesButton:self];
+    } else {
         // If there is no area hierarchy, show a guide list instead
         if ([areas isKindOfClass:[NSArray class]] && ![areas count]) {
             iPhoneDeviceViewController *dvc = [[iPhoneDeviceViewController alloc] initWithTopic:nil];
-            NSLog(@"current category %@", self.currentCategory);
             dvc.currentCategory = self.currentCategory;
             [self.navigationController pushViewController:dvc animated:YES];
             [dvc release];
         }
-
         [self showRefreshButton];
     }
-}
-
-- (void)setTitle:(NSString *)title {
-    [super setTitle:title];
-    self.navigationItem.titleView = nil;
 }
 
 // This is a deprecated method as of iOS 6.0, keeping this in to support older iOS versions
@@ -504,6 +472,11 @@
             request = [NSURLRequest requestWithURL:[self buildAnswersURL:category[@"name"]]];
             [detailViewController.answersWebView loadRequest:request];
         }
+    }
+    
+    // Change the back button title to @"Home", only if the root view is our parent
+    if (!self.currentCategory) {
+        self.listViewController.navigationBar.backItem.title = NSLocalizedString(@"Home", nil);
     }
     
 }

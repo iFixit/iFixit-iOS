@@ -21,4 +21,7 @@
 @property int ANSWERS;
 @property int MORE_INFO;
 
+- (void)showFavoritesButton:(id)viewController;
+- (void)favoritesButtonPushed;
+
 @end

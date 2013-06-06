@@ -34,4 +34,16 @@
     [container release];
     [button release];
 }
+
++ (NSString*)configureHtmlForWebview:(NSDictionary*)categoryMetaData {
+    NSString *header = [NSString stringWithFormat:@"<html><head><style type=\"text/css\"> %@ </style></head><body>", [Config currentConfig].moreInfoCSS];
+    NSString *footer = @"</body></html>";
+    NSString *image = [categoryMetaData[@"image"] count]
+        ? [NSString stringWithFormat:@"<div id=\"categoryImage\"><img src=\"%@.standard\"></div>", categoryMetaData[@"image"][@"text"]]
+        : @"";
+    NSString *content = [NSString stringWithFormat:@"<div id=\"moreInfoContent\">%@</div>", categoryMetaData[@"contents"]];
+    
+    return [NSString stringWithFormat:@"%@%@%@%@", header, image, content, footer];
+}
+
 @end

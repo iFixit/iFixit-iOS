@@ -6,6 +6,8 @@
 //  Copyright (c) 2011 iFixit. All rights reserved.
 //
 
+@class ListViewController;
+
 @interface iPhoneDeviceViewController : UITableViewController <UIAlertViewDelegate> {
     BOOL loading;
 }
@@ -15,6 +17,7 @@
 @property (nonatomic, retain) NSString *currentCategory;
 @property (nonatomic, retain) NSString *moreInfoHTML;
 @property (nonatomic, retain) NSDictionary *categoryMetaData;
+@property (nonatomic, retain) ListViewController *listViewController;
 
 @property BOOL showAnswers;
 @property BOOL showMoreInfo;

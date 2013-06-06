@@ -136,10 +136,8 @@
 }
 
 - (IBAction)zoomImage:(id)sender {
-   
     // Disabled on the intro.
     return;
-
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
