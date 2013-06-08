@@ -125,7 +125,8 @@
     gridViewController.view.hidden = YES;
 }
 
-- (void)toggleView:(id)sender {
+- (void)toggleViews:(id)sender {
+    NSLog(@"meow mix");
     switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             [self displayGrid];
@@ -174,9 +175,36 @@
     [self.view addSubview:introViewController.view];
 }
 
+- (void)updateSegmentedControlSelection {
+    // We only care about the first enabled index, once we find it let's break
+    for (int i = 0; i < segmentedControl.numberOfSegments; i++) {
+        if ([segmentedControl isEnabledForSegmentAtIndex:i]) {
+            segmentedControl.selectedSegmentIndex = i;
+            break;
+        }
+    }
+    
+    // display new shit view
+    
+}
+
+// Update 
+- (void)updateDisplay {
+   if (segmentedControl.selectedSegmentIndex == self.listViewController.GUIDES) {
+       
+   } else if (segmentedControl.selectedSegmentIndex == self.listViewController.MORE_INFO) {
+       
+   } else {
+       
+   }
+}
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Create reference to list view controller
+    self.listViewController = self.splitViewController.viewControllers[0];
+    
     
     self.toolbar.tintColor = [Config currentConfig].toolbarColor;
     
@@ -195,20 +223,23 @@
     // Add the segmented control to the navigation bar.
     NSMutableArray *items = [NSMutableArray array];
     
-    NSString *guidesText = [Config currentConfig].site == ConfigMake ? @"Projects" : @"Guides";
-    NSArray *titleItems = [NSArray arrayWithObjects:guidesText, @"More Info", nil];
-    // Add Answers if it's enabled
-    if ([Config currentConfig].answersEnabled)
-        titleItems = [NSArray arrayWithObjects:guidesText, @"Answers", @"More Info", nil];
+//    NSString *guidesText = [Config currentConfig].site == ConfigMake ? @"Projects" : @"Guides";
+//    NSArray *titleItems = [NSArray arrayWithObjects:guidesText, @"More Info", nil];
+//    // Add Answers if it's enabled
+//    if ([Config currentConfig].answersEnabled)
+//        titleItems = [NSArray arrayWithObjects:guidesText, @"Answers", @"More Info", nil];
     
-    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:titleItems] autorelease];
-    segmentedControl.selectedSegmentIndex = 0;
-    [segmentedControl addTarget:self action:@selector(toggleView:) forControlEvents:UIControlEventValueChanged];
-    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    segmentedControl.tintColor = [[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]] ? [UIColor darkGrayColor] : [Config currentConfig].toolbarColor;
-    CGRect frame = segmentedControl.frame;
-    frame.size.width = [Config currentConfig].answersEnabled ? 300.0 : 250.0;
-    segmentedControl.frame = frame;
+    //self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:titleItems] autorelease];
+   // segmentedControl.selectedSegmentIndex = 0;
+//    [segmentedControl addTarget:self action:@selector(toggleView:) forControlEvents:UIControlEventValueChanged];
+//    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+//    segmentedControl.tintColor = [[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]] ? [UIColor darkGrayColor] : [Config currentConfig].toolbarColor;
+//    CGRect frame = segmentedControl.frame;
+//    frame.size.width = [Config currentConfig].answersEnabled ? 300.0 : 250.0;
+//    segmentedControl.frame = frame;
+   // segmentedControl.hidden = NO;
+   // segmentedControl.selectedSegmentIndex = 0;
+    
     
     UIBarButtonItem *segmentedItem = [[UIBarButtonItem alloc] initWithCustomView:segmentedControl];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -222,7 +253,7 @@
     [segmentedItem release];
     [flexibleSpace release];
     
-    self.deviceToolbarItems = items;
+    self.toolbar.items = items;
         
     if ([[Config currentConfig].backgroundColor isEqual:[UIColor whiteColor]])
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackgroundWhite.png"]];

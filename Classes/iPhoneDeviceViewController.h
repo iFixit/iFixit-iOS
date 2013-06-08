@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString *moreInfoHTML;
 @property (nonatomic, retain) NSDictionary *categoryMetaData;
 @property (nonatomic, retain) ListViewController *listViewController;
+@property (nonatomic, retain) NSArray *categoryGuides;
 
 @property BOOL showAnswers;
 @property BOOL showMoreInfo;

@@ -235,6 +235,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     splitViewController.viewControllers = [NSArray arrayWithObjects:lvc, detailViewController, nil];
     [lvc release];
     
+    [lvc buildSegmentedControl];
+    
     categoriesViewController.delegate = self;
     
     // Stop here, or put a fancy tab bar at the bottom.
@@ -297,6 +299,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:categoriesViewController];
 
     lvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
     return [lvc autorelease];
 }
 

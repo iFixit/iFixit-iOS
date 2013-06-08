@@ -23,5 +23,6 @@
 
 - (void)showFavoritesButton:(id)viewController;
 - (void)favoritesButtonPushed;
+- (void)buildSegmentedControl;
 
 @end

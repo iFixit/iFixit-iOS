@@ -12,6 +12,7 @@
 #import "Config.h"
 #import "Utils.h"
 #import "CategoriesViewController.h"
+#import "DetailViewController.h"
 
 @implementation ListViewController
 
@@ -65,14 +66,18 @@ BOOL segmentedControlTouched = NO;
             [[iFixitAPI sharedInstance] getTopic:[currentCategoryViewController currentCategory] forObject:self withSelector:@selector(gotTopic:)];
         } else {
             [self enableOrDisableSegmentedControlOptions];
+            
+            if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+                [[currentCategoryViewController detailViewController]updateSegmentedControlSelection];
+            }
         }
     }
 }
 
 // Override parent method, this allows us to do custom things with our view controller
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated {
-    // Basically find out if a touch event was called
-    if (self.segmentedControl.selectedSegmentIndex == self.GUIDES || segmentedControlTouched) {
+    // If we have Guides selected, someone has touched the segmented control, or we are on iPad behave correctly. This is wonky but we have multiple custom functionality for both iPhones and iPad
+    if (self.segmentedControl.selectedSegmentIndex == self.GUIDES || segmentedControlTouched || [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         return [super popViewControllerAnimated:animated];
     } else {
         [self popToViewController:self.viewControllers[self.viewControllers.count - 3] animated:YES];
@@ -94,29 +99,103 @@ BOOL segmentedControlTouched = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
-    
+    [self buildSegmentedControl];
     
     // Add the toolbar with bookmarks toggle.
-    UIToolbar *toolbar = [[UIToolbar alloc] init];
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+//    UIToolbar *toolbar = [[UIToolbar alloc] init];
+//    CGSize screenSize = [UIScreen mainScreen].bounds.size;
     
     
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        int diff = 20 + 44;
-        // Adjust for the tab bar.
-        iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
-        if (appDelegate.showsTabBar)
-            diff += 49;
-        toolbar.frame = CGRectMake(0, screenSize.width - diff, 320, 44);
-    }
-    else {
+//    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+//        int diff = 20 + 44;
+//        // Adjust for the tab bar.
+//        iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
+//        if (appDelegate.showsTabBar)
+//            diff += 49;
+//        toolbar.frame = CGRectMake(0, screenSize.width - diff, 320, 44);
+//    }
+//    else {
+//        toolbar.frame = CGRectMake(0, screenSize.height - 43, screenSize.width, 44);
+//        toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//    }
+    
+    // Only build the toolbar on iPhone, on iPad we don't need it
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        NSLog(@"segmented control at this time: %@", segmentedControl);
+        UIToolbar *toolbar = [[UIToolbar alloc] init];
+        CGSize screenSize = [UIScreen mainScreen].bounds.size;
         toolbar.frame = CGRectMake(0, screenSize.height - 43, screenSize.width, 44);
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        toolbar.tintColor = [Config currentConfig].toolbarColor;
+        segmentedControl.tintColor = [Config currentConfig].toolbarColor;
+        
+        UIBarButtonItem *toggleItem = [[UIBarButtonItem alloc] initWithCustomView:segmentedControl];
+        UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                target:nil
+                                                                                action:nil];
+        NSArray *toolbarItems = [NSArray arrayWithObjects:spacer, toggleItem, spacer, nil];
+        
+        [toolbar setItems:toolbarItems];
+        [spacer release];
+        [toggleItem release];
+        
+        [self.view addSubview:toolbar];
+        [toolbar release];
+    } else {
+        
     }
     
-    NSMutableArray *toggleItems = [NSMutableArray arrayWithObject:NSLocalizedString(@"Guides", nil)];
+//    NSMutableArray *toggleItems = [NSMutableArray arrayWithObject:NSLocalizedString(@"Guides", nil)];
+//    
+//    // If answers are enabled, lets add it to the tab and set up our "Constants"
+//    // A lame attempt at dynamic constants.
+//    if ([Config currentConfig].answersEnabled) {
+//        self.GUIDES = 0;
+//        self.ANSWERS = 1;
+//        self.MORE_INFO = 2;
+//        [toggleItems addObject:NSLocalizedString(@"Answers", nil)];
+//    } else {
+//        self.GUIDES = 0;
+//        self.MORE_INFO = 1;
+//    }
+//    
+//    [toggleItems addObject:NSLocalizedString(@"More Info", nil)];
+//    
+//    segmentedControl = [[UISegmentedControl alloc] initWithItems:toggleItems];
+//    segmentedControl.selectedSegmentIndex = bookmarksTVC && self.topViewController == bookmarksTVC ? 1 : 0;
+//    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+//    [segmentedControl addTarget:self action:@selector(toggleViews:) forControlEvents:UIControlEventValueChanged];
     
-    // If answers are enabled, lets add it to the tab and set up our "Constants"
+//    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+//        toolbar.tintColor = [UIColor lightGrayColor];
+//        segmentedControl.tintColor = [UIColor lightGrayColor];
+//    }
+//    else {
+//        toolbar.tintColor = [Config currentConfig].toolbarColor;
+//        segmentedControl.tintColor = [[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]] ? [UIColor darkGrayColor] : [Config currentConfig].toolbarColor;
+//    }
+    
+//    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+//                                                                            target:nil
+//                                                                            action:nil];
+//    UIBarButtonItem *toggleItem = [[UIBarButtonItem alloc] initWithCustomView:segmentedControl];
+//    NSArray *toolbarItems = [NSArray arrayWithObjects:spacer, toggleItem, spacer, nil];
+//    
+//    [toolbar setItems:toolbarItems];
+//    [spacer release];
+//    [toggleItem release];
+//    
+//    [self.view addSubview:toolbar];
+//    [toolbar release];
+}
+
+- (void)buildSegmentedControl {
+    NSMutableArray *toggleItems = [NSMutableArray arrayWithObject:NSLocalizedString(@"Guides", nil)];
+    // Default target to self
+    id target = self;
+    
+    // If answers are enabled, lets add it to the segmented control and set up our "Constants"
     // A lame attempt at dynamic constants.
     if ([Config currentConfig].answersEnabled) {
         self.GUIDES = 0;
@@ -127,45 +206,45 @@ BOOL segmentedControlTouched = NO;
         self.GUIDES = 0;
         self.MORE_INFO = 1;
     }
+    
     [toggleItems addObject:NSLocalizedString(@"More Info", nil)];
     
+    // Create segmented controls
     segmentedControl = [[UISegmentedControl alloc] initWithItems:toggleItems];
-    segmentedControl.selectedSegmentIndex = bookmarksTVC && self.topViewController == bookmarksTVC ? 1 : 0;
+//    segmentedControl.selectedSegmentIndex = bookmarksTVC && self.topViewController == bookmarksTVC ? 1 : 0;
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    [segmentedControl addTarget:self action:@selector(toggleViews:) forControlEvents:UIControlEventValueChanged];
+    
+    
+    
+    CGRect frame = segmentedControl.frame;
+    frame.size.width = 300.0;
+    segmentedControl.frame = frame;
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        toolbar.tintColor = [UIColor lightGrayColor];
-        segmentedControl.tintColor = [UIColor lightGrayColor];
+        target = self.splitViewController.viewControllers[1];
+        [target setSegmentedControl:segmentedControl];
     }
-    else {
-        toolbar.tintColor = [Config currentConfig].toolbarColor;
-        segmentedControl.tintColor = [[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]] ? [UIColor darkGrayColor] : [Config currentConfig].toolbarColor;
-    }
+    NSLog(@"Target: %@", target);
     
-    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                            target:nil
-                                                                            action:nil];
-    UIBarButtonItem *toggleItem = [[UIBarButtonItem alloc] initWithCustomView:segmentedControl];
-    NSArray *toolbarItems = [NSArray arrayWithObjects:spacer, toggleItem, spacer, nil];
-    
-    [toolbar setItems:toolbarItems];
-    [spacer release];
-    [toggleItem release];
-    
-    [self.view addSubview:toolbar];
-    [toolbar release];
+    [segmentedControl addTarget:target action:@selector(toggleViews:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)gotTopic:(NSDictionary *)results {
+    NSLog(@"results: %@", results);
     [currentCategoryViewController setCategoryMetaData:results];
     [currentCategoryViewController setShowAnswers:([Config currentConfig].answersEnabled && [results[@"solutions"][@"count"] integerValue] > 0)];
+    [currentCategoryViewController setCategoryGuides:results[@"guides"]];
     
     if ([results[@"contents"] length]) {
         [currentCategoryViewController setMoreInfoHTML:results[@"contents"]];
     }
     
     [self enableOrDisableSegmentedControlOptions];
+    
+    // Update the segmented control if on iPad
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [[currentCategoryViewController detailViewController]updateSegmentedControlSelection];
+    }
 }
 
 - (void)enableOrDisableSegmentedControlOptions {
@@ -180,8 +259,17 @@ BOOL segmentedControlTouched = NO;
                         
                         if ([[currentCategoryViewController moreInfoHTML] length])
                             [segmentedControl setEnabled:YES forSegmentAtIndex:self.MORE_INFO];
-                        else 
+                        else
                             [segmentedControl setEnabled:NO forSegmentAtIndex:self.MORE_INFO];
+                        
+                        // This logic is only for iPad
+                        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+                            if ([[currentCategoryViewController categoryGuides] count]) {
+                                [segmentedControl setEnabled:YES forSegmentAtIndex:self.GUIDES];
+                            } else {
+                                [segmentedControl setEnabled:NO forSegmentAtIndex:self.GUIDES];
+                            }
+                        }
     } completion:nil];
 }
 
@@ -229,6 +317,7 @@ BOOL segmentedControlTouched = NO;
         // Pass a reference to the view controller
         [viewController setListViewController:self];
     }
+    
     
     [self pushViewController:viewController animated:NO];
     self.navigationBar.backItem.title = previousCategory;

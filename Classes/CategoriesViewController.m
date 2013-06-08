@@ -41,6 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"detail view controller: %@", detailViewController);
     
     // Create a reference to the navigation controller
     self.listViewController = (ListViewController*)self.navigationController;
@@ -454,6 +455,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         [vc.tableView reloadData];
         [vc release];
+    // Device
     } else {
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
             iPhoneDeviceViewController *vc = [[iPhoneDeviceViewController alloc] initWithTopic:category[@"name"]];

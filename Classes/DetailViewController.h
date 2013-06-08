@@ -13,6 +13,7 @@
 @class WBProgressHUD;
 @class DetailIntroViewController;
 @class DetailGridViewController;
+@class ListViewController;
 
 @interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UIWebViewDelegate, UIAlertViewDelegate, DetailGridViewControllerDelegate>
 
@@ -28,8 +29,10 @@
 @property (nonatomic, retain) NSMutableArray *deviceToolbarItems;
 @property (nonatomic, retain) UISegmentedControl *segmentedControl;
 @property (nonatomic, retain) DetailIntroViewController *introViewController;
+@property (nonatomic, retain) ListViewController *listViewController;
 
 - (void)setDevice:(NSString *)device;
 - (void)reset;
-
+- (void)updateSegmentedControlSelection;
+    
 @end
