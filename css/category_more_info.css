@@ -6,7 +6,7 @@ h2 {
     font-size: 54px;
 }
 
-p, a, li {
+p, a, li, h3 {
     font-size: 34px;
 }
 
@@ -22,7 +22,7 @@ img {
     height: auto;
 }
 
-.anchor {
+.anchor, .editSectionLink {
     display: none;
 }
 

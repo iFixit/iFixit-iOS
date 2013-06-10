@@ -132,7 +132,12 @@
     [self.webView enableScrollingIfNeeded];
 }
 - (void)showWebView:(id)sender {
-    webView.hidden = NO;	
+    [UIView transitionWithView:webView
+                      duration:0.5f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        webView.hidden = NO;
+                    } completion:nil];
 }
 
 - (IBAction)zoomImage:(id)sender {

@@ -47,11 +47,14 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    [Utils showLoading:self.navigationItem];
+    if ([self.webViewType isEqualToString:@"answers"])
+        [Utils showLoading:self.navigationItem];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    self.navigationItem.rightBarButtonItem = nil;
+    if ([self.webViewType isEqualToString:@"answers"]) {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
     [self.listViewController showFavoritesButton:self];
 }
 

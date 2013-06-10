@@ -92,7 +92,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [Config currentConfig].dozuki = NO;
 
     /* Track. */
-    [TestFlight takeOff:@"6b356258f037dc15f6d69d0e5d27fdf7_MzAyOTUyMDEyLTAyLTEyIDE1OjQ2OjUwLjA0NTg5OQ"];
+    [TestFlight takeOff:@"ee879878-6696-470b-af65-61548b796d9f"];
     [self setupAnalytics];
     
     /* iOS 5 appearance */

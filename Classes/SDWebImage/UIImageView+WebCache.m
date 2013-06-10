@@ -32,8 +32,14 @@
 }
 
 - (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image {
-    if (image)
-        self.image = image;
+    if (image) {
+        [UIView transitionWithView:self
+                          duration:0.5f
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            self.image = image;
+                        } completion:nil];
+    }
 }
 
 @end

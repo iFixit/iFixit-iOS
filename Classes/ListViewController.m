@@ -214,8 +214,6 @@ BOOL segmentedControlTouched = NO;
 //    segmentedControl.selectedSegmentIndex = bookmarksTVC && self.topViewController == bookmarksTVC ? 1 : 0;
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     
-    
-    
     CGRect frame = segmentedControl.frame;
     frame.size.width = 300.0;
     segmentedControl.frame = frame;
@@ -223,6 +221,9 @@ BOOL segmentedControlTouched = NO;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         target = self.splitViewController.viewControllers[1];
         [target setSegmentedControl:segmentedControl];
+    } else {
+        // Default to 
+        segmentedControl.selectedSegmentIndex = self.GUIDES;
     }
     NSLog(@"Target: %@", target);
     
@@ -278,7 +279,7 @@ BOOL segmentedControlTouched = NO;
     
     // Guides
     if (toggle.selectedSegmentIndex == self.GUIDES) {
-        [self popViewControllerAnimated:NO];
+        [self popViewControllerAnimated:YES];
     // More Info
     } else if (toggle.selectedSegmentIndex == self.MORE_INFO) {
         if (!lastSelectedSegmentedControlIndex == self.GUIDES)
@@ -307,6 +308,9 @@ BOOL segmentedControlTouched = NO;
         [viewController setTitle:currentCategory];
         [viewController setCategory:currentCategory];
         
+        // Clear the webview
+        [[viewController webView] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+        
         // Clear the view before diplaying a new one
         if ([[viewController webViewType] isEqualToString:@"info"]) {
             [[viewController webView] loadHTMLString:[Utils configureHtmlForWebview:[currentCategoryViewController categoryMetaData]] baseURL:nil];
@@ -318,8 +322,12 @@ BOOL segmentedControlTouched = NO;
         [viewController setListViewController:self];
     }
     
-    
+    [UIView beginAnimations:@"animation" context:nil];
     [self pushViewController:viewController animated:NO];
+    [UIView setAnimationDuration:0.7];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:NO];
+    [UIView commitAnimations];
+    
     self.navigationBar.backItem.title = previousCategory;
 }
 
