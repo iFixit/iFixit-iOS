@@ -79,10 +79,10 @@
         else {
             // If there are no bookmarks, display a brief message.
             UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 100)];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 110)];
             label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
             label.textAlignment = UITextAlignmentCenter;
-            label.numberOfLines = 3;
+            label.numberOfLines = 5;
             label.textColor = [UIColor darkGrayColor];
             label.shadowOffset = CGSizeMake(0.0f, -1.0f);
             label.shadowColor = [UIColor whiteColor];
