@@ -431,8 +431,6 @@
         }
         
         [cell setAccessoryType:UITableViewCellAccessoryNone];
-        
-        
         [[cell imageView] setImageWithURL:[NSURL URLWithString:category[@"thumbnail"]] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
     }
     
@@ -455,7 +453,7 @@
     if (searching && ![searchResults count])
         return;
     
-    NSDictionary *category = [[[NSDictionary alloc] init]autorelease];
+    NSDictionary *category = [[[NSDictionary alloc] init] autorelease];
     
     // We limit our searches to devices for now
     if (searching && [searchResults count]) {
@@ -482,7 +480,6 @@
             vc.title = category[@"name"];
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
-            
         }
     // Guide
     } else {

@@ -9,7 +9,6 @@
 #import "ListViewController.h"
 #import "CategoryTabBarViewController.h"
 
-@class DetailViewController;
 @class ListViewController;
 
 enum {
