@@ -12,9 +12,9 @@
 #import "GuideCell.h"
 #import "UIImageView+WebCache.h"
 #import "iFixitAppDelegate.h"
-#import "DetailViewController.h"
 #import "GuideViewController.h"
 #import "Config.h"
+#import "ListViewController.h"
 
 @implementation iPhoneDeviceViewController
 
@@ -35,6 +35,11 @@
 }
 
 #pragma mark - View lifecycle
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (self.currentCategory)
+        self.navigationItem.title = self.currentCategory;
+}
 
 - (void)showRefreshButton {
     // Show a refresh button in the navBar.
@@ -63,6 +68,7 @@
 - (void)hideLoading {
     loading = NO;
     self.navigationItem.rightBarButtonItem = nil;
+    [self.listViewController showFavoritesButton:self];
 }
 
 - (void)getGuides {
@@ -110,6 +116,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // Grab reference to listViewController
+    self.listViewController = (ListViewController*)self.navigationController;
+    
     // Make room for the toolbar
     [self willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
 
@@ -194,7 +203,6 @@
     NSInteger guideid = [[[self.guides objectAtIndex:indexPath.row] valueForKey:@"guideid"] intValue];
 
     iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.detailViewController.popoverController dismissPopoverAnimated:YES];
 
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
     [appDelegate.window.rootViewController presentModalViewController:vc animated:YES];

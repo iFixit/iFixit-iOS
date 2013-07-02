@@ -38,7 +38,14 @@
 
 - (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image
 {
-    [self setBackgroundImage:image forState:UIControlStateNormal];
+    if (image) {
+        [UIView transitionWithView:self
+                          duration:0.5f
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [self setBackgroundImage:image forState:UIControlStateNormal];
+                        } completion:nil];
+    }
 }
 
 @end

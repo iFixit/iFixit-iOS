@@ -9,13 +9,18 @@
 #import "iFixitAppDelegate.h"
 #import "Config.h"
 #import "CategoriesViewController.h"
-#import "DetailViewController.h"
 #import "iPhoneDeviceViewController.h"
 #import "DetailGridViewController.h"
+#import "BookmarksViewController.h"
+#import "ListViewController.h"
+#import "CategoryTabBarViewController.h"
+#import "GuideCell.h"
+#import "UIImageView+WebCache.h"
+#import "GuideViewController.h"
 
 @implementation CategoriesViewController
 
-@synthesize delegate, searchBar, searching, searchResults, detailViewController, noResults, inPopover;
+@synthesize delegate, searchBar, searching, searchResults, noResults;
 
 - (id)init {
     if ((self = [super initWithNibName:nil bundle:nil])) {
@@ -37,6 +42,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Create a reference to the navigation controller
+    self.listViewController = (ListViewController*)self.navigationController;
+    
     if (!self.title) {
         UIImage *titleImage;
         UIImageView *imageTitle;
@@ -46,13 +54,11 @@
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 imageTitle.contentMode = UIViewContentModeScaleAspectFit;
                 self.navigationItem.titleView = imageTitle;
-                [titleImage release];
                 break;
             case ConfigZeal:
                 titleImage = [UIImage imageNamed:@"titleImageZeal.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
-                [titleImage release];
                 break;
             /*EAOTitle*/
             default:
@@ -65,7 +71,6 @@
     [self willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
     
     self.clearsSelectionOnViewWillAppear = NO;
-    self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     
     // Show the Dozuki sites select button if needed.
     if ([Config currentConfig].dozuki && [self.title isEqual:@"Categories"]) {
@@ -78,6 +83,10 @@
     }
 
     self.navigationItem.titleView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    // Display the favorites button on the top right
+    [self.listViewController showFavoritesButton:self];
+    
 }
 
 - (void)showLoading {
@@ -93,6 +102,7 @@
     [container release];
     [button release];
 }
+
 - (void)showRefreshButton {
     // Show a refresh button in the navBar.
     UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
@@ -101,10 +111,12 @@
     self.navigationItem.rightBarButtonItem = refreshButton;
     [refreshButton release];   
 }
+
 - (void)getAreas {
     [self showLoading];
     [[iFixitAPI sharedInstance] getCategories:nil forObject:self withSelector:@selector(gotAreas:)];
 }
+
 
 - (void)gotAreas:(NSDictionary *)areas {
     self.navigationItem.rightBarButtonItem = nil;
@@ -112,22 +124,17 @@
     if ([areas isKindOfClass:[NSDictionary class]]) {
         [self setData:areas];
         [self.tableView reloadData];
-    }
-    else {
+        [self.listViewController showFavoritesButton:self];
+    } else {
         // If there is no area hierarchy, show a guide list instead
         if ([areas isKindOfClass:[NSArray class]] && ![areas count]) {
             iPhoneDeviceViewController *dvc = [[iPhoneDeviceViewController alloc] initWithTopic:nil];
             [self.navigationController pushViewController:dvc animated:YES];
             [dvc release];
         }
-
+        
         [self showRefreshButton];
     }
-}
-
-- (void)setTitle:(NSString *)title {
-    [super setTitle:title];
-    self.navigationItem.titleView = nil;
 }
 
 // This is a deprecated method as of iOS 6.0, keeping this in to support older iOS versions
@@ -172,8 +179,7 @@
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
-    //self.tableView.scrollEnabled = NO;
-    [searchBar setShowsCancelButton:YES animated:YES];  
+    [searchBar setShowsCancelButton:YES animated:YES];
     
     // Animate the table up.
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
@@ -187,7 +193,6 @@
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)theSearchBar {
-    //self.tableView.scrollEnabled = YES;
     if ([theSearchBar.text isEqual:@""]) {
         searching = NO;
         noResults = NO;
@@ -223,6 +228,7 @@
     
     [[iFixitAPI sharedInstance] getSearchResults:searchText forObject:self withSelector:@selector(gotSearchResults:)];
 }
+
 
 - (void)gotSearchResults:(NSDictionary *)results {
     if ([[results objectForKey:@"search"] isEqual:searchBar.text]) {
@@ -275,9 +281,6 @@
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    if (inPopover)
-        return;
-  
     // Make room for the toolbar
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad || UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
@@ -302,10 +305,10 @@
 - (void)setData:(NSDictionary *)dict {
     self.categoryResults = dict;
     self.categories = [self parseCategories:self.categoryResults];
-    self.categoryTypes = [[self.categories allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    self.categoryTypes = [NSMutableArray arrayWithArray:[[self.categories allKeys] sortedArrayUsingSelector:@selector(compare:)]];
 }
 
-- (NSDictionary*)parseCategories:(NSDictionary *)categoriesCollection {
+- (NSMutableDictionary*)parseCategories:(NSDictionary *)categoriesCollection {
     NSMutableArray *categories = [[[NSMutableArray alloc] init] autorelease];
     NSMutableArray *devices = [[[NSMutableArray alloc] init] autorelease];
     NSMutableDictionary *allCategories = [[[NSMutableDictionary alloc] init] autorelease];
@@ -315,12 +318,12 @@
         if ([category isEqualToString:TOPICS]) {
             for (id device in categoriesCollection[TOPICS]) {
                 [devices addObject:@{@"name" : device,
-                                     @"type" : @(Device)
+                                     @"type" : @(DEVICE)
                 }];
             }
         } else {
             [categories addObject:@{@"name" : category,
-                                    @"type" : @(Category)
+                                    @"type" : @(CATEGORY)
             }];
         }
     }
@@ -388,29 +391,53 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"CellIdentifier";
+    NSDictionary *category = self.categories[self.categoryTypes[indexPath.section]][indexPath.row];
+    static NSString *cellIdentifier;
+    id cell;
     
-    // Dequeue or create a cell of the appropriate type.
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        
-        cell.textLabel.adjustsFontSizeToFitWidth = YES;
-        cell.textLabel.minimumFontSize = 11.0f;
-    }
-    
+    // If searching, create the cell and bail early
     if (searching) {
-        cell.textLabel.text = searchResults.count ? searchResults[indexPath.row][@"display_title"] : @"No Results Found";
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    } else {
-        NSDictionary *category = self.categories[self.categoryTypes[indexPath.section]][indexPath.row];
-        cell.textLabel.text = category[@"name"];
-        cell.accessoryType = category[@"type"] == @(Category)
-            ? UITableViewCellAccessoryDisclosureIndicator
-            : UITableViewCellAccessoryNone;
+        cellIdentifier = @"CellIdentifier";
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+            [[cell textLabel] setText:(searchResults.count ? searchResults[indexPath.row][@"display_title"] : @"No Results Found")];
+        }
+        
+        return cell;
     }
+    
+    if (category[@"type"] == @(DEVICE) || category[@"type"] == @(CATEGORY)) {
+        
+        cellIdentifier = @"CellIdentifier";
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+        }
+        
+        [cell setAccessoryType: (category[@"type"] == @(CATEGORY))
+                              ? UITableViewCellAccessoryDisclosureIndicator
+                              : UITableViewCellAccessoryNone];
+        [[cell textLabel] setText:category[@"name"]];
 
+    } else {
+        cellIdentifier = @"GuideCell";
+        cell = (GuideCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[[GuideCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+        }
+        
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [[cell imageView] setImageWithURL:[NSURL URLWithString:category[@"thumbnail"]] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+    }
+    
+    [[cell textLabel] setText:category[@"name"]];
+    [[cell textLabel] setMinimumFontSize:11.0f];
+    [[cell textLabel] setAdjustsFontSizeToFitWidth:YES];
+    
     return cell;
 }
 
@@ -432,52 +459,73 @@
     if (searching && [searchResults count]) {
         // Create key value object for search result
         category = @{@"name" : searchResults[indexPath.row][@"title"],
-                     @"type" : @(Device)
+                     @"type" : @(DEVICE)
                    };
     } else
         category = self.categories[self.categoryTypes[indexPath.section]][indexPath.row];
 
-    if (category[@"type"] == @(Category)) {
+    if (category[@"type"] == @(CATEGORY)) {
         CategoriesViewController *vc = [[CategoriesViewController alloc] init];
         vc.title = category[@"name"];
-        vc.detailViewController = detailViewController;
-        vc.inPopover = inPopover;
         
         [vc setData:[self.categoryResults valueForKey:category[@"name"]]];
         [self.navigationController pushViewController:vc animated:YES];
         [vc.tableView reloadData];
         [vc release];
-    } else {
+        
+    // Device
+    } else if (category[@"type"] == @(DEVICE)) {
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
             iPhoneDeviceViewController *vc = [[iPhoneDeviceViewController alloc] initWithTopic:category[@"name"]];
             vc.title = category[@"name"];
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
-        // We show more information on iPad, so we need to build the URL's for the given device
-        } else {
-            [detailViewController reset];
-            [detailViewController.popoverController dismissPopoverAnimated:YES];
-            [detailViewController setDevice:category[@"name"]];
-
-            NSURLRequest *request = [NSURLRequest requestWithURL:[self buildWikiURL:category[@"name"]]];
-            [detailViewController.wikiWebView loadRequest:request];
-
-            request = [NSURLRequest requestWithURL:[self buildAnswersURL:category[@"name"]]];
-            [detailViewController.answersWebView loadRequest:request];
         }
+    // Guide
+    } else {
+        NSInteger guideid = [category[@"guideid"] integerValue];
+        
+        GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
+        [self presentModalViewController:vc animated:YES];
+        [vc release];
+        
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        return;
+    }
+    
+    [[iFixitAPI sharedInstance] getTopic:category[@"name"] forObject:self.listViewController.categoryTabBarViewController withSelector:@selector(gotCategoryResult:)];
+    
+    // Change the back button title to @"Home", only if we have 2 views on the stack
+    if (self.navigationController.viewControllers.count == 2) {
+        self.listViewController.navigationBar.backItem.title = NSLocalizedString(@"Home", nil);
+    }
+    
+}
+
+// Massage the data to match our already gathered data
+- (void)modifyTypesForGuides:(NSArray*)guides {
+    for (id guide in guides) {
+        guide[@"type"] = @(GUIDE);
+        guide[@"name"] = guide[@"title"];
     }
 }
 
-// For iPad mostly, build the Wiki URL for a device
-- (NSURL*)buildWikiURL:(NSString*)device {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/Device/%@", [Config host],
-       [device stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]]];
-}
-
-// For iPad mostly, build the Answers URL for a device
-- (NSURL*)buildAnswersURL:(NSString*)device {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/Answers/Device/%@", [Config host],
-       [device stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]]];
+// Add guides to the tableview if they exist
+- (void)addGuidesToTableView:(NSArray*)guides {
+    [self modifyTypesForGuides:guides];
+    
+    // Begin the update
+    [self.tableView beginUpdates];
+    [self.tableView insertSections:[NSIndexSet indexSetWithIndex:self.categoryTypes.count] withRowAnimation:UITableViewRowAnimationFade];
+    
+    // Add the new guides to our category list
+    [self.categories addEntriesFromDictionary:@{@"guides": guides}];
+    
+    // Add a new category type "guides"
+    [self.categoryTypes addObject:@"guides"];
+    
+    // Donezo
+    [self.tableView endUpdates];
 }
 
 #pragma mark -
@@ -499,7 +547,7 @@
 - (void)dealloc {
     [searchBar release];
     [searchResults release];
-    [detailViewController release];
+    [self.listViewController release];
     [self.categories release];
     [self.categoryTypes release];
     [self.categoryResults release];

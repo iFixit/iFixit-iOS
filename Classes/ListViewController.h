@@ -6,10 +6,14 @@
 //  Copyright 2011. All rights reserved.
 //
 
+#import "CategoryWebViewController.h"
+#import "CategoriesViewController.h"
 
-@interface ListViewController : UINavigationController
+@interface ListViewController : UINavigationController <UINavigationControllerDelegate, UINavigationBarDelegate>
 
-@property (nonatomic, retain) NSArray *allStack;
-@property (nonatomic, retain) UIViewController *bookmarksTVC;
+@property (nonatomic, retain) CategoryTabBarViewController *categoryTabBarViewController;
+
+- (void)showFavoritesButton:(id)viewController;
+- (void)favoritesButtonPushed;
 
 @end

@@ -10,28 +10,42 @@
 #import "iFixitAppDelegate.h"
 #import "BookmarksViewController.h"
 #import "Config.h"
+#import "CategoriesViewController.h"
 
 @implementation ListViewController
 
-@synthesize allStack, bookmarksTVC;
-
 - (id)initWithRootViewController:(UIViewController *)rvc {
     if ((self = [super initWithRootViewController:rvc])) {
-        // Create the bookmarks view controller
-        BookmarksViewController *bvc = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
-        self.bookmarksTVC = bvc;
-        [bvc release];
+        // Custom initializing
     }
+    
     return self;
 }
-
 - (void)dealloc {
-    [allStack release];
-    [bookmarksTVC release];
-    
     [super dealloc];
 }
 
+// Override delegate method so we always have control of what to do when we pop a viewcontroller off the stack
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated {
+    id viewController = [super popViewControllerAnimated:animated];
+    
+    // 1 view controller means we are at the root of our stack
+    if (self.viewControllers.count == 1) {
+        [self.categoryTabBarViewController showTabBar:NO];
+        
+        // Only on iPad do we want to force a selection on tabbar item 0
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            // Set the category to nil, force a selection on guides, then configure the frame.
+            [self.categoryTabBarViewController.detailGridViewController setCategory:nil];
+            self.categoryTabBarViewController.selectedIndex = 0;
+            [self.categoryTabBarViewController configureSubViewFrame:0];
+        }
+    } else {
+        [self.categoryTabBarViewController updateTabBar:[self.topViewController categoryMetaData]];
+    }
+    
+    return viewController;
+}
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -46,73 +60,6 @@
     [super viewDidLoad];
     self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
     
-    // Add the toolbar with bookmarks toggle.
-    UIToolbar *toolbar = [[UIToolbar alloc] init];
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
-
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        int diff = 20 + 44;
-        // Adjust for the tab bar.
-        iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
-        if (appDelegate.showsTabBar)
-            diff += 49;
-        toolbar.frame = CGRectMake(0, screenSize.width - diff, 320, 44);
-    }
-    else {
-        toolbar.frame = CGRectMake(0, screenSize.height - 43, screenSize.width, 44);
-        toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    }
-    
-    NSArray *toggleItems = [NSArray arrayWithObjects:@"All", @"Favorites", nil];
-    UISegmentedControl *toggle = [[UISegmentedControl alloc] initWithItems:toggleItems];
-    toggle.selectedSegmentIndex = bookmarksTVC && self.topViewController == bookmarksTVC ? 1 : 0;
-    toggle.segmentedControlStyle = UISegmentedControlStyleBar;
-    [toggle addTarget:self action:@selector(toggleBookmarks:) forControlEvents:UIControlEventValueChanged];
-    
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        toolbar.tintColor = [UIColor lightGrayColor];
-        toggle.tintColor = [UIColor lightGrayColor];
-    }
-    else {
-        toolbar.tintColor = [Config currentConfig].toolbarColor;
-        toggle.tintColor = [[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]] ? [UIColor darkGrayColor] : [Config currentConfig].toolbarColor;
-    }
-    
-    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                            target:nil
-                                                                            action:nil];
-    UIBarButtonItem *toggleItem = [[UIBarButtonItem alloc] initWithCustomView:toggle];
-    NSArray *toolbarItems = [NSArray arrayWithObjects:spacer, toggleItem, spacer, nil];
-    [toolbar setItems:toolbarItems];
-    [spacer release];
-    [toggleItem release];
-    [toggle release];
-    
-    [self.view addSubview:toolbar];
-    [toolbar release];
-}
-
-- (void)toggleBookmarks:(UISegmentedControl *)toggle { 
-    // All
-    if (toggle.selectedSegmentIndex == 0) {
-        // Restore the saved stack.
-        if ([allStack count] > 1) {
-            self.viewControllers = allStack;
-        }
-        else {
-            iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];    
-            self.viewControllers = [NSArray arrayWithObject:appDelegate.categoriesViewController];
-        }
-    }
-    // Bookmarks
-    else if (toggle.selectedSegmentIndex == 1) {
-        // Save the full stack for later.
-        self.allStack = self.viewControllers;
-
-        // Show bookmarks.
-        self.viewControllers = [NSArray arrayWithObject:bookmarksTVC];
-    }
-    
 }
 
 - (void)viewDidUnload {
@@ -124,6 +71,28 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (void)showFavoritesButton:(id)viewController {
+    // Create Favorites button and add to navigation controller
+    UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc]
+                                        initWithTitle:NSLocalizedString(@"Favorites", nil)
+                                        style:UIBarButtonItemStyleBordered
+                                        target:self action:@selector(favoritesButtonPushed)];
+    
+    [viewController navigationItem].rightBarButtonItem = favoritesButton;
+    [favoritesButton release];
+}
+
+- (void)favoritesButtonPushed {
+    BookmarksViewController *bvc = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:bvc];
+    
+    // Use deprecated method on purpose to preserve iOS 4.3
+    [self presentModalViewController:nvc animated:YES];
+    
+    [bvc release];
+    [nvc release];
 }
 
 @end
