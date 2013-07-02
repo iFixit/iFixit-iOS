@@ -68,13 +68,11 @@
                 image = [UIImage imageNamed:@"logo_make.png"];
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);
                 headerImageLogo.image = image;
-                [image release];
                 break;
             case ConfigZeal:
                 image = [UIImage imageNamed:@"logo_zeal@2x.png"];
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);
                 headerImageLogo.image = image;
-                [image release];
                 break;
             /*EAOGuideIntro*/
             case ConfigDozuki:
@@ -134,14 +132,17 @@
     [self.webView enableScrollingIfNeeded];
 }
 - (void)showWebView:(id)sender {
-    webView.hidden = NO;	
+    [UIView transitionWithView:webView
+                      duration:0.5f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        webView.hidden = NO;
+                    } completion:nil];
 }
 
 - (IBAction)zoomImage:(id)sender {
-   
     // Disabled on the intro.
     return;
-
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

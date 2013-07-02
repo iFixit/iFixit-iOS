@@ -6,11 +6,15 @@
 //  Copyright iFixit 2010. All rights reserved.
 //
 
-@class DetailViewController;
+#import "ListViewController.h"
+#import "CategoryTabBarViewController.h"
+
+@class ListViewController;
 
 enum {
-    Device,
-    Category
+    DEVICE,
+    CATEGORY,
+    GUIDE
 };
 
 #define TOPICS @"TOPICS"
@@ -24,15 +28,16 @@ enum {
 @property BOOL searching;
 @property (nonatomic, retain) NSArray *searchResults;
 @property (nonatomic) BOOL noResults;
-@property (nonatomic) BOOL inPopover;
 
-@property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
-@property (nonatomic, retain) NSDictionary *categories;
-@property (nonatomic, retain) NSArray *categoryTypes;
+@property (nonatomic, retain) NSMutableDictionary *categories;
+@property (nonatomic, retain) NSMutableArray *categoryTypes;
 @property (nonatomic, retain) NSDictionary *categoryResults;
+@property (nonatomic, retain) ListViewController *listViewController;
+@property (nonatomic, retain) NSDictionary *categoryMetaData;
 
 - (void)getAreas;
 - (void)showLoading;
 - (void)setData:(NSDictionary *)dict;
+- (void)addGuidesToTableView:(NSArray*)guides;
 
 @end
