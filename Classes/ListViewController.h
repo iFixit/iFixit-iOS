@@ -11,18 +11,9 @@
 
 @interface ListViewController : UINavigationController <UINavigationControllerDelegate, UINavigationBarDelegate>
 
-@property (nonatomic, retain) UIViewController *bookmarksTVC;
-@property (nonatomic, retain) UISegmentedControl *segmentedControl;
-@property (nonatomic, retain) CategoryWebViewController *categoryInfoViewController;
-@property (nonatomic, retain) CategoryWebViewController *categoryAnswersViewController;
-@property (nonatomic, retain) id currentCategoryViewController;
-
-@property int GUIDES;
-@property int ANSWERS;
-@property int MORE_INFO;
+@property (nonatomic, retain) CategoryTabBarViewController *categoryTabBarViewController;
 
 - (void)showFavoritesButton:(id)viewController;
 - (void)favoritesButtonPushed;
-- (void)buildSegmentedControl;
 
 @end

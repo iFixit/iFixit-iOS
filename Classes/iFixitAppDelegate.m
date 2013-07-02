@@ -11,7 +11,6 @@
 
 #import "ListViewController.h"
 #import "CategoriesViewController.h"
-#import "DetailViewController.h"
 #import "FeaturedViewController.h"
 #import "GuideViewController.h"
 #import "DozukiSplashViewController.h"
@@ -23,6 +22,7 @@
 #import "LoginBackgroundViewController.h"
 #import "UIColor+Hex.h"
 #import "GANTracker.h"
+#import "CategoryTabBarViewController.h"
 
 static const NSInteger kGANDispatchPeriodSec = 10;
 
@@ -126,8 +126,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 }
 
 - (void)showDozukiSplash {
-    [detailViewController.popoverController dismissPopoverAnimated:NO];
-    
     // Make sure we're not pointing at a site requiring setup.
     [[Config currentConfig] setSite:ConfigIFixit];
     
@@ -219,23 +217,22 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     CategoriesViewController *rvc = [[CategoriesViewController alloc] init];
     self.categoriesViewController = rvc;
     [rvc release];
-    DetailViewController *dvc = [[DetailViewController alloc] init];
-    self.detailViewController = dvc;
-    [dvc release];
     
     // Create the split view controller.
     UISplitViewController *svc = [[UISplitViewController alloc] init];
-    svc.delegate = detailViewController;
     self.splitViewController = svc;
     [svc release];
     
-    categoriesViewController.detailViewController = detailViewController;
-    
     ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:categoriesViewController];
-    splitViewController.viewControllers = [NSArray arrayWithObjects:lvc, detailViewController, nil];
-    [lvc release];
+    CategoryTabBarViewController *ctvc = [[CategoryTabBarViewController alloc] initWithNibName:@"CategoryTabBarViewController" bundle:nil];
     
-    [lvc buildSegmentedControl];
+    lvc.categoryTabBarViewController = ctvc;
+    ctvc.listViewController = lvc;
+    
+    splitViewController.viewControllers = @[lvc, ctvc];
+    
+    [lvc release];
+    [ctvc release];
     
     categoriesViewController.delegate = self;
     
@@ -292,15 +289,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 }
 
 - (UIViewController *)iPhoneRoot {
-    CategoriesViewController *cvc = [[CategoriesViewController alloc] init];
-    self.categoriesViewController = cvc;
-    [cvc release];
+    CategoryTabBarViewController *ctbvc = [[CategoryTabBarViewController alloc] initWithNibName:@"CategoryTabBarViewController" bundle:nil];
     
-    ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:categoriesViewController];
-
-    lvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    
-    return [lvc autorelease];
+    return [ctbvc autorelease];
 }
 
 - (void)loadSiteWithDomain:(NSString *)domain {

@@ -35,6 +35,7 @@ enum {
 @property (nonatomic, retain) NSString *introCSS;
 @property (nonatomic, retain) NSString *stepCSS;
 @property (nonatomic, retain) NSString *moreInfoCSS;
+@property (nonatomic, retain) NSString *answersCSS;
 
 + (Config *)currentConfig;
 

@@ -3,24 +3,22 @@ h2 {
     color: #333;
     margin: 26px 0;
     border-bottom: 2px solid #CCCCCC;
-    font-size: 54px;
+    font-size: 55px;
 }
 
 p, a, li, h3 {
-    font-size: 34px;
+    font-size: 35px;
 }
 
 #moreInfoContent {
-    padding: 8px;
-}
-
-#categoryImage {
+    padding: 8px 8px 8px 8px;
 }
 
 img {
     width: 100%;
     height: auto;
 }
+
 
 .anchor, .editSectionLink {
     display: none;

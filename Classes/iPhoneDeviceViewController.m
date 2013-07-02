@@ -12,7 +12,6 @@
 #import "GuideCell.h"
 #import "UIImageView+WebCache.h"
 #import "iFixitAppDelegate.h"
-#import "DetailViewController.h"
 #import "GuideViewController.h"
 #import "Config.h"
 #import "ListViewController.h"
@@ -204,7 +203,6 @@
     NSInteger guideid = [[[self.guides objectAtIndex:indexPath.row] valueForKey:@"guideid"] intValue];
 
     iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.detailViewController.popoverController dismissPopoverAnimated:YES];
 
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
     [appDelegate.window.rootViewController presentModalViewController:vc animated:YES];

@@ -97,7 +97,10 @@ static Config *currentConfig = nil;
             // Load intro and step css from the css folder.        
             self.introCSS    = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             self.stepCSS     = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
-            self.moreInfoCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
+            self.moreInfoCSS = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+                ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
+                : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            self.answersCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_answers" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             break;
         default:
             self.backgroundColor = [UIColor blackColor];
@@ -108,7 +111,10 @@ static Config *currentConfig = nil;
             // Load intro and step css from the css folder.        
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
-            self.moreInfoCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
+            self.moreInfoCSS = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+                ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
+                : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            self.answersCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_answers" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             break;
             
     }

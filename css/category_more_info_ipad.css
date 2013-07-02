@@ -1,0 +1,35 @@
+h2 {
+    font: 600 24px "Open Sans", sans-serif;
+    color: #333;
+    margin: 26px 0;
+    border-bottom: 2px solid #CCCCCC;
+    font-size: 40px;
+}
+
+p, a, li, h3 {
+    font-size: 20px;
+}
+
+#moreInfoContent {
+    padding: 8px 8px 8px 8px;
+}
+
+img {
+    width: 40%;
+    height: auto;
+    float: left;
+    padding: 8px 8px 8px 8px;
+}
+
+#categoryImage {
+    text-align: left;
+}
+
+.anchor, .editSectionLink {
+    display: none;
+}
+
+html, body {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    padding: 8px;
+}

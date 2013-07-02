@@ -14,12 +14,14 @@
 
 @interface DetailGridViewController : DMPGridViewController <DMPGridViewDelegate>
 
-@property (nonatomic, copy) NSString *device;
+@property (nonatomic, copy) NSString *category;
 @property (retain, nonatomic) NSArray *guides;
 @property (retain, nonatomic) WBProgressHUD *loading;
 @property (nonatomic) UIInterfaceOrientation orientationOverride;
-@property (nonatomic, retain) UIImageView *noGuides;
+@property (nonatomic, retain) UIImageView *noGuidesImage;
 
 @property (nonatomic, assign) id<DetailGridViewControllerDelegate> gridDelegate;
+
+- (void)showNoGuidesImage:(BOOL)option;
 
 @end
