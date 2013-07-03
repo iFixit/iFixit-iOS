@@ -191,8 +191,16 @@
 }
 
 - (void)doneButtonPushed {
-    // Use deprecated method for 4.3+ support
-    [self dismissModalViewControllerAnimated:YES];
+    // Create the animation ourselves to mimic a modal presentation
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [UIView animateWithDuration:0.7
+                         animations:^{
+                             [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.navigationController.view cache:YES];
+                         }];
+        [self.navigationController popViewControllerAnimated:NO];
+    } else {
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 
 - (void)viewDidUnload
