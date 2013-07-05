@@ -506,7 +506,8 @@
 - (void)modifyTypesForGuides:(NSArray*)guides {
     for (id guide in guides) {
         guide[@"type"] = @(GUIDE);
-        guide[@"name"] = guide[@"title"];
+        // If we update to 2.0, check for subject, then default back to title if subject DNE
+        guide[@"name"] = guide[@"subject"];
     }
 }
 
