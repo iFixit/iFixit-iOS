@@ -86,13 +86,24 @@
 
 - (void)favoritesButtonPushed {
     BookmarksViewController *bvc = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:bvc];
     
-    // Use deprecated method on purpose to preserve iOS 4.3
-    [self presentModalViewController:nvc animated:YES];
-    
+    // Create the animation ourselves to mimic a modal presentation
+    // On iPad we must push the view onto a stack, instead of presenting
+    // it modally or else undesired side effects occur
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        [UIView animateWithDuration:0.7
+                         animations:^{
+                             [self pushViewController:bvc animated:NO];
+                             [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
+                         }];
+    else {
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:bvc];
+        
+        [self presentModalViewController:nvc animated:YES];
+        [nvc release];
+    }
+        
     [bvc release];
-    [nvc release];
 }
 
 @end
