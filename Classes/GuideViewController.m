@@ -269,9 +269,12 @@
     CGFloat pageWidth = scrollView.frame.size.width;
     int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     pageControl.currentPage = page;
-	
-    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    //[self performSelector:@selector(preloadForCurrentPage:) withObject:[NSNumber numberWithInt:page] afterDelay:0.1];
+}
+
+// At the begin of scroll dragging, reset the boolean used when scrolls originate from the UIPageControl
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    int page = pageControl.currentPage;
+    pageControlUsed = NO;
     [self preloadForCurrentPage:[NSNumber numberWithInt:page]];
 	
     // Unload the views+controllers which are no longer visible
@@ -289,18 +292,17 @@
    }
 }
 
-// At the begin of scroll dragging, reset the boolean used when scrolls originate from the UIPageControl
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    pageControlUsed = NO;
-}
-
 // At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     pageControlUsed = NO;
+    
+    // If the user scrolls super fast, a view controller may be null, this will load the page if we come across that behavior
+    if ([viewControllers[pageControl.currentPage] isKindOfClass:[NSNull class]]) {
+        [self scrollViewWillBeginDragging:scrollView];
+    }
 }
 
 - (IBAction)changePage:(id)sender {
-
     int page = pageControl.currentPage;
 	
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
