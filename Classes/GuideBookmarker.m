@@ -65,6 +65,7 @@
                 [poc dismissPopoverAnimated:YES];
             }
             else {
+                [self resizePopoverViewControllerContents];
                 [poc presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             }
         }
@@ -110,6 +111,11 @@
     [[iFixitAPI sharedInstance] like:guideid forObject:self withSelector:@selector(liked:)];
 }
 
+// Resize the popover view controller contents
+- (void)resizePopoverViewControllerContents {
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    poc.popoverContentSize = (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) ? CGSizeMake(320, screenSize.width / 2) : CGSizeMake(320, screenSize.height / 2);
+}
 - (void)hideLogin {
     [lvc dismissModalViewControllerAnimated:YES];
 }
