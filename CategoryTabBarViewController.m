@@ -189,7 +189,7 @@ BOOL onTablet;
     if (onTablet) {
         self.detailGridViewController = [[[DetailGridViewController alloc] init] autorelease];
     } else {
-        self.categoriesViewController = [[[CategoriesViewController alloc] init] autorelease];
+        self.categoriesViewController = [[[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil] autorelease];
         self.listViewController = [[ListViewController alloc] initWithRootViewController:self.categoriesViewController];
     }
     

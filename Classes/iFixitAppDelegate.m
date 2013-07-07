@@ -214,7 +214,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     self.showsTabBar = [Config currentConfig].collectionsEnabled || [Config currentConfig].store;
     
     // Create the split controller children.
-    CategoriesViewController *rvc = [[CategoriesViewController alloc] init];
+    CategoriesViewController *rvc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
     self.categoriesViewController = rvc;
     [rvc release];
     

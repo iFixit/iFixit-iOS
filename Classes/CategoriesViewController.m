@@ -465,7 +465,7 @@
         category = self.categories[self.categoryTypes[indexPath.section]][indexPath.row];
 
     if (category[@"type"] == @(CATEGORY)) {
-        CategoriesViewController *vc = [[CategoriesViewController alloc] init];
+        CategoriesViewController *vc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
         vc.title = category[@"name"];
         
         [vc setData:[self.categoryResults valueForKey:category[@"name"]]];
