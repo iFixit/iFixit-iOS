@@ -264,9 +264,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
             storeTitle = @"Parts & Tools";
             storeImage = [UIImage imageNamed:@"tabBarItemGears.png"];
         }
-        storeViewController = [[SVWebViewController alloc] initWithAddress:[Config currentConfig].store];
+        storeViewController = [[SVWebViewController alloc] initWithAddress:[Config currentConfig].store withTitle:storeTitle];
         storeViewController.tintColor = [Config currentConfig].toolbarColor;
-        storeViewController.showsDoneButton = NO;        
+        storeViewController.showsDoneButton = NO;
         storeViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:storeTitle image:storeImage tag:0] autorelease];
     }
 

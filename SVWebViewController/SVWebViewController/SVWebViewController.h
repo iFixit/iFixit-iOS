@@ -33,6 +33,7 @@
 @property BOOL isFirstLoad;
 
 - (id)initWithAddress:(NSString*)string;
+- (id)initWithAddress:(NSString *)string withTitle:(NSString*)title;
 - (void)refreshWebView;
     
 @end

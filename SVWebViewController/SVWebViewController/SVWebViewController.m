@@ -45,6 +45,12 @@
 	return self;
 }
 
+- (id)initWithAddress:(NSString *)string withTitle:(NSString*)title {
+    self.title = title;
+    
+    return [self initWithAddress:string];
+}
+
 - (void)tintNavBar {
     if (!tintColor)
         return;
@@ -344,7 +350,7 @@
 
 
 - (void)setupTabletToolbar {
-	titleLabel.text = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    titleLabel.text = self.title ? self.title : [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 
     if (!showsDoneButton) {
         navItem.leftBarButtonItem = nil;
