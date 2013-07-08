@@ -213,15 +213,18 @@ BOOL onTablet;
 // Configure our subview frame depending on what view we are looking at
 - (void)configureSubViewFrame:(int)viewControllerIndex {
     id subView = self.view.subviews[0];
+    CGRect bounds = self.view.bounds;
     
     // Tablet is tricky because we are already doing things we shouldn't be doing
     if (onTablet) {
         [subView setFrame:(viewControllerIndex == self.GUIDES)
             ? CGRectMake(0, 44, [subView frame].size.width, 655)
             : CGRectMake(0, 0, [subView frame].size.width, 745)];
-    // iPhone is easy
+    // For iPhone we change the subview frame to account for hidden tabbar
     } else {
-        [subView setFrame:self.view.bounds];
+        [subView setFrame:(self.listViewController.viewControllers.count == 1)
+            ? CGRectMake(0, 0, bounds.size.width, bounds.size.height + 44)
+            : CGRectMake(0, 0, bounds.size.width, bounds.size.height - 6)];
     }
 }
 
