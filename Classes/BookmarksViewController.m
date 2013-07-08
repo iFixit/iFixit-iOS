@@ -382,6 +382,10 @@
         return;
     
     [[iFixitAPI sharedInstance] logout];
+    
+    // Set bookmarks to be nil and reload the tableView to release the cells
+    bookmarks = nil;
+    [self.tableView reloadData];
 
     // Remove the edit button.
     self.navigationItem.rightBarButtonItem = nil;
