@@ -195,8 +195,10 @@ BOOL onTablet;
     
     self.categoryMoreInfoViewController = [self configureWebViewController:self.categoryMoreInfoViewController];
     
+    // Answers isn't enabled for everyone
     if ([Config currentConfig].answersEnabled) {
         self.categoryAnswersWebViewController = [self configureWebViewController:self.categoryAnswersWebViewController];
+        self.categoryAnswersWebViewController.webViewType = @"answers";
     }
 }
 

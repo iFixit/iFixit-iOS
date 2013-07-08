@@ -83,15 +83,31 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
     [UIView transitionWithView:self.webView
                       duration:0.3f
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
-                        self.webView.hidden = NO;
                         [self.loading hide];
+                        if ([self.webViewType isEqualToString:@"answers"])
+                            [self injectCSSIntoWebview];
                     }
-                    completion:nil
-    ];
+                    completion:^(BOOL animation){
+                        self.webView.hidden = NO;
+                    }];
+}
+
+// Use javascript to inject custom css to hide the iFixit Banner
+- (void)injectCSSIntoWebview {
+    NSString* css = @"\"#header { visibility: hidden; margin-bottom: -20px; } \"";
+    NSString* js = [NSString stringWithFormat:
+                    @"var styleNode = document.createElement('style');\n"
+                    "styleNode.type = \"text/css\";\n"
+                    "var styleText = document.createTextNode(%@);\n"
+                    "styleNode.appendChild(styleText);\n"
+                    "document.getElementsByTagName('head')[0].appendChild(styleNode);\n",css];
+    
+    [self.webView stringByEvaluatingJavaScriptFromString:js];
 }
 
 - (void)configureProperties {
