@@ -26,7 +26,7 @@
         // Custom initialization
         self.delegate = nil;
         self.loading = nil;
-        self.message = @"Favorites are saved locally and synced across devices.";
+        self.message = @"Favorites are saved offline and synced across devices.";
         showRegister = NO;
         self.emailField = nil;
         self.passwordField = nil;
@@ -523,7 +523,7 @@
 
 - (void)sendRegister {
     if (!emailField.text || !passwordField.text || !passwordVerifyField.text || !fullNameField.text) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"More information needed"
                                                         message:@"Please fill out all the information."
                                                        delegate:nil
                                               cancelButtonTitle:nil
