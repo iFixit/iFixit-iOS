@@ -238,6 +238,7 @@
 		} else {
 			controller = [[GuideStepViewController alloc] initWithStep:[self.guide.steps objectAtIndex:stepNumber]];
             ((GuideStepViewController *)controller).delegate = self;
+            [controller setGuideViewController:self];
 		}
 
         [viewControllers replaceObjectAtIndex:page withObject:controller];
@@ -296,10 +297,14 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     pageControlUsed = NO;
     
-    // If the user scrolls super fast, a view controller may be null, this will load the page if we come across that behavior
+    // If the user scrolls super fast, a view controller may be null, this will force a view load if we come across that behavior
     if ([viewControllers[pageControl.currentPage] isKindOfClass:[NSNull class]]) {
         [self scrollViewWillBeginDragging:scrollView];
     }
+    
+    // Only load secondary images if we are looking at the current view for longer than half a second
+    if (pageControl.currentPage > 0)
+        [viewControllers[pageControl.currentPage] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:1.0];
 }
 
 - (IBAction)changePage:(id)sender {
@@ -318,6 +323,10 @@
     
 	// Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
     pageControlUsed = YES;
+    
+    // Only load secondary images if we are looking at the current view for longer than half a second
+    if (page > 0)
+        [viewControllers[page] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:1.0];
 }
 
 - (void)preloadForCurrentPage:(NSNumber *)pageNumber {

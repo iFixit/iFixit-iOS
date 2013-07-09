@@ -7,6 +7,7 @@
 //
 
 #import <MediaPlayer/MediaPlayer.h>
+#import "GuideViewController.h"
 
 @class GuideStep;
 @class GuideCatchingWebView;
@@ -20,6 +21,7 @@
 @property (nonatomic, retain) IBOutlet GuideCatchingWebView *webView;
 @property (nonatomic, retain) MPMoviePlayerController *moviePlayer;
 @property (nonatomic, retain) UIWebView *embedView;
+@property (nonatomic, retain) GuideViewController *guideViewController;
 
 @property (nonatomic, retain) IBOutlet UIButton *image1;
 @property (nonatomic, retain) IBOutlet UIButton *image2;
@@ -32,6 +34,7 @@
 - (IBAction)zoomImage:(id)sender;
 - (IBAction)changeImage:(UIButton *)button;
 - (void)startImageDownloads;
+- (void)loadSecondaryImages;
 
 - (void)layoutPortrait;
 - (void)layoutLandscape;

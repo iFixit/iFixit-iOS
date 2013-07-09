@@ -280,6 +280,7 @@ BOOL onTablet;
     [self setSelectedIndex:0];
     [self.detailGridViewController setCategory:nil];
     [self.detailGridViewController showNoGuidesImage:YES];
+    [self configureSubViewFrame:self.GUIDES];
 }
 
 // Delegate method, called when a tabBarItem is selected, or when I want to force a selection programatically

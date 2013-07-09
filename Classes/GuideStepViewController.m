@@ -211,7 +211,7 @@
         [mainImage setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
         
         if ([self.step.images count] > 1) {
-            [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+            [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
             image1.hidden = NO;
         }
     }
@@ -251,6 +251,22 @@
 	webView.hidden = NO;
 }
 
+- (void)loadSecondaryImages {
+    
+    // Only load the secondary large images if we are looking at the current view being presented on the screen
+    if (self.step.number == self.guideViewController.pageControl.currentPage) {
+        NSLog(@"Load!!");
+    
+        if ([self.step.images count] > 1) {
+            [image2 setImageWithURL:[[self.step.images objectAtIndex:1] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+        }
+        
+        if ([self.step.images count] > 2) {
+            [image3 setImageWithURL:[[self.step.images objectAtIndex:2] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+        }
+    }
+    
+}
 - (IBAction)zoomImage:(id)sender {
    	UIImage *image = [mainImage backgroundImageForState:UIControlStateNormal];
     if (!image)
