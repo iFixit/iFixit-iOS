@@ -28,6 +28,7 @@
 		ABC63D5616CF16140041A995 /* logo_zeal.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC63D5416CF16130041A995 /* logo_zeal.png */; };
 		ABDB16C41756AE2D00053573 /* CategoryWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDB16C21756AE2C00053573 /* CategoryWebViewController.m */; };
 		ABDB16C51756AE2D00053573 /* CategoryWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */; };
+		ABE00C43178BE34F006FD574 /* CategoriesSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE00C42178BE34F006FD574 /* CategoriesSingleton.m */; };
 		ABE38C9A1773B9AC00777F60 /* CategoryTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE38C981773B9AC00777F60 /* CategoryTabBarViewController.m */; };
 		ABE38C9B1773B9AC00777F60 /* CategoryTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE38C991773B9AC00777F60 /* CategoryTabBarViewController.xib */; };
 		ABE51914177B77F400E9555E /* category_more_info_iphone.css in Resources */ = {isa = PBXBuildFile; fileRef = ABE51913177B77F400E9555E /* category_more_info_iphone.css */; };
@@ -252,6 +253,8 @@
 		ABDB16C11756AE2C00053573 /* CategoryWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryWebViewController.h; sourceTree = "<group>"; };
 		ABDB16C21756AE2C00053573 /* CategoryWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryWebViewController.m; sourceTree = "<group>"; };
 		ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryWebViewController.xib; sourceTree = "<group>"; };
+		ABE00C41178BE34F006FD574 /* CategoriesSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoriesSingleton.h; path = ../CategoriesSingleton.h; sourceTree = "<group>"; };
+		ABE00C42178BE34F006FD574 /* CategoriesSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoriesSingleton.m; path = ../CategoriesSingleton.m; sourceTree = "<group>"; };
 		ABE38C971773B9AC00777F60 /* CategoryTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTabBarViewController.h; path = ../CategoryTabBarViewController.h; sourceTree = "<group>"; };
 		ABE38C981773B9AC00777F60 /* CategoryTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryTabBarViewController.m; path = ../CategoryTabBarViewController.m; sourceTree = "<group>"; };
 		ABE38C991773B9AC00777F60 /* CategoryTabBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryTabBarViewController.xib; path = ../CategoryTabBarViewController.xib; sourceTree = "<group>"; };
@@ -670,6 +673,8 @@
 		C10F270F120CE5820027A28D /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				ABE00C41178BE34F006FD574 /* CategoriesSingleton.h */,
+				ABE00C42178BE34F006FD574 /* CategoriesSingleton.m */,
 				DACE7FF6165728010013FFFD /* Media Types */,
 				C10F2710120CE5900027A28D /* Guide.h */,
 				C1D980A8120DFB2900509D18 /* GuideStep.h */,
@@ -1367,6 +1372,7 @@
 				ABDB16C41756AE2D00053573 /* CategoryWebViewController.m in Sources */,
 				ABE38C9A1773B9AC00777F60 /* CategoryTabBarViewController.m in Sources */,
 				ABB84A6A177F591200C58514 /* ListViewController.m in Sources */,
+				ABE00C43178BE34F006FD574 /* CategoriesSingleton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -34,6 +34,7 @@ enum {
 @property (nonatomic, retain) NSDictionary *categoryResults;
 @property (nonatomic, retain) ListViewController *listViewController;
 @property (nonatomic, retain) NSDictionary *categoryMetaData;
+@property (nonatomic, retain) NSDictionary *categorySearchResult;
 
 - (void)getAreas;
 - (void)showLoading;

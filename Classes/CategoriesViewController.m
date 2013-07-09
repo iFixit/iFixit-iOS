@@ -17,10 +17,11 @@
 #import "GuideCell.h"
 #import "UIImageView+WebCache.h"
 #import "GuideViewController.h"
+#import "CategoriesSingleton.h"
 
 @implementation CategoriesViewController
 
-@synthesize delegate, searchBar, searching, searchResults, noResults;
+@synthesize delegate, searchBar, searching, searchResults, noResults, categorySearchResult;
 
 - (id)init {
     if ((self = [super initWithNibName:nil bundle:nil])) {
@@ -122,6 +123,12 @@
     self.navigationItem.rightBarButtonItem = nil;
     
     if ([areas isKindOfClass:[NSDictionary class]]) {
+        // Save a master category list to a singleton if it hasn't
+        // been created yet
+        if (![CategoriesSingleton sharedInstance].masterCategoryList) {
+            [CategoriesSingleton sharedInstance].masterCategoryList = areas;
+        }
+        
         [self setData:areas];
         [self.tableView reloadData];
         [self.listViewController showFavoritesButton:self];
@@ -232,24 +239,8 @@
 
 - (void)gotSearchResults:(NSDictionary *)results {
     if ([[results objectForKey:@"search"] isEqual:searchBar.text]) {
-        // Remove non-device results from iPhone+iPod search
-        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-            NSArray *list = [results objectForKey:@"results"];
-            NSMutableArray *devicesOnly = [NSMutableArray array];
-            
-            for (NSDictionary *item in list) {
-                if ([[item objectForKey:@"class"] isEqual:@"DEVICE"] ||
-                    [[item objectForKey:@"namespace"] isEqual:@"TOPIC"]) {
-                    [devicesOnly addObject:item];
-                }
-            }
-            
-            self.searchResults = [NSArray arrayWithArray:devicesOnly];
-        }
-        else {
-            self.searchResults = [results objectForKey:@"results"];
-        }
         
+        self.searchResults = [results objectForKey:@"results"];
         noResults = [searchResults count] == 0;
         
         [self.tableView reloadData];
@@ -391,7 +382,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSDictionary *category = self.categories[self.categoryTypes[indexPath.section]][indexPath.row];
     static NSString *cellIdentifier;
     id cell;
     
@@ -402,11 +392,14 @@
         
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
-            [[cell textLabel] setText:(searchResults.count ? searchResults[indexPath.row][@"display_title"] : @"No Results Found")];
         }
+        
+        [[cell textLabel] setText:(searchResults.count > 0 ? searchResults[indexPath.row][@"display_title"] : @"No Results Found")];
         
         return cell;
     }
+    
+    NSDictionary *category = self.categories[self.categoryTypes[indexPath.section]][indexPath.row];
     
     if (category[@"type"] == @(DEVICE) || category[@"type"] == @(CATEGORY)) {
         
@@ -459,7 +452,7 @@
     if (searching && [searchResults count]) {
         // Create key value object for search result
         category = @{@"name" : searchResults[indexPath.row][@"title"],
-                     @"type" : @(DEVICE)
+                     @"type" : @(CATEGORY)
                    };
     } else
         category = self.categories[self.categoryTypes[indexPath.section]][indexPath.row];
@@ -468,9 +461,15 @@
         CategoriesViewController *vc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
         vc.title = category[@"name"];
         
-        [vc setData:[self.categoryResults valueForKey:category[@"name"]]];
+        if (searching) {
+            [self findChildCategoriesFromParent:category[@"name"]];
+        }
+        
+        [vc setData:(searching) ? categorySearchResult : [self.categoryResults valueForKey:category[@"name"]]];
+        
         [self.navigationController pushViewController:vc animated:YES];
         [vc.tableView reloadData];
+        categorySearchResult = nil;
         [vc release];
         
     // Device
@@ -500,6 +499,32 @@
         self.listViewController.navigationBar.backItem.title = NSLocalizedString(@"Home", nil);
     }
     
+}
+
+// Given a parent category, find the category and it's children
+- (void)findChildCategoriesFromParent:(NSString*)parentCategory {
+    [self findCategory:parentCategory inList:[CategoriesSingleton sharedInstance].masterCategoryList];
+}
+
+// Recursive function to find the search result in our master category list
+- (BOOL)findCategory:(NSString*)needle inList:(NSDictionary*)haystack {
+    // Try to access the key first
+    if (haystack[needle]) {
+        categorySearchResult = haystack[needle];
+        return TRUE;
+    // Key doesn't exist, we must go deeper
+    } else {
+        for (id category in haystack) {
+            // We have another dictionary to look at, lets call ourselves
+            if ([haystack[category] isKindOfClass:[NSDictionary class]]) {
+                // If we return true, that means we found our category, lets stop iterating through our current level
+                if ([self findCategory:needle inList:haystack[category]])
+                    break;
+            }
+        }
+    }
+    
+    return FALSE;
 }
 
 // Massage the data to match our already gathered data
