@@ -224,7 +224,14 @@
     }
 }
 
+
+- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    // Let the user input text if they are under the char limit or trying to delete text
+    return (searchBar.text.length <= 128 || [text isEqualToString:@""]);
+}
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
     if ([searchText isEqual:@""]) {
         searching = NO;
         noResults = NO;
@@ -399,7 +406,12 @@
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
         }
         
-        [[cell textLabel] setText:(searchResults.count > 0 ? searchResults[indexPath.row][@"display_title"] : @"No Results Found")];
+        if (searchResults.count > 0) {
+            [[cell textLabel] setText:searchResults[indexPath.row][@"display_title"]];
+        } else {
+            [[cell textLabel] setText:NSLocalizedString(@"No Results Found", nil)];
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
+        }
         
         return cell;
     }
