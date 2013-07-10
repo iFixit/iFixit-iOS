@@ -17,12 +17,17 @@
 - (id)initWithRootViewController:(UIViewController *)rvc {
     if ((self = [super initWithRootViewController:rvc])) {
         // Custom initializing
+        [self configureProperties];
     }
     
     return self;
 }
 - (void)dealloc {
     [super dealloc];
+}
+
+- (void)configureProperties {
+    [self showFavoritesButton:self];
 }
 
 // Override delegate method so we always have control of what to do when we pop a viewcontroller off the stack
@@ -74,17 +79,22 @@
 }
 
 - (void)showFavoritesButton:(id)viewController {
-    // Create Favorites button and add to navigation controller
-    UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc]
-                                        initWithTitle:NSLocalizedString(@"Favorites", nil)
-                                        style:UIBarButtonItemStyleBordered
-                                        target:self action:@selector(favoritesButtonPushed)];
+    // Create Favorites button if it doesn't already exist and add to navigation controller
+    if (!self.favoritesButton) {
+        UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc]
+                                            initWithTitle:NSLocalizedString(@"Favorites", nil)
+                                            style:UIBarButtonItemStyleBordered
+                                            target:self action:@selector(favoritesButtonPushed)];
+        
+        self.favoritesButton = favoritesButton;
+        [favoritesButton release];
+    }
     
-    [viewController navigationItem].rightBarButtonItem = favoritesButton;
-    [favoritesButton release];
+    [viewController navigationItem].rightBarButtonItem = self.favoritesButton;
 }
 
 - (void)favoritesButtonPushed {
+    
     BookmarksViewController *bvc = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
     
     // Create the animation ourselves to mimic a modal presentation

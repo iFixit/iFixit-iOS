@@ -12,6 +12,7 @@
 @interface ListViewController : UINavigationController <UINavigationControllerDelegate, UINavigationBarDelegate>
 
 @property (nonatomic, retain) CategoryTabBarViewController *categoryTabBarViewController;
+@property (nonatomic, retain) UIBarButtonItem *favoritesButton;
 
 - (void)showFavoritesButton:(id)viewController;
 - (void)favoritesButtonPushed;

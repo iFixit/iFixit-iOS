@@ -196,6 +196,9 @@
         bounds.origin.y = self.navigationController.navigationBar.frame.size.height;
         self.navigationController.view.bounds = bounds;
         [UIView commitAnimations];
+        
+        // Disable the favorites button to avoid accidental presses
+        self.listViewController.favoritesButton.enabled = NO;
     }
 }
 
@@ -215,7 +218,9 @@
         CGRect bounds = self.navigationController.view.bounds;
         bounds.origin.y = 0;
         self.navigationController.view.bounds = bounds;
-        [UIView commitAnimations];  
+        [UIView commitAnimations];
+        
+        self.listViewController.favoritesButton.enabled = YES;
     }
 }
 
