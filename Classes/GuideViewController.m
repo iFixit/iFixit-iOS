@@ -50,6 +50,13 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    // Make sure we have the correct orientation when our
+    // view appears, this fixes orientation issues regarding
+    // rotating after logging in.
+    [self willRotateToInterfaceOrientation:[self interfaceOrientation] duration:0];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
