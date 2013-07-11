@@ -46,7 +46,13 @@
     }
 }
 
-- (void)loginResults:(NSDictionary *)results {    
+- (void)loginResults:(NSDictionary *)results {
+    if (!results) {
+        [iFixitAPI displayConnectionErrorAlert];
+        return;
+    }
+    
+    
     if ([results objectForKey:@"error"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
                                                         message:[results objectForKey:@"msg"]

@@ -363,4 +363,15 @@ static int volatile openConnections = 0;
     [request startAsynchronous];
 }
 
+// Display an alert that allows the user to retry the connection
++ (void)displayConnectionErrorAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                    message:NSLocalizedString(@"Unable to connect. Check your Internet connection and try again.", nil)
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                          otherButtonTitles:nil, nil];
+    [alert show];
+    [alert release];
+}
+
 @end

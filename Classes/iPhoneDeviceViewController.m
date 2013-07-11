@@ -84,14 +84,24 @@
 }
 
 - (void)gotGuides:(NSArray *)guides {
+    
+    if (!guides) {
+        [iFixitAPI displayConnectionErrorAlert];
+        [self showRefreshButton];
+    }
+    
     self.guides = guides;
     [self.tableView reloadData];
     [self hideLoading];
-    
-    if (!self.guides)
-        [self showRefreshButton];
 }
 - (void)gotDevice:(NSDictionary *)data {
+    if (!data) {
+        [iFixitAPI displayConnectionErrorAlert];
+        [self showRefreshButton];
+        return;
+    }
+    
+    
     self.guides = [data arrayForKey:@"guides"];
     [self.tableView reloadData];
     [self hideLoading];

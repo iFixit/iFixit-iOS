@@ -200,7 +200,10 @@ static GuideBookmarks *sharedBookmarks = nil;
 }
 
 - (void)unliked:(NSDictionary *)result {
-    if (!result || [result objectForKey:@"error"]) {
+    if (!result) {
+        [iFixitAPI displayConnectionErrorAlert];
+        return;
+    } else if ([result objectForKey:@"error"]) {
         self.currentItem = nil;
         [self announceUpdate];
         return;
@@ -217,6 +220,7 @@ static GuideBookmarks *sharedBookmarks = nil;
 - (void)gotGuide:(Guide *)guide {
     if (!guide) {
         self.currentItem = nil;
+        [iFixitAPI displayConnectionErrorAlert];
         return;
     }
     
@@ -293,6 +297,12 @@ static GuideBookmarks *sharedBookmarks = nil;
     [[iFixitAPI sharedInstance] getUserLikesForObject:self withSelector:@selector(gotUpdates:)];
 }
 - (void)gotUpdates:(NSArray *)likes {
+    
+    if (!likes) {
+        [iFixitAPI displayConnectionErrorAlert];
+        return;
+    }
+    
     [self synchronize];
 
     if (!likes || ([likes isKindOfClass:[NSDictionary class]] && [likes valueForKey:@"error"])) {

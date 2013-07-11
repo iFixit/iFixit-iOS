@@ -121,6 +121,11 @@
 }
 
 - (void)liked:(NSDictionary *)result {
+    if (!result) {
+        [iFixitAPI displayConnectionErrorAlert];
+        return;
+    }
+    
     // Session error. Retry.
     if ([result valueForKey:@"error"]) {
         [self setNavItem:navItem andGuideid:[guideid intValue]];

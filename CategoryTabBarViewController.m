@@ -10,6 +10,7 @@
 #import "Config.h"
 #import "CategoriesViewController.h"
 #import "CategoryWebViewController.h"
+#import "iFixitAPI.h"
 
 @interface CategoryTabBarViewController ()
 
@@ -331,6 +332,11 @@ BOOL onTablet;
 
 // Method is called when we get a response back from our API
 - (void)gotCategoryResult:(NSDictionary *)results {
+    if (!results) {
+        [iFixitAPI displayConnectionErrorAlert];
+        return;
+    }
+    
     [self showTabBar:YES];
     
     [self.listViewController.topViewController setCategoryMetaData:results];

@@ -122,6 +122,12 @@
 - (void)gotAreas:(NSDictionary *)areas {
     self.navigationItem.rightBarButtonItem = nil;
     
+    // Areas was nil, meaning we probably had a connection error
+    if (!areas) {
+        [self showRefreshButton];
+        [iFixitAPI displayConnectionErrorAlert];
+    }
+    
     if ([areas isKindOfClass:[NSDictionary class]]) {
         // Save a master category list to a singleton if it hasn't
         // been created yet
@@ -139,8 +145,6 @@
             [self.navigationController pushViewController:dvc animated:YES];
             [dvc release];
         }
-        
-        [self showRefreshButton];
     }
 }
 
@@ -256,6 +260,9 @@
         noResults = [searchResults count] == 0;
         
         [self.tableView reloadData];
+    // We didn't get a result
+    } else {
+        [iFixitAPI displayConnectionErrorAlert];
     }
 }
 

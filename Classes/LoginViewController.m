@@ -551,6 +551,13 @@
 }
 
 - (void)loginResults:(NSDictionary *)results {
+    [self hideLoading];
+    
+    if (!results) {
+        [iFixitAPI displayConnectionErrorAlert];
+        return;
+    }
+    
     if ([results objectForKey:@"error"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:[results objectForKey:@"msg"]
@@ -569,8 +576,6 @@
         // The delegate is responsible for removing the login view.
         [delegate refresh];
     }
-
-    [self hideLoading];
 }
 
 @end
