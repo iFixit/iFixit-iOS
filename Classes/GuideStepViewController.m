@@ -24,14 +24,14 @@
 @implementation GuideStepViewController
 
 @synthesize delegate, step=_step, titleLabel, mainImage, webView, moviePlayer, embedView;
-@synthesize image1, image2, image3, numImagesLoaded, bigImages, html;
+@synthesize image1, image2, image3, numImagesLoaded, html;
 
 // Load the view nib and initialize the pageNumber ivar.
 - (id)initWithStep:(GuideStep *)step {
     if ((self = [super initWithNibName:nil bundle:nil])) {
         self.step = step;
         self.numImagesLoaded = 0;
-        self.bigImages = [NSMutableArray array];
+        self.largeImages = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -208,10 +208,10 @@
 - (void)startImageDownloads {
 
     if ([self.step.images count] > 0) {
-        [mainImage setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+        [SDWebImageDownloader downloaderWithURL:[self.step.images[0] URLForSize:@"large"] delegate:self userInfo:@"image1"];
         
         if ([self.step.images count] > 1) {
-            [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+            [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
             image1.hidden = NO;
         }
     }
@@ -228,17 +228,23 @@
 }
 
 - (IBAction)changeImage:(UIButton *)button {
-    GuideImage *guideImage = nil;
+    NSString *imageKey = [NSString stringWithFormat:@"image%i", button.tag];
+    
+    // If we've already downloaded the image, let's use it
+    if (self.largeImages[imageKey]) {
+        // Animate the image change
+        [UIView transitionWithView:mainImage
+                          duration:0.3
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [mainImage setBackgroundImage:self.largeImages[[NSString stringWithFormat:@"image%i", button.tag]] forState:UIControlStateNormal];
+                        } completion:nil];
+    // We haven't downloaded the image yet, let's do it
+    } else {
+        GuideImage *guideImage = self.step.images[button.tag - 1];
+        [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+    }
 
-    if ([button isEqual:image1])
-        guideImage = [self.step.images objectAtIndex:0];
-    else if ([button isEqual:image2])
-        guideImage = [self.step.images objectAtIndex:1];
-    else if ([button isEqual:image3])
-        guideImage = [self.step.images objectAtIndex:2];
-
-    // Switch to the new image, but delay the spinner for a short time.
-    [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
 }
 
 // Because the web view has a white background, it starts hidden.
@@ -251,18 +257,26 @@
 	webView.hidden = NO;
 }
 
+- (void)imageDownloader:(SDWebImageDownloader *)downloader didFinishWithImage:(UIImage *)image {
+    [self.largeImages setObject:image forKey:downloader.userInfo];
+    
+    if ([downloader.userInfo isEqualToString:@"image1"]) {
+        [self changeImage:image1];
+    }
+}
+
 - (void)loadSecondaryImages {
     
     // Only load the secondary large images if we are looking at the current view being presented on the screen
     if (self.step.number == self.guideViewController.pageControl.currentPage) {
-        NSLog(@"Load!!");
     
-        if ([self.step.images count] > 1) {
-            [image2 setImageWithURL:[[self.step.images objectAtIndex:1] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+        if ([self.step.images count] > 1 && !self.largeImages[@"image2"]) {
+            // If we haven't downloaded the image yet, do it!
+            [SDWebImageDownloader downloaderWithURL:[self.step.images[1] URLForSize:@"large"] delegate:self userInfo:@"image2"];
         }
         
-        if ([self.step.images count] > 2) {
-            [image3 setImageWithURL:[[self.step.images objectAtIndex:2] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+        if ([self.step.images count] > 2 && !self.largeImages[@"image3"]) {
+            [SDWebImageDownloader downloaderWithURL:[self.step.images[2] URLForSize:@"large"] delegate:self userInfo:@"image3"];
         }
     }
     
@@ -411,7 +425,6 @@
 - (void)dealloc {
     [_step release];
     // TODO: Figure out why this crashes.
-    //[bigImages release];
     [html release];
 
     webView.delegate = nil;

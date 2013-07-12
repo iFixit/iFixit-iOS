@@ -8,11 +8,12 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 #import "GuideViewController.h"
+#import "SDWebImageManager.h"
 
 @class GuideStep;
 @class GuideCatchingWebView;
 
-@interface GuideStepViewController : UIViewController <UIWebViewDelegate>
+@interface GuideStepViewController : UIViewController <UIWebViewDelegate, SDWebImageDownloaderDelegate>
 
 @property (nonatomic, retain) id delegate;
 @property (nonatomic, retain) GuideStep *step;
@@ -27,8 +28,9 @@
 @property (nonatomic, retain) IBOutlet UIButton *image2;
 @property (nonatomic, retain) IBOutlet UIButton *image3;
 @property (nonatomic) NSInteger numImagesLoaded;
-@property (nonatomic, retain) NSMutableArray *bigImages;
 @property (nonatomic, retain) NSString *html;
+
+@property (nonatomic, retain) NSMutableDictionary *largeImages;
 
 - (id)initWithStep:(GuideStep *)step;
 - (IBAction)zoomImage:(id)sender;

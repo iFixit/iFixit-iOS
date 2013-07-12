@@ -316,7 +316,7 @@
     
     // Only load secondary images if we are looking at the current view for longer than half a second
     if (pageControl.currentPage > 0)
-        [viewControllers[pageControl.currentPage] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:1.0];
+        [viewControllers[pageControl.currentPage] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:0.8];
 }
 
 - (IBAction)changePage:(id)sender {
