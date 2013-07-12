@@ -225,8 +225,9 @@ static int volatile openConnections = 0;
     [request setPostValue:sessionId forKey:@"sessionid"];
     
     [request setCompletionBlock:^{
-        NSDictionary *results = [[request responseString] JSONValue];
+        NSMutableDictionary *results = [[request responseString] JSONValue];
         [self checkLogin:results];
+        
         [object performSelector:selector withObject:results];
     }];
     [request setFailedBlock:^{
@@ -250,8 +251,10 @@ static int volatile openConnections = 0;
     [request setPostValue:password forKey:@"password"];
     
     [request setCompletionBlock:^{
-        NSDictionary *results = [[request responseString] JSONValue];
+        NSMutableDictionary *results = [[request responseString] JSONValue];
         [self checkLogin:results];
+        
+        [results setObject:@"login" forKey:@"type"];
         [object performSelector:selector withObject:results];
     }];
     [request setFailedBlock:^{
@@ -276,8 +279,10 @@ static int volatile openConnections = 0;
     [request setPostValue:name forKey:@"username"];
     
     [request setCompletionBlock:^{        
-        NSDictionary *results = [[request responseString] JSONValue];
+        NSMutableDictionary *results = [[request responseString] JSONValue];
         [self checkLogin:results];
+        
+        [results setObject:@"register" forKey:@"type"];
         [object performSelector:selector withObject:results];
     }];
     [request setFailedBlock:^{

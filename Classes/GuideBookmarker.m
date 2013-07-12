@@ -14,6 +14,7 @@
 #import "iFixitAPI.h"
 #import "User.h"
 #import "LoginViewController.h"
+#import "GANTracker.h"
 
 @implementation GuideBookmarker
 
@@ -166,7 +167,11 @@
     [progressContainer release];
     
     // Save the guide in the bookmarks list.
-    [[GuideBookmarks sharedBookmarks] addGuideid:guideid forBookmarker:self];   
+    [[GuideBookmarks sharedBookmarks] addGuideid:guideid forBookmarker:self];
+    
+    // Analytics
+    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/download/%@", guideid] withError:NULL];
+    [[GANTracker sharedTracker] trackPageview:@"/guide/download" withError:NULL];
 }
 
 - (void)refresh {

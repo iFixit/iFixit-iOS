@@ -11,6 +11,7 @@
 #import "CategoriesViewController.h"
 #import "CategoryWebViewController.h"
 #import "iFixitAPI.h"
+#import "GANTracker.h"
 
 @interface CategoryTabBarViewController ()
 
@@ -302,6 +303,29 @@ BOOL onTablet;
     if (onTablet) {
         [self configureSubViewFrame:item.tag];
     }
+
+    // Google Analytics
+    [self recordAnalyticsEvent:item.tag withCategory:category];
+}
+
+// Google Analytics: record category and action
+- (void)recordAnalyticsEvent:(int)event withCategory:(NSString*)category {
+    
+    // Bail early if we are just navigating through Guides
+    if (event == self.GUIDES) {
+        return;
+    }
+    
+    NSString *eventType;
+    
+    if (event == self.MORE_INFO) {
+        eventType = @"more info";
+    } else if (event == self.ANSWERS) {
+        eventType = @"answers";
+    }
+    
+    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/category/%@", eventType] withError:NULL];
+    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/category/%@/%@", eventType, category] withError:NULL];
 }
 
 // Prepare our webViewController before presenting it to the user
@@ -309,6 +333,7 @@ BOOL onTablet;
     
     // Don't reload the page if we are looking at the current category
     if (![category isEqualToString:[viewController category]]) {
+        // Empty the page
         [[viewController webView] stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
         
         // Our more info page needs to be configured

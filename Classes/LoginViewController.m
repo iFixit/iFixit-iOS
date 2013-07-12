@@ -14,6 +14,8 @@
 #import "Config.h"
 #import "OpenIDViewController.h"
 #import "SSOViewController.h"
+#import "GANTracker.h"
+#import "User.h"
 
 @implementation LoginViewController
 
@@ -575,6 +577,11 @@
 
         // The delegate is responsible for removing the login view.
         [delegate refresh];
+        
+        // Analytics
+        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@", results[@"type"]] withError:NULL];
+        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@/%@", results[@"type"], [iFixitAPI sharedInstance].user.userid] withError:NULL];
+        
     }
 }
 

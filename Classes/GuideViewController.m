@@ -45,7 +45,10 @@
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         
         [TestFlight passCheckpoint:@"Guide View"];
+        
+        // Analytics
         [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/view/%d", self.guideid] withError:NULL];
+        [[GANTracker sharedTracker] trackPageview:@"/guide/view" withError:NULL];
     }
     return self;
 }
