@@ -139,10 +139,15 @@
     else {        
         // Landscape
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+            if (pageControl.currentPage == 0) {
+                pageControl.hidden = YES;
+            }
+            
             frame = CGRectMake(0, 44, screenSize.height, screenSize.width - 44);
         }
         // Portrait
         else {
+            pageControl.hidden = NO;
             frame = CGRectMake(0, 44, screenSize.width, screenSize.height - 64);
         }
     }
@@ -191,9 +196,6 @@
     pageControl.numberOfPages = numPages;
     pageControl.currentPage = 0;
     
-    // Hide page control on iPhone.
-    //pageControl.hidden = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? NO : YES;
-	
     // Setup the navigation items to show back arrow and bookmarks button
     NSString *title = guide.title;
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad && [guide.subject length] > 0)
