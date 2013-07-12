@@ -23,6 +23,7 @@
 @property (nonatomic, retain) Guide *guide;
 @property (nonatomic) NSInteger guideid;
 @property (nonatomic) NSInteger shouldLoadPage;
+@property (nonatomic, retain) NSCache *memoryCache;
 
 - (id)initWithGuide:(Guide *)guide;
 - (id)initWithGuideid:(NSInteger)guideid;

@@ -49,6 +49,10 @@
         // Analytics
         [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/view/%d", self.guideid] withError:NULL];
         [[GANTracker sharedTracker] trackPageview:@"/guide/view" withError:NULL];
+        
+        if (!self.memoryCache) {
+            self.memoryCache = [[NSCache alloc] init];
+        }
     }
     return self;
 }

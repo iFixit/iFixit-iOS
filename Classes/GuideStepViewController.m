@@ -20,6 +20,8 @@
 #import "SDWebImageDownloader.h"
 #import "UIButton+WebCache.h"
 #import "SVWebViewController.h"
+#import "SDImageCache.h"
+#import "GuideImage.h"
 
 @implementation GuideStepViewController
 
@@ -206,9 +208,15 @@
 }
 
 - (void)startImageDownloads {
-
     if ([self.step.images count] > 0) {
-        [SDWebImageDownloader downloaderWithURL:[self.step.images[0] URLForSize:@"large"] delegate:self userInfo:@"image1"];
+        UIImage *largeImage = [self checkMemoryForCachedImage:[self.step.images[0] URLForSize:@"large"].absoluteString];
+        // If we have the item from memory cache, retrieve it!
+        if (largeImage) {
+            [mainImage setBackgroundImage:largeImage forState:UIControlStateNormal];
+        } else {
+            // Download the image
+            [SDWebImageDownloader downloaderWithURL:[self.step.images[0] URLForSize:@"large"] delegate:self userInfo:@"image1"];
+        }
         
         if ([self.step.images count] > 1) {
             [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
@@ -227,24 +235,28 @@
     }
 }
 
+- (id)checkMemoryForCachedImage:(NSString*)key {
+    return [self.guideViewController.memoryCache objectForKey:key];
+}
+
 - (IBAction)changeImage:(UIButton *)button {
-    NSString *imageKey = [NSString stringWithFormat:@"image%i", button.tag];
+    NSString *imageKey = [self.step.images[button.tag] URLForSize:@"large"].absoluteString;
+    UIImage *largeImage = [self checkMemoryForCachedImage:imageKey];
     
-    // If we've already downloaded the image, let's use it
-    if (self.largeImages[imageKey]) {
+    // If the image is in memory cache, let's use it
+    if (largeImage) {
         // Animate the image change
         [UIView transitionWithView:mainImage
                           duration:0.3
                            options:UIViewAnimationOptionTransitionCrossDissolve
                         animations:^{
-                            [mainImage setBackgroundImage:self.largeImages[[NSString stringWithFormat:@"image%i", button.tag]] forState:UIControlStateNormal];
+                            [mainImage setBackgroundImage:largeImage forState:UIControlStateNormal];
                         } completion:nil];
     // We haven't downloaded the image yet, let's do it
     } else {
-        GuideImage *guideImage = self.step.images[button.tag - 1];
+        GuideImage *guideImage = self.step.images[button.tag];
         [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
     }
-
 }
 
 // Because the web view has a white background, it starts hidden.
@@ -258,7 +270,7 @@
 }
 
 - (void)imageDownloader:(SDWebImageDownloader *)downloader didFinishWithImage:(UIImage *)image {
-    [self.largeImages setObject:image forKey:downloader.userInfo];
+    [self.guideViewController.memoryCache setObject:image forKey:downloader.url.absoluteString];
     
     if ([downloader.userInfo isEqualToString:@"image1"]) {
         [self changeImage:image1];
@@ -269,14 +281,13 @@
     
     // Only load the secondary large images if we are looking at the current view being presented on the screen
     if (self.step.number == self.guideViewController.pageControl.currentPage) {
-    
-        if ([self.step.images count] > 1 && !self.largeImages[@"image2"]) {
-            // If we haven't downloaded the image yet, do it!
-            [SDWebImageDownloader downloaderWithURL:[self.step.images[1] URLForSize:@"large"] delegate:self userInfo:@"image2"];
+        // If an image exists in memory cache, let's use it instead of downloading the image again
+        if ([self.step.images count] > 1 && ![self checkMemoryForCachedImage:[self.step.images[1] URLForSize:@"large"].absoluteString]) {
+            [SDWebImageDownloader downloaderWithURL:[self.step.images[1] URLForSize:@"large"] delegate:self userInfo:nil];
         }
         
-        if ([self.step.images count] > 2 && !self.largeImages[@"image3"]) {
-            [SDWebImageDownloader downloaderWithURL:[self.step.images[2] URLForSize:@"large"] delegate:self userInfo:@"image3"];
+        if ([self.step.images count] > 2 && ![self checkMemoryForCachedImage:[self.step.images[2] URLForSize:@"large"].absoluteString]) {
+            [SDWebImageDownloader downloaderWithURL:[self.step.images[2] URLForSize:@"large"] delegate:self userInfo:nil];
         }
     }
     
