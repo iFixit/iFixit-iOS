@@ -18,6 +18,7 @@
 #import "UIImageView+WebCache.h"
 #import "GuideViewController.h"
 #import "CategoriesSingleton.h"
+#import "Reachability.h"
 
 @implementation CategoriesViewController
 
@@ -260,9 +261,6 @@
         noResults = [searchResults count] == 0;
         
         [self.tableView reloadData];
-    // We didn't get a result
-    } else {
-        [iFixitAPI displayConnectionErrorAlert];
     }
 }
 
@@ -273,6 +271,14 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
+    
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];    
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
+    if (internetStatus == NotReachable) {
+        [iFixitAPI displayConnectionErrorAlert];
+    }
+    
     [self.view endEditing:YES];
 }
 
