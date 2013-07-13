@@ -469,9 +469,18 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    [self.view endEditing:YES];
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];    
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // If we can't connect to internet, let's bail early and display an error.
+    if (internetStatus == NotReachable) {
+        [iFixitAPI displayConnectionErrorAlert];
+        return;
+    }
+    
+    [self.view endEditing:YES];
     
     if (searching && ![searchResults count])
         return;
