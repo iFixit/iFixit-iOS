@@ -102,15 +102,14 @@
 }
 
 - (void)showOrHidePageControlForInterface:(UIInterfaceOrientation)orientation {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        [UIView transitionWithView:pageControl
-                          duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve
-                        animations:^{
-                            // We only want to hide on the intro page and in landscape
-                            pageControl.hidden = (UIInterfaceOrientationIsLandscape(orientation) && pageControl.currentPage == 0);
-                            
-        } completion:nil];
-    }
+    [UIView transitionWithView:pageControl
+                      duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        // We only want to hide on the intro page and in landscape
+                        pageControl.hidden = (UIInterfaceOrientationIsLandscape(orientation) && pageControl.currentPage == 0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone);
+                        
+                    } completion:nil
+     ];
 }
 - (void)closeGuide {
     if (bookmarker.poc.isPopoverVisible)
