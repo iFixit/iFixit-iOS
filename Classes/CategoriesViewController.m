@@ -303,8 +303,8 @@
         self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 44, 0);
     }
     else {
-        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 32, 0);
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 32, 0);
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 44, 0);
     }
 
     // Reset the searching view offset to prevent rotating weirdness.
