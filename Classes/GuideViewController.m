@@ -61,7 +61,7 @@
     // Make sure we have the correct orientation when our
     // view appears, this fixes orientation issues regarding
     // rotating after logging in.
-    [self willRotateToInterfaceOrientation:[self interfaceOrientation] duration:0];
+    [self willRotateToInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation duration:0];
 }
 
 - (void)viewDidLoad {
@@ -99,12 +99,25 @@
         
     }
     
-    // TODO: Show step that was in view before memory warning
 }
 
+- (void)showOrHidePageControlForInterface:(UIInterfaceOrientation)orientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        [UIView transitionWithView:pageControl
+                          duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            // We only want to hide on the intro page and in landscape
+                            pageControl.hidden = (UIInterfaceOrientationIsLandscape(orientation) && pageControl.currentPage == 0);
+                            
+        } completion:nil];
+    }
+}
 - (void)closeGuide {
     if (bookmarker.poc.isPopoverVisible)
         [bookmarker.poc dismissPopoverAnimated:YES];
+    
+    // Release memory cache
+    [self.memoryCache removeAllObjects];
     
     // Hide the guide.
     [self dismissModalViewControllerAnimated:YES];
@@ -143,15 +156,10 @@
     else {        
         // Landscape
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-            if (pageControl.currentPage == 0) {
-                pageControl.hidden = YES;
-            }
-            
             frame = CGRectMake(0, 44, screenSize.height, screenSize.width - 44);
         }
         // Portrait
         else {
-            pageControl.hidden = NO;
             frame = CGRectMake(0, 44, screenSize.width, screenSize.height - 64);
         }
     }
@@ -199,6 +207,7 @@
 	// Steps plus one for intro
     pageControl.numberOfPages = numPages;
     pageControl.currentPage = 0;
+    pageControl.hidden = YES;
     
     // Setup the navigation items to show back arrow and bookmarks button
     NSString *title = guide.title;
@@ -286,6 +295,8 @@
     CGFloat pageWidth = scrollView.frame.size.width;
     int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     pageControl.currentPage = page;
+    
+    [self showOrHidePageControlForInterface:self.interfaceOrientation];
 }
 
 // At the begin of scroll dragging, reset the boolean used when scrolls originate from the UIPageControl
@@ -341,8 +352,10 @@
     pageControlUsed = YES;
     
     // Only load secondary images if we are looking at the current view for longer than half a second
-    if (page > 0)
+    if (page > 0) {
         [viewControllers[page] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:1.0];
+        [self showOrHidePageControlForInterface:self.interfaceOrientation];
+    }
 }
 
 - (void)preloadForCurrentPage:(NSNumber *)pageNumber {
@@ -364,6 +377,10 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [self adjustScrollViewContentSizeForInterfaceOrientation:toInterfaceOrientation];
+    
+    if (viewControllers) {
+        [self showOrHidePageControlForInterface:toInterfaceOrientation];
+    }
     
     for (int i=0; i<[viewControllers count]; i++) {
         UIViewController *vc = [viewControllers objectAtIndex:i];
@@ -392,6 +409,9 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self showOrHidePageControlForInterface:self.interfaceOrientation];
+}
 
 - (void)dealloc {
     [_guide release];
