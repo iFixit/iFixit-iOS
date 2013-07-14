@@ -151,7 +151,7 @@
     
     // Build our image tag that will display an image of the category we are looking at
     NSString *image = [categoryMetaData[@"image"] count] > 0
-        ? [NSString stringWithFormat:@"<div id=\"categoryImage\"><img src=\"%@.standard\"></div>", categoryMetaData[@"image"][@"text"]]
+        ? [NSString stringWithFormat:@"<img id=\"categoryImage\" src=\"%@.standard\">", categoryMetaData[@"image"][@"text"]]
         : @"";
     
     // Add our wiki content
