@@ -12,6 +12,7 @@
 #import "CategoryWebViewController.h"
 #import "iFixitAPI.h"
 #import "GANTracker.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CategoryTabBarViewController ()
 
@@ -39,6 +40,11 @@ BOOL onTablet;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    if (onTablet) {
+        [self configureTabBarFrame:self.interfaceOrientation];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,7 +65,23 @@ BOOL onTablet;
         
         self.toolBarFillerImage = filler;
         [filler release];
+        
+        self.browseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.browseButton setTitle:NSLocalizedString(@"Browse", nil) forState:UIControlStateNormal];
+        [self.browseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.browseButton setBackgroundColor:[UIColor blackColor]];
+        [self.browseButton addTarget:self action:@selector(browseButtonPushed) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.browseButton.frame = CGRectMake(7, 5, 100, 34);
+        self.browseButton.layer.cornerRadius = 10;
+        self.browseButton.clipsToBounds = YES;
+        [self.view.subviews[1] addSubview:self.browseButton];
+        self.browseButton.hidden = YES;
     }
+}
+
+- (void)browseButtonPushed {
+    [self.popOverController presentPopoverFromRect:self.browseButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 - (void)configureTabBar {
@@ -68,6 +90,16 @@ BOOL onTablet;
         self.tabBar.frame = CGRectMake(0, 324, 768, 44);
         // Color the tab bar and move the tabbar frame to the top
         self.tabBar.tintColor = [Config currentConfig].toolbarColor;
+    } else {
+        [self showTabBar:NO];
+    }
+}
+
+- (void)configureTabBarFrame:(UIInterfaceOrientation)orientation {
+    if (UIDeviceOrientationIsLandscape(orientation)) {
+        self.tabBar.frame = CGRectMake(0, 255, [UIScreen mainScreen].bounds.size.width, 44);
+    } else {
+        self.tabBar.frame = CGRectMake(0, -256, [UIScreen mainScreen].bounds.size.width, 44);
     }
 }
 
@@ -129,9 +161,10 @@ BOOL onTablet;
     if (onTablet) {
         [self.view.subviews[0] setFrame:CGRectMake(0, 44, [self.view.subviews[0] frame].size.width, [self.view.subviews[0] frame].size.height + 5)];
     }
-    
-    // Hide the tabBar by default
-    [self showTabBar:NO];
+}
+
+- (void)hideTabBarItems:(BOOL)option {
+    self.viewControllers = option ? nil : self.tabBarViewControllers;
 }
 
 - (void)showTabBar:(BOOL)option {
@@ -221,9 +254,15 @@ BOOL onTablet;
     
     // Tablet is tricky because we are already doing things we shouldn't be doing
     if (onTablet) {
-        [subView setFrame:(viewControllerIndex == self.GUIDES)
-            ? CGRectMake(0, 44, [subView frame].size.width, 655)
-            : CGRectMake(0, 0, [subView frame].size.width, 745)];
+        if (UIDeviceOrientationIsLandscape(self.interfaceOrientation)) {
+            [subView setFrame:(viewControllerIndex == self.GUIDES)
+                ? CGRectMake(0, 44, [subView frame].size.width, 655)
+                : CGRectMake(0, 0, [subView frame].size.width, 745)];
+        } else {
+            [subView setFrame:(viewControllerIndex == self.GUIDES)
+                ? CGRectMake(0, 44, [subView frame].size.width, 950)
+                : CGRectMake(0, 0, [subView frame].size.width, 1005)];
+        }
     // For iPhone we change the subview frame to account for hidden tabbar
     } else {
         [subView setFrame:(self.listViewController.viewControllers.count == 1)
@@ -385,4 +424,44 @@ BOOL onTablet;
     return NO;
 }
 
+- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc {
+    
+    [self showTabBar:YES];
+    [self configureTabBarFrame:UIInterfaceOrientationMaskPortrait];
+    [self configureFistImageView:UIInterfaceOrientationMaskPortrait];
+    
+    if (self.listViewController.viewControllers.count == 1) {
+        [self hideTabBarItems:YES];
+    }
+    
+    self.popOverController = pc;
+    self.browseButton.hidden = NO;
+    self.detailGridViewController.orientationOverride = UIInterfaceOrientationPortrait;
+    [self.detailGridViewController.tableView reloadData];
+}
+
+- (void)configureFistImageView:(UIInterfaceOrientation)orientation {
+    UIImageView *fistImageView = self.detailGridViewController.fistImage;
+    int yCoord = UIDeviceOrientationIsLandscape(orientation) ? 0 : 250;
+    
+    [UIView transitionWithView:fistImageView
+                      duration:0.3
+                       options:UIViewAnimationOptionCurveEaseIn
+                    animations:^{
+                        fistImageView.frame = CGRectMake(0, yCoord, [[UIScreen mainScreen] bounds].size.width, fistImageView.frame.size.height);
+                    } completion:nil
+    ];
+}
+
+- (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
+    
+    [self showTabBar:(self.listViewController.viewControllers.count > 1)];
+    [self configureFistImageView:UIInterfaceOrientationLandscapeLeft];
+    [self configureTabBarFrame:UIInterfaceOrientationLandscapeLeft];
+    [self hideTabBarItems:NO];
+    self.popOverController = nil;
+    self.browseButton.hidden = YES;
+    self.detailGridViewController.orientationOverride = UIInterfaceOrientationLandscapeLeft;
+    [self.detailGridViewController.tableView reloadData];
+}
 @end

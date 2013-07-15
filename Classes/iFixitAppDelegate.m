@@ -230,6 +230,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     ctvc.listViewController = lvc;
     
     splitViewController.viewControllers = @[lvc, ctvc];
+    splitViewController.delegate = ctvc;
     
     [lvc release];
     [ctvc release];

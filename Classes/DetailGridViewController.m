@@ -117,9 +117,9 @@
     
     UIImageView *concreteBackground = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"concreteBackground.png"]] autorelease];
     
-    UIImageView *backGroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewFist.png"]] autorelease];
-    backGroundView.frame = CGRectMake(0, 0, 703, 660);
-    [concreteBackground addSubview:backGroundView];
+    self.fistImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewFist.png"]] autorelease];
+    self.fistImage.frame = CGRectMake(0, 0, 703, 660);
+    [concreteBackground addSubview:self.fistImage];
     
     // Add a 10px bottom margin.
     self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0);

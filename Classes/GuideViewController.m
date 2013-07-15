@@ -115,9 +115,6 @@
     if (bookmarker.poc.isPopoverVisible)
         [bookmarker.poc dismissPopoverAnimated:YES];
     
-    // Release memory cache
-    [self.memoryCache removeAllObjects];
-    
     // Hide the guide.
     [self dismissModalViewControllerAnimated:YES];
 }

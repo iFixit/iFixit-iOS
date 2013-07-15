@@ -19,6 +19,7 @@
 @property (retain, nonatomic) WBProgressHUD *loading;
 @property (nonatomic) UIInterfaceOrientation orientationOverride;
 @property (nonatomic, retain) UIImageView *noGuidesImage;
+@property (nonatomic, retain) UIImageView *fistImage;
 
 @property (nonatomic, assign) id<DetailGridViewControllerDelegate> gridDelegate;
 

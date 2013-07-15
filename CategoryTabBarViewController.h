@@ -14,12 +14,14 @@
 
 @class CategoriesViewController;
 
-@interface CategoryTabBarViewController : UITabBarController <UINavigationBarDelegate>
+@interface CategoryTabBarViewController : UITabBarController <UINavigationBarDelegate, UISplitViewControllerDelegate>
 
 // View controllers that our tab bar is going to reference
 
 // iPad
 @property (nonatomic, retain) DetailGridViewController *detailGridViewController;
+@property (nonatomic, retain) UIPopoverController *popOverController;
+@property (nonatomic, retain) UIButton *browseButton;
 
 // iPhone
 @property (nonatomic, retain) CategoriesViewController *categoriesViewController;
@@ -43,5 +45,6 @@
 - (void)showTabBar:(BOOL)option;
 - (void)configureSubViewFrame:(int)viewControllerIndex;
 - (void)gotCategoryResult:(NSDictionary *)results;
+- (void)hideTabBarItems:(BOOL)option;
     
 @end

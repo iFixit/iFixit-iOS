@@ -72,8 +72,19 @@
                     completion:nil
      ];
     
+    double yCoord = 0;
     // Figure out the yCoord for the loading icon
-    double yCoord = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? 300.0 : 160.0;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        yCoord = UIDeviceOrientationIsPortrait(self.interfaceOrientation) ? 400 : 300;
+    } else {
+        yCoord = 160;
+    }
+    
+    yCoord = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        ? (UIDeviceOrientationIsPortrait(self.interfaceOrientation)
+           ? 400 : 300)
+        : 160;
+    
     CGRect frame = CGRectMake(self.view.frame.size.width/ 2.0 - 60, yCoord, 120.0, 120.0);
     
     self.loading = [[[WBProgressHUD alloc] initWithFrame:frame] autorelease];

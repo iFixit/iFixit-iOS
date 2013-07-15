@@ -36,20 +36,32 @@
     
     // 1 view controller means we are at the root of our stack
     if (self.viewControllers.count == 1) {
-        [self.categoryTabBarViewController showTabBar:NO];
         
         // Only on iPad do we want to force a selection on tabbar item 0
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
             // Set the category to nil, force a selection on guides, then configure the frame.
+            [self.categoryTabBarViewController hideTabBarItems:UIDeviceOrientationIsPortrait(self.interfaceOrientation)];
+            [self.categoryTabBarViewController showTabBar:UIDeviceOrientationIsPortrait(self.interfaceOrientation)];
             [self.categoryTabBarViewController.detailGridViewController setCategory:nil];
             self.categoryTabBarViewController.selectedIndex = 0;
             [self.categoryTabBarViewController configureSubViewFrame:0];
+        } else {
+            [self.categoryTabBarViewController showTabBar:NO];
         }
     } else {
         [self.categoryTabBarViewController updateTabBar:[self.topViewController categoryMetaData]];
     }
     
     return viewController;
+}
+
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    // Only unhide tabbar items on root view
+    if (self.viewControllers.count == 1) {
+        [self.categoryTabBarViewController hideTabBarItems:NO];
+    }
+    
+    [super pushViewController:viewController animated:animated];
 }
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
