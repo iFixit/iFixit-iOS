@@ -23,6 +23,7 @@
 #import "UIColor+Hex.h"
 #import "GANTracker.h"
 #import "CategoryTabBarViewController.h"
+#import "iFixitSplashScreenViewController.h"
 
 static const NSInteger kGANDispatchPeriodSec = 10;
 
@@ -105,7 +106,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
     /* iFixit is easy. */
     if (![Config currentConfig].dozuki) {
-        [self showSiteSplash];
+        [self showiFixitSplash];
     }
     /* Dozuki gets a little more complicated. */
     else {
@@ -144,6 +145,21 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     if (!firstLoad) {
         [dsvc getStarted:nil];
     }
+}
+
+- (void)showiFixitSplash {
+    // Hide the status bar
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
+    iFixitSplashScreenViewController *svc = [[iFixitSplashScreenViewController alloc] initWithNibName:@"iFixitSplashScreenViewController" bundle:nil];
+    
+    self.window.rootViewController = svc;
+    
+    [UIView transitionWithView:self.window.rootViewController.view duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    } completion:nil];
+    
+    [window makeKeyAndVisible];
+    [svc release];
 }
 
 - (void)showSiteSplash {

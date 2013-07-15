@@ -446,7 +446,7 @@ BOOL onTablet;
     
     [UIView transitionWithView:fistImageView
                       duration:0.3
-                       options:UIViewAnimationOptionCurveEaseIn
+                       options:UIViewAnimationOptionCurveEaseInOut
                     animations:^{
                         fistImageView.frame = CGRectMake(0, yCoord, [[UIScreen mainScreen] bounds].size.width, fistImageView.frame.size.height);
                     } completion:nil
