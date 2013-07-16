@@ -151,8 +151,6 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Configure Navigation Bar
-    self.navigationController.navigationBar.tintColor = [Config currentConfig].toolbarColor;
     
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
         [self applyPaddedFooter];
@@ -188,6 +186,7 @@
                                                                    action:@selector(doneButtonPushed)];
     }
     
+    button.tintColor = [Config currentConfig].toolbarColor;
     self.navigationItem.leftBarButtonItem = button;
     [button release];
 }

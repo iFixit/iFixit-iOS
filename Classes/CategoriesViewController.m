@@ -52,7 +52,7 @@
         UIImageView *imageTitle;
         switch ([Config currentConfig].site) {
             case ConfigIFixit:
-                titleImage = [UIImage imageNamed:@"titleImage.png"];
+                titleImage = [UIImage imageNamed:@"iPhone-ifixit-logo.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 imageTitle.contentMode = UIViewContentModeScaleAspectFit;
                 self.navigationItem.titleView = imageTitle;
@@ -70,7 +70,7 @@
     }
     
     // Make room for the toolbar
-    [self willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
+    [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0];
     
     self.clearsSelectionOnViewWillAppear = NO;
     

@@ -88,8 +88,6 @@ BOOL onTablet;
     // On iPad we move the tabbar to the top of the frame, and color it to match the toolbar color in our config settings
     if (onTablet) {
         self.tabBar.frame = CGRectMake(0, 324, 768, 44);
-        // Color the tab bar and move the tabbar frame to the top
-        self.tabBar.tintColor = [Config currentConfig].toolbarColor;
     } else {
         [self showTabBar:NO];
     }
@@ -257,7 +255,7 @@ BOOL onTablet;
         if (UIDeviceOrientationIsLandscape(self.interfaceOrientation)) {
             [subView setFrame:(viewControllerIndex == self.GUIDES)
                 ? CGRectMake(0, 44, [subView frame].size.width, 655)
-                : CGRectMake(0, 0, [subView frame].size.width, 745)];
+                : CGRectMake(0, 0, [subView frame].size.width, 746)];
         } else {
             [subView setFrame:(viewControllerIndex == self.GUIDES)
                 ? CGRectMake(0, 44, [subView frame].size.width, 950)
@@ -267,7 +265,7 @@ BOOL onTablet;
     } else {
         [subView setFrame:(self.listViewController.viewControllers.count == 1)
             ? CGRectMake(0, 0, bounds.size.width, bounds.size.height + 44)
-            : CGRectMake(0, 0, bounds.size.width, bounds.size.height - 6)];
+            : CGRectMake(0, 0, bounds.size.width, bounds.size.height - 2)];
     }
 }
 

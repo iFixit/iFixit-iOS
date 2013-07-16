@@ -91,8 +91,7 @@ static Config *currentConfig = nil;
         case ConfigIFixitDev:
             self.backgroundColor = [UIColor blackColor];
             self.textColor = [UIColor whiteColor];
-            //self.toolbarColor = [UIColor blackColor];
-            self.toolbarColor = [UIColor colorWithRed:0.20 green:0.43 blue:0.66 alpha:1.0];
+            self.toolbarColor = [UIColor blackColor];
 
             // Load intro and step css from the css folder.        
             self.introCSS    = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];

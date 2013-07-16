@@ -28,6 +28,13 @@
 
 - (void)configureProperties {
     [self showFavoritesButton:self];
+    if ([[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]]) {
+        self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+        [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+        [[UINavigationBar appearance] setBackgroundColor:[UIColor colorWithRed:39/255.0f green:41/255.0f blue:43/255.0f alpha:1.0f]];
+    } else {
+        self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+    }
 }
 
 // Override delegate method so we always have control of what to do when we pop a viewcontroller off the stack
@@ -40,10 +47,10 @@
         // Only on iPad do we want to force a selection on tabbar item 0
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
             // Set the category to nil, force a selection on guides, then configure the frame.
+            self.categoryTabBarViewController.selectedIndex = 0;
             [self.categoryTabBarViewController hideTabBarItems:UIDeviceOrientationIsPortrait(self.interfaceOrientation)];
             [self.categoryTabBarViewController showTabBar:UIDeviceOrientationIsPortrait(self.interfaceOrientation)];
             [self.categoryTabBarViewController.detailGridViewController setCategory:nil];
-            self.categoryTabBarViewController.selectedIndex = 0;
             [self.categoryTabBarViewController configureSubViewFrame:0];
         } else {
             [self.categoryTabBarViewController showTabBar:NO];
@@ -57,7 +64,8 @@
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // Only unhide tabbar items on root view
-    if (self.viewControllers.count == 1) {
+    // Also only show the tabbar items if we aren't pushing a Bookmarks viewcontroller
+    if (self.viewControllers.count == 1 && ![viewController isKindOfClass:[BookmarksViewController class]]) {
         [self.categoryTabBarViewController hideTabBarItems:NO];
     }
     
@@ -75,8 +83,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
-    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (void)viewDidUnload {

@@ -264,9 +264,9 @@
 		AB324BA217940A360001E29D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		AB324BA417940A3E0001E29D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		AB324BA617940A410001E29D /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
-		AB324BAD179473670001E29D /* iFixitSplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iFixitSplashScreenViewController.h; sourceTree = "<group>"; };
-		AB324BAE179473680001E29D /* iFixitSplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iFixitSplashScreenViewController.m; sourceTree = "<group>"; };
-		AB324BAF179473680001E29D /* iFixitSplashScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iFixitSplashScreenViewController.xib; sourceTree = "<group>"; };
+		AB324BAD179473670001E29D /* iFixitSplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iFixitSplashScreenViewController.h; path = ../iFixitSplashScreenViewController.h; sourceTree = "<group>"; };
+		AB324BAE179473680001E29D /* iFixitSplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iFixitSplashScreenViewController.m; path = ../iFixitSplashScreenViewController.m; sourceTree = "<group>"; };
+		AB324BAF179473680001E29D /* iFixitSplashScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iFixitSplashScreenViewController.xib; path = ../iFixitSplashScreenViewController.xib; sourceTree = "<group>"; };
 		AB324BB3179477930001E29D /* iPhone4-objects-portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone4-objects-portrait.png"; sourceTree = "<group>"; };
 		AB324BB4179477930001E29D /* iPhone4-objects-portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone4-objects-portrait@2x.png"; sourceTree = "<group>"; };
 		AB324BB7179477E90001E29D /* iPhone-ifixit-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone-ifixit-logo.png"; sourceTree = "<group>"; };
@@ -598,6 +598,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AB324BDD1794CA280001E29D /* iFixitSplash */,
 				DAC88AD51427E10B00D33C00 /* Packages */,
 				C10F2767120CF1830027A28D /* Net */,
 				C10F270F120CE5820027A28D /* Objects */,
@@ -629,9 +630,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				AB324BAD179473670001E29D /* iFixitSplashScreenViewController.h */,
-				AB324BAE179473680001E29D /* iFixitSplashScreenViewController.m */,
-				AB324BAF179473680001E29D /* iFixitSplashScreenViewController.xib */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				C184D4E91210D3B400953C39 /* Images */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -722,6 +720,16 @@
 				AB324BC0179480B40001E29D /* iPhone4-objects-landscape@2x.png */,
 			);
 			name = "iFixit Splash";
+			sourceTree = "<group>";
+		};
+		AB324BDD1794CA280001E29D /* iFixitSplash */ = {
+			isa = PBXGroup;
+			children = (
+				AB324BAD179473670001E29D /* iFixitSplashScreenViewController.h */,
+				AB324BAE179473680001E29D /* iFixitSplashScreenViewController.m */,
+				AB324BAF179473680001E29D /* iFixitSplashScreenViewController.xib */,
+			);
+			name = iFixitSplash;
 			sourceTree = "<group>";
 		};
 		C10F26FC120CE5140027A28D /* JSON */ = {
