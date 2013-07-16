@@ -127,7 +127,7 @@
 
 
 - (void)gotAreas:(NSDictionary *)areas {
-    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = self.navigationItem.leftBarButtonItem = nil;
     
     // Areas was nil, meaning we probably had a connection error
     if (!areas) {

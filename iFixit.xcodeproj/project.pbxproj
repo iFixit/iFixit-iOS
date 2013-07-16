@@ -16,10 +16,6 @@
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
 		AB0B27AD15E7E3550088BA07 /* titleImageZeal.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */; };
 		AB0B27B015E7E36B0088BA07 /* titleImageZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */; };
-		AB324BA117940A300001E29D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BA017940A300001E29D /* Icon.png */; };
-		AB324BA317940A360001E29D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BA217940A360001E29D /* Icon@2x.png */; };
-		AB324BA517940A3E0001E29D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BA417940A3E0001E29D /* Icon-72.png */; };
-		AB324BA717940A410001E29D /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BA617940A410001E29D /* Icon-72@2x.png */; };
 		AB324BB0179473680001E29D /* iFixitSplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB324BAE179473680001E29D /* iFixitSplashScreenViewController.m */; };
 		AB324BB1179473680001E29D /* iFixitSplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB324BAF179473680001E29D /* iFixitSplashScreenViewController.xib */; };
 		AB324BB5179477930001E29D /* iPhone4-objects-portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BB3179477930001E29D /* iPhone4-objects-portrait.png */; };
@@ -42,6 +38,10 @@
 		AB324BD817948F430001E29D /* iPad-start-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BD617948F430001E29D /* iPad-start-button@2x.png */; };
 		AB324BDB179491BE0001E29D /* iPad-objects-portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BD9179491BE0001E29D /* iPad-objects-portrait.png */; };
 		AB324BDC179491BE0001E29D /* iPad-objects-portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BDA179491BE0001E29D /* iPad-objects-portrait@2x.png */; };
+		AB324BDF1795D5EF0001E29D /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BDE1795D5EF0001E29D /* icon57.png */; };
+		AB324BE11795D5F80001E29D /* Icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BE01795D5F80001E29D /* Icon114.png */; };
+		AB324BE31795D6170001E29D /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BE21795D6170001E29D /* icon72.png */; };
+		AB324BE51795D6630001E29D /* Icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BE41795D6630001E29D /* Icon144.png */; };
 		AB3C1776162718AD00323A1E /* dozukiLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1774162718AD00323A1E /* dozukiLogo.png */; };
 		AB3C1777162718AD00323A1E /* dozukiLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */; };
 		AB4926A4175FF6200092E4B6 /* category_more_info_ipad.css in Resources */ = {isa = PBXBuildFile; fileRef = AB4926A3175FF6200092E4B6 /* category_more_info_ipad.css */; };
@@ -260,10 +260,6 @@
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageZeal.png; sourceTree = "<group>"; };
 		AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImageZeal@2x.png"; sourceTree = "<group>"; };
-		AB324BA017940A300001E29D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		AB324BA217940A360001E29D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		AB324BA417940A3E0001E29D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
-		AB324BA617940A410001E29D /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		AB324BAD179473670001E29D /* iFixitSplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iFixitSplashScreenViewController.h; path = ../iFixitSplashScreenViewController.h; sourceTree = "<group>"; };
 		AB324BAE179473680001E29D /* iFixitSplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iFixitSplashScreenViewController.m; path = ../iFixitSplashScreenViewController.m; sourceTree = "<group>"; };
 		AB324BAF179473680001E29D /* iFixitSplashScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iFixitSplashScreenViewController.xib; path = ../iFixitSplashScreenViewController.xib; sourceTree = "<group>"; };
@@ -287,6 +283,10 @@
 		AB324BD617948F430001E29D /* iPad-start-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-start-button@2x.png"; sourceTree = "<group>"; };
 		AB324BD9179491BE0001E29D /* iPad-objects-portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-objects-portrait.png"; sourceTree = "<group>"; };
 		AB324BDA179491BE0001E29D /* iPad-objects-portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-objects-portrait@2x.png"; sourceTree = "<group>"; };
+		AB324BDE1795D5EF0001E29D /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
+		AB324BE01795D5F80001E29D /* Icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon114.png; sourceTree = "<group>"; };
+		AB324BE21795D6170001E29D /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
+		AB324BE41795D6630001E29D /* Icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon144.png; sourceTree = "<group>"; };
 		AB3C1774162718AD00323A1E /* dozukiLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiLogo.png; path = Graphics/dozukiLogo.png; sourceTree = "<group>"; };
 		AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiLogo@2x.png"; path = "Graphics/dozukiLogo@2x.png"; sourceTree = "<group>"; };
 		AB4926A3175FF6200092E4B6 /* category_more_info_ipad.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = category_more_info_ipad.css; sourceTree = "<group>"; };
@@ -643,11 +643,11 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AB324BE41795D6630001E29D /* Icon144.png */,
+				AB324BE21795D6170001E29D /* icon72.png */,
+				AB324BE01795D5F80001E29D /* Icon114.png */,
+				AB324BDE1795D5EF0001E29D /* icon57.png */,
 				DAC0C1A6146B49AA00EF42DC /* Lobster.ttf */,
-				AB324BA617940A410001E29D /* Icon-72@2x.png */,
-				AB324BA417940A3E0001E29D /* Icon-72.png */,
-				AB324BA217940A360001E29D /* Icon@2x.png */,
-				AB324BA017940A300001E29D /* Icon.png */,
 				DA3562AC1477254500683947 /* Ubuntu-BoldItalic.ttf */,
 				DAB26971146C96A2000D3A7A /* Ubuntu-Italic.ttf */,
 				DACE7FEF16571F560013FFFD /* Default-568h@2x.png */,
@@ -1372,10 +1372,6 @@
 				ABE38C9B1773B9AC00777F60 /* CategoryTabBarViewController.xib in Resources */,
 				ABA8FC4A177AA90A000B5E74 /* category_answers.css in Resources */,
 				ABE51914177B77F400E9555E /* category_more_info_iphone.css in Resources */,
-				AB324BA117940A300001E29D /* Icon.png in Resources */,
-				AB324BA317940A360001E29D /* Icon@2x.png in Resources */,
-				AB324BA517940A3E0001E29D /* Icon-72.png in Resources */,
-				AB324BA717940A410001E29D /* Icon-72@2x.png in Resources */,
 				AB324BB1179473680001E29D /* iFixitSplashScreenViewController.xib in Resources */,
 				AB324BB5179477930001E29D /* iPhone4-objects-portrait.png in Resources */,
 				AB324BB6179477930001E29D /* iPhone4-objects-portrait@2x.png in Resources */,
@@ -1397,6 +1393,10 @@
 				AB324BD817948F430001E29D /* iPad-start-button@2x.png in Resources */,
 				AB324BDB179491BE0001E29D /* iPad-objects-portrait.png in Resources */,
 				AB324BDC179491BE0001E29D /* iPad-objects-portrait@2x.png in Resources */,
+				AB324BDF1795D5EF0001E29D /* icon57.png in Resources */,
+				AB324BE11795D5F80001E29D /* Icon114.png in Resources */,
+				AB324BE31795D6170001E29D /* icon72.png in Resources */,
+				AB324BE51795D6630001E29D /* Icon144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1490,8 +1490,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1508,8 +1508,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "20B68BDB-99B6-4521-B833-C447F8D380C1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20B68BDB-99B6-4521-B833-C447F8D380C1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1523,8 +1523,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
@@ -1539,8 +1539,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "20B68BDB-99B6-4521-B833-C447F8D380C1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20B68BDB-99B6-4521-B833-C447F8D380C1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1551,8 +1551,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -1561,8 +1561,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "20B68BDB-99B6-4521-B833-C447F8D380C1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20B68BDB-99B6-4521-B833-C447F8D380C1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1573,16 +1573,16 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "20B68BDB-99B6-4521-B833-C447F8D380C1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20B68BDB-99B6-4521-B833-C447F8D380C1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1593,16 +1593,16 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CODE_SIGN_FLAGS = "";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "20B68BDB-99B6-4521-B833-C447F8D380C1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20B68BDB-99B6-4521-B833-C447F8D380C1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1617,8 +1617,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1635,8 +1635,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "20B68BDB-99B6-4521-B833-C447F8D380C1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20B68BDB-99B6-4521-B833-C447F8D380C1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";
