@@ -122,7 +122,8 @@
 - (UIView *)headerView {
     UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     
-    b.backgroundColor = [UIColor colorWithRed:0.20 green:0.38 blue:0.68 alpha:1.0];
+    b.backgroundColor = [Config currentConfig].toolbarColor;
+    
     if ([Config currentConfig].site == ConfigZeal)
         b.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
 
@@ -150,6 +151,7 @@
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    self.editButtonItem.tintColor = [Config currentConfig].toolbarColor;
     
     
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
@@ -324,6 +326,7 @@
     //[(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showGuide:guide];
     
     GuideViewController *vc = [[GuideViewController alloc] initWithGuide:guide];
+    vc.offlineGuide = YES;
     [self.navigationController presentModalViewController:vc animated:YES];
     [vc release];
     

@@ -112,6 +112,11 @@
         [self addViewShadow:image2];
         [self addViewShadow:image3];
 
+        // Set the main image for an offline guide
+        if (self.guideViewController.offlineGuide) {
+            [mainImage setImageWithURL:[self.step.images[0] URLForSize:@"large"]];
+        }
+        
         [self startImageDownloads];
     }
     // Videos

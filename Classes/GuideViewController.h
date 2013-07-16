@@ -25,6 +25,8 @@
 @property (nonatomic) NSInteger shouldLoadPage;
 @property (nonatomic, retain) NSCache *memoryCache;
 
+@property BOOL offlineGuide;
+
 - (id)initWithGuide:(Guide *)guide;
 - (id)initWithGuideid:(NSInteger)guideid;
 - (id)initWithGuideid:(NSInteger)guideid guide:(Guide *)guide;

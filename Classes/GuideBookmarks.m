@@ -220,7 +220,6 @@ static GuideBookmarks *sharedBookmarks = nil;
 - (void)gotGuide:(Guide *)guide {
     if (!guide) {
         self.currentItem = nil;
-        [iFixitAPI displayConnectionErrorAlert];
         return;
     }
     

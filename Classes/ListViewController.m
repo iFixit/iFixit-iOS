@@ -28,12 +28,12 @@
 
 - (void)configureProperties {
     [self showFavoritesButton:self];
-    if ([[Config currentConfig].toolbarColor isEqual:[UIColor blackColor]]) {
-        self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+    
+    self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+    
+    if ([Config currentConfig].site == ConfigIFixit) {
         [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
         [[UINavigationBar appearance] setBackgroundColor:[UIColor colorWithRed:39/255.0f green:41/255.0f blue:43/255.0f alpha:1.0f]];
-    } else {
-        self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
     }
 }
 
@@ -55,6 +55,9 @@
         } else {
             [self.categoryTabBarViewController showTabBar:NO];
         }
+        
+        // Force a rotate to ensure our logo is the correct size
+        [self.viewControllers[0] willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0];
     } else {
         [self.categoryTabBarViewController updateTabBar:[self.topViewController categoryMetaData]];
     }

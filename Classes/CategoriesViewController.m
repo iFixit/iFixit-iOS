@@ -110,8 +110,14 @@
     UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
                                                                                    target:self
                                                                                    action:@selector(getAreas)];
-    self.navigationItem.rightBarButtonItem = refreshButton;
-    [refreshButton release];   
+    if (self.listViewController.viewControllers.count == 1) {
+        self.navigationItem.leftBarButtonItem = refreshButton;
+        [self.listViewController showFavoritesButton:self];
+    } else {
+        self.navigationItem.rightBarButtonItem = refreshButton;
+    }
+    
+    [refreshButton release];
 }
 
 - (void)getAreas {
