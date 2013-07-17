@@ -12,6 +12,18 @@
 #import "Config.h"
 #import "CategoriesViewController.h"
 
+@implementation UINavigationBar (UINavigationBarCategory)
+
+// iOS 4.3
+- (void)drawRect:(CGRect)rect {
+    UIColor *color = [UIColor colorWithRed:39/255.0f green:41/255.0f blue:43/255.0f alpha:1.0f];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColor(context, CGColorGetComponents([color CGColor]));
+    CGContextFillRect(context, rect);
+}
+
+@end
+
 @implementation ListViewController
 
 - (id)initWithRootViewController:(UIViewController *)rvc {
@@ -31,7 +43,8 @@
     
     self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
     
-    if ([Config currentConfig].site == ConfigIFixit) {
+    // For iOS 5+
+    if ([Config currentConfig].site == ConfigIFixit && [[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
         [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
         [[UINavigationBar appearance] setBackgroundColor:[UIColor colorWithRed:39/255.0f green:41/255.0f blue:43/255.0f alpha:1.0f]];
     }

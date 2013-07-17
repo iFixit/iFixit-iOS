@@ -151,7 +151,6 @@
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    self.editButtonItem.tintColor = [Config currentConfig].toolbarColor;
     
     
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
@@ -188,8 +187,10 @@
                                                                    action:@selector(doneButtonPushed)];
     }
     
-    button.tintColor = [Config currentConfig].toolbarColor;
     self.navigationItem.leftBarButtonItem = button;
+    
+    // Color buttons for iOS 4.3
+    self.navigationController.navigationBar.tintColor = [Config currentConfig].toolbarColor;
     [button release];
 }
 
