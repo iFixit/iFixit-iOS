@@ -36,6 +36,8 @@
 		AB3C1776162718AD00323A1E /* dozukiLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1774162718AD00323A1E /* dozukiLogo.png */; };
 		AB3C1777162718AD00323A1E /* dozukiLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */; };
 		AB4926A4175FF6200092E4B6 /* category_more_info_ipad.css in Resources */ = {isa = PBXBuildFile; fileRef = AB4926A3175FF6200092E4B6 /* category_more_info_ipad.css */; };
+		ABA8A2A91797598100682597 /* logo_ifixit.png in Resources */ = {isa = PBXBuildFile; fileRef = ABA8A2A71797598100682597 /* logo_ifixit.png */; };
+		ABA8A2AA1797598100682597 /* logo_ifixit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABA8A2A81797598100682597 /* logo_ifixit@2x.png */; };
 		ABA8FC4A177AA90A000B5E74 /* category_answers.css in Resources */ = {isa = PBXBuildFile; fileRef = ABA8FC49177AA909000B5E74 /* category_answers.css */; };
 		ABB84A6A177F591200C58514 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB84A69177F591200C58514 /* ListViewController.m */; };
 		ABC5397E15EC4AA9004B2865 /* zeal_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC5397D15EC4AA9004B2865 /* zeal_logo_transparent.png */; };
@@ -92,7 +94,6 @@
 		DA275DAD15104C6200A8A09C /* detailViewText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DAB15104C6200A8A09C /* detailViewText@2x.png */; };
 		DA275DAF15104C7500A8A09C /* dozukiGetStarted@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DAE15104C7500A8A09C /* dozukiGetStarted@2x~ipad.png */; };
 		DA275DB115104C8A00A8A09C /* dozukiSplash@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DB015104C8A00A8A09C /* dozukiSplash@2x~ipad.png */; };
-		DA275DB515104CA400A8A09C /* logo_ifixit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DB215104CA400A8A09C /* logo_ifixit@2x.png */; };
 		DA275DB615104CA400A8A09C /* logo_make@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DB315104CA400A8A09C /* logo_make@2x.png */; };
 		DA275DB715104CA400A8A09C /* make_logo_transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DB415104CA400A8A09C /* make_logo_transparent@2x.png */; };
 		DA275DB915104CB400A8A09C /* noGuides@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DB815104CB400A8A09C /* noGuides@2x.png */; };
@@ -110,7 +111,6 @@
 		DA3562A9147718FA00683947 /* sv-stop-white.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3562A4147718FA00683947 /* sv-stop-white.png */; };
 		DA3562AB14771E2B00683947 /* tabBarItemBook.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3562AA14771E2B00683947 /* tabBarItemBook.png */; };
 		DA3562AD1477254500683947 /* Ubuntu-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA3562AC1477254500683947 /* Ubuntu-BoldItalic.ttf */; };
-		DA3562AF14772D1200683947 /* logo_ifixit.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3562AE14772D1200683947 /* logo_ifixit.png */; };
 		DA3562B1147731C500683947 /* noGuides.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3562B0147731C500683947 /* noGuides.png */; };
 		DA3DE74C134CF57000AD5050 /* GuideBookmarker.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3DE74B134CF57000AD5050 /* GuideBookmarker.m */; };
 		DA3DE755134D15E400AD5050 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3DE754134D15E400AD5050 /* UIButton+WebCache.m */; };
@@ -272,6 +272,8 @@
 		AB3C1774162718AD00323A1E /* dozukiLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiLogo.png; path = Graphics/dozukiLogo.png; sourceTree = "<group>"; };
 		AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiLogo@2x.png"; path = "Graphics/dozukiLogo@2x.png"; sourceTree = "<group>"; };
 		AB4926A3175FF6200092E4B6 /* category_more_info_ipad.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = category_more_info_ipad.css; sourceTree = "<group>"; };
+		ABA8A2A71797598100682597 /* logo_ifixit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ifixit.png; sourceTree = "<group>"; };
+		ABA8A2A81797598100682597 /* logo_ifixit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_ifixit@2x.png"; sourceTree = "<group>"; };
 		ABA8FC49177AA909000B5E74 /* category_answers.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = category_answers.css; sourceTree = "<group>"; };
 		ABB84A68177F591100C58514 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		ABB84A69177F591200C58514 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
@@ -352,7 +354,6 @@
 		DA275DAB15104C6200A8A09C /* detailViewText@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "detailViewText@2x.png"; path = "Graphics/detailViewText@2x.png"; sourceTree = "<group>"; };
 		DA275DAE15104C7500A8A09C /* dozukiGetStarted@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiGetStarted@2x~ipad.png"; path = "Graphics/dozukiGetStarted@2x~ipad.png"; sourceTree = "<group>"; };
 		DA275DB015104C8A00A8A09C /* dozukiSplash@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiSplash@2x~ipad.png"; path = "Graphics/dozukiSplash@2x~ipad.png"; sourceTree = "<group>"; };
-		DA275DB215104CA400A8A09C /* logo_ifixit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo_ifixit@2x.png"; path = "Graphics/logo_ifixit@2x.png"; sourceTree = "<group>"; };
 		DA275DB315104CA400A8A09C /* logo_make@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo_make@2x.png"; path = "Graphics/logo_make@2x.png"; sourceTree = "<group>"; };
 		DA275DB415104CA400A8A09C /* make_logo_transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "make_logo_transparent@2x.png"; path = "Graphics/make_logo_transparent@2x.png"; sourceTree = "<group>"; };
 		DA275DB815104CB400A8A09C /* noGuides@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noGuides@2x.png"; path = "Graphics/noGuides@2x.png"; sourceTree = "<group>"; };
@@ -371,7 +372,6 @@
 		DA3562A4147718FA00683947 /* sv-stop-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sv-stop-white.png"; sourceTree = "<group>"; };
 		DA3562AA14771E2B00683947 /* tabBarItemBook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarItemBook.png; path = Graphics/tabBarItemBook.png; sourceTree = "<group>"; };
 		DA3562AC1477254500683947 /* Ubuntu-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-BoldItalic.ttf"; sourceTree = "<group>"; };
-		DA3562AE14772D1200683947 /* logo_ifixit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_ifixit.png; path = Graphics/logo_ifixit.png; sourceTree = "<group>"; };
 		DA3562B0147731C500683947 /* noGuides.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noGuides.png; path = Graphics/noGuides.png; sourceTree = "<group>"; };
 		DA38111B147AE2C000BBFB9C /* DetailGridViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailGridViewControllerDelegate.h; sourceTree = "<group>"; };
 		DA3DE74A134CF57000AD5050 /* GuideBookmarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideBookmarker.h; sourceTree = "<group>"; };
@@ -757,6 +757,8 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				ABA8A2A71797598100682597 /* logo_ifixit.png */,
+				ABA8A2A81797598100682597 /* logo_ifixit@2x.png */,
 				AB324BB2179477740001E29D /* iFixit Splash */,
 				DA9948AB142ACC6000E4167D /* Dozuki Splash */,
 				DA35629F147718FA00683947 /* webNavBar */,
@@ -789,8 +791,6 @@
 				DAB9344313722AEB00B6AA9A /* login.png */,
 				DA275DBF1510510700A8A09C /* login@2x.png */,
 				DA275DC01510510700A8A09C /* register@2x.png */,
-				DA3562AE14772D1200683947 /* logo_ifixit.png */,
-				DA275DB215104CA400A8A09C /* logo_ifixit@2x.png */,
 				DA61C51F13380E4C000028C3 /* logo_make.png */,
 				DA275DB315104CA400A8A09C /* logo_make@2x.png */,
 				DA61C51E13380E4C000028C3 /* logo_make_black.png */,
@@ -1294,7 +1294,6 @@
 				DA3562A9147718FA00683947 /* sv-stop-white.png in Resources */,
 				DA3562AB14771E2B00683947 /* tabBarItemBook.png in Resources */,
 				DA3562AD1477254500683947 /* Ubuntu-BoldItalic.ttf in Resources */,
-				DA3562AF14772D1200683947 /* logo_ifixit.png in Resources */,
 				DA3562B1147731C500683947 /* noGuides.png in Resources */,
 				DAA10465147C3EEC00DED9DF /* concreteBackgroundWhite.png in Resources */,
 				DA086C7B147CA39900BD9A2F /* detailViewArrowDark.png in Resources */,
@@ -1317,7 +1316,6 @@
 				DA275DAD15104C6200A8A09C /* detailViewText@2x.png in Resources */,
 				DA275DAF15104C7500A8A09C /* dozukiGetStarted@2x~ipad.png in Resources */,
 				DA275DB115104C8A00A8A09C /* dozukiSplash@2x~ipad.png in Resources */,
-				DA275DB515104CA400A8A09C /* logo_ifixit@2x.png in Resources */,
 				DA275DB615104CA400A8A09C /* logo_make@2x.png in Resources */,
 				DA275DB715104CA400A8A09C /* make_logo_transparent@2x.png in Resources */,
 				DA275DB915104CB400A8A09C /* noGuides@2x.png in Resources */,
@@ -1361,6 +1359,8 @@
 				AB324BFB179617E80001E29D /* Default-568h-Landscape@2x.png in Resources */,
 				AB324BFD179618190001E29D /* Default-Landscape.png in Resources */,
 				AB324BFF179618260001E29D /* Default-Landscape@2x.png in Resources */,
+				ABA8A2A91797598100682597 /* logo_ifixit.png in Resources */,
+				ABA8A2AA1797598100682597 /* logo_ifixit@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
