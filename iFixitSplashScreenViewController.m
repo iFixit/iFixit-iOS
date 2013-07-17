@@ -13,6 +13,8 @@
 
 @end
 
+BOOL initialLoad;
+
 @implementation iFixitSplashScreenViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -20,6 +22,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        initialLoad = YES;
     }
     return self;
 }
@@ -32,10 +35,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [self presentStartRepairButton];
+    initialLoad = NO;
 }
 
 - (void)presentStartRepairButton {
-    [UIView transitionWithView:self.view
+    [UIView transitionWithView:self.startRepairButton
                       duration:0.3
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
@@ -83,15 +87,18 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     
-    
-    [UIView transitionWithView:self.view
-                      duration:0.3
-                       options:UIViewAnimationOptionTransitionCrossDissolve
-                    animations:^{
-                        [self reflowImages:toInterfaceOrientation];
-                    }
-                    completion:nil
-    ];
+    if (initialLoad) {
+        [self reflowImages:toInterfaceOrientation];
+    } else {
+        [UIView transitionWithView:self.view
+                          duration:0.3
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [self reflowImages:toInterfaceOrientation];
+                        }
+                        completion:nil
+         ];
+    }
 }
 
 // Do this the old school way until we can drop support for iOS 5
