@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface iFixitSplashScreenViewController : UIViewController
-@property (retain, nonatomic) IBOutlet UIImageView *ifixitLogo;
 @property (retain, nonatomic) IBOutlet UIButton *startRepairButton;
 @property (retain, nonatomic) IBOutlet UIImageView *splashBackground;
 

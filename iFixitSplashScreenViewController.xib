@@ -41,33 +41,19 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 568}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="53113234"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">iPhone4-objects-portrait.png</string>
-						</object>
-					</object>
-					<object class="IBUIImageView" id="53113234">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{83, 152}, {154, 46}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="740569715"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">iPhone-ifixit-logo.png</string>
+							<string key="NSResourceName">Default-568h@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="740569715">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">288</int>
-						<string key="NSFrame">{{51, 244}, {218, 45}}</string>
+						<int key="NSvFlags">-2147483360</int>
+						<string key="NSFrame">{{51, 292}, {218, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -144,14 +130,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">ifixitLogo</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="53113234"/>
-					</object>
-					<int key="connectionID">16</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">startRepairButton</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="740569715"/>
@@ -189,7 +167,6 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="99141503"/>
-							<reference ref="53113234"/>
 							<reference ref="740569715"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -212,11 +189,6 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">13</int>
-						<reference key="object" ref="53113234"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
 						<reference key="object" ref="740569715"/>
 						<reference key="parent" ref="191373211"/>
@@ -229,7 +201,6 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -245,9 +216,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="iPhone-ifixit-logo.png">{154, 46}</string>
+			<string key="Default-568h@2x.png">{640, 1136}</string>
 			<string key="iPhone-start-button.png">{219, 45}</string>
-			<string key="iPhone4-objects-portrait.png">{320, 480}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

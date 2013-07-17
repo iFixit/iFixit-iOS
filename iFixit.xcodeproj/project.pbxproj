@@ -18,30 +18,21 @@
 		AB0B27B015E7E36B0088BA07 /* titleImageZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */; };
 		AB324BB0179473680001E29D /* iFixitSplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB324BAE179473680001E29D /* iFixitSplashScreenViewController.m */; };
 		AB324BB1179473680001E29D /* iFixitSplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB324BAF179473680001E29D /* iFixitSplashScreenViewController.xib */; };
-		AB324BB5179477930001E29D /* iPhone4-objects-portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BB3179477930001E29D /* iPhone4-objects-portrait.png */; };
-		AB324BB6179477930001E29D /* iPhone4-objects-portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BB4179477930001E29D /* iPhone4-objects-portrait@2x.png */; };
 		AB324BB9179477E90001E29D /* iPhone-ifixit-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BB7179477E90001E29D /* iPhone-ifixit-logo.png */; };
 		AB324BBA179477E90001E29D /* iPhone-ifixit-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BB8179477E90001E29D /* iPhone-ifixit-logo@2x.png */; };
 		AB324BBD179478300001E29D /* iPhone-start-button.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BBB179478300001E29D /* iPhone-start-button.png */; };
 		AB324BBE179478300001E29D /* iPhone-start-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BBC179478300001E29D /* iPhone-start-button@2x.png */; };
-		AB324BC1179480B40001E29D /* iPhone4-objects-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BBF179480B40001E29D /* iPhone4-objects-landscape.png */; };
-		AB324BC2179480B40001E29D /* iPhone4-objects-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BC0179480B40001E29D /* iPhone4-objects-landscape@2x.png */; };
-		AB324BC7179483050001E29D /* iPhone5-objects-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BC3179483050001E29D /* iPhone5-objects-landscape.png */; };
-		AB324BC8179483050001E29D /* iPhone5-objects-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BC4179483050001E29D /* iPhone5-objects-landscape@2x.png */; };
-		AB324BC9179483050001E29D /* iPhone5-objects-portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BC5179483050001E29D /* iPhone5-objects-portrait.png */; };
-		AB324BCA179483050001E29D /* iPhone5-objects-portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BC6179483050001E29D /* iPhone5-objects-portrait@2x.png */; };
-		AB324BCF17948DBE0001E29D /* iPad-ifixit-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BCD17948DBE0001E29D /* iPad-ifixit-logo.png */; };
-		AB324BD017948DBE0001E29D /* iPad-ifixit-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BCE17948DBE0001E29D /* iPad-ifixit-logo@2x.png */; };
-		AB324BD317948F110001E29D /* iPad-objects-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BD117948F110001E29D /* iPad-objects-landscape.png */; };
-		AB324BD417948F110001E29D /* iPad-objects-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BD217948F110001E29D /* iPad-objects-landscape@2x.png */; };
 		AB324BD717948F430001E29D /* iPad-start-button.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BD517948F430001E29D /* iPad-start-button.png */; };
 		AB324BD817948F430001E29D /* iPad-start-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BD617948F430001E29D /* iPad-start-button@2x.png */; };
-		AB324BDB179491BE0001E29D /* iPad-objects-portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BD9179491BE0001E29D /* iPad-objects-portrait.png */; };
-		AB324BDC179491BE0001E29D /* iPad-objects-portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BDA179491BE0001E29D /* iPad-objects-portrait@2x.png */; };
 		AB324BDF1795D5EF0001E29D /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BDE1795D5EF0001E29D /* icon57.png */; };
 		AB324BE11795D5F80001E29D /* Icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BE01795D5F80001E29D /* Icon114.png */; };
 		AB324BE31795D6170001E29D /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BE21795D6170001E29D /* icon72.png */; };
 		AB324BE51795D6630001E29D /* Icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BE41795D6630001E29D /* Icon144.png */; };
+		AB324BE8179615930001E29D /* iPad-ifixit-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BE6179615930001E29D /* iPad-ifixit-logo.png */; };
+		AB324BE9179615930001E29D /* iPad-ifixit-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BE7179615930001E29D /* iPad-ifixit-logo@2x.png */; };
+		AB324BFB179617E80001E29D /* Default-568h-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BFA179617E80001E29D /* Default-568h-Landscape@2x.png */; };
+		AB324BFD179618190001E29D /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BFC179618190001E29D /* Default-Landscape.png */; };
+		AB324BFF179618260001E29D /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB324BFE179618260001E29D /* Default-Landscape@2x.png */; };
 		AB3C1776162718AD00323A1E /* dozukiLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1774162718AD00323A1E /* dozukiLogo.png */; };
 		AB3C1777162718AD00323A1E /* dozukiLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */; };
 		AB4926A4175FF6200092E4B6 /* category_more_info_ipad.css in Resources */ = {isa = PBXBuildFile; fileRef = AB4926A3175FF6200092E4B6 /* category_more_info_ipad.css */; };
@@ -263,30 +254,21 @@
 		AB324BAD179473670001E29D /* iFixitSplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iFixitSplashScreenViewController.h; path = ../iFixitSplashScreenViewController.h; sourceTree = "<group>"; };
 		AB324BAE179473680001E29D /* iFixitSplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iFixitSplashScreenViewController.m; path = ../iFixitSplashScreenViewController.m; sourceTree = "<group>"; };
 		AB324BAF179473680001E29D /* iFixitSplashScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iFixitSplashScreenViewController.xib; path = ../iFixitSplashScreenViewController.xib; sourceTree = "<group>"; };
-		AB324BB3179477930001E29D /* iPhone4-objects-portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone4-objects-portrait.png"; sourceTree = "<group>"; };
-		AB324BB4179477930001E29D /* iPhone4-objects-portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone4-objects-portrait@2x.png"; sourceTree = "<group>"; };
 		AB324BB7179477E90001E29D /* iPhone-ifixit-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone-ifixit-logo.png"; sourceTree = "<group>"; };
 		AB324BB8179477E90001E29D /* iPhone-ifixit-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone-ifixit-logo@2x.png"; sourceTree = "<group>"; };
 		AB324BBB179478300001E29D /* iPhone-start-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone-start-button.png"; sourceTree = "<group>"; };
 		AB324BBC179478300001E29D /* iPhone-start-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone-start-button@2x.png"; sourceTree = "<group>"; };
-		AB324BBF179480B40001E29D /* iPhone4-objects-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone4-objects-landscape.png"; sourceTree = "<group>"; };
-		AB324BC0179480B40001E29D /* iPhone4-objects-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone4-objects-landscape@2x.png"; sourceTree = "<group>"; };
-		AB324BC3179483050001E29D /* iPhone5-objects-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone5-objects-landscape.png"; sourceTree = "<group>"; };
-		AB324BC4179483050001E29D /* iPhone5-objects-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone5-objects-landscape@2x.png"; sourceTree = "<group>"; };
-		AB324BC5179483050001E29D /* iPhone5-objects-portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone5-objects-portrait.png"; sourceTree = "<group>"; };
-		AB324BC6179483050001E29D /* iPhone5-objects-portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone5-objects-portrait@2x.png"; sourceTree = "<group>"; };
-		AB324BCD17948DBE0001E29D /* iPad-ifixit-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-ifixit-logo.png"; sourceTree = "<group>"; };
-		AB324BCE17948DBE0001E29D /* iPad-ifixit-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-ifixit-logo@2x.png"; sourceTree = "<group>"; };
-		AB324BD117948F110001E29D /* iPad-objects-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-objects-landscape.png"; sourceTree = "<group>"; };
-		AB324BD217948F110001E29D /* iPad-objects-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-objects-landscape@2x.png"; sourceTree = "<group>"; };
 		AB324BD517948F430001E29D /* iPad-start-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-start-button.png"; sourceTree = "<group>"; };
 		AB324BD617948F430001E29D /* iPad-start-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-start-button@2x.png"; sourceTree = "<group>"; };
-		AB324BD9179491BE0001E29D /* iPad-objects-portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-objects-portrait.png"; sourceTree = "<group>"; };
-		AB324BDA179491BE0001E29D /* iPad-objects-portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-objects-portrait@2x.png"; sourceTree = "<group>"; };
 		AB324BDE1795D5EF0001E29D /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
 		AB324BE01795D5F80001E29D /* Icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon114.png; sourceTree = "<group>"; };
 		AB324BE21795D6170001E29D /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
 		AB324BE41795D6630001E29D /* Icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon144.png; sourceTree = "<group>"; };
+		AB324BE6179615930001E29D /* iPad-ifixit-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-ifixit-logo.png"; sourceTree = "<group>"; };
+		AB324BE7179615930001E29D /* iPad-ifixit-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-ifixit-logo@2x.png"; sourceTree = "<group>"; };
+		AB324BFA179617E80001E29D /* Default-568h-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h-Landscape@2x.png"; sourceTree = "<group>"; };
+		AB324BFC179618190001E29D /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
+		AB324BFE179618260001E29D /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x.png"; sourceTree = "<group>"; };
 		AB3C1774162718AD00323A1E /* dozukiLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiLogo.png; path = Graphics/dozukiLogo.png; sourceTree = "<group>"; };
 		AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiLogo@2x.png"; path = "Graphics/dozukiLogo@2x.png"; sourceTree = "<group>"; };
 		AB4926A3175FF6200092E4B6 /* category_more_info_ipad.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = category_more_info_ipad.css; sourceTree = "<group>"; };
@@ -643,6 +625,9 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AB324BFE179618260001E29D /* Default-Landscape@2x.png */,
+				AB324BFC179618190001E29D /* Default-Landscape.png */,
+				AB324BFA179617E80001E29D /* Default-568h-Landscape@2x.png */,
 				AB324BE41795D6630001E29D /* Icon144.png */,
 				AB324BE21795D6170001E29D /* icon72.png */,
 				AB324BE01795D5F80001E29D /* Icon114.png */,
@@ -698,26 +683,14 @@
 		AB324BB2179477740001E29D /* iFixit Splash */ = {
 			isa = PBXGroup;
 			children = (
+				AB324BE6179615930001E29D /* iPad-ifixit-logo.png */,
+				AB324BE7179615930001E29D /* iPad-ifixit-logo@2x.png */,
 				AB324BD517948F430001E29D /* iPad-start-button.png */,
 				AB324BD617948F430001E29D /* iPad-start-button@2x.png */,
-				AB324BD117948F110001E29D /* iPad-objects-landscape.png */,
-				AB324BD217948F110001E29D /* iPad-objects-landscape@2x.png */,
-				AB324BD9179491BE0001E29D /* iPad-objects-portrait.png */,
-				AB324BDA179491BE0001E29D /* iPad-objects-portrait@2x.png */,
-				AB324BCD17948DBE0001E29D /* iPad-ifixit-logo.png */,
-				AB324BCE17948DBE0001E29D /* iPad-ifixit-logo@2x.png */,
-				AB324BC3179483050001E29D /* iPhone5-objects-landscape.png */,
-				AB324BC4179483050001E29D /* iPhone5-objects-landscape@2x.png */,
-				AB324BC5179483050001E29D /* iPhone5-objects-portrait.png */,
-				AB324BC6179483050001E29D /* iPhone5-objects-portrait@2x.png */,
 				AB324BBB179478300001E29D /* iPhone-start-button.png */,
 				AB324BBC179478300001E29D /* iPhone-start-button@2x.png */,
 				AB324BB7179477E90001E29D /* iPhone-ifixit-logo.png */,
 				AB324BB8179477E90001E29D /* iPhone-ifixit-logo@2x.png */,
-				AB324BB3179477930001E29D /* iPhone4-objects-portrait.png */,
-				AB324BB4179477930001E29D /* iPhone4-objects-portrait@2x.png */,
-				AB324BBF179480B40001E29D /* iPhone4-objects-landscape.png */,
-				AB324BC0179480B40001E29D /* iPhone4-objects-landscape@2x.png */,
 			);
 			name = "iFixit Splash";
 			sourceTree = "<group>";
@@ -1373,30 +1346,21 @@
 				ABA8FC4A177AA90A000B5E74 /* category_answers.css in Resources */,
 				ABE51914177B77F400E9555E /* category_more_info_iphone.css in Resources */,
 				AB324BB1179473680001E29D /* iFixitSplashScreenViewController.xib in Resources */,
-				AB324BB5179477930001E29D /* iPhone4-objects-portrait.png in Resources */,
-				AB324BB6179477930001E29D /* iPhone4-objects-portrait@2x.png in Resources */,
 				AB324BB9179477E90001E29D /* iPhone-ifixit-logo.png in Resources */,
 				AB324BBA179477E90001E29D /* iPhone-ifixit-logo@2x.png in Resources */,
 				AB324BBD179478300001E29D /* iPhone-start-button.png in Resources */,
 				AB324BBE179478300001E29D /* iPhone-start-button@2x.png in Resources */,
-				AB324BC1179480B40001E29D /* iPhone4-objects-landscape.png in Resources */,
-				AB324BC2179480B40001E29D /* iPhone4-objects-landscape@2x.png in Resources */,
-				AB324BC7179483050001E29D /* iPhone5-objects-landscape.png in Resources */,
-				AB324BC8179483050001E29D /* iPhone5-objects-landscape@2x.png in Resources */,
-				AB324BC9179483050001E29D /* iPhone5-objects-portrait.png in Resources */,
-				AB324BCA179483050001E29D /* iPhone5-objects-portrait@2x.png in Resources */,
-				AB324BCF17948DBE0001E29D /* iPad-ifixit-logo.png in Resources */,
-				AB324BD017948DBE0001E29D /* iPad-ifixit-logo@2x.png in Resources */,
-				AB324BD317948F110001E29D /* iPad-objects-landscape.png in Resources */,
-				AB324BD417948F110001E29D /* iPad-objects-landscape@2x.png in Resources */,
 				AB324BD717948F430001E29D /* iPad-start-button.png in Resources */,
 				AB324BD817948F430001E29D /* iPad-start-button@2x.png in Resources */,
-				AB324BDB179491BE0001E29D /* iPad-objects-portrait.png in Resources */,
-				AB324BDC179491BE0001E29D /* iPad-objects-portrait@2x.png in Resources */,
 				AB324BDF1795D5EF0001E29D /* icon57.png in Resources */,
 				AB324BE11795D5F80001E29D /* Icon114.png in Resources */,
 				AB324BE31795D6170001E29D /* icon72.png in Resources */,
 				AB324BE51795D6630001E29D /* Icon144.png in Resources */,
+				AB324BE8179615930001E29D /* iPad-ifixit-logo.png in Resources */,
+				AB324BE9179615930001E29D /* iPad-ifixit-logo@2x.png in Resources */,
+				AB324BFB179617E80001E29D /* Default-568h-Landscape@2x.png in Resources */,
+				AB324BFD179618190001E29D /* Default-Landscape.png in Resources */,
+				AB324BFF179618260001E29D /* Default-Landscape@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

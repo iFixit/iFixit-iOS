@@ -30,6 +30,21 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self presentStartRepairButton];
+}
+
+- (void)presentStartRepairButton {
+    [UIView transitionWithView:self.view
+                      duration:0.3
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        self.startRepairButton.hidden = NO;
+                    }
+                    completion:nil
+    ];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [self reflowImages:self.interfaceOrientation];
 }
@@ -41,13 +56,11 @@
 }
 
 - (void)dealloc {
-    [_ifixitLogo release];
     [_startRepairButton release];
     [_splashBackground release];
     [super dealloc];
 }
 - (void)viewDidUnload {
-    [self setIfixitLogo:nil];
     [self setStartRepairButton:nil];
     [self setSplashBackground:nil];
     [super viewDidUnload];
@@ -70,51 +83,51 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     
-    [self reflowImages:toInterfaceOrientation];
+    
+    [UIView transitionWithView:self.view
+                      duration:0.3
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        [self reflowImages:toInterfaceOrientation];
+                    }
+                    completion:nil
+    ];
 }
 
 // Do this the old school way until we can drop support for iOS 5
 // Lot's of values here but we need to be pixel perfect
 - (void)reflowImages:(UIInterfaceOrientation)orientation {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        self.ifixitLogo.image = [UIImage imageNamed:@"iPhone-ifixit-logo"];
         [self.startRepairButton setImage:[UIImage imageNamed:@"iPhone-start-button"] forState:UIControlStateNormal];
         
         if (UIDeviceOrientationIsLandscape(orientation)) {
             // iPhone 5
             if ([UIScreen mainScreen].bounds.size.height == 568.0) {
-                self.ifixitLogo.frame = CGRectMake(209, 95, 154, 46);
                 self.startRepairButton.frame = CGRectMake(177, 170, 219, 45);
-                self.splashBackground.image = [UIImage imageNamed:@"iPhone5-objects-landscape"];
+                self.splashBackground.image = [UIImage imageNamed:@"Default-568h-Landscape"];
             } else {
-                self.ifixitLogo.frame = CGRectMake(163, 95, 154, 46);
                 self.startRepairButton.frame = CGRectMake(131, 170, 219, 45);
-                self.splashBackground.image = [UIImage imageNamed:@"iPhone4-objects-landscape"];
+                self.splashBackground.image = [UIImage imageNamed:@"Default-Landscape"];
             }
             
         } else {
             if ([UIScreen mainScreen].bounds.size.height == 568.0) {
-                self.ifixitLogo.frame = CGRectMake(83, 200, 154, 46);
                 self.startRepairButton.frame = CGRectMake(51, 292, 218, 45);
-                self.splashBackground.image = [UIImage imageNamed:@"iPhone5-objects-portrait"];
+                self.splashBackground.image = [UIImage imageNamed:@"Default-568h"];
             } else {
-                self.ifixitLogo.frame = CGRectMake(83, 152, 154, 46);
                 self.startRepairButton.frame = CGRectMake(51, 244, 218, 45);
-                self.splashBackground.image = [UIImage imageNamed:@"iPhone4-objects-portrait"];
+                self.splashBackground.image = [UIImage imageNamed:@"Default"];
             }
         }
     } else {
-        self.ifixitLogo.image = [UIImage imageNamed:@"iPad-ifixit-logo"];
         [self.startRepairButton setImage:[UIImage imageNamed:@"iPad-start-button"] forState:UIControlStateNormal];
         
         if (UIDeviceOrientationIsLandscape(orientation)) {
-            self.ifixitLogo.frame = CGRectMake(400, 289, 224, 67);
             self.startRepairButton.frame = CGRectMake(390, 410, 244, 50);
-            self.splashBackground.image = [UIImage imageNamed:@"iPad-objects-landscape"];
+            self.splashBackground.image = [UIImage imageNamed:@"Default-Landscape"];
         } else {
-            self.ifixitLogo.frame = CGRectMake(272, 408, 224, 67);
             self.startRepairButton.frame = CGRectMake(263, 550, 244, 50);
-            self.splashBackground.image = [UIImage imageNamed:@"iPad-objects-portrait"];
+            self.splashBackground.image = [UIImage imageNamed:@"Default-Portrait"];
         }
     }
 }
