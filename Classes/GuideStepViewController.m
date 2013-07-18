@@ -112,11 +112,6 @@
         [self addViewShadow:image2];
         [self addViewShadow:image3];
 
-        // Set the main image for an offline guide
-        if (self.guideViewController.offlineGuide) {
-            [mainImage setImageWithURL:[self.step.images[0] URLForSize:@"large"]];
-        }
-        
         [self startImageDownloads];
     }
     // Videos
@@ -214,14 +209,8 @@
 
 - (void)startImageDownloads {
     if ([self.step.images count] > 0) {
-        UIImage *largeImage = [self checkMemoryForCachedImage:[self.step.images[0] URLForSize:@"large"].absoluteString];
-        // If we have the item from memory cache, retrieve it!
-        if (largeImage) {
-            [mainImage setBackgroundImage:largeImage forState:UIControlStateNormal];
-        } else {
-            // Download the image
-            [SDWebImageDownloader downloaderWithURL:[self.step.images[0] URLForSize:@"large"] delegate:self userInfo:@"image1"];
-        }
+        // Download the image
+        [mainImage setImageWithURL:[self.step.images[0] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
         
         if ([self.step.images count] > 1) {
             [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
@@ -240,28 +229,16 @@
     }
 }
 
-- (id)checkMemoryForCachedImage:(NSString*)key {
-    return [self.guideViewController.memoryCache objectForKey:key];
-}
-
 - (IBAction)changeImage:(UIButton *)button {
-    NSString *imageKey = [self.step.images[button.tag] URLForSize:@"large"].absoluteString;
-    UIImage *largeImage = [self checkMemoryForCachedImage:imageKey];
+    GuideImage *guideImage = self.step.images[button.tag];
     
-    // If the image is in memory cache, let's use it
-    if (largeImage) {
-        // Animate the image change
-        [UIView transitionWithView:mainImage
-                          duration:0.3
-                           options:UIViewAnimationOptionTransitionCrossDissolve
-                        animations:^{
-                            [mainImage setBackgroundImage:largeImage forState:UIControlStateNormal];
-                        } completion:nil];
-    // We haven't downloaded the image yet, let's do it
-    } else {
-        GuideImage *guideImage = self.step.images[button.tag];
-        [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
-    }
+    // Animate the image change
+    [UIView transitionWithView:mainImage
+                      duration:0.3
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+                    } completion:nil];
 }
 
 // Because the web view has a white background, it starts hidden.
@@ -274,25 +251,16 @@
 	webView.hidden = NO;
 }
 
-- (void)imageDownloader:(SDWebImageDownloader *)downloader didFinishWithImage:(UIImage *)image {
-    [self.guideViewController.memoryCache setObject:image forKey:downloader.url.absoluteString];
-    
-    if ([downloader.userInfo isEqualToString:@"image1"]) {
-        [self changeImage:image1];
-    }
-}
-
 - (void)loadSecondaryImages {
     
     // Only load the secondary large images if we are looking at the current view being presented on the screen
     if (self.step.number == self.guideViewController.pageControl.currentPage) {
-        // If an image exists in memory cache, let's use it instead of downloading the image again
-        if ([self.step.images count] > 1 && ![self checkMemoryForCachedImage:[self.step.images[1] URLForSize:@"large"].absoluteString]) {
-            [SDWebImageDownloader downloaderWithURL:[self.step.images[1] URLForSize:@"large"] delegate:self userInfo:nil];
+        if (self.step.images.count > 1) {
+            [self.imageDownloadContainer setImageWithURL:[self.step.images[1] URLForSize:@"large"]  placeholderImage:nil];
         }
         
-        if ([self.step.images count] > 2 && ![self checkMemoryForCachedImage:[self.step.images[2] URLForSize:@"large"].absoluteString]) {
-            [SDWebImageDownloader downloaderWithURL:[self.step.images[2] URLForSize:@"large"] delegate:self userInfo:nil];
+        if (self.step.images.count > 2) {
+            [self.imageDownloadContainer setImageWithURL:[self.step.images[2] URLForSize:@"large"]  placeholderImage:nil];
         }
     }
     
@@ -424,6 +392,7 @@
 }
 
 - (void)viewDidUnload {
+    [self setImageDownloadContainer:nil];
     [super viewDidUnload];
     self.titleLabel = nil;
     self.mainImage = nil;
@@ -456,6 +425,7 @@
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
+    [_imageDownloadContainer release];
     [super dealloc];
 }
 

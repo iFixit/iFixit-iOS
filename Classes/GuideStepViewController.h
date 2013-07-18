@@ -29,6 +29,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *image3;
 @property (nonatomic) NSInteger numImagesLoaded;
 @property (nonatomic, retain) NSString *html;
+@property (retain, nonatomic) IBOutlet UIButton *imageDownloadContainer;
 
 @property (nonatomic, retain) NSMutableDictionary *largeImages;
 
