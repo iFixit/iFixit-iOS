@@ -14,8 +14,10 @@ p, a, li, h3 {
 }
 
 #categoryImage {
-    float: left;
-    margin: 5px 15px 0px 8px;
+    float: right;
+    margin: 5px 15px 5px 8px;
+    border: 1px solid black;
+    padding: 1px;
 }
 
 #moreInfoContent {
