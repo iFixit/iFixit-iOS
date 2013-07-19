@@ -208,7 +208,7 @@
     // Setup the navigation items to show back arrow and bookmarks button
     NSString *title = guide.title;
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad && [guide.subject length] > 0)
-        title = self.guide.subject;
+        title = guide.subject;
     
 	UINavigationItem *thisItem = [[UINavigationItem alloc] initWithTitle:title];
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
@@ -259,7 +259,7 @@
 		} else {
 			controller = [[GuideStepViewController alloc] initWithStep:[self.guide.steps objectAtIndex:stepNumber]];
             ((GuideStepViewController *)controller).delegate = self;
-            [controller setGuideViewController:self];
+            ((GuideStepViewController *)controller).guideViewController = self;
 		}
 
         [viewControllers replaceObjectAtIndex:page withObject:controller];
@@ -320,14 +320,17 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     pageControlUsed = NO;
     
+    [self preloadForCurrentPage:[NSNumber numberWithInt:pageControl.currentPage]];
+    
     // If the user scrolls super fast, a view controller may be null, this will force a view load if we come across that behavior
     if ([viewControllers[pageControl.currentPage] isKindOfClass:[NSNull class]]) {
         [self scrollViewWillBeginDragging:scrollView];
     }
     
     // Only load secondary images if we are looking at the current view for longer than half a second
-    if (pageControl.currentPage > 0)
+    if (pageControl.currentPage > 0) {
         [viewControllers[pageControl.currentPage] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:0.8];
+    }
 }
 
 - (IBAction)changePage:(id)sender {
@@ -347,9 +350,9 @@
 	// Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
     pageControlUsed = YES;
     
-    // Only load secondary images if we are looking at the current view for longer than half a second
+    // Only load secondary images if we are looking at the current view for longer than .8 second
     if (page > 0) {
-        [viewControllers[page] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:1.0];
+        [viewControllers[page] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:0.8];
         [self showOrHidePageControlForInterface:self.interfaceOrientation];
     }
 }
