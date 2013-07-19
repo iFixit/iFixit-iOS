@@ -231,14 +231,20 @@
 
 - (IBAction)changeImage:(UIButton *)button {
     GuideImage *guideImage = self.step.images[button.tag];
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    UIImage *cachedImage = [manager imageWithURL:[guideImage URLForSize:@"large"]];
     
-    // Animate the image change
-    [UIView transitionWithView:mainImage
-                      duration:0.3
-                       options:UIViewAnimationOptionTransitionCrossDissolve
-                    animations:^{
-                        [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
-                    } completion:nil];
+    // Use the cached image if we have it, otherwise download it
+    if (cachedImage) {
+        [UIView transitionWithView:mainImage
+                          duration:0.3
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [mainImage setBackgroundImage:cachedImage forState:UIControlStateNormal];
+                        } completion:nil];
+    } else {
+        [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+    }
 }
 
 // Because the web view has a white background, it starts hidden.
@@ -251,16 +257,22 @@
 	webView.hidden = NO;
 }
 
+// I'll leave this here in case we ever want to use this
+- (void) webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image {
+}
+
 - (void)loadSecondaryImages {
     
     // Only load the secondary large images if we are looking at the current view being presented on the screen
     if (self.step.number == self.guideViewController.pageControl.currentPage) {
-        if (self.step.images.count > 1) {
-            [self.imageDownloadContainer setImageWithURL:[self.step.images[1] URLForSize:@"large"]  placeholderImage:nil];
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        
+        if (self.step.images.count > 1 && ![manager imageWithURL:[self.step.images[1] URLForSize:@"large"]]) {
+            [manager downloadWithURL:[self.step.images[1] URLForSize:@"large"] delegate:self retryFailed:YES];
         }
         
-        if (self.step.images.count > 2) {
-            [self.imageDownloadContainer setImageWithURL:[self.step.images[2] URLForSize:@"large"]  placeholderImage:nil];
+        if (self.step.images.count > 2 && ![manager imageWithURL:[self.step.images[2] URLForSize:@"large"]]) {
+            [manager downloadWithURL:[self.step.images[2] URLForSize:@"large"] delegate:self retryFailed:YES];
         }
     }
     
@@ -425,7 +437,6 @@
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
-    [_imageDownloadContainer release];
     [super dealloc];
 }
 

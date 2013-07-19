@@ -45,6 +45,7 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{238, 10}, {60, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="112558424"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -84,6 +85,7 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{238, 62}, {60, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="332616857"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">1</int>
@@ -106,6 +108,7 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{238, 115}, {60, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="729705696"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">2</int>
@@ -128,31 +131,10 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 10}, {200, 150}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="149214910"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
-						<reference key="IBUIHighlightedTitleColor" ref="104272785"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="920761207"/>
-						<reference key="IBUINormalBackgroundImage" ref="68254614"/>
-						<reference key="IBUIFontDescription" ref="408026252"/>
-						<reference key="IBUIFont" ref="520135055"/>
-					</object>
-					<object class="IBUIButton" id="83527561">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{20, 10}, {200, 150}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<bool key="IBUIEnabled">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
@@ -171,6 +153,7 @@
 						<int key="NSvFlags">-2147483375</int>
 						<string key="NSFrame">{{0, 168}, {320, 220}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">6</int>
 							<string key="NSCatalogName">System</string>
@@ -185,6 +168,7 @@
 				</object>
 				<string key="NSFrame">{{0, 64}, {320, 416}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="523736486"/>
 				<reference key="IBUIBackgroundColor" ref="432260376"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
@@ -247,14 +231,6 @@
 						<reference key="destination" ref="729705696"/>
 					</object>
 					<int key="connectionID">15</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">imageDownloadContainer</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="83527561"/>
-					</object>
-					<int key="connectionID">26</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -322,7 +298,6 @@
 							<reference ref="729705696"/>
 							<reference ref="149214910"/>
 							<reference ref="112558424"/>
-							<reference ref="83527561"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -362,11 +337,6 @@
 						<reference key="object" ref="729705696"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">24</int>
-						<reference key="object" ref="83527561"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -380,7 +350,6 @@
 					<string>1.IBPluginDependency</string>
 					<string>14.CustomClassName</string>
 					<string>14.IBPluginDependency</string>
-					<string>24.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
@@ -394,7 +363,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>GuideCatchingWebView</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -469,14 +437,12 @@
 							<string>image1</string>
 							<string>image2</string>
 							<string>image3</string>
-							<string>imageDownloadContainer</string>
 							<string>mainImage</string>
 							<string>titleLabel</string>
 							<string>webView</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
@@ -492,7 +458,6 @@
 							<string>image1</string>
 							<string>image2</string>
 							<string>image3</string>
-							<string>imageDownloadContainer</string>
 							<string>mainImage</string>
 							<string>titleLabel</string>
 							<string>webView</string>
@@ -509,10 +474,6 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">image3</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">imageDownloadContainer</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
