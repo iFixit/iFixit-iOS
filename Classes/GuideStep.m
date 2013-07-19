@@ -25,7 +25,7 @@
     // Possible types: image, video, embed
     // If *media is empty, then there will be no
     // type so we want to default to an image type
-    NSString *type = (media.count > 0) ? [media objectForKey:@"type"] : @"image";
+    NSString *type = media ? [media objectForKey:@"type"] : @"image";
 
     if ([type isEqual:@"image"]) {
         guideStep.images = [NSMutableArray array];

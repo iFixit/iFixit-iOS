@@ -39,8 +39,8 @@
 	guide.title          = [guideData valueForKey:@"title"];
 	guide.topic          = [dict valueForKey:@"topic"];
 	guide.subject        = [guideData valueForKey:@"subject"];
-	guide.author         = [guideData valueForKey:@"author"];
-	guide.timeRequired   = [guideData valueForKey:@"time"];
+	guide.author         = guideData[@"author"][@"text"];
+	guide.timeRequired   = [guideData valueForKey:@"time_required"];
 	guide.difficulty     = [guideData valueForKey:@"difficulty"];
 	guide.introduction   = [guideData valueForKey:@"introduction"];
 	guide.summary        = [guideData valueForKey:@"summary"];
