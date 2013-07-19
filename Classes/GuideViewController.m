@@ -297,23 +297,27 @@
 
 // At the begin of scroll dragging, reset the boolean used when scrolls originate from the UIPageControl
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    int page = pageControl.currentPage;
     pageControlUsed = NO;
-    [self preloadForCurrentPage:[NSNumber numberWithInt:page]];
-	
+    [self preloadForCurrentPage:[NSNumber numberWithInt:pageControl.currentPage]];
+    
+}
+
+- (void)unloadViewControllers {
+    int page = pageControl.currentPage;
+    
     // Unload the views+controllers which are no longer visible
-   for (int i = 2; i < pageControl.numberOfPages; i++) {
-      float distance = fabs(page - i + 1);
-      if (distance > 2.0) {
-         UIViewController *vc = [viewControllers objectAtIndex:i];
-         if ((NSNull *)vc != [NSNull null]) {
-            [vc viewWillDisappear:NO];
-            [vc.view removeFromSuperview];
-            vc.view = nil;
-            [viewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
-         }
-      }
-   }
+    for (int i = 2; i < pageControl.numberOfPages; i++) {
+        float distance = fabs(page - i + 1);
+        if (distance > 2.0) {
+            UIViewController *vc = [viewControllers objectAtIndex:i];
+            if ((NSNull *)vc != [NSNull null]) {
+                [vc viewWillDisappear:NO];
+                [vc.view removeFromSuperview];
+                vc.view = nil;
+                [viewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
+            }
+        }
+    }
 }
 
 // At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
@@ -321,6 +325,7 @@
     pageControlUsed = NO;
     
     [self preloadForCurrentPage:[NSNumber numberWithInt:pageControl.currentPage]];
+    [self unloadViewControllers];
     
     // If the user scrolls super fast, a view controller may be null, this will force a view load if we come across that behavior
     if ([viewControllers[pageControl.currentPage] isKindOfClass:[NSNull class]]) {
@@ -339,6 +344,7 @@
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
     //[self performSelector:@selector(preloadForCurrentPage:) withObject:[NSNumber numberWithInt:page] afterDelay:0.1];
     [self preloadForCurrentPage:[NSNumber numberWithInt:page]];
+    [self unloadViewControllers];
     
 	// update the scroll view to the appropriate page
     CGRect frame = scrollView.frame;
