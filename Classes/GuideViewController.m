@@ -381,7 +381,8 @@
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [self adjustScrollViewContentSizeForInterfaceOrientation:toInterfaceOrientation];
+    int page = pageControl.currentPage;
+    
     
     if (viewControllers) {
         [self showOrHidePageControlForInterface:toInterfaceOrientation];
@@ -397,10 +398,11 @@
             
             vc.view.frame = frame;
             [vc willRotateToInterfaceOrientation:toInterfaceOrientation duration:0];
+            [self adjustScrollViewContentSizeForInterfaceOrientation:toInterfaceOrientation];
         }
     }
     
-    [self showPage:pageControl.currentPage];
+    [self showPage:page];
 }
 
 - (void)viewDidUnload {

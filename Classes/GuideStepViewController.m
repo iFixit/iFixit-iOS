@@ -404,7 +404,6 @@
 }
 
 - (void)viewDidUnload {
-    [self setImageDownloadContainer:nil];
     [super viewDidUnload];
     self.titleLabel = nil;
     self.mainImage = nil;
