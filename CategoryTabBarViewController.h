@@ -14,7 +14,7 @@
 
 @class CategoriesViewController;
 
-@interface CategoryTabBarViewController : UITabBarController <UINavigationBarDelegate, UISplitViewControllerDelegate>
+@interface CategoryTabBarViewController : UITabBarController <UINavigationBarDelegate, UISplitViewControllerDelegate, UITabBarControllerDelegate>
 
 // View controllers that our tab bar is going to reference
 

@@ -78,6 +78,8 @@ BOOL onTablet;
         [self.view.subviews[1] addSubview:self.browseButton];
         self.browseButton.hidden = YES;
     }
+    
+    self.delegate = self;
 }
 
 - (void)browseButtonPushed {
@@ -322,8 +324,18 @@ BOOL onTablet;
     [self configureSubViewFrame:self.GUIDES];
 }
 
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    if (onTablet)
+        return true;
+    else
+        return tabBarController.selectedViewController != viewController;
+}
+
 // Delegate method, called when a tabBarItem is selected, or when I want to force a selection programatically
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    if (item.tag == self.selectedIndex && !onTablet) {
+        return;
+    }
     
     NSString *category = self.categoryMetaData[@"topic_info"][@"name"];
     
