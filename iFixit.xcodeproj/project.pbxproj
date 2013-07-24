@@ -36,6 +36,12 @@
 		AB3C1776162718AD00323A1E /* dozukiLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1774162718AD00323A1E /* dozukiLogo.png */; };
 		AB3C1777162718AD00323A1E /* dozukiLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */; };
 		AB4926A4175FF6200092E4B6 /* category_more_info_ipad.css in Resources */ = {isa = PBXBuildFile; fileRef = AB4926A3175FF6200092E4B6 /* category_more_info_ipad.css */; };
+		AB4D33BD17A042270080C40A /* answers.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4D33B717A042270080C40A /* answers.png */; };
+		AB4D33BE17A042270080C40A /* answers@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4D33B817A042270080C40A /* answers@2x.png */; };
+		AB4D33BF17A042270080C40A /* guides.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4D33B917A042270080C40A /* guides.png */; };
+		AB4D33C017A042270080C40A /* guides@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4D33BA17A042270080C40A /* guides@2x.png */; };
+		AB4D33C117A042270080C40A /* moreinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4D33BB17A042270080C40A /* moreinfo.png */; };
+		AB4D33C217A042270080C40A /* moreinfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4D33BC17A042270080C40A /* moreinfo@2x.png */; };
 		ABA8A2A91797598100682597 /* logo_ifixit.png in Resources */ = {isa = PBXBuildFile; fileRef = ABA8A2A71797598100682597 /* logo_ifixit.png */; };
 		ABA8A2AA1797598100682597 /* logo_ifixit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABA8A2A81797598100682597 /* logo_ifixit@2x.png */; };
 		ABA8FC4A177AA90A000B5E74 /* category_answers.css in Resources */ = {isa = PBXBuildFile; fileRef = ABA8FC49177AA909000B5E74 /* category_answers.css */; };
@@ -272,6 +278,12 @@
 		AB3C1774162718AD00323A1E /* dozukiLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiLogo.png; path = Graphics/dozukiLogo.png; sourceTree = "<group>"; };
 		AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiLogo@2x.png"; path = "Graphics/dozukiLogo@2x.png"; sourceTree = "<group>"; };
 		AB4926A3175FF6200092E4B6 /* category_more_info_ipad.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = category_more_info_ipad.css; sourceTree = "<group>"; };
+		AB4D33B717A042270080C40A /* answers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = answers.png; sourceTree = "<group>"; };
+		AB4D33B817A042270080C40A /* answers@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "answers@2x.png"; sourceTree = "<group>"; };
+		AB4D33B917A042270080C40A /* guides.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guides.png; sourceTree = "<group>"; };
+		AB4D33BA17A042270080C40A /* guides@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guides@2x.png"; sourceTree = "<group>"; };
+		AB4D33BB17A042270080C40A /* moreinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moreinfo.png; sourceTree = "<group>"; };
+		AB4D33BC17A042270080C40A /* moreinfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moreinfo@2x.png"; sourceTree = "<group>"; };
 		ABA8A2A71797598100682597 /* logo_ifixit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ifixit.png; sourceTree = "<group>"; };
 		ABA8A2A81797598100682597 /* logo_ifixit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_ifixit@2x.png"; sourceTree = "<group>"; };
 		ABA8FC49177AA909000B5E74 /* category_answers.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = category_answers.css; sourceTree = "<group>"; };
@@ -705,6 +717,19 @@
 			name = iFixitSplash;
 			sourceTree = "<group>";
 		};
+		AB4D33B617A041D50080C40A /* Tabbar images */ = {
+			isa = PBXGroup;
+			children = (
+				AB4D33B717A042270080C40A /* answers.png */,
+				AB4D33B817A042270080C40A /* answers@2x.png */,
+				AB4D33B917A042270080C40A /* guides.png */,
+				AB4D33BA17A042270080C40A /* guides@2x.png */,
+				AB4D33BB17A042270080C40A /* moreinfo.png */,
+				AB4D33BC17A042270080C40A /* moreinfo@2x.png */,
+			);
+			name = "Tabbar images";
+			sourceTree = "<group>";
+		};
 		C10F26FC120CE5140027A28D /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -757,6 +782,7 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AB4D33B617A041D50080C40A /* Tabbar images */,
 				ABA8A2A71797598100682597 /* logo_ifixit.png */,
 				ABA8A2A81797598100682597 /* logo_ifixit@2x.png */,
 				AB324BB2179477740001E29D /* iFixit Splash */,
@@ -1361,6 +1387,12 @@
 				AB324BFF179618260001E29D /* Default-Landscape@2x.png in Resources */,
 				ABA8A2A91797598100682597 /* logo_ifixit.png in Resources */,
 				ABA8A2AA1797598100682597 /* logo_ifixit@2x.png in Resources */,
+				AB4D33BD17A042270080C40A /* answers.png in Resources */,
+				AB4D33BE17A042270080C40A /* answers@2x.png in Resources */,
+				AB4D33BF17A042270080C40A /* guides.png in Resources */,
+				AB4D33C017A042270080C40A /* guides@2x.png in Resources */,
+				AB4D33C117A042270080C40A /* moreinfo.png in Resources */,
+				AB4D33C217A042270080C40A /* moreinfo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -126,23 +126,26 @@ BOOL onTablet;
         [viewControllers addObject:self.detailGridViewController];
         self.detailGridViewController.tabBarItem.title = NSLocalizedString(@"Guides", nil);
         self.detailGridViewController.tabBarItem.tag = self.GUIDES;
+        self.detailGridViewController.tabBarItem.image = [UIImage imageNamed:@"guides"];
     } else {
         // On iPhone our first view controller is a navigation controller
         [viewControllers addObject:self.listViewController];
         self.listViewController.tabBarItem.title = NSLocalizedString(@"Guides", nil);
         self.listViewController.tabBarItem.tag = self.GUIDES;
+        self.listViewController.tabBarItem.image = [UIImage imageNamed:@"guides"];
         // Create a reference that our navigation controller can use to access the tabbar controller easily
         self.listViewController.categoryTabBarViewController = self;
     }
     
-    // TODO: Add images eventually
     self.categoryMoreInfoViewController.tabBarItem.title = NSLocalizedString(@"More Info", nil);
     self.categoryMoreInfoViewController.tabBarItem.tag = self.MORE_INFO;
+    self.categoryMoreInfoViewController.tabBarItem.image = [UIImage imageNamed:@"moreinfo"];
     
     // Not every site has answers enabled
     if ([Config currentConfig].answersEnabled) {
         self.categoryAnswersWebViewController.tabBarItem.title = NSLocalizedString(@"Answers", nil);
         self.categoryAnswersWebViewController.tabBarItem.tag = self.ANSWERS;
+        self.categoryAnswersWebViewController.tabBarItem.image = [UIImage imageNamed:@"answers"];
         [viewControllers addObject:self.categoryAnswersWebViewController];
     }
     
