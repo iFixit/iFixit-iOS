@@ -173,10 +173,6 @@ BOOL onTablet, initialLoad;
     }
 }
 
-- (void)hideTabBarItems:(BOOL)option {
-    self.viewControllers = option ? nil : self.tabBarViewControllers;
-}
-
 - (void)showTabBar:(BOOL)option {
     [UIView transitionWithView:self.tabBar
                       duration:0.3f
@@ -336,7 +332,7 @@ BOOL onTablet, initialLoad;
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     if (onTablet)
-        return true;
+        return YES;
     else
         return tabBarController.selectedViewController != viewController;
 }
@@ -350,8 +346,9 @@ BOOL onTablet, initialLoad;
     NSString *category = self.categoryMetaData[@"topic_info"][@"name"];
     
     if (item.tag == self.GUIDES) {
-        if (![category isEqualToString:self.detailGridViewController.category])
+        if (![category isEqualToString:self.detailGridViewController.category]) {
             self.detailGridViewController.category = category;
+        }
     } else if (item.tag == self.MORE_INFO) {
         [self prepareWebViewController:self.categoryMoreInfoViewController fromTag:item.tag withCategory:category];
     } else {
@@ -450,10 +447,6 @@ BOOL onTablet, initialLoad;
     [self configureTabBarFrame:UIInterfaceOrientationMaskPortrait];
     [self configureFistImageView:UIInterfaceOrientationMaskPortrait];
     
-    if (self.listViewController.viewControllers.count == 1) {
-        [self hideTabBarItems:YES];
-    }
-    
     self.popOverController = pc;
     self.browseButton.hidden = NO;
     self.detailGridViewController.orientationOverride = UIInterfaceOrientationPortrait;
@@ -482,7 +475,6 @@ BOOL onTablet, initialLoad;
     [self showTabBar:(self.listViewController.viewControllers.count > 1)];
     [self configureFistImageView:UIInterfaceOrientationLandscapeLeft];
     [self configureTabBarFrame:UIInterfaceOrientationLandscapeLeft];
-    [self hideTabBarItems:NO];
     self.popOverController = nil;
     self.browseButton.hidden = YES;
     self.detailGridViewController.orientationOverride = UIInterfaceOrientationLandscapeLeft;

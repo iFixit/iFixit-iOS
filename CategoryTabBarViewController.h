@@ -45,6 +45,5 @@
 - (void)showTabBar:(BOOL)option;
 - (void)configureSubViewFrame:(int)viewControllerIndex;
 - (void)gotCategoryResult:(NSDictionary *)results;
-- (void)hideTabBarItems:(BOOL)option;
     
 @end

@@ -61,8 +61,8 @@
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
             // Set the category to nil, force a selection on guides, then configure the frame.
             self.categoryTabBarViewController.selectedIndex = 0;
-            [self.categoryTabBarViewController hideTabBarItems:UIDeviceOrientationIsPortrait(self.interfaceOrientation)];
             [self.categoryTabBarViewController showTabBar:UIDeviceOrientationIsPortrait(self.interfaceOrientation)];
+            [self.categoryTabBarViewController enableTabBarItems:NO];
             [self.categoryTabBarViewController.detailGridViewController setCategory:nil];
             [self.categoryTabBarViewController configureSubViewFrame:0];
         } else {
@@ -79,12 +79,6 @@
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    // Only unhide tabbar items on root view
-    // Also only show the tabbar items if we aren't pushing a Bookmarks viewcontroller
-    if (self.viewControllers.count == 1 && ![viewController isKindOfClass:[BookmarksViewController class]]) {
-        [self.categoryTabBarViewController hideTabBarItems:NO];
-    }
-    
     [super pushViewController:viewController animated:animated];
 }
 - (void)didReceiveMemoryWarning {
