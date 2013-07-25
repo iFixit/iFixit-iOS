@@ -102,7 +102,7 @@ BOOL onTablet, initialLoad;
         // There is some terribly odd behavior with starting the app in portrait mode on initial load,
         // this deals with that by having custom frame logic only on initial load + Portrait.
         if (initialLoad) {
-            self.tabBar.frame = CGRectMake(0, 70, [UIScreen mainScreen].bounds.size.width, 44);
+            self.tabBar.frame = CGRectMake(0, 69, [UIScreen mainScreen].bounds.size.width, 44);
         } else {
             self.tabBar.frame = CGRectMake(0, -256, [UIScreen mainScreen].bounds.size.width, 44);
         }

@@ -19,6 +19,7 @@
 #import "GuideViewController.h"
 #import "ListViewController.h"
 #import "GANTracker.h"
+#import "CategoryTabBarViewController.h"
 
 @implementation BookmarksViewController
 
@@ -328,8 +329,23 @@
     
     GuideViewController *vc = [[GuideViewController alloc] initWithGuide:guide];
     vc.offlineGuide = YES;
-    [self.navigationController presentModalViewController:vc animated:YES];
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        [self.navigationController presentModalViewController:vc animated:YES];
+    } else {
+        UIPopoverController *povc = [self.splitViewController.viewControllers[1] popOverController];
+        
+        if ([povc isPopoverVisible]) {
+            [povc dismissPopoverAnimated:NO];
+        }
+        
+        iFixitAppDelegate *delegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];
+        GuideViewController *vc = [[GuideViewController alloc] initWithGuide:guide];
+        [delegate.window.rootViewController presentModalViewController:vc animated:YES];
+    }
+    
     [vc release];
+    
     
     // Refresh any changes.
     [[GuideBookmarks sharedBookmarks] addGuideid:[NSNumber numberWithInt:guide.guideid]];
