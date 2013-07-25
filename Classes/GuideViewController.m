@@ -383,6 +383,7 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     int page = pageControl.currentPage;
     
+    [self adjustScrollViewContentSizeForInterfaceOrientation:toInterfaceOrientation];
     
     if (viewControllers) {
         [self showOrHidePageControlForInterface:toInterfaceOrientation];
@@ -398,7 +399,6 @@
             
             vc.view.frame = frame;
             [vc willRotateToInterfaceOrientation:toInterfaceOrientation duration:0];
-            [self adjustScrollViewContentSizeForInterfaceOrientation:toInterfaceOrientation];
         }
     }
     
