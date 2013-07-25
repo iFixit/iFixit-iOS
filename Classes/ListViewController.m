@@ -64,6 +64,7 @@
             [self.categoryTabBarViewController showTabBar:UIDeviceOrientationIsPortrait(self.interfaceOrientation)];
             [self.categoryTabBarViewController enableTabBarItems:NO];
             [self.categoryTabBarViewController.detailGridViewController setCategory:nil];
+            [self.categoryTabBarViewController.detailGridViewController.tableView reloadData];
             [self.categoryTabBarViewController configureSubViewFrame:0];
         } else {
             [self.categoryTabBarViewController showTabBar:NO];

@@ -75,6 +75,7 @@ BOOL onTablet, initialLoad;
         self.browseButton.frame = CGRectMake(7, 5, 100, 34);
         self.browseButton.layer.cornerRadius = 10;
         self.browseButton.clipsToBounds = YES;
+        [self createGradient:self.browseButton];
         [self.view.subviews[1] addSubview:self.browseButton];
         self.browseButton.hidden = YES;
     }
@@ -84,6 +85,50 @@ BOOL onTablet, initialLoad;
 
 - (void)browseButtonPushed {
     [self.popOverController presentPopoverFromRect:self.browseButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+}
+
+- (void)createGradient:(UIButton*)btn {
+    
+    /**
+     * Taken from: http://stackoverflow.com/a/14940984/2089315
+     */
+    
+    CAGradientLayer *btnGradient = [CAGradientLayer layer];
+    btnGradient.frame = btn.bounds;
+    btnGradient.colors = [NSArray arrayWithObjects:
+                          (id)[[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:.6f] CGColor],
+                          (id)[[UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:.4f] CGColor],
+                          (id)[[UIColor colorWithRed:150.0f/255.0f green:150.0f/255.0f blue:150.0f/255.0f alpha:.4f] CGColor],
+                          (id)[[UIColor colorWithRed:100.0f/255.0f green:100.0f/255.0f blue:100.0f/255.0f alpha:.4f] CGColor],
+                          (id)[[UIColor colorWithRed:50.0f/255.0f green:50.0f/255.0f blue:50.0f/255.0f alpha:.4f] CGColor],
+                          (id)[[UIColor colorWithRed:5.0f/255.0f green:5.0f/255.0f blue:5.0f/255.0f alpha:.4f] CGColor],
+                          
+                          nil];
+    [btn.layer insertSublayer:btnGradient atIndex:0];
+    
+    CAGradientLayer *glossLayer = [CAGradientLayer layer];
+    glossLayer.frame = btn.bounds;
+    glossLayer.colors = [NSArray arrayWithObjects:
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.1f].CGColor,
+                         (id)[UIColor colorWithWhite:0.75f alpha:0.0f].CGColor,
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.1f].CGColor,
+                         nil];
+    glossLayer.locations = [NSArray arrayWithObjects:
+                            [NSNumber numberWithFloat:0.0f],
+                            [NSNumber numberWithFloat:0.5f],
+                            [NSNumber numberWithFloat:0.5f],
+                            [NSNumber numberWithFloat:1.0f],
+                            nil];
+    [btn.layer insertSublayer:glossLayer atIndex:0];
+    
+    CALayer *btnLayer = [btn layer];
+    [btnLayer setMasksToBounds:YES];
+    
+    UIColor *myColor = btn.backgroundColor;
+    [btn.layer setBorderColor:[myColor CGColor]];
+    [[btn layer] setBorderWidth:2.0f];
+    [[btn layer] setCornerRadius:10.0f];
 }
 
 - (void)configureTabBar {
