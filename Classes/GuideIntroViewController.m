@@ -195,6 +195,7 @@
 - (void)viewDidUnload {
     [self setOverlayView:nil];
     [self setHeaderTextDozuki:nil];
+    [self setSwipeLabel:nil];
     [super viewDidUnload];
     self.headerImageLogo = nil;
     self.swipeLabel = nil;
