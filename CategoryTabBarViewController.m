@@ -18,7 +18,7 @@
 
 @end
 
-BOOL onTablet;
+BOOL onTablet, initialLoad;
 
 @implementation CategoryTabBarViewController
 
@@ -40,11 +40,10 @@ BOOL onTablet;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    if (onTablet) {
-        [self configureTabBarFrame:self.interfaceOrientation];
-    }
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    initialLoad = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,6 +55,7 @@ BOOL onTablet;
 // Initialize our properties that will be used throughout the program
 - (void)initializeProperties {
     onTablet = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad;
+    initialLoad = YES;
     
     // This is a hack built on top of a hack. We have a filler image we use when we hide the tabbar to avoid funky resizing issues of the view
     if (onTablet) {
@@ -87,7 +87,7 @@ BOOL onTablet;
 }
 
 - (void)configureTabBar {
-    // On iPad we move the tabbar to the top of the frame, and color it to match the toolbar color in our config settings
+    // On iPad we move the tabbar to the top of the frame.
     if (onTablet) {
         self.tabBar.frame = CGRectMake(0, 324, 768, 44);
     } else {
@@ -99,7 +99,14 @@ BOOL onTablet;
     if (UIDeviceOrientationIsLandscape(orientation)) {
         self.tabBar.frame = CGRectMake(0, 255, [UIScreen mainScreen].bounds.size.width, 44);
     } else {
-        self.tabBar.frame = CGRectMake(0, -256, [UIScreen mainScreen].bounds.size.width, 44);
+        // There is some terribly odd behavior with starting the app in portrait mode on initial load,
+        // this deals with that by having custom frame logic only on initial load + Portrait.
+        if (initialLoad) {
+            self.tabBar.frame = CGRectMake(0, 70, [UIScreen mainScreen].bounds.size.width, 44);
+        } else {
+            self.tabBar.frame = CGRectMake(0, -256, [UIScreen mainScreen].bounds.size.width, 44);
+        }
+        
     }
 }
 
@@ -457,13 +464,17 @@ BOOL onTablet;
     UIImageView *fistImageView = self.detailGridViewController.fistImage;
     int yCoord = UIDeviceOrientationIsLandscape(orientation) ? 0 : 250;
     
-    [UIView transitionWithView:fistImageView
-                      duration:0.3
-                       options:UIViewAnimationOptionCurveEaseInOut
-                    animations:^{
-                        fistImageView.frame = CGRectMake(0, yCoord, [[UIScreen mainScreen] bounds].size.width, fistImageView.frame.size.height);
-                    } completion:nil
-    ];
+    if (initialLoad)
+        fistImageView.frame = CGRectMake(0, yCoord, [[UIScreen mainScreen] bounds].size.width, fistImageView.frame.size.height);
+    else {
+        [UIView transitionWithView:fistImageView
+                          duration:0.3
+                           options:UIViewAnimationOptionCurveEaseInOut
+                        animations:^{
+                            fistImageView.frame = CGRectMake(0, yCoord, [[UIScreen mainScreen] bounds].size.width, fistImageView.frame.size.height);
+                        } completion:nil
+         ];
+    }
 }
 
 - (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
