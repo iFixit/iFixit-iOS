@@ -45,5 +45,6 @@
 - (void)showTabBar:(BOOL)option;
 - (void)configureSubViewFrame:(int)viewControllerIndex;
 - (void)gotCategoryResult:(NSDictionary *)results;
+- (void)reflowLayout:(UIInterfaceOrientation)orientation;
     
 @end
