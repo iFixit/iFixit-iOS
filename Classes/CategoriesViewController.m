@@ -89,6 +89,10 @@
     // Display the favorites button on the top right
     [self.listViewController showFavoritesButton:self];
     
+    // Solves an edge case dealing with categories not always loading
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone && self.listViewController.viewControllers.count == 1) {
+        [self viewWillAppear:NO];
+    }
 }
 
 - (void)showLoading {
