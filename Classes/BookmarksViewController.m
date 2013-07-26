@@ -319,7 +319,6 @@
     }   
 }
 
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -345,7 +344,6 @@
     }
     
     [vc release];
-    
     
     // Refresh any changes.
     [[GuideBookmarks sharedBookmarks] addGuideid:[NSNumber numberWithInt:guide.guideid]];

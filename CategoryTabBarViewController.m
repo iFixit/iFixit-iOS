@@ -18,7 +18,7 @@
 
 @end
 
-BOOL onTablet, initialLoad;
+BOOL onTablet, initialLoad, viewDidDisappear;
 
 @implementation CategoryTabBarViewController
 
@@ -43,7 +43,17 @@ BOOL onTablet, initialLoad;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    initialLoad = NO;
+    initialLoad = viewDidDisappear = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    viewDidDisappear = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (onTablet && !viewDidDisappear) {
+        [self reflowLayout:self.interfaceOrientation];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -486,16 +496,28 @@ BOOL onTablet, initialLoad;
     return NO;
 }
 
-- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc {
+- (void)reflowLayout:(UIInterfaceOrientation)orientation {
     
-    [self showTabBar:YES];
-    [self configureTabBarFrame:UIInterfaceOrientationMaskPortrait];
-    [self configureFistImageView:UIInterfaceOrientationMaskPortrait];
+    if (UIDeviceOrientationIsLandscape(orientation)) {
+        [self showTabBar:(self.listViewController.viewControllers.count > 1)];
+        [self configureFistImageView:UIInterfaceOrientationLandscapeLeft];
+        [self configureTabBarFrame:UIInterfaceOrientationLandscapeLeft];
+        self.popOverController = nil;
+        self.browseButton.hidden = YES;
+        self.detailGridViewController.orientationOverride = UIInterfaceOrientationLandscapeLeft;
+    } else {
+        [self showTabBar:YES];
+        [self configureTabBarFrame:UIInterfaceOrientationMaskPortrait];
+        [self configureFistImageView:UIInterfaceOrientationMaskPortrait];
+        self.browseButton.hidden = NO;
+        self.detailGridViewController.orientationOverride = UIInterfaceOrientationPortrait;
+    }
     
-    self.popOverController = pc;
-    self.browseButton.hidden = NO;
-    self.detailGridViewController.orientationOverride = UIInterfaceOrientationPortrait;
     [self.detailGridViewController.tableView reloadData];
+}
+
+- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc {
+      self.popOverController = pc;
 }
 
 - (void)configureFistImageView:(UIInterfaceOrientation)orientation {
@@ -515,14 +537,17 @@ BOOL onTablet, initialLoad;
     }
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (onTablet) {
+        [self reflowLayout:viewDidDisappear ? self.interfaceOrientation : toInterfaceOrientation];
+    }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return YES;
+}
+
 - (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
-    
-    [self showTabBar:(self.listViewController.viewControllers.count > 1)];
-    [self configureFistImageView:UIInterfaceOrientationLandscapeLeft];
-    [self configureTabBarFrame:UIInterfaceOrientationLandscapeLeft];
     self.popOverController = nil;
-    self.browseButton.hidden = YES;
-    self.detailGridViewController.orientationOverride = UIInterfaceOrientationLandscapeLeft;
-    [self.detailGridViewController.tableView reloadData];
 }
 @end
