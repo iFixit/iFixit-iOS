@@ -1470,8 +1470,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1488,8 +1488,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "20B68BDB-99B6-4521-B833-C447F8D380C1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20B68BDB-99B6-4521-B833-C447F8D380C1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1503,8 +1503,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
@@ -1519,8 +1519,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "20B68BDB-99B6-4521-B833-C447F8D380C1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20B68BDB-99B6-4521-B833-C447F8D380C1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1531,8 +1531,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -1541,8 +1541,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "";
-				PROVISIONING_PROFILE = "20B68BDB-99B6-4521-B833-C447F8D380C1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20B68BDB-99B6-4521-B833-C447F8D380C1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1553,16 +1553,16 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "20B68BDB-99B6-4521-B833-C447F8D380C1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20B68BDB-99B6-4521-B833-C447F8D380C1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1573,16 +1573,16 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CODE_SIGN_FLAGS = "";
-				PROVISIONING_PROFILE = "20B68BDB-99B6-4521-B833-C447F8D380C1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20B68BDB-99B6-4521-B833-C447F8D380C1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1597,8 +1597,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1615,8 +1615,8 @@
 					"\"$(SRCROOT)/GAnalytics\"",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "20B68BDB-99B6-4521-B833-C447F8D380C1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20B68BDB-99B6-4521-B833-C447F8D380C1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";
