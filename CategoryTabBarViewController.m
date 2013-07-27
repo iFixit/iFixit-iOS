@@ -80,7 +80,7 @@ BOOL onTablet, initialLoad, viewDidDisappear;
         [self.browseButton setTitle:NSLocalizedString(@"Browse", nil) forState:UIControlStateNormal];
         [self.browseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        self.browseButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        self.browseButton.titleLabel.font = [UIFont boldSystemFontOfSize:13];
         [self.browseButton setBackgroundColor:[UIColor blackColor]];
         [self.browseButton addTarget:self action:@selector(browseButtonPushed) forControlEvents:UIControlEventTouchUpInside];
         
