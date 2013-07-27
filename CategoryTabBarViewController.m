@@ -79,6 +79,8 @@ BOOL onTablet, initialLoad, viewDidDisappear;
         self.browseButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.browseButton setTitle:NSLocalizedString(@"Browse", nil) forState:UIControlStateNormal];
         [self.browseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        self.browseButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [self.browseButton setBackgroundColor:[UIColor blackColor]];
         [self.browseButton addTarget:self action:@selector(browseButtonPushed) forControlEvents:UIControlEventTouchUpInside];
         
@@ -106,13 +108,9 @@ BOOL onTablet, initialLoad, viewDidDisappear;
     CAGradientLayer *btnGradient = [CAGradientLayer layer];
     btnGradient.frame = btn.bounds;
     btnGradient.colors = [NSArray arrayWithObjects:
-                          (id)[[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:.6f] CGColor],
-                          (id)[[UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:.4f] CGColor],
-                          (id)[[UIColor colorWithRed:150.0f/255.0f green:150.0f/255.0f blue:150.0f/255.0f alpha:.4f] CGColor],
                           (id)[[UIColor colorWithRed:100.0f/255.0f green:100.0f/255.0f blue:100.0f/255.0f alpha:.4f] CGColor],
                           (id)[[UIColor colorWithRed:50.0f/255.0f green:50.0f/255.0f blue:50.0f/255.0f alpha:.4f] CGColor],
                           (id)[[UIColor colorWithRed:5.0f/255.0f green:5.0f/255.0f blue:5.0f/255.0f alpha:.4f] CGColor],
-                          
                           nil];
     [btn.layer insertSublayer:btnGradient atIndex:0];
     
