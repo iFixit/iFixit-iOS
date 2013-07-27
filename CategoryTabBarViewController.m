@@ -537,12 +537,17 @@ BOOL onTablet, initialLoad, viewDidDisappear;
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     if (onTablet) {
-        [self reflowLayout:viewDidDisappear ? self.interfaceOrientation : toInterfaceOrientation];
+        if (viewDidDisappear) {
+            [self reflowLayout:self.interfaceOrientation];
+            // Force the view to be reloaded to avoid a very odd edgecase dealing with rotations
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            UIView *view = [window.subviews objectAtIndex:0];
+            [view removeFromSuperview];
+            [window addSubview:view];
+        } else {
+            [self reflowLayout:toInterfaceOrientation];
+        }
     }
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return YES;
 }
 
 - (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
