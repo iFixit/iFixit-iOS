@@ -542,7 +542,14 @@ BOOL onTablet, initialLoad, viewDidDisappear;
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     if (onTablet) {
         if (viewDidDisappear) {
+            // To deal with an edge case remove the view and re-add it
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            UIView *view = [window.subviews objectAtIndex:0];
+            [view removeFromSuperview];
+            [window addSubview:view];
+            
             [self reflowLayout:self.interfaceOrientation];
+            viewDidDisappear = NO;
         } else {
             [self reflowLayout:toInterfaceOrientation];
         }
