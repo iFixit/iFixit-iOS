@@ -1108,8 +1108,8 @@
 				DACE446D1353CE3700F78360 /* ifixit_intro.css */,
 				AB4926A3175FF6200092E4B6 /* category_more_info_ipad.css */,
 				ABE51913177B77F400E9555E /* category_more_info_iphone.css */,
-				ABA8FC49177AA909000B5E74 /* category_answers.css */,
 				DACE446E1353CE3700F78360 /* ifixit_step.css */,
+				ABA8FC49177AA909000B5E74 /* category_answers.css */,
 				DACE446F1353CE3700F78360 /* make_intro.css */,
 				DACE44701353CE3700F78360 /* make_step.css */,
 			);

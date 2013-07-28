@@ -20,6 +20,9 @@
 @property (nonatomic) UIInterfaceOrientation orientationOverride;
 @property (nonatomic, retain) UIImageView *noGuidesImage;
 @property (nonatomic, retain) UIImageView *fistImage;
+@property (nonatomic, retain) UIImageView *guideArrow;
+
+@property (nonatomic, retain) UILabel *browseInstructions;
 
 @property (nonatomic, assign) id<DetailGridViewControllerDelegate> gridDelegate;
 

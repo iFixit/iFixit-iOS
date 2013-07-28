@@ -503,12 +503,16 @@ BOOL onTablet, initialLoad, viewDidDisappear;
         self.popOverController = nil;
         self.browseButton.hidden = YES;
         self.detailGridViewController.orientationOverride = UIInterfaceOrientationLandscapeLeft;
+        self.detailGridViewController.guideArrow.hidden = YES;
+        self.detailGridViewController.browseInstructions.hidden = YES;
     } else {
         [self showTabBar:YES];
         [self configureTabBarFrame:UIInterfaceOrientationMaskPortrait];
         [self configureFistImageView:UIInterfaceOrientationMaskPortrait];
         self.browseButton.hidden = NO;
         self.detailGridViewController.orientationOverride = UIInterfaceOrientationPortrait;
+        self.detailGridViewController.guideArrow.hidden = NO;
+        self.detailGridViewController.browseInstructions.hidden = NO;
     }
     
     [self.detailGridViewController.tableView reloadData];

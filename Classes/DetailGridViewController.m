@@ -121,6 +121,13 @@
     self.fistImage.frame = CGRectMake(0, 0, 703, 660);
     [concreteBackground addSubview:self.fistImage];
     
+    self.guideArrow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewArrowDark.png"]] autorelease];
+    self.guideArrow.frame = CGRectMake(45, 6, self.guideArrow.frame.size.width, self.guideArrow.frame.size.height);
+    
+    [self.view addSubview:self.guideArrow];
+    
+    [self configureInstructionsLabel];
+    
     // Add a 10px bottom margin.
     self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0);
     self.tableView.backgroundView = concreteBackground;
@@ -132,6 +139,23 @@
     [self showNoGuidesImage:NO];
 }
 
+- (void)configureInstructionsLabel {
+    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(210, 190, 280, 30)];
+    l.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    l.textAlignment = UITextAlignmentCenter;
+    l.lineBreakMode = UILineBreakModeWordWrap;
+    l.backgroundColor = [UIColor clearColor];
+    l.font = [UIFont fontWithName:@"OpenSans-Bold" size:17.0];
+    l.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8];
+    l.shadowColor = [UIColor darkGrayColor];
+    l.shadowOffset = CGSizeMake(0.0, 1.0);
+    l.numberOfLines = 0;
+    l.text = NSLocalizedString(@"Looking for Guides? Browse thousands of them here.", nil);
+    [l sizeToFit];
+    
+    self.browseInstructions = l;
+    [self.view addSubview:self.browseInstructions];
+}
 
 - (void)viewDidUnload {
     [super viewDidUnload];
