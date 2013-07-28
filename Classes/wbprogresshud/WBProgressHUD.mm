@@ -102,7 +102,7 @@ static UIColor* defaultForegroundColor()
     self.progressMessage   = text;
     
     // default text
-    [self setFontSize:17.0];
+    [self setFontSize:14.0];
     [self setText:[NSString stringWithFormat:@"  %@", NSLocalizedString(@"Loading...", nil)]];
     
     return self;
