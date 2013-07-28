@@ -45,6 +45,12 @@
 	return self;
 }
 
+- (id)initWithAddress:(NSString *)string withTitle:(NSString*)title {
+    self.title = title;
+    
+    return [self initWithAddress:string];
+}
+
 - (void)tintNavBar {
     if (!tintColor)
         return;
@@ -62,7 +68,6 @@
 	CGRect deviceBounds = [[UIApplication sharedApplication] keyWindow].bounds;
 	
 	if(!deviceIsTablet) {
-
 		backBarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SVWebViewController.bundle/iPhone/back"] style:UIBarButtonItemStylePlain target:self.webView action:@selector(goBack)];
         backBarButton.imageInsets = UIEdgeInsetsMake(2, 0, -2, 0);
 		backBarButton.width = 18;
@@ -226,8 +231,12 @@
 			actionButton.alpha = 1;
 		}];
 	}
+    
 }
 
+- (void)refreshWebView {
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
+}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -341,8 +350,7 @@
 
 
 - (void)setupTabletToolbar {
-	
-	titleLabel.text = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    titleLabel.text = self.title ? self.title : [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 
     if (!showsDoneButton) {
         navItem.leftBarButtonItem = nil;

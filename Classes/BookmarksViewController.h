@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSMutableDictionary *bookmarks;
 @property (nonatomic, retain) LoginViewController *lvc;
 @property (nonatomic, retain) NSMutableArray *devices;
+@property (nonatomic, retain) UIBarButtonItem *editButton;
 
 - (void)refresh;
 

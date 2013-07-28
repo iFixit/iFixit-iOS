@@ -131,7 +131,7 @@
     titleLabel.minimumFontSize = 50.0;
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigMake) {
-        titleLabel.font = [UIFont fontWithName:@"Ubuntu-Italic" size:120.0];
+        titleLabel.font = [UIFont fontWithName:@"Helvetica" size:120.0];
         titleLabel.frame = CGRectMake(120.0, 150.0, self.view.frame.size.width - 110.0, 106.0);
         titleLabel.text = [[_collection valueForKey:@"title"] stringByAppendingString:@" "];
     }

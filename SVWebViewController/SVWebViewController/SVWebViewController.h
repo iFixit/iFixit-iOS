@@ -30,7 +30,10 @@
 
 @property (nonatomic) BOOL showsDoneButton;
 @property (nonatomic, retain) UIColor *tintColor;
+@property BOOL isFirstLoad;
 
 - (id)initWithAddress:(NSString*)string;
-
+- (id)initWithAddress:(NSString *)string withTitle:(NSString*)title;
+- (void)refreshWebView;
+    
 @end

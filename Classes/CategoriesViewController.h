@@ -6,7 +6,20 @@
 //  Copyright iFixit 2010. All rights reserved.
 //
 
-@class DetailViewController;
+#import "ListViewController.h"
+#import "CategoryTabBarViewController.h"
+
+@class ListViewController;
+
+enum {
+    DEVICE,
+    CATEGORY,
+    GUIDE
+};
+
+#define TOPICS @"TOPICS"
+#define CATEGORIES @"categories"
+#define DEVICES @"devices"
 
 @interface CategoriesViewController : UITableViewController <UISearchBarDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 
@@ -15,16 +28,17 @@
 @property BOOL searching;
 @property (nonatomic, retain) NSArray *searchResults;
 @property (nonatomic) BOOL noResults;
-@property (nonatomic) BOOL inPopover;
 
-@property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
-@property (nonatomic, retain) NSDictionary *data;
-@property (nonatomic, retain) NSMutableDictionary *tree;
-@property (nonatomic, retain) NSArray *keys;
-@property (nonatomic, retain) NSArray *leafs;
+@property (nonatomic, retain) NSMutableDictionary *categories;
+@property (nonatomic, retain) NSMutableArray *categoryTypes;
+@property (nonatomic, retain) NSDictionary *categoryResults;
+@property (nonatomic, retain) ListViewController *listViewController;
+@property (nonatomic, retain) NSDictionary *categoryMetaData;
+@property (nonatomic, retain) NSDictionary *categorySearchResult;
 
 - (void)getAreas;
 - (void)showLoading;
 - (void)setData:(NSDictionary *)dict;
+- (void)addGuidesToTableView:(NSArray*)guides;
 
 @end

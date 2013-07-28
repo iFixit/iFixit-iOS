@@ -38,4 +38,7 @@
 - (void)unlike:(NSNumber *)guideid forObject:(id)object withSelector:(SEL)selector;
 - (void)loadSession;
 
+// Error handling
++ (void)displayConnectionErrorAlert;
+    
 @end

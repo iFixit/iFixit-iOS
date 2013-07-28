@@ -45,9 +45,23 @@
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         
         [TestFlight passCheckpoint:@"Guide View"];
+        
+        // Analytics
         [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/view/%d", self.guideid] withError:NULL];
+        [[GANTracker sharedTracker] trackPageview:@"/guide/view" withError:NULL];
+        
+        if (!self.memoryCache) {
+            self.memoryCache = [[NSCache alloc] init];
+        }
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    // Make sure we have the correct orientation when our
+    // view appears, this fixes orientation issues regarding
+    // rotating after logging in.
+    [self willRotateToInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation duration:0];
 }
 
 - (void)viewDidLoad {
@@ -85,9 +99,18 @@
         
     }
     
-    // TODO: Show step that was in view before memory warning
 }
 
+- (void)showOrHidePageControlForInterface:(UIInterfaceOrientation)orientation {
+    [UIView transitionWithView:pageControl
+                      duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        // We only want to hide on the intro page and in landscape
+                        pageControl.hidden = (UIInterfaceOrientationIsLandscape(orientation) && pageControl.currentPage == 0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone);
+                        
+                    } completion:nil
+     ];
+}
 - (void)closeGuide {
     if (bookmarker.poc.isPopoverVisible)
         [bookmarker.poc dismissPopoverAnimated:YES];
@@ -180,14 +203,12 @@
 	// Steps plus one for intro
     pageControl.numberOfPages = numPages;
     pageControl.currentPage = 0;
+    pageControl.hidden = YES;
     
-    // Hide page control on iPhone.
-    //pageControl.hidden = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? NO : YES;
-	
     // Setup the navigation items to show back arrow and bookmarks button
     NSString *title = guide.title;
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad && [guide.subject length] > 0)
-        title = self.guide.subject;
+        title = guide.subject;
     
 	UINavigationItem *thisItem = [[UINavigationItem alloc] initWithTitle:title];
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
@@ -238,6 +259,7 @@
 		} else {
 			controller = [[GuideStepViewController alloc] initWithStep:[self.guide.steps objectAtIndex:stepNumber]];
             ((GuideStepViewController *)controller).delegate = self;
+            ((GuideStepViewController *)controller).guideViewController = self;
 		}
 
         [viewControllers replaceObjectAtIndex:page withObject:controller];
@@ -269,43 +291,60 @@
     CGFloat pageWidth = scrollView.frame.size.width;
     int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     pageControl.currentPage = page;
-	
-    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    //[self performSelector:@selector(preloadForCurrentPage:) withObject:[NSNumber numberWithInt:page] afterDelay:0.1];
-    [self preloadForCurrentPage:[NSNumber numberWithInt:page]];
-	
-    // Unload the views+controllers which are no longer visible
-   for (int i = 2; i < pageControl.numberOfPages; i++) {
-      float distance = fabs(page - i + 1);
-      if (distance > 2.0) {
-         UIViewController *vc = [viewControllers objectAtIndex:i];
-         if ((NSNull *)vc != [NSNull null]) {
-            [vc viewWillDisappear:NO];
-            [vc.view removeFromSuperview];
-            vc.view = nil;
-            [viewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
-         }
-      }
-   }
+    
+    [self showOrHidePageControlForInterface:self.interfaceOrientation];
 }
 
 // At the begin of scroll dragging, reset the boolean used when scrolls originate from the UIPageControl
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     pageControlUsed = NO;
+    [self preloadForCurrentPage:[NSNumber numberWithInt:pageControl.currentPage]];
+    
+}
+
+- (void)unloadViewControllers {
+    int page = pageControl.currentPage;
+    
+    // Unload the views+controllers which are no longer visible
+    for (int i = 2; i < pageControl.numberOfPages; i++) {
+        float distance = fabs(page - i + 1);
+        if (distance > 2.0) {
+            UIViewController *vc = [viewControllers objectAtIndex:i];
+            if ((NSNull *)vc != [NSNull null]) {
+                [vc viewWillDisappear:NO];
+                [vc.view removeFromSuperview];
+                vc.view = nil;
+                [viewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
+            }
+        }
+    }
 }
 
 // At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     pageControlUsed = NO;
+    
+    [self preloadForCurrentPage:[NSNumber numberWithInt:pageControl.currentPage]];
+    [self unloadViewControllers];
+    
+    // If the user scrolls super fast, a view controller may be null, this will force a view load if we come across that behavior
+    if ([viewControllers[pageControl.currentPage] isKindOfClass:[NSNull class]]) {
+        [self scrollViewWillBeginDragging:scrollView];
+    }
+    
+    // Only load secondary images if we are looking at the current view for longer than half a second
+    if (pageControl.currentPage > 0) {
+        [viewControllers[pageControl.currentPage] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:0.8];
+    }
 }
 
 - (IBAction)changePage:(id)sender {
-
     int page = pageControl.currentPage;
 	
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
     //[self performSelector:@selector(preloadForCurrentPage:) withObject:[NSNumber numberWithInt:page] afterDelay:0.1];
     [self preloadForCurrentPage:[NSNumber numberWithInt:page]];
+    [self unloadViewControllers];
     
 	// update the scroll view to the appropriate page
     CGRect frame = scrollView.frame;
@@ -316,6 +355,12 @@
     
 	// Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
     pageControlUsed = YES;
+    
+    // Only load secondary images if we are looking at the current view for longer than .8 second
+    if (page > 0) {
+        [viewControllers[page] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:0.8];
+        [self showOrHidePageControlForInterface:self.interfaceOrientation];
+    }
 }
 
 - (void)preloadForCurrentPage:(NSNumber *)pageNumber {
@@ -336,7 +381,13 @@
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    int page = pageControl.currentPage;
+    
     [self adjustScrollViewContentSizeForInterfaceOrientation:toInterfaceOrientation];
+    
+    if (viewControllers) {
+        [self showOrHidePageControlForInterface:toInterfaceOrientation];
+    }
     
     for (int i=0; i<[viewControllers count]; i++) {
         UIViewController *vc = [viewControllers objectAtIndex:i];
@@ -351,7 +402,7 @@
         }
     }
     
-    [self showPage:pageControl.currentPage];
+    [self showPage:page];
 }
 
 - (void)viewDidUnload {
@@ -365,6 +416,9 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self showOrHidePageControlForInterface:self.interfaceOrientation];
+}
 
 - (void)dealloc {
     [_guide release];

@@ -16,7 +16,7 @@
 
 @implementation DetailGridViewController
 
-@synthesize device = _device, guides = _guides, loading, orientationOverride, noGuides, gridDelegate;
+@synthesize category = _category, guides = _guides, loading, orientationOverride, gridDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -28,16 +28,14 @@
 }
 
 - (void)dealloc {
-    [_device release];
+    [_category release];
     [_guides release];
     [loading release];
-    [noGuides release];
     
     [super dealloc];
 }
 
 - (void)showLoading {
-    noGuides.hidden = YES;
     if (loading.superview) {
         [loading showInView:self.view];
         return;
@@ -49,14 +47,13 @@
     [loading showInView:self.view];
 }
 
-- (void)loadDevice {
+- (void)loadCategory {
     [self showLoading];
-    [[iFixitAPI sharedInstance] getTopic:_device forObject:self withSelector:@selector(gotDevice:)];
+    [[iFixitAPI sharedInstance] getTopic:_category forObject:self withSelector:@selector(gotCategory:)];
 }
 
-- (void)gotDevice:(NSDictionary *)data {
+- (void)gotCategory:(NSDictionary *)data {
     self.guides = [data arrayForKey:@"guides"];
-    noGuides.hidden = YES;
 
     if (!_guides) {
         [self.loading hide];
@@ -73,32 +70,42 @@
         [gridDelegate detailGrid:self gotGuideCount:0];
 
         [self.loading hide];
-        noGuides.hidden = NO;
         return;
     }
 
     [gridDelegate detailGrid:self gotGuideCount:[self.guides count]];
 
-    [self.tableView reloadData];
-    [self.loading hide];
+    [UIView transitionWithView:self.tableView
+                      duration:0.5f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        [self.tableView reloadData];
+                        [self.loading hide];
+                    }
+                    completion:nil
+     ];
 }
 
-- (void)setDevice:(NSString *)device {
-    [_device release];
-    _device = [device copy];
+- (void)setCategory:(NSString *)category{
+    [_category release];
+    _category = [category copy];
     
     self.guides = nil;
     [self.tableView reloadData];
     
-    if (device)
-        [self loadDevice];
+    if (category)
+        [self loadCategory];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (!buttonIndex) 
         return;
     
-    [self loadDevice];
+    [self loadCategory];
+}
+
+- (void)showNoGuidesImage:(BOOL)option {
+    self.noGuidesImage.hidden = !option;
 }
 
 #pragma mark - View lifecycle
@@ -108,23 +115,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIImageView *concreteBackground = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"concreteBackground.png"]] autorelease];
+    
+    self.fistImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewFist.png"]] autorelease];
+    self.fistImage.frame = CGRectMake(0, 0, 703, 660);
+    [concreteBackground addSubview:self.fistImage];
+    
+    self.guideArrow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewArrowDark.png"]] autorelease];
+    self.guideArrow.frame = CGRectMake(45, 6, self.guideArrow.frame.size.width, self.guideArrow.frame.size.height);
+    
+    [self.view addSubview:self.guideArrow];
+    
+    [self configureInstructionsLabel];
+    
     // Add a 10px bottom margin.
     self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0);
-        
-    self.view.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundView = concreteBackground;
     
-    // Add the "No guides available" text label.
-    self.noGuides = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noGuides.png"]] autorelease];
-    noGuides.frame = CGRectMake((self.view.frame.size.width - 452.0) / 2.0, 120.0, 452.0, 40.0);
-    noGuides.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-    noGuides.hidden = YES;
-    [self.view addSubview:noGuides];
+    self.noGuidesImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noGuides.png"]] autorelease];
+    self.noGuidesImage.frame = CGRectMake(135, 30, self.noGuidesImage.frame.size.width, self.noGuidesImage.frame.size.height);
+    [self.view addSubview:self.noGuidesImage];
+    
+    [self showNoGuidesImage:NO];
 }
 
+- (void)configureInstructionsLabel {
+    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(210, 190, 280, 30)];
+    l.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    l.textAlignment = UITextAlignmentCenter;
+    l.lineBreakMode = UILineBreakModeWordWrap;
+    l.backgroundColor = [UIColor clearColor];
+    l.font = [UIFont fontWithName:@"OpenSans-Bold" size:17.0];
+    l.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8];
+    l.shadowColor = [UIColor darkGrayColor];
+    l.shadowOffset = CGSizeMake(0.0, 1.0);
+    l.numberOfLines = 0;
+    l.text = NSLocalizedString(@"Looking for Guides? Browse thousands of them here.", nil);
+    [l sizeToFit];
+    
+    self.browseInstructions = l;
+    [self.view addSubview:self.browseInstructions];
+}
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    self.noGuides = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

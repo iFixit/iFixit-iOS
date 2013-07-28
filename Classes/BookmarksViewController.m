@@ -17,6 +17,9 @@
 #import "iFixitAPI.h"
 #import "Config.h"
 #import "GuideViewController.h"
+#import "ListViewController.h"
+#import "GANTracker.h"
+#import "CategoryTabBarViewController.h"
 
 @implementation BookmarksViewController
 
@@ -120,7 +123,8 @@
 - (UIView *)headerView {
     UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     
-    b.backgroundColor = [UIColor colorWithRed:0.20 green:0.38 blue:0.68 alpha:1.0];
+    b.backgroundColor = [Config currentConfig].toolbarColor;
+    
     if ([Config currentConfig].site == ConfigZeal)
         b.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
 
@@ -142,6 +146,21 @@
 	self.tableView.tableFooterView = footer;
 }
 
+- (void)configureEditButton {
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(toggleEdit)];
+    
+    self.editButton = barButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButton;
+    
+    [barButtonItem release];
+}
+
+- (void)toggleEdit {
+    [self.tableView setEditing:!self.tableView.editing animated:YES];
+    
+    self.navigationItem.rightBarButtonItem.title = self.tableView.editing ? NSLocalizedString(@"Done", nil) : NSLocalizedString(@"Edit", nil);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -149,11 +168,14 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
+    
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
         [self applyPaddedFooter];
+    
+    [self configureEditButton];
 
     self.navigationItem.rightBarButtonItem = [iFixitAPI sharedInstance].user ?
-        self.editButtonItem : nil;
+        self.editButton : nil;
     
     self.tableView.tableHeaderView = [self headerView];
     
@@ -168,17 +190,39 @@
     }
     
     // Show the Dozuki sites select button if needed.
+    UIBarButtonItem *button;
+    
     if ([Config currentConfig].dozuki) {
         UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
+        button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
                                                                   target:[[UIApplication sharedApplication] delegate]
                                                                   action:@selector(showDozukiSplash)];
-        self.navigationItem.leftBarButtonItem = button;
-        [button release];
+    } else {
+        button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
+                                                                    style:UIBarButtonItemStyleBordered
+                                                                   target:self
+                                                                   action:@selector(doneButtonPushed)];
     }
-
+    
+    self.navigationItem.leftBarButtonItem = button;
+    
+    // Color buttons for iOS 4.3
+    self.navigationController.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+    [button release];
 }
 
+- (void)doneButtonPushed {
+    // Create the animation ourselves to mimic a modal presentation
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [UIView animateWithDuration:0.7
+                         animations:^{
+                             [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.navigationController.view cache:YES];
+                         }];
+        [self.navigationController popViewControllerAnimated:NO];
+    } else {
+        [self dismissModalViewControllerAnimated:YES];
+    }
+}
 
 - (void)viewDidUnload
 {
@@ -291,7 +335,6 @@
     }   
 }
 
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -300,7 +343,22 @@
     //[(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showGuide:guide];
     
     GuideViewController *vc = [[GuideViewController alloc] initWithGuide:guide];
-    [self.navigationController presentModalViewController:vc animated:YES];
+    vc.offlineGuide = YES;
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        [self.navigationController presentModalViewController:vc animated:YES];
+    } else {
+        UIPopoverController *povc = [self.splitViewController.viewControllers[1] popOverController];
+        
+        if ([povc isPopoverVisible]) {
+            [povc dismissPopoverAnimated:NO];
+        }
+        
+        iFixitAppDelegate *delegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];
+        GuideViewController *vc = [[GuideViewController alloc] initWithGuide:guide];
+        [delegate.window.rootViewController presentModalViewController:vc animated:YES];
+    }
+    
     [vc release];
     
     // Refresh any changes.
@@ -339,7 +397,7 @@
     }
     
     self.navigationItem.rightBarButtonItem = [iFixitAPI sharedInstance].user ?
-        self.editButtonItem : nil;
+        self.editButton : nil;
     
     [self performSelectorInBackground:@selector(refreshHierarchy) withObject:nil];
 }
@@ -359,14 +417,25 @@
         return;
     
     [[iFixitAPI sharedInstance] logout];
+    
+    [[GANTracker sharedTracker] trackPageview:@"/user/logout" withError:NULL];
+    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/logout/%@", [iFixitAPI sharedInstance].user.userid] withError:NULL];
+    
+    // Set bookmarks to be nil and reload the tableView to release the cells
+    bookmarks = nil;
+    [self.tableView reloadData];
 
     // Remove the edit button.
     self.navigationItem.rightBarButtonItem = nil;
 
-    if ([Config currentConfig].private) {
+    // On Dozuki App
+    if ([Config currentConfig].dozuki && [Config currentConfig].private) {
         [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showDozukiSplash];
-    }
-    else {
+    // On a custom private app
+    } else if ([Config currentConfig].private) {
+        [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showSiteSplash];
+    // Everyone else who is public
+    } else {
         [self showLogin]; 
     }
 }

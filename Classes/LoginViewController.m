@@ -14,6 +14,8 @@
 #import "Config.h"
 #import "OpenIDViewController.h"
 #import "SSOViewController.h"
+#import "GANTracker.h"
+#import "User.h"
 
 @implementation LoginViewController
 
@@ -26,7 +28,7 @@
         // Custom initialization
         self.delegate = nil;
         self.loading = nil;
-        self.message = NSLocalizedString(@"Favorites are synced across devices and saved locally for offline browsing. Please login or register to access this feature.", nil);
+        self.message = NSLocalizedString(@"Favorites are saved offline and synced across devices.", nil);
         showRegister = NO;
         self.emailField = nil;
         self.passwordField = nil;
@@ -53,10 +55,10 @@
 }
 
 - (void)showMessage {
-    if ([emailField isFirstResponder] || [passwordField isFirstResponder] || 
+    if ([emailField isFirstResponder] || [passwordField isFirstResponder] ||
         [passwordVerifyField isFirstResponder] || [fullNameField isFirstResponder])
         return;
-    
+
     [UIView beginAnimations:@"repositionForm" context:nil];
     [UIView setAnimationDuration:0.3];
     self.tableView.contentInset = UIEdgeInsetsMake(5, 0, 0, 0);
@@ -83,7 +85,7 @@
     else {
         [self sendLogin];
     }
-    
+
     return YES;
 }
 
@@ -91,7 +93,7 @@
     if (!loading) {
         self.loading = [[[WBProgressHUD alloc] init] autorelease];
     }
-    
+
     CGFloat width = 160;
     CGFloat height = 120;
     self.loading.frame = CGRectMake((self.view.frame.size.width - width) / 2.0,
@@ -102,13 +104,13 @@
     // Hide the keyboard and prevent further editing.
     self.view.userInteractionEnabled = NO;
     [self.view endEditing:YES];
-    
+
     [loading showInView:self.tableView];
 }
 
 - (void)hideLoading {
     [loading removeFromSuperview];
-    
+
     // Allow editing again.
     self.view.userInteractionEnabled = YES;
 }
@@ -116,18 +118,18 @@
 - (void)dealloc {
     [message release];
     [loading release];
-    
+
     [emailField release];
     [passwordField release];
     [passwordVerifyField release];
     [fullNameField release];
-    
+
     [loginButton release];
     [registerButton release];
     [cancelButton release];
     [googleButton release];
     [yahooButton release];
-    
+
     [super dealloc];
 }
 
@@ -135,7 +137,7 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+
     // Release any cached data, images, etc that aren't in use.
 }
 
@@ -154,7 +156,7 @@
     l.shadowOffset = CGSizeMake(0.0, 1.0);
     l.numberOfLines = 0;
     l.text = message;
-    
+
     [container addSubview:l];
     [l sizeToFit];
 
@@ -164,20 +166,20 @@
     container.frame = CGRectMake(0, 0, 320, frame.size.height + 10);
     l.frame = frame;
     [l release];
-    
+
     return [container autorelease];
 }
 
 - (UIView *)createActionButtons {
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-    
+
     // Login
     UIButton *lb = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 300, 45)];
     lb.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     lb.titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
     lb.titleLabel.shadowColor = [UIColor blackColor];
     lb.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
-    
+
     [lb setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
     [lb setBackgroundImage:[[UIImage imageNamed:@"login.png"] stretchableImageWithLeftCapWidth:150 topCapHeight:22] forState:UIControlStateNormal];
     [lb setContentMode:UIViewContentModeScaleToFill];
@@ -187,7 +189,7 @@
     if ([[[[UIApplication sharedApplication].delegate window] rootViewController] isKindOfClass:[LoginBackgroundViewController class]]) {
         lb.frame = CGRectMake(30, 0, 260, 45);
     }
-    
+
     // Register
     UIButton *rb = [[UIButton alloc] initWithFrame:CGRectMake(10, 55, 300, 45)];
     rb.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -199,7 +201,7 @@
     [rb setBackgroundImage:[[UIImage imageNamed:@"register.png"] stretchableImageWithLeftCapWidth:150 topCapHeight:22] forState:UIControlStateNormal];
     [lb setContentMode:UIViewContentModeScaleToFill];
     [rb addTarget:self action:@selector(toggleRegister) forControlEvents:UIControlEventTouchUpInside];
-    
+
     // Cancel
     UIButton *cb = [[UIButton alloc] initWithFrame:CGRectMake(10, 55, 300, 35)];
     cb.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -234,7 +236,7 @@
     [cb release];
     [gb release];
     [yb release];
-    
+
     [container addSubview:loginButton];
 
     if (![Config currentConfig].sso && ![Config currentConfig].private) {
@@ -269,21 +271,21 @@
 
 - (void)toggleRegister {
     showRegister = !showRegister;
-    
+
     NSArray *indexPaths = [NSArray arrayWithObjects:
-                           [NSIndexPath indexPathForRow:2 inSection:0], 
+                           [NSIndexPath indexPathForRow:2 inSection:0],
                            [NSIndexPath indexPathForRow:3 inSection:0], nil];
 
     if (showRegister) {
         [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         [UIView beginAnimations:@"showRegister" context:nil];
         [UIView setAnimationDuration:0.3];
-        
+
         // Hide login
         loginButton.alpha = 0.0;
         googleButton.alpha = 0.0;
         yahooButton.alpha = 0.0;
-        
+
         // Move Register up, change text, and change target
         CGRect frame = registerButton.frame;
         frame.origin.y = 0;
@@ -294,14 +296,14 @@
 
         // Show Cancel
         cancelButton.alpha = 1.0;
-        
+
         [UIView commitAnimations];
     }
     else {
         [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         [UIView beginAnimations:@"showRegister" context:nil];
         [UIView setAnimationDuration:0.3];
-        
+
         // Show Login
         loginButton.alpha = 1.0;
         googleButton.alpha = 1.0;
@@ -317,10 +319,10 @@
 
         // Hide Cancel
         cancelButton.alpha = 0.0;
-        
+
         [UIView commitAnimations];
     }
-    
+
     // Change the password action item from "Done" to "Next" or back again.
     passwordField.returnKeyType = showRegister ? UIReturnKeyNext : UIReturnKeyDone;
 }
@@ -328,23 +330,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Adds ability to check when a user touches UITableView only
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]
-                                          initWithTarget:self
-                                          action:@selector(tableViewTapped:)];
-    [[self tableView] addGestureRecognizer:tapGesture];
-
-    [tapGesture release];
-
     self.title = NSLocalizedString(@"Login", nil);
     self.tableView.backgroundView = nil;
     self.view.backgroundColor = [UIColor colorWithRed:0.86 green:0.86 blue:0.86 alpha:1.0];
-    
+
     self.tableView.tableHeaderView = [self createMessage];
     self.tableView.tableFooterView = [self createActionButtons];
 
     self.tableView.contentInset = UIEdgeInsetsMake(5, 0, 0, 0);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+    // Adds ability to check when a user touches UITableView only
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]
+                                          initWithTarget:self
+                                          action:@selector(tableViewTapped:)];
+
+    tapGesture.delegate = self;
+    [[self tableView] addGestureRecognizer:tapGesture];
+    [tapGesture release];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    // If the user is trying to select a button on the tableview, don't return the touch event
+    return ![touch.view isKindOfClass:[UIButton class]];
 }
 
 - (void)tableViewTapped:(UITapGestureRecognizer *)tapGesture {
@@ -360,7 +368,7 @@
     self.passwordField = nil;
     self.passwordVerifyField = nil;
     self.fullNameField = nil;
-    
+
     self.loginButton = nil;
     self.registerButton = nil;
     self.cancelButton = nil;
@@ -388,19 +396,19 @@
 }
 
 - (UITextField *)inputFieldForRow:(NSInteger)row {
-    
+
     UITextField *inputField = [[UITextField alloc] init];
     inputField.font = [UIFont systemFontOfSize:16.0];
     inputField.adjustsFontSizeToFitWidth = YES;
     inputField.textColor = [UIColor darkGrayColor];
     CGRect rect = CGRectMake(120, 12, 175, 30);
-    
+
     if (row == 0) {
         if (emailField) {
             [inputField release];
             return emailField;
         }
-        
+
         self.emailField = inputField;
         rect.origin.y += 1;
         inputField.frame = rect;
@@ -415,61 +423,61 @@
             passwordField.returnKeyType = showRegister ? UIReturnKeyNext : UIReturnKeyDone;
             return passwordField;
         }
-        
+
         self.passwordField = inputField;
         inputField.frame = rect;
         inputField.placeholder = NSLocalizedString(@"Required", nil);
         inputField.keyboardType = UIKeyboardTypeDefault;
         inputField.returnKeyType = showRegister ? UIReturnKeyNext : UIReturnKeyDone;
         inputField.secureTextEntry = YES;
-    }       
+    }
     else if (row == 2) {
         if (passwordVerifyField) {
             [inputField release];
             return passwordVerifyField;
         }
-        
+
         self.passwordVerifyField = inputField;
         inputField.frame = rect;
         inputField.placeholder = [NSString stringWithFormat:@"(%@)", NSLocalizedString(@"again", nil)];
         inputField.keyboardType = UIKeyboardTypeDefault;
         inputField.returnKeyType = UIReturnKeyNext;
         inputField.secureTextEntry = YES;
-    }   
+    }
     else if (row == 3) {
         if (fullNameField) {
             [inputField release];
             return fullNameField;
         }
-        
+
         self.fullNameField = inputField;
         inputField.frame = rect;
         inputField.placeholder = @"John Doe";
         inputField.keyboardType = UIKeyboardTypeDefault;
         inputField.returnKeyType = UIReturnKeyDone;
-    }   
+    }
     inputField.backgroundColor = [UIColor clearColor];
     inputField.autocorrectionType = UITextAutocorrectionTypeNo;
     inputField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     inputField.textAlignment = UITextAlignmentLeft;
     inputField.delegate = self;
     inputField.tag = 0;
-    
+
     inputField.clearButtonMode = UITextFieldViewModeNever;
     [inputField setEnabled:YES];
-    
+
     return [inputField autorelease];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
+
     // Set the label
     if (indexPath.row == 0)
         cell.textLabel.text = NSLocalizedString(@"Email", nil);
@@ -479,15 +487,15 @@
         cell.textLabel.text = NSLocalizedString(@"Password", nil);
     else if (indexPath.row == 3)
         cell.textLabel.text = NSLocalizedString(@"Your Name", nil);
-    
+
     // Add the text field
     for (UIView *v in cell.subviews) {
         if ([v isKindOfClass:[UITextField class]])
             [v removeFromSuperview];
     }
-    
+
     [cell.contentView addSubview:[self inputFieldForRow:indexPath.row]];
-    
+
     return cell;
 }
 
@@ -502,18 +510,18 @@
 
     if (!emailField.text || !passwordField.text)
         return;
-    
+
     [self showLoading];
     [[iFixitAPI sharedInstance] loginWithLogin:emailField.text
-                                   andPassword:passwordField.text 
-                                     forObject:self 
+                                   andPassword:passwordField.text
+                                     forObject:self
                                   withSelector:@selector(loginResults:)];
 }
 
 - (void)sendRegister {
     if (!emailField.text || !passwordField.text || !passwordVerifyField.text || !fullNameField.text) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
-                                                        message:NSLocalizedString(@"All fields are required", nil)
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"More information needed", nil)
+                                                        message:NSLocalizedString(@"Please fill out all the information.", nil)
                                                        delegate:nil
                                               cancelButtonTitle:nil
                                               otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
@@ -532,14 +540,21 @@
     else {
         [self showLoading];
         [[iFixitAPI sharedInstance] registerWithLogin:emailField.text
-                                          andPassword:passwordField.text 
-                                              andName:fullNameField.text 
+                                          andPassword:passwordField.text
+                                              andName:fullNameField.text
                                             forObject:self
                                          withSelector:@selector(loginResults:)];
     }
 }
 
-- (void)loginResults:(NSDictionary *)results { 
+- (void)loginResults:(NSDictionary *)results {
+    [self hideLoading];
+    
+    if (!results) {
+        [iFixitAPI displayConnectionErrorAlert];
+        return;
+    }
+    
     if ([results objectForKey:@"error"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
                                                         message:[results objectForKey:@"msg"]
@@ -557,9 +572,12 @@
 
         // The delegate is responsible for removing the login view.
         [delegate refresh];
+        
+        // Analytics
+        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@", results[@"type"]] withError:NULL];
+        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@/%@", results[@"type"], [iFixitAPI sharedInstance].user.userid] withError:NULL];
+        
     }
-    
-    [self hideLoading];
 }
 
 @end

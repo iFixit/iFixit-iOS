@@ -56,6 +56,9 @@
 "This device has no guides." = "Cet objet n'a pas de guides";
 "Okay" = "OK";
 "Untitled" = "Sans titre";
-"Favorites are synced across devices and saved locally for offline browsing. Please login or register to access this feature." = "Les favoris sont synchronisés entre multiples plateformes and sauvegardés localement pour visualisation offline. Veuillez vous logger ou vous enregistrer pour utiliser cette fonction.";
+"Favorites are saved offline and synced across devices." = "Les favoris sont synchronisés entre multiples plateformes and sauvegardés localement pour visualisation offline. Veuillez vous logger ou vous enregistrer pour utiliser cette fonction.";
 "All fields are required" = "Tous les champs sont requis";
 "Passwords don't match" = "les mots de passe ne sont pas identiques";
+"Swipe to Begin" = "Glisser pour commencer";
+"Looking for Guides? Browse thousands of them here." = "Vous cherchez des guides? Choisissez parmi des milliers ici.";
+"START A REPAIR" = "COMMENCER UNE RÉPARATION";

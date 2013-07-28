@@ -20,18 +20,20 @@
 #import "SDWebImageDownloader.h"
 #import "UIButton+WebCache.h"
 #import "SVWebViewController.h"
+#import "SDImageCache.h"
+#import "GuideImage.h"
 
 @implementation GuideStepViewController
 
 @synthesize delegate, step=_step, titleLabel, mainImage, webView, moviePlayer, embedView;
-@synthesize image1, image2, image3, numImagesLoaded, bigImages, html;
+@synthesize image1, image2, image3, numImagesLoaded, html;
 
 // Load the view nib and initialize the pageNumber ivar.
 - (id)initWithStep:(GuideStep *)step {
     if ((self = [super initWithNibName:nil bundle:nil])) {
         self.step = step;
         self.numImagesLoaded = 0;
-        self.bigImages = [NSMutableArray array];
+        self.largeImages = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -39,7 +41,7 @@
 - (void)removeWebViewShadows {
     NSArray *subviews = [webView subviews];
     if ([subviews count]) {
-        for (UIView *wview in [[subviews objectAtIndex:0] subviews]) { 
+        for (UIView *wview in [[subviews objectAtIndex:0] subviews]) {
             if ([wview isKindOfClass:[UIImageView class]]) {
                 wview.hidden = YES;
             }
@@ -58,21 +60,21 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? 
+
+    UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ?
         [self layoutLandscape] : [self layoutPortrait];
 
     UIColor *bgColor = [UIColor clearColor];
-    
+
     self.view.backgroundColor = bgColor;
     webView.modalDelegate = delegate;
-    webView.backgroundColor = bgColor;    
+    webView.backgroundColor = bgColor;
     webView.opaque = NO;
 
     NSString *stepTitle = [NSString stringWithFormat:NSLocalizedString(@"Step %d", nil), self.step.number];
     if (![self.step.title isEqual:@""])
       stepTitle = [NSString stringWithFormat:@"%@ - %@", stepTitle, self.step.title];
-	
+
     [titleLabel setText:stepTitle];
     titleLabel.textColor = [Config currentConfig].textColor;
 
@@ -84,24 +86,24 @@
                         [Config currentConfig].stepCSS,
                         bodyClass];
     NSString *footer = @"</ul></body></html>";
-   
+
     NSMutableString *body = [NSMutableString stringWithString:@""];
     for (GuideStepLine *line in self.step.lines) {
         NSString *icon = @"";
-        
+
         if ([line.bullet isEqual:@"icon_note"] || [line.bullet isEqual:@"icon_reminder"] || [line.bullet isEqual:@"icon_caution"]) {
             icon = [NSString stringWithFormat:@"<div class=\"bulletIcon bullet_%@\"></div>", line.bullet];
             line.bullet = @"black";
         }
-        
+
        [body appendFormat:@"<li class=\"l_%d\"><div class=\"bullet bullet_%@\"></div>%@<p>%@</p><div style=\"clear: both\"></div></li>\n", line.level, line.bullet, icon, line.text];
     }
-       
+
     self.html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
-    
+
     [self removeWebViewShadows];
-  
+
     // Images
     if (self.step.images) {
         // Add a shadow to the images
@@ -109,28 +111,30 @@
         [self addViewShadow:image1];
         [self addViewShadow:image2];
         [self addViewShadow:image3];
-      
+
         [self startImageDownloads];
     }
     // Videos
     else if (self.step.video) {
+        // Hide main image since we are displaying a video
+        mainImage.hidden = YES;
+
         CGRect frame = mainImage.frame;
         frame.origin.x = 10.0;
 
         NSURL *url = [NSURL URLWithString:self.step.video.url];
         self.moviePlayer = [[[MPMoviePlayerController alloc] init] autorelease];
-        moviePlayer.shouldAutoplay = NO;
         moviePlayer.contentURL = url;
+        moviePlayer.shouldAutoplay = NO;
         moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
-        moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
-        // Play full screen on iPhones and iPods.
-        moviePlayer.fullscreen = [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad;
         [moviePlayer.view setFrame:frame];
         [moviePlayer prepareToPlay];
         [self.view addSubview:moviePlayer.view];
     }
     // Embeds
     else if (self.step.embed) {
+        // Hide main image since we are displaying an embed
+        mainImage.hidden = YES;
         CGRect frame = mainImage.frame;
         frame.origin.x = 10.0;
 
@@ -160,75 +164,126 @@
         [request startAsynchronous];
     }
 
-    // Fix for rotation while playing video.
+    // Notification to Fix rotation while playing video.
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(_moviePlayerWillExitFullscreen:)
                                                  name:MPMoviePlayerWillExitFullscreenNotification
                                                object:nil];
 
+    // Notification to track when the movie player state changes (ie: Pause, Play)
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_moviePlayerPlaybackStateDidChange:)
+                                                 name:MPMoviePlayerPlaybackStateDidChangeNotification
+                                               object:nil];
+
+    // Notification to track when a movie finishes playing
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_moviePlayerPlaybackDidFinish:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:nil];
+
+}
+
+- (void)_moviePlayerPlaybackDidFinish:(NSNotification *)notification {
+    if (self.moviePlayer.fullscreen)
+        [self.moviePlayer setFullscreen:NO animated:YES];
+}
+
+- (void)_moviePlayerPlaybackStateDidChange:(NSNotification *)notification {
+    if (!self.moviePlayer.fullscreen && self.moviePlayer.playbackState == MPMoviePlaybackStatePlaying) {
+        [self.moviePlayer setFullscreen:YES animated:YES];
+    }
 }
 
 - (void)_moviePlayerWillExitFullscreen:(NSNotification *)notification {
-  [self.delegate willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
+    [self.delegate willRotateToInterfaceOrientation:[self.delegate interfaceOrientation] duration:0];
 }
 
-
 - (void)viewWillDisappear:(BOOL)animated {
-  [moviePlayer stop];
+    // In iOS 6 and up, this method gets called when the video player goes into full screen.
+    // This prevents the movie player from stopping itself by only stopping the video if not in
+    // full screen (meaning the view has actually disappeared).
+    if (!self.moviePlayer.fullscreen)
+        [moviePlayer stop];
 }
 
 - (void)startImageDownloads {
-    
     if ([self.step.images count] > 0) {
-        [mainImage setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
+        // Download the image
+        [mainImage setImageWithURL:[self.step.images[0] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
         
         if ([self.step.images count] > 1) {
-            [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
+            [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
             image1.hidden = NO;
         }
     }
-    
+
     if ([self.step.images count] > 1) {
-        [image2 setImageWithURL:[[self.step.images objectAtIndex:1] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
+        [image2 setImageWithURL:[[self.step.images objectAtIndex:1] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
         image2.hidden = NO;
     }
-    
+
     if ([self.step.images count] > 2) {
-        [image3 setImageWithURL:[[self.step.images objectAtIndex:2] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
+        [image3 setImageWithURL:[[self.step.images objectAtIndex:2] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
         image3.hidden = NO;
     }
 }
 
 - (IBAction)changeImage:(UIButton *)button {
-    GuideImage *guideImage = nil;
+    GuideImage *guideImage = self.step.images[button.tag];
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    UIImage *cachedImage = [manager imageWithURL:[guideImage URLForSize:@"large"]];
     
-    if ([button isEqual:image1])
-        guideImage = [self.step.images objectAtIndex:0];
-    else if ([button isEqual:image2])
-        guideImage = [self.step.images objectAtIndex:1];
-    else if ([button isEqual:image3])
-        guideImage = [self.step.images objectAtIndex:2];
-
-    // Switch to the new image, but delay the spinner for a short time.
-    [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"collectionsImagePlaceholder.png"]];
+    // Use the cached image if we have it, otherwise download it
+    if (cachedImage) {
+        [UIView transitionWithView:mainImage
+                          duration:0.3
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [mainImage setBackgroundImage:cachedImage forState:UIControlStateNormal];
+                        } completion:nil];
+    } else {
+        [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+    }
 }
 
 // Because the web view has a white background, it starts hidden.
 // After the content is loaded, we wait a small amount of time before showing it to prevent flicker.
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-	[self performSelector:@selector(showWebView:) withObject:nil afterDelay:0.2];
+    [self performSelector:@selector(showWebView:) withObject:nil afterDelay:0.2];
+    [self.webView enableScrollingIfNeeded];
 }
 - (void)showWebView:(id)sender {
-	webView.hidden = NO;	
+	webView.hidden = NO;
 }
 
+// I'll leave this here in case we ever want to use this
+- (void) webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image {
+}
+
+- (void)loadSecondaryImages {
+    
+    // Only load the secondary large images if we are looking at the current view being presented on the screen
+    if (self.step.number == self.guideViewController.pageControl.currentPage) {
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        
+        if (self.step.images.count > 1 && ![manager imageWithURL:[self.step.images[1] URLForSize:@"large"]]) {
+            [manager downloadWithURL:[self.step.images[1] URLForSize:@"large"] delegate:self retryFailed:YES];
+        }
+        
+        if (self.step.images.count > 2 && ![manager imageWithURL:[self.step.images[2] URLForSize:@"large"]]) {
+            [manager downloadWithURL:[self.step.images[2] URLForSize:@"large"] delegate:self retryFailed:YES];
+        }
+    }
+    
+}
 - (IBAction)zoomImage:(id)sender {
    	UIImage *image = [mainImage backgroundImageForState:UIControlStateNormal];
     if (!image)
         return;
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
+
 	// Create the image view controller and add it to the view hierarchy.
 	GuideImageViewController *imageVC = [GuideImageViewController zoomWithUIImage:image delegate:self];
     [delegate presentModalViewController:imageVC animated:YES];
@@ -250,16 +305,16 @@
         frame.origin.x = 10.0;
         moviePlayer.view.frame = frame;
         embedView.frame = frame;
-      
+
         frame = image1.frame;
         frame.origin.y = 560.0;
-        
+
         frame.origin.x = 20.0;
         image1.frame = frame;
-        
+
         frame.origin.x = 173.0;
         image2.frame = frame;
-        
+
         frame.origin.x = 326.0;
         image3.frame = frame;
     }
@@ -271,16 +326,16 @@
         // and are automatically tweaked during animation with respect to their resize masks.
         CGRect frame = image1.frame;
         frame.origin.y = 170;
-        
+
         frame.origin.x = 20;
         image1.frame = frame;
-        
+
         frame.origin.x = 90;
         image2.frame = frame;
-        
+
         frame.origin.x = 160;
         image3.frame = frame;
-        
+
         webView.frame = CGRectMake(230, 0, screenSize.height - 230, 236);
     }
 }
@@ -299,46 +354,51 @@
 
         frame = image1.frame;
         frame.origin.x = 626.0;
-        
+
         frame.origin.y = 30.0;
         image1.frame = frame;
-        
+
         frame.origin.y = 150.0;
         image2.frame = frame;
-        
+
         frame.origin.y = 270.0;
         image3.frame = frame;
     }
     // iPhone
     else {
         CGSize screenSize = [UIScreen mainScreen].bounds.size;
-  
+
         // These dimensions represent the object's position BEFORE rotation,
         // and are automatically tweaked during animation with respect to their resize masks.
         CGRect frame = image1.frame;
         frame.origin.x = 238;
-        
+
         frame.origin.y = 10;
         image1.frame = frame;
-        
+
         frame.origin.y = 62;
         image2.frame = frame;
-        
+
         frame.origin.y = 115;
         image3.frame = frame;
-        
+
         webView.frame = CGRectMake(0, 168, 320, screenSize.height - 255);
     }
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    // Really stupid hack. This prevents the status bar from overlapping with the view controller on iOS
+    // versions < 6.0. This works by forcing the status bar to always appear before we manipulate the view,
+    // otherwise the view thinks that it does not exist and creates the overlapping issue.
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    
     if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
         [self layoutLandscape];
     }
     else {
         [self layoutPortrait];
     }
-    
+
     // Re-flow HTML
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
 }
@@ -361,11 +421,10 @@
 - (void)dealloc {
     [_step release];
     // TODO: Figure out why this crashes.
-    //[bigImages release];
     [html release];
-   
+
     webView.delegate = nil;
-    
+
     [titleLabel release];
     [mainImage release];
     [webView release];
@@ -374,9 +433,9 @@
     [image3 release];
     [moviePlayer release];
     [embedView release];
-  
+
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-  
+
     [super dealloc];
 }
 

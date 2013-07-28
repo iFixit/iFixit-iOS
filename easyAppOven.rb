@@ -17,7 +17,7 @@
 #####
 
 puts "Easy App Oven!"
-configName = nanoSite = appName = ''
+configName = nanoSite = appName = userInput = configPrivate = ''
 
 # Ask the user for nanosite
 until nanoSite.match(/^[a-z-]+/)
@@ -35,6 +35,13 @@ end
 puts "\nEnter the App Name:"
 appName = gets.chomp
 
+# Ask the user if the nanosite is private
+until userInput.match(/[y|n]/)
+   puts "\nIs the nanosite private? (y/n)"
+   userInput = gets.chomp
+   configPrivate = userInput.eql?('y') ? 'YES' : 'NO'
+end
+
 ####
 # Each dictionary in the recipe's array is a 'clump' of code changes
 # :file == Path to Class file
@@ -47,7 +54,7 @@ appName = gets.chomp
 ####
 recipes = [
    # Add logo title image, along with resizing logic for portrait/landscape
-   { :file        => 'Classes/Config.h',
+   { :file       => 'Classes/Config.h',
      :pattern    => /\/\*EAOConfig\*\//,
      :ingredient => "#{configName},\n" + "\s" * 4 + "/*EAOConfig*/" },
 
@@ -55,63 +62,63 @@ recipes = [
    { :file       => 'Classes/GuideIntroViewController.m',
      :pattern    => /\/\*EAOGuideIntro\*\//,
      :ingredient => "case #{configName}:\n" +
-                     "\t" * 4 + "image = [UIImage imageNamed:@\"logo_#{nanoSite}.png\"];\n" +
-                     "\t" * 4 + "headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);\n" +
-                     "\t" * 4 + "headerImageLogo.image = image;\n" +
-                     "\t" * 4 + "[image release];\n" +
-                     "\t" * 4 + "break;\n\t" + "\t" * 2 + "/*EAOGuideIntro*/" },
+                     "\s" * 16 + "image = [UIImage imageNamed:@\"logo_#{nanoSite}.png\"];\n" +
+                     "\s" * 16 + "headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);\n" +
+                     "\s" * 16 + "headerImageLogo.image = image;\n" +
+                     "\s" * 16 + "[image release];\n" +
+                     "\s" * 16 + "break;\n" + "\s" * 12 + "/*EAOGuideIntro*/" },
 
    # Add config settings such as base url and other options
    { :file       => 'Classes/Config.m',
      :pattern    => /\/\*EAOOptions\*\//,
      :ingredient => "case #{configName}:\n" +
-                     "\t" * 3 + "self.host = @\"#{nanoSite}.dozuki.com\";\n" +
-                     "\t" * 3 + "self.baseURL = @\"http://#{nanoSite}.dozuki.com\";\n" +
-                     "\t" * 3 + "answersEnabled = NO;\n" +
-                     "\t" * 3 + "collectionsEnabled = NO;\n" +
-                     "\t" * 3 + "self.store = nil;\n" +
-                     "\t" * 3 + "break;\n" + "\t" * 2 + "/*EAOOptions*/" },
+                     "\s" * 12 + "self.host = @\"#{nanoSite}.dozuki.com\";\n" +
+                     "\s" * 12 + "self.baseURL = @\"http://#{nanoSite}.dozuki.com\";\n" +
+                     "\s" * 12 + "answersEnabled = NO;\n" +
+                     "\s" * 12 + "collectionsEnabled = NO;\n" +
+                     "\s" * 12 + "self.store = nil;\n" +
+                     "\s" * 12 + "self.private = #{configPrivate};\n" +
+                     "\s" * 12 + "break;\n" + "\s" * 8 + "/*EAOOptions*/" },
 
    # Add title image logo and resizing logic for title image logo
    { :file       => 'Classes/CategoriesViewController.m',
      :pattern    => [ /\/\*EAOTitle\*\//, /\/\*EAOLandscapeResize\*\//, /\/\*EAOPortraitResize\*\// ],
      :ingredient => [ "case #{configName}:\n" +
-                     "\t" * 4 + "titleImage = [UIImage imageNamed:@\"titleImage#{nanoSite.capitalize}.png\"];\n" +
-                     "\t" * 4 + "imageTitle = [[UIImageView alloc] initWithImage:titleImage];\n" +
-                     "\t" * 4 + "self.navigationItem.titleView = imageTitle;\n" +
-                     "\t" * 4 + "[imageTitle release];\n" +
-                     "\t" * 4 + "[titleImage release];\n" + "\t" * 4 + "break;\n" +
-                     "\t" * 3 + "/*EAOTitle*/",
+                     "\s" * 16 + "titleImage = [UIImage imageNamed:@\"titleImage#{nanoSite.capitalize}.png\"];\n" +
+                     "\s" * 16 + "imageTitle = [[UIImageView alloc] initWithImage:titleImage];\n" +
+                     "\s" * 16 + "self.navigationItem.titleView = imageTitle;\n" +
+                     "\s" * 16 + "[titleImage release];\n" + "\s" * 16 + "break;\n" +
+                     "\s" * 12 + "/*EAOTitle*/",
                      "case #{configName}:\n" +
-                     "\t" * 4 + "frame = self.navigationItem.titleView.frame;\n" +
-                     "\t" * 4 + "frame.size.width = 0.0;\n" +
-                     "\t" * 4 + "frame.size.height = 0.0;\n" +
-                     "\t" * 4 + "self.navigationItem.titleView.frame = frame;\n" + "\t" * 4 +
-                     "break;\n" + "\t" * 3 + "/*EAOLandscapeResize*/",
+                     "\s" * 16 + "frame = self.navigationItem.titleView.frame;\n" +
+                     "\s" * 16 + "frame.size.width = 0.0;\n" +
+                     "\s" * 16 + "frame.size.height = 0.0;\n" +
+                     "\s" * 16 + "self.navigationItem.titleView.frame = frame;\n" + "\s" * 16 +
+                     "break;\n" + "\s" * 12 + "/*EAOLandscapeResize*/",
                      "case #{configName}:\n" +
-                     "\t" * 4 + "frame = self.navigationItem.titleView.frame;\n" +
-                     "\t" * 4 + "frame.size.width = 0.0;\n" +
-                     "\t" * 4 + "frame.size.height = 0.0;\n" +
-                     "\t" * 4 + "self.navigationItem.titleView.frame = frame;\n" + "\t" * 4 +
-                     "break;\n" + "\t" * 3 + "/*EAOPortraitResize*/" ] },
+                     "\s" * 16 + "frame = self.navigationItem.titleView.frame;\n" +
+                     "\s" * 16 + "frame.size.width = 0.0;\n" +
+                     "\s" * 16 + "frame.size.height = 0.0;\n" +
+                     "\s" * 16 + "self.navigationItem.titleView.frame = frame;\n" + "\s" * 16 +
+                     "break;\n" + "\s" * 12 + "/*EAOPortraitResize*/" ] },
 
    # Add large background iPad logo and resizing logic for logo
    { :file       => 'Classes/DetailIntroViewController.m',
      :pattern    => [ /\/\*EAOLandscape\*\//, /\/\*EAOPortrait\*\//, /\/\*EAOiPadLogo\*\// ],
      :ingredient => [ "case #{configName}:\n" +
-                     "\t" * 4 + "frame.origin.y = 0.0;\n" +
-                     "\t" * 4 + "frame.origin.x = 0.0;\n" +
-                     "\t" * 4 + "break;\n\t" + "\t" * 2 +  "/*EAOLandscape*/",
+                     "\s" * 16 + "frame.origin.y = 0.0;\n" +
+                     "\s" * 16 + "frame.origin.x = 0.0;\n" +
+                     "\s" * 16 + "break;\n" + "\s" * 12 +  "/*EAOLandscape*/",
                      "case #{configName}:\n" +
-                     "\t" * 4 + "frame.origin.y = 0.0;\n" +
-                     "\t" * 4 + "frame.origin.x = 0.0;\n" +
-                     "\t" * 4 + "break;\n\t" + "\t" * 2 +  "/*EAOPortrait*/",
+                     "\s" * 16 + "frame.origin.y = 0.0;\n" +
+                     "\s" * 16 + "frame.origin.x = 0.0;\n" +
+                     "\s" * 16 + "break;\n" + "\s" * 12 +  "/*EAOPortrait*/",
                      "case #{configName}:\n" +
-                     "\t" * 3 + "image.image = [UIImage imageNamed:@\"#{nanoSite}_logo_transparent.png\"];\n" +
-                     "\t" * 3 + "image.frame = CGRectMake(image.frame.origin.x, image.frame.origin.y, 0.0, 0.0);\n" +
-                     "\t" * 3 + "image.center = self.view.center;\n" +
-                     "\t" * 3 + "text.image = [UIImage imageNamed:@\"detailViewText#{nanoSite.capitalize}.png\"];\n" +
-                     "\t" * 3 + "break;\n" + "\t" * 2 + "/*EAOiPadLogo*/" ] },
+                     "\s" * 12 + "image.image = [UIImage imageNamed:@\"#{nanoSite}_logo_transparent.png\"];\n" +
+                     "\s" * 12 + "image.frame = CGRectMake(image.frame.origin.x, image.frame.origin.y, 0.0, 0.0);\n" +
+                     "\s" * 12 + "image.center = self.view.center;\n" +
+                     "\s" * 12 + "text.image = [UIImage imageNamed:@\"detailViewText#{nanoSite.capitalize}.png\"];\n" +
+                     "\s" * 12 + "break;\n" + "\s" * 8 + "/*EAOiPadLogo*/" ] },
 
    # Add code to our bash script that switches between iOS apps
    { :file       => 'dozuki.sh',

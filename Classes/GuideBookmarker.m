@@ -14,6 +14,7 @@
 #import "iFixitAPI.h"
 #import "User.h"
 #import "LoginViewController.h"
+#import "GANTracker.h"
 
 @implementation GuideBookmarker
 
@@ -65,6 +66,7 @@
                 [poc dismissPopoverAnimated:YES];
             }
             else {
+                [self resizePopoverViewControllerContents];
                 [poc presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             }
         }
@@ -110,11 +112,21 @@
     [[iFixitAPI sharedInstance] like:guideid forObject:self withSelector:@selector(liked:)];
 }
 
+// Resize the popover view controller contents
+- (void)resizePopoverViewControllerContents {
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    poc.popoverContentSize = (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) ? CGSizeMake(320, screenSize.width / 2) : CGSizeMake(320, screenSize.height / 2);
+}
 - (void)hideLogin {
     [lvc dismissModalViewControllerAnimated:YES];
 }
 
 - (void)liked:(NSDictionary *)result {
+    if (!result) {
+        [iFixitAPI displayConnectionErrorAlert];
+        return;
+    }
+    
     // Session error. Retry.
     if ([result valueForKey:@"error"]) {
         [self setNavItem:navItem andGuideid:[guideid intValue]];
@@ -155,7 +167,11 @@
     [progressContainer release];
     
     // Save the guide in the bookmarks list.
-    [[GuideBookmarks sharedBookmarks] addGuideid:guideid forBookmarker:self];   
+    [[GuideBookmarks sharedBookmarks] addGuideid:guideid forBookmarker:self];
+    
+    // Analytics
+    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/download/%@", guideid] withError:NULL];
+    [[GANTracker sharedTracker] trackPageview:@"/guide/download" withError:NULL];
 }
 
 - (void)refresh {

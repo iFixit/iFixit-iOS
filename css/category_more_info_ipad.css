@@ -1,0 +1,36 @@
+html, body {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+h2 {
+    font-size: 37px;
+    color: #333;
+    text-decoration: underline;
+    text-underline-color: #CCCCCC
+}
+
+p, a, li, h3 {
+    font-size: 20px;
+}
+
+#categoryImage {
+    float: right;
+    margin: 5px 15px 5px 8px;
+    border: 1px solid black;
+    padding: 1px;
+}
+
+#moreInfoContent {
+    margin: 8px;
+    float: right-side;
+}
+
+img {
+    width: 40%;
+    height: auto;
+}
+
+.anchor, .editSectionLink {
+    display: none;
+}
+

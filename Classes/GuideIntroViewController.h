@@ -14,8 +14,8 @@
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) IBOutlet UIImageView *headerImageLogo;
 @property (retain, nonatomic) IBOutlet UILabel *headerTextDozuki;
-@property (nonatomic, retain) IBOutlet UIImageView *swipeLabel;
 @property (retain, nonatomic) IBOutlet UIView *overlayView;
+@property (retain, nonatomic) IBOutlet UILabel *swipeLabel;
 
 @property (nonatomic, retain) Guide *guide;
 @property (nonatomic, retain) IBOutlet UILabel *device;

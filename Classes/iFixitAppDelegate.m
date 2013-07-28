@@ -11,7 +11,6 @@
 
 #import "ListViewController.h"
 #import "CategoriesViewController.h"
-#import "DetailViewController.h"
 #import "FeaturedViewController.h"
 #import "GuideViewController.h"
 #import "DozukiSplashViewController.h"
@@ -23,6 +22,8 @@
 #import "LoginBackgroundViewController.h"
 #import "UIColor+Hex.h"
 #import "GANTracker.h"
+#import "CategoryTabBarViewController.h"
+#import "iFixitSplashScreenViewController.h"
 
 static const NSInteger kGANDispatchPeriodSec = 10;
 
@@ -92,7 +93,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [Config currentConfig].dozuki = NO;
 
     /* Track. */
-    [TestFlight takeOff:@"6b356258f037dc15f6d69d0e5d27fdf7_MzAyOTUyMDEyLTAyLTEyIDE1OjQ2OjUwLjA0NTg5OQ"];
+    [TestFlight takeOff:@"ee879878-6696-470b-af65-61548b796d9f"];
     [self setupAnalytics];
     
     /* iOS 5 appearance */
@@ -105,7 +106,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
     /* iFixit is easy. */
     if (![Config currentConfig].dozuki) {
-        [self showSiteSplash];
+        [self showiFixitSplash];
     }
     /* Dozuki gets a little more complicated. */
     else {
@@ -126,8 +127,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 }
 
 - (void)showDozukiSplash {
-    [detailViewController.popoverController dismissPopoverAnimated:NO];
-    
     // Make sure we're not pointing at a site requiring setup.
     [[Config currentConfig] setSite:ConfigIFixit];
     
@@ -146,6 +145,21 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     if (!firstLoad) {
         [dsvc getStarted:nil];
     }
+}
+
+- (void)showiFixitSplash {
+    // Hide the status bar
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
+    iFixitSplashScreenViewController *svc = [[iFixitSplashScreenViewController alloc] initWithNibName:@"iFixitSplashScreenViewController" bundle:nil];
+    
+    self.window.rootViewController = svc;
+    
+    [UIView transitionWithView:self.window.rootViewController.view duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    } completion:nil];
+    
+    [window makeKeyAndVisible];
+    [svc release];
 }
 
 - (void)showSiteSplash {
@@ -169,12 +183,15 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         nvc.navigationBar.tintColor = [Config currentConfig].toolbarColor;
         [vc release];
 
-        UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
-                                                                  target:self
-                                                                  action:@selector(showDozukiSplash)];
-        vc.navigationItem.leftBarButtonItem = button;
-        [button release];
+        // We only need this button if on Dozuki App
+        if ([Config currentConfig].dozuki) {
+            UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
+            UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
+                                                                      target:self
+                                                                      action:@selector(showDozukiSplash)];
+            vc.navigationItem.leftBarButtonItem = button;
+            [button release];
+        }
 
         // iPad: display in form sheet
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -213,24 +230,26 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     self.showsTabBar = [Config currentConfig].collectionsEnabled || [Config currentConfig].store;
     
     // Create the split controller children.
-    CategoriesViewController *rvc = [[CategoriesViewController alloc] init];
+    CategoriesViewController *rvc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
     self.categoriesViewController = rvc;
     [rvc release];
-    DetailViewController *dvc = [[DetailViewController alloc] init];
-    self.detailViewController = dvc;
-    [dvc release];
     
     // Create the split view controller.
     UISplitViewController *svc = [[UISplitViewController alloc] init];
-    svc.delegate = detailViewController;
     self.splitViewController = svc;
     [svc release];
     
-    categoriesViewController.detailViewController = detailViewController;
-    
     ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:categoriesViewController];
-    splitViewController.viewControllers = [NSArray arrayWithObjects:lvc, detailViewController, nil];
+    CategoryTabBarViewController *ctvc = [[CategoryTabBarViewController alloc] initWithNibName:@"CategoryTabBarViewController" bundle:nil];
+    
+    lvc.categoryTabBarViewController = ctvc;
+    ctvc.listViewController = lvc;
+    
+    splitViewController.viewControllers = @[lvc, ctvc];
+    splitViewController.delegate = ctvc;
+    
     [lvc release];
+    [ctvc release];
     
     categoriesViewController.delegate = self;
     
@@ -262,9 +281,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
             storeTitle = NSLocalizedString(@"Parts & Tools", nil);
             storeImage = [UIImage imageNamed:@"tabBarItemGears.png"];
         }
-        storeViewController = [[SVWebViewController alloc] initWithAddress:[Config currentConfig].store];
+        storeViewController = [[SVWebViewController alloc] initWithAddress:[Config currentConfig].store withTitle:storeTitle];
         storeViewController.tintColor = [Config currentConfig].toolbarColor;
-        storeViewController.showsDoneButton = NO;        
+        storeViewController.showsDoneButton = NO;
         storeViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:storeTitle image:storeImage tag:0] autorelease];
     }
 
@@ -287,14 +306,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 }
 
 - (UIViewController *)iPhoneRoot {
-    CategoriesViewController *cvc = [[CategoriesViewController alloc] init];
-    self.categoriesViewController = cvc;
-    [cvc release];
+    CategoryTabBarViewController *ctbvc = [[CategoryTabBarViewController alloc] initWithNibName:@"CategoryTabBarViewController" bundle:nil];
     
-    ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:categoriesViewController];
-
-    lvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    return [lvc autorelease];
+    return [ctbvc autorelease];
 }
 
 - (void)loadSiteWithDomain:(NSString *)domain {
