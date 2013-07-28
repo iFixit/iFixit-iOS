@@ -511,8 +511,11 @@ BOOL onTablet, initialLoad, viewDidDisappear;
         [self configureFistImageView:UIInterfaceOrientationMaskPortrait];
         self.browseButton.hidden = NO;
         self.detailGridViewController.orientationOverride = UIInterfaceOrientationPortrait;
-        self.detailGridViewController.guideArrow.hidden = NO;
-        self.detailGridViewController.browseInstructions.hidden = NO;
+        
+        if (self.listViewController.viewControllers.count == 1) {
+            self.detailGridViewController.guideArrow.hidden = NO;
+            self.detailGridViewController.browseInstructions.hidden = NO;
+        }
     }
     
     [self.detailGridViewController.tableView reloadData];
