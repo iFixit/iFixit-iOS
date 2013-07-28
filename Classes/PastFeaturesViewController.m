@@ -15,7 +15,7 @@
 
 - (id)init {
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
-        self.title = @"Past Features";
+        self.title = NSLocalizedString(@"Past Features", nil);
         self.collections = [NSMutableArray array];
         
         self.dateFormat = [[[NSDateFormatter alloc] init] autorelease];

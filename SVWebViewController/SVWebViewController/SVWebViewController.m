@@ -480,7 +480,7 @@
 	if([MFMailComposeViewController canSendMail])
 		[actionSheet addButtonWithTitle:NSLocalizedString(@"Mail Link to this Page", @"SVWebViewController")];
 	
-	[actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel",@"SVWebViewController")];
+	[actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", @"SVWebViewController")];
 	actionSheet.cancelButtonIndex = [actionSheet numberOfButtons]-1;
 	
 	if(!deviceIsTablet)

@@ -1,0 +1,85 @@
+
+~~ Description: ~~
+The free repair manual! Thousands of how-to guides make it easy to repair your
+stuff. Fix your own things with step-by-step repair instructions.
+
+► Our native iPad view is the best way to repair anything.
+
+Explore inside thousands of devices—before you take yours apart. Need more
+detail on a step? Zoom into high resolution images to see all the fine details!
+
+► Parts Store: buy parts and tools right in the app!
+
+● Included Devices ●
+Repair manuals show you how to fix:
+✓ MacBook Repair
+✓ MacBook Pro Repair
+✓ PowerBook & iBook Repair
+✓ iPad Repair
+✓ iPhone Repair
+✓ iPod Repair
+✓ Xbox Repair
+✓ PlayStation Repair
+✓ PC Laptop Repair
+✓ Dozens of digital camera repair manuals
+✓ Hundreds of cell phone repair manuals
+✓ Harley Davidson Repair
+✓ Honda Accord Repair
+✓ More manuals added every week
+
+● Praise from the Press ●
+
+"Empowers you to fix things yourself. From troubleshooting to parts and tools,
+to repair guides, they have your back."
+— TreeHugger
+
+"Demonstrates the old-fashioned virtue of repair and extending the lifespan of
+devices."
+— Reuters
+
+"The robots of the future will see this and murder us all. Thanks iFixit.
+Thanks a lot."
+— Engadget
+
+"Illustrated repair guides that take you step by step through the process."
+— Dallas Morning News
+
+● Testimonials ●
+
+"You guys rule and have saved me many many times. Thank you!"
+– Ralph in North Carolina
+
+"I love your repair guides. You've saved me hundreds of dollars over the last
+few years."
+– David in Maryland
+
+"Great, clean and easy to navigate.'
+– Serge in New Brunswick
+
+"Shipping time was superb. I will come back to your store the next time I am
+looking for parts. THANK YOU VERY MUCH!"
+–Ramia in Nebraska
+
+"Quick and straightforward."
+– Owen in New York
+
+"The installation went smoothly thanks to your excellent guides. We got my
+son's MacBook Pro running and saved $$$$$."
+–Christopher in New Mexico
+
+● Support iFixit ●
+
+Help us keep these manuals free. We keep the lights on by selling parts and
+tools. If you use our manual to fix something, please support our work by
+buying the parts from us.
+
+We sell thousands of MacBook, iPod, iPhone, iPad and game console parts, as
+well as electronics repair tools.
+
+This app is open source! You can improve or fork it here:
+https://github.com/iFixit
+
+~~ Whats new in this version? ~~
+● Improved offline browsing — save guides for access when you don't have a
+network connection!
+● Additional login options — you can now sign in with Google or Yahoo!

@@ -168,11 +168,11 @@
 	[spinner stopAnimating];
 
     if (!guide) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Network Error"
-                                                            message:@"Failed loading guide."
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                            message:NSLocalizedString(@"Failed loading guide.", nil)
                                                            delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"Try Again", nil];
+                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                  otherButtonTitles:NSLocalizedString(@"Try Again", nil), nil];
         [alertView show];
         [alertView release];
         return;
