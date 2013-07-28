@@ -146,6 +146,21 @@
 	self.tableView.tableFooterView = footer;
 }
 
+- (void)configureEditButton {
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(toggleEdit)];
+    
+    self.editButton = barButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButton;
+    
+    [barButtonItem release];
+}
+
+- (void)toggleEdit {
+    [self.tableView setEditing:!self.tableView.editing animated:YES];
+    
+    self.navigationItem.rightBarButtonItem.title = self.tableView.editing ? NSLocalizedString(@"Done", nil) : NSLocalizedString(@"Edit", nil);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -157,9 +172,10 @@
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
         [self applyPaddedFooter];
     
+    [self configureEditButton];
 
     self.navigationItem.rightBarButtonItem = [iFixitAPI sharedInstance].user ?
-        self.editButtonItem : nil;
+        self.editButton : nil;
     
     self.tableView.tableHeaderView = [self headerView];
     
@@ -381,7 +397,7 @@
     }
     
     self.navigationItem.rightBarButtonItem = [iFixitAPI sharedInstance].user ?
-        self.editButtonItem : nil;
+        self.editButton : nil;
     
     [self performSelectorInBackground:@selector(refreshHierarchy) withObject:nil];
 }
