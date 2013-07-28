@@ -543,11 +543,6 @@ BOOL onTablet, initialLoad, viewDidDisappear;
     if (onTablet) {
         if (viewDidDisappear) {
             [self reflowLayout:self.interfaceOrientation];
-            // Force the view to be reloaded to avoid a very odd edgecase dealing with rotations
-            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-            UIView *view = [window.subviews objectAtIndex:0];
-            [view removeFromSuperview];
-            [window addSubview:view];
         } else {
             [self reflowLayout:toInterfaceOrientation];
         }
