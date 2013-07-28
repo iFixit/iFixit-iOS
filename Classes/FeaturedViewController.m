@@ -63,11 +63,11 @@
 - (void)gotCollections:(NSArray *)collections {
     if (![collections count]) {
         [self.loading hide];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"Could not load featured collections."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                        message:NSLocalizedString(@"Could not load featured collections.", nil)
                                                        delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Retry", nil];
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                              otherButtonTitles:NSLocalizedString(@"Retry", nil), nil];
         alert.tag = 1;
         [alert show];
         [alert release];
@@ -179,11 +179,11 @@
 - (void)gotGuides:(NSArray *)guides {
     if (![guides count]) {
         [self.loading hide];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"Could not load collection."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                        message:NSLocalizedString(@"Could not load featured collections.", nil)
                                                        delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Retry", nil];
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                              otherButtonTitles:NSLocalizedString(@"Retry", nil), nil];
         alert.tag = 2;
         [alert show];
         [alert release];
@@ -241,7 +241,7 @@
     
     self.gvc.view.backgroundColor = [UIColor clearColor];
     
-    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Past Features"
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Past Features", nil)
                                                                style:UIBarButtonItemStyleBordered
                                                               target:self
                                                               action:@selector(showPastFeatures:)];
@@ -293,7 +293,7 @@
 }
 - (NSString *)gridViewController:(DMPGridViewController *)gridViewController titleForCellAtIndex:(NSUInteger)index {
     if (![_guides count])
-        return @"Loading...";
+        return NSLocalizedString(@"Loading...", nil);
     
     NSString *title = @"";
     NSDictionary *guide = [_guides objectAtIndex:index];

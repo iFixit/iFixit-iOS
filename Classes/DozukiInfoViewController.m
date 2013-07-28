@@ -20,7 +20,7 @@
     if (self) {
         // Custom initialization
         self.dssvc = [[[DozukiSelectSiteViewController alloc] initWithSimple:YES] autorelease];
-        self.title = @"Back";
+        self.title = NSLocalizedString(@"Back", nil);
     }
     return self;
 }

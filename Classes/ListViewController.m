@@ -86,8 +86,6 @@
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    
-    
     // Terrible hack, this ensures that the tabbar is in the correct position in landscape, fixes an edgecase
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && self.viewControllers.count == 1) {
         if (UIDeviceOrientationIsLandscape(self.interfaceOrientation) ) {

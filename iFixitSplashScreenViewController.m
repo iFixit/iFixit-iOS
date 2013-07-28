@@ -147,6 +147,8 @@ BOOL initialLoad;
     self.startRepairButton.clipsToBounds = YES;
     self.startRepairButton.layer.masksToBounds = YES;
     self.startRepairButton.titleLabel.font = [UIFont fontWithName:@"OpenSans-Bold" size:17.0f];
+    self.startRepairButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    [self.startRepairButton setTitle:NSLocalizedString(@"START A REPAIR", nil) forState:UIControlStateNormal];
 }
 - (IBAction)buttonTouchedDown:(id)sender {
     self.startRepairButton.backgroundColor = [UIColor colorWithRed:0.0 green:46.0f/255.0f blue:95.0f/255.0f alpha:1.0];

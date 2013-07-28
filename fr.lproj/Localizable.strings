@@ -1,0 +1,64 @@
+/* 
+  Localizable.strings
+  iFixit
+
+  Created by Stefan Ayala on 5/17/13.
+
+*/
+
+"Search" = "Recherche";
+"Categories" = "Catégories";
+"Devices" = "Matériels";
+"All" = "Tout";
+"Favorites" = "Favoris";
+"email@example.com" = "nom@exemple.com";
+"Required" = "Impératif";
+"Login" = "Login";
+"Email" = "Adresse mel";
+"Password" = "Mot de passe";
+"Your Name" = "Votre nom";
+"Register" = "Enregistrer";
+"again" = "A nouveau";
+"Cancel" = "Annuler";
+"Logout" = "Sortir";
+"Could not load guide list." = "Impossible de charger la liste de guide";
+"Please check your internet connection and try again." = "Vérifiez votre connexion Internet et essayez à nouveau";
+"Retry" = "Essayer à nouveau";
+"Error" = "Erreur";
+"Could not load featured collections." = "Impossible de charger les collections demandées";
+"Failed loading guide." = "Erreur de chargement du guide";
+"Try Again" = "Essayez à nouveau";
+"Create an Account" = "Créez un compte";
+"You haven't saved any guides for offline view yet. When you do, they'll appear here." = "Vous n'avez pas encore enregistré de guides pour visualisation offline. Lorsque cela sera fait, ils apparaitront ici.";
+"Logged in as %@" = "Loggé en tant que %@";
+"Search Results" = "Résultats de recherche";
+"No Results Found" = "Pas de résultats trouvés";
+"General Information" = "Information générale";
+"Loading..." = "Chargement en cours...";
+"Browse" = "Visualiser";
+"Guides" = "Guides";
+"Projects" = "Projets";
+"More Info" = "Information supplémentaire";
+"Answers" = "Réponses";
+"Back" = "Retour";
+"Choose a Site" = "Choisissez un Site";
+"More Sites..." = "Sites supplémentaires...";
+"Past Features" = "Fonctions anciennes";
+"Favorite" = "Favori";
+"Downloading..." = "Chargement en cours...";
+"Saved" = "Enregistré";
+"Step %d" = "Étape %d";
+"Private site. Authentication required." = "Site privé. Identification requise.";
+"Repair Manuals" = "Manuels de réparation";
+"Store" = "Boutique";
+"Parts & Tools" = "Pièces & Outils";
+"No guides found" = "Pas de guides disponibles";
+"This device has no guides." = "Cet objet n'a pas de guides";
+"Okay" = "OK";
+"Untitled" = "Sans titre";
+"Favorites are saved offline and synced across devices." = "Les favoris sont synchronisés entre multiples plateformes and sauvegardés localement pour visualisation offline. Veuillez vous logger ou vous enregistrer pour utiliser cette fonction.";
+"All fields are required" = "Tous les champs sont requis";
+"Passwords don't match" = "les mots de passe ne sont pas identiques";
+"Swipe to Begin" = "Glisser pour commencer";
+"Looking for Guides? Browse thousands of them here." = "Vous cherchez des guides? Choisissez parmi des milliers ici.";
+"START A REPAIR" = "COMMENCER UNE RÉPARATION";

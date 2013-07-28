@@ -123,6 +123,9 @@
     [self addViewShadow:mainImage];
 
     [mainImage setImageWithURL:[self.guide.image URLForSize:@"standard"] placeholderImage:nil];
+    
+    swipeLabel.adjustsFontSizeToFitWidth = YES;
+    swipeLabel.text = [NSString stringWithFormat:@" ←%@ ", NSLocalizedString(@"Swipe to Begin", nil)];
 }
 
 // Because the web view has a white background, it starts hidden.
@@ -175,8 +178,7 @@
         CGRect frame = webView.frame;
         frame.size.height = screenSize.height - 175;// 305;
         webView.frame = frame;
-      
-        swipeLabel.frame = CGRectMake(0.0, screenSize.height - 20.0, 320.0, 45.0);
+        swipeLabel.frame = CGRectMake(0.0, 0.0, 320.0, 45.0);
     }
 }
 

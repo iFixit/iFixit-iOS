@@ -103,7 +103,7 @@ static UIColor* defaultForegroundColor()
     
     // default text
     [self setFontSize:17.0];
-    [self setText:@"  Loading..."];
+    [self setText:[NSString stringWithFormat:@"  %@", NSLocalizedString(@"Loading...", nil)]];
     
     return self;
 }

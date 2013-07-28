@@ -64,10 +64,13 @@
                 break;
             /*EAOTitle*/
             default:
-                self.title = @"Categories";
+                self.title = NSLocalizedString(@"Categories", nil);
                 break;
         }
     }
+    
+    // Placeholder text for searchbar
+    self.searchBar.placeholder = NSLocalizedString(@"Search", nil);
     
     // Make room for the toolbar
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0];
@@ -75,7 +78,7 @@
     self.clearsSelectionOnViewWillAppear = NO;
     
     // Show the Dozuki sites select button if needed.
-    if ([Config currentConfig].dozuki && [self.title isEqual:@"Categories"]) {
+    if ([Config currentConfig].dozuki && self.navigationController.viewControllers.count == 1) {
         UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
         UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
                                                                   target:[[UIApplication sharedApplication] delegate]
@@ -397,9 +400,9 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (searching)
-        return @"Search Results";
+        return NSLocalizedString(@"Search Results", nil);
 	
-    return [self.categoryTypes[section] capitalizedString];
+    return NSLocalizedString([self.categoryTypes[section] capitalizedString], nil);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
