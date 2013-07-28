@@ -70,6 +70,8 @@
 		<string>Lobster.ttf</string>
 		<string>Ubuntu-Italic.ttf</string>
 		<string>Ubuntu-BoldItalic.ttf</string>
+		<string>OpenSans-Regular.ttf</string>
+		<string>OpenSans-Bold.ttf</string>
 	</array>
 	<key>UIInterfaceOrientation</key>
 	<string>UIInterfaceOrientationPortrait</string>

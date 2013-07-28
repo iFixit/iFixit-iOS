@@ -6,6 +6,7 @@
 //
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "iFixitSplashScreenViewController.h"
 #import "iFixitAppDelegate.h"
 
@@ -31,6 +32,7 @@ BOOL initialLoad;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self configureButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -70,6 +72,8 @@ BOOL initialLoad;
     [super viewDidUnload];
 }
 - (IBAction)startRepairButtonPushed:(id)sender {
+    self.startRepairButton.backgroundColor = [UIColor colorWithRed:0.0 green:89.0f/255.0f blue:180.0f/255.0f alpha:1.0];
+    
     iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];
     
     [UIView transitionWithView:self.view duration:1.0 options:nil animations:^{
@@ -105,8 +109,6 @@ BOOL initialLoad;
 // Lot's of values here but we need to be pixel perfect
 - (void)reflowImages:(UIInterfaceOrientation)orientation {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        [self.startRepairButton setImage:[UIImage imageNamed:@"iPhone-start-button"] forState:UIControlStateNormal];
-        
         if (UIDeviceOrientationIsLandscape(orientation)) {
             // iPhone 5
             if ([UIScreen mainScreen].bounds.size.height == 568.0) {
@@ -127,8 +129,6 @@ BOOL initialLoad;
             }
         }
     } else {
-        [self.startRepairButton setImage:[UIImage imageNamed:@"iPad-start-button"] forState:UIControlStateNormal];
-        
         if (UIDeviceOrientationIsLandscape(orientation)) {
             self.startRepairButton.frame = CGRectMake(390, 410, 244, 50);
             self.splashBackground.image = [UIImage imageNamed:@"Default-Landscape"];
@@ -137,5 +137,18 @@ BOOL initialLoad;
             self.splashBackground.image = [UIImage imageNamed:@"Default-Portrait"];
         }
     }
+}
+- (IBAction)buttonTouchDragOutside:(id)sender {
+    self.startRepairButton.backgroundColor = [UIColor colorWithRed:0.0 green:89.0f/255.0f blue:180.0f/255.0f alpha:1.0];
+}
+
+- (void)configureButton {
+    self.startRepairButton.layer.cornerRadius = 24.0;
+    self.startRepairButton.clipsToBounds = YES;
+    self.startRepairButton.layer.masksToBounds = YES;
+    self.startRepairButton.titleLabel.font = [UIFont fontWithName:@"OpenSans-Bold" size:17.0f];
+}
+- (IBAction)buttonTouchedDown:(id)sender {
+    self.startRepairButton.backgroundColor = [UIColor colorWithRed:0.0 green:46.0f/255.0f blue:95.0f/255.0f alpha:1.0];
 }
 @end
