@@ -72,7 +72,7 @@ BOOL initialLoad;
     [super viewDidUnload];
 }
 - (IBAction)startRepairButtonPushed:(id)sender {
-    self.startRepairButton.backgroundColor = [UIColor colorWithRed:0.0 green:89.0f/255.0f blue:180.0f/255.0f alpha:1.0];
+    self.startRepairButton.backgroundColor = [UIColor colorWithRed:0.0 green:113.0f/255.0f blue:206.0f/255.0f alpha:1.0];
     
     iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];
     
@@ -139,7 +139,7 @@ BOOL initialLoad;
     }
 }
 - (IBAction)buttonTouchDragOutside:(id)sender {
-    self.startRepairButton.backgroundColor = [UIColor colorWithRed:0.0 green:89.0f/255.0f blue:180.0f/255.0f alpha:1.0];
+    self.startRepairButton.backgroundColor = [UIColor colorWithRed:0.0 green:113.0f/255.0f blue:206.0f/255.0f alpha:1.0];
 }
 
 - (void)configureButton {
