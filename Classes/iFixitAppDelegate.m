@@ -24,6 +24,7 @@
 #import "GANTracker.h"
 #import "CategoryTabBarViewController.h"
 #import "iFixitSplashScreenViewController.h"
+#import "IntelligentSplitViewController.h"
 
 static const NSInteger kGANDispatchPeriodSec = 10;
 
@@ -235,7 +236,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [rvc release];
     
     // Create the split view controller.
-    UISplitViewController *svc = [[UISplitViewController alloc] init];
+    IntelligentSplitViewController *svc = [[IntelligentSplitViewController alloc] init];
     self.splitViewController = svc;
     [svc release];
     

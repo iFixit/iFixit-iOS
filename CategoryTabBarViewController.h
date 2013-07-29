@@ -46,5 +46,6 @@
 - (void)configureSubViewFrame:(int)viewControllerIndex;
 - (void)gotCategoryResult:(NSDictionary *)results;
 - (void)reflowLayout:(UIInterfaceOrientation)orientation;
-    
+- (void)hideBrowseInstructions:(BOOL)option;
+
 @end

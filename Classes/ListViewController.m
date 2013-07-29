@@ -59,9 +59,11 @@
         
         // Only on iPad do we want to force a selection on tabbar item 0
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-            if (UIDeviceOrientationIsPortrait(self.interfaceOrientation)) {
-                self.categoryTabBarViewController.detailGridViewController.guideArrow.hidden = NO;
-                self.categoryTabBarViewController.detailGridViewController.browseInstructions.hidden = NO;
+            if (UIDeviceOrientationIsPortrait([viewController interfaceOrientation])) {
+                [self.categoryTabBarViewController hideBrowseInstructions:NO];
+            } else {
+                [self.categoryTabBarViewController hideBrowseInstructions:YES];
+                self.categoryTabBarViewController.browseButton.hidden = NO;
             }
             
             // Set the category to nil, force a selection on guides, then configure the frame.

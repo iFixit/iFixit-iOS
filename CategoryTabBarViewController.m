@@ -18,7 +18,7 @@
 
 @end
 
-BOOL onTablet, initialLoad, viewDidDisappear;
+BOOL onTablet, initialLoad;
 
 @implementation CategoryTabBarViewController
 
@@ -32,6 +32,7 @@ BOOL onTablet, initialLoad, viewDidDisappear;
         [self configureTabBar];
         [self buildTabBarConstants];
         [self buildTabBarItems];
+        [self configureStateForInitialLoad];
     }
     return self;
 }
@@ -39,21 +40,14 @@ BOOL onTablet, initialLoad, viewDidDisappear;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)configureStateForInitialLoad {
+    [self hideBrowseInstructions:(onTablet && UIDeviceOrientationIsLandscape(self.interfaceOrientation))];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    initialLoad = viewDidDisappear = NO;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    viewDidDisappear = YES;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    if (onTablet && !viewDidDisappear) {
-        [self reflowLayout:self.interfaceOrientation];
-    }
+    initialLoad = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,10 +83,8 @@ BOOL onTablet, initialLoad, viewDidDisappear;
         self.browseButton.clipsToBounds = YES;
         [self createGradient:self.browseButton];
         [self.view.subviews[1] addSubview:self.browseButton];
-        self.browseButton.hidden = YES;
+        self.delegate = self;
     }
-    
-    self.delegate = self;
 }
 
 - (void)browseButtonPushed {
@@ -142,24 +134,10 @@ BOOL onTablet, initialLoad, viewDidDisappear;
 - (void)configureTabBar {
     // On iPad we move the tabbar to the top of the frame.
     if (onTablet) {
-        self.tabBar.frame = CGRectMake(0, 324, 768, 44);
+        self.tabBar.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44);
+        self.tabBar.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin;
     } else {
         [self showTabBar:NO];
-    }
-}
-
-- (void)configureTabBarFrame:(UIInterfaceOrientation)orientation {
-    if (UIDeviceOrientationIsLandscape(orientation)) {
-        self.tabBar.frame = CGRectMake(0, 255, [UIScreen mainScreen].bounds.size.width, 44);
-    } else {
-        // There is some terribly odd behavior with starting the app in portrait mode on initial load,
-        // this deals with that by having custom frame logic only on initial load + Portrait.
-        if (initialLoad) {
-            self.tabBar.frame = CGRectMake(0, 69, [UIScreen mainScreen].bounds.size.width, 44);
-        } else {
-            self.tabBar.frame = CGRectMake(0, -256, [UIScreen mainScreen].bounds.size.width, 44);
-        }
-        
     }
 }
 
@@ -499,30 +477,32 @@ BOOL onTablet, initialLoad, viewDidDisappear;
     if (UIDeviceOrientationIsLandscape(orientation)) {
         [self showTabBar:(self.listViewController.viewControllers.count > 1)];
         [self configureFistImageView:UIInterfaceOrientationLandscapeLeft];
-        [self configureTabBarFrame:UIInterfaceOrientationLandscapeLeft];
         self.popOverController = nil;
-        self.browseButton.hidden = YES;
         self.detailGridViewController.orientationOverride = UIInterfaceOrientationLandscapeLeft;
-        self.detailGridViewController.guideArrow.hidden = YES;
-        self.detailGridViewController.browseInstructions.hidden = YES;
     } else {
         [self showTabBar:YES];
-        [self configureTabBarFrame:UIInterfaceOrientationMaskPortrait];
-        [self configureFistImageView:UIInterfaceOrientationMaskPortrait];
-        self.browseButton.hidden = NO;
+        [self configureFistImageView:UIInterfaceOrientationPortrait];
         self.detailGridViewController.orientationOverride = UIInterfaceOrientationPortrait;
-        
-        if (self.listViewController.viewControllers.count == 1) {
-            self.detailGridViewController.guideArrow.hidden = NO;
-            self.detailGridViewController.browseInstructions.hidden = NO;
-        }
     }
     
     [self.detailGridViewController.tableView reloadData];
 }
 
+- (void)hideBrowseInstructions:(BOOL)option {
+    self.detailGridViewController.guideArrow.hidden =
+    self.detailGridViewController.browseInstructions.hidden =
+    self.browseButton.hidden = option;
+}
+
 - (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc {
-      self.popOverController = pc;
+    self.popOverController = pc;
+    [self reflowLayout:UIInterfaceOrientationPortrait];
+    
+    if (self.listViewController.viewControllers.count == 1) {
+        [self hideBrowseInstructions:NO];
+    }
+    
+    self.browseButton.hidden = NO;
 }
 
 - (void)configureFistImageView:(UIInterfaceOrientation)orientation {
@@ -542,28 +522,13 @@ BOOL onTablet, initialLoad, viewDidDisappear;
     }
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    if (onTablet) {
-        if (viewDidDisappear) {
-            // To deal with an edge case remove the view and re-add it
-            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-            UIView *view = [window.subviews objectAtIndex:0];
-            [view removeFromSuperview];
-            [window addSubview:view];
-            
-            [self reflowLayout:self.interfaceOrientation];
-            viewDidDisappear = NO;
-        } else {
-            [self reflowLayout:toInterfaceOrientation];
-        }
-    }
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return YES;
 }
 
 - (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
     self.popOverController = nil;
+    [self reflowLayout:UIInterfaceOrientationLandscapeLeft];
+    [self hideBrowseInstructions:YES];
 }
 @end

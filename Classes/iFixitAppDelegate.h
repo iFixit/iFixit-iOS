@@ -15,12 +15,13 @@
 @class GuideStepViewController;
 @class SplashViewController;
 @class Guide;
+@class IntelligentSplitViewController;
 
 @interface iFixitAppDelegate : NSObject <UIApplicationDelegate, LoginViewControllerDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) UISplitViewController *splitViewController;
+@property (nonatomic, retain) IntelligentSplitViewController *splitViewController;
 @property (nonatomic, retain) CategoriesViewController *categoriesViewController;
 @property (nonatomic, retain) DetailViewController *detailViewController;
 
