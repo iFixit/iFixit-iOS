@@ -118,7 +118,9 @@
 }
 
 - (void)enableScrollingIfNeeded {
-    self.scrollView.scrollEnabled = (self.scrollView.contentSize.height > self.frame.size.height);
+    if ([self respondsToSelector:@selector(scrollView)]){
+        self.scrollView.scrollEnabled = (self.scrollView.contentSize.height > self.frame.size.height);
+    }
 }
 
 - (void)dealloc {
