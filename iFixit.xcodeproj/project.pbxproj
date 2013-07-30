@@ -16,6 +16,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
 		AB0B27AD15E7E3550088BA07 /* titleImageZeal.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */; };
 		AB0B27B015E7E36B0088BA07 /* titleImageZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */; };
+		AB10C28E17A7CF0E00684B41 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB10C28D17A7CF0E00684B41 /* libTestFlight.a */; };
 		AB1F950C17A584B4009F3419 /* NoImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB1F950B17A584B4009F3419 /* NoImage@2x.jpg */; };
 		AB324BB0179473680001E29D /* iFixitSplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB324BAE179473680001E29D /* iFixitSplashScreenViewController.m */; };
 		AB324BB1179473680001E29D /* iFixitSplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB324BAF179473680001E29D /* iFixitSplashScreenViewController.xib */; };
@@ -236,7 +237,6 @@
 		DAF3AF581422897900913238 /* iPhoneDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */; };
 		DAF3AF5C1422A2E900913238 /* DictionaryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF5B1422A2E900913238 /* DictionaryHelper.m */; };
 		DAF3AF621422AF4800913238 /* GuideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF611422AF4800913238 /* GuideCell.m */; };
-		DAF5750E142045130083B583 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF5750C142045130083B583 /* libTestFlight.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -254,6 +254,8 @@
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageZeal.png; sourceTree = "<group>"; };
 		AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImageZeal@2x.png"; sourceTree = "<group>"; };
+		AB10C28C17A7CF0500684B41 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		AB10C28D17A7CF0E00684B41 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		AB1F950B17A584B4009F3419 /* NoImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "NoImage@2x.jpg"; sourceTree = "<group>"; };
 		AB324BAD179473670001E29D /* iFixitSplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iFixitSplashScreenViewController.h; path = ../iFixitSplashScreenViewController.h; sourceTree = "<group>"; };
 		AB324BAE179473680001E29D /* iFixitSplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iFixitSplashScreenViewController.m; path = ../iFixitSplashScreenViewController.m; sourceTree = "<group>"; };
@@ -557,8 +559,6 @@
 		DAF3AF5B1422A2E900913238 /* DictionaryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryHelper.m; sourceTree = "<group>"; };
 		DAF3AF601422AF4800913238 /* GuideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCell.h; sourceTree = "<group>"; };
 		DAF3AF611422AF4800913238 /* GuideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCell.m; sourceTree = "<group>"; };
-		DAF5750C142045130083B583 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		DAF5750D142045130083B583 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -579,8 +579,8 @@
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				DAE4242113C3DE6C00F20EEE /* libz.dylib in Frameworks */,
 				DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */,
-				DAF5750E142045130083B583 /* libTestFlight.a in Frameworks */,
 				DAAAC7461433DF7600CB90AF /* libGoogleAnalytics.a in Frameworks */,
+				AB10C28E17A7CF0E00684B41 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,6 +691,15 @@
 				DA0A0C15138B07DA0027721E /* libxml2.2.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB10C28B17A7CEF000684B41 /* TestFlight */ = {
+			isa = PBXGroup;
+			children = (
+				AB10C28D17A7CF0E00684B41 /* libTestFlight.a */,
+				AB10C28C17A7CF0500684B41 /* TestFlight.h */,
+			);
+			name = TestFlight;
 			sourceTree = "<group>";
 		};
 		AB324BB2179477740001E29D /* iFixit Splash */ = {
@@ -1101,9 +1110,9 @@
 				C10F26FC120CE5140027A28D /* JSON */,
 				DAA7507E1368DA87002AA546 /* wbprogresshud */,
 				DA3E3E10133C0F580070615F /* SDWebImage */,
+				AB10C28B17A7CEF000684B41 /* TestFlight */,
 				DA53FA701413668700D5388F /* RegexKit */,
 				DAF3AF591422A29E00913238 /* DictionaryHelper */,
-				DAF5750B142045130083B583 /* TestFlight */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -1184,15 +1193,6 @@
 			);
 			name = DictionaryHelper;
 			sourceTree = "<group>";
-		};
-		DAF5750B142045130083B583 /* TestFlight */ = {
-			isa = PBXGroup;
-			children = (
-				DAF5750C142045130083B583 /* libTestFlight.a */,
-				DAF5750D142045130083B583 /* TestFlight.h */,
-			);
-			path = TestFlight;
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -1520,6 +1520,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlight\"",
 					"\"$(SRCROOT)/GAnalytics\"",
+					"\"$(SRCROOT)/Classes\"",
 				);
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "";
@@ -1551,6 +1552,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlight\"",
 					"\"$(SRCROOT)/GAnalytics\"",
+					"\"$(SRCROOT)/Classes\"",
 				);
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "";
@@ -1647,6 +1649,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlight\"",
 					"\"$(SRCROOT)/GAnalytics\"",
+					"\"$(SRCROOT)/Classes\"",
 				);
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "";

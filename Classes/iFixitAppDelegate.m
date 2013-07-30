@@ -25,6 +25,7 @@
 #import "CategoryTabBarViewController.h"
 #import "iFixitSplashScreenViewController.h"
 #import "IntelligentSplitViewController.h"
+#import "TestFlight.h"
 
 static const NSInteger kGANDispatchPeriodSec = 10;
 
