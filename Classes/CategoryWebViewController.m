@@ -31,13 +31,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     // Only on iPhone do we want to have a nav bar with a title
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         self.categoryNavigationBar.topItem.title = self.category;
+        self.favoritesButton.title = NSLocalizedString(@"Favorites", nil);
     }
 }
 
@@ -135,8 +135,6 @@
     UINavigationItem *backButtonItem = [[[UINavigationItem alloc] initWithTitle:@""] autorelease];
     UINavigationItem *titleItem = [[[UINavigationItem alloc] initWithTitle:@""] autorelease];
     UINavigationItem *favoritesButtonItem = self.categoryNavigationBar.items[0];
-    
-    favoritesButtonItem.title = NSLocalizedString(@"Favorites", nil);
     
     // Hack to get a back button, title view, and a right bar button item on a navigation bar without having to use a navigation controller
     self.categoryNavigationBar.items = @[backButtonItem, titleItem, favoritesButtonItem];

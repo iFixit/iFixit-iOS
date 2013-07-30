@@ -14,6 +14,7 @@
 
 @interface CategoryWebViewController : UIViewController <UIWebViewDelegate>
 
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *favoritesButton;
 @property (retain, nonatomic) IBOutlet UIWebView *webView;
 @property (retain, nonatomic) WBProgressHUD *loading;
 @property (retain, nonatomic) NSString *webViewType;
