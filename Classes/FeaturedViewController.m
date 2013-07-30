@@ -169,10 +169,7 @@
     // Scroll to the top.
     [self.gvc.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:NO];
     
-    // Reload the grid.
-    [self.gvc.tableView reloadData];
-    
-    // Retrieve guide data.    
+    // Retrieve guide data.
     [self loadGuides];
 }
 
