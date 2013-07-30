@@ -43,7 +43,9 @@ BOOL onTablet, initialLoad;
 }
 
 - (void)configureStateForInitialLoad {
-    [self hideBrowseInstructions:(onTablet && UIDeviceOrientationIsLandscape(self.interfaceOrientation))];
+    if (onTablet) {
+        [self hideBrowseInstructions:YES];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
