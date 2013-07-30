@@ -74,12 +74,15 @@
             [self.categoryTabBarViewController.detailGridViewController.tableView reloadData];
             [self.categoryTabBarViewController configureSubViewFrame:0];
             
+            // Make sure we always hide this on the root view
+            [self.categoryTabBarViewController.detailGridViewController showNoGuidesImage:NO];
+            
         } else {
             [self.categoryTabBarViewController showTabBar:NO];
         }
         
         // Force a rotate to ensure our logo is the correct size
-        [self.viewControllers[0] willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0];
+        [self.viewControllers[0] willAnimateRotationToInterfaceOrientation:[viewController interfaceOrientation] duration:0];
     } else {
         [self.categoryTabBarViewController updateTabBar:[self.topViewController categoryMetaData]];
     }
