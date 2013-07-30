@@ -115,10 +115,11 @@ static int volatile openConnections = 0;
     
     // On iPhone and iPod touch, only show leaf nodes with viewable guides.
     NSString *requireGuides = @"";
+    
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        requireGuides = @"?requireGuides=yes";
+        requireGuides = @"&requireGuides=yes";
 	
-	NSString *url =	[NSString stringWithFormat:@"http://%@/api/1.0/categories/%@%@", [Config host], parent, requireGuides];	
+	NSString *url =	[NSString stringWithFormat:@"http://%@/api/1.0/categories/%@?censorAppleProducts%@", [Config host], parent, requireGuides];
 	
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{
@@ -182,7 +183,7 @@ static int volatile openConnections = 0;
     search = [search stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
     search = [search stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
 	
-    NSString *url =	[NSString stringWithFormat:@"http://%@/api/1.0/search/%@?filter=device&limit=50", [Config host], search];	
+    NSString *url =	[NSString stringWithFormat:@"http://%@/api/1.0/search/%@?filter=device&limit=50&censorAppleProducts", [Config host], search];
 	
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     [request setCompletionBlock:^{
