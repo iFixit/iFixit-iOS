@@ -21,10 +21,13 @@
     // Remove in progress downloader from queue
     [manager cancelForDelegate:self];
 
-    self.image = placeholder;
 
-    if (url)
+    if (url) {
+        self.image = placeholder;
         [manager downloadWithURL:url delegate:self];
+    } else {
+        self.image = [UIImage imageNamed:@"NoImage.jpg"];
+    }
 }
 
 - (void)cancelCurrentImageLoad {

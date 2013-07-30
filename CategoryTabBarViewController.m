@@ -490,8 +490,7 @@ BOOL onTablet, initialLoad;
 
 - (void)hideBrowseInstructions:(BOOL)option {
     self.detailGridViewController.guideArrow.hidden =
-    self.detailGridViewController.browseInstructions.hidden =
-    self.browseButton.hidden = option;
+    self.detailGridViewController.browseInstructions.hidden = option;
 }
 
 - (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc {
@@ -530,5 +529,6 @@ BOOL onTablet, initialLoad;
     self.popOverController = nil;
     [self reflowLayout:UIInterfaceOrientationLandscapeLeft];
     [self hideBrowseInstructions:YES];
+    self.browseButton.hidden = YES;
 }
 @end

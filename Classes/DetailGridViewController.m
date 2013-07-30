@@ -177,8 +177,10 @@
 - (NSString *)gridViewController:(DMPGridViewController *)gridViewController imageURLForCellAtIndex:(NSUInteger)index {
     if (![_guides count])
         return nil;
-
-    return [[[_guides objectAtIndex:index] valueForKey:@"image_url"] stringByAppendingString:@".medium"];
+    
+    NSString *urlString = [_guides[index] valueForKey:@"image_url"];
+    
+    return urlString.length > 0 ? [urlString stringByAppendingString:@".medium"] : NULL;
 }
 - (NSString *)gridViewController:(DMPGridViewController *)gridViewController titleForCellAtIndex:(NSUInteger)index {
     if (![_guides count])

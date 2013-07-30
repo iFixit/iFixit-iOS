@@ -467,7 +467,7 @@
         }
         
         [cell setAccessoryType:UITableViewCellAccessoryNone];
-        [[cell imageView] setImageWithURL:[NSURL URLWithString:category[@"thumbnail"]] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+        [[cell imageView] setImageWithURL:[NSURL URLWithString:category[@"thumbnail"]] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
     }
     
     [[cell textLabel] setText:category[@"name"]];

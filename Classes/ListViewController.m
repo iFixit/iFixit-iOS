@@ -63,7 +63,7 @@
                 [self.categoryTabBarViewController hideBrowseInstructions:NO];
             } else {
                 [self.categoryTabBarViewController hideBrowseInstructions:YES];
-                self.categoryTabBarViewController.browseButton.hidden = NO;
+                self.categoryTabBarViewController.browseButton.hidden = YES;
             }
             
             // Set the category to nil, force a selection on guides, then configure the frame.
@@ -92,10 +92,12 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && self.viewControllers.count == 1) {
         if (UIDeviceOrientationIsLandscape(self.interfaceOrientation) ) {
             self.categoryTabBarViewController.tabBar.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 44);
+            self.categoryTabBarViewController.browseButton.hidden = YES;
+        } else {
+            self.categoryTabBarViewController.browseButton.hidden = NO;
         }
         
-        self.categoryTabBarViewController.detailGridViewController.guideArrow.hidden = YES;
-        self.categoryTabBarViewController.detailGridViewController.browseInstructions.hidden = YES;
+        [self.categoryTabBarViewController hideBrowseInstructions:YES];
     }
     
     [super pushViewController:viewController animated:animated];

@@ -210,21 +210,21 @@
 - (void)startImageDownloads {
     if ([self.step.images count] > 0) {
         // Download the image
-        [mainImage setImageWithURL:[self.step.images[0] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+        [mainImage setImageWithURL:[self.step.images[0] URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
         
         if ([self.step.images count] > 1) {
-            [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+            [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
             image1.hidden = NO;
         }
     }
 
     if ([self.step.images count] > 1) {
-        [image2 setImageWithURL:[[self.step.images objectAtIndex:1] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+        [image2 setImageWithURL:[[self.step.images objectAtIndex:1] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
         image2.hidden = NO;
     }
 
     if ([self.step.images count] > 2) {
-        [image3 setImageWithURL:[[self.step.images objectAtIndex:2] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+        [image3 setImageWithURL:[[self.step.images objectAtIndex:2] URLForSize:@"thumbnail"] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
         image3.hidden = NO;
     }
 }
@@ -243,7 +243,7 @@
                             [mainImage setBackgroundImage:cachedImage forState:UIControlStateNormal];
                         } completion:nil];
     } else {
-        [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+        [mainImage setImageWithURL:[guideImage URLForSize:@"large"] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
     }
 }
 

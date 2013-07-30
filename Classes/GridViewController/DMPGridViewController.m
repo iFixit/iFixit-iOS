@@ -120,7 +120,7 @@
         // Image
         if ([_delegate respondsToSelector:@selector(gridViewController:imageURLForCellAtIndex:)]) {
             NSURL *url = [NSURL URLWithString:[_delegate gridViewController:self imageURLForCellAtIndex:offset + i]];
-            [gridCell.imageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"NoImage.jpg"]];
+            [gridCell.imageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
         }
         else if ([_delegate respondsToSelector:@selector(gridViewController:imageForCellAtIndex:)]) {
             UIImage *image = [_delegate gridViewController:self imageForCellAtIndex:offset + i];

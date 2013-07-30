@@ -37,6 +37,7 @@
 		AB4D33C017A042270080C40A /* guides@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4D33BA17A042270080C40A /* guides@2x.png */; };
 		AB4D33C117A042270080C40A /* moreinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4D33BB17A042270080C40A /* moreinfo.png */; };
 		AB4D33C217A042270080C40A /* moreinfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4D33BC17A042270080C40A /* moreinfo@2x.png */; };
+		AB5C74BE17A73069003AD63B /* WaitImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5C74BD17A73069003AD63B /* WaitImage.png */; };
 		AB6BC35C17A4C89A00E0917D /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB6BC35B17A4C89A00E0917D /* OpenSans-Bold.ttf */; };
 		AB94D11817A57B67003ACDFD /* NoImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB94D11717A57B67003ACDFD /* NoImage.jpg */; };
 		ABA8A2A91797598100682597 /* logo_ifixit.png in Resources */ = {isa = PBXBuildFile; fileRef = ABA8A2A71797598100682597 /* logo_ifixit.png */; };
@@ -243,7 +244,7 @@
 		1D6058910D05DD3D006BFB54 /* iFixit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFixit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28042007108E984D000629CD /* CategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesViewController.h; sourceTree = "<group>"; };
-		28042008108E984D000629CD /* CategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesViewController.m; sourceTree = "<group>"; };
+		28042008108E984D000629CD /* CategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CategoriesViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* iFixit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iFixit_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
@@ -273,6 +274,7 @@
 		AB4D33BA17A042270080C40A /* guides@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guides@2x.png"; sourceTree = "<group>"; };
 		AB4D33BB17A042270080C40A /* moreinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moreinfo.png; sourceTree = "<group>"; };
 		AB4D33BC17A042270080C40A /* moreinfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moreinfo@2x.png"; sourceTree = "<group>"; };
+		AB5C74BD17A73069003AD63B /* WaitImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WaitImage.png; sourceTree = "<group>"; };
 		AB6BC35B17A4C89A00E0917D /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		AB8805EA1750459300CD5281 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB8805EB1750459800CD5281 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -335,7 +337,7 @@
 		C1D980AB120DFB5500509D18 /* GuideStepLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideStepLine.h; sourceTree = "<group>"; };
 		C1D980AC120DFB5500509D18 /* GuideStepLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideStepLine.m; sourceTree = "<group>"; };
 		C1D9814D120E09BA00509D18 /* GuideStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideStepViewController.h; sourceTree = "<group>"; };
-		C1D9814E120E09BA00509D18 /* GuideStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideStepViewController.m; sourceTree = "<group>"; };
+		C1D9814E120E09BA00509D18 /* GuideStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GuideStepViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DA056779138D976600660C86 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DA05677A138D976600660C86 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DA086C79147CA39900BD9A2F /* detailViewArrowDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = detailViewArrowDark.png; path = Graphics/detailViewArrowDark.png; sourceTree = "<group>"; };
@@ -467,7 +469,7 @@
 		DA8F60011469B29700482D29 /* DMPGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMPGridViewCell.h; path = GridViewController/DMPGridViewCell.h; sourceTree = "<group>"; };
 		DA8F60021469B29700482D29 /* DMPGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMPGridViewCell.m; path = GridViewController/DMPGridViewCell.m; sourceTree = "<group>"; };
 		DA8F60031469B29700482D29 /* DMPGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMPGridViewController.h; path = GridViewController/DMPGridViewController.h; sourceTree = "<group>"; };
-		DA8F60041469B29700482D29 /* DMPGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMPGridViewController.m; path = GridViewController/DMPGridViewController.m; sourceTree = "<group>"; };
+		DA8F60041469B29700482D29 /* DMPGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = DMPGridViewController.m; path = GridViewController/DMPGridViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DA8F60051469B29700482D29 /* DMPGridViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMPGridViewDelegate.h; path = GridViewController/DMPGridViewDelegate.h; sourceTree = "<group>"; };
 		DA8F60081469F8E600482D29 /* PastFeaturesViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastFeaturesViewDelegate.h; sourceTree = "<group>"; };
 		DA994893142ABA7D00E4167D /* dozukiSplash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiSplash.png; path = Graphics/dozukiSplash.png; sourceTree = "<group>"; };
@@ -545,7 +547,7 @@
 		DAF0C6D1134E62BF003B4DF6 /* GuideBookmarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideBookmarks.h; sourceTree = "<group>"; };
 		DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideBookmarks.m; sourceTree = "<group>"; };
 		DAF3AF541422897900913238 /* iPhoneDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneDeviceViewController.h; sourceTree = "<group>"; };
-		DAF3AF551422897900913238 /* iPhoneDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPhoneDeviceViewController.m; sourceTree = "<group>"; };
+		DAF3AF551422897900913238 /* iPhoneDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = iPhoneDeviceViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPhoneDeviceViewController.xib; sourceTree = "<group>"; };
 		DAF3AF5A1422A2E900913238 /* DictionaryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryHelper.h; sourceTree = "<group>"; };
 		DAF3AF5B1422A2E900913238 /* DictionaryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryHelper.m; sourceTree = "<group>"; };
@@ -781,6 +783,7 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AB5C74BD17A73069003AD63B /* WaitImage.png */,
 				AB1F950B17A584B4009F3419 /* NoImage@2x.jpg */,
 				AB94D11717A57B67003ACDFD /* NoImage.jpg */,
 				AB4D33B617A041D50080C40A /* Tabbar images */,
@@ -1384,6 +1387,7 @@
 				AB6BC35C17A4C89A00E0917D /* OpenSans-Bold.ttf in Resources */,
 				AB94D11817A57B67003ACDFD /* NoImage.jpg in Resources */,
 				AB1F950C17A584B4009F3419 /* NoImage@2x.jpg in Resources */,
+				AB5C74BE17A73069003AD63B /* WaitImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
