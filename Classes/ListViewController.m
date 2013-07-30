@@ -68,7 +68,7 @@
             
             // Set the category to nil, force a selection on guides, then configure the frame.
             self.categoryTabBarViewController.selectedIndex = 0;
-            [self.categoryTabBarViewController showTabBar:UIDeviceOrientationIsPortrait(self.interfaceOrientation)];
+            [self.categoryTabBarViewController showTabBar:UIDeviceOrientationIsPortrait([viewController interfaceOrientation])];
             [self.categoryTabBarViewController enableTabBarItems:NO];
             [self.categoryTabBarViewController.detailGridViewController setCategory:nil];
             [self.categoryTabBarViewController.detailGridViewController.tableView reloadData];
