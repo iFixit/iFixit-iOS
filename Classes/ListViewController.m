@@ -90,8 +90,7 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // Terrible hack, this ensures that the tabbar is in the correct position in landscape, fixes an edgecase
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && self.viewControllers.count == 1) {
-        if (UIDeviceOrientationIsLandscape(self.interfaceOrientation) ) {
-            self.categoryTabBarViewController.tabBar.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 44);
+        if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ) {
             self.categoryTabBarViewController.browseButton.hidden = YES;
         } else {
             self.categoryTabBarViewController.browseButton.hidden = NO;
