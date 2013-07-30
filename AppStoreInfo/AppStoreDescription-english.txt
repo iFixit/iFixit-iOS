@@ -1,26 +1,22 @@
-~~ Description: ~~
-The free repair manual! Thousands of how-to guides make it easy to repair your
-stuff. Fix your own things with step-by-step repair instructions.
+The most popular repair manual in the world!
 
-► Our native iPad view is the best way to repair anything.
+Thousands of free how-to guides make it easy to repair your stuff. Fix your own
+things with step-by-step repair instructions.
+
+★ With step-by-step instructions, you can repair anything!
 
 Explore inside thousands of devices—before you take yours apart. Need more
 detail on a step? Zoom into high resolution images to see all the fine details!
+Completely free—no in-app purchases.
 
-► Parts Store: buy parts and tools right in the app!
+★ Parts Store: buy parts and tools right in the app!
 
 ● Included Devices ●
 Repair manuals show you how to fix:
-✓ MacBook Repair
-✓ MacBook Pro Repair
-✓ PowerBook & iBook Repair
-✓ iPad Repair
-✓ iPhone Repair
-✓ iPod Repair
-✓ Xbox Repair
-✓ PlayStation Repair
-✓ PC Laptop Repair
-✓ Dozens of digital camera repair manuals
+✓ Xbox repair
+✓ PC Laptop repair
+✓ PlayStation repair
+✓ Nikon, Canon & more digital camera repair
 ✓ Hundreds of cell phone repair manuals
 ✓ Harley Davidson Repair
 ✓ Honda Accord Repair
@@ -62,23 +58,13 @@ looking for parts. THANK YOU VERY MUCH!"
 "Quick and straightforward."
 – Owen in New York
 
-"The installation went smoothly thanks to your excellent guides. We got my
-son's MacBook Pro running and saved $$$$$."
-–Christopher in New Mexico
-
 ● Support iFixit ●
 
 Help us keep these manuals free. We keep the lights on by selling parts and
 tools. If you use our manual to fix something, please support our work by
 buying the parts from us.
 
-We sell thousands of MacBook, iPod, iPhone, iPad and game console parts, as
-well as electronics repair tools.
+We sell thousands of parts as well as electronics repair tools.
 
 This app is open source! You can improve or fork it here:
 https://github.com/iFixit
-
-~~ Whats new in this version? ~~
-● Improved offline browsing — save guides for access when you don't have a
-network connection!
-● Additional login options — you can now sign in with Google or Yahoo!

@@ -1,84 +1,58 @@
-~~ Description: ~~
-The free repair manual! Thousands of how-to guides make it easy to repair your
-stuff. Fix your own things with step-by-step repair instructions.
+El manual de reparación más popular del mundo!
 
-► Our native iPad view is the best way to repair anything.
+Miles de guías gratuitas facilitan la reparación de tus cosas. Arregla tus
+propias cosas con instrucciones de paso a paso de reparación.
 
-Explore inside thousands of devices—before you take yours apart. Need more
-detail on a step? Zoom into high resolution images to see all the fine details!
+★ Con instrucciones de paso a paso de reparación, puedes reparar cualquier
+cosa.
 
-► Parts Store: buy parts and tools right in the app!
+Explorar el interior de miles de dispositivos - antes de que desarmes tu
+dispositivo. Necesitas más detalles en un paso? Acércate hacia imágenes de alta
+resolución para ver todos los detalles finos. Completamente gratis—sin compras
+desde la aplicación.
 
-● Included Devices ●
-Repair manuals show you how to fix:
-✓ MacBook Repair
-✓ MacBook Pro Repair
-✓ PowerBook & iBook Repair
-✓ iPad Repair
-✓ iPhone Repair
-✓ iPod Repair
-✓ Xbox Repair
-✓ PlayStation Repair
-✓ PC Laptop Repair
-✓ Dozens of digital camera repair manuals
-✓ Hundreds of cell phone repair manuals
-✓ Harley Davidson Repair
-✓ Honda Accord Repair
-✓ More manuals added every week
+★ Tienda de Partes: compra partes y herramientas desde la aplicación!
 
-● Praise from the Press ●
+● Dispositivos Incluidos ●
+Manuales de reparación te enseñan a arreglar:
+✓ Reparación de Xbox
+✓ Reparación de PC y Laptop
+✓ Reparación de PlayStation
+✓ Reparación de Nikon, Canon y más cámaras digitales
+✓ Cientos de manuales de reparación de teléfonos celulares
+✓ Reparación de Harley Davidson
+✓ Reparación de Honda Accord
+✓ Más manuales agregados cada semana
 
-"Empowers you to fix things yourself. From troubleshooting to parts and tools,
-to repair guides, they have your back."
+● Recomendaciones de la Prensa ●
+
+"Te fortalece a arreglar cosas. Desde soluciones de problemas a partes y
+herramientas, a guías de reparación, ellos te respaldan."
 — TreeHugger
 
-"Demonstrates the old-fashioned virtue of repair and extending the lifespan of
-devices."
+"Demuestran la virtud antigua de reparación y la extensión de vida de
+dispositivos."
 — Reuters
 
-"The robots of the future will see this and murder us all. Thanks iFixit.
-Thanks a lot."
-— Engadget
+● Testimoniales ●
 
-"Illustrated repair guides that take you step by step through the process."
-— Dallas Morning News
+"Amo las guías de reparación de iFixit. Me han ahorrado cientos de dólares en
+los últimos años"
+– David en Maryland
 
-● Testimonials ●
+"Estupendo, limpio y fácil de navegar.'
+– Serge en New Brunswick
 
-"You guys rule and have saved me many many times. Thank you!"
-– Ralph in North Carolina
 
-"I love your repair guides. You've saved me hundreds of dollars over the last
-few years."
-– David in Maryland
+● Supportar iFixit ●
 
-"Great, clean and easy to navigate.'
-– Serge in New Brunswick
+Ayúdanos a mantener estos manuales gratuitos. Nosotros mantenemos las luces
+encendidas vendiendo partes y herramientas. Si ocupas nuestro manual para
+arreglar algo, por favor apoya nuestro trabajo comprando partes y herramientas
+de nosotros.
 
-"Shipping time was superb. I will come back to your store the next time I am
-looking for parts. THANK YOU VERY MUCH!"
-–Ramia in Nebraska
+Vendemos miles de partes así como también herramientas de reparación de
+electrónicos.
 
-"Quick and straightforward."
-– Owen in New York
-
-"The installation went smoothly thanks to your excellent guides. We got my
-son's MacBook Pro running and saved $$$$$."
-–Christopher in New Mexico
-
-● Support iFixit ●
-
-Help us keep these manuals free. We keep the lights on by selling parts and
-tools. If you use our manual to fix something, please support our work by
-buying the parts from us.
-
-We sell thousands of MacBook, iPod, iPhone, iPad and game console parts, as
-well as electronics repair tools.
-
-This app is open source! You can improve or fork it here:
+Esta aplicación es de código abierto! Puedas mejorarla o hacer una copia aquí:
 https://github.com/iFixit
-
-~~ Whats new in this version? ~~
-● Improved offline browsing — save guides for access when you don't have a
-network connection!
-● Additional login options — you can now sign in with Google or Yahoo!
