@@ -202,6 +202,8 @@
     cell.textLabel.text = subject;
     
     NSString *thumbnailURL = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"thumbnail"];
+    thumbnailURL = thumbnailURL.length > 0 ? thumbnailURL : NULL;
+    
     [cell.imageView setImageWithURL:[NSURL URLWithString:thumbnailURL] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
     
     return cell;
