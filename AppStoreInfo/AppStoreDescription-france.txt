@@ -1,85 +1,61 @@
+Le manuel de réparation le plus populaire au monde!
 
-~~ Description: ~~
-The free repair manual! Thousands of how-to guides make it easy to repair your
-stuff. Fix your own things with step-by-step repair instructions.
+Avec des milliers de guides gratuits, il est facile de réparer vos choses. Il suffit de suivre nos instructions de réparation étape par étape !
 
-► Our native iPad view is the best way to repair anything.
+★ Avec des instructions étape-par-étape, vous pouvez réparer quoi que ce soit !
 
-Explore inside thousands of devices—before you take yours apart. Need more
-detail on a step? Zoom into high resolution images to see all the fine details!
+Explorez l'intérieur des milliers de dispositifs avant de démonter le vôtre.
+Besoin de plus de détails sur une étape ? Regardez nos images à haute résolution pour voir tous les détails !
+Entièrement gratuit !
 
-► Parts Store: buy parts and tools right in the app!
+★ Magasin de Pièces: Acheter des pièces et des outils droit de l'application !
 
-● Included Devices ●
-Repair manuals show you how to fix:
-✓ MacBook Repair
-✓ MacBook Pro Repair
-✓ PowerBook & iBook Repair
-✓ iPad Repair
-✓ iPhone Repair
-✓ iPod Repair
-✓ Xbox Repair
-✓ PlayStation Repair
-✓ PC Laptop Repair
-✓ Dozens of digital camera repair manuals
-✓ Hundreds of cell phone repair manuals
-✓ Harley Davidson Repair
-✓ Honda Accord Repair
-✓ More manuals added every week
+● Dispositifs Inclus ●
+Manuels de réparation vous montrer comment réparer:
+✓ Réparation d'Xbox
+✓ Réparation d'ordinateurs et d'ordinateurs portables
+✓ Réparation de PlayStation
+✓ Réparation de Nikon, Canon, & beaucoup plus de caméras numériques
+✓ Des centaines de manuels de réparation de téléphone cellulaire
+✓ Réparation de Harley Davidson
+✓ Réparation de Honda Accord
+✓ Plus de manuels ajoutés chaque semaine
 
-● Praise from the Press ●
+● Éloges de la Presse ●
 
-"Empowers you to fix things yourself. From troubleshooting to parts and tools,
-to repair guides, they have your back."
+"[iFixit] vous donne les moyens de réparer les choses soi-même. Du dépannage, à des pièces et des outils, et à des guides de réparation, ils ont votre dos."
 — TreeHugger
 
-"Demonstrates the old-fashioned virtue of repair and extending the lifespan of
-devices."
+"Montre la vertu ancienne d'entretien et d'étendre la durée de vie de dispositifs."
 — Reuters
 
-"The robots of the future will see this and murder us all. Thanks iFixit.
-Thanks a lot."
+"Les robots du futur verront cela et vont tous nous tuer. Merci iFixit. Merci beaucoup."
 — Engadget
 
-"Illustrated repair guides that take you step by step through the process."
+"Des guides de réparation illustrés qui vous prennent étape par étape à travers le processus."
 — Dallas Morning News
 
-● Testimonials ●
+● Témoignages ●
 
-"You guys rule and have saved me many many times. Thank you!"
-– Ralph in North Carolina
+"Vous êtes incroyable et m'avez sauvé nombreuses fois. Merci !"
+– Ralph de North Carolina
 
-"I love your repair guides. You've saved me hundreds of dollars over the last
-few years."
-– David in Maryland
+"J'adore vos guides de réparation. Vous m'avez sauvé des centaines de dollars ces dernières années."
+– David de Maryland
 
-"Great, clean and easy to navigate.'
-– Serge in New Brunswick
+"Superbe, élégant et facile à naviguer.'
+– Serge de New Brunswick
 
-"Shipping time was superb. I will come back to your store the next time I am
-looking for parts. THANK YOU VERY MUCH!"
-–Ramia in Nebraska
+"Temps d'expédition était superbe. Je vais revenir à votre magasin la prochaine fois que je suis à la recherche d'une pièces. MERCI BEAUCOUP !"
+–Ramia de Nebraska
 
-"Quick and straightforward."
-– Owen in New York
+"Simple et rapide."
+– Owen de New York
 
-"The installation went smoothly thanks to your excellent guides. We got my
-son's MacBook Pro running and saved $$$$$."
-–Christopher in New Mexico
+● Soutenez iFixit ●
+Aidez-nous à maintenir ces manuels gratuitement. Nous gardons les lumières allumées en vendant des pièces et des outils. Si vous utilisez notre manuel pour réparer quelque chose, s'il vous plaît aider à soutenir notre travail en achetant les pièces de notre magasin.
 
-● Support iFixit ●
+Nous vendons des milliers de pièces ainsi que des outils de réparation électronique.
 
-Help us keep these manuals free. We keep the lights on by selling parts and
-tools. If you use our manual to fix something, please support our work by
-buying the parts from us.
-
-We sell thousands of MacBook, iPod, iPhone, iPad and game console parts, as
-well as electronics repair tools.
-
-This app is open source! You can improve or fork it here:
+Cette application est code source ouvert ! Vous pouvez l'améliorer ici :
 https://github.com/iFixit
-
-~~ Whats new in this version? ~~
-● Improved offline browsing — save guides for access when you don't have a
-network connection!
-● Additional login options — you can now sign in with Google or Yahoo!
