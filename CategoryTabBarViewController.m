@@ -85,8 +85,9 @@ BOOL onTablet, initialLoad;
         self.browseButton.clipsToBounds = YES;
         [self createGradient:self.browseButton];
         [self.view.subviews[1] addSubview:self.browseButton];
-        self.delegate = self;
     }
+    
+    self.delegate = self;
 }
 
 - (void)browseButtonPushed {
