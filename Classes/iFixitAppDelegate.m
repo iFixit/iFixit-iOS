@@ -338,6 +338,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [Config currentConfig].host = domain;
         [Config currentConfig].custom_domain = [site valueForKey:@"custom_domain"];
         [Config currentConfig].baseURL = [NSString stringWithFormat:@"http://%@/Guide", domain];
+        [Config currentConfig].title = site[@"title"];
         
         //if (color)
         //    [Config currentConfig].toolbarColor = color;

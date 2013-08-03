@@ -189,20 +189,10 @@
         self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 32, 0);
     }
     
-    // Show the Dozuki sites select button if needed.
-    UIBarButtonItem *button;
-    
-    if ([Config currentConfig].dozuki) {
-        UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
-        button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
-                                                                  target:[[UIApplication sharedApplication] delegate]
-                                                                  action:@selector(showDozukiSplash)];
-    } else {
-        button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
                                                                     style:UIBarButtonItemStyleBordered
                                                                    target:self
                                                                    action:@selector(doneButtonPushed)];
-    }
     
     self.navigationItem.leftBarButtonItem = button;
     

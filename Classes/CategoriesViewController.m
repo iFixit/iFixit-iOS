@@ -64,8 +64,7 @@
                 break;
             /*EAOTitle*/
             default:
-                self.title = NSLocalizedString(@"Categories", nil);
-                break;
+                [self configureDozukiTitleLabel];
         }
     }
     
@@ -77,16 +76,6 @@
     
     self.clearsSelectionOnViewWillAppear = NO;
     
-    // Show the Dozuki sites select button if needed.
-    if ([Config currentConfig].dozuki && self.navigationController.viewControllers.count == 1) {
-        UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
-                                                                  target:[[UIApplication sharedApplication] delegate]
-                                                                  action:@selector(showDozukiSplash)];
-        self.navigationItem.leftBarButtonItem = button;
-        [button release];
-    }
-
     self.navigationItem.titleView.contentMode = UIViewContentModeScaleAspectFit;
     
     // Display the favorites button on the top right
@@ -95,6 +84,33 @@
     // Solves an edge case dealing with categories not always loading
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone && self.listViewController.viewControllers.count == 1) {
         [self viewWillAppear:NO];
+    }
+}
+
+- (void)configureDozukiTitleLabel {
+    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont fontWithName:@"OpenSans-Bold" size:24.0];
+    titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.navigationItem.titleView = titleLabel;
+    titleLabel.text = [Config currentConfig].title.length
+    ? [Config currentConfig].title
+    : NSLocalizedString(@"Categories", nil);
+}
+
+- (void)displayBackToSitesButton {
+    // Show the Dozuki sites select button if needed.
+    if ([Config currentConfig].dozuki && self.navigationController.viewControllers.count == 1) {
+        UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
+        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
+                                                                  target:[[UIApplication sharedApplication] delegate]
+                                                                  action:@selector(showDozukiSplash)];
+        self.navigationItem.leftBarButtonItem = button;
+        [button release];
     }
 }
 
@@ -134,7 +150,14 @@
 
 
 - (void)gotAreas:(NSDictionary *)areas {
-    self.navigationItem.rightBarButtonItem = self.navigationItem.leftBarButtonItem = nil;
+    // Only show backToSites button on Dozuki and if we are a root view
+    if ([Config currentConfig].dozuki && self.listViewController.viewControllers.count == 1) {
+        [self displayBackToSitesButton];
+    } else {
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+    
+    self.navigationItem.rightBarButtonItem = nil;
     
     // Areas was nil, meaning we probably had a connection error
     if (!areas) {
