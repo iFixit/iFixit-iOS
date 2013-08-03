@@ -36,8 +36,8 @@
 		AB4D33C117A042270080C40A /* moreinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4D33BB17A042270080C40A /* moreinfo.png */; };
 		AB4D33C217A042270080C40A /* moreinfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4D33BC17A042270080C40A /* moreinfo@2x.png */; };
 		AB5C74BE17A73069003AD63B /* WaitImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5C74BD17A73069003AD63B /* WaitImage.png */; };
-		AB5C74C017A7659C003AD63B /* Icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5C74BF17A7659B003AD63B /* Icon114.png */; };
-		AB5C74C217A765E5003AD63B /* Icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5C74C117A765E5003AD63B /* Icon144.png */; };
+		AB5C74C017A7659C003AD63B /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5C74BF17A7659B003AD63B /* icon114.png */; };
+		AB5C74C217A765E5003AD63B /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5C74C117A765E5003AD63B /* icon144.png */; };
 		AB5C74D517A76683003AD63B /* Default-568h-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5C74CF17A76683003AD63B /* Default-568h-Landscape@2x.png */; };
 		AB5C74D617A76683003AD63B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5C74D017A76683003AD63B /* Default-568h@2x.png */; };
 		AB5C74D717A76683003AD63B /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5C74D117A76683003AD63B /* Default-Landscape.png */; };
@@ -276,8 +276,8 @@
 		AB4D33BB17A042270080C40A /* moreinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moreinfo.png; sourceTree = "<group>"; };
 		AB4D33BC17A042270080C40A /* moreinfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moreinfo@2x.png"; sourceTree = "<group>"; };
 		AB5C74BD17A73069003AD63B /* WaitImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WaitImage.png; sourceTree = "<group>"; };
-		AB5C74BF17A7659B003AD63B /* Icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon114.png; sourceTree = "<group>"; };
-		AB5C74C117A765E5003AD63B /* Icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon144.png; sourceTree = "<group>"; };
+		AB5C74BF17A7659B003AD63B /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
+		AB5C74C117A765E5003AD63B /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		AB5C74CF17A76683003AD63B /* Default-568h-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h-Landscape@2x.png"; sourceTree = "<group>"; };
 		AB5C74D017A76683003AD63B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AB5C74D117A76683003AD63B /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
@@ -649,8 +649,8 @@
 				AB6BC35B17A4C89A00E0917D /* OpenSans-Bold.ttf */,
 				AB324BE21795D6170001E29D /* icon72.png */,
 				AB324BDE1795D5EF0001E29D /* icon57.png */,
-				AB5C74BF17A7659B003AD63B /* Icon114.png */,
-				AB5C74C117A765E5003AD63B /* Icon144.png */,
+				AB5C74BF17A7659B003AD63B /* icon114.png */,
+				AB5C74C117A765E5003AD63B /* icon144.png */,
 				DAC0C1A6146B49AA00EF42DC /* Lobster.ttf */,
 				DA3562AC1477254500683947 /* Ubuntu-BoldItalic.ttf */,
 				DAB26971146C96A2000D3A7A /* Ubuntu-Italic.ttf */,
@@ -1384,8 +1384,8 @@
 				AB94D11817A57B67003ACDFD /* NoImage.jpg in Resources */,
 				AB1F950C17A584B4009F3419 /* NoImage@2x.jpg in Resources */,
 				AB5C74BE17A73069003AD63B /* WaitImage.png in Resources */,
-				AB5C74C017A7659C003AD63B /* Icon114.png in Resources */,
-				AB5C74C217A765E5003AD63B /* Icon144.png in Resources */,
+				AB5C74C017A7659C003AD63B /* icon114.png in Resources */,
+				AB5C74C217A765E5003AD63B /* icon144.png in Resources */,
 				AB5C74D517A76683003AD63B /* Default-568h-Landscape@2x.png in Resources */,
 				AB5C74D617A76683003AD63B /* Default-568h@2x.png in Resources */,
 				AB5C74D717A76683003AD63B /* Default-Landscape.png in Resources */,
