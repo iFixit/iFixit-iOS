@@ -294,7 +294,7 @@ BOOL onTablet, initialLoad, showTabBar;
 // Configure our subview frame depending on what view we are looking at
 - (void)configureSubViewFrame:(int)viewControllerIndex {
     // Bail early if we aren't showing a tabBar
-    if (!showTabBar) {
+    if (!showTabBar && onTablet) {
         return;
     }
     
