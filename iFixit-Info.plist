@@ -63,7 +63,6 @@
 	<string>MainWindow</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Lobster.ttf</string>
 		<string>Ubuntu-Italic.ttf</string>
 		<string>Ubuntu-BoldItalic.ttf</string>
 		<string>OpenSans-Regular.ttf</string>

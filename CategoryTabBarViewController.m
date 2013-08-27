@@ -11,6 +11,7 @@
 #import "CategoriesViewController.h"
 #import "CategoryWebViewController.h"
 #import "iFixitAPI.h"
+#import "iFixitAppDelegate.h"
 #import "GANTracker.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -18,7 +19,7 @@
 
 @end
 
-BOOL onTablet, initialLoad;
+BOOL onTablet, initialLoad, showTabBar;
 
 @implementation CategoryTabBarViewController
 
@@ -62,6 +63,7 @@ BOOL onTablet, initialLoad;
 - (void)initializeProperties {
     onTablet = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad;
     initialLoad = YES;
+    showTabBar = [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showsTabBar];
     
     // This is a hack built on top of a hack. We have a filler image we use when we hide the tabbar to avoid funky resizing issues of the view
     if (onTablet) {
@@ -85,6 +87,8 @@ BOOL onTablet, initialLoad;
         self.browseButton.clipsToBounds = YES;
         [self createGradient:self.browseButton];
         [self.view.subviews[1] addSubview:self.browseButton];
+        
+        self.browseButton.hidden = UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]);
     }
     
     self.delegate = self;
@@ -289,6 +293,11 @@ BOOL onTablet, initialLoad;
 
 // Configure our subview frame depending on what view we are looking at
 - (void)configureSubViewFrame:(int)viewControllerIndex {
+    // Bail early if we aren't showing a tabBar
+    if (!showTabBar) {
+        return;
+    }
+    
     id subView = self.view.subviews[0];
     CGRect bounds = self.view.bounds;
     
@@ -478,7 +487,7 @@ BOOL onTablet, initialLoad;
 - (void)reflowLayout:(UIInterfaceOrientation)orientation {
     
     if (UIDeviceOrientationIsLandscape(orientation)) {
-        [self showTabBar:(self.listViewController.viewControllers.count > 1)];
+        [self showTabBar:(self.listViewController.viewControllers.count > 1 || self.detailGridViewController.category)];
         [self configureFistImageView:UIInterfaceOrientationLandscapeLeft];
         self.popOverController = nil;
         self.detailGridViewController.orientationOverride = UIInterfaceOrientationLandscapeLeft;
@@ -528,10 +537,34 @@ BOOL onTablet, initialLoad;
     return YES;
 }
 
+
 - (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
     self.popOverController = nil;
     [self reflowLayout:UIInterfaceOrientationLandscapeLeft];
     [self hideBrowseInstructions:YES];
     self.browseButton.hidden = YES;
+}
+
+- (void)gotSiteInfoResults:(NSDictionary*)results {
+    [Config currentConfig].siteInfo = results;
+    
+    // We don't have logo data, so let's just configure the backup titles
+    if (results[@"logo"] == [NSNull null]) {
+        [self.detailGridViewController configureDozukiTitleLabel];
+        [self.listViewController.viewControllers[0] setTableViewTitle];
+    } else {
+        NSDictionary *imageData = results[@"logo"][@"image"];
+        if (imageData[@"standard"]) {
+            [self.listViewController.viewControllers[0] configureTableViewTitleLogoFromURL:imageData[@"standard"]];
+        } else {
+            [self.listViewController.viewControllers[0] setTableViewTitle];
+        }
+        
+        if (imageData[@"large"]) {
+            [self.detailGridViewController configureSiteLogoFromURL:imageData[@"large"]];
+        } else {
+            [self.detailGridViewController configureDozukiTitleLabel];
+        }
+    }
 }
 @end

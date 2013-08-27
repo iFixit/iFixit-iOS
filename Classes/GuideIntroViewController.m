@@ -57,8 +57,23 @@
     view.layer.shadowPath = [UIBezierPath bezierPathWithRect:view.bounds].CGPath;
 }
 
+- (void)configureIntroTitleLogo {
+    NSDictionary *siteInfo = [Config currentConfig].siteInfo;
+    
+    if (siteInfo[@"logo"] == [NSNull null] || !siteInfo[@"logo"][@"image"][@"large"]) {
+        headerImageLogo.hidden = YES;
+        headerTextDozuki.font = [UIFont fontWithName:@"Helvetica-Bold" size:75.0];
+        headerTextDozuki.text = [[Config currentConfig].siteData valueForKey:@"title"];
+        headerTextDozuki.hidden = NO;
+    } else if (siteInfo[@"logo"][@"image"][@"large"]){
+        headerImageLogo.contentMode = UIViewContentModeScaleAspectFit;
+        [headerImageLogo setImageWithURL:[NSURL URLWithString:siteInfo[@"logo"][@"image"][@"large"]]];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 
     // Set the appropriate header image.
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -76,12 +91,7 @@
                 break;
             /*EAOGuideIntro*/
             case ConfigDozuki:
-                headerImageLogo.hidden = YES;
-                headerTextDozuki.font = [UIFont fontWithName:@"Lobster" size:75.0];
-                headerTextDozuki.text = [[Config currentConfig].siteData valueForKey:@"title"];
-                headerTextDozuki.hidden = NO;
-                break;
-            default:
+                [self configureIntroTitleLogo];
                 break;
         }
 

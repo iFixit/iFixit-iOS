@@ -136,7 +136,7 @@
         titleLabel.text = [[_collection valueForKey:@"title"] stringByAppendingString:@" "];
     }
     else {     
-        titleLabel.font = [UIFont fontWithName:@"Lobster" size:120.0];
+        titleLabel.font = [UIFont fontWithName:@"Helvetica" size:120.0];
         titleLabel.frame = CGRectMake(120.0, 150.0, self.view.frame.size.width - 130.0, 106.0);
         titleLabel.text = [_collection valueForKey:@"title"];
     }

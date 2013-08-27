@@ -25,7 +25,8 @@
 - (void)getGuidesByIds:(NSArray *)guideids forObject:(id)object withSelector:(SEL)selector;
 - (void)getSearchResults:(NSString *)search forObject:(id)object withSelector:(SEL)selector;
 - (void)getTopic:(NSString *)device forObject:(id)object withSelector:(SEL)selector;
-
+- (void)getSiteInfoForObject:(id)object withSelector:(SEL)selector;
+    
 // Session management
 - (void)loginWithSessionId:(NSString *)sessionId forObject:(id)object withSelector:(SEL)selector;
 - (void)loginWithLogin:(NSString *)login andPassword:(NSString *)password forObject:(id)object withSelector:(SEL)selector;

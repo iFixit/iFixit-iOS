@@ -244,6 +244,10 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:categoriesViewController];
     CategoryTabBarViewController *ctvc = [[CategoryTabBarViewController alloc] initWithNibName:@"CategoryTabBarViewController" bundle:nil];
     
+    if ([Config currentConfig].dozuki) {
+        [[iFixitAPI sharedInstance] getSiteInfoForObject:ctvc withSelector:@selector(gotSiteInfoResults:)];
+    }
+    
     lvc.categoryTabBarViewController = ctvc;
     ctvc.listViewController = lvc;
     
@@ -309,6 +313,10 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 - (UIViewController *)iPhoneRoot {
     CategoryTabBarViewController *ctbvc = [[CategoryTabBarViewController alloc] initWithNibName:@"CategoryTabBarViewController" bundle:nil];
+    
+    if ([Config currentConfig].dozuki) {
+        [[iFixitAPI sharedInstance] getSiteInfoForObject:ctbvc withSelector:@selector(gotSiteInfoResults:)];
+    }
     
     return [ctbvc autorelease];
 }
