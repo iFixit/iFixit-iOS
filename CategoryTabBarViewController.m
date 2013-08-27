@@ -509,11 +509,28 @@ BOOL onTablet, initialLoad, showTabBar;
     self.popOverController = pc;
     [self reflowLayout:UIInterfaceOrientationPortrait];
     
+    if (!showTabBar)
+        [self enablePresentWithGesture:YES];
+    
     if (self.listViewController.viewControllers.count == 1) {
         [self hideBrowseInstructions:NO];
     }
     
     self.browseButton.hidden = NO;
+}
+
+- (void)enablePresentWithGesture:(BOOL)option {
+    // Backwards compatibility
+    if ([self.splitViewController respondsToSelector:@selector(setPresentsWithGesture:)]) {
+        self.splitViewController.presentsWithGesture = option;
+        
+        // This is a hack to prevent a gesture bug only in iOS 6. In order to change this property
+        // after the splitview controller has been loadedwe must reset the layout and the delegates.
+        // This is really stupid but it works. It only happens on iOS 6 when only 1 tabbar is present.
+        [self.splitViewController.view setNeedsLayout];
+        self.splitViewController.delegate = nil;
+        self.splitViewController.delegate = self;
+    }
 }
 
 - (void)configureFistImageView:(UIInterfaceOrientation)orientation {
@@ -543,6 +560,9 @@ BOOL onTablet, initialLoad, showTabBar;
     [self reflowLayout:UIInterfaceOrientationLandscapeLeft];
     [self hideBrowseInstructions:YES];
     self.browseButton.hidden = YES;
+    
+    if (!showTabBar)
+        [self enablePresentWithGesture:NO];
 }
 
 - (void)gotSiteInfoResults:(NSDictionary*)results {
