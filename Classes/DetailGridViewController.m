@@ -172,6 +172,7 @@
     l.adjustsFontSizeToFitWidth = YES;
     [l setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
     [l sizeToFit];
+    
     self.dozukiTitleLabel = l;
     self.dozukiTitleLabel.alpha = 0;
     [self.backgroundView addSubview:self.dozukiTitleLabel];
@@ -210,7 +211,6 @@
         [object sizeToFit];
     } else {
         center = UIDeviceOrientationIsLandscape(orientation) ? CGPointMake(355.5f, 325) : CGPointMake(384, 480);
-        
     }
     
     [object setCenter:center];
