@@ -55,16 +55,20 @@
 }
 
 - (void)configureSiteLogoFromURL:(NSString *)url {
+    // Set up the site logo frame
+    [self configureSiteLogo];
+    
+    [self.siteLogo setImageWithURL:[NSURL URLWithString:url]];
+    [self.backgroundView addSubview:self.siteLogo];
+}
+
+- (void)configureSiteLogo {
     UIImageView *siteLogoImageView = [[UIImageView alloc] init];
-    [siteLogoImageView setImageWithURL:[NSURL URLWithString:url]];
     siteLogoImageView.frame = CGRectMake(0, 0, 400, 300);
     siteLogoImageView.contentMode = UIViewContentModeScaleAspectFit;
     [siteLogoImageView setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
     
-    
     self.siteLogo = siteLogoImageView;
-    [self.backgroundView addSubview:self.siteLogo];
-    
     [siteLogoImageView release];
 }
 
@@ -133,10 +137,17 @@
     
     self.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"concreteBackground.png"]] autorelease];
     
-    if ([Config currentConfig].site == ConfigIFixit) {
-        self.fistImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewFist.png"]] autorelease];
-        self.fistImage.frame = CGRectMake(0, 0, 703, 660);
-        [self.backgroundView addSubview:self.fistImage];
+    if (![Config currentConfig].dozuki) {
+        [self configureSiteLogo];
+    }
+    
+    switch ([Config currentConfig].site) {
+        case ConfigIFixit:
+            self.fistImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewFist.png"]] autorelease];
+            self.fistImage.frame = CGRectMake(0, 0, 703, 660);
+            [self.backgroundView addSubview:self.fistImage];
+            break;
+        /*EAOiPadSiteLogo*/
     }
     
     self.guideArrow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewArrowDark.png"]] autorelease];
@@ -155,6 +166,8 @@
     [self.view addSubview:self.noGuidesImage];
     
     [self showNoGuidesImage:NO];
+    
+    [self willRotateToInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation] duration:0];
 }
 
 - (void)configureDozukiTitleLabel {
