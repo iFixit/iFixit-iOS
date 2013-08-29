@@ -122,7 +122,7 @@ recipes = [
      :pattern    => [ /\/\*EAOiPadSiteLogo\*\// ],
      :ingredient => [ "case #{configName}:\n" +
                   "\s" * 12 + "self.siteLogo.image = [UIImage imageNamed:@\"#{nanoSite}_logo_transparent.png\"];\n" +
-                  "\s" * 12 + "[self.backgroundView addSubview:self.siteLogo];"+
+                  "\s" * 12 + "[self.backgroundView addSubview:self.siteLogo];\n"+
                   "\s" * 12 + "break;\n" + "\s" * 8 + "/*EAOiPadSiteLogo*/" ] },
    # Add code to our bash script that switches between iOS apps
    { :file       => 'dozuki.sh',
