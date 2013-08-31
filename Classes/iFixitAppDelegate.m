@@ -93,10 +93,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     /* Configure. */
     [Config currentConfig].dozuki = NO;
-    
-    if (![Config currentConfig].dozuki) {
-        [Config currentConfig].site = ConfigIFixit;
-    }
+    [Config currentConfig].site = ConfigIFixit;
     
     /* Track. */
     [TestFlight takeOff:@"ee879878-6696-470b-af65-61548b796d9f"];

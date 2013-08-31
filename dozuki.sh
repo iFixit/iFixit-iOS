@@ -28,4 +28,5 @@ else
    sed -i '.bak' -e 's/>ifixit</>dozuki</g' iFixit-Info.plist
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = NO;/\[Config currentConfig\].dozuki = YES;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/\<true\/\> \<\!\-\-UIStatusBar\-\-\>/\<false\/\>/' iFixit-Info.plist
+   sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigDozuki;/' Classes/iFixitAppDelegate.m
 fi
