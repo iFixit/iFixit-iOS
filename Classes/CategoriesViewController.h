@@ -40,5 +40,7 @@ enum {
 - (void)showLoading;
 - (void)setData:(NSDictionary *)dict;
 - (void)addGuidesToTableView:(NSArray*)guides;
-
+- (void)setTableViewTitle;
+- (void)configureTableViewTitleLogoFromURL:(NSString*)URL;
+    
 @end

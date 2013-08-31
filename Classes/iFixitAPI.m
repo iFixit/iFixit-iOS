@@ -80,6 +80,20 @@ static int volatile openConnections = 0;
     [request startAsynchronous];
 }
 
+- (void)getSiteInfoForObject:(id)object withSelector:(SEL)selector {
+	NSString *url =	[NSString stringWithFormat:@"http://%@/api/2.0/info", [Config host]];
+	
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setCompletionBlock:^{
+        NSDictionary *results = [[request responseString] JSONValue];
+        [object performSelector:selector withObject:results];
+    }];
+    [request setFailedBlock:^{
+        [object performSelector:selector withObject:nil];
+    }];
+    [request startAsynchronous];
+}
+
 - (void)getCollectionsWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
 	NSString *url =	[NSString stringWithFormat:@"http://%@/api/1.0/collections?limit=%d&offset=%d", [Config host], limit, offset];
 	
