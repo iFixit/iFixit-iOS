@@ -93,7 +93,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     /* Configure. */
     [Config currentConfig].dozuki = NO;
-
+    [Config currentConfig].site = ConfigIFixit;
+    
     /* Track. */
     [TestFlight takeOff:@"ee879878-6696-470b-af65-61548b796d9f"];
     [self setupAnalytics];
@@ -107,9 +108,12 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     firstLoad = YES;
 
     /* iFixit is easy. */
-    if (![Config currentConfig].dozuki) {
+    if ([Config currentConfig].site == ConfigIFixit) {
         [self showiFixitSplash];
+    } else if (![Config currentConfig].dozuki) {
+        [self showSiteSplash];
     }
+    
     /* Dozuki gets a little more complicated. */
     else {
         NSDictionary *site = [[NSUserDefaults standardUserDefaults] objectForKey:@"site"];
@@ -244,6 +248,10 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:categoriesViewController];
     CategoryTabBarViewController *ctvc = [[CategoryTabBarViewController alloc] initWithNibName:@"CategoryTabBarViewController" bundle:nil];
     
+    if ([Config currentConfig].dozuki) {
+        [[iFixitAPI sharedInstance] getSiteInfoForObject:ctvc withSelector:@selector(gotSiteInfoResults:)];
+    }
+    
     lvc.categoryTabBarViewController = ctvc;
     ctvc.listViewController = lvc;
     
@@ -309,6 +317,10 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 - (UIViewController *)iPhoneRoot {
     CategoryTabBarViewController *ctbvc = [[CategoryTabBarViewController alloc] initWithNibName:@"CategoryTabBarViewController" bundle:nil];
+    
+    if ([Config currentConfig].dozuki) {
+        [[iFixitAPI sharedInstance] getSiteInfoForObject:ctbvc withSelector:@selector(gotSiteInfoResults:)];
+    }
     
     return [ctbvc autorelease];
 }

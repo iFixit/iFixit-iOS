@@ -17,7 +17,7 @@
 #####
 
 puts "Easy App Oven!"
-configName = nanoSite = appName = userInput = configPrivate = ''
+configName = nanoSite = appName = configPrivate = answersEnabled = store = ''
 
 # Ask the user for nanosite
 until nanoSite.match(/^[a-z-]+/)
@@ -36,14 +36,31 @@ puts "\nEnter the App Name:"
 appName = gets.chomp
 
 # Ask the user if the nanosite is private
-until userInput.match(/[y|n]/)
+until configPrivate.match(/[y|n]/)
    puts "\nIs the nanosite private? (y/n)"
-   userInput = gets.chomp
-   configPrivate = userInput.eql?('y') ? 'YES' : 'NO'
+   configPrivate = gets.chomp
 end
 
+configPrivate = configPrivate.eql?('y') ? 'YES' : 'NO'
+
+# Ask the user if the nanosite is private
+until answersEnabled.match(/[y|n]/)
+   puts "\nDoes the nanosite have answers enabled? (y/n)"
+   answersEnabled = gets.chomp
+end
+
+answersEnabled = answersEnabled.eql?('y') ? 'YES' : 'NO'
+
+# Ask the user if the nanosite has a store
+until store.match(/^[a-z-]+/)
+   puts "\nDoes the nanosite have a store? Enter URL for store, other wise enter 'n'"
+   store = gets.chomp
+end
+
+store = store.eql?('n') ? 'nil' : store
+
 ####
-# Each dictionary in the recipe's array is a 'clump' of code changes
+# Each object in the recipe's array is a 'clump' of code changes
 # :file == Path to Class file
 # :pattern == Marker we use to search for, ie: /*EAOConfig*/
 # :ingredient == Code to replace found pattern
@@ -62,10 +79,9 @@ recipes = [
    { :file       => 'Classes/GuideIntroViewController.m',
      :pattern    => /\/\*EAOGuideIntro\*\//,
      :ingredient => "case #{configName}:\n" +
-                     "\s" * 16 + "image = [UIImage imageNamed:@\"logo_#{nanoSite}.png\"];\n" +
+                     "\s" * 16 + "image = [UIImage imageNamed:@\"#{nanoSite}_logo_transparent.png\"];\n" +
                      "\s" * 16 + "headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);\n" +
                      "\s" * 16 + "headerImageLogo.image = image;\n" +
-                     "\s" * 16 + "[image release];\n" +
                      "\s" * 16 + "break;\n" + "\s" * 12 + "/*EAOGuideIntro*/" },
 
    # Add config settings such as base url and other options
@@ -74,9 +90,9 @@ recipes = [
      :ingredient => "case #{configName}:\n" +
                      "\s" * 12 + "self.host = @\"#{nanoSite}.dozuki.com\";\n" +
                      "\s" * 12 + "self.baseURL = @\"http://#{nanoSite}.dozuki.com\";\n" +
-                     "\s" * 12 + "answersEnabled = NO;\n" +
+                     "\s" * 12 + "answersEnabled = #{answersEnabled};\n" +
                      "\s" * 12 + "collectionsEnabled = NO;\n" +
-                     "\s" * 12 + "self.store = nil;\n" +
+                     "\s" * 12 + "self.store = @\"#{store}\";\n" +
                      "\s" * 12 + "self.private = #{configPrivate};\n" +
                      "\s" * 12 + "break;\n" + "\s" * 8 + "/*EAOOptions*/" },
 
@@ -87,7 +103,7 @@ recipes = [
                      "\s" * 16 + "titleImage = [UIImage imageNamed:@\"titleImage#{nanoSite.capitalize}.png\"];\n" +
                      "\s" * 16 + "imageTitle = [[UIImageView alloc] initWithImage:titleImage];\n" +
                      "\s" * 16 + "self.navigationItem.titleView = imageTitle;\n" +
-                     "\s" * 16 + "[titleImage release];\n" + "\s" * 16 + "break;\n" +
+                     "\s" * 16 + "break;\n" +
                      "\s" * 12 + "/*EAOTitle*/",
                      "case #{configName}:\n" +
                      "\s" * 16 + "frame = self.navigationItem.titleView.frame;\n" +
@@ -101,25 +117,13 @@ recipes = [
                      "\s" * 16 + "frame.size.height = 0.0;\n" +
                      "\s" * 16 + "self.navigationItem.titleView.frame = frame;\n" + "\s" * 16 +
                      "break;\n" + "\s" * 12 + "/*EAOPortraitResize*/" ] },
-
    # Add large background iPad logo and resizing logic for logo
-   { :file       => 'Classes/DetailIntroViewController.m',
-     :pattern    => [ /\/\*EAOLandscape\*\//, /\/\*EAOPortrait\*\//, /\/\*EAOiPadLogo\*\// ],
+   { :file       => 'Classes/DetailGridViewController.m',
+     :pattern    => [ /\/\*EAOiPadSiteLogo\*\// ],
      :ingredient => [ "case #{configName}:\n" +
-                     "\s" * 16 + "frame.origin.y = 0.0;\n" +
-                     "\s" * 16 + "frame.origin.x = 0.0;\n" +
-                     "\s" * 16 + "break;\n" + "\s" * 12 +  "/*EAOLandscape*/",
-                     "case #{configName}:\n" +
-                     "\s" * 16 + "frame.origin.y = 0.0;\n" +
-                     "\s" * 16 + "frame.origin.x = 0.0;\n" +
-                     "\s" * 16 + "break;\n" + "\s" * 12 +  "/*EAOPortrait*/",
-                     "case #{configName}:\n" +
-                     "\s" * 12 + "image.image = [UIImage imageNamed:@\"#{nanoSite}_logo_transparent.png\"];\n" +
-                     "\s" * 12 + "image.frame = CGRectMake(image.frame.origin.x, image.frame.origin.y, 0.0, 0.0);\n" +
-                     "\s" * 12 + "image.center = self.view.center;\n" +
-                     "\s" * 12 + "text.image = [UIImage imageNamed:@\"detailViewText#{nanoSite.capitalize}.png\"];\n" +
-                     "\s" * 12 + "break;\n" + "\s" * 8 + "/*EAOiPadLogo*/" ] },
-
+                  "\s" * 12 + "self.siteLogo.image = [UIImage imageNamed:@\"#{nanoSite}_logo_transparent.png\"];\n" +
+                  "\s" * 12 + "[self.backgroundView addSubview:self.siteLogo];\n"+
+                  "\s" * 12 + "break;\n" + "\s" * 8 + "/*EAOiPadSiteLogo*/" ] },
    # Add code to our bash script that switches between iOS apps
    { :file       => 'dozuki.sh',
      :pattern    => /#EAOPlist/,
@@ -130,6 +134,7 @@ recipes = [
                      "\s" * 3 + "sed -i '.bak' -e 's/iFixit/#{appName}/g' iFixit-Info.plist\n" +
                      "\s" * 3 + "sed -i '.bak' -e 's/>ifixit</>#{nanoSite}</g' iFixit-Info.plist\n" +
                      "\s" * 3 + "sed -i '.bak' -e 's/\\[Config currentConfig\\].dozuki = YES;/\\[Config currentConfig\\].dozuki = NO;/' Classes/iFixitAppDelegate.m\n" +
+                     "\s" * 3 + "sed -i '.bak' -e 's/\\[Config currentConfig\\].site = ConfigIFixit;/\\[Config currentConfig\\].site = #{configName};/' Classes/iFixitAppDelegate.m\n" +
                      "#EAOPlist"}
 ]
 
@@ -168,7 +173,6 @@ end
 puts "\nRemember: Make sure you have the image assets in the correct path and " +
      "they are named accordingly:\n" +
      "Graphics/Sites/#{nanoSite.capitalize}/\n" +
-     "logo_#{nanoSite}.png\n" +
      "titleImage#{nanoSite.capitalize}.png\n" +
      "#{nanoSite}_logo_transparent.png\n" +
      "detailViewText#{nanoSite.capitalize}.png"

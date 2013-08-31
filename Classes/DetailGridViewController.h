@@ -21,11 +21,16 @@
 @property (nonatomic, retain) UIImageView *noGuidesImage;
 @property (nonatomic, retain) UIImageView *fistImage;
 @property (nonatomic, retain) UIImageView *guideArrow;
+@property (nonatomic, retain) UIImageView *siteLogo;
+@property (nonatomic, retain) UIImageView *backgroundView;
 
 @property (nonatomic, retain) UILabel *browseInstructions;
+@property (nonatomic, retain) UILabel *dozukiTitleLabel;
 
 @property (nonatomic, assign) id<DetailGridViewControllerDelegate> gridDelegate;
 
 - (void)showNoGuidesImage:(BOOL)option;
-
+- (void)configureDozukiTitleLabel;
+- (void)configureSiteLogoFromURL:(NSString*)url;
+    
 @end

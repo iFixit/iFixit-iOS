@@ -63,8 +63,6 @@
                 self.navigationItem.titleView = imageTitle;
                 break;
             /*EAOTitle*/
-            default:
-                [self configureDozukiTitleLabel];
         }
     }
     
@@ -85,22 +83,7 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone && self.listViewController.viewControllers.count == 1) {
         [self viewWillAppear:NO];
     }
-}
-
-- (void)configureDozukiTitleLabel {
-    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-    
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont fontWithName:@"OpenSans-Bold" size:24.0];
-    titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.adjustsFontSizeToFitWidth = YES;
-    self.navigationItem.titleView = titleLabel;
-    titleLabel.text = [Config currentConfig].title.length
-    ? [Config currentConfig].title
-    : NSLocalizedString(@"Categories", nil);
-}
+} 
 
 - (void)displayBackToSitesButton {
     // Show the Dozuki sites select button if needed.
@@ -143,6 +126,35 @@
     [refreshButton release];
 }
 
+- (void)configureTableViewTitleLogoFromURL:(NSString*)URL {
+    
+    UIImageView *imageTitle = [[UIImageView alloc] init];
+    imageTitle.contentMode = UIViewContentModeScaleAspectFit;
+    [imageTitle setImageWithURL:[NSURL URLWithString:URL]];
+    
+    self.navigationItem.titleView = imageTitle;
+    
+    [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0];
+}
+- (void)setTableViewTitle {
+    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:24.0];
+    titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.navigationItem.titleView = titleLabel;
+    titleLabel.text = [Config currentConfig].title.length
+                    ? [Config currentConfig].title
+                    : NSLocalizedString(@"Categories", nil);
+    titleLabel.alpha = 0;
+    [titleLabel sizeToFit];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        titleLabel.alpha = 1;
+    }];
+}
 - (void)getAreas {
     [self showLoading];
     [[iFixitAPI sharedInstance] getCategories:nil forObject:self withSelector:@selector(gotAreas:)];
@@ -188,10 +200,12 @@
 // This is a deprecated method as of iOS 6.0, keeping this in to support older iOS versions
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     CGRect frame;
+    
     if ((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         switch ([Config currentConfig].site) {
             case ConfigMake:
                 break;
+            case ConfigDozuki:
             case ConfigZeal:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 100;
@@ -209,6 +223,7 @@
         switch ([Config currentConfig].site) {
             case ConfigMake:
                 break;
+            case ConfigDozuki:
             case ConfigZeal:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 137;

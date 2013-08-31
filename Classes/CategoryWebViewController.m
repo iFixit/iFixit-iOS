@@ -11,6 +11,7 @@
 #import "BookmarksViewController.h"
 #import "WBProgressHUD.h"
 #import "Config.h"
+#import "iFixitAppDelegate.h"
 
 @interface CategoryWebViewController ()
 
@@ -125,6 +126,9 @@
     // Only configure the nav bar on iPhone
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         [self configureNavigationBar];
+    } else if(![(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showsTabBar]){
+        // If we don't have a tab bar, let's make the webview full screen
+        self.webView.frame = self.view.frame;
     }
 }
 

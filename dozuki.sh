@@ -19,6 +19,7 @@ elif [ "$1" == "zeal" ]; then
    sed -i '.bak' -e 's/iFixit/Zeal/g' iFixit-Info.plist
    sed -i '.bak' -e 's/>ifixit</>zeal</g' iFixit-Info.plist
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
+   sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigZeal;/' Classes/iFixitAppDelegate.m
 #EAOPlist
 else
    echo "Dozuki"
@@ -28,4 +29,5 @@ else
    sed -i '.bak' -e 's/>ifixit</>dozuki</g' iFixit-Info.plist
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = NO;/\[Config currentConfig\].dozuki = YES;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/\<true\/\> \<\!\-\-UIStatusBar\-\-\>/\<false\/\>/' iFixit-Info.plist
+   sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigDozuki;/' Classes/iFixitAppDelegate.m
 fi

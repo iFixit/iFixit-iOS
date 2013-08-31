@@ -13,6 +13,8 @@
 #import "GuideViewController.h"
 #import "DMPGridViewCell.h"
 #import "iFixitAppDelegate.h"
+#import "Config.h"
+#import "UIImageView+WebCache.h"
 
 @implementation DetailGridViewController
 
@@ -50,6 +52,24 @@
 - (void)loadCategory {
     [self showLoading];
     [[iFixitAPI sharedInstance] getTopic:_category forObject:self withSelector:@selector(gotCategory:)];
+}
+
+- (void)configureSiteLogoFromURL:(NSString *)url {
+    // Set up the site logo frame
+    [self configureSiteLogo];
+    
+    [self.siteLogo setImageWithURL:[NSURL URLWithString:url]];
+    [self.backgroundView addSubview:self.siteLogo];
+}
+
+- (void)configureSiteLogo {
+    UIImageView *siteLogoImageView = [[UIImageView alloc] init];
+    siteLogoImageView.frame = CGRectMake(0, 0, 400, 300);
+    siteLogoImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [siteLogoImageView setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
+    
+    self.siteLogo = siteLogoImageView;
+    [siteLogoImageView release];
 }
 
 - (void)gotCategory:(NSDictionary *)data {
@@ -115,32 +135,68 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImageView *concreteBackground = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"concreteBackground.png"]] autorelease];
+    self.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"concreteBackground.png"]] autorelease];
     
-    self.fistImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewFist.png"]] autorelease];
-    self.fistImage.frame = CGRectMake(0, 0, 703, 660);
-    [concreteBackground addSubview:self.fistImage];
+    if (![Config currentConfig].dozuki) {
+        [self configureSiteLogo];
+    }
+    
+    switch ([Config currentConfig].site) {
+        case ConfigIFixit:
+            self.fistImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewFist.png"]] autorelease];
+            self.fistImage.frame = CGRectMake(0, 0, 703, 660);
+            [self.backgroundView addSubview:self.fistImage];
+            break;
+        /*EAOiPadSiteLogo*/
+    }
     
     self.guideArrow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewArrowDark.png"]] autorelease];
     self.guideArrow.frame = CGRectMake(45, 6, self.guideArrow.frame.size.width, self.guideArrow.frame.size.height);
     
-    [self.view addSubview:self.guideArrow];
+    [self.backgroundView addSubview:self.guideArrow];
     
     [self configureInstructionsLabel];
     
     // Add a 10px bottom margin.
     self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0);
-    self.tableView.backgroundView = concreteBackground;
+    self.tableView.backgroundView = self.backgroundView;
     
     self.noGuidesImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noGuides.png"]] autorelease];
     self.noGuidesImage.frame = CGRectMake(135, 30, self.noGuidesImage.frame.size.width, self.noGuidesImage.frame.size.height);
     [self.view addSubview:self.noGuidesImage];
     
     [self showNoGuidesImage:NO];
+    
+    [self willRotateToInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation] duration:0];
 }
 
+- (void)configureDozukiTitleLabel {
+    UILabel *l = [[UILabel alloc] init];
+    l.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    l.textAlignment = UITextAlignmentCenter;
+    l.backgroundColor = [UIColor clearColor];
+    l.font = [UIFont fontWithName:@"Helvetica-Bold" size:60.0];
+    l.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8];
+    l.shadowColor = [UIColor darkGrayColor];
+    l.shadowOffset = CGSizeMake(0.0, 1.0);
+    l.numberOfLines = 1;
+    l.text = [Config currentConfig].siteData[@"title"];
+    l.frame = CGRectMake(0, 0, [l.text sizeWithFont:l.font].width, [l.text sizeWithFont:l.font].height);
+    l.adjustsFontSizeToFitWidth = YES;
+    [l setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
+    [l sizeToFit];
+    
+    self.dozukiTitleLabel = l;
+    self.dozukiTitleLabel.alpha = 0;
+    [self.backgroundView addSubview:self.dozukiTitleLabel];
+    
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.dozukiTitleLabel.alpha = 1;
+    }];
+}
 - (void)configureInstructionsLabel {
-    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(210, 190, 280, 30)];
+    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(135, 190, 280, 30)];
     l.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     l.textAlignment = UITextAlignmentCenter;
     l.lineBreakMode = UILineBreakModeWordWrap;
@@ -150,11 +206,27 @@
     l.shadowColor = [UIColor darkGrayColor];
     l.shadowOffset = CGSizeMake(0.0, 1.0);
     l.numberOfLines = 0;
-    l.text = NSLocalizedString(@"Looking for Guides? Browse thousands of them here.", nil);
+    l.text = [Config currentConfig].dozuki ?
+                NSLocalizedString(@"Looking for Guides? Browse them here.", nil) :
+                NSLocalizedString(@"Looking for Guides? Browse thousands of them here.", nil);
     [l sizeToFit];
     
     self.browseInstructions = l;
-    [self.view addSubview:self.browseInstructions];
+    [self.backgroundView addSubview:self.browseInstructions];
+}
+
+
+- (void)repositionTitleObject:(id)object forOrientation:(UIInterfaceOrientation)orientation {
+    CGPoint center;
+    
+    if ([object isKindOfClass:[UILabel class]]) {
+        center = UIDeviceOrientationIsLandscape(orientation) ? CGPointMake(361.5f, 325) : CGPointMake(374, 480);
+        [object sizeToFit];
+    } else {
+        center = UIDeviceOrientationIsLandscape(orientation) ? CGPointMake(355.5f, 325) : CGPointMake(384, 480);
+    }
+    
+    [object setCenter:center];
 }
 
 - (void)viewDidUnload {
@@ -164,6 +236,14 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
+    if (self.siteLogo)
+        [self repositionTitleObject:self.siteLogo forOrientation:toInterfaceOrientation];
+    if (self.dozukiTitleLabel)
+        [self repositionTitleObject:self.dozukiTitleLabel forOrientation:toInterfaceOrientation];
 }
 
 - (DMPGridViewCellStyle)styleForRow:(NSUInteger)row {
