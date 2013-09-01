@@ -135,7 +135,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"concreteBackground.png"]] autorelease];
+    self.backgroundView = [[[UIImageView alloc] initWithImage:[Config currentConfig].concreteBackgroundImage
+                            ? [Config currentConfig].concreteBackgroundImage
+                            : [UIImage imageNamed:@"concreteBackground.png"]]
+                           autorelease];
     
     if (![Config currentConfig].dozuki) {
         [self configureSiteLogo];
@@ -146,6 +149,10 @@
             self.fistImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewFist.png"]] autorelease];
             self.fistImage.frame = CGRectMake(0, 0, 703, 660);
             [self.backgroundView addSubview:self.fistImage];
+            break;
+        case ConfigMjtrim:
+            self.siteLogo.image = [UIImage imageNamed:@"mjtrim_logo_transparent.png"];
+            [self.backgroundView addSubview:self.siteLogo];
             break;
         /*EAOiPadSiteLogo*/
     }
@@ -202,7 +209,8 @@
     l.lineBreakMode = UILineBreakModeWordWrap;
     l.backgroundColor = [UIColor clearColor];
     l.font = [UIFont fontWithName:@"OpenSans-Bold" size:17.0];
-    l.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8];
+    l.textColor = [Config currentConfig].textColor;
+    l.alpha = 0.8;
     l.shadowColor = [UIColor darkGrayColor];
     l.shadowOffset = CGSizeMake(0.0, 1.0);
     l.numberOfLines = 0;

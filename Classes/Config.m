@@ -64,6 +64,14 @@ static Config *currentConfig = nil;
             collectionsEnabled = NO;
             self.store = nil;
             break;
+        case ConfigMjtrim:
+            self.host = @"mjtrim.dozuki.com";
+            self.baseURL = @"http://mjtrim.dozuki.com";
+            answersEnabled = NO;
+            collectionsEnabled = NO;
+            self.store = @"http://www.mjtrim.com/";
+            self.private = NO;
+            break;
         /*EAOOptions*/
         default:
             self.host = nil;
@@ -101,6 +109,17 @@ static Config *currentConfig = nil;
                 ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
                 : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             self.answersCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_answers" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
+            break;
+        // MJ Trim
+        case ConfigMjtrim:
+            self.textColor = [UIColor blackColor];
+            self.backgroundColor = [UIColor whiteColor];
+            self.toolbarColor = [UIColor blackColor];
+            self.buttonColor = [UIColor blackColor];
+            
+            self.concreteBackgroundImage = [UIImage imageNamed:@"concreteBackgroundWhite.png"];
+            self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
+            self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             break;
         default:
             self.backgroundColor = [UIColor blackColor];

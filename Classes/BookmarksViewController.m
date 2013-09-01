@@ -212,6 +212,8 @@
     } else {
         [self dismissModalViewControllerAnimated:YES];
     }
+    
+    [self.listViewController configureProperties];
 }
 
 - (void)viewDidUnload
