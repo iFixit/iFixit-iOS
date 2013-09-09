@@ -133,7 +133,6 @@
 }
 
 - (void)configureNavigationBar {
-    self.categoryNavigationBar.tintColor = [Config currentConfig].toolbarColor;
     self.categoryNavigationBar.hidden = NO;
     
     UINavigationItem *backButtonItem = [[[UINavigationItem alloc] initWithTitle:@""] autorelease];
@@ -143,6 +142,13 @@
     // Hack to get a back button, title view, and a right bar button item on a navigation bar without having to use a navigation controller
     self.categoryNavigationBar.items = @[backButtonItem, titleItem, favoritesButtonItem];
     self.categoryNavigationBar.delegate = self.categoryTabBarViewController;
+    
+    if ([Config currentConfig].site == ConfigMjtrim) {
+        self.categoryNavigationBar.tintColor = [UIColor colorWithRed:204/255.0f green:0 blue:0 alpha:1];
+        favoritesButtonItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:140/255.0f green:48/255.0f blue:49/255.0f alpha:1];
+    } else {
+        self.categoryNavigationBar.tintColor = [Config currentConfig].toolbarColor;
+    }
 }
 
 - (IBAction)favoritesButtonPushed:(id)sender {

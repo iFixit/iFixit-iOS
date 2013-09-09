@@ -8,7 +8,7 @@
 
 #import "LoginViewControllerDelegate.h"
 
-@class LoginViewController;
+@class LoginViewController, ListViewController;
 
 @interface BookmarksViewController : UITableViewController <LoginViewControllerDelegate, UIActionSheetDelegate>
 
@@ -16,6 +16,7 @@
 @property (nonatomic, retain) LoginViewController *lvc;
 @property (nonatomic, retain) NSMutableArray *devices;
 @property (nonatomic, retain) UIBarButtonItem *editButton;
+@property (nonatomic, retain) ListViewController *listViewController;
 
 - (void)refresh;
 
