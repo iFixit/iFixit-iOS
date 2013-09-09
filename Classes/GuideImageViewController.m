@@ -79,7 +79,7 @@ static CGRect frameView;
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
     // set up main scroll view
-	self.imageScrollView = [[[UIScrollView alloc] initWithFrame:self.view.frame] autorelease];
+	self.imageScrollView = [[[UIScrollView alloc] initWithFrame:self.view.bounds] autorelease];
     imageScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [imageScrollView setBackgroundColor:[Config currentConfig].backgroundColor];
     [imageScrollView setDelegate:self];
