@@ -85,14 +85,12 @@ static CGRect frameView;
 	[self.view sendSubviewToBack:imageScrollView];
 
     // add touch-sensitive image view to the scroll view
-	self.imageView = [[UIImageView alloc] initWithImage:self.image];
-
+	self.imageView = [[[UIImageView alloc] initWithImage:self.image] autorelease];
     [imageView setUserInteractionEnabled:YES];
     //[imageScrollView setContentSize:[imageView frame].size];
     imageView.frame = CGRectMake(0.0, 0.0, 1600.0, 1200.0);
     [imageScrollView setContentSize:CGSizeMake(1600.0f, 1200.0f)];
 	[imageScrollView addSubview:imageView];
-    [imageView release];
    
     // calculate minimum scale to perfectly fit longer edge, and begin at that scale
     float minimumWidthScale = [imageScrollView frame].size.width / [imageView frame].size.width;
