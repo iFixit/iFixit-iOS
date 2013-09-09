@@ -9,9 +9,6 @@
 #import "GuideImageViewController.h"
 #import "Config.h"
 
-#define ZOOM_VIEW_TAG 100
-
-
 @interface GuideImageViewController (UtilityMethods)
 - (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center;
 @end
@@ -19,7 +16,7 @@
 
 @implementation GuideImageViewController
 
-@synthesize delegate, image, imageScrollView, delay;
+@synthesize delegate, image, imageScrollView, imageView, delay;
 
 static CGRect frameView;
 
@@ -88,9 +85,8 @@ static CGRect frameView;
 	[self.view sendSubviewToBack:imageScrollView];
 
     // add touch-sensitive image view to the scroll view
-	UIImageView *imageView = [[UIImageView alloc] initWithImage:self.image];
+	self.imageView = [[UIImageView alloc] initWithImage:self.image];
 
-    [imageView setTag:ZOOM_VIEW_TAG];
     [imageView setUserInteractionEnabled:YES];
     //[imageScrollView setContentSize:[imageView frame].size];
     imageView.frame = CGRectMake(0.0, 0.0, 1600.0, 1200.0);
@@ -111,7 +107,7 @@ static CGRect frameView;
     CGRect zoomRect = [self zoomRectForScale:minimumScale withCenter:center];
     [imageScrollView zoomToRect:zoomRect animated:NO];
    
-    [self setupTouchEvents:imageView];
+    [self setupTouchEvents];
     
     self.delay = [NSDate date];
     
@@ -127,7 +123,7 @@ static CGRect frameView;
     [self.view addSubview:back];
        
 }
-- (void)setupTouchEvents:(UIImageView *)imageView {
+- (void)setupTouchEvents {
    
    // add gesture recognizers to the image view
    UITapGestureRecognizer *singleTapG = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
@@ -150,6 +146,7 @@ static CGRect frameView;
 - (void)dealloc {
     [image release];
     [imageScrollView release];
+    [imageView release];
     [delay release];
     
     [super dealloc];
@@ -158,7 +155,7 @@ static CGRect frameView;
 #pragma mark UIScrollViewDelegate methods
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return [imageScrollView viewWithTag:ZOOM_VIEW_TAG];
+    return imageView;
 }
 
 #pragma mark TapDetectingImageViewDelegate methods
