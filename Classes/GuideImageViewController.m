@@ -93,6 +93,7 @@ static CGRect frameView;
 	self.imageView = [[[UIImageView alloc] initWithFrame:imageScrollView.bounds] autorelease];
     imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     imageView.image = self.image;
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     [imageView setUserInteractionEnabled:YES];
 	[imageScrollView addSubview:imageView];
    
