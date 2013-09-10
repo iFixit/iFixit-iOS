@@ -85,6 +85,7 @@ static CGRect frameView;
     [imageScrollView setBackgroundColor:[Config currentConfig].backgroundColor];
     [imageScrollView setDelegate:self];
     [imageScrollView setBouncesZoom:YES];
+    [imageScrollView setMaximumZoomScale:2.0];
     [self.view addSubview:imageScrollView];
 	[self.view sendSubviewToBack:imageScrollView];
 
@@ -94,8 +95,6 @@ static CGRect frameView;
     imageView.image = self.image;
     [imageView setUserInteractionEnabled:YES];
 	[imageScrollView addSubview:imageView];
-    
-    [imageScrollView setMaximumZoomScale:2.0];
    
     [self setupTouchEvents];
     
