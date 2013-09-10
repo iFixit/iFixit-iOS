@@ -70,6 +70,10 @@ static CGRect frameView;
     [[delegate delegate] willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    imageScrollView.contentSize = imageView.frame.size;
+}
+
 - (void)loadView {
     [super loadView];
     
@@ -85,25 +89,13 @@ static CGRect frameView;
 	[self.view sendSubviewToBack:imageScrollView];
 
     // add touch-sensitive image view to the scroll view
-	self.imageView = [[[UIImageView alloc] initWithImage:self.image] autorelease];
+	self.imageView = [[[UIImageView alloc] initWithFrame:imageScrollView.bounds] autorelease];
+    imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    imageView.image = self.image;
     [imageView setUserInteractionEnabled:YES];
-    //[imageScrollView setContentSize:[imageView frame].size];
-    imageView.frame = CGRectMake(0.0, 0.0, 1600.0, 1200.0);
-    [imageScrollView setContentSize:CGSizeMake(1600.0f, 1200.0f)];
 	[imageScrollView addSubview:imageView];
-   
-    // calculate minimum scale to perfectly fit longer edge, and begin at that scale
-    float minimumWidthScale = [imageScrollView frame].size.width / [imageView frame].size.width;
-    float minimumHeightScale = [imageScrollView frame].size.height / [imageView frame].size.height;
-    float minimumScale = fmax(minimumWidthScale, minimumHeightScale);
     
-    [imageScrollView setMinimumZoomScale:minimumScale];
-    [imageScrollView setZoomScale:minimumScale];
     [imageScrollView setMaximumZoomScale:2.0];
-   
-    CGPoint center = CGPointMake(0, 0);
-    CGRect zoomRect = [self zoomRectForScale:minimumScale withCenter:center];
-    [imageScrollView zoomToRect:zoomRect animated:NO];
    
     [self setupTouchEvents];
     
