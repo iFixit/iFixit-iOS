@@ -49,6 +49,9 @@
                                                                            style:UIBarButtonItemStyleBordered 
                                                                           target:self 
                                                                           action:@selector(bookmark:)];
+        if ([Config currentConfig].buttonColor) {
+            bookmarkButton.tintColor = [Config currentConfig].buttonColor;
+        }
         navItem.rightBarButtonItem = bookmarkButton;
         [bookmarkButton release];
     }

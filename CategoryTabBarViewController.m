@@ -68,7 +68,9 @@ BOOL onTablet, initialLoad, showTabBar;
     // This is a hack built on top of a hack. We have a filler image we use when we hide the tabbar to avoid funky resizing issues of the view
     if (onTablet) {
         UIImageView *filler = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.tabBar.frame.size.width, self.tabBar.frame.size.height)];
-        filler.image = [UIImage imageNamed:@"concreteBackground.png"];
+        
+        filler.image = [Config currentConfig].concreteBackgroundImage ? [Config currentConfig].concreteBackgroundImage : [UIImage imageNamed:@"concreteBackground.png"];
+        
         [self.view addSubview:filler];
         
         self.toolBarFillerImage = filler;
@@ -142,6 +144,7 @@ BOOL onTablet, initialLoad, showTabBar;
     // On iPad we move the tabbar to the top of the frame.
     if (onTablet) {
         self.tabBar.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44);
+        self.tabBar.tintColor = [Config currentConfig].toolbarColor;
         self.tabBar.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin;
     } else {
         [self showTabBar:NO];
