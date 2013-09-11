@@ -12,6 +12,9 @@
 
 @property (retain, nonatomic) IBOutlet UIView *introView;
 @property (nonatomic, retain) UINavigationController *nextViewController;
+@property (retain, nonatomic) IBOutlet UILabel *dozukiSlogan;
+@property (retain, nonatomic) IBOutlet UILabel *dozukiDescription;
+@property (retain, nonatomic) IBOutlet UILabel *getStarted;
 
 - (IBAction)getStarted:(id)sender;
 
