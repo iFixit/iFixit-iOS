@@ -41,13 +41,21 @@
 - (void)configureProperties {
     [self showFavoritesButton:self];
     
-    self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
-    
-    // For iOS 5+
-    if ([Config currentConfig].site == ConfigIFixit && [[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
+    // Set Navigation bar
+    if ([Config currentConfig].site == ConfigIFixit) {
+        self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
         [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-        [[UINavigationBar appearance] setBackgroundColor:[UIColor colorWithRed:39/255.0f green:41/255.0f blue:43/255.0f alpha:1.0f]];
+        [[UINavigationBar appearance] setBackgroundColor:[Config currentConfig].toolbarColor];
+    } else if ([Config currentConfig].site == ConfigMjtrim) {
+        self.navigationBar.tintColor = [UIColor colorWithRed:204/255.0f green:0 blue:0 alpha:1];
+        self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:140/255.0f green:48/255.0f blue:49/255.0f alpha:1];
+    } else {
+        self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+        if ([Config currentConfig].buttonColor) {
+            self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
+        }
     }
+    
 }
 
 // Override delegate method so we always have control of what to do when we pop a viewcontroller off the stack
@@ -148,6 +156,7 @@
 - (void)favoritesButtonPushed {
     
     BookmarksViewController *bvc = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
+    bvc.listViewController = self;
     
     // Create the animation ourselves to mimic a modal presentation
     // On iPad we must push the view onto a stack, instead of presenting
@@ -160,6 +169,8 @@
                          }];
     else {
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:bvc];
+        
+        nvc.navigationBar.tintColor = [Config currentConfig].toolbarColor;
         
         [self presentModalViewController:nvc animated:YES];
         [nvc release];

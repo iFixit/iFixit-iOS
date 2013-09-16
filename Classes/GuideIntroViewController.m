@@ -89,6 +89,11 @@
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);
                 headerImageLogo.image = image;
                 break;
+            case ConfigMjtrim:
+                image = [UIImage imageNamed:@"mjtrim_logo_transparent.png"];
+                headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);
+                headerImageLogo.image = image;
+                break;
             /*EAOGuideIntro*/
             case ConfigDozuki:
                 [self configureIntroTitleLogo];
@@ -100,6 +105,10 @@
     // Hide the swipe label if there are no steps.
     if (![self.guide.steps count])
         swipeLabel.hidden = YES;
+    
+    if ([Config currentConfig].buttonColor) {
+        self.navigationItem.rightBarButtonItem.tintColor = self.navigationItem.leftBarButtonItem.tintColor = [Config currentConfig].buttonColor;
+    }
     
     UIColor *bgColor = [UIColor clearColor];
     

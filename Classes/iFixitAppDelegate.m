@@ -300,6 +300,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     // Create the tab bar.
     UITabBarController *tbc = [[UITabBarController alloc] init];
     
+    tbc.tabBar.tintColor = [Config currentConfig].toolbarColor;
     if ([Config currentConfig].collectionsEnabled) {
         FeaturedViewController *featuredViewController = [[FeaturedViewController alloc] init];    
         featuredViewController.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0] autorelease];

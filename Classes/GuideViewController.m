@@ -213,8 +213,15 @@
 	UINavigationItem *thisItem = [[UINavigationItem alloc] initWithTitle:title];
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                 target:self action:@selector(closeGuide)];
+    
+    if ([Config currentConfig].buttonColor) {
+        doneButton.tintColor = [Config currentConfig].buttonColor;
+    }
+    
     thisItem.leftBarButtonItem = doneButton;
     [doneButton release];
+    
+    
     [bookmarker setNavItem:thisItem andGuideid:self.guide.guideid];
     
 	NSArray *navItems = [NSArray arrayWithObjects:thisItem, nil];

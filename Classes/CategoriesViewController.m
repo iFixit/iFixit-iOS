@@ -62,6 +62,11 @@
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
+            case ConfigMjtrim:
+                titleImage = [UIImage imageNamed:@"titleImageMjtrim.png"];
+                imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+                self.navigationItem.titleView = imageTitle;
+                break;
             /*EAOTitle*/
         }
     }
@@ -212,6 +217,12 @@
                 frame.size.height = 25;
                 self.navigationItem.titleView.frame = frame;
                 break;
+            case ConfigMjtrim:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 75;
+                frame.size.height = 24;
+                self.navigationItem.titleView.frame = frame;
+                break;
             /*EAOLandscapeResize*/
             default:
                 frame = self.navigationItem.titleView.frame;
@@ -225,6 +236,12 @@
                 break;
             case ConfigDozuki:
             case ConfigZeal:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 137;
+                frame.size.height = 35;
+                self.navigationItem.titleView.frame = frame;
+                break;
+            case ConfigMjtrim:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 137;
                 frame.size.height = 35;

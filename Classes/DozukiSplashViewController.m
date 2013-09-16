@@ -33,14 +33,23 @@
         self.nextViewController = nvc;
         [nvc release];
         [divc release];
+        
     }
     return self;
 }
 
 #pragma mark - View lifecycle
 
+- (void)configureLabels {
+    self.dozukiSlogan.text = NSLocalizedString(@"We make technical documentation come to life.", nil);
+    self.dozukiDescription.text = NSLocalizedString(@"Dozuki has thousands of manuals in one place. Learn how to do all sorts of things-from repairing your iPad to building a water-powered rocket.", nil);
+    self.getStarted.text = NSLocalizedString(@"Get Started", nil);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self configureLabels];
     
     if (showingList)
         self.introView.hidden = YES;
@@ -61,6 +70,9 @@
 - (void)viewDidUnload
 {
     [self setIntroView:nil];
+    [self setDozukiSlogan:nil];
+    [self setDozukiDescription:nil];
+    [self setGetStarted:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -120,6 +132,9 @@
 - (void)dealloc {
     [introView release];
     [nextViewController release];
+    [_dozukiSlogan release];
+    [_dozukiDescription release];
+    [_getStarted release];
     [super dealloc];
 }
 @end
