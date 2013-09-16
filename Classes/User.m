@@ -17,7 +17,7 @@
     user.data           = dict;
 	user.userid 		= dict[@"userid"];
 	user.username 		= dict[@"username"];
-	user.imageid 		= dict[@"image"][@"id"];
+	user.imageid 		= ![dict[@"image"] isEqual:[NSNull null]] ? dict[@"image"][@"id"] : nil;
 	user.session 		= dict[@"authToken"];
     
 	return [user autorelease];
