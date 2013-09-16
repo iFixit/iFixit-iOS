@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSString *queueFilePath;
 @property (nonatomic, retain) NSString *currentItem;
 @property (nonatomic, retain) GuideBookmarker *bookmarker;
+@property (nonatomic, retain) NSArray *favorites;
 
 + (GuideBookmarks *)sharedBookmarks;
 + (void)reset;

@@ -77,7 +77,7 @@
         [self showLoading];
         
         if (self.topic)
-            [[iFixitAPI sharedInstance] getTopic:self.topic forObject:self withSelector:@selector(gotDevice:)];
+            [[iFixitAPI sharedInstance] getCategory:self.topic forObject:self withSelector:@selector(gotCategory:)];
         else
             [[iFixitAPI sharedInstance] getGuides:nil forObject:self withSelector:@selector(gotGuides:)];
     }
@@ -94,7 +94,7 @@
     [self.tableView reloadData];
     [self hideLoading];
 }
-- (void)gotDevice:(NSDictionary *)data {
+- (void)gotCategory:(NSDictionary *)data {
     if (!data) {
         [iFixitAPI displayConnectionErrorAlert];
         [self showRefreshButton];
@@ -186,9 +186,6 @@
     // Configure the cell...
     NSString *subject = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"subject"];
     
-    // Run some error checking.
-    if (!subject || [subject isEqual:[NSNull null]])
-        subject = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"thing"];
 
     if (!subject || [subject isEqual:[NSNull null]] || [subject isEqual:@""]) {
         subject = NSLocalizedString(@"Untitled", nil);
@@ -201,8 +198,9 @@
     
     cell.textLabel.text = subject;
     
+    id image = self.guides[indexPath.row][@"image"];
     NSString *thumbnailURL = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"thumbnail"];
-    thumbnailURL = thumbnailURL.length > 0 ? thumbnailURL : NULL;
+    thumbnailURL = image == [NSNull null] ? NULL : image[@"thumbnail"];
     
     [cell.imageView setImageWithURL:[NSURL URLWithString:thumbnailURL] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
     

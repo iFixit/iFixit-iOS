@@ -11,17 +11,16 @@
 
 @implementation Guide
 
-@synthesize data, guideid, topic, subject, title, author, timeRequired, difficulty, introduction, introduction_rendered, summary, image;
+@synthesize data, guideid, category, subject, title, author, timeRequired, difficulty, introduction, introduction_rendered, summary, image;
 @synthesize documents, parts, tools, flags;
 @synthesize prereqs, steps;
 
 + (NSDictionary *)repairNullsForDict:(NSDictionary *)dict {
-    NSDictionary *guideData = [dict objectForKey:@"guide"];
     
     // Remove all nulls so the data can be written to disk.
-    for (NSString *key in [guideData allKeys]) {
-        if ([[guideData objectForKey:key] isEqual:[NSNull null]])
-            [guideData setValue:@"" forKey:key];
+    for (NSString *key in [dict allKeys]) {
+        if ([[dict objectForKey:key] isEqual:[NSNull null]])
+            [dict setValue:@"" forKey:key];
     }
 
     return dict;
@@ -31,28 +30,28 @@
 	Guide *guide		= [[Guide alloc] init];
     dict                = [Guide repairNullsForDict:dict];
     guide.data          = dict;
-	guide.guideid		= [[dict valueForKey:@"guideid"] integerValue];
+	guide.guideid		= [dict[@"guideid"] integerValue];
 	
-	NSDictionary *guideData = [dict valueForKey:@"guide"];
+	//NSDictionary *guideData = [dict valueForKey:@"guide"];
 	
 	// Meta information
-	guide.title          = [guideData valueForKey:@"title"];
-	guide.topic          = [dict valueForKey:@"topic"];
-	guide.subject        = [guideData valueForKey:@"subject"];
-	guide.author         = guideData[@"author"][@"text"];
-	guide.timeRequired   = [guideData valueForKey:@"time_required"];
-	guide.difficulty     = [guideData valueForKey:@"difficulty"];
-	guide.introduction   = [guideData valueForKey:@"introduction"];
-	guide.summary        = [guideData valueForKey:@"summary"];
-	guide.introduction_rendered = [guideData valueForKey:@"introduction_rendered"];
+	guide.title          = dict[@"title"];
+	guide.category       = dict[@"category"];
+	guide.subject        = dict[@"subject"];
+	guide.author         = dict[@"author"][@"username"];
+	guide.timeRequired   = dict[@"time_required"];
+	guide.difficulty     = dict[@"difficulty"];
+	guide.introduction   = dict[@"introduction_raw"];
+	guide.summary        = dict[@"summary"];
+	guide.introduction_rendered = dict[@"introduction_rendered"];
 
 	// Main image
-	NSDictionary *image	= [guideData valueForKey:@"image"];
+	NSDictionary *image	= dict[@"image"];
 	guide.image			= [GuideImage guideImageWithDictionary:image];
 
 	// Steps
 	guide.steps = [NSMutableArray array];
-	NSArray *steps		= [guideData valueForKey:@"steps"];
+	NSArray *steps		= dict[@"steps"];
 	for (NSDictionary *step in steps)
 		[guide.steps addObject:[GuideStep guideStepWithDictionary:step]];
 	
@@ -70,7 +69,7 @@
 - (void)dealloc {
     [data release];
     [title release];
-    [topic release];
+    [category release];
     [subject release];
     [author release];
     [timeRequired release];

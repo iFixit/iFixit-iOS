@@ -122,18 +122,13 @@
 }
 
 - (void)liked:(NSDictionary *)result {
-    if (!result) {
+    if (![result[@"statusCode"] isEqualToNumber:@(204)]) {
         [iFixitAPI displayConnectionErrorAlert];
-        return;
-    }
-    
-    // Session error. Retry.
-    if ([result valueForKey:@"error"]) {
         [self setNavItem:navItem andGuideid:[guideid intValue]];
         [self bookmark:navItem.rightBarButtonItem];
         return;
     }
-        
+    
     // Show a progress bar
     UIView *progressContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 90, 40)];
     

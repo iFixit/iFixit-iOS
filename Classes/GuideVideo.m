@@ -14,15 +14,15 @@
             size = _size;
 
 + (GuideVideo *)guideVideoWithDictionary:(NSDictionary *)dict {
-  NSArray *encodings = [dict valueForKey:@"encoding"];
+    NSArray *encodings = dict[@"encodings"];
   
   for (NSDictionary *encoding in encodings) {
     // Just grab the first mp4 available.
-    if ([[encoding objectForKey:@"format"] isEqual:@"mp4"]) {
+    if ([encoding[@"format"] isEqual:@"mp4"]) {
       GuideVideo *guideVideo = [[GuideVideo alloc] init];
-      guideVideo.url = [encoding valueForKey:@"url"];
-      guideVideo.size = CGSizeMake([[encoding valueForKey:@"width"] floatValue],
-                                   [[encoding valueForKey:@"height"] floatValue]);
+      guideVideo.url = encoding[@"url"];
+      guideVideo.size = CGSizeMake([encoding[@"width"] floatValue],
+                                   [encoding[@"height"] floatValue]);
       return [guideVideo autorelease];
     }
   }

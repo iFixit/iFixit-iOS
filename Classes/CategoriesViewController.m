@@ -157,7 +157,7 @@
 }
 - (void)getAreas {
     [self showLoading];
-    [[iFixitAPI sharedInstance] getCategories:nil forObject:self withSelector:@selector(gotAreas:)];
+    [[iFixitAPI sharedInstance] getCategoriesForObject:self withSelector:@selector(gotAreas:)];
 }
 
 
@@ -177,7 +177,7 @@
         [iFixitAPI displayConnectionErrorAlert];
     }
     
-    if ([areas isKindOfClass:[NSDictionary class]]) {
+    if ([areas allKeys].count) {
         // Save a master category list to a singleton if it hasn't
         // been created yet
         if (![CategoriesSingleton sharedInstance].masterCategoryList) {
@@ -189,11 +189,11 @@
         [self.listViewController showFavoritesButton:self];
     } else {
         // If there is no area hierarchy, show a guide list instead
-        if ([areas isKindOfClass:[NSArray class]] && ![areas count]) {
+//        if ([areas isKindOfClass:[NSArray class]] && ![areas count]) {
             iPhoneDeviceViewController *dvc = [[iPhoneDeviceViewController alloc] initWithTopic:nil];
             [self.navigationController pushViewController:dvc animated:YES];
             [dvc release];
-        }
+//        }
     }
 }
 
@@ -382,15 +382,13 @@
     
     // Split categories from devices for iFixit and create key-value objects in the process
     for (id category in categoriesCollection) {
-        if ([category isEqualToString:TOPICS]) {
-            for (id device in categoriesCollection[TOPICS]) {
-                [devices addObject:@{@"name" : device,
-                                     @"type" : @(DEVICE)
-                }];
-            }
-        } else {
+        if ([categoriesCollection[category] count]) {
             [categories addObject:@{@"name" : category,
                                     @"type" : @(CATEGORY)
+            }];
+        } else {
+            [devices addObject:@{@"name" : category,
+                                 @"type" : @(DEVICE)
             }];
         }
     }
@@ -550,6 +548,7 @@
                    };
     } else
         category = self.categories[self.categoryTypes[indexPath.section]][indexPath.row];
+    
 
     if (category[@"type"] == @(CATEGORY)) {
         CategoriesViewController *vc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
@@ -586,7 +585,7 @@
         return;
     }
     
-    [[iFixitAPI sharedInstance] getTopic:category[@"name"] forObject:self.listViewController.categoryTabBarViewController withSelector:@selector(gotCategoryResult:)];
+    [[iFixitAPI sharedInstance] getCategory:category[@"name"] forObject:self.listViewController.categoryTabBarViewController withSelector:@selector(gotCategoryResult:)];
     
     // Change the back button title to @"Home", only if we have 2 views on the stack
     if (self.navigationController.viewControllers.count == 2) {
@@ -610,7 +609,7 @@
     } else {
         for (id category in haystack) {
             // We have another dictionary to look at, lets call ourselves
-            if ([haystack[category] isKindOfClass:[NSDictionary class]]) {
+            if ([haystack[category] count]) {
                 // If we return true, that means we found our category, lets stop iterating through our current level
                 if ([self findCategory:needle inList:haystack[category]])
                     break;

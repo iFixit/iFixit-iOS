@@ -222,16 +222,11 @@
 	[thisItem release];
    
     if (shouldLoadPage) {
-      
        [self showPage:shouldLoadPage];
-      
     } else {
-      
        [self loadScrollViewWithPage:0];
        [self loadScrollViewWithPage:1];
-
     }
-    
 }
 
 - (void)showPage:(NSInteger)page {

@@ -10,9 +10,9 @@
 
 @property (nonatomic, retain) NSDictionary *data;
 @property (nonatomic, retain) NSNumber *userid;
-@property (nonatomic, copy) NSString *username;
+@property (nonatomic, retain) NSString *username;
 @property (nonatomic, retain) NSNumber *imageid;
-@property (nonatomic, copy) NSString *session;
+@property (nonatomic, retain) NSString *session;
 
 + (User *)userWithDictionary:(NSDictionary *)dict;
 

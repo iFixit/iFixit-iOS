@@ -54,14 +54,14 @@
     NSArray *allBookmarks = [[GuideBookmarks sharedBookmarks].guides allValues];
     for (NSDictionary *guideData in allBookmarks) {
         Guide *guide = [Guide guideWithDictionary:guideData];
-        NSMutableArray *guides = [b objectForKey:guide.topic];
+        NSMutableArray *guides = [b objectForKey:guide.category];
         
         if (guides) {
             [guides addObject:guide];
         }
         else {
             guides = [NSMutableArray arrayWithObject:guide];
-            [b setObject:guides forKey:guide.topic];
+            [b setObject:guides forKey:guide.category];
         }
     }
     
@@ -375,14 +375,12 @@
 }
 
 - (void)refresh {
-    self.tableView.tableHeaderView = [self headerView];
     
     // Show or hide login as needed.
-    if (![iFixitAPI sharedInstance].user)
-        [self showLogin];  
-    else if ([[self.view subviews] containsObject:lvc.view]) {
+    if (![iFixitAPI sharedInstance].user) {
+        [self showLogin];
+    } else if ([[self.view subviews] containsObject:lvc.view]) {
         [self hideLogin];
-        
         [[GuideBookmarks sharedBookmarks] update];
     }
     
@@ -390,6 +388,8 @@
         self.editButton : nil;
     
     [self performSelectorInBackground:@selector(refreshHierarchy) withObject:nil];
+    
+    self.tableView.tableHeaderView = [self headerView];
 }
 
 - (void)logout {

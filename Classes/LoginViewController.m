@@ -555,7 +555,7 @@
         return;
     }
     
-    if ([results objectForKey:@"error"]) {
+    if (![results objectForKey:@"authToken"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
                                                         message:[results objectForKey:@"msg"]
                                                        delegate:nil
