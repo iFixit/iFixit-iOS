@@ -257,7 +257,6 @@ static int volatile openConnections = 0;
 }
 
 - (void)loginWithLogin:(NSString *)login andPassword:(NSString *)password forObject:(id)object withSelector:(SEL)selector {
-    // STOP HERE FOR NOW
     [TestFlight passCheckpoint:@"Login"];
 
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/token", [Config host]];
