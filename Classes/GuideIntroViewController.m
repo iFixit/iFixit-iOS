@@ -136,7 +136,7 @@
     
     [self removeWebViewShadows];
     
-    [device setText:self.guide.topic];
+    [device setText:self.guide.category];
     
     // Add a shadow to the image
     [self addViewShadow:mainImage];

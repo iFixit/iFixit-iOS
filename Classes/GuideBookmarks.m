@@ -200,10 +200,8 @@ static GuideBookmarks *sharedBookmarks = nil;
 }
 
 - (void)unliked:(NSDictionary *)result {
-    if (!result) {
+    if (![result[@"statusCode"] isEqualToNumber:@(204)]) {
         [iFixitAPI displayConnectionErrorAlert];
-        return;
-    } else if ([result objectForKey:@"error"]) {
         self.currentItem = nil;
         [self announceUpdate];
         return;
@@ -224,19 +222,17 @@ static GuideBookmarks *sharedBookmarks = nil;
     }
     
     // Remove guides that don't exist anymore.
-    if ([guide.data valueForKey:@"error"]) {
-        if ([[guide.data valueForKey:@"msg"] isEqual:@"Guide not found"]) {
-            NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-            [f setNumberStyle:NSNumberFormatterDecimalStyle];
-
-            NSArray *chunks = [currentItem componentsSeparatedByString:@"_"];
-            NSNumber *guideid = [f numberFromString:[chunks objectAtIndex:1]];
-            [f release];
-            
-            guide.guideid = [guideid intValue];
-            [self removeGuide:guide];
-            return;
-        }
+    if ([[guide.data valueForKey:@"message"] isEqual:@"Guide not found"]) {
+        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        
+        NSArray *chunks = [currentItem componentsSeparatedByString:@"_"];
+        NSNumber *guideid = [f numberFromString:[chunks objectAtIndex:1]];
+        [f release];
+        
+        guide.guideid = [guideid intValue];
+        [self removeGuide:guide];
+        return;
     }
     
     // Save the result.
@@ -293,7 +289,7 @@ static GuideBookmarks *sharedBookmarks = nil;
 }
 
 - (void)update {
-    [[iFixitAPI sharedInstance] getUserLikesForObject:self withSelector:@selector(gotUpdates:)];
+    [[iFixitAPI sharedInstance] getUserFavoritesForObject:self withSelector:@selector(gotUpdates:)];
 }
 - (void)gotUpdates:(NSArray *)likes {
     
@@ -311,10 +307,11 @@ static GuideBookmarks *sharedBookmarks = nil;
     }
     
     NSMutableArray *guideids = [NSMutableArray array];
+    self.favorites = likes;
 
     // Add new guides.
     for (NSDictionary *like in likes) {
-        NSNumber *guideid = [like objectForKey:@"guideid"];
+        NSNumber *guideid = like[@"guide"][@"guideid"];
         
         // This double-conversion is necessary for the "containsObject" check.
         int guideIdInt = [guideid intValue];

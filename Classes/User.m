@@ -15,10 +15,11 @@
 + (User *)userWithDictionary:(NSDictionary *)dict {
 	User *user          = [[User alloc] init];
     user.data           = dict;
-	user.userid 		= [dict valueForKey:@"userid"];
-	user.username 		= [dict valueForKey:@"username"];
-	user.imageid 		= [dict valueForKey:@"imageid"];
-	user.session 		= [dict valueForKey:@"session"];
+	user.userid 		= dict[@"userid"];
+	user.username 		= dict[@"username"];
+	user.imageid 		= ![dict[@"image"] isEqual:[NSNull null]] ? dict[@"image"][@"id"] : nil;
+	user.session 		= dict[@"authToken"];
+    
 	return [user autorelease];
 }
 
