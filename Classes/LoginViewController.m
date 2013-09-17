@@ -557,7 +557,7 @@
     
     if (![results objectForKey:@"authToken"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
-                                                        message:[results objectForKey:@"msg"]
+                                                        message:results[@"message"]
                                                        delegate:nil
                                               cancelButtonTitle:nil
                                               otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];

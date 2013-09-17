@@ -330,7 +330,7 @@ static int volatile openConnections = 0;
     }];
     
     [request setFailedBlock:^{
-        NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
+        NSDictionary *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
     }];
     
