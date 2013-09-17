@@ -194,11 +194,11 @@
         [self.listViewController showFavoritesButton:self];
     } else {
         // If there is no area hierarchy, show a guide list instead
-//        if ([areas isKindOfClass:[NSArray class]] && ![areas count]) {
+        if ([areas isKindOfClass:[NSArray class]] && ![areas count]) {
             iPhoneDeviceViewController *dvc = [[iPhoneDeviceViewController alloc] initWithTopic:nil];
             [self.navigationController pushViewController:dvc animated:YES];
             [dvc release];
-//        }
+        }
     }
 }
 
