@@ -15,7 +15,7 @@
 @property (nonatomic, retain) NSDictionary *data;
 @property (nonatomic) NSInteger guideid;
 @property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSString *topic;
+@property (nonatomic, retain) NSString *category;
 @property (nonatomic, retain) NSString *subject;
 @property (nonatomic, retain) NSString *author;
 @property (nonatomic, retain) NSString *timeRequired;

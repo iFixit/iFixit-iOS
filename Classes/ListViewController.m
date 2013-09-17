@@ -43,6 +43,7 @@
     
     // Set Navigation bar
     if ([Config currentConfig].site == ConfigIFixit) {
+        self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
         [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
         [[UINavigationBar appearance] setBackgroundColor:[Config currentConfig].toolbarColor];
     } else if ([Config currentConfig].site == ConfigMjtrim) {

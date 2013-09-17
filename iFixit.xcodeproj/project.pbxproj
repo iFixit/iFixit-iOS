@@ -14,6 +14,7 @@
 		2804200B108E984D000629CD /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28042008108E984D000629CD /* CategoriesViewController.m */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
+		9C67A6C417E7A9040079C099 /* iFixit-App-Id.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */; };
 		9CCF9E1E17D1F55E00B0B0BB /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */; };
 		9CCF9E2117D1F55E00B0B0BB /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0B17D1F44D00B0B0BB /* ASIDataCompressor.m */; };
 		9CCF9E2317D1F55E00B0B0BB /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0D17D1F44D00B0B0BB /* ASIDataDecompressor.m */; };
@@ -122,7 +123,6 @@
 		DA275DA915104C4A00A8A09C /* detailViewArrowLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DA715104C4A00A8A09C /* detailViewArrowLight@2x.png */; };
 		DA275DAC15104C6200A8A09C /* detailViewFist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DAA15104C6200A8A09C /* detailViewFist@2x.png */; };
 		DA275DAD15104C6200A8A09C /* detailViewText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DAB15104C6200A8A09C /* detailViewText@2x.png */; };
-		DA275DAF15104C7500A8A09C /* dozukiGetStarted@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DAE15104C7500A8A09C /* dozukiGetStarted@2x~ipad.png */; };
 		DA275DB115104C8A00A8A09C /* dozukiSplash@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DB015104C8A00A8A09C /* dozukiSplash@2x~ipad.png */; };
 		DA275DB615104CA400A8A09C /* logo_make@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DB315104CA400A8A09C /* logo_make@2x.png */; };
 		DA275DB715104CA400A8A09C /* make_logo_transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DB415104CA400A8A09C /* make_logo_transparent@2x.png */; };
@@ -183,12 +183,6 @@
 		DA8F60071469B29700482D29 /* DMPGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8F60041469B29700482D29 /* DMPGridViewController.m */; };
 		DA994894142ABA7D00E4167D /* dozukiSplash.png in Resources */ = {isa = PBXBuildFile; fileRef = DA994893142ABA7D00E4167D /* dozukiSplash.png */; };
 		DA994896142ABB7700E4167D /* dozukiSplash~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA994895142ABB7700E4167D /* dozukiSplash~ipad.png */; };
-		DA99489B142ABDDB00E4167D /* dozukiGetStarted~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA994897142ABDDB00E4167D /* dozukiGetStarted~ipad.png */; };
-		DA99489C142ABDDB00E4167D /* dozukiIntro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA994898142ABDDB00E4167D /* dozukiIntro@2x.png */; };
-		DA99489D142ABDDB00E4167D /* dozukiIntro~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA994899142ABDDB00E4167D /* dozukiIntro~ipad.png */; };
-		DA9948A0142AC01A00E4167D /* dozukiGetStarted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA99489F142AC01A00E4167D /* dozukiGetStarted@2x.png */; };
-		DA9948A2142AC24B00E4167D /* dozukiGetStarted.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A1142AC24B00E4167D /* dozukiGetStarted.png */; };
-		DA9948A6142AC34E00E4167D /* dozukiIntro.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A5142AC34E00E4167D /* dozukiIntro.png */; };
 		DA9948AA142AC55D00E4167D /* DozukiSplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */; };
 		DA9B290714E88E650093273B /* SSOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9B290614E88E640093273B /* SSOViewController.m */; };
 		DAA10465147C3EEC00DED9DF /* concreteBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA10464147C3EEC00DED9DF /* concreteBackgroundWhite.png */; };
@@ -258,6 +252,7 @@
 		28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-App-Id.plist"; sourceTree = "<group>"; };
 		9CCF9E0717D1F44D00B0B0BB /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = "asi-http-request/Classes/ASIAuthenticationDialog.h"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = "asi-http-request/Classes/ASIAuthenticationDialog.m"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0917D1F44D00B0B0BB /* ASICacheDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = "asi-http-request/Classes/ASICacheDelegate.h"; sourceTree = SOURCE_ROOT; };
@@ -409,7 +404,6 @@
 		DA275DA715104C4A00A8A09C /* detailViewArrowLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "detailViewArrowLight@2x.png"; path = "Graphics/detailViewArrowLight@2x.png"; sourceTree = "<group>"; };
 		DA275DAA15104C6200A8A09C /* detailViewFist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "detailViewFist@2x.png"; path = "Graphics/detailViewFist@2x.png"; sourceTree = "<group>"; };
 		DA275DAB15104C6200A8A09C /* detailViewText@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "detailViewText@2x.png"; path = "Graphics/detailViewText@2x.png"; sourceTree = "<group>"; };
-		DA275DAE15104C7500A8A09C /* dozukiGetStarted@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiGetStarted@2x~ipad.png"; path = "Graphics/dozukiGetStarted@2x~ipad.png"; sourceTree = "<group>"; };
 		DA275DB015104C8A00A8A09C /* dozukiSplash@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiSplash@2x~ipad.png"; path = "Graphics/dozukiSplash@2x~ipad.png"; sourceTree = "<group>"; };
 		DA275DB315104CA400A8A09C /* logo_make@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo_make@2x.png"; path = "Graphics/logo_make@2x.png"; sourceTree = "<group>"; };
 		DA275DB415104CA400A8A09C /* make_logo_transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "make_logo_transparent@2x.png"; path = "Graphics/make_logo_transparent@2x.png"; sourceTree = "<group>"; };
@@ -493,12 +487,6 @@
 		DA8F60081469F8E600482D29 /* PastFeaturesViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastFeaturesViewDelegate.h; sourceTree = "<group>"; };
 		DA994893142ABA7D00E4167D /* dozukiSplash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiSplash.png; path = Graphics/dozukiSplash.png; sourceTree = "<group>"; };
 		DA994895142ABB7700E4167D /* dozukiSplash~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiSplash~ipad.png"; path = "Graphics/dozukiSplash~ipad.png"; sourceTree = "<group>"; };
-		DA994897142ABDDB00E4167D /* dozukiGetStarted~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiGetStarted~ipad.png"; path = "Graphics/dozukiGetStarted~ipad.png"; sourceTree = "<group>"; };
-		DA994898142ABDDB00E4167D /* dozukiIntro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiIntro@2x.png"; path = "Graphics/dozukiIntro@2x.png"; sourceTree = "<group>"; };
-		DA994899142ABDDB00E4167D /* dozukiIntro~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiIntro~ipad.png"; path = "Graphics/dozukiIntro~ipad.png"; sourceTree = "<group>"; };
-		DA99489F142AC01A00E4167D /* dozukiGetStarted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiGetStarted@2x.png"; path = "Graphics/dozukiGetStarted@2x.png"; sourceTree = "<group>"; };
-		DA9948A1142AC24B00E4167D /* dozukiGetStarted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiGetStarted.png; path = Graphics/dozukiGetStarted.png; sourceTree = "<group>"; };
-		DA9948A5142AC34E00E4167D /* dozukiIntro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiIntro.png; path = Graphics/dozukiIntro.png; sourceTree = "<group>"; };
 		DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DozukiSplashView.xib; sourceTree = "<group>"; };
 		DA9B290514E88E640093273B /* SSOViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSOViewController.h; sourceTree = "<group>"; };
 		DA9B290614E88E640093273B /* SSOViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSOViewController.m; sourceTree = "<group>"; };
@@ -647,6 +635,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */,
 				AB26882017CD5AA6004AC6ED /* OpenSans-Bold.ttf */,
 				AB26882117CD5AA6004AC6ED /* OpenSans-Regular.ttf */,
 				AB5C74DB17A766E2003AD63B /* Default-Landscape@2x~ipad.png */,
@@ -1062,13 +1051,6 @@
 				DA0877C2142D4BBB00954482 /* vignette.png */,
 				DA0877C4142D4EAB00954482 /* vignette@2x.png */,
 				DA0877C5142D4EAB00954482 /* vignette~ipad.png */,
-				DA9948A1142AC24B00E4167D /* dozukiGetStarted.png */,
-				DA994897142ABDDB00E4167D /* dozukiGetStarted~ipad.png */,
-				DA275DAE15104C7500A8A09C /* dozukiGetStarted@2x~ipad.png */,
-				DA99489F142AC01A00E4167D /* dozukiGetStarted@2x.png */,
-				DA9948A5142AC34E00E4167D /* dozukiIntro.png */,
-				DA994898142ABDDB00E4167D /* dozukiIntro@2x.png */,
-				DA994899142ABDDB00E4167D /* dozukiIntro~ipad.png */,
 				AB3C1774162718AD00323A1E /* dozukiLogo.png */,
 				AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */,
 				DA994895142ABB7700E4167D /* dozukiSplash~ipad.png */,
@@ -1309,12 +1291,6 @@
 				DAE7D7C9142AA12E00C07529 /* dozukiSplash@2x.png in Resources */,
 				DA994894142ABA7D00E4167D /* dozukiSplash.png in Resources */,
 				DA994896142ABB7700E4167D /* dozukiSplash~ipad.png in Resources */,
-				DA99489B142ABDDB00E4167D /* dozukiGetStarted~ipad.png in Resources */,
-				DA99489C142ABDDB00E4167D /* dozukiIntro@2x.png in Resources */,
-				DA99489D142ABDDB00E4167D /* dozukiIntro~ipad.png in Resources */,
-				DA9948A0142AC01A00E4167D /* dozukiGetStarted@2x.png in Resources */,
-				DA9948A2142AC24B00E4167D /* dozukiGetStarted.png in Resources */,
-				DA9948A6142AC34E00E4167D /* dozukiIntro.png in Resources */,
 				DA9948AA142AC55D00E4167D /* DozukiSplashView.xib in Resources */,
 				DA0877C3142D4BBB00954482 /* vignette.png in Resources */,
 				DA0877C6142D4EAB00954482 /* vignette@2x.png in Resources */,
@@ -1354,7 +1330,6 @@
 				DA275DA915104C4A00A8A09C /* detailViewArrowLight@2x.png in Resources */,
 				DA275DAC15104C6200A8A09C /* detailViewFist@2x.png in Resources */,
 				DA275DAD15104C6200A8A09C /* detailViewText@2x.png in Resources */,
-				DA275DAF15104C7500A8A09C /* dozukiGetStarted@2x~ipad.png in Resources */,
 				DA275DB115104C8A00A8A09C /* dozukiSplash@2x~ipad.png in Resources */,
 				DA275DB615104CA400A8A09C /* logo_make@2x.png in Resources */,
 				DA275DB715104CA400A8A09C /* make_logo_transparent@2x.png in Resources */,
@@ -1414,6 +1389,7 @@
 				AB5C74E217A766E2003AD63B /* Default-Portrait~ipad.png in Resources */,
 				AB26882217CD5AA6004AC6ED /* OpenSans-Bold.ttf in Resources */,
 				AB26882317CD5AA6004AC6ED /* OpenSans-Regular.ttf in Resources */,
+				9C67A6C417E7A9040079C099 /* iFixit-App-Id.plist in Resources */,
 				9CD8330617D7FE3C007F32F4 /* mjtrim_logo_transparent.png in Resources */,
 				9CD8330717D7FE3C007F32F4 /* mjtrim_logo_transparent@2x.png in Resources */,
 				9CD8330817D7FE3C007F32F4 /* detailViewTextMjtrim@2x.png in Resources */,

@@ -77,7 +77,7 @@
         [self showLoading];
         
         if (self.topic)
-            [[iFixitAPI sharedInstance] getTopic:self.topic forObject:self withSelector:@selector(gotDevice:)];
+            [[iFixitAPI sharedInstance] getCategory:self.topic forObject:self withSelector:@selector(gotCategory:)];
         else
             [[iFixitAPI sharedInstance] getGuides:nil forObject:self withSelector:@selector(gotGuides:)];
     }
@@ -94,7 +94,7 @@
     [self.tableView reloadData];
     [self hideLoading];
 }
-- (void)gotDevice:(NSDictionary *)data {
+- (void)gotCategory:(NSDictionary *)data {
     if (!data) {
         [iFixitAPI displayConnectionErrorAlert];
         [self showRefreshButton];
@@ -184,25 +184,17 @@
     }
     
     // Configure the cell...
-    NSString *subject = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"subject"];
+    NSString *title = [self.guides[indexPath.row][@"title"] isEqual:@""] ? NSLocalizedString(@"Untitled", nil) : self.guides[indexPath.row][@"title"];
     
-    // Run some error checking.
-    if (!subject || [subject isEqual:[NSNull null]])
-        subject = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"thing"];
 
-    if (!subject || [subject isEqual:[NSNull null]] || [subject isEqual:@""]) {
-        subject = NSLocalizedString(@"Untitled", nil);
-    }
-    else {
-        subject = [subject stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
-        subject = [subject stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
-        subject = [subject stringByReplacingOccurrencesOfString:@"<wbr />" withString:@""];
-    }
+    title = [title stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    title = [title stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    title = [title stringByReplacingOccurrencesOfString:@"<wbr />" withString:@""];
     
-    cell.textLabel.text = subject;
+    cell.textLabel.text = title;
     
-    NSString *thumbnailURL = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"thumbnail"];
-    thumbnailURL = thumbnailURL.length > 0 ? thumbnailURL : NULL;
+    NSDictionary *imageData = self.guides[indexPath.row][@"image"];
+    NSString *thumbnailURL = [imageData isEqual:[NSNull null]] ? nil : imageData[@"thumbnail"];
     
     [cell.imageView setImageWithURL:[NSURL URLWithString:thumbnailURL] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
     

@@ -15,8 +15,8 @@
 
 + (GuideImage *)guideImageWithDictionary:(NSDictionary *)dict {
 	GuideImage *guideImage = [[GuideImage alloc] init];
-	guideImage.imageid = [dict valueForKey:@"imageid"];
-	guideImage.url = [dict valueForKey:@"text"];
+	guideImage.imageid = dict[@"id"];
+	guideImage.url = dict[@"original"];
 	return [guideImage autorelease];
 }
 

@@ -93,7 +93,6 @@
 								<string key="NSFrame">{{77, 397}, {166, 42}}</string>
 								<reference key="NSSuperview" ref="761339406"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -361,11 +360,6 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">5</int>
-						<reference key="object" ref="817992792"/>
-						<reference key="parent" ref="761339406"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">13</int>
 						<reference key="object" ref="635326739"/>
 						<reference key="parent" ref="191373211"/>
@@ -388,6 +382,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">20</int>
 						<reference key="object" ref="123345933"/>
+						<reference key="parent" ref="761339406"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5</int>
+						<reference key="object" ref="817992792"/>
 						<reference key="parent" ref="761339406"/>
 					</object>
 				</array>

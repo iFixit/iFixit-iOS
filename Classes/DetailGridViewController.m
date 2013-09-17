@@ -51,7 +51,7 @@
 
 - (void)loadCategory {
     [self showLoading];
-    [[iFixitAPI sharedInstance] getTopic:_category forObject:self withSelector:@selector(gotCategory:)];
+    [[iFixitAPI sharedInstance] getCategory:_category forObject:self withSelector:@selector(gotCategory:)];
 }
 
 - (void)configureSiteLogoFromURL:(NSString *)url {
@@ -266,16 +266,16 @@
     if (![_guides count])
         return nil;
     
-    NSString *urlString = [_guides[index] valueForKey:@"image_url"];
+    id image = _guides[index][@"image"];
     
-    return urlString.length > 0 ? [urlString stringByAppendingString:@".medium"] : NULL;
+    return image == [NSNull null] ? NULL : image[@"medium"];
 }
 - (NSString *)gridViewController:(DMPGridViewController *)gridViewController titleForCellAtIndex:(NSUInteger)index {
     if (![_guides count])
         return NSLocalizedString(@"Loading...", nil);
 
     NSDictionary *guide = [_guides objectAtIndex:index];
-    NSString *title = [guide valueForKey:@"subject"];
+    NSString *title = [guide[@"title"] isEqual:@""] ? NSLocalizedString(@"Untitled", nil) : guide[@"title"];
     
     title = [title stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
     title = [title stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];

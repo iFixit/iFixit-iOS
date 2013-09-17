@@ -15,9 +15,9 @@
 
 + (GuideStepLine *)guideStepLineWithDictionary:(NSDictionary *)dict {
 	GuideStepLine *guideStepLine = [[GuideStepLine alloc] init];
-	guideStepLine.bullet = [dict valueForKey:@"bullet"];
-	guideStepLine.level  = [[dict valueForKey:@"level"] integerValue];
-	guideStepLine.text   = [dict valueForKey:@"text"];
+	guideStepLine.bullet = dict[@"bullet"];
+	guideStepLine.level  = [dict[@"level"] integerValue];
+	guideStepLine.text   = dict[@"text_rendered"];
 	return [guideStepLine autorelease];
 }
 

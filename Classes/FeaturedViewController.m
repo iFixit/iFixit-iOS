@@ -75,19 +75,13 @@
     }
     
     // Grab the most recent collection to populate our display.
-    self.collection = [collections objectAtIndex:0];
+    self.collection = collections[0];
     
     // Pass the whole list onto the popover view.
     pvc.collections = [NSMutableArray arrayWithArray:collections];
     
     // Analytics
     [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/collection/%d", [[self.collection valueForKey:@"collectionid"] intValue]] withError:NULL];
-}
-
-- (void)loadGuides {    
-    [self showLoading];
-    self.gvc.navigationItem.rightBarButtonItem = nil;
-    [[iFixitAPI sharedInstance] getGuidesByIds:[_collection objectForKey:@"guideids"] forObject:self withSelector:@selector(gotGuides:)];
 }
 
 // Run this method both when we set the collection and on viewDidLoad, in case we're coming back from a low memory condition.
@@ -158,7 +152,7 @@
     _collection = [collection retain];
     
     // Reset the guides list.
-    self.guides = nil;
+    self.guides = collection[@"guides"];
     
     // Dismiss the popover
     [poc dismissPopoverAnimated:YES];
@@ -169,25 +163,7 @@
     // Scroll to the top.
     [self.gvc.tableView scrollRectToVisible:CGRectMake(0.0, 0.0, 1.0, 1.0) animated:NO];
     
-    // Retrieve guide data.
-    [self loadGuides];
-}
-
-- (void)gotGuides:(NSArray *)guides {
-    if (![guides count]) {
-        [self.loading hide];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
-                                                        message:NSLocalizedString(@"Could not load featured collections.", nil)
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                              otherButtonTitles:NSLocalizedString(@"Retry", nil), nil];
-        alert.tag = 2;
-        [alert show];
-        [alert release];
-        return;
-    }
-    
-    self.guides = guides;
+    // Populate the table
     [self.gvc.tableView reloadData];
     [self.loading hide];
 }
@@ -281,12 +257,12 @@
 }
 
 - (NSInteger)numberOfCellsForGridViewController:(DMPGridViewController *)gridViewController {
-    return [[_collection objectForKey:@"guideids"] count];
+    return _guides.count;
 }
 - (NSString *)gridViewController:(DMPGridViewController *)gridViewController imageURLForCellAtIndex:(NSUInteger)index {
     if (![_guides count])
         return nil;
-    return [[[_guides objectAtIndex:index] valueForKey:@"image_url"] stringByAppendingString:@".medium"];
+    return _guides[index][@"image"][@"medium"];
 }
 - (NSString *)gridViewController:(DMPGridViewController *)gridViewController titleForCellAtIndex:(NSUInteger)index {
     if (![_guides count])
@@ -297,7 +273,7 @@
     if ([guide objectForKey:@"title"] != [NSNull null])
         title = [guide objectForKey:@"title"];
     else
-        title = [NSString stringWithFormat:@"%@ %@", [guide valueForKey:@"device"], [guide valueForKey:@"thing"]];
+        title = [NSString stringWithFormat:@"%@ %@", [guide valueForKey:@"category"], [[guide valueForKey:@"type"] capitalizedString]];
     
     title = [title stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
     title = [title stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
@@ -305,7 +281,7 @@
     return title;
 }
 - (void)gridViewController:(DMPGridViewController *)gridViewController tappedCellAtIndex:(NSUInteger)index {
-    NSInteger guideid = [[[_collection objectForKey:@"guideids"] objectAtIndex:index] intValue];
+    NSInteger guideid = [_guides[index][@"guideid"] intValue] ;
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
     [self presentModalViewController:vc animated:YES];
     [vc release];
