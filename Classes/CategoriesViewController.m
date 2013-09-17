@@ -521,8 +521,7 @@
         
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         
-        NSString *thumbnailImage = category[@"thumbnail"];
-        thumbnailImage = thumbnailImage.length > 0 ? thumbnailImage : NULL;
+        NSString *thumbnailImage = category[@"image"] == [NSNull null] ? nil : category[@"image"][@"thumbnail"];
         
         [[cell imageView] setImageWithURL:[NSURL URLWithString:thumbnailImage] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
     }
