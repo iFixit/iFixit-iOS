@@ -275,7 +275,7 @@
         return NSLocalizedString(@"Loading...", nil);
 
     NSDictionary *guide = [_guides objectAtIndex:index];
-    NSString *title = [guide valueForKey:@"subject"];
+    NSString *title = [guide[@"title"] isEqual:@""] ? NSLocalizedString(@"Untitled", nil) : guide[@"title"];
     
     title = [title stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
     title = [title stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];

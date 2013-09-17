@@ -184,23 +184,17 @@
     }
     
     // Configure the cell...
-    NSString *subject = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"subject"];
+    NSString *title = [self.guides[indexPath.row][@"title"] isEqual:@""] ? NSLocalizedString(@"Untitled", nil) : self.guides[indexPath.row][@"title"];
     
 
-    if (!subject || [subject isEqual:[NSNull null]] || [subject isEqual:@""]) {
-        subject = NSLocalizedString(@"Untitled", nil);
-    }
-    else {
-        subject = [subject stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
-        subject = [subject stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
-        subject = [subject stringByReplacingOccurrencesOfString:@"<wbr />" withString:@""];
-    }
+    title = [title stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    title = [title stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    title = [title stringByReplacingOccurrencesOfString:@"<wbr />" withString:@""];
     
-    cell.textLabel.text = subject;
+    cell.textLabel.text = title;
     
-    id image = self.guides[indexPath.row][@"image"];
-    NSString *thumbnailURL = [[self.guides objectAtIndex:indexPath.row] valueForKey:@"thumbnail"];
-    thumbnailURL = image == [NSNull null] ? NULL : image[@"thumbnail"];
+    NSDictionary *imageData = self.guides[indexPath.row][@"image"];
+    NSString *thumbnailURL = [imageData isEqual:[NSNull null]] ? nil : imageData[@"thumbnail"];
     
     [cell.imageView setImageWithURL:[NSURL URLWithString:thumbnailURL] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
     

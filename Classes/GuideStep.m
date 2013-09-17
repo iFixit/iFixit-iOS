@@ -27,7 +27,7 @@
 
     if ([type isEqual:@"image"]) {
         guideStep.images = [NSMutableArray array];
-        NSArray *images = media[@"image"];
+        NSArray *images = media[@"data"];
         for (NSDictionary *image in images)
             [guideStep.images addObject:[GuideImage guideImageWithDictionary:image]];
     } else if ([type isEqual:@"video"]) {

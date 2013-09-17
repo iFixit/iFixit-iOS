@@ -46,8 +46,9 @@
 	guide.introduction_rendered = dict[@"introduction_rendered"];
 
 	// Main image
-	NSDictionary *image	= dict[@"image"];
-	guide.image			= [GuideImage guideImageWithDictionary:image];
+	id image	= dict[@"image"];
+	guide.image	= [image isKindOfClass:[NSDictionary class]] ?
+                  [GuideImage guideImageWithDictionary:image] : nil;
 
 	// Steps
 	guide.steps = [NSMutableArray array];
