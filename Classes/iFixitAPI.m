@@ -88,6 +88,12 @@ static int volatile openConnections = 0;
 	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/info", [Config host]];
 	
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    if ([Config currentConfig].private) {
+        [request addRequestHeader:@"X-App-Id" value:self.appId];
+        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
+    }
+    
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -102,6 +108,12 @@ static int volatile openConnections = 0;
 	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/collections?limit=%d&offset=%d", [Config host], limit, offset];
 	
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    if ([Config currentConfig].private) {
+        [request addRequestHeader:@"X-App-Id" value:self.appId];
+        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
+    }
+    
     [request setCompletionBlock:^{
         NSArray *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -116,6 +128,12 @@ static int volatile openConnections = 0;
 	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/guides/%d", [Config host], guideid];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    if ([Config currentConfig].private) {
+        [request addRequestHeader:@"X-App-Id" value:self.appId];
+        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
+    }
+    
     [request setCompletionBlock:^{
         NSDictionary *result = [[request responseString] JSONValue];
         Guide *guide = result ? [Guide guideWithDictionary:result] : nil;
@@ -137,6 +155,12 @@ static int volatile openConnections = 0;
 	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/categories%@", [Config host], requireGuides];
 	
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    if ([Config currentConfig].private) {
+        [request addRequestHeader:@"X-App-Id" value:self.appId];
+        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
+    }
+    
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -152,6 +176,12 @@ static int volatile openConnections = 0;
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/categories/%@", [Config host], category];
     
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    if ([Config currentConfig].private) {
+        [request addRequestHeader:@"X-App-Id" value:self.appId];
+        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
+    }
+    
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -168,6 +198,12 @@ static int volatile openConnections = 0;
 	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/guides?limit=%d", [Config host], limit];
     
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    if ([Config currentConfig].private) {
+        [request addRequestHeader:@"X-App-Id" value:self.appId];
+        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
+    }
+    
     [request setCompletionBlock:^{
         NSArray *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -183,6 +219,12 @@ static int volatile openConnections = 0;
 	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/guides?guideids=%@", [Config host], guideidsString];
     
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    if ([Config currentConfig].private) {
+        [request addRequestHeader:@"X-App-Id" value:self.appId];
+        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
+    }
+    
     [request setCompletionBlock:^{
         NSArray *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -201,6 +243,12 @@ static int volatile openConnections = 0;
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/search/%@?filter=category&limit=50", [Config host], search];
 	
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    if ([Config currentConfig].private) {
+        [request addRequestHeader:@"X-App-Id" value:self.appId];
+        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
+    }
+    
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
