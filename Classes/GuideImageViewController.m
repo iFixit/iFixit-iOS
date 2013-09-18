@@ -96,7 +96,6 @@ static CGRect frameView;
 
     // add touch-sensitive image view to the scroll view
 	self.imageView = [[[UIImageView alloc] initWithFrame:imageScrollView.bounds] autorelease];
-    imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     imageView.image = self.image;
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     [imageView setUserInteractionEnabled:YES];
