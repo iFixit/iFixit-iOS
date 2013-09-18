@@ -70,8 +70,13 @@ static CGRect frameView;
     [[delegate delegate] willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [imageScrollView setZoomScale:1.0 animated:YES];
+    imageView.frame = imageScrollView.frame;
+}
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    imageScrollView.contentSize = imageView.frame.size;
+    [imageScrollView setZoomScale:1.0 animated:YES];
 }
 
 - (void)loadView {
