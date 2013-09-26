@@ -149,6 +149,12 @@ BOOL onTablet, initialLoad, showTabBar;
     } else {
         [self showTabBar:NO];
     }
+    
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        self.tabBar.backgroundColor = [UIColor whiteColor];
+        self.tabBar.translucent = NO;
+    }
 }
 
 // Dynamically build our tab bar constants which depends on our config settings.
@@ -215,8 +221,11 @@ BOOL onTablet, initialLoad, showTabBar;
 }
 
 - (void)showTabBar:(BOOL)option {
+    // Disable the animation on iOS7+ as it is no longer needed
+    float duration = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? 0.0f : 0.3f;
+    
     [UIView transitionWithView:self.tabBar
-                      duration:0.3f
+                      duration:duration
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
                         // If on a tablet, we manipulate the opacity and show the filler image
@@ -244,6 +253,7 @@ BOOL onTablet, initialLoad, showTabBar;
 }
 
 - (void)enableTabBarItems:(BOOL)option {
+    
     [UIView transitionWithView:self.tabBar
                       duration:0.3f
                        options:UIViewAnimationOptionTransitionCrossDissolve
@@ -317,9 +327,18 @@ BOOL onTablet, initialLoad, showTabBar;
         }
     // For iPhone we change the subview frame to account for hidden tabbar
     } else {
-        [subView setFrame:(self.listViewController.viewControllers.count == 1)
-            ? CGRectMake(0, 0, bounds.size.width, bounds.size.height + 44)
-            : CGRectMake(0, 0, bounds.size.width, bounds.size.height - 2)];
+        // iOS7 works much differently, we essentially shrink and expand the tabbar frame
+        if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            self.tabBar.frame = self.listViewController.viewControllers.count == 1
+                ? CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y, 0, 0)
+                : CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y, bounds.size.width, 49);
+        // < iOS 7 we simply resize the subview
+        } else {
+            [subView setFrame:(self.listViewController.viewControllers.count == 1)
+                ? CGRectMake(0, 0, bounds.size.width, bounds.size.height + 44)
+                : CGRectMake(0, 0, bounds.size.width, bounds.size.height - 2)
+            ];
+        }
     }
 }
 
@@ -327,8 +346,9 @@ BOOL onTablet, initialLoad, showTabBar;
 - (void)updateTabBar:(NSDictionary *)results {
     self.categoryMetaData = results;
     
+    float duration = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? 0.0f : 0.3f;
     [UIView transitionWithView:self.tabBar
-                      duration:0.3f
+                      duration:duration
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
                         
@@ -336,7 +356,7 @@ BOOL onTablet, initialLoad, showTabBar;
                         if (onTablet)
                             [self.tabBar.items[self.GUIDES] setEnabled:[results[@"guides"] count] > 0];
                         
-                        [self.tabBar.items[self.MORE_INFO] setEnabled:[results[@"contents"] length] > 0];
+                        [self.tabBar.items[self.MORE_INFO] setEnabled:[results[@"contents_rendered"] length] > 0];
                         
                         if ([Config currentConfig].answersEnabled) {
                             [self.tabBar.items[self.ANSWERS] setEnabled:[results[@"solutions"][@"count"] integerValue] > 0];
@@ -447,6 +467,7 @@ BOOL onTablet, initialLoad, showTabBar;
         }
         
         [viewController setCategory:category];
+        [viewController setListViewController:self.listViewController];
         
         // Hack to create the back arrow on a Navigation bar that is not using a navigation controller
         // This is the most elegant solution sadly.

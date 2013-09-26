@@ -44,6 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     // Create a reference to the navigation controller
     self.listViewController = (ListViewController*)self.navigationController;
     
@@ -73,6 +74,7 @@
     
     // Placeholder text for searchbar
     self.searchBar.placeholder = NSLocalizedString(@"Search", nil);
+    self.searchBar.tintColor = [UIColor grayColor];
     
     // Make room for the toolbar
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0];
@@ -564,8 +566,8 @@
                    };
     } else
         category = self.categories[self.categoryTypes[indexPath.section]][indexPath.row];
-    
 
+    // Category
     if (category[@"type"] == @(CATEGORY)) {
         CategoriesViewController *vc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
         vc.title = category[@"name"];
@@ -594,8 +596,10 @@
         NSInteger guideid = [category[@"guideid"] integerValue];
         
         GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
-        [self presentModalViewController:vc animated:YES];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentModalViewController:nc animated:YES];
         [vc release];
+        [nc release];
         
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;

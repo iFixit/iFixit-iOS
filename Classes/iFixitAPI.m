@@ -15,6 +15,8 @@
 #import "ASIFormDataRequest.h"
 #import "User.h"
 #import "GuideBookmarks.h"
+#import "BookmarksViewController.h"
+#import "LoginViewController.h"
 
 @implementation iFixitAPI
 
@@ -467,6 +469,36 @@ static int volatile openConnections = 0;
                                           otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
+}
+
++ (void)checkCredentialsForViewController:(id)viewController {
+    id viewControllerToPresent;
+    
+    if ([iFixitAPI sharedInstance].user) {
+        viewControllerToPresent = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
+    } else {
+        viewControllerToPresent = [[LoginViewController alloc] init];
+        [viewControllerToPresent setDelegate:viewController];
+    }
+    
+    
+    // Create the animation ourselves to mimic a modal presentation
+    // On iPad we must push the view onto a stack, instead of presenting
+    // it modally or else undesired side effects occur
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        [UIView animateWithDuration:0.7
+                         animations:^{
+                             [viewController pushViewController:viewControllerToPresent animated:NO];
+                             [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:[viewController view] cache:YES];
+                         }];
+    else {
+        // Wrap this in a navigation controller to avoid side effects from new status bar in iOS7
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:viewControllerToPresent];
+        [viewController presentModalViewController:nvc animated:YES];
+        [nvc release];
+    }
+    
+    [viewControllerToPresent release];
 }
 
 @end

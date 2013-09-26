@@ -13,6 +13,7 @@
 #import "Config.h"
 #import "SVWebViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "iFixitAppDelegate.h"
 
 @implementation GuideIntroViewController
 @synthesize headerTextDozuki;
@@ -73,7 +74,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 
     // Set the appropriate header image.
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -129,7 +129,6 @@
     NSString *footer = @"</body></html>";
 
     NSString *body = self.guide.introduction_rendered;
-   //NSString *body = guide.introduction;
 	
     self.html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
@@ -145,6 +144,7 @@
     
     swipeLabel.adjustsFontSizeToFitWidth = YES;
     swipeLabel.text = [NSString stringWithFormat:@" ←%@ ", NSLocalizedString(@"Swipe to Begin", nil)];
+    
 }
 
 // Because the web view has a white background, it starts hidden.
@@ -194,9 +194,7 @@
     }
     // iPhone
     else {
-        CGRect frame = webView.frame;
-        frame.size.height = screenSize.height - 175;// 305;
-        webView.frame = frame;
+        webView.frame = CGRectMake(0.0, 20, webView.frame.size.width, screenSize.height - 175); // 305
         swipeLabel.frame = CGRectMake(0.0, 0.0, 320.0, 45.0);
     }
 }

@@ -11,6 +11,7 @@
 #import "BookmarksViewController.h"
 #import "Config.h"
 #import "CategoriesViewController.h"
+#import "LoginViewController.h"
 
 @implementation UINavigationBar (UINavigationBarCategory)
 
@@ -43,9 +44,21 @@
     
     // Set Navigation bar
     if ([Config currentConfig].site == ConfigIFixit) {
-        self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
-        [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-        [[UINavigationBar appearance] setBackgroundColor:[Config currentConfig].toolbarColor];
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            [[UINavigationBar appearance] setBarTintColor:[Config currentConfig].toolbarColor];
+            self.navigationBar.translucent = NO;
+            [[UINavigationBar appearance] setTitleTextAttributes:
+                @{ UITextAttributeTextColor : [Config currentConfig].textColor
+                }
+            ];
+        } else {
+            self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+            [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+            [[UINavigationBar appearance] setBackgroundColor:[Config currentConfig].toolbarColor];
+            [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+        }
+        
+        self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
     } else if ([Config currentConfig].site == ConfigMjtrim) {
         self.navigationBar.tintColor = [UIColor colorWithRed:204/255.0f green:0 blue:0 alpha:1];
         self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:140/255.0f green:48/255.0f blue:49/255.0f alpha:1];
@@ -153,30 +166,12 @@
     [viewController navigationItem].rightBarButtonItem = self.favoritesButton;
 }
 
+- (void)refresh {
+    [iFixitAPI checkCredentialsForViewController:self];
+}
+
 - (void)favoritesButtonPushed {
-    
-    BookmarksViewController *bvc = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
-    bvc.listViewController = self;
-    
-    // Create the animation ourselves to mimic a modal presentation
-    // On iPad we must push the view onto a stack, instead of presenting
-    // it modally or else undesired side effects occur
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        [UIView animateWithDuration:0.7
-                         animations:^{
-                             [self pushViewController:bvc animated:NO];
-                             [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
-                         }];
-    else {
-        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:bvc];
-        
-        nvc.navigationBar.tintColor = [Config currentConfig].toolbarColor;
-        
-        [self presentModalViewController:nvc animated:YES];
-        [nvc release];
-    }
-        
-    [bvc release];
+    [iFixitAPI checkCredentialsForViewController:self];
 }
 
 @end

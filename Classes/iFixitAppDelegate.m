@@ -323,6 +323,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [[iFixitAPI sharedInstance] getSiteInfoForObject:ctbvc withSelector:@selector(gotSiteInfoResults:)];
     }
     
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
     return [ctbvc autorelease];
 }
 

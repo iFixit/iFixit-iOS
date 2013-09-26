@@ -134,6 +134,7 @@
 
 - (void)configureNavigationBar {
     self.categoryNavigationBar.hidden = NO;
+    self.categoryNavigationBar.translucent = NO;
     
     UINavigationItem *backButtonItem = [[[UINavigationItem alloc] initWithTitle:@""] autorelease];
     UINavigationItem *titleItem = [[[UINavigationItem alloc] initWithTitle:@""] autorelease];
@@ -146,20 +147,17 @@
     if ([Config currentConfig].site == ConfigMjtrim) {
         self.categoryNavigationBar.tintColor = [UIColor colorWithRed:204/255.0f green:0 blue:0 alpha:1];
         favoritesButtonItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:140/255.0f green:48/255.0f blue:49/255.0f alpha:1];
-    } else {
-        self.categoryNavigationBar.tintColor = [Config currentConfig].toolbarColor;
+    }
+    
+    // if less than iOS 7, we have to increase our height by 20 pixels to account for status bar and different sized tab-bar
+    // @TODO: Remove when we support iOS 7.0+
+    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+        self.webView.frame = CGRectMake(self.webView.frame.origin.x, self.webView.frame.origin.y, self.webView.frame.size.width, self.webView.frame.size.height + 20);
     }
 }
 
 - (IBAction)favoritesButtonPushed:(id)sender {
-    BookmarksViewController *bvc = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:bvc];
-    
-    // Use deprecated method on purpose to preserve iOS 4.3
-    [self presentModalViewController:nvc animated:YES];
-    
-    [bvc release];
-    [nvc release];
+    [iFixitAPI checkCredentialsForViewController:self.listViewController];
 }
 
 // Configure our html and load custom CSS for our More Info webview
@@ -170,11 +168,11 @@
     
     // Build our image tag that will display an image of the category we are looking at
     NSString *image = [categoryMetaData[@"image"] count] > 0
-        ? [NSString stringWithFormat:@"<img id=\"categoryImage\" src=\"%@.standard\">", categoryMetaData[@"image"][@"text"]]
+        ? [NSString stringWithFormat:@"<img id=\"categoryImage\" src=\"%@.standard\">", categoryMetaData[@"image"][@"original"]]
         : @"";
     
     // Add our wiki content
-    NSString *content = [NSString stringWithFormat:@"<div id=\"moreInfoContent\">%@</div>", categoryMetaData[@"contents"]];
+    NSString *content = [NSString stringWithFormat:@"<div id=\"moreInfoContent\">%@</div>", categoryMetaData[@"contents_rendered"]];
     
     return [NSString stringWithFormat:@"%@%@%@%@", header, image, content, footer];
 }

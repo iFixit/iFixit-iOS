@@ -42,5 +42,8 @@
 
 // Error handling
 + (void)displayConnectionErrorAlert;
-    
+
+// Authentication Handeling
++ (void)checkCredentialsForViewController:(id)viewController;
+
 @end
