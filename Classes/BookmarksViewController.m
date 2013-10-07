@@ -366,9 +366,11 @@
 }
 
 - (void)showLogin {
-    [self dismissViewControllerAnimated:YES completion:^(void){
-        [self.listViewController refresh];
-    }];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)refresh {

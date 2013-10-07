@@ -47,6 +47,8 @@
         self.pvc.delegate = self;
 
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:pvc];
+        nvc.navigationBar.barStyle = UIBarStyleBlack;
+        nvc.navigationBar.translucent = NO;
         self.poc = [[[UIPopoverController alloc] initWithContentViewController:nvc] autorelease];
         poc.popoverContentSize = CGSizeMake(320.0, 500.0);
         [nvc release];
@@ -122,19 +124,20 @@
     // Add the giant text.
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.adjustsFontSizeToFitWidth = YES;
-    titleLabel.minimumFontSize = 50.0;
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    titleLabel.font = [UIFont fontWithName:@"Helvetica" size:120.0];
+    
     if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigMake) {
-        titleLabel.font = [UIFont fontWithName:@"Helvetica" size:120.0];
-        titleLabel.frame = CGRectMake(120.0, 150.0, self.view.frame.size.width - 110.0, 106.0);
+        titleLabel.frame = CGRectMake(110.0, 150.0, self.view.frame.size.width - 110.0, 106.0);
         titleLabel.text = [[_collection valueForKey:@"title"] stringByAppendingString:@" "];
     }
     else {     
-        titleLabel.font = [UIFont fontWithName:@"Helvetica" size:120.0];
-        titleLabel.frame = CGRectMake(120.0, 150.0, self.view.frame.size.width - 130.0, 106.0);
+        titleLabel.frame = CGRectMake(110.0, 150.0, self.view.frame.size.width - 130.0, 106.0);
         titleLabel.text = [_collection valueForKey:@"title"];
     }
-
+    
+    titleLabel.minimumFontSize = 50.0;
+    
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = UITextAlignmentRight;
@@ -200,17 +203,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // Add a 10px bottom margin.
     self.gvc.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0);
+    self.navigationBar.translucent = NO;
     
-    //self.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
 
     if ([[Config currentConfig].backgroundColor isEqual:[UIColor whiteColor]])
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackgroundWhite.png"]];
-    else
+    else {
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
+    }
     
     self.gvc.view.backgroundColor = [UIColor clearColor];
     
@@ -252,8 +255,9 @@
 - (void)showPastFeatures:(id)sender {
     if (poc.popoverVisible)
         [poc dismissPopoverAnimated:YES];
-    else
+    else {
         [poc presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    }
 }
 
 - (NSInteger)numberOfCellsForGridViewController:(DMPGridViewController *)gridViewController {
@@ -283,8 +287,10 @@
 - (void)gridViewController:(DMPGridViewController *)gridViewController tappedCellAtIndex:(NSUInteger)index {
     NSInteger guideid = [_guides[index][@"guideid"] intValue] ;
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
-    [self presentModalViewController:vc animated:YES];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentModalViewController:nc animated:YES];
     [vc release];
+    [nc release];
 }
 
 @end

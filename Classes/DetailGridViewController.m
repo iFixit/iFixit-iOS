@@ -135,6 +135,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    BOOL oniOS7 = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0");
+    
     self.backgroundView = [[[UIImageView alloc] initWithImage:[Config currentConfig].concreteBackgroundImage
                             ? [Config currentConfig].concreteBackgroundImage
                             : [UIImage imageNamed:@"concreteBackground.png"]]
@@ -147,7 +149,7 @@
     switch ([Config currentConfig].site) {
         case ConfigIFixit:
             self.fistImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewFist.png"]] autorelease];
-            self.fistImage.frame = CGRectMake(0, 0, 703, 660);
+            self.fistImage.frame = CGRectMake(0, (oniOS7) ? 64 : 0, 703, 660);
             [self.backgroundView addSubview:self.fistImage];
             break;
         case ConfigMjtrim:
@@ -158,18 +160,18 @@
     }
     
     self.guideArrow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewArrowDark.png"]] autorelease];
-    self.guideArrow.frame = CGRectMake(45, 6, self.guideArrow.frame.size.width, self.guideArrow.frame.size.height);
+    self.guideArrow.frame = CGRectMake(45, (oniOS7) ? 64 : 6, self.guideArrow.frame.size.width, self.guideArrow.frame.size.height);
     
     [self.backgroundView addSubview:self.guideArrow];
     
     [self configureInstructionsLabel];
     
     // Add a 10px bottom margin.
-    self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0);
+    self.tableView.contentInset = UIEdgeInsetsMake((oniOS7) ? 69.0 : 0.0, 0.0, 10.0, 0.0);
     self.tableView.backgroundView = self.backgroundView;
     
     self.noGuidesImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noGuides.png"]] autorelease];
-    self.noGuidesImage.frame = CGRectMake(135, 30, self.noGuidesImage.frame.size.width, self.noGuidesImage.frame.size.height);
+    self.noGuidesImage.frame = CGRectMake(135.0, 30.0, self.noGuidesImage.frame.size.width, self.noGuidesImage.frame.size.height);
     [self.view addSubview:self.noGuidesImage];
     
     [self showNoGuidesImage:NO];
@@ -203,7 +205,7 @@
     }];
 }
 - (void)configureInstructionsLabel {
-    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(135, 190, 280, 30)];
+    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(135, (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? 254 : 190, 280, 30)];
     l.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     l.textAlignment = UITextAlignmentCenter;
     l.lineBreakMode = UILineBreakModeWordWrap;
@@ -287,8 +289,10 @@
 
     NSInteger guideid = [[[_guides objectAtIndex:index] valueForKey:@"guideid"] intValue];
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
-    [delegate.window.rootViewController presentModalViewController:vc animated:YES];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [delegate.window.rootViewController presentModalViewController:nc animated:YES];
     [vc release];
+    [nc release];
 }
 
 @end

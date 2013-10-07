@@ -48,9 +48,9 @@
             [[UINavigationBar appearance] setBarTintColor:[Config currentConfig].toolbarColor];
             self.navigationBar.translucent = NO;
             [[UINavigationBar appearance] setTitleTextAttributes:
-                @{ UITextAttributeTextColor : [Config currentConfig].textColor
-                }
+                @{ UITextAttributeTextColor : [Config currentConfig].textColor }
             ];
+            [[UINavigationBar appearance] setTintColor:[Config currentConfig].buttonColor];
         } else {
             self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
             [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
@@ -104,7 +104,8 @@
         
         // Force a rotate to ensure our logo is the correct size
         [self.viewControllers[0] willAnimateRotationToInterfaceOrientation:[viewController interfaceOrientation] duration:0];
-    } else {
+    // Make sure that we only update the tabbar when we need to
+    } else if ([viewController isKindOfClass:[CategoriesViewController class]]) {
         [self.categoryTabBarViewController updateTabBar:[self.topViewController categoryMetaData]];
     }
     

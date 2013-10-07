@@ -111,8 +111,8 @@
 
 // Use javascript to inject custom css to hide the iFixit Banner
 - (void)injectCSSIntoWebview {
-    NSString* css = @"\"#header { visibility: hidden; margin-bottom: -20px; } \"";
-    NSString* js = [NSString stringWithFormat:
+    NSString *css = @"\"header { display: none; } #mainBody { margin-top: 20px; } \"";
+    NSString *js = [NSString stringWithFormat:
                     @"var styleNode = document.createElement('style');\n"
                     "styleNode.type = \"text/css\";\n"
                     "var styleText = document.createTextNode(%@);\n"

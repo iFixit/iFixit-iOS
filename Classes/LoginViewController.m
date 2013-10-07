@@ -620,9 +620,14 @@
         [passwordVerifyField resignFirstResponder];
         [fullNameField resignFirstResponder];
         
-        [self dismissViewControllerAnimated:YES completion:^(void){
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            [self.listViewController popViewControllerAnimated:YES];
             [delegate refresh];
-        }];
+        } else {
+            [self dismissViewControllerAnimated:YES completion:^(void){
+                [delegate refresh];
+            }];
+        }
         
         // Analytics
         [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@", results[@"type"]] withError:NULL];

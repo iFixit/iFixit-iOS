@@ -7,6 +7,7 @@
 
 #import "SVWebViewController.h"
 #import "GuideCatchingWebView.h"
+#import "iFixitAppDelegate.h"
 
 @interface SVWebViewController (private)
 
@@ -102,10 +103,10 @@
 	}
 	
 	else {
-				
 		if(self.navigationController == nil) {
-			
-			navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,0,CGRectGetWidth(deviceBounds),44)];
+			navBar = [[UINavigationBar alloc] initWithFrame:
+                      CGRectMake(0, SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? 20 : 0, CGRectGetWidth(deviceBounds),44)
+                      ];
             navBar.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin;
 			[self.view addSubview:navBar];
 			[navBar release];

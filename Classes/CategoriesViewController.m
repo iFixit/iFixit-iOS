@@ -90,7 +90,11 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone && self.listViewController.viewControllers.count == 1) {
         [self viewWillAppear:NO];
     }
-} 
+    
+    // Be explicit for iOS 7
+    self.tableView.backgroundColor = [UIColor whiteColor];
+}
+
 
 - (void)displayBackToSitesButton {
     // Show the Dozuki sites select button if needed.

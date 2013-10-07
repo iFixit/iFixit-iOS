@@ -24,8 +24,8 @@
 #import "GANTracker.h"
 #import "CategoryTabBarViewController.h"
 #import "iFixitSplashScreenViewController.h"
-#import "IntelligentSplitViewController.h"
 #import "TestFlight.h"
+#import "MGSplitViewController.h"
 
 static const NSInteger kGANDispatchPeriodSec = 10;
 
@@ -235,13 +235,16 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (UIViewController *)iPadRoot {
     self.showsTabBar = [Config currentConfig].collectionsEnabled || [Config currentConfig].store;
     
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
     // Create the split controller children.
     CategoriesViewController *rvc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
     self.categoriesViewController = rvc;
     [rvc release];
     
     // Create the split view controller.
-    IntelligentSplitViewController *svc = [[IntelligentSplitViewController alloc] init];
+    MGSplitViewController *svc = [[MGSplitViewController alloc] init];
+    
     self.splitViewController = svc;
     [svc release];
     
@@ -300,7 +303,12 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     // Create the tab bar.
     UITabBarController *tbc = [[UITabBarController alloc] init];
     
-    tbc.tabBar.tintColor = [Config currentConfig].toolbarColor;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        tbc.tabBar.translucent = NO;
+    }
+    
+    tbc.tabBar.tintColor = [Config currentConfig].buttonColor;
+    
     if ([Config currentConfig].collectionsEnabled) {
         FeaturedViewController *featuredViewController = [[FeaturedViewController alloc] init];    
         featuredViewController.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0] autorelease];
