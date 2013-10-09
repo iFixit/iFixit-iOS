@@ -392,8 +392,6 @@
     } else {
         [self dismissModalViewControllerAnimated:YES];
     }
-    // TODO: Decide if we really need this
-    //[self.listViewController configureProperties];
 }
 
 - (void)configureAppearance {

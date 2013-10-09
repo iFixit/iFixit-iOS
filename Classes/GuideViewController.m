@@ -426,8 +426,6 @@
     [scrollView release];
     [pageControl release];
     [bookmarker release];
-    // TODO: Figure out why this crashes.
-    //[viewControllers release];
      
     [UIApplication sharedApplication].idleTimerDisabled = NO;
      

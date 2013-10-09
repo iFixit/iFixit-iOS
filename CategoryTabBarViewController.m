@@ -342,15 +342,16 @@ BOOL onTablet, initialLoad, showTabBar;
     
     // Tablet is tricky because we are already doing things we shouldn't be doing
     if (onTablet) {
+        // Forgive me father for I have sinned. This is why we shouldn't go against Apple's Guidelines
         if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-            if (UIDeviceOrientationIsLandscape(self.interfaceOrientation)) {
+            if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
                 [subView setFrame:(viewControllerIndex == self.GUIDES)
                     ? CGRectMake(0, 44, [subView frame].size.width, 655)
-                    : CGRectMake(0, 0, [subView frame].size.width, 746)];
+                    : CGRectMake(0, 0, [subView frame].size.width, 719)];
             } else {
                 [subView setFrame:(viewControllerIndex == self.GUIDES)
                     ? CGRectMake(0, 44, [subView frame].size.width, 950)
-                    : CGRectMake(0, 0, [subView frame].size.width, 1005)];
+                    : CGRectMake(0, 0, [subView frame].size.width, 978)];
             }
         }
     // For iPhone we change the subview frame to account for hidden tabbar
@@ -364,7 +365,7 @@ BOOL onTablet, initialLoad, showTabBar;
         } else {
             [subView setFrame:(self.listViewController.viewControllers.count == 1)
                 ? CGRectMake(0, 0, bounds.size.width, bounds.size.height + 44)
-                : CGRectMake(0, 0, bounds.size.width, bounds.size.height - 2)
+                : CGRectMake(0, 0, bounds.size.width, bounds.size.height - 27)
             ];
         }
     }

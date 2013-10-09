@@ -148,12 +148,6 @@
         self.categoryNavigationBar.tintColor = [UIColor colorWithRed:204/255.0f green:0 blue:0 alpha:1];
         favoritesButtonItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:140/255.0f green:48/255.0f blue:49/255.0f alpha:1];
     }
-    
-    // if less than iOS 7, we have to increase our height by 20 pixels to account for status bar and different sized tab-bar
-    // @TODO: Remove when we support iOS 7.0+
-    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-        self.webView.frame = CGRectMake(self.webView.frame.origin.x, self.webView.frame.origin.y, self.webView.frame.size.width, self.webView.frame.size.height + 20);
-    }
 }
 
 - (IBAction)favoritesButtonPushed:(id)sender {
