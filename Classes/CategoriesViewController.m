@@ -373,12 +373,8 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     // Make room for the toolbar
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad || UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
-        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 44, 0);
-    }
-    else {
-        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 44, 0);
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 60, 0);
     }
 
     // Reset the searching view offset to prevent rotating weirdness.
