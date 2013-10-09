@@ -365,7 +365,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)showLogin {
+- (void)dismissView {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         [self.navigationController popViewControllerAnimated:YES];
     } else {
@@ -377,7 +377,7 @@
     
     // Show or hide login as needed.
     if (![iFixitAPI sharedInstance].user) {
-        [self showLogin];
+        [self dismissView];
     } else if ([[self.view subviews] containsObject:lvc.view]) {
         [[GuideBookmarks sharedBookmarks] update];
     }
@@ -424,7 +424,7 @@
         [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showSiteSplash];
     // Everyone else who is public
     } else {
-        [self showLogin]; 
+        [self dismissView];
     }
 }
 
