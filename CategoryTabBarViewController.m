@@ -361,6 +361,8 @@ BOOL onTablet, initialLoad, showTabBar;
             self.tabBar.frame = (self.listViewController.viewControllers.count == 1)
                 ? CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y, 0, 0)
                 : CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y, bounds.size.width, 49);
+
+            [self configureFontSizeForTabBarItems];
         // < iOS 7 we simply resize the subview
         } else {
             [subView setFrame:(self.listViewController.viewControllers.count == 1)
@@ -368,6 +370,15 @@ BOOL onTablet, initialLoad, showTabBar;
                 : CGRectMake(0, 0, bounds.size.width, bounds.size.height - 27)
             ];
         }
+    }
+}
+
+// Resize our fonts to avoid edge case on iOS 7 when resizing tabbar
+- (void)configureFontSizeForTabBarItems {
+    NSDictionary *textAttributes = @{UITextAttributeFont : [UIFont fontWithName:@"OpenSans" size:12.0]};
+
+    for (id viewController in self.tabBarViewControllers) {
+        [[viewController tabBarItem] setTitleTextAttributes:textAttributes forState:UIControlStateNormal];
     }
 }
 
