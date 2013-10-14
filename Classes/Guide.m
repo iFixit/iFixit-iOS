@@ -11,7 +11,7 @@
 
 @implementation Guide
 
-@synthesize data, guideid, category, subject, title, author, timeRequired, difficulty, introduction, introduction_rendered, summary, image;
+@synthesize data, guideid, category, subject, title, author, timeRequired, difficulty, introduction, introduction_rendered, summary, image, parts_tools_rendered;
 @synthesize documents, parts, tools, flags;
 @synthesize prereqs, steps;
 
@@ -44,6 +44,7 @@
 	guide.introduction   = dict[@"introduction_raw"];
 	guide.summary        = dict[@"summary"];
 	guide.introduction_rendered = dict[@"introduction_rendered"];
+    guide.parts_tools_rendered = dict[@"parts_tools_rendered"];
 
 	// Main image
 	id image	= dict[@"image"];
@@ -78,6 +79,7 @@
     [introduction release];
     [summary release];
     [introduction_rendered release];
+    [parts_tools_rendered release];
     [image release];
     
     [documents release];
