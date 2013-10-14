@@ -43,7 +43,7 @@ static int volatile openConnections = 0;
     }
     else {
         // Clear the session
-        [[NSFileManager defaultManager] removeItemAtPath:[self sessionFilePath] error:nil];   
+        [[NSFileManager defaultManager] removeItemAtPath:[self sessionFilePath] error:nil];
     }
 }
 
@@ -58,24 +58,31 @@ static int volatile openConnections = 0;
   */
 + (iFixitAPI *)sharedInstance {
 	static iFixitAPI *sharedInstance;
-	
+
 	@synchronized(self) {
 		if (!sharedInstance) {
 			sharedInstance = [[iFixitAPI alloc] init];
             [sharedInstance loadSession];
             [sharedInstance loadAppId];
+            [sharedInstance createAndSetUserAgent];
         }
-		
+
 		return sharedInstance;
 	}
-	
+
 	return nil;
 }
 
 - (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
 	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/sites?limit=%d&offset=%d", [Config host], limit, offset];
-	
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    request.userAgentString = self.userAgent;
+
+    if ([Config currentConfig].site == ConfigIFixitDev) {
+        request.validatesSecureCertificate = NO;
+    }
+
     [request setCompletionBlock:^{
         NSArray *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -88,14 +95,19 @@ static int volatile openConnections = 0;
 
 - (void)getSiteInfoForObject:(id)object withSelector:(SEL)selector {
 	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/info", [Config host]];
-	
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
-    
+    request.userAgentString = self.userAgent;
+
+    if ([Config currentConfig].site == ConfigIFixitDev) {
+        request.validatesSecureCertificate = NO;
+    }
+
     if ([Config currentConfig].private) {
         [request addRequestHeader:@"X-App-Id" value:self.appId];
         [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
     }
-    
+
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -108,14 +120,19 @@ static int volatile openConnections = 0;
 
 - (void)getCollectionsWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
 	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/collections?limit=%d&offset=%d", [Config host], limit, offset];
-	
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
-    
+    request.userAgentString = self.userAgent;
+
+    if ([Config currentConfig].site == ConfigIFixitDev) {
+        request.validatesSecureCertificate = NO;
+    }
+
     if ([Config currentConfig].private) {
         [request addRequestHeader:@"X-App-Id" value:self.appId];
         [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
     }
-    
+
     [request setCompletionBlock:^{
         NSArray *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -130,12 +147,17 @@ static int volatile openConnections = 0;
 	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/guides/%d", [Config host], guideid];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
-    
+    request.userAgentString = self.userAgent;
+
+    if ([Config currentConfig].site == ConfigIFixitDev) {
+        request.validatesSecureCertificate = NO;
+    }
+
     if ([Config currentConfig].private) {
         [request addRequestHeader:@"X-App-Id" value:self.appId];
         [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
     }
-    
+
     [request setCompletionBlock:^{
         NSDictionary *result = [[request responseString] JSONValue];
         Guide *guide = result ? [Guide guideWithDictionary:result] : nil;
@@ -150,19 +172,24 @@ static int volatile openConnections = 0;
 - (void)getCategoriesForObject:(id)object withSelector:(SEL)selector {
     // On iPhone and iPod touch, only show leaf nodes with viewable guides.
     NSString *requireGuides = @"";
-    
+
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         requireGuides = @"?requireGuides=yes";
-	
+
 	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/categories%@", [Config host], requireGuides];
-	
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
-    
+    request.userAgentString = self.userAgent;
+
+    if ([Config currentConfig].site == ConfigIFixitDev) {
+        request.validatesSecureCertificate = NO;
+    }
+
     if ([Config currentConfig].private) {
         [request addRequestHeader:@"X-App-Id" value:self.appId];
         [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
     }
-    
+
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -176,14 +203,19 @@ static int volatile openConnections = 0;
 - (void)getCategory:(NSString *)category forObject:(id)object withSelector:(SEL)selector {
     category = [category stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/categories/%@", [Config host], category];
-    
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
-    
+    request.userAgentString = self.userAgent;
+
     if ([Config currentConfig].private) {
         [request addRequestHeader:@"X-App-Id" value:self.appId];
         [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
     }
-    
+
+    if ([Config currentConfig].site == ConfigIFixitDev) {
+        request.validatesSecureCertificate = NO;
+    }
+
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -196,16 +228,21 @@ static int volatile openConnections = 0;
 
 - (void)getGuides:(NSString *)type forObject:(id)object withSelector:(SEL)selector {
     int limit = 100;
-	
+
 	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/guides?limit=%d", [Config host], limit];
-    
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
-    
+    request.userAgentString = self.userAgent;
+
+    if ([Config currentConfig].site == ConfigIFixitDev) {
+        request.validatesSecureCertificate = NO;
+    }
+
     if ([Config currentConfig].private) {
         [request addRequestHeader:@"X-App-Id" value:self.appId];
         [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
     }
-    
+
     [request setCompletionBlock:^{
         NSArray *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -219,14 +256,19 @@ static int volatile openConnections = 0;
 - (void)getGuidesByIds:(NSArray *)guideids forObject:(id)object withSelector:(SEL)selector {
     NSString *guideidsString = [guideids componentsJoinedByString:@","];
 	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/guides?guideids=%@", [Config host], guideidsString];
-    
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
-    
+    request.userAgentString = self.userAgent;
+
     if ([Config currentConfig].private) {
         [request addRequestHeader:@"X-App-Id" value:self.appId];
         [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
     }
-    
+
+    if ([Config currentConfig].site == ConfigIFixitDev) {
+        request.validatesSecureCertificate = NO;
+    }
+
     [request setCompletionBlock:^{
         NSArray *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -241,16 +283,17 @@ static int volatile openConnections = 0;
     search = [search stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     search = [search stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
     search = [search stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
-	
+
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/search/%@?filter=category&limit=50", [Config host], search];
-	
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
-    
+    request.userAgentString = self.userAgent;
+
     if ([Config currentConfig].private) {
         [request addRequestHeader:@"X-App-Id" value:self.appId];
         [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
     }
-    
+
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
@@ -284,17 +327,19 @@ static int volatile openConnections = 0;
     // .dozuki.com hosts force SSL, so we match that here. Otherwise, for SSO sites with custom domains,
     // SSL doesn't exist so we just use HTTP.
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user", [Config host]];
-    
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    request.userAgentString = self.userAgent;
+
     [request setRequestMethod:@"GET"];
-    
+
     [request addRequestHeader:@"X-App-Id" value:self.appId];
     [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", sessionId]];
     request.useCookiePersistence = NO;
-    
+
     [request setCompletionBlock:^{
         NSMutableDictionary *results = [[request responseString] JSONValue];
-        
+
         [self checkLogin:results];
         [object performSelector:selector withObject:results];
     }];
@@ -302,7 +347,7 @@ static int volatile openConnections = 0;
         NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
         [object performSelector:selector withObject:results];
     }];
-    
+
     [request startAsynchronous];
 }
 
@@ -311,31 +356,32 @@ static int volatile openConnections = 0;
 
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/token", [Config host]];
     NSString *json = [@{@"email" : login, @"password" : password} JSONRepresentation];
-    
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    request.userAgentString = self.userAgent;
 
     if ([Config currentConfig].site == ConfigIFixitDev || [Config currentConfig].site == ConfigMakeDev)
         [request setValidatesSecureCertificate:NO];
-    
+
     [request setRequestMethod:@"POST"];
     [request addRequestHeader:@"X-App-Id" value:self.appId];
     [request appendPostData:[json dataUsingEncoding:NSUTF8StringEncoding]];
     request.useCookiePersistence = NO;
-    
+
     [request setCompletionBlock:^{
         NSMutableDictionary *results = [[request responseString] JSONValue];
         [self checkLogin:results];
-        
+
         // find out what happens when we get here
         [results setObject:@"login" forKey:@"type"];
         [object performSelector:selector withObject:results];
     }];
-    
+
     [request setFailedBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
         [object performSelector:selector withObject:results];
     }];
-    
+
     [request startAsynchronous];
 }
 
@@ -343,29 +389,31 @@ static int volatile openConnections = 0;
     [TestFlight passCheckpoint:@"Register"];
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/users", [Config host]];
     NSString *json = [@{@"email" : login, @"username" : name, @"password" : password} JSONRepresentation];
-    
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    request.userAgentString = self.userAgent;
+
     if ([Config currentConfig].site == ConfigIFixitDev || [Config currentConfig].site == ConfigMakeDev)
         [request setValidatesSecureCertificate:NO];
-    
+
     [request setRequestMethod:@"POST"];
     [request addRequestHeader:@"X-App-Id" value:self.appId];
     [request appendPostData:[json dataUsingEncoding:NSUTF8StringEncoding]];
     request.useSessionPersistence = NO;
     request.useCookiePersistence = NO;
-    
-    [request setCompletionBlock:^{        
+
+    [request setCompletionBlock:^{
         NSMutableDictionary *results = [[request responseString] JSONValue];
         [self checkLogin:results];
         [results setObject:@"register" forKey:@"type"];
-        
+
         [object performSelector:selector withObject:results];
     }];
     [request setFailedBlock:^{
         NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
         [object performSelector:selector withObject:results];
     }];
-    
+
     [request startAsynchronous];
 }
 
@@ -375,17 +423,23 @@ static int volatile openConnections = 0;
     for (NSHTTPCookie *cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
     }
-    
+
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/token", [Config host]];
-    
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    request.userAgentString = self.userAgent;
+
+    if ([Config currentConfig].site == ConfigIFixitDev) {
+        request.validatesSecureCertificate = NO;
+    }
+
     [request addRequestHeader:@"X-App-Id" value:self.appId];
     [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
     [request setRequestMethod:@"DELETE"];
     [request startAsynchronous];
-    
+
     self.user = nil;
-    
+
     [self saveSession];
     // Reset GuideBookmarks static object.
     [GuideBookmarks reset];
@@ -393,13 +447,19 @@ static int volatile openConnections = 0;
 
 - (void)getUserFavoritesForObject:(id)object withSelector:(SEL)selector {
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/favorites/guides", [Config host]];
-    
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    request.userAgentString = self.userAgent;
+
+    if ([Config currentConfig].site == ConfigIFixitDev) {
+        request.validatesSecureCertificate = NO;
+    }
+
     [request addRequestHeader:@"X-App-Id" value:self.appId];
     [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
     [request setRequestMethod:@"GET"];
     request.useCookiePersistence = NO;
-    
+
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
         [self checkSession:results];
@@ -409,7 +469,7 @@ static int volatile openConnections = 0;
         NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
         [object performSelector:selector withObject:results];
     }];
-    
+
     [request startAsynchronous];
 }
 
@@ -417,13 +477,19 @@ static int volatile openConnections = 0;
     [TestFlight passCheckpoint:@"Like"];
 
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/favorites/guides/%i", [Config host], [guideid intValue]];
-    
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    request.userAgentString = self.userAgent;
+
+    if ([Config currentConfig].site == ConfigIFixitDev) {
+        request.validatesSecureCertificate = NO;
+    }
+
     [request setRequestMethod:@"PUT"];
     [request addRequestHeader:@"X-App-Id" value:self.appId];
     [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
     request.useCookiePersistence = NO;
-    
+
     [request setCompletionBlock:^{
         NSDictionary *results = @{@"statusCode" : @([request responseStatusCode])};
         [self checkSession:results];
@@ -433,7 +499,7 @@ static int volatile openConnections = 0;
         NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
         [object performSelector:selector withObject:results];
     }];
-    
+
     [request startAsynchronous];
 }
 
@@ -441,12 +507,18 @@ static int volatile openConnections = 0;
     [TestFlight passCheckpoint:@"Unlike"];
 
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/favorites/guides/%i", [Config host], [guideid intValue]];
-    
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+    request.userAgentString = self.userAgent;
+
+    if ([Config currentConfig].site == ConfigIFixitDev) {
+        request.validatesSecureCertificate = NO;
+    }
+
     [request setRequestMethod:@"DELETE"];
     [request addRequestHeader:@"X-App-Id" value:self.appId];
     [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
-    
+
     [request setCompletionBlock:^{
         NSDictionary *results = @{@"statusCode" : @([request responseStatusCode])};
         [self checkSession:results];
@@ -456,7 +528,7 @@ static int volatile openConnections = 0;
         NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
         [object performSelector:selector withObject:results];
     }];
-    
+
     [request startAsynchronous];
 }
 
@@ -473,14 +545,14 @@ static int volatile openConnections = 0;
 
 + (void)checkCredentialsForViewController:(id)viewController {
     id viewControllerToPresent;
-    
+
     if ([iFixitAPI sharedInstance].user) {
         viewControllerToPresent = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
     } else {
         viewControllerToPresent = [[LoginViewController alloc] init];
         [viewControllerToPresent setDelegate:viewController];
     }
-    
+
     // Create the animation ourselves to mimic a modal presentation
     // On iPad we must push the view onto a stack, instead of presenting
     // it modally or else undesired side effects occur
@@ -497,8 +569,25 @@ static int volatile openConnections = 0;
         [viewController presentModalViewController:nvc animated:YES];
         [nvc release];
     }
-    
+
     [viewControllerToPresent release];
+}
+
+// Build our own custom user agent and set it
+- (void)createAndSetUserAgent {
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *appName = [bundle objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+    NSString *marketingVersionNumber = [bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *developmentVersionNumber = [bundle objectForInfoDictionaryKey:@"CFBundleVersion"];
+
+    UIDevice *device = [UIDevice currentDevice];
+	NSString *deviceName = [device model];
+	NSString *OSName = [device systemName];
+    NSString *OSVersion = [device systemVersion];
+    NSString *locale = [[NSLocale currentLocale] localeIdentifier];
+
+    // iFixitiOS/1.4 (43) | iPad; Mac OS X 10.5.7; en_GB
+    self.userAgent = [NSString stringWithFormat:@"%@iOS/%@ (%@) | %@; %@ %@; %@", appName, developmentVersionNumber, marketingVersionNumber, deviceName, OSName, OSVersion, locale];
 }
 
 @end

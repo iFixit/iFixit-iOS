@@ -14,6 +14,7 @@
 
 @property (nonatomic, retain) User *user;
 @property (nonatomic, retain) NSString *appId;
+@property (nonatomic, retain) NSString *userAgent;
 
 + (iFixitAPI *)sharedInstance;
 
@@ -27,7 +28,7 @@
 - (void)getSearchResults:(NSString *)search forObject:(id)object withSelector:(SEL)selector;
 - (void)getCategory:(NSString *)category forObject:(id)object withSelector:(SEL)selector;
 - (void)getSiteInfoForObject:(id)object withSelector:(SEL)selector;
-    
+
 // Session management
 - (void)loginWithSessionId:(NSString *)sessionId forObject:(id)object withSelector:(SEL)selector;
 - (void)loginWithLogin:(NSString *)login andPassword:(NSString *)password forObject:(id)object withSelector:(SEL)selector;
