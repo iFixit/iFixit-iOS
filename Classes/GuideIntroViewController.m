@@ -128,7 +128,10 @@
                           ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? @"big" : @"small"];
     NSString *footer = @"</body></html>";
 
-    NSString *body = [NSString stringWithFormat:@"%@<br />%@", self.guide.introduction_rendered, self.guide.parts_tools_rendered];
+    NSString *partsHtml = [self buildHtmlForItems:self.guide.parts fromType:@"part"];
+    NSString *toolsHtml = [self buildHtmlForItems:self.guide.tools fromType:@"tool"];
+    
+    NSString *body = [NSString stringWithFormat:@"%@%@", partsHtml, toolsHtml];
 	
     self.html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
@@ -145,6 +148,24 @@
     swipeLabel.adjustsFontSizeToFitWidth = YES;
     swipeLabel.text = [NSString stringWithFormat:@" ←%@ ", NSLocalizedString(@"Swipe to Begin", nil)];
     
+}
+
+// Temporary method to build html for parts/tools, remove when we implement a native view
+- (NSString*)buildHtmlForItems:(NSMutableArray*)items fromType:(NSString*)itemType {
+    
+    // Return an empty string if we have no items
+    if (![items count]) {
+        return @"";
+    }
+    
+    NSString *html = [NSString stringWithFormat:@"<div class=\"%@s\"><strong>%@s</strong><ul>", itemType, [itemType capitalizedString]];
+    
+    for (id item in items) {
+        html = [html stringByAppendingString:[NSString stringWithFormat:@"<li><a href=\"%@\">%@ x %@</a></li>",
+                                              item[@"url"], item[@"quantity"], item[@"text"]]];
+    }
+    
+    return [html stringByAppendingString:[NSString stringWithFormat:@"</ul></div>"]];
 }
 
 // Because the web view has a white background, it starts hidden.

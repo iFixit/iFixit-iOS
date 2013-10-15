@@ -23,7 +23,6 @@
 @property (nonatomic, retain) NSString *introduction;
 @property (nonatomic, retain) NSString *summary;
 @property (nonatomic, retain) NSString *introduction_rendered;
-@property (nonatomic, retain) NSString *parts_tools_rendered;
 @property (nonatomic, retain) GuideImage *image;
 
 @property (nonatomic, retain) NSMutableArray *documents;
