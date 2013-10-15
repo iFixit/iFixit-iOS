@@ -128,7 +128,7 @@
                           ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? @"big" : @"small"];
     NSString *footer = @"</body></html>";
 
-    NSString *body = [NSString stringWithFormat:@"%@</br>%@", self.guide.introduction_rendered, self.guide.parts_tools_rendered];
+    NSString *body = [NSString stringWithFormat:@"%@<br />%@", self.guide.introduction_rendered, self.guide.parts_tools_rendered];
 	
     self.html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
