@@ -37,7 +37,6 @@ enum {
 @property (nonatomic, retain) NSString *introCSS;
 @property (nonatomic, retain) NSString *stepCSS;
 @property (nonatomic, retain) NSString *moreInfoCSS;
-@property (nonatomic, retain) NSString *answersCSS;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) UIImage *concreteBackgroundImage;
 @property (nonatomic, retain) NSDictionary *siteInfo;

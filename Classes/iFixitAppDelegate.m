@@ -100,19 +100,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [self setupAnalytics];
     
     /* iOS appearance */
-    if ([UITabBar respondsToSelector:@selector(appearance)]) {
-        [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"customTabBarBackground.png"]];
-    }
-    
-    if ([[UINavigationBar class] instancesRespondToSelector:@selector(setBarTintColor:)]) {
-        [[UINavigationBar appearance] setBarTintColor:[Config currentConfig].toolbarColor];
-    }
-    
-    [[UINavigationBar appearance] setTitleTextAttributes:
-        @{ UITextAttributeTextColor : [Config currentConfig].textColor }
-    ];
-    [[UINavigationBar appearance] setTintColor:[Config currentConfig].buttonColor];
-    
+    [self configureAppearance];
     
     /* Setup and launch. */
     self.window.rootViewController = nil;
@@ -141,6 +129,22 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
     
     return YES;
+}
+
+- (void)configureAppearance {
+    if ([UITabBar respondsToSelector:@selector(appearance)]) {
+        [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"customTabBarBackground.png"]];
+    }
+    
+    if ([[UINavigationBar class] instancesRespondToSelector:@selector(setBarTintColor:)]) {
+        [[UINavigationBar appearance] setBarTintColor:[Config currentConfig].toolbarColor];
+    }
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     @{ UITextAttributeTextColor : [Config currentConfig].textColor }
+     ];
+    
+    [[UINavigationBar appearance] setTintColor:[Config currentConfig].buttonColor];
 }
 
 - (void)showDozukiSplash {

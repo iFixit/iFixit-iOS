@@ -110,7 +110,6 @@ static Config *currentConfig = nil;
             self.moreInfoCSS = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
                 ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
                 : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
-            self.answersCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_answers" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             break;
         // MJ Trim
         case ConfigMjtrim:
@@ -135,9 +134,6 @@ static Config *currentConfig = nil;
             self.moreInfoCSS = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
                 ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
                 : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
-            self.answersCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_answers" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
-            break;
-            
     }
 }
 
