@@ -378,7 +378,8 @@
 
 - (void)configureLeftBarButtonItem {
     UIBarButtonItem *button;
-    if ([Config currentConfig].site == ConfigDozuki) {
+
+    if ([Config currentConfig].site == ConfigDozuki && modal) {
         UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
         button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
                                                  target:delegate
