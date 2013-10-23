@@ -126,8 +126,8 @@ static Config *currentConfig = nil;
         default:
             self.backgroundColor = [UIColor blackColor];
             self.textColor = [UIColor whiteColor];
-            //self.toolbarColor = [UIColor darkGrayColor];
-            self.toolbarColor = [UIColor colorWithRed:.19 green:.21 blue:.23 alpha:1.0];
+            self.toolbarColor = [UIColor blackColor];
+            self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
             
             // Load intro and step css from the css folder.        
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];

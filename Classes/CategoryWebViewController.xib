@@ -15,11 +15,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <barButtonItem title="Item" id="30"/>
-        <view contentMode="scaleToFill" id="1">
+        <view autoresizesSubviews="NO" contentMode="scaleAspectFit" id="1">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <webView contentMode="scaleToFill" scalesPageToFit="YES" id="9">
+                <webView contentMode="redraw" scalesPageToFit="YES" id="9">
                     <rect key="frame" x="0.0" y="63" width="320" height="417"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>

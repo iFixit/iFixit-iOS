@@ -39,6 +39,8 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         self.categoryNavigationBar.topItem.title = self.category;
         self.favoritesButton.title = NSLocalizedString(@"Favorites", nil);
+    } else {
+        [self resizeWebViewFrameForOrientation:[UIApplication sharedApplication].statusBarOrientation];
     }
 }
 
@@ -123,12 +125,31 @@
 }
 
 - (void)configureProperties {
+    
     // Only configure the nav bar on iPhone
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         [self configureNavigationBar];
-    } else if(![(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showsTabBar]){
-        // If we don't have a tab bar, let's make the webview full screen
-        self.webView.frame = self.view.frame;
+        self.view.autoresizesSubviews = YES;
+    }
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
+    // Only apply this hack to iPads...=(
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self resizeWebViewFrameForOrientation:toInterfaceOrientation];
+    }
+}
+
+- (void)resizeWebViewFrameForOrientation:(UIInterfaceOrientation)orientation {
+    BOOL showsTabBar = [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showsTabBar];
+    BOOL onIOS7 = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0");
+    
+    // TODO: Remove these ternary for reader's sanity
+    if (UIDeviceOrientationIsLandscape(orientation)) {
+        self.webView.frame = CGRectMake(0, onIOS7 ? 64 : showsTabBar ? 38 : 0, 703, (showsTabBar) ? 663 : 706);
+    } else {
+        self.webView.frame = CGRectMake(0, onIOS7 ? 64 : showsTabBar ? 38 : 0, 770, (showsTabBar) ? 904 : 963);
     }
 }
 
@@ -161,7 +182,7 @@
     NSString *footer = @"</body></html>";
     
     // Build our image tag that will display an image of the category we are looking at
-    NSString *image = [categoryMetaData[@"image"] count] > 0
+    NSString *image = (categoryMetaData[@"image"] != [NSNull null])
         ? [NSString stringWithFormat:@"<img id=\"categoryImage\" src=\"%@.standard\">", categoryMetaData[@"image"][@"original"]]
         : @"";
     

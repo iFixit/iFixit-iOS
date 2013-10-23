@@ -45,12 +45,7 @@
     // Set Navigation bar
     if ([Config currentConfig].site == ConfigIFixit) {
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-            [[UINavigationBar appearance] setBarTintColor:[Config currentConfig].toolbarColor];
             self.navigationBar.translucent = NO;
-            [[UINavigationBar appearance] setTitleTextAttributes:
-                @{ UITextAttributeTextColor : [Config currentConfig].textColor }
-            ];
-            [[UINavigationBar appearance] setTintColor:[Config currentConfig].buttonColor];
         } else {
             self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
             [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
@@ -62,6 +57,10 @@
     } else if ([Config currentConfig].site == ConfigMjtrim) {
         self.navigationBar.tintColor = [UIColor colorWithRed:204/255.0f green:0 blue:0 alpha:1];
         self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:140/255.0f green:48/255.0f blue:49/255.0f alpha:1];
+    
+    } else if ([Config currentConfig].site == ConfigDozuki) {
+        self.navigationBar.translucent = NO;
+        self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
     } else {
         self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
         if ([Config currentConfig].buttonColor) {

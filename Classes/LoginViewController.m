@@ -373,12 +373,26 @@
     [tapGesture release];
     
     [self configureAppearance];
+    [self configureLeftBarButtonItem];
+}
+
+- (void)configureLeftBarButtonItem {
+    UIBarButtonItem *button;
+    if ([Config currentConfig].site == ConfigDozuki) {
+        UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
+        button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
+                                                 target:delegate
+                                                 action:@selector(showDozukiSplash)];
+        
+    } else {
+        button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
+                                                  style:UIBarButtonItemStyleDone
+                                                 target:self
+                                                 action:@selector(doneButtonPushed)];
+    }
     
-    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
-                                                               style:UIBarButtonItemStyleDone
-                                                              target:self
-                                                              action:@selector(doneButtonPushed)];
     self.navigationItem.leftBarButtonItem = button;
+    [button release];
 }
 
 - (void)doneButtonPushed {
@@ -618,7 +632,10 @@
         [passwordVerifyField resignFirstResponder];
         [fullNameField resignFirstResponder];
         
-        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        // If we are dealing with the app delegate, we don't dismiss anything, just refresh it
+        if ([delegate isKindOfClass:[iFixitAppDelegate class]]) {
+            [delegate refresh];
+        } else if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
             [self.listViewController popViewControllerAnimated:YES];
             [delegate refresh];
         } else {

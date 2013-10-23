@@ -167,8 +167,10 @@
     [self configureInstructionsLabel];
     
     // Add a 10px bottom margin.
-    self.tableView.contentInset = UIEdgeInsetsMake((oniOS7) ? 69.0 : 0.0, 0.0, 10.0, 0.0);
     self.tableView.backgroundView = self.backgroundView;
+    
+    // Decide how much margin we give our tableview
+    [self configureTableViewContentInsent];
     
     self.noGuidesImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noGuides.png"]] autorelease];
     self.noGuidesImage.frame = CGRectMake(135.0, 30.0, self.noGuidesImage.frame.size.width, self.noGuidesImage.frame.size.height);
@@ -179,6 +181,19 @@
     [self willRotateToInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation] duration:0];
 }
 
+- (void)configureTableViewContentInsent {
+    UIEdgeInsets inset;
+    BOOL showsTabBar = [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showsTabBar];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        inset = UIEdgeInsetsMake(69.0, 0, (showsTabBar) ? 70.0 : 10.0 , 0);
+    } else {
+        inset = UIEdgeInsetsMake(0,0,10,0);
+    }
+    
+    self.tableView.contentInset = inset;
+    
+}
 - (void)configureDozukiTitleLabel {
     UILabel *l = [[UILabel alloc] init];
     l.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;

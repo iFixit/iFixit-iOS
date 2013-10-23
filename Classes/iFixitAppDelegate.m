@@ -103,6 +103,16 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     if ([UITabBar respondsToSelector:@selector(appearance)])
         [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"customTabBarBackground.png"]];
     
+    if ([[UINavigationBar appearance] respondsToSelector:@selector(setBarTintColor:)]) {
+        [[UINavigationBar appearance] setBarTintColor:[Config currentConfig].toolbarColor];
+    }
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     @{ UITextAttributeTextColor : [Config currentConfig].textColor }
+     ];
+    [[UINavigationBar appearance] setTintColor:[Config currentConfig].buttonColor];
+    
+    
     /* Setup and launch. */
     self.window.rootViewController = nil;
     firstLoad = YES;
@@ -178,6 +188,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     UIViewController *root = nil;
     UINavigationController *nvc = nil;
+    
 
     if (![iFixitAPI sharedInstance].user && [Config currentConfig].private) {
         // Private sites require immediate login.
@@ -186,7 +197,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         vc.delegate = self;
         nvc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];        
         nvc.modalPresentationStyle = UIModalPresentationFormSheet;
-        nvc.navigationBar.tintColor = [Config currentConfig].toolbarColor;
         [vc release];
 
         // We only need this button if on Dozuki App
@@ -219,6 +229,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
  
     self.window.rootViewController = root;
+    
     [window makeKeyAndVisible];
 }
 
@@ -343,8 +354,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 - (void)loadSite:(NSDictionary *)site {
     NSString *domain = [site valueForKey:@"domain"];
-    //NSString *colorHex = [site valueForKey:@"color"];
-    //UIColor *color = [UIColor colorFromHexString:colorHex];
     
     // Load the right site
     if ([domain isEqual:@"www.ifixit.com"]) {
@@ -362,9 +371,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [Config currentConfig].custom_domain = [site valueForKey:@"custom_domain"];
         [Config currentConfig].baseURL = [NSString stringWithFormat:@"http://%@/Guide", domain];
         [Config currentConfig].title = site[@"title"];
-        
-        //if (color)
-        //    [Config currentConfig].toolbarColor = color;
     }
     
     // Enable/disable Answers and/or Collections

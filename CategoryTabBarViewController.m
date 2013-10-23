@@ -84,6 +84,11 @@ BOOL onTablet, initialLoad, showTabBar;
     
     if (oniOS7)
         [self createStatusBarBackgroundView];
+    
+    // Remove translucence on iOS 7 for iPhone only
+    if (oniOS7 && !onTablet) {
+        self.tabBar.translucent = NO;
+    }
 }
 
 // We create different buttons depending on what version the user is on
@@ -179,7 +184,6 @@ BOOL onTablet, initialLoad, showTabBar;
     
     if (oniOS7) {
         self.tabBar.backgroundColor = [UIColor whiteColor];
-        self.tabBar.translucent = NO;
     }
 }
 

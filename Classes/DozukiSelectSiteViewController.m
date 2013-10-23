@@ -156,7 +156,10 @@ static NSMutableArray *prioritySites = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
     // Add the search bar
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 36.0)];
     searchBar.placeholder = NSLocalizedString(@"Search", nil);
@@ -164,6 +167,23 @@ static NSMutableArray *prioritySites = nil;
     self.tableView.tableHeaderView = searchBar;
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     
+    // For iOS 7 we want a different color scheme because the default colors are too aggressive
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [[UINavigationBar appearance] setBarTintColor:[Config currentConfig].toolbarColor];
+        self.navigationController.navigationBar.translucent = NO;
+        [[UINavigationBar appearance] setTitleTextAttributes:
+            @{ UITextAttributeTextColor : [Config currentConfig].textColor }
+        ];
+        
+        [[UINavigationBar appearance] setTintColor:[Config currentConfig].buttonColor];
+        
+        self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
+    }
+    
+    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                                                              style:UIBarButtonItemStyleBordered
+                                                                             target:nil
+                                                                             action:nil] autorelease];
     // Update loading display status.
     if (loading)
         [self showLoading];
@@ -208,7 +228,7 @@ static NSMutableArray *prioritySites = nil;
         searching = NO;
         noResults = NO;
         [self.tableView reloadData];    
-        self.searchResults = [NSArray array];
+        self.searchResults = [NSMutableArray array];
         return;
     }
     
