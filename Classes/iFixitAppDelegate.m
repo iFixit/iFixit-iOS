@@ -99,17 +99,18 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [TestFlight takeOff:@"ee879878-6696-470b-af65-61548b796d9f"];
     [self setupAnalytics];
     
-    /* iOS 5 appearance */
-    if ([UITabBar respondsToSelector:@selector(appearance)])
+    /* iOS appearance */
+    if ([UITabBar respondsToSelector:@selector(appearance)]) {
         [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"customTabBarBackground.png"]];
+    }
     
-    if ([[UINavigationBar appearance] respondsToSelector:@selector(setBarTintColor:)]) {
+    if ([[UINavigationBar class] instancesRespondToSelector:@selector(setBarTintColor:)]) {
         [[UINavigationBar appearance] setBarTintColor:[Config currentConfig].toolbarColor];
     }
     
     [[UINavigationBar appearance] setTitleTextAttributes:
-     @{ UITextAttributeTextColor : [Config currentConfig].textColor }
-     ];
+        @{ UITextAttributeTextColor : [Config currentConfig].textColor }
+    ];
     [[UINavigationBar appearance] setTintColor:[Config currentConfig].buttonColor];
     
     

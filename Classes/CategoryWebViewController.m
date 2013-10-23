@@ -149,7 +149,7 @@
     if (UIDeviceOrientationIsLandscape(orientation)) {
         self.webView.frame = CGRectMake(0, onIOS7 ? 64 : showsTabBar ? 38 : 0, 703, (showsTabBar) ? 663 : 706);
     } else {
-        self.webView.frame = CGRectMake(0, onIOS7 ? 64 : showsTabBar ? 38 : 0, 770, (showsTabBar) ? 904 : 963);
+        self.webView.frame = CGRectMake(0, onIOS7 ? 64 : showsTabBar ? 38 : 0, 770, (showsTabBar) ? 919 : 963);
     }
 }
 
