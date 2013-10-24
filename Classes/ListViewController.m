@@ -15,14 +15,6 @@
 
 @implementation UINavigationBar (UINavigationBarCategory)
 
-// iOS 4.3
-- (void)drawRect:(CGRect)rect {
-    UIColor *color = [UIColor colorWithRed:39/255.0f green:41/255.0f blue:43/255.0f alpha:1.0f];
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColor(context, CGColorGetComponents([color CGColor]));
-    CGContextFillRect(context, rect);
-}
-
 @end
 
 @implementation ListViewController
@@ -144,6 +136,18 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+
+    // This is so bad, but we force a redraw only on iPad+Landscape to avoid an edgecases
+    if (UIDeviceOrientationIsLandscape(toInterfaceOrientation) && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad &&
+      SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+        UIView *view = [window.subviews objectAtIndex:0];
+        [view removeFromSuperview];
+        [window addSubview:view];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
