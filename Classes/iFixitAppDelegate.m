@@ -119,7 +119,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
         if (site) {
             [self loadSite:site];
-            [self showSiteSplash];
         }
         else {
             [self showDozukiSplash];
@@ -194,6 +193,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     UIViewController *root = nil;
     UINavigationController *nvc = nil;
     
+    // Only refresh our UIWindow on a very special edge case
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") && [UIDevice currentDevice].userInterfaceIdiom ==
+     UIUserInterfaceIdiomPad && [Config currentConfig].site == ConfigDozuki) {
+        [self refreshUIWindow];
+    }
 
     if (![iFixitAPI sharedInstance].user && [Config currentConfig].private) {
         // Private sites require immediate login.
@@ -234,8 +238,28 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
  
     self.window.rootViewController = root;
-    
-    [window makeKeyAndVisible];
+    [self.window makeKeyAndVisible];
+}
+
+/**
+ * NOTE: This is a dirty hack, only to be used with iOS 7 and only on iPad.
+ * Short Answer : iOS 7 on iPad will "gray" out all
+ * UIButtons/UINavigationButtons/UITabBarItems when selecting a nanosite.
+ *
+ * Long Answer : When we select a nanosite, we remove all current subviews
+ * from within the context of window.rootViewController.
+ * We then replace window.rootViewController with a new viewcontroller that
+ * corresponds to the nanosite selected. Think of it as a "reset" button.
+ *
+ * This works, but iOS 7 will apply a gray tint color to all buttons when it
+ * detects that a view is not the main view (for example when a modal pops up,
+ * the current view becomes the background and the modal becomes the foreground).
+ * Releasing the current window and creating a new window was the only way to
+ * guarantee that our UIWindow is in the foreground always.
+ */
+- (void)refreshUIWindow {
+    [self.window release];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 }
 
 - (void)refresh {
