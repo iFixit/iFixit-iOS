@@ -66,6 +66,7 @@
     UIImageView *siteLogoImageView = [[UIImageView alloc] init];
     siteLogoImageView.frame = CGRectMake(0, 0, 400, 300);
     siteLogoImageView.contentMode = UIViewContentModeScaleAspectFit;
+    siteLogoImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
     [siteLogoImageView setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
     
     self.siteLogo = siteLogoImageView;
@@ -196,10 +197,10 @@
 }
 - (void)configureDozukiTitleLabel {
     UILabel *l = [[UILabel alloc] init];
-    l.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    l.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
     l.textAlignment = UITextAlignmentCenter;
     l.backgroundColor = [UIColor clearColor];
-    l.font = [UIFont fontWithName:@"Helvetica-Bold" size:60.0];
+    l.font = [UIFont fontWithName:@"Helvetica-Bold" size:50.0];
     l.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8];
     l.shadowColor = [UIColor darkGrayColor];
     l.shadowOffset = CGSizeMake(0.0, 1.0);
@@ -240,20 +241,6 @@
     [self.backgroundView addSubview:self.browseInstructions];
 }
 
-
-- (void)repositionTitleObject:(id)object forOrientation:(UIInterfaceOrientation)orientation {
-    CGPoint center;
-    
-    if ([object isKindOfClass:[UILabel class]]) {
-        center = UIDeviceOrientationIsLandscape(orientation) ? CGPointMake(361.5f, 325) : CGPointMake(374, 480);
-        [object sizeToFit];
-    } else {
-        center = UIDeviceOrientationIsLandscape(orientation) ? CGPointMake(355.5f, 325) : CGPointMake(384, 480);
-    }
-    
-    [object setCenter:center];
-}
-
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
@@ -261,14 +248,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return YES;
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    
-    if (self.siteLogo)
-        [self repositionTitleObject:self.siteLogo forOrientation:toInterfaceOrientation];
-    if (self.dozukiTitleLabel)
-        [self repositionTitleObject:self.dozukiTitleLabel forOrientation:toInterfaceOrientation];
 }
 
 - (DMPGridViewCellStyle)styleForRow:(NSUInteger)row {
