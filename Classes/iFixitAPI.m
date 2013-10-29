@@ -33,7 +33,7 @@ static int volatile openConnections = 0;
 
 - (void)loadAppId {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"iFixit-App-Id" ofType: @"plist"];
-    self.appId = [NSDictionary dictionaryWithContentsOfFile:plistPath] ? [NSDictionary dictionaryWithContentsOfFile:plistPath][@"dozuki"] : nil;
+    self.appId = [NSDictionary dictionaryWithContentsOfFile:plistPath] ? [NSDictionary dictionaryWithContentsOfFile:plistPath][@"dozuki"] : @"";
 }
 
 - (void)saveSession {
