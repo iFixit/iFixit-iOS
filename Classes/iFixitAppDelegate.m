@@ -144,6 +144,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
      ];
     
     [[UINavigationBar appearance] setTintColor:[Config currentConfig].buttonColor];
+    [[UISearchBar appearance] setTintColor:[UIColor grayColor]];
 }
 
 - (void)showDozukiSplash {

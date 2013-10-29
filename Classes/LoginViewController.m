@@ -566,8 +566,11 @@
 
 - (void)sendLogin {
     if ([Config currentConfig].sso) {
-        SSOViewController *vc = [SSOViewController viewControllerForURL:[Config currentConfig].sso delegate:delegate];
-        [delegate presentModalViewController:vc animated:YES];
+        SSOViewController *vc = [SSOViewController viewControllerForURL:[Config currentConfig].sso delegate:self];
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentModalViewController:nvc animated:YES];
+        
+        [nvc release];
         return;
     }
 
@@ -579,6 +582,10 @@
                                    andPassword:passwordField.text
                                      forObject:self
                                   withSelector:@selector(loginResults:)];
+}
+
+- (void)refresh {
+    [self dismissViewAndRefreshDelegate];
 }
 
 - (void)sendRegister {
@@ -633,22 +640,26 @@
         [passwordVerifyField resignFirstResponder];
         [fullNameField resignFirstResponder];
         
-        // If we are dealing with the app delegate, we don't dismiss anything, just refresh it
-        if ([delegate isKindOfClass:[iFixitAppDelegate class]]) {
-            [delegate refresh];
-        } else if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-            [self.listViewController popViewControllerAnimated:YES];
-            [delegate refresh];
-        } else {
-            [self dismissViewControllerAnimated:YES completion:^(void){
-                [delegate refresh];
-            }];
-        }
+        [self dismissViewAndRefreshDelegate];
         
         // Analytics
         [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@", results[@"type"]] withError:NULL];
         [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@/%@", results[@"type"], [iFixitAPI sharedInstance].user.userid] withError:NULL];
         
+    }
+}
+
+- (void)dismissViewAndRefreshDelegate {
+    // If we are dealing with the app delegate, we don't dismiss anything, just refresh it
+    if ([delegate isKindOfClass:[iFixitAppDelegate class]]) {
+        [delegate refresh];
+    } else if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self.listViewController popViewControllerAnimated:YES];
+        [delegate refresh];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:^(void){
+            [delegate refresh];
+        }];
     }
 }
 

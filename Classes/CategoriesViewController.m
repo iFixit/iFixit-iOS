@@ -74,7 +74,6 @@
     
     // Placeholder text for searchbar
     self.searchBar.placeholder = NSLocalizedString(@"Search", nil);
-    self.searchBar.tintColor = [UIColor grayColor];
     
     // Make room for the toolbar
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0];

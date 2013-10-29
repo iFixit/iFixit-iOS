@@ -33,5 +33,6 @@
 - (void)showLoading;
 - (void)sendLogin;
 - (void)sendRegister;
+- (void)refresh;
 
 @end

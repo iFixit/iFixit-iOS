@@ -35,6 +35,11 @@
     return [vc autorelease];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    // Ensure we have a solid navigation bar
+    self.navigationController.navigationBar.translucent = NO;
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [super webViewDidFinishLoad:webView];
 
@@ -69,11 +74,11 @@
                                               otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
         [alert show];
         [alert release];
-    }
-    else {
-        [self dismissModalViewControllerAnimated:YES];
-        // The delegate is responsible for removing the login view.
-        [delegate refresh];
+    } else {
+        [self dismissViewControllerAnimated:NO completion:^(void) {
+            // The delegate is responsible for removing the login view.
+            [delegate refresh];
+        }];
     }
 }
 
