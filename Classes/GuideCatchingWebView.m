@@ -90,17 +90,34 @@
         
         // Open all other URLs with modal view.
         if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-            SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:[[request URL] absoluteString]];
+            id viewControllerToPresent = [self createWebViewControllerFromRequest:request];
+            
             if (!modalDelegate)
-                [delegate.window.rootViewController presentModalViewController:webViewController animated:YES];   
+                [delegate.window.rootViewController presentModalViewController:viewControllerToPresent animated:YES];
             else
-                [modalDelegate presentModalViewController:webViewController animated:YES];    
-            [webViewController release];
+                [modalDelegate presentModalViewController:viewControllerToPresent animated:YES];
+            
+            [viewControllerToPresent release];
             return NO;
         }
     }
     
 	return shouldStart;
+}
+
+- (id)createWebViewControllerFromRequest:(NSURLRequest *)request {
+    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:[[request URL] absoluteString]];
+
+    webViewController.showsDoneButton = YES;
+    // Wrap our custom webview controller in a navigation controller on iPhone
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
+        [webViewController release];
+        
+        return navigationController;
+    }
+    
+    return webViewController;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {

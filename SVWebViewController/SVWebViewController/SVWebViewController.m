@@ -196,6 +196,10 @@
         NSURL *searchURL = [NSURL URLWithString:self.urlString];
         [self.webView loadRequest:[NSURLRequest requestWithURL:searchURL]];
     }
+    
+    if (navBar) {
+        navBar.translucent = NO;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -298,16 +302,26 @@
 
 
 - (void)setupToolbar {
-	
+    UIBarButtonItem *doneButton;
+    
     if (!showsDoneButton) {
         navItem.leftBarButtonItem = nil;
     }
     else if (!navItem.leftBarButtonItem) {
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissController)];
+        doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissController)];
+        
         [navItem setLeftBarButtonItem:doneButton animated:YES];
         [doneButton release];
+
     }
     
+    if (!self.navigationItem.leftBarButtonItem) {
+        doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissController)];
+        [self.navigationItem setLeftBarButtonItem:doneButton animated:YES];
+        [doneButton release];
+
+    }
+
 	if(self.navigationController != nil)
 		self.navigationItem.title = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 	else
