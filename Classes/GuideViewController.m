@@ -62,6 +62,7 @@
     // view appears, this fixes orientation issues regarding
     // rotating after logging in.
     [self willRotateToInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation duration:0];
+    self.pageControl.hidden = YES;
 }
 
 - (void)viewDidLoad {
