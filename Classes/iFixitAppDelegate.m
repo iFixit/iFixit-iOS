@@ -217,16 +217,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         nvc.modalPresentationStyle = UIModalPresentationFormSheet;
         [vc release];
 
-        // We only need this button if on Dozuki App
-        if ([Config currentConfig].dozuki) {
-            UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
-            UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
-                                                                      target:self
-                                                                      action:@selector(showDozukiSplash)];
-            vc.navigationItem.leftBarButtonItem = button;
-            [button release];
-        }
-
         // iPad: display in form sheet
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
             root = [[[LoginBackgroundViewController alloc] init] autorelease];
