@@ -8,9 +8,7 @@
 
 @class User;
 
-@interface iFixitAPI : NSObject {
-    User *user;
-}
+@interface iFixitAPI : NSObject
 
 @property (nonatomic, retain) User *user;
 @property (nonatomic, retain) NSString *appId;
@@ -46,5 +44,8 @@
 
 // Authentication Handeling
 + (void)checkCredentialsForViewController:(id)viewController;
+
+// Utility
++ (NSInteger)getGuideIdFromUrl:(NSString*)url;
 
 @end

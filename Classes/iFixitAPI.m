@@ -32,8 +32,9 @@ static int volatile openConnections = 0;
 }
 
 - (void)loadAppId {
+    // look for the iFixit app id by default
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"iFixit-App-Id" ofType: @"plist"];
-    self.appId = [NSDictionary dictionaryWithContentsOfFile:plistPath] ? [NSDictionary dictionaryWithContentsOfFile:plistPath][@"dozuki"] : @"";
+    self.appId = [NSDictionary dictionaryWithContentsOfFile:plistPath] ? [NSDictionary dictionaryWithContentsOfFile:plistPath][@"ifixit"] : @"";
 }
 
 - (void)saveSession {
@@ -589,6 +590,29 @@ static int volatile openConnections = 0;
 
     // iFixitiOS/1.4 (43) | iPad; Mac OS X 10.5.7; en_GB
     self.userAgent = [NSString stringWithFormat:@"%@iOS/%@ (%@) | %@; %@ %@; %@", appName, developmentVersionNumber, marketingVersionNumber, deviceName, OSName, OSVersion, locale];
+}
+
+// Strip the guide id from url using regex
++ (NSInteger)getGuideIdFromUrl:(NSString*)url {
+    NSError *error = nil;
+    NSNumber *guideId = nil;
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(guide|teardown)/.+?/(\\d+)"
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:&error];
+    NSArray *matches = [regex matchesInString:url
+                                      options:0
+                                        range:NSMakeRange(0, url.length)];
+    if (matches.count) {
+        NSRange guideIdRange = [matches[0] rangeAtIndex:2];
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        guideId = [formatter numberFromString:[url substringWithRange:guideIdRange]];
+        
+        [formatter release];
+    }
+    
+
+    return [guideId integerValue];
 }
 
 @end

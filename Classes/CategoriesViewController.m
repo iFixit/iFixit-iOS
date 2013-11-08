@@ -19,6 +19,9 @@
 #import "GuideViewController.h"
 #import "CategoriesSingleton.h"
 #import "Reachability.h"
+#import "ZBarReaderViewController.h"
+#import "ZBarImageScanner.h"
+#import "Guide.h"
 
 @implementation CategoriesViewController
 
@@ -72,13 +75,11 @@
         }
     }
     
-    // Placeholder text for searchbar
-    self.searchBar.placeholder = NSLocalizedString(@"Search", nil);
+    // Configure our search bar
+    [self configureSearchBar];
     
     // Make room for the toolbar
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0];
-    
-    self.clearsSelectionOnViewWillAppear = NO;
     
     self.navigationItem.titleView.contentMode = UIViewContentModeScaleAspectFit;
     
@@ -94,6 +95,15 @@
     self.tableView.backgroundColor = [UIColor whiteColor];
 }
 
+- (void)configureSearchBar {
+    if ([Config currentConfig].scanner) {
+        self.searchBar.placeholder = NSLocalizedString(@"Search or Scan", nil);
+        self.scannerIcon.hidden = NO;
+    } else {
+        self.searchBar.placeholder = NSLocalizedString(@"Search", nil);
+        self.scannerIcon.hidden = YES;
+    }
+}
 
 - (void)displayBackToSitesButton {
     // Show the Dozuki sites select button if needed.
@@ -278,6 +288,8 @@
         // Disable the favorites button to avoid accidental presses
         self.listViewController.favoritesButton.enabled = NO;
     }
+
+    [self enableScannerView:YES];
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)theSearchBar {
@@ -300,6 +312,7 @@
         
         self.listViewController.favoritesButton.enabled = YES;
     }
+    [self enableScannerView:NO];
 }
 
 
@@ -355,6 +368,29 @@
     [self.view endEditing:YES];
 }
 
+- (void)enableScannerView:(BOOL)option {
+    // Bail early if we don't have the scanner enabled
+    if (![Config currentConfig].scanner) {
+        return;
+    }
+
+    [UIView transitionWithView:self.tableView
+                      duration:0.2
+                       options:UIViewAnimationOptionCurveEaseOut
+                    animations:^{
+                        self.tableView.transform = option ? CGAffineTransformMakeTranslation(0, 44) : CGAffineTransformIdentity;
+                    } completion:nil
+    ];
+    
+    [UIView transitionWithView:self.scannerIcon
+                      duration:option ? 0 : 0.4
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        self.scannerIcon.hidden = option;
+                    } completion:nil
+    ];
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [searchBar setShowsCancelButton:NO animated:NO];
     CGRect bounds = self.navigationController.view.bounds;
@@ -362,6 +398,7 @@
     self.navigationController.view.bounds = bounds;
     
     [self.view endEditing:YES];
+    
 }
 
 // Ensure that the view controller supports rotation and that the split view can therefore show in both portrait and landscape.
@@ -664,6 +701,71 @@
     // Donezo
     [self.tableView endUpdates];
 }
+- (IBAction)scannerViewTouched:(id)sender {
+    
+    ZBarReaderViewController *qrReader = [ZBarReaderViewController new];
+    qrReader.readerDelegate = self;
+    qrReader.supportedOrientationsMask = ZBarOrientationMaskAll;
+    
+    ZBarImageScanner *qrScanner = qrReader.scanner;
+    [qrScanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
+    
+    [self presentViewController:qrReader animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    self.imagePickerController = picker;
+    
+    // Get the results from the reader
+    id<NSFastEnumeration> results = info[ZBarReaderControllerResults];
+    
+    ZBarSymbol *symbol = nil;
+    
+    for (symbol in results) {
+        // We only care about the first symbol we find
+        break;
+    }
+    
+    NSInteger guideId = [iFixitAPI getGuideIdFromUrl:symbol.data];
+    
+    if (guideId) {
+        [[iFixitAPI sharedInstance] getGuide:guideId forObject:self withSelector:@selector(gotGuide:)];
+    } else {
+        [self.imagePickerController dismissViewControllerAnimated:YES completion:^{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                                message:NSLocalizedString(@"Not a valid QR Code", nil)
+                                                               delegate:self
+                                                      cancelButtonTitle:NSLocalizedString(@"Okay", nil)
+                                                      otherButtonTitles:nil, nil];
+            [alertView show];
+            [alertView release];
+        }];
+    }
+}
+
+- (void)gotGuide:(Guide*)guide {
+    if (guide.guideid) {
+        GuideViewController *guideViewController = [[GuideViewController alloc] initWithGuide:guide];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:guideViewController];
+        
+        [self.imagePickerController dismissViewControllerAnimated:YES completion:^{
+            [self presentModalViewController:navigationController animated:YES];
+        }];
+        
+        [guideViewController release];
+        [navigationController release];
+    } else {
+        [self.imagePickerController dismissViewControllerAnimated:YES completion:^{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                                message:NSLocalizedString(@"Guide not found", nil)
+                                                               delegate:self
+                                                      cancelButtonTitle:NSLocalizedString(@"Okay", nil)
+                                                      otherButtonTitles:nil, nil];
+            [alertView show];
+            [alertView release];
+        }];
+    }
+}
 
 #pragma mark -
 #pragma mark Memory management
@@ -675,6 +777,9 @@
 }
 
 - (void)viewDidUnload {
+    [self setScannerBarView:nil];
+    [self setScannerIcon:nil];
+    [self setTableView:nil];
     [super viewDidUnload];
     self.searchBar = nil;
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
@@ -682,6 +787,8 @@
 }
 
 - (void)dealloc {
+    [_scannerBarView release];
+    [_scannerIcon release];
     [searchBar release];
     [searchResults release];
     [self.listViewController release];
@@ -689,6 +796,7 @@
     [self.categoryTypes release];
     [self.categoryResults release];
     
+    [_tableView release];
     [super dealloc];
 }
 

@@ -14,6 +14,7 @@
 		2804200B108E984D000629CD /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28042008108E984D000629CD /* CategoriesViewController.m */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
+		639994C77401475EB4A8AE36 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40331C958D2F4747A5B6D568 /* libPods.a */; };
 		9C47FB2E17F623D40074CEBE /* icon29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB1F17F623D40074CEBE /* icon29.png */; };
 		9C47FB2F17F623D40074CEBE /* icon40.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2017F623D40074CEBE /* icon40.png */; };
 		9C47FB3017F623D40074CEBE /* icon50.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2117F623D40074CEBE /* icon50.png */; };
@@ -39,6 +40,12 @@
 		9CCF9E2D17D1F55E00B0B0BB /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E1717D1F44D00B0B0BB /* ASIInputStream.m */; };
 		9CCF9E2F17D1F55E00B0B0BB /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E1917D1F44D00B0B0BB /* ASINetworkQueue.m */; };
 		9CCF9E3217D1F55E00B0B0BB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E1C17D1F48100B0B0BB /* Reachability.m */; };
+		9CD0B39D182779EF0023EB5F /* qr-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD0B39C182779EF0023EB5F /* qr-icon.png */; };
+		9CD0B3C218277EED0023EB5F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD0B3C118277EED0023EB5F /* AVFoundation.framework */; };
+		9CD0B3C418277EFF0023EB5F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD0B3C318277EFF0023EB5F /* CoreMedia.framework */; };
+		9CD0B3C618277F120023EB5F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD0B3C518277F120023EB5F /* CoreAudio.framework */; };
+		9CD0B3C818277F260023EB5F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD0B3C718277F260023EB5F /* CoreVideo.framework */; };
+		9CD0B3CA18277F3D0023EB5F /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD0B3C918277F3D0023EB5F /* libiconv.dylib */; };
 		9CD8330617D7FE3C007F32F4 /* mjtrim_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD8330017D7FE3C007F32F4 /* mjtrim_logo_transparent.png */; };
 		9CD8330717D7FE3C007F32F4 /* mjtrim_logo_transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD8330117D7FE3C007F32F4 /* mjtrim_logo_transparent@2x.png */; };
 		9CD8330817D7FE3C007F32F4 /* detailViewTextMjtrim@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD8330217D7FE3C007F32F4 /* detailViewTextMjtrim@2x.png */; };
@@ -264,6 +271,8 @@
 		28A0AAE50D9B0CCF005BE974 /* iFixit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iFixit_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		40331C958D2F4747A5B6D568 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		70CAF29B9E394A3783A9D59C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C47FB1F17F623D40074CEBE /* icon29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon29.png; sourceTree = "<group>"; };
 		9C47FB2017F623D40074CEBE /* icon40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon40.png; sourceTree = "<group>"; };
@@ -303,6 +312,12 @@
 		9CCF9E1A17D1F44D00B0B0BB /* ASIProgressDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASIProgressDelegate.h; path = "asi-http-request/Classes/ASIProgressDelegate.h"; sourceTree = SOURCE_ROOT; };
 		9CCF9E1B17D1F48100B0B0BB /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "asi-http-request/External/Reachability/Reachability.h"; sourceTree = SOURCE_ROOT; };
 		9CCF9E1C17D1F48100B0B0BB /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "asi-http-request/External/Reachability/Reachability.m"; sourceTree = SOURCE_ROOT; };
+		9CD0B39C182779EF0023EB5F /* qr-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qr-icon.png"; sourceTree = "<group>"; };
+		9CD0B3C118277EED0023EB5F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9CD0B3C318277EFF0023EB5F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		9CD0B3C518277F120023EB5F /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		9CD0B3C718277F260023EB5F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		9CD0B3C918277F3D0023EB5F /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		9CD8330017D7FE3C007F32F4 /* mjtrim_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mjtrim_logo_transparent.png; sourceTree = "<group>"; };
 		9CD8330117D7FE3C007F32F4 /* mjtrim_logo_transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mjtrim_logo_transparent@2x.png"; sourceTree = "<group>"; };
 		9CD8330217D7FE3C007F32F4 /* detailViewTextMjtrim@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detailViewTextMjtrim@2x.png"; sourceTree = "<group>"; };
@@ -594,6 +609,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CD0B3CA18277F3D0023EB5F /* libiconv.dylib in Frameworks */,
+				9CD0B3C818277F260023EB5F /* CoreVideo.framework in Frameworks */,
+				9CD0B3C618277F120023EB5F /* CoreAudio.framework in Frameworks */,
+				9CD0B3C418277EFF0023EB5F /* CoreMedia.framework in Frameworks */,
+				9CD0B3C218277EED0023EB5F /* AVFoundation.framework in Frameworks */,
 				DACE7FFB16572C710013FFFD /* MediaPlayer.framework in Frameworks */,
 				DAC0C1A3146B3F6F00EF42DC /* QuartzCore.framework in Frameworks */,
 				DAAAC7481433E03B00CB90AF /* libsqlite3.dylib in Frameworks */,
@@ -609,6 +629,7 @@
 				DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */,
 				DAAAC7461433DF7600CB90AF /* libGoogleAnalytics.a in Frameworks */,
 				AB10C28E17A7CF0E00684B41 /* libTestFlight.a in Frameworks */,
+				639994C77401475EB4A8AE36 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +677,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				70CAF29B9E394A3783A9D59C /* Pods.xcconfig */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -716,6 +738,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9CD0B3C918277F3D0023EB5F /* libiconv.dylib */,
+				9CD0B3C718277F260023EB5F /* CoreVideo.framework */,
+				9CD0B3C518277F120023EB5F /* CoreAudio.framework */,
+				9CD0B3C318277EFF0023EB5F /* CoreMedia.framework */,
+				9CD0B3C118277EED0023EB5F /* AVFoundation.framework */,
 				DACE7FFA16572C710013FFFD /* MediaPlayer.framework */,
 				DAC0C1A2146B3F6F00EF42DC /* QuartzCore.framework */,
 				DA8860E41427DE590030F52C /* MessageUI.framework */,
@@ -729,6 +756,7 @@
 				DAAAC7471433E03B00CB90AF /* libsqlite3.dylib */,
 				DAE4242013C3DE6C00F20EEE /* libz.dylib */,
 				DA0A0C15138B07DA0027721E /* libxml2.2.dylib */,
+				40331C958D2F4747A5B6D568 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -842,6 +870,7 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9CD0B39C182779EF0023EB5F /* qr-icon.png */,
 				9CD8330017D7FE3C007F32F4 /* mjtrim_logo_transparent.png */,
 				9CD8330117D7FE3C007F32F4 /* mjtrim_logo_transparent@2x.png */,
 				9CD8330217D7FE3C007F32F4 /* detailViewTextMjtrim@2x.png */,
@@ -1244,9 +1273,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iFixit" */;
 			buildPhases = (
+				6DAA79E961574847B3059BB7 /* Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				58371555D0BB4407AA5E5015 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1264,6 +1295,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = G5Y57M9E28;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iFixit" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1404,6 +1440,7 @@
 				ABC63D5616CF16140041A995 /* logo_zeal.png in Resources */,
 				ABE472431746E0610002F3D6 /* Localizable.strings in Resources */,
 				ABDB16C51756AE2D00053573 /* CategoryWebViewController.xib in Resources */,
+				9CD0B39D182779EF0023EB5F /* qr-icon.png in Resources */,
 				ABFA359C175E6D19000908E8 /* UINavigationBarDefaultBack.png in Resources */,
 				AB4926A4175FF6200092E4B6 /* category_more_info_ipad.css in Resources */,
 				ABE38C9B1773B9AC00777F60 /* CategoryTabBarViewController.xib in Resources */,
@@ -1454,6 +1491,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		58371555D0BB4407AA5E5015 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6DAA79E961574847B3059BB7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -1553,6 +1623,7 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70CAF29B9E394A3783A9D59C /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
@@ -1560,7 +1631,7 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1573,7 +1644,10 @@
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)/**",
+					"$(SDKROOT)/usr/include/libxml2/**",
+				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
@@ -1592,6 +1666,7 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70CAF29B9E394A3783A9D59C /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
@@ -1599,7 +1674,7 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1610,7 +1685,10 @@
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)/**",
+					"$(SDKROOT)/usr/include/libxml2/**",
+				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
@@ -1692,6 +1770,7 @@
 		};
 		C1523E29120E382D007E8DD8 /* Ad-Hoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70CAF29B9E394A3783A9D59C /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
@@ -1699,7 +1778,7 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1712,7 +1791,10 @@
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)/**",
+					"$(SDKROOT)/usr/include/libxml2/**",
+				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
