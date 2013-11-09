@@ -157,6 +157,11 @@
             self.siteLogo.image = [UIImage imageNamed:@"mjtrim_logo_transparent.png"];
             [self.backgroundView addSubview:self.siteLogo];
             break;
+        case ConfigAccustream:
+            self.siteLogo.image = [UIImage imageNamed:@"accustream_logo_transparent.png"];
+            self.siteLogo.frame = CGRectMake(-60, 140, 654, 226);
+            [self.backgroundView addSubview:self.siteLogo];
+            break;
         /*EAOiPadSiteLogo*/
     }
     

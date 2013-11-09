@@ -94,6 +94,9 @@
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);
                 headerImageLogo.image = image;
                 break;
+            case ConfigAccustream:
+                headerImageLogo.image = [UIImage imageNamed:@"accustream_logo_transparent.png"];
+                break;
             /*EAOGuideIntro*/
             case ConfigDozuki:
                 [self configureIntroTitleLogo];

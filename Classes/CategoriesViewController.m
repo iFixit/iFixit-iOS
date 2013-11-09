@@ -71,6 +71,11 @@
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
+            case ConfigAccustream:
+                titleImage = [UIImage imageNamed:@"accustream_logo_transparent.png"];
+                imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+                self.navigationItem.titleView = imageTitle;
+                break;
             /*EAOTitle*/
         }
     }
@@ -238,6 +243,12 @@
                 frame.size.height = 24;
                 self.navigationItem.titleView.frame = frame;
                 break;
+            case ConfigAccustream:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 95.0;
+                frame.size.height = 44.0;
+                self.navigationItem.titleView.frame = frame;
+                break;
             /*EAOLandscapeResize*/
             default:
                 frame = self.navigationItem.titleView.frame;
@@ -260,6 +271,12 @@
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 137;
                 frame.size.height = 35;
+                self.navigationItem.titleView.frame = frame;
+                break;
+            case ConfigAccustream:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 157.0;
+                frame.size.height = 55.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
             /*EAOPortraitResize*/

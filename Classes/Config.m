@@ -73,6 +73,15 @@ static Config *currentConfig = nil;
             self.store = @"http://www.mjtrim.com/";
             self.private = NO;
             break;
+        case ConfigAccustream:
+            self.host = @"accustream.dozuki.com";
+            self.baseURL = @"http://accustream.dozuki.com";
+            answersEnabled = NO;
+            collectionsEnabled = NO;
+            self.store = @"http://www.accustream.com/waterjet-parts.html";
+            self.private = NO;
+            self.scanner = YES;
+            break;
         /*EAOOptions*/
         default:
             self.host = nil;

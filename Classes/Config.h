@@ -14,6 +14,7 @@ enum {
     ConfigDozuki,
     ConfigZeal,
     ConfigMjtrim,
+    ConfigAccustream,
     /*EAOConfig*/
 };
 

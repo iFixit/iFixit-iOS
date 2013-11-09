@@ -54,9 +54,12 @@
         self.navigationBar.translucent = NO;
         self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
     } else {
-        self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            self.navigationBar.translucent = NO;
+        }
+
         if ([Config currentConfig].buttonColor) {
-            self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
+            self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
         }
     }
     
