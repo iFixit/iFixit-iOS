@@ -43,6 +43,12 @@ BOOL onTablet, initialLoad, showTabBar;
     [super viewDidLoad];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    if (self.popOverController.isPopoverVisible) {
+        [self.popOverController dismissPopoverAnimated:YES];
+    }
+}
+
 - (void)configureStateForInitialLoad {
     if (onTablet) {
         [self hideBrowseInstructions:YES];

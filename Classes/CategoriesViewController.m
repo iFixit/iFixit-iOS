@@ -710,24 +710,27 @@
     ZBarImageScanner *qrScanner = qrReader.scanner;
     [qrScanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
     
-    [self presentViewController:qrReader animated:YES completion:nil];
+    iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
+    [appDelegate.window.rootViewController presentModalViewController:qrReader animated:YES];
+
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+
     self.imagePickerController = picker;
-    
+
     // Get the results from the reader
     id<NSFastEnumeration> results = info[ZBarReaderControllerResults];
-    
+
     ZBarSymbol *symbol = nil;
-    
+
     for (symbol in results) {
         // We only care about the first symbol we find
         break;
     }
-    
+
     NSInteger guideId = [iFixitAPI getGuideIdFromUrl:symbol.data];
-    
+
     if (guideId) {
         [[iFixitAPI sharedInstance] getGuide:guideId forObject:self withSelector:@selector(gotGuide:)];
     } else {
@@ -747,11 +750,12 @@
     if (guide.guideid) {
         GuideViewController *guideViewController = [[GuideViewController alloc] initWithGuide:guide];
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:guideViewController];
-        
+
         [self.imagePickerController dismissViewControllerAnimated:YES completion:^{
-            [self presentModalViewController:navigationController animated:YES];
+            iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
+            [appDelegate.window.rootViewController presentModalViewController:navigationController animated:YES];
         }];
-        
+
         [guideViewController release];
         [navigationController release];
     } else {
