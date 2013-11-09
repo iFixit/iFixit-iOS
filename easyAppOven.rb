@@ -17,7 +17,8 @@
 #####
 
 puts "Easy App Oven!"
-configName = nanoSite = appName = configPrivate = answersEnabled = store = ''
+configName = scanner = nanoSite = appName = configPrivate = answersEnabled =
+ store = ''
 
 # Ask the user for nanosite
 until nanoSite.match(/^[a-z-]+/)
@@ -59,6 +60,14 @@ end
 
 store = store.eql?('n') ? 'nil' : store
 
+# Ask the user if the nanosite has the QR Scanner feature enabled
+until scanner.match(/[y|n]/)
+   puts "\nMobile scanner available? (y/n)"
+   scanner = gets.chomp
+end
+
+scanner = configPrivate.eql?('y') ? 'YES' : 'NO'
+
 ####
 # Each object in the recipe's array is a 'clump' of code changes
 # :file == Path to Class file
@@ -94,6 +103,7 @@ recipes = [
                      "\s" * 12 + "collectionsEnabled = NO;\n" +
                      "\s" * 12 + "self.store = @\"#{store}\";\n" +
                      "\s" * 12 + "self.private = #{configPrivate};\n" +
+                     "\s" * 12 + "self.scanner = #{scanner};\n" +
                      "\s" * 12 + "break;\n" + "\s" * 8 + "/*EAOOptions*/" },
 
    # Add title image logo and resizing logic for title image logo
