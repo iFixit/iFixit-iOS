@@ -96,7 +96,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [Config currentConfig].site = ConfigIFixit;
     
     /* Track. */
-    [TestFlight takeOff:@"ee879878-6696-470b-af65-61548b796d9f"];
+    [self setupTestflight];
     [self setupAnalytics];
     
     /* iOS appearance */
@@ -128,6 +128,14 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
     
     return YES;
+}
+
+- (void)setupTestflight {
+    if ([Config currentConfig].site == ConfigIFixit) {
+        [TestFlight takeOff:@"ee879878-6696-470b-af65-61548b796d9f"];
+    } else if ([Config currentConfig].site == ConfigDozuki) {
+        [TestFlight takeOff:@"42858e8b-ec98-4e21-9bb7-c49f27732608"];
+    }
 }
 
 - (void)configureAppearance {
@@ -208,16 +216,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         nvc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];        
         nvc.modalPresentationStyle = UIModalPresentationFormSheet;
         [vc release];
-
-        // We only need this button if on Dozuki App
-        if ([Config currentConfig].dozuki) {
-            UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
-            UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
-                                                                      target:self
-                                                                      action:@selector(showDozukiSplash)];
-            vc.navigationItem.leftBarButtonItem = button;
-            [button release];
-        }
 
         // iPad: display in form sheet
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {

@@ -143,7 +143,6 @@
 		DA275DA915104C4A00A8A09C /* detailViewArrowLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DA715104C4A00A8A09C /* detailViewArrowLight@2x.png */; };
 		DA275DAC15104C6200A8A09C /* detailViewFist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DAA15104C6200A8A09C /* detailViewFist@2x.png */; };
 		DA275DAD15104C6200A8A09C /* detailViewText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DAB15104C6200A8A09C /* detailViewText@2x.png */; };
-		DA275DB115104C8A00A8A09C /* dozukiSplash@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DB015104C8A00A8A09C /* dozukiSplash@2x~ipad.png */; };
 		DA275DB615104CA400A8A09C /* logo_make@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DB315104CA400A8A09C /* logo_make@2x.png */; };
 		DA275DB715104CA400A8A09C /* make_logo_transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DB415104CA400A8A09C /* make_logo_transparent@2x.png */; };
 		DA275DB915104CB400A8A09C /* noGuides@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA275DB815104CB400A8A09C /* noGuides@2x.png */; };
@@ -201,8 +200,6 @@
 		DA8860E51427DE590030F52C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA8860E41427DE590030F52C /* MessageUI.framework */; };
 		DA8F60061469B29700482D29 /* DMPGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8F60021469B29700482D29 /* DMPGridViewCell.m */; };
 		DA8F60071469B29700482D29 /* DMPGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8F60041469B29700482D29 /* DMPGridViewController.m */; };
-		DA994894142ABA7D00E4167D /* dozukiSplash.png in Resources */ = {isa = PBXBuildFile; fileRef = DA994893142ABA7D00E4167D /* dozukiSplash.png */; };
-		DA994896142ABB7700E4167D /* dozukiSplash~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA994895142ABB7700E4167D /* dozukiSplash~ipad.png */; };
 		DA9948AA142AC55D00E4167D /* DozukiSplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */; };
 		DA9B290714E88E650093273B /* SSOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9B290614E88E640093273B /* SSOViewController.m */; };
 		DAA10465147C3EEC00DED9DF /* concreteBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA10464147C3EEC00DED9DF /* concreteBackgroundWhite.png */; };
@@ -251,7 +248,6 @@
 		DAD2EBA1151671FD0053CC40 /* tabBarItemPricetag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD2EB9D151671FD0053CC40 /* tabBarItemPricetag@2x.png */; };
 		DAD2EBA2151671FD0053CC40 /* tabBarItemWrench@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD2EB9E151671FD0053CC40 /* tabBarItemWrench@2x.png */; };
 		DAE4242113C3DE6C00F20EEE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE4242013C3DE6C00F20EEE /* libz.dylib */; };
-		DAE7D7C9142AA12E00C07529 /* dozukiSplash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE7D7C8142AA12E00C07529 /* dozukiSplash@2x.png */; };
 		DAF0C6D3134E62BF003B4DF6 /* GuideBookmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.m */; };
 		DAF3AF571422897900913238 /* iPhoneDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF551422897900913238 /* iPhoneDeviceViewController.m */; };
 		DAF3AF581422897900913238 /* iPhoneDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */; };
@@ -447,7 +443,6 @@
 		DA275DA715104C4A00A8A09C /* detailViewArrowLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "detailViewArrowLight@2x.png"; path = "Graphics/detailViewArrowLight@2x.png"; sourceTree = "<group>"; };
 		DA275DAA15104C6200A8A09C /* detailViewFist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "detailViewFist@2x.png"; path = "Graphics/detailViewFist@2x.png"; sourceTree = "<group>"; };
 		DA275DAB15104C6200A8A09C /* detailViewText@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "detailViewText@2x.png"; path = "Graphics/detailViewText@2x.png"; sourceTree = "<group>"; };
-		DA275DB015104C8A00A8A09C /* dozukiSplash@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiSplash@2x~ipad.png"; path = "Graphics/dozukiSplash@2x~ipad.png"; sourceTree = "<group>"; };
 		DA275DB315104CA400A8A09C /* logo_make@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo_make@2x.png"; path = "Graphics/logo_make@2x.png"; sourceTree = "<group>"; };
 		DA275DB415104CA400A8A09C /* make_logo_transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "make_logo_transparent@2x.png"; path = "Graphics/make_logo_transparent@2x.png"; sourceTree = "<group>"; };
 		DA275DB815104CB400A8A09C /* noGuides@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noGuides@2x.png"; path = "Graphics/noGuides@2x.png"; sourceTree = "<group>"; };
@@ -528,8 +523,6 @@
 		DA8F60041469B29700482D29 /* DMPGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = DMPGridViewController.m; path = GridViewController/DMPGridViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DA8F60051469B29700482D29 /* DMPGridViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMPGridViewDelegate.h; path = GridViewController/DMPGridViewDelegate.h; sourceTree = "<group>"; };
 		DA8F60081469F8E600482D29 /* PastFeaturesViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastFeaturesViewDelegate.h; sourceTree = "<group>"; };
-		DA994893142ABA7D00E4167D /* dozukiSplash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dozukiSplash.png; path = Graphics/dozukiSplash.png; sourceTree = "<group>"; };
-		DA994895142ABB7700E4167D /* dozukiSplash~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiSplash~ipad.png"; path = "Graphics/dozukiSplash~ipad.png"; sourceTree = "<group>"; };
 		DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DozukiSplashView.xib; sourceTree = "<group>"; };
 		DA9B290514E88E640093273B /* SSOViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSOViewController.h; sourceTree = "<group>"; };
 		DA9B290614E88E640093273B /* SSOViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSOViewController.m; sourceTree = "<group>"; };
@@ -592,7 +585,6 @@
 		DAD2EB9E151671FD0053CC40 /* tabBarItemWrench@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabBarItemWrench@2x.png"; path = "Graphics/tabBarItemWrench@2x.png"; sourceTree = "<group>"; };
 		DAD77267138EAC4F00D107B8 /* LoginViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewControllerDelegate.h; sourceTree = "<group>"; };
 		DAE4242013C3DE6C00F20EEE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		DAE7D7C8142AA12E00C07529 /* dozukiSplash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dozukiSplash@2x.png"; path = "Graphics/dozukiSplash@2x.png"; sourceTree = "<group>"; };
 		DAF0C6D1134E62BF003B4DF6 /* GuideBookmarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideBookmarks.h; sourceTree = "<group>"; };
 		DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideBookmarks.m; sourceTree = "<group>"; };
 		DAF3AF541422897900913238 /* iPhoneDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneDeviceViewController.h; sourceTree = "<group>"; };
@@ -1125,10 +1117,6 @@
 				DA0877C5142D4EAB00954482 /* vignette~ipad.png */,
 				AB3C1774162718AD00323A1E /* dozukiLogo.png */,
 				AB3C1775162718AD00323A1E /* dozukiLogo@2x.png */,
-				DA994895142ABB7700E4167D /* dozukiSplash~ipad.png */,
-				DA275DB015104C8A00A8A09C /* dozukiSplash@2x~ipad.png */,
-				DA994893142ABA7D00E4167D /* dozukiSplash.png */,
-				DAE7D7C8142AA12E00C07529 /* dozukiSplash@2x.png */,
 			);
 			name = "Dozuki Splash";
 			sourceTree = "<group>";
@@ -1371,9 +1359,6 @@
 				DAC26874140842B300752982 /* backtosites@2x.png in Resources */,
 				DAF3AF581422897900913238 /* iPhoneDeviceViewController.xib in Resources */,
 				DA8860E21427DD490030F52C /* SVWebViewController.bundle in Resources */,
-				DAE7D7C9142AA12E00C07529 /* dozukiSplash@2x.png in Resources */,
-				DA994894142ABA7D00E4167D /* dozukiSplash.png in Resources */,
-				DA994896142ABB7700E4167D /* dozukiSplash~ipad.png in Resources */,
 				DA9948AA142AC55D00E4167D /* DozukiSplashView.xib in Resources */,
 				9C47FB3117F623D40074CEBE /* icon57.png in Resources */,
 				DA0877C3142D4BBB00954482 /* vignette.png in Resources */,
@@ -1418,7 +1403,6 @@
 				DA275DA915104C4A00A8A09C /* detailViewArrowLight@2x.png in Resources */,
 				DA275DAC15104C6200A8A09C /* detailViewFist@2x.png in Resources */,
 				DA275DAD15104C6200A8A09C /* detailViewText@2x.png in Resources */,
-				DA275DB115104C8A00A8A09C /* dozukiSplash@2x~ipad.png in Resources */,
 				DA275DB615104CA400A8A09C /* logo_make@2x.png in Resources */,
 				DA275DB715104CA400A8A09C /* make_logo_transparent@2x.png in Resources */,
 				DA275DB915104CB400A8A09C /* noGuides@2x.png in Resources */,

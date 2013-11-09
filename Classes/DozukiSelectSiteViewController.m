@@ -191,16 +191,6 @@ static NSMutableArray *prioritySites = nil;
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
     [searchBar setShowsCancelButton:YES animated:YES];  
-    
-    // Animate the table up.
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        [UIView beginAnimations:@"showSearch" context:nil];
-        [UIView setAnimationDuration:0.3];
-        CGRect bounds = self.navigationController.view.bounds;
-        bounds.origin.y = 44;
-        self.navigationController.view.bounds = bounds;
-        [UIView commitAnimations];
-    }
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)theSearchBar {
