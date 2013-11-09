@@ -66,7 +66,7 @@ until scanner.match(/[y|n]/)
    scanner = gets.chomp
 end
 
-scanner = configPrivate.eql?('y') ? 'YES' : 'NO'
+scanner = scanner.eql?('y') ? 'YES' : 'NO'
 
 ####
 # Each object in the recipe's array is a 'clump' of code changes
@@ -145,7 +145,7 @@ recipes = [
                      "\s" * 3 + "sed -i '.bak' -e 's/>ifixit</>#{nanoSite}</g' iFixit-Info.plist\n" +
                      "\s" * 3 + "sed -i '.bak' -e 's/\\[Config currentConfig\\].dozuki = YES;/\\[Config currentConfig\\].dozuki = NO;/' Classes/iFixitAppDelegate.m\n" +
                      "\s" * 3 + "sed -i '.bak' -e 's/\\[Config currentConfig\\].site = ConfigIFixit;/\\[Config currentConfig\\].site = #{configName};/' Classes/iFixitAppDelegate.m\n" +
-                     "\s" * 3 + "sed -i '.bak' -e 's/ifixit/#{nanosite}/g' Classes/iFixitAPI.m\n" +
+                     "\s" * 3 + "sed -i '.bak' -e 's/ifixit/#{nanoSite}/g' Classes/iFixitAPI.m\n" +
                      "#EAOPlist"}
 ]
 
