@@ -237,9 +237,13 @@
     l.shadowColor = [UIColor darkGrayColor];
     l.shadowOffset = CGSizeMake(0.0, 1.0);
     l.numberOfLines = 0;
-    l.text = [Config currentConfig].dozuki ?
-                NSLocalizedString(@"Looking for Guides? Browse them here.", nil) :
-                NSLocalizedString(@"Looking for Guides? Browse thousands of them here.", nil);
+    if ([Config currentConfig].site == ConfigAccustream) {
+        l.text = NSLocalizedString(@"Welcome to our 24/7 support app, below you will find an assortment of how-to guides that will lead you step by step through the assembly of various HyPrecision, Accustream, and OEM parts", nil);
+    } else {
+        l.text = [Config currentConfig].dozuki ?
+        NSLocalizedString(@"Looking for Guides? Browse them here.", nil) :
+        NSLocalizedString(@"Looking for Guides? Browse thousands of them here.", nil);
+    }
     [l sizeToFit];
     
     self.browseInstructions = l;
