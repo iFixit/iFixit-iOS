@@ -23,7 +23,7 @@
 - (void)getCategoriesForObject:(id)object withSelector:(SEL)selector;
 - (void)getGuides:(NSString *)type forObject:(id)object withSelector:(SEL)selector;
 - (void)getGuidesByIds:(NSArray *)guideids forObject:(id)object withSelector:(SEL)selector;
-- (void)getSearchResults:(NSString *)search forObject:(id)object withSelector:(SEL)selector;
+- (void)getSearchResults:(NSString *)search withFilter:(NSString *)filter forObject:(id)object withSelector:(SEL)selector;
 - (void)getCategory:(NSString *)category forObject:(id)object withSelector:(SEL)selector;
 - (void)getSiteInfoForObject:(id)object withSelector:(SEL)selector;
 

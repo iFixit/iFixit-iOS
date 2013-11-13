@@ -47,7 +47,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     // Create a reference to the navigation controller
     self.listViewController = (ListViewController*)self.navigationController;
     
@@ -80,6 +79,8 @@
     
     // Make room for the toolbar
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0];
+    
+//    self.clearsSelectionOnViewWillAppear = NO;
     
     self.navigationItem.titleView.contentMode = UIViewContentModeScaleAspectFit;
     
@@ -298,7 +299,7 @@
         noResults = NO;
         [self.tableView reloadData];
     }
-    
+
     [searchBar setShowsCancelButton:NO animated:YES];    
     
     // Animate the table back down.
@@ -312,16 +313,32 @@
         
         self.listViewController.favoritesButton.enabled = YES;
     }
+
     [self enableScannerView:NO];
 }
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)theSearchBar {
+    searchBar.text = @"";
+    noResults = NO;
+    [self.view endEditing:YES];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
+    NSString *filter = self.searchBar.selectedScopeButtonIndex == 0 ? @"guide,teardown" : @"category";
+    
+    if (self.searchBar.text.length) {
+        [[iFixitAPI sharedInstance] getSearchResults:self.searchBar.text withFilter:filter forObject:self withSelector:@selector(gotSearchResults:)];
+    }
+}
 
 - (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     
     // Let the user input text if they are under the char limit or trying to delete text
     return (searchBar.text.length <= 128 || [text isEqualToString:@""]);
 }
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    NSString *filter = (searchBar.selectedScopeButtonIndex == 0) ? @"guide,teardown" : @"category";
     
     if ([searchText isEqual:@""]) {
         searching = NO;
@@ -333,27 +350,20 @@
     
     if (!searching) {
         searching = YES;
-        [self.tableView reloadData];    
     }
     
-    [[iFixitAPI sharedInstance] getSearchResults:searchText forObject:self withSelector:@selector(gotSearchResults:)];
+    [[iFixitAPI sharedInstance] getSearchResults:searchText withFilter:filter forObject:self withSelector:@selector(gotSearchResults:)];
 }
 
 
 - (void)gotSearchResults:(NSDictionary *)results {
-    if ([[results objectForKey:@"search"] isEqual:searchBar.text]) {
-        
+    NSLog(@"results are: %@", results);
+    NSLog(@"search text is: %@", self.searchBar.text);
+    
+    if ([results[@"search"] isEqualToString:self.searchBar.text]) {
         self.searchResults = [results objectForKey:@"results"];
-        noResults = [searchResults count] == 0;
-        
         [self.tableView reloadData];
     }
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)theSearchBar {
-    searchBar.text = @"";
-    noResults = NO;
-    [self.view endEditing:YES];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
@@ -369,16 +379,12 @@
 }
 
 - (void)enableScannerView:(BOOL)option {
-    // Bail early if we don't have the scanner enabled
-    if (![Config currentConfig].scanner) {
-        return;
-    }
 
     [UIView transitionWithView:self.tableView
                       duration:0.2
                        options:UIViewAnimationOptionCurveEaseOut
                     animations:^{
-                        self.tableView.transform = option ? CGAffineTransformMakeTranslation(0, 44) : CGAffineTransformIdentity;
+                        self.tableView.transform = option ? CGAffineTransformMakeTranslation(0, [Config currentConfig].scanner ? 88 : 44) : CGAffineTransformIdentity;
                     } completion:nil
     ];
     
@@ -398,7 +404,6 @@
     self.navigationController.view.bounds = bounds;
     
     [self.view endEditing:YES];
-    
 }
 
 // Ensure that the view controller supports rotation and that the split view can therefore show in both portrait and landscape.
@@ -408,17 +413,18 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     // Make room for the toolbar
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad || UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
-        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 60, 0);
-    }
+//    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad || UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
+//        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
+//        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 60, 0);
+//    }
 
     // Reset the searching view offset to prevent rotating weirdness.
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        CGRect bounds = self.navigationController.view.bounds;
-        bounds.origin.y = 0.0;
-        self.navigationController.view.bounds = bounds;
-    }
+//    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+//        CGRect bounds = self.navigationController.view.bounds;
+//        bounds.origin.y = 0.0;
+//        self.navigationController.view.bounds = bounds;
+//    }
+    [[UIApplication sharedApplication] setStatusBarOrientation:toInterfaceOrientation animated:YES];
 }
 
 #pragma mark -
@@ -483,27 +489,35 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
-    if (searching)
+    if (aTableView == self.searchDisplayController.searchResultsTableView) {
         return 1;
+    }
     
     return self.categoryTypes.count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (searching)
-        return NSLocalizedString(@"Search Results", nil);
-	
+    if (searching) {
+        NSString *string = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
+        return NSLocalizedString(string, nil);
+    }
+
     return NSLocalizedString([self.categoryTypes[section] capitalizedString], nil);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (searching) {
-        if ([searchResults count])
-            return [searchResults count];
-        else if (noResults)
-            return 1;
-        else 
-            return 0;
+//    if (searching) {
+//        if ([searchResults count])
+//            return [searchResults count];
+//        else if (noResults)
+//            return 1;
+//        else 
+//            return 0;
+//    }
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        NSLog(@"search results rows");
+        return [searchResults count];
     }
     
     return [self.categories[self.categoryTypes[section]] count];
@@ -521,13 +535,28 @@
         
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+            [cell textLabel].font = [UIFont systemFontOfSize:14.0];
+            [cell textLabel].minimumFontSize = 7.0;
+            [cell textLabel].numberOfLines = 2;
+            [cell textLabel].adjustsFontSizeToFitWidth = YES;
         }
         
         if (searchResults.count > 0) {
-            [[cell textLabel] setText:searchResults[indexPath.row][@"display_title"]];
-        } else {
-            [[cell textLabel] setText:NSLocalizedString(@"No Results Found", nil)];
-            [cell setAccessoryType:UITableViewCellAccessoryNone];
+            NSDictionary *result = [[[NSDictionary alloc] init] autorelease];
+            result = self.searchResults[indexPath.row];
+            
+            if ([result[@"dataType"] isEqualToString:@"guide"]) {
+                [cell textLabel].text = result[@"title"];
+                [cell setAccessoryType:UITableViewCellAccessoryNone];
+            } else {
+                [cell textLabel].text = result[@"display_title"];
+                [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+            }
+
+            [cell textLabel].font = [UIFont systemFontOfSize:14.0];
+            [cell textLabel].minimumFontSize = 7.0;
+            [cell textLabel].numberOfLines = 2;
+            [cell textLabel].adjustsFontSizeToFitWidth = YES;
         }
         
         return cell;
@@ -571,13 +600,13 @@
     return cell;
 }
 
-
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Reachability *reachability = [Reachability reachabilityForInternetConnection];    
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
     
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -594,12 +623,24 @@
     
     NSDictionary *category = [[[NSDictionary alloc] init] autorelease];
     
-    // We limit our searches to devices for now
     if (searching && [searchResults count]) {
-        // Create key value object for search result
-        category = @{@"name" : searchResults[indexPath.row][@"title"],
-                     @"type" : @(CATEGORY)
-                   };
+        // If we are dealing with a guide we bail early
+        if ([searchResults[indexPath.row][@"dataType"] isEqualToString:@"guide"]) {
+            NSLog(@"Guideid: %@", searchResults[indexPath.row][@"guideid"]);
+            GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:[searchResults[indexPath.row][@"guideid"] intValue]];
+            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+            [appDelegate.window.rootViewController presentModalViewController:nc animated:YES];
+            [vc release];
+            [nc release];
+        
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            
+            return;
+        } else {
+            category = @{@"name" : searchResults[indexPath.row][@"title"],
+                         @"type" : @(CATEGORY)
+                         };
+        }
     } else
         category = self.categories[self.categoryTypes[indexPath.section]][indexPath.row];
 
@@ -633,7 +674,8 @@
         
         GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
         UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-        [self presentModalViewController:nc animated:YES];
+        [appDelegate.window.rootViewController presentModalViewController:nc animated:YES];
+        
         [vc release];
         [nc release];
         

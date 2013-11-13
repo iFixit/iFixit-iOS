@@ -103,6 +103,14 @@
     return viewController;
 }
 
+- (void)statusBarBackground {
+    NSLog(@"self: %@", self.view.subviews);
+    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10000, 50)];
+    statusBarView.backgroundColor = [UIColor blackColor];
+    
+    NSLog(@"statusBarView: %@", statusBarView);
+}
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // Terrible hack, this ensures that the tabbar is in the correct position in landscape, fixes an edgecase
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && self.viewControllers.count == 1) {
@@ -130,6 +138,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [self statusBarBackground];
 }
 
 - (void)viewDidUnload {
@@ -148,6 +157,8 @@
         [view removeFromSuperview];
         [window addSubview:view];
     }
+
+    [[UIApplication sharedApplication] setStatusBarOrientation:toInterfaceOrientation animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
