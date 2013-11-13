@@ -12,8 +12,10 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+        self.textLabel.font = [UIFont systemFontOfSize:14.0];
+        self.textLabel.minimumFontSize = 7.0;
+        self.textLabel.numberOfLines = 2;
         self.textLabel.adjustsFontSizeToFitWidth = YES;
-        self.textLabel.minimumFontSize = 14.0;
     }
     return self;
 }

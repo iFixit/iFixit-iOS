@@ -41,8 +41,8 @@
 #pragma mark - View lifecycle
 
 - (void)configureLabels {
-    self.dozukiSlogan.text = NSLocalizedString(@"We make technical documentation come to life.", nil);
-    self.dozukiDescription.text = NSLocalizedString(@"Dozuki has thousands of manuals in one place. Learn how to do all sorts of things-from repairing your iPad to building a water-powered rocket.", nil);
+    self.dozukiSlogan.text = NSLocalizedString(@"Visual is better.", nil);
+    self.dozukiDescription.text = NSLocalizedString(@"A modern documentation platform for everything from work instructions to product support.", nil);
     self.getStarted.text = NSLocalizedString(@"Get Started", nil);
 }
 
