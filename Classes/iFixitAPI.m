@@ -281,13 +281,14 @@ static int volatile openConnections = 0;
     [request startAsynchronous];
 }
 
-- (void)getSearchResults:(NSString *)search forObject:(id)object withSelector:(SEL)selector {
+- (void)getSearchResults:(NSString *)search withFilter:(NSString *)filter forObject:(id)object withSelector:(SEL)selector {
     search = [search stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     search = [search stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
     search = [search stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
 
-    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/search/%@?filter=category&limit=50", [Config currentConfig].host, search];
+    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/search/%@?limit=50&filter=%@", [Config currentConfig].host, search, filter];
 
+    NSLog(@"url is: %@", url);
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
 

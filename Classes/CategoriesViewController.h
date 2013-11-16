@@ -32,8 +32,9 @@ enum {
 
 @property BOOL searching;
 
-@property (nonatomic, retain) NSArray *searchResults;
+@property (nonatomic, retain) NSMutableDictionary *searchResults;
 @property (nonatomic) BOOL noResults;
+@property (nonatomic, retain) NSString *currentSearchTerm;
 
 @property (nonatomic, retain) NSMutableDictionary *categories;
 @property (nonatomic, retain) NSMutableArray *categoryTypes;
@@ -42,6 +43,7 @@ enum {
 @property (nonatomic, retain) NSDictionary *categoryMetaData;
 @property (nonatomic, retain) NSDictionary *categorySearchResult;
 @property (retain, nonatomic) UIImagePickerController *imagePickerController;
+
 
 - (void)getAreas;
 - (void)showLoading;
