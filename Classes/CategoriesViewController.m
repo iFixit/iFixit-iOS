@@ -510,7 +510,7 @@
         } else if (devices.count)
             allCategories[CATEGORIES] = devices;
         // We only have categories
-        else
+        else if (categories.count)
             allCategories[CATEGORIES] = categories;
     }
     
@@ -732,14 +732,14 @@
 // Recursive function to find the search result in our master category list
 - (BOOL)findCategory:(NSString*)needle inList:(NSDictionary*)haystack {
     // Try to access the key first
-    if (haystack[needle]) {
+    if (haystack[needle] != [NSNull null]) {
         categorySearchResult = haystack[needle];
         return TRUE;
     // Key doesn't exist, we must go deeper
     } else {
         for (id category in haystack) {
             // We have another dictionary to look at, lets call ourselves
-            if ([haystack[category] count]) {
+            if (haystack[category] != [NSNull null]) {
                 // If we return true, that means we found our category, lets stop iterating through our current level
                 if ([self findCategory:needle inList:haystack[category]])
                     break;
