@@ -175,10 +175,9 @@ static int volatile openConnections = 0;
     NSString *requireGuides = @"";
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        requireGuides = @"?requireGuides=yes";
-
-	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/categories%@", [Config currentConfig].host, requireGuides];
-    NSLog(@"url: %@", url);
+        requireGuides = @"requireGuides=yes";
+    
+	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/categories?%@&withDisplayTitles", [Config currentConfig].host, requireGuides];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
@@ -288,7 +287,6 @@ static int volatile openConnections = 0;
 
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/search/%@?limit=50&filter=%@", [Config currentConfig].host, search, filter];
 
-    NSLog(@"url is: %@", url);
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
 

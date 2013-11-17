@@ -200,24 +200,28 @@
     self.navigationItem.rightBarButtonItem = nil;
     
     // Areas was nil, meaning we probably had a connection error
-    if (!areas) {
+    if (!areas[@"hierarchy"]) {
         [self showRefreshButton];
         [iFixitAPI displayConnectionErrorAlert];
     }
     
-    if ([areas allKeys].count) {
+    if ([areas[@"hierarchy"] allKeys].count) {
         // Save a master category list to a singleton if it hasn't
         // been created yet
         if (![CategoriesSingleton sharedInstance].masterCategoryList) {
-            [CategoriesSingleton sharedInstance].masterCategoryList = areas;
+            [CategoriesSingleton sharedInstance].masterCategoryList = areas[@"hierarchy"];
         }
         
-        [self setData:areas];
+        if (![CategoriesSingleton sharedInstance].masterDisplayTitleList) {
+            [CategoriesSingleton sharedInstance].masterDisplayTitleList = areas[@"display_titles"];
+        }
+        
+        [self setData:areas[@"hierarchy"]];
         [self.tableView reloadData];
         [self.listViewController showFavoritesButton:self];
     } else {
         // If there is no area hierarchy, show a guide list instead
-        if ([areas isKindOfClass:[NSArray class]] && ![areas count]) {
+        if ([areas[@"hierarchy"] isKindOfClass:[NSArray class]] && ![areas count]) {
             iPhoneDeviceViewController *dvc = [[iPhoneDeviceViewController alloc] initWithTopic:nil];
             [self.navigationController pushViewController:dvc animated:YES];
             [dvc release];
@@ -458,7 +462,7 @@
 
 - (void)setData:(NSDictionary *)dict {
     self.categoryResults = dict;
-    self.categories = [self parseCategories:self.categoryResults];
+    self.categories = [self parseCategories:dict];
     self.categoryTypes = [NSMutableArray arrayWithArray:[[self.categories allKeys] sortedArrayUsingSelector:@selector(compare:)]];
 }
 
@@ -466,15 +470,22 @@
     NSMutableArray *categories = [[[NSMutableArray alloc] init] autorelease];
     NSMutableArray *devices = [[[NSMutableArray alloc] init] autorelease];
     NSMutableDictionary *allCategories = [[[NSMutableDictionary alloc] init] autorelease];
-    
+    NSDictionary *categoryDisplayTitles = [[[NSDictionary alloc]
+                                           initWithDictionary:[CategoriesSingleton sharedInstance].masterDisplayTitleList]
+                                           autorelease];
+
     // Split categories from devices for iFixit and create key-value objects in the process
     for (id category in categoriesCollection) {
-        if ([categoriesCollection[category] count]) {
+        if (categoriesCollection[category] != [NSNull null]) {
             [categories addObject:@{@"name" : category,
+                                    @"display_title" : categoryDisplayTitles[category] ?
+                                        categoryDisplayTitles[category] : category,
                                     @"type" : @(CATEGORY)
             }];
         } else {
             [devices addObject:@{@"name" : category,
+                                 @"display_title" : categoryDisplayTitles[category] ?
+                                    categoryDisplayTitles[category] : category,
                                  @"type" : @(DEVICE)
             }];
         }
@@ -596,7 +607,7 @@
         [cell setAccessoryType: (category[@"type"] == @(CATEGORY))
                               ? UITableViewCellAccessoryDisclosureIndicator
                               : UITableViewCellAccessoryNone];
-        [[cell textLabel] setText:category[@"name"]];
+        [[cell textLabel] setText:category[@"display_title"]];
 
     } else {
         cellIdentifier = @"GuideCell";
@@ -611,11 +622,12 @@
         NSString *thumbnailImage = category[@"image"] == [NSNull null] ? nil : category[@"image"][@"thumbnail"];
         
         [[cell imageView] setImageWithURL:[NSURL URLWithString:thumbnailImage] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
+
+        [[cell textLabel] setText:category[@"name"]];
+        [[cell textLabel] setMinimumFontSize:11.0f];
+        [[cell textLabel] setAdjustsFontSizeToFitWidth:YES];
     }
     
-    [[cell textLabel] setText:category[@"name"]];
-    [[cell textLabel] setMinimumFontSize:11.0f];
-    [[cell textLabel] setAdjustsFontSizeToFitWidth:YES];
     
     return cell;
 }

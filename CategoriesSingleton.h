@@ -11,6 +11,7 @@
 @interface CategoriesSingleton : NSObject
 
 @property (nonatomic, retain) NSDictionary *masterCategoryList;
+@property (nonatomic, retain) NSDictionary *masterDisplayTitleList;
 
 +(CategoriesSingleton*)sharedInstance;
 @end

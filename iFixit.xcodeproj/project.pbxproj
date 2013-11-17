@@ -57,6 +57,8 @@
 		9CDBCD871803540B00984A67 /* MGSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBCD831803540B00984A67 /* MGSplitDividerView.m */; };
 		9CDBCD881803540B00984A67 /* MGSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBCD851803540B00984A67 /* MGSplitViewController.m */; };
 		9CE6783B1837F146001912DF /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6783A1837F146001912DF /* SearchCell.m */; };
+		9CE6783D1838706F001912DF /* accustream_intro.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783C1838706F001912DF /* accustream_intro.css */; };
+		9CE6783F18387080001912DF /* accustream_step.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783E18387080001912DF /* accustream_step.css */; };
 		AB0B27AD15E7E3550088BA07 /* titleImageZeal.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */; };
 		AB0B27B015E7E36B0088BA07 /* titleImageZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */; };
 		AB10C28E17A7CF0E00684B41 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB10C28D17A7CF0E00684B41 /* libTestFlight.a */; };
@@ -331,6 +333,8 @@
 		9CDBCD851803540B00984A67 /* MGSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSplitViewController.m; path = ../MGSplitViewController/Classes/MGSplitViewController.m; sourceTree = "<group>"; };
 		9CE678391837F146001912DF /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
 		9CE6783A1837F146001912DF /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
+		9CE6783C1838706F001912DF /* accustream_intro.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accustream_intro.css; sourceTree = "<group>"; };
+		9CE6783E18387080001912DF /* accustream_step.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accustream_step.css; sourceTree = "<group>"; };
 		AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageZeal.png; sourceTree = "<group>"; };
 		AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImageZeal@2x.png"; sourceTree = "<group>"; };
 		AB10C28C17A7CF0500684B41 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
@@ -1203,9 +1207,11 @@
 			isa = PBXGroup;
 			children = (
 				DACE446D1353CE3700F78360 /* ifixit_intro.css */,
+				9CE6783C1838706F001912DF /* accustream_intro.css */,
+				9CE6783E18387080001912DF /* accustream_step.css */,
+				DACE446E1353CE3700F78360 /* ifixit_step.css */,
 				AB4926A3175FF6200092E4B6 /* category_more_info_ipad.css */,
 				ABE51913177B77F400E9555E /* category_more_info_iphone.css */,
-				DACE446E1353CE3700F78360 /* ifixit_step.css */,
 				ABA8FC49177AA909000B5E74 /* category_answers.css */,
 				DACE446F1353CE3700F78360 /* make_intro.css */,
 				DACE44701353CE3700F78360 /* make_step.css */,
@@ -1398,6 +1404,7 @@
 				DA3562B1147731C500683947 /* noGuides.png in Resources */,
 				DAA10465147C3EEC00DED9DF /* concreteBackgroundWhite.png in Resources */,
 				DA086C7B147CA39900BD9A2F /* detailViewArrowDark.png in Resources */,
+				9CE6783F18387080001912DF /* accustream_step.css in Resources */,
 				9C47FB3C17F623D40074CEBE /* icon1024.png in Resources */,
 				DA086C7C147CA39900BD9A2F /* detailViewArrowLight.png in Resources */,
 				DA086C7E147CA39E00BD9A2F /* make_logo_transparent.png in Resources */,
@@ -1427,6 +1434,7 @@
 				ABC5399415ED793A004B2865 /* detailViewTextZeal@2x.png in Resources */,
 				AB3C1776162718AD00323A1E /* dozukiLogo.png in Resources */,
 				AB3C1777162718AD00323A1E /* dozukiLogo@2x.png in Resources */,
+				9CE6783D1838706F001912DF /* accustream_intro.css in Resources */,
 				DACE7FF2165722710013FFFD /* GuideStepViewController.xib in Resources */,
 				ABC63D5516CF16140041A995 /* logo_zeal@2x.png in Resources */,
 				ABC63D5616CF16140041A995 /* logo_zeal.png in Resources */,

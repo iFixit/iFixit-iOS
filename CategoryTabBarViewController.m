@@ -528,7 +528,6 @@ BOOL onTablet, initialLoad, showTabBar;
     
 }
 
-// Method is called when we get a response back from our API
 - (void)gotCategoryResult:(NSDictionary *)results {
     if (!results) {
         [iFixitAPI displayConnectionErrorAlert];

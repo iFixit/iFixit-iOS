@@ -131,6 +131,19 @@ static Config *currentConfig = nil;
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             break;
+        case ConfigAccustream:
+            self.backgroundColor = [UIColor blackColor];
+            self.textColor = [UIColor whiteColor];
+            self.toolbarColor = [UIColor blackColor];
+            self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
+            
+            // Load intro and step css from the css folder.        
+            self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"accustream_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
+            self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"accustream_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            self.moreInfoCSS = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+            ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
+            : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            break;
         default:
             self.backgroundColor = [UIColor blackColor];
             self.textColor = [UIColor whiteColor];

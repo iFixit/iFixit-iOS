@@ -107,11 +107,8 @@
 }
 
 - (void)statusBarBackground {
-    NSLog(@"self: %@", self.view.subviews);
     UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10000, 50)];
     statusBarView.backgroundColor = [UIColor blackColor];
-    
-    NSLog(@"statusBarView: %@", statusBarView);
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
