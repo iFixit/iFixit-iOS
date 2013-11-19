@@ -12,8 +12,6 @@
 	<array>
 		<string>icon57.png</string>
 		<string>icon72.png</string>
-		<string>Icon@2x.png</string>
-		<string>Icon72@2x.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -29,8 +27,6 @@
 				<string>icon114</string>
 				<string>icon57.png</string>
 				<string>icon72.png</string>
-				<string>Icon@2x.png</string>
-				<string>Icon72@2x.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
