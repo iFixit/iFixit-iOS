@@ -33,7 +33,7 @@ elif [ "$1" == "mjtrim" ]; then
 elif [ "$1" == "accustream" ]; then
    echo "Accustream"
    cp Graphics/Sites/Accustream/*png .
-   sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.accustream/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.hypertherm/g' iFixit-Info.plist
    sed -i '.bak' -e 's/iFixit/Hypertherm/g' iFixit-Info.plist
    sed -i '.bak' -e 's/>ifixit</>accustream</g' iFixit-Info.plist
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
