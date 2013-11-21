@@ -42,7 +42,6 @@ enum {
 @property (nonatomic, retain) ListViewController *listViewController;
 @property (nonatomic, retain) NSDictionary *categoryMetaData;
 @property (nonatomic, retain) NSDictionary *categorySearchResult;
-@property (retain, nonatomic) UIImagePickerController *imagePickerController;
 
 
 - (void)getAreas;

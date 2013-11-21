@@ -732,14 +732,14 @@
 // Recursive function to find the search result in our master category list
 - (BOOL)findCategory:(NSString*)needle inList:(NSDictionary*)haystack {
     // Try to access the key first
-    if (haystack[needle] != [NSNull null]) {
+    if (haystack[needle] != [NSNull null] && haystack[needle] != nil) {
         categorySearchResult = haystack[needle];
         return TRUE;
     // Key doesn't exist, we must go deeper
     } else {
         for (id category in haystack) {
             // We have another dictionary to look at, lets call ourselves
-            if (haystack[category] != [NSNull null]) {
+            if (haystack[category] != [NSNull null] && haystack[category] != nil) {
                 // If we return true, that means we found our category, lets stop iterating through our current level
                 if ([self findCategory:needle inList:haystack[category]])
                     break;
@@ -791,8 +791,6 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
-    self.imagePickerController = picker;
-
     // Get the results from the reader
     id<NSFastEnumeration> results = info[ZBarReaderControllerResults];
 
@@ -803,12 +801,10 @@
         break;
     }
 
-    NSInteger guideId = [iFixitAPI getGuideIdFromUrl:symbol.data];
-
-    if (guideId) {
-        [[iFixitAPI sharedInstance] getGuide:guideId forObject:self withSelector:@selector(gotGuide:)];
-    } else {
-        [self.imagePickerController dismissViewControllerAnimated:YES completion:^{
+    BOOL validUrl = [self openUrlFromScanner:symbol.data];
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        if (!validUrl) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
                                                                 message:NSLocalizedString(@"Not a valid QR Code", nil)
                                                                delegate:self
@@ -816,7 +812,11 @@
                                                       otherButtonTitles:nil, nil];
             [alertView show];
             [alertView release];
-        }];
+        }
+    }];
+    
+    if (validUrl) {
+        [self showLoading];
     }
 }
 
@@ -824,16 +824,13 @@
     if (guide.guideid) {
         GuideViewController *guideViewController = [[GuideViewController alloc] initWithGuide:guide];
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:guideViewController];
-
-        [self.imagePickerController dismissViewControllerAnimated:YES completion:^{
-            iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
-            [appDelegate.window.rootViewController presentModalViewController:navigationController animated:YES];
-        }];
+        
+        iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
+        [appDelegate.window.rootViewController presentModalViewController:navigationController animated:YES];
 
         [guideViewController release];
         [navigationController release];
     } else {
-        [self.imagePickerController dismissViewControllerAnimated:YES completion:^{
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
                                                                 message:NSLocalizedString(@"Guide not found", nil)
                                                                delegate:self
@@ -841,8 +838,83 @@
                                                       otherButtonTitles:nil, nil];
             [alertView show];
             [alertView release];
-        }];
     }
+
+    [self.listViewController showFavoritesButton:self];
+}
+
+// We want to look for the a valid category/device or guide URL
+- (BOOL)openUrlFromScanner:(NSString*)url {
+    NSError *error = nil;
+    NSNumber *guideId = nil;
+    
+    NSRegularExpression *guideRegex = [NSRegularExpression regularExpressionWithPattern:@"(guide|teardown)/.+?/(\\d+)"
+                                                                                options:NSRegularExpressionCaseInsensitive
+                                                                                  error:&error];
+    NSRegularExpression *categoryRegex = [NSRegularExpression regularExpressionWithPattern:@"(device|c)\\/([^\\/]+)"
+                                                                                options:NSRegularExpressionCaseInsensitive
+                                                                                  error:&error];
+    NSArray *guideMatches = [guideRegex matchesInString:url
+                                                options:0
+                                                  range:NSMakeRange(0, url.length)];
+
+    NSArray *categoryMatches = [categoryRegex matchesInString:url
+                                                options:0
+                                                  range:NSMakeRange(0, url.length)];
+
+    if (guideMatches.count) {
+        NSRange guideIdRange = [guideMatches[0] rangeAtIndex:2];
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        guideId = [formatter numberFromString:[url substringWithRange:guideIdRange]];
+        [formatter release];
+        [[iFixitAPI sharedInstance] getGuide:[guideId integerValue] forObject:self withSelector:@selector(gotGuide:)];
+        
+        return YES;
+    }
+
+    if (categoryMatches.count) {
+        NSRange categoryIdRange = [categoryMatches[0] rangeAtIndex:2];
+        NSString *category = [url substringWithRange:categoryIdRange];
+        [[iFixitAPI sharedInstance] getCategory:category forObject:self withSelector:@selector(gotCategoryResult:)];
+
+        return YES;
+    }
+
+    return NO;
+}
+
+- (void)gotCategoryResult:(NSDictionary *)results {
+    if (!results) {
+        [iFixitAPI displayConnectionErrorAlert];
+        return;
+    }
+
+    NSString *category = results[@"wiki_title"];
+    [self findChildCategoriesFromParent:category];
+
+    if (categorySearchResult) {
+        CategoriesViewController *vc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
+        
+        vc.title = category;
+        [vc setData:categorySearchResult];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc.tableView reloadData];
+        
+        [vc addGuidesToTableView:results[@"guides"]];
+        [vc release];
+        
+        categorySearchResult = nil;
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                            message:NSLocalizedString(@"Category not found", nil)
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(@"Okay", nil)
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+        [alertView release];
+    }
+    
+    [self.listViewController showFavoritesButton:self];
 }
 
 #pragma mark -

@@ -45,7 +45,4 @@
 // Authentication Handeling
 + (void)checkCredentialsForViewController:(id)viewController;
 
-// Utility
-+ (NSInteger)getGuideIdFromUrl:(NSString*)url;
-
 @end

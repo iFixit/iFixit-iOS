@@ -591,27 +591,4 @@ static int volatile openConnections = 0;
     self.userAgent = [NSString stringWithFormat:@"%@iOS/%@ (%@) | %@; %@ %@; %@", appName, developmentVersionNumber, marketingVersionNumber, deviceName, OSName, OSVersion, locale];
 }
 
-// Strip the guide id from url using regex
-+ (NSInteger)getGuideIdFromUrl:(NSString*)url {
-    NSError *error = nil;
-    NSNumber *guideId = nil;
-    
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(guide|teardown)/.+?/(\\d+)"
-                                                                           options:NSRegularExpressionCaseInsensitive
-                                                                             error:&error];
-    NSArray *matches = [regex matchesInString:url
-                                      options:0
-                                        range:NSMakeRange(0, url.length)];
-    if (matches.count) {
-        NSRange guideIdRange = [matches[0] rangeAtIndex:2];
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        guideId = [formatter numberFromString:[url substringWithRange:guideIdRange]];
-        
-        [formatter release];
-    }
-    
-
-    return [guideId integerValue];
-}
-
 @end
