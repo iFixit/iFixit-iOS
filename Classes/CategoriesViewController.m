@@ -474,6 +474,11 @@
                                            initWithDictionary:[CategoriesSingleton sharedInstance].masterDisplayTitleList]
                                            autorelease];
 
+    // Bail early, we are working with a category with no children
+    if ([categoriesCollection isEqual:[NSNull null]]) {
+        return allCategories;
+    }
+
     // Split categories from devices for iFixit and create key-value objects in the process
     for (id category in categoriesCollection) {
         if (categoriesCollection[category] != [NSNull null]) {
@@ -726,13 +731,15 @@
 
 // Given a parent category, find the category and it's children
 - (void)findChildCategoriesFromParent:(NSString*)parentCategory {
+    // TODO: Check to see if the category is on the top level, if it isn't, then do recursion =/
     [self findCategory:parentCategory inList:[CategoriesSingleton sharedInstance].masterCategoryList];
 }
 
 // Recursive function to find the search result in our master category list
 - (BOOL)findCategory:(NSString*)needle inList:(NSDictionary*)haystack {
+    
     // Try to access the key first
-    if (haystack[needle] != [NSNull null] && haystack[needle] != nil) {
+    if ([[haystack allKeys] containsObject:needle]) {
         categorySearchResult = haystack[needle];
         return TRUE;
     // Key doesn't exist, we must go deeper
@@ -895,15 +902,24 @@
     if (categorySearchResult) {
         CategoriesViewController *vc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
         
+        [self.listViewController.categoryTabBarViewController showTabBar:YES];
+        
         vc.title = category;
         [vc setData:categorySearchResult];
         [self.navigationController pushViewController:vc animated:YES];
         [vc.tableView reloadData];
         
-        [vc addGuidesToTableView:results[@"guides"]];
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone &&
+            [self.listViewController.topViewController respondsToSelector:@selector
+             (addGuidesToTableView:)] && [results[@"guides"] count]) {
+                [vc addGuidesToTableView:results[@"guides"]];
+            }
+
         [vc release];
         
         categorySearchResult = nil;
+        
+        [self.listViewController.categoryTabBarViewController updateTabBar:results];
     } else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
                                                             message:NSLocalizedString(@"Category not found", nil)

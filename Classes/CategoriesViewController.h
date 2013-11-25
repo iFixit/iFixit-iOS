@@ -40,7 +40,6 @@ enum {
 @property (nonatomic, retain) NSMutableArray *categoryTypes;
 @property (nonatomic, retain) NSDictionary *categoryResults;
 @property (nonatomic, retain) ListViewController *listViewController;
-@property (nonatomic, retain) NSDictionary *categoryMetaData;
 @property (nonatomic, retain) NSDictionary *categorySearchResult;
 
 

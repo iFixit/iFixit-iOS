@@ -536,8 +536,6 @@ BOOL onTablet, initialLoad, showTabBar;
     
     [self showTabBar:YES];
     
-    [self.listViewController.topViewController setCategoryMetaData:results];
-    
     // Only on iPhone do we want to add a guides section to the tableView
     if (!onTablet && [self.listViewController.topViewController respondsToSelector:@selector(addGuidesToTableView:)] && [results[@"guides"] count] > 0) {
         // Add guides to our top level view controller's tableview
