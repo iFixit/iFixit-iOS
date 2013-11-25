@@ -902,8 +902,6 @@
     if (categorySearchResult) {
         CategoriesViewController *vc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
         
-        [self.listViewController.categoryTabBarViewController showTabBar:YES];
-        
         vc.title = category;
         [vc setData:categorySearchResult];
         [self.navigationController pushViewController:vc animated:YES];
@@ -920,6 +918,7 @@
         categorySearchResult = nil;
         
         [self.listViewController.categoryTabBarViewController updateTabBar:results];
+        [self.listViewController.categoryTabBarViewController showTabBar:YES];
     } else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
                                                             message:NSLocalizedString(@"Category not found", nil)
