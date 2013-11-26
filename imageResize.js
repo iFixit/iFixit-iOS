@@ -5,7 +5,7 @@ var fs = require('fs'),
     resourcePath = 'AppIconResources.json'; // Path where resource info is
 
 // Load up the resource list we wish to make from JSON
-var resources = JSON.parse(require('fs').readFileSync(resourcePath,
+var resources = JSON.parse(fs.readFileSync(resourcePath,
  'utf8'));
 
 if (!resources) {
