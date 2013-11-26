@@ -124,8 +124,8 @@ static Config *currentConfig = nil;
         case ConfigMjtrim:
             self.textColor = [UIColor blackColor];
             self.backgroundColor = [UIColor whiteColor];
-            self.toolbarColor = [UIColor blackColor];
-            self.buttonColor = [UIColor blackColor];
+            self.toolbarColor = [UIColor colorWithRed:204/255.0f green:0.0f blue:0.0f alpha:1.0];
+            self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor whiteColor] : [UIColor blackColor];
             
             self.concreteBackgroundImage = [UIImage imageNamed:@"concreteBackgroundWhite.png"];
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
