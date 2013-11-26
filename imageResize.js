@@ -1,6 +1,6 @@
 var fs = require('fs'),
     gm = require('gm'),
-    baseIconPath = 'icon1024.png',
+    baseIconPath = '', // Path for base icon image
     baseIconImage = gm(baseIconPath),
     // iOS resource list
     resourceList = [
