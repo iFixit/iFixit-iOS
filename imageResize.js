@@ -1,27 +1,48 @@
 var fs = require('fs'),
     gm = require('gm'),
-    baseIconPath = 'icon1024.png', // Path for base icon image
-    baseIconImage = gm(baseIconPath),
-    resourcePath = 'AppIconResources.json'; // Path where resource info is
+    baseImage = {},
+    resources = [],
+    configPath = '';
 
-// Load up the resource list we wish to make from JSON
-var resources = JSON.parse(fs.readFileSync(resourcePath, 'utf8'));
+function parseArguments() {
+   if (process.argv[2]) {
+      configPath = process.argv[2];
+   } else {
+      console.log('Config file not given. Please supply path to JSON ' +
+       'config file. \nFor example: node imageResize.js AppIconResources.json');
+      process.exit(1);
+   }
+}
 
-if (!resources) {
-   throw new Error('json file not found');
+// Load up the JSON config file
+function loadConfigFile() {
+   var config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+
+   if (!config) {
+      throw new Error('json file not found');
+   }
+
+   baseImage = gm(config.baseImagePath);
+   resources = config.resources;
 }
 
 // Generate image sizes
-for (var i = 0; i < resources.length; i++) {
-   var resource = resources[i];
+function generateImages() {
 
-   baseIconImage.resize(resource.dimensions.width, resource.dimensions.height)
-   .noProfile().write(resource.name + '.' +  resource.extension, function(err) {
-      if (err) {
-         throw new Error(err);
-      } else {
-         console.log('Image generated successfully');
-      }
-   });
+   for (var i = 0; i < resources.length; i++) {
+      var resource = resources[i];
+
+      baseImage.resize(resource.dimensions.width, resource.dimensions.height)
+      .write(resource.name + '.' + resource.extension, function(err) {
+         if (err) {
+            throw new Error(err);
+         } else {
+            console.log('Image generated successfully');
+         }
+      });
+   }
 }
 
+parseArguments();
+loadConfigFile();
+generateImages();
