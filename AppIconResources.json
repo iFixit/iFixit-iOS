@@ -8,6 +8,7 @@
       { "name" : "icon120", "extension" : "png", "dimensions" : { "width" : 120, "height" : 120 }},
       { "name" : "icon144", "extension" : "png", "dimensions" : { "width" : 144, "height" : 144 }},
       { "name" : "icon152", "extension" : "png", "dimensions" : { "width" : 152, "height" : 152 }},
+      { "name" : "icon512", "extension" : "png", "dimensions" : { "width" : 512, "height" : 512 }},
       { "name" : "icon29",  "extension" : "png", "dimensions" : { "width" : 29,  "height" : 29 }},
       { "name" : "icon40",  "extension" : "png", "dimensions" : { "width" : 100, "height" : 100 }},
       { "name" : "icon50",  "extension" : "png", "dimensions" : { "width" : 50,  "height" : 50 }},
