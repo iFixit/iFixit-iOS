@@ -1,8 +1,8 @@
 var fs = require('fs'),
     gm = require('gm'),
-    baseImage = {},
-    resources = [],
-    configPath = '';
+    baseImagePath = '',
+    configPath = '',
+    resources = [];
 
 function parseArguments() {
    if (process.argv[2]) {
@@ -22,7 +22,7 @@ function loadConfigFile() {
       throw new Error('json file not found');
    }
 
-   baseImage = gm(config.baseImagePath);
+   baseImagePath = config.baseImagePath;
    resources = config.resources;
 }
 
@@ -32,8 +32,8 @@ function generateImages() {
    for (var i = 0; i < resources.length; i++) {
       var resource = resources[i];
 
-      baseImage.resize(resource.dimensions.width, resource.dimensions.height)
-      .write(resource.name + '.' + resource.extension, function(err) {
+      gm(baseImagePath).resize(resource.dimensions.width, resource.dimensions.height)
+      .quality(100).write(resource.name + '.' + resource.extension, function(err) {
          if (err) {
             throw new Error(err);
          } else {
