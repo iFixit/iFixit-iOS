@@ -50,8 +50,12 @@
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
             self.navigationBar.translucent = NO;
         }
+        NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                   [UIColor whiteColor],UITextAttributeTextColor,
+                                                   nil];
+        
+        [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
 
-        self.navigationBar.tintColor = [UIColor colorWithRed:204/255.0f green:0 blue:0 alpha:1];
         self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
     
     } else if ([Config currentConfig].site == ConfigDozuki) {

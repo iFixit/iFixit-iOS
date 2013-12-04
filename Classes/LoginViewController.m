@@ -215,7 +215,6 @@
         rb.backgroundColor = [UIColor whiteColor];
         [rb setBackgroundImage:nil forState:UIControlStateNormal];
         [rb setBackgroundImage:nil forState:UIControlStateHighlighted];
-        rb.titleLabel.textColor = [Config currentConfig].buttonColor;
         [rb setTitleColor:[Config currentConfig].buttonColor forState:UIControlStateNormal];
         [rb setTitleColor:[Config currentConfig].buttonColor forState:UIControlStateHighlighted];
         
@@ -225,6 +224,14 @@
         [lb setBackgroundImage:nil forState:UIControlStateHighlighted];
         [lb setTitleColor:[Config currentConfig].buttonColor forState:UIControlStateNormal];
         [lb setTitleColor:[Config currentConfig].buttonColor forState:UIControlStateHighlighted];
+        
+        // Special colors for MJTrimming
+        if ([Config currentConfig].site == ConfigMjtrim) {
+            [lb setTitleColor:[Config currentConfig].toolbarColor forState:UIControlStateNormal];
+            [lb setTitleColor:[Config currentConfig].toolbarColor forState:UIControlStateHighlighted];
+            [rb setTitleColor:[Config currentConfig].toolbarColor forState:UIControlStateNormal];
+            [rb setTitleColor:[Config currentConfig].toolbarColor forState:UIControlStateHighlighted];
+        }
     }
     
     // Cancel

@@ -34,7 +34,9 @@ static int volatile openConnections = 0;
 - (void)loadAppId {
     // look for the iFixit app id by default
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"iFixit-App-Id" ofType: @"plist"];
-    self.appId = [NSDictionary dictionaryWithContentsOfFile:plistPath] ? [NSDictionary dictionaryWithContentsOfFile:plistPath][@"ifixit"] : @"";
+    NSString *appId = [NSDictionary dictionaryWithContentsOfFile:plistPath][@"ifixit"];
+    
+    self.appId = appId ? appId : @"";
 }
 
 - (void)saveSession {

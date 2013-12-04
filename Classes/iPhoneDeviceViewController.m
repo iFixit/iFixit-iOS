@@ -211,6 +211,15 @@
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     
+    // This fixes an edge case with iOS 7 only animations when presenting a viewcontroller.
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [UIView transitionWithView:self.navigationController.view
+                          duration:0.75
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        animations:nil
+                        completion:nil];
+    }
+
     [appDelegate.window.rootViewController presentModalViewController:nc animated:YES];
     [vc release];
     [nc release];
