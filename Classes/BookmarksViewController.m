@@ -194,7 +194,6 @@
                                                                    target:self
                                                                    action:@selector(doneButtonPushed)];
     
-    button.tintColor = [Config currentConfig].buttonColor;
     self.navigationItem.leftBarButtonItem = button;
     
     [button release];

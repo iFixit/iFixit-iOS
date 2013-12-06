@@ -123,13 +123,12 @@
         frame.origin.x = 10.0;
 
         NSURL *url = [NSURL URLWithString:self.step.video.url];
-        self.moviePlayer = [[[MPMoviePlayerController alloc] init] autorelease];
-        moviePlayer.contentURL = url;
-        moviePlayer.shouldAutoplay = NO;
-        moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
-        [moviePlayer.view setFrame:frame];
-        [moviePlayer prepareToPlay];
-        [self.view addSubview:moviePlayer.view];
+        
+        self.moviePlayer = [[[MPMoviePlayerController alloc] initWithContentURL:url] autorelease];
+        self.moviePlayer.shouldAutoplay = NO;
+        self.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
+        [self.moviePlayer.view setFrame:frame];
+        [self.view addSubview:self.moviePlayer.view];
     }
     // Embeds
     else if (self.step.embed) {
@@ -203,8 +202,9 @@
     // In iOS 6 and up, this method gets called when the video player goes into full screen.
     // This prevents the movie player from stopping itself by only stopping the video if not in
     // full screen (meaning the view has actually disappeared).
-    if (!self.moviePlayer.fullscreen)
-        [moviePlayer stop];
+    if (!self.moviePlayer.fullscreen) {
+        [self.moviePlayer stop];
+    }
 }
 
 - (void)startImageDownloads {

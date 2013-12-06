@@ -153,6 +153,10 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     [[UINavigationBar appearance] setTintColor:[Config currentConfig].buttonColor];
     [[UISearchBar appearance] setTintColor:[UIColor grayColor]];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [[UITabBar appearance] setTintColor:[Config currentConfig].tabBarColor];
+    }
 }
 
 - (void)showDozukiSplash {
@@ -345,8 +349,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         tbc.tabBar.translucent = NO;
     }
-    
-    tbc.tabBar.tintColor = [Config currentConfig].buttonColor;
     
     if ([Config currentConfig].collectionsEnabled) {
         FeaturedViewController *featuredViewController = [[FeaturedViewController alloc] init];    

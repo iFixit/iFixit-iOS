@@ -299,8 +299,6 @@
 // At the begin of scroll dragging, reset the boolean used when scrolls originate from the UIPageControl
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     pageControlUsed = NO;
-    [self preloadForCurrentPage:[NSNumber numberWithInt:pageControl.currentPage]];
-    
 }
 
 - (void)unloadViewControllers {
@@ -335,6 +333,7 @@
     
     // Only load secondary images if we are looking at the current view for longer than half a second
     if (pageControl.currentPage > 0) {
+        [[viewControllers[pageControl.currentPage] moviePlayer] prepareToPlay];
         [viewControllers[pageControl.currentPage] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:0.8];
     }
 }
@@ -343,7 +342,6 @@
     int page = pageControl.currentPage;
 	
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    //[self performSelector:@selector(preloadForCurrentPage:) withObject:[NSNumber numberWithInt:page] afterDelay:0.1];
     [self preloadForCurrentPage:[NSNumber numberWithInt:page]];
     [self unloadViewControllers];
     
@@ -359,6 +357,7 @@
     
     // Only load secondary images if we are looking at the current view for longer than .8 second
     if (page > 0) {
+        [[viewControllers[pageControl.currentPage] moviePlayer] prepareToPlay];
         [viewControllers[page] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:0.8];
         [self showOrHidePageControlForInterface:self.interfaceOrientation];
     }

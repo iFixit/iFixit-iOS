@@ -155,6 +155,7 @@
             break;
         case ConfigMjtrim:
             self.siteLogo.image = [UIImage imageNamed:@"mjtrim_logo_transparent.png"];
+            self.siteLogo.frame = CGRectMake(140, 160, self.siteLogo.frame.size.width, self.siteLogo.frame.size.height);
             [self.backgroundView addSubview:self.siteLogo];
             break;
         case ConfigAccustream:
@@ -237,6 +238,8 @@
     l.shadowColor = [UIColor darkGrayColor];
     l.shadowOffset = CGSizeMake(0.0, 1.0);
     l.numberOfLines = 0;
+    
+    // TODO: Make this a config setting, not a silly if else statement here
     if ([Config currentConfig].site == ConfigAccustream) {
         l.text = NSLocalizedString(@"Welcome to our 24/7 support app, below you will find an assortment of how-to guides that will lead you step by step through the assembly of various HyPrecision, Accustream, and OEM parts", nil);
     } else {

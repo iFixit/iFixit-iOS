@@ -36,6 +36,7 @@ enum {
 @property (nonatomic, retain) UIColor *textColor;
 @property (nonatomic, retain) UIColor *toolbarColor;
 @property (nonatomic, retain) UIColor *buttonColor;
+@property (nonatomic, retain) UIColor *tabBarColor;
 @property (nonatomic, retain) NSString *introCSS;
 @property (nonatomic, retain) NSString *stepCSS;
 @property (nonatomic, retain) NSString *moreInfoCSS;

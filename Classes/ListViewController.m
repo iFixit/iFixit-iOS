@@ -49,15 +49,16 @@
     } else if ([Config currentConfig].site == ConfigMjtrim) {
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
             self.navigationBar.translucent = NO;
+            self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
+        } else {
+            [[UINavigationBar appearance] setTintColor:[Config currentConfig].toolbarColor];
         }
+
         NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                                    [UIColor whiteColor],UITextAttributeTextColor,
                                                    nil];
         
         [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
-
-        self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
-    
     } else if ([Config currentConfig].site == ConfigDozuki) {
         self.navigationBar.translucent = NO;
         self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;

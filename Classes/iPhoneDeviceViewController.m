@@ -215,7 +215,7 @@
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         [UIView transitionWithView:self.navigationController.view
                           duration:0.75
-                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                           options:UIViewAnimationOptionTransitionFlipFromRight
                         animations:nil
                         completion:nil];
     }
