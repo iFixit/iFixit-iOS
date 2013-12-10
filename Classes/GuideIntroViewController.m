@@ -134,7 +134,7 @@
     NSString *partsHtml = [self buildHtmlForItems:self.guide.parts fromType:@"part"];
     NSString *toolsHtml = [self buildHtmlForItems:self.guide.tools fromType:@"tool"];
     
-    NSString *body = [NSString stringWithFormat:@"%@%@", partsHtml, toolsHtml];
+    NSString *body = [NSString stringWithFormat:@"%@%@%@", self.guide.introduction_rendered, partsHtml, toolsHtml];
 	
     self.html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];

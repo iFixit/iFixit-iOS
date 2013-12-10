@@ -163,6 +163,11 @@
             self.siteLogo.frame = CGRectMake(-60, 140, 654, 226);
             [self.backgroundView addSubview:self.siteLogo];
             break;
+        case ConfigZeal:
+            self.siteLogo.image = [UIImage imageNamed:@"zeal_logo_transparent.png"];
+            self.siteLogo.frame = CGRectMake(60, 90, self.siteLogo.frame.size.width, self.siteLogo.frame.size.height);
+            [self.backgroundView addSubview:self.siteLogo];
+            break;
         /*EAOiPadSiteLogo*/
     }
     
