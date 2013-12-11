@@ -49,5 +49,6 @@ enum {
 - (void)addGuidesToTableView:(NSArray*)guides;
 - (void)setTableViewTitle;
 - (void)configureTableViewTitleLogoFromURL:(NSString*)URL;
+- (void)configureSearchBar;
     
 @end

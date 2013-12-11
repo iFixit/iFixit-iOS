@@ -647,6 +647,9 @@ BOOL onTablet, initialLoad, showTabBar;
 
 - (void)gotSiteInfoResults:(NSDictionary*)results {
     [Config currentConfig].siteInfo = results;
+
+    [Config currentConfig].scanner = [results[@"feature-mobile-scanner"] integerValue] ? YES : NO;
+    [self.listViewController.viewControllers[0] configureSearchBar];
     
     // We don't have logo data, so let's just configure the backup titles
     if (results[@"logo"] == [NSNull null]) {
