@@ -19,21 +19,15 @@
     ]
   },
   {
-    "baseImagePath":"Default@2x.png",
-    "resources":[
-      { "name":"Default", "extension":"png", "dimensions":{ "width":320, "height":480 }}
-    ]
-  },
-  {
-    "baseImagePath":"Default-Portrait@2x~ipad",
+    "baseImagePath":"Default-Portrait@2x~ipad.png",
     "resources":[
       { "name":"Default-Portrait~ipad", "extension":"png", "dimensions":{ "width":768, "height":1024 }}
     ]
   },
   {
-    "baseImagePath":"Default-Landscape@2x~ipad",
+    "baseImagePath":"Default-Landscape@2x~ipad.png",
     "resources":[
-      { "name":"Default-Portrait~ipad", "extension":"png", "dimensions":{ "width":1024, "height":768 }}
+      { "name":"Default-Landscape~ipad", "extension":"png", "dimensions":{ "width":1024, "height":768 }}
     ]
   }
 ]
