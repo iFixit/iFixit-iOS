@@ -1,19 +1,39 @@
-{
-   "baseImagePath" : "icon1024.png",
-   "resources" : [
-      { "name" : "icon57",  "extension" : "png", "dimensions" : { "width" : 57,  "height" : 57 }},
-      { "name" : "icon72",  "extension" : "png", "dimensions" : { "width" : 72,  "height" : 72 }},
-      { "name" : "icon76",  "extension" : "png", "dimensions" : { "width" : 76,  "height" : 76 }},
-      { "name" : "icon114", "extension" : "png", "dimensions" : { "width" : 114, "height" : 114 }},
-      { "name" : "icon120", "extension" : "png", "dimensions" : { "width" : 120, "height" : 120 }},
-      { "name" : "icon144", "extension" : "png", "dimensions" : { "width" : 144, "height" : 144 }},
-      { "name" : "icon152", "extension" : "png", "dimensions" : { "width" : 152, "height" : 152 }},
-      { "name" : "icon512", "extension" : "png", "dimensions" : { "width" : 512, "height" : 512 }},
-      { "name" : "icon29",  "extension" : "png", "dimensions" : { "width" : 29,  "height" : 29 }},
-      { "name" : "icon40",  "extension" : "png", "dimensions" : { "width" : 40,  "height" : 40 }},
-      { "name" : "icon50",  "extension" : "png", "dimensions" : { "width" : 50,  "height" : 50 }},
-      { "name" : "icon58",  "extension" : "png", "dimensions" : { "width" : 58,  "height" : 58 }},
-      { "name" : "icon80",  "extension" : "png", "dimensions" : { "width" : 80,  "height" : 80 }},
-      { "name" : "icon100", "extension" : "png", "dimensions" : { "width" : 100, "height" : 100 }}
-   ]
-}
+[
+  {
+    "baseImagePath":"icon1024.png",
+    "resources":[
+      { "name":"icon57", "extension":"png", "dimensions":{ "width":57, "height":57 }},
+      { "name":"icon72", "extension":"png", "dimensions":{ "width":72, "height":72 }},
+      { "name":"icon76", "extension":"png", "dimensions":{ "width":76, "height":76 }},
+      { "name":"icon114", "extension":"png", "dimensions":{ "width":114, "height":114 }},
+      { "name":"icon120", "extension":"png", "dimensions":{ "width":120, "height":120 }},
+      { "name":"icon144", "extension":"png", "dimensions":{ "width":144, "height":144 }},
+      { "name":"icon152", "extension":"png", "dimensions":{ "width":152, "height":152 }},
+      { "name":"icon512", "extension":"png", "dimensions":{ "width":512, "height":512 }},
+      { "name":"icon29", "extension":"png", "dimensions":{ "width":29, "height":29 }},
+      { "name":"icon40", "extension":"png", "dimensions":{ "width":40, "height":40 }},
+      { "name":"icon50", "extension":"png", "dimensions":{ "width":50, "height":50 }},
+      { "name":"icon58", "extension":"png", "dimensions":{ "width":58, "height":58 }},
+      { "name":"icon80", "extension":"png", "dimensions":{ "width":80, "height":80 }},
+      { "name":"icon100", "extension":"png", "dimensions":{ "width":100, "height":100 }}
+    ]
+  },
+  {
+    "baseImagePath":"Default@2x.png",
+    "resources":[
+      { "name":"Default", "extension":"png", "dimensions":{ "width":320, "height":480 }}
+    ]
+  },
+  {
+    "baseImagePath":"Default-Portrait@2x~ipad",
+    "resources":[
+      { "name":"Default-Portrait~ipad", "extension":"png", "dimensions":{ "width":768, "height":1024 }}
+    ]
+  },
+  {
+    "baseImagePath":"Default-Landscape@2x~ipad",
+    "resources":[
+      { "name":"Default-Portrait~ipad", "extension":"png", "dimensions":{ "width":1024, "height":768 }}
+    ]
+  }
+]
