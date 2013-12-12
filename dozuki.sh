@@ -16,7 +16,7 @@ elif [ "$1" == "zeal" ]; then
    echo "Zeal"
    cp Graphics/Sites/Zeal/*png .
    sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.zeal/g' iFixit-Info.plist
-   sed -i '.bak' -e 's/iFixit/Zeal/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/iFixit/Zeal Support/g' iFixit-Info.plist
    sed -i '.bak' -e 's/>ifixit</>zeal</g' iFixit-Info.plist
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigZeal;/' Classes/iFixitAppDelegate.m
