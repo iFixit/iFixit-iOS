@@ -15,10 +15,11 @@
 #import "User.h"
 #import "LoginViewController.h"
 #import "GANTracker.h"
+#import "GuideViewController.h"
 
 @implementation GuideBookmarker
 
-@synthesize delegate, guideid, poc, progress, lvc;
+@synthesize delegate, iGuideid, poc, progress, lvc;
 
 - (id)init {
     if ((self = [super init])) {
@@ -40,10 +41,16 @@
     return self;
 }
 
-- (void)setNewGuideId:(NSInteger)newGuideid {
-    self.guideid = [NSNumber numberWithInt:newGuideid];
+- (void)setNewGuideId:(NSNumber *)newGuideid {
+    self.iGuideid = newGuideid;
     
-    if (![[GuideBookmarks sharedBookmarks] guideForGuideid:guideid]) {
+    BOOL guideExists = [[GuideBookmarks sharedBookmarks] guideForGuideid:newGuideid] ? YES : NO;
+    
+    if ([delegate isKindOfClass:[GuideViewController class]]) {
+        [delegate setOfflineGuide:guideExists];
+    }
+    
+    if (![[GuideBookmarks sharedBookmarks] guideForGuideid:newGuideid]) {
         UIBarButtonItem *bookmarkButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Favorite", nil)
                                                                            style:UIBarButtonItemStyleBordered 
                                                                           target:self 
@@ -93,7 +100,7 @@
     [spinner release];
     
     // Save online
-    [[iFixitAPI sharedInstance] like:guideid forObject:self withSelector:@selector(liked:)];
+    [[iFixitAPI sharedInstance] like:iGuideid forObject:self withSelector:@selector(liked:)];
 }
 
 // Resize the popover view controller contents
@@ -105,7 +112,7 @@
 - (void)liked:(NSDictionary *)result {
     if (![result[@"statusCode"] isEqualToNumber:@(204)]) {
         [iFixitAPI displayConnectionErrorAlert];
-        [self setNewGuideId:[guideid intValue]];
+        [self setNewGuideId:iGuideid];
         [self bookmark:self.delegate.navigationItem.rightBarButtonItem];
         return;
     }
@@ -143,10 +150,10 @@
     [progressContainer release];
     
     // Save the guide in the bookmarks list.
-    [[GuideBookmarks sharedBookmarks] addGuideid:guideid forBookmarker:self];
+    [[GuideBookmarks sharedBookmarks] addGuideid:iGuideid forBookmarker:self];
     
     // Analytics
-    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/download/%@", guideid] withError:NULL];
+    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/download/%@", iGuideid] withError:NULL];
     [[GANTracker sharedTracker] trackPageview:@"/guide/download" withError:NULL];
 }
 
@@ -187,7 +194,7 @@
 
 - (void)dealloc
 {
-    self.guideid = nil;
+    self.iGuideid = nil;
     self.progress = nil;
     self.poc = nil;
     self.lvc = nil;

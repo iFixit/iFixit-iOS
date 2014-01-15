@@ -11,7 +11,7 @@
 
 @implementation Guide
 
-@synthesize data, guideid, category, subject, title, author, timeRequired, difficulty, introduction, introduction_rendered, summary, image;
+@synthesize data, iGuideid, category, subject, title, author, timeRequired, difficulty, introduction, introduction_rendered, summary, image;
 @synthesize documents, parts, tools, flags;
 @synthesize prereqs, steps;
 
@@ -30,8 +30,8 @@
 	Guide *guide		= [[Guide alloc] init];
     dict                = [Guide repairNullsForDict:dict];
     guide.data          = dict;
-	guide.guideid		= [dict[@"guideid"] integerValue];
-	
+	guide.iGuideid		= dict[@"guideid"];
+
 	//NSDictionary *guideData = [dict valueForKey:@"guide"];
 	
 	// Meta information

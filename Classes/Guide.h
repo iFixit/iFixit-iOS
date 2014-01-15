@@ -13,7 +13,7 @@
 @interface Guide : NSObject
 
 @property (nonatomic, retain) NSDictionary *data;
-@property (nonatomic) NSInteger guideid;
+@property (nonatomic, retain) NSNumber *iGuideid;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *category;
 @property (nonatomic, retain) NSString *subject;

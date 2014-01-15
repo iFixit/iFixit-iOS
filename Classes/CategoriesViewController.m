@@ -664,7 +664,7 @@
     if (searching && [searchResults[filter] count]) {
         // If we are dealing with a guide we bail early
         if ([searchResults[filter][indexPath.row][@"dataType"] isEqualToString:@"guide"]) {
-            GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:[searchResults[filter][indexPath.row][@"guideid"] intValue]];
+            GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:searchResults[filter][indexPath.row][@"guideid"]];
             UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
             [appDelegate.window.rootViewController presentModalViewController:nc animated:YES];
             [vc release];
@@ -707,9 +707,9 @@
         }
     // Guide
     } else {
-        NSInteger guideid = [category[@"guideid"] integerValue];
+        NSNumber *iGuideid = category[@"guideid"];
         
-        GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
+        GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
         UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
         [appDelegate.window.rootViewController presentModalViewController:nc animated:YES];
         
@@ -828,7 +828,7 @@
 }
 
 - (void)gotGuide:(Guide*)guide {
-    if (guide.guideid) {
+    if (guide.iGuideid) {
         GuideViewController *guideViewController = [[GuideViewController alloc] initWithGuide:guide];
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:guideViewController];
         
@@ -853,7 +853,7 @@
 // We want to look for the a valid category/device or guide URL
 - (BOOL)openUrlFromScanner:(NSString*)url {
     NSError *error = nil;
-    NSNumber *guideId = nil;
+    NSNumber *iGuideId = nil;
     
     NSRegularExpression *guideRegex = [NSRegularExpression regularExpressionWithPattern:@"(guide|teardown)/.+?/(\\d+)"
                                                                                 options:NSRegularExpressionCaseInsensitive
@@ -872,9 +872,9 @@
     if (guideMatches.count) {
         NSRange guideIdRange = [guideMatches[0] rangeAtIndex:2];
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        guideId = [formatter numberFromString:[url substringWithRange:guideIdRange]];
+        iGuideId = [formatter numberFromString:[url substringWithRange:guideIdRange]];
         [formatter release];
-        [[iFixitAPI sharedInstance] getGuide:[guideId integerValue] forObject:self withSelector:@selector(gotGuide:)];
+        [[iFixitAPI sharedInstance] getGuide:[iGuideId integerValue] forObject:self withSelector:@selector(gotGuide:)];
         
         return YES;
     }

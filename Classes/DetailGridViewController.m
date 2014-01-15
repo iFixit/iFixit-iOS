@@ -298,8 +298,8 @@
 - (void)gridViewController:(DMPGridViewController *)gridViewController tappedCellAtIndex:(NSUInteger)index {
     iFixitAppDelegate *delegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];
 
-    NSInteger guideid = [[[_guides objectAtIndex:index] valueForKey:@"guideid"] intValue];
-    GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
+    NSNumber *iGuideid = [_guides objectAtIndex:index][@"guideid"];
+    GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [delegate.window.rootViewController presentModalViewController:nc animated:YES];
     [vc release];

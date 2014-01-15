@@ -204,11 +204,11 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger guideid = [[[self.guides objectAtIndex:indexPath.row] valueForKey:@"guideid"] intValue];
+    NSNumber *iGuideid = self.guides[indexPath.row][@"guideid"];
 
     iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
 
-    GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
+    GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
 
     [appDelegate.window.rootViewController presentModalViewController:nc animated:YES];

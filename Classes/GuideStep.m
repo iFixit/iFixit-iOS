@@ -11,13 +11,14 @@
 
 @implementation GuideStep
 
-@synthesize number, title, lines, images, video, embed;
+@synthesize number, title, lines, images, video, embed, stepid;
 
 + (GuideStep *)guideStepWithDictionary:(NSDictionary *)dict {
 	GuideStep *guideStep = [[GuideStep alloc] init];
 	
 	guideStep.number = [dict[@"orderby"] integerValue];
 	guideStep.title = dict[@"title"];
+    guideStep.stepid = [dict[@"stepid"] integerValue];
 	
     // Media
     NSDictionary *media = dict[@"media"];

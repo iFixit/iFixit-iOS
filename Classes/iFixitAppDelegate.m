@@ -470,10 +470,10 @@ static const NSInteger kGANDispatchPeriodSec = 10;
             NSString *guideidString = [urlString substringWithRange:keyRange];
             NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
             [f setNumberStyle:NSNumberFormatterDecimalStyle];
-            NSNumber *guideid = [f numberFromString:guideidString];
+            NSNumber *iGuideid = [f numberFromString:guideidString];
             [f release];
             
-            GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:[guideid intValue]];
+            GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
             [self.window.rootViewController presentModalViewController:vc animated:NO];
             [vc release];
             

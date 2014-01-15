@@ -285,8 +285,8 @@
     return title;
 }
 - (void)gridViewController:(DMPGridViewController *)gridViewController tappedCellAtIndex:(NSUInteger)index {
-    NSInteger guideid = [_guides[index][@"guideid"] intValue] ;
-    GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
+    NSNumber *iGuideid = _guides[index][@"guideid"];
+    GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentModalViewController:nc animated:YES];
     [vc release];

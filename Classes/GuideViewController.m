@@ -21,19 +21,19 @@
 
 @synthesize scrollView, pageControl, viewControllers, spinner, bookmarker;
 @synthesize guide=_guide;
-@synthesize guideid=_guideid;
+@synthesize iGuideid=_iGuideid;
 @synthesize shouldLoadPage;
 
 - (id)initWithGuide:(Guide *)guide {
-    return [self initWithGuideid:0 guide:guide];
+    return [self initWithGuideid:@0 guide:guide];
 }
-- (id)initWithGuideid:(NSInteger)guideid {
-    return [self initWithGuideid:guideid guide:nil];
+- (id)initWithGuideid:(NSNumber *)iGuideid {
+    return [self initWithGuideid:iGuideid guide:nil];
 }
-- (id)initWithGuideid:(NSInteger)guideid guide:(Guide *)guide {
+- (id)initWithGuideid:(NSNumber *)iGuideid guide:(Guide *)guide {
     if ((self = [super initWithNibName:@"GuideView" bundle:nil])) {
         self.guide = guide;
-        self.guideid = guide ? guide.guideid : guideid;
+        self.iGuideid = guide ? guide.iGuideid : iGuideid;
         self.shouldLoadPage = 0;
         self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         
@@ -47,7 +47,7 @@
         [TestFlight passCheckpoint:@"Guide View"];
         
         // Analytics
-        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/view/%d", self.guideid] withError:NULL];
+        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/view/%@", self.iGuideid] withError:NULL];
         [[GANTracker sharedTracker] trackPageview:@"/guide/view" withError:NULL];
         
         if (!self.memoryCache) {
@@ -79,10 +79,9 @@
     
     if (self.guide) {
         [self gotGuide:self.guide];
-    }
-    else {
+    } else {
         // Load the data
-        [[iFixitAPI sharedInstance] getGuide:self.guideid forObject:self withSelector:@selector(gotGuide:)];
+        [[iFixitAPI sharedInstance] getGuide:self.iGuideid forObject:self withSelector:@selector(gotGuide:)];
     }
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -126,7 +125,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     // Try Again
     if (buttonIndex) {
-        [[iFixitAPI sharedInstance] getGuide:self.guideid forObject:self withSelector:@selector(gotGuide:)];
+        [[iFixitAPI sharedInstance] getGuide:self.iGuideid forObject:self withSelector:@selector(gotGuide:)];
     }
     // Cancel
     else {
@@ -225,7 +224,7 @@
     
     self.navigationItem.leftBarButtonItem = doneButton;
     
-    [bookmarker setNewGuideId:self.guide.guideid];
+    [bookmarker setNewGuideId:self.guide.iGuideid];
     
     if (shouldLoadPage) {
        [self showPage:shouldLoadPage];
@@ -363,8 +362,8 @@
     }
 }
 
-- (void)preloadForCurrentPage:(NSNumber *)pageNumber {
-	int page = [pageNumber integerValue];
+- (void)preloadForCurrentPage:(NSNumber *)iPageNumber {
+	int page = [iPageNumber integerValue];
 	
 	[self loadScrollViewWithPage:page - 1];
     [self loadScrollViewWithPage:page];

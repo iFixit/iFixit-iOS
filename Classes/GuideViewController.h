@@ -21,18 +21,18 @@
 @property (nonatomic, retain) GuideBookmarker *bookmarker;
 @property (nonatomic, retain) NSMutableArray *viewControllers;
 @property (nonatomic, retain) Guide *guide;
-@property (nonatomic) NSInteger guideid;
+@property (nonatomic, retain) NSNumber *iGuideid;
 @property (nonatomic) NSInteger shouldLoadPage;
 @property (nonatomic, retain) NSCache *memoryCache;
 
 @property BOOL offlineGuide;
 
 - (id)initWithGuide:(Guide *)guide;
-- (id)initWithGuideid:(NSInteger)guideid;
-- (id)initWithGuideid:(NSInteger)guideid guide:(Guide *)guide;
+- (id)initWithGuideid:(NSNumber *)iGuideid;
+- (id)initWithGuideid:(NSNumber *)iGuideid guide:(Guide *)guide;
 - (void)gotGuide:(Guide *)theGuide;
 - (void)loadScrollViewWithPage:(int)page;
-- (void)preloadForCurrentPage:(NSNumber *)pageNumber;
+- (void)preloadForCurrentPage:(NSNumber *)iPageNumber;
 - (IBAction)changePage:(id)sender;
 - (void)showPage:(NSInteger)page;
 

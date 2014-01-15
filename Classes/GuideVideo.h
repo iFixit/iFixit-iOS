@@ -10,7 +10,9 @@
 
 @interface GuideVideo : NSObject
 
+@property (nonatomic) NSInteger videoid;
 @property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *filename;
 @property (nonatomic, assign) CGSize size;
 
 + (GuideVideo *)guideVideoWithDictionary:(NSDictionary *)dict;

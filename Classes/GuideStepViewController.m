@@ -7,9 +7,7 @@
 //
 
 #import "GuideStepViewController.h"
-
 #import <QuartzCore/QuartzCore.h>
-
 #import "ASIHTTPRequest.h"
 #import "JSON.h"
 #import "GuideImageViewController.h"
@@ -22,6 +20,8 @@
 #import "SVWebViewController.h"
 #import "SDImageCache.h"
 #import "GuideImage.h"
+#import "iFixitAPI.h"
+#import "User.h"
 
 @implementation GuideStepViewController
 
@@ -55,6 +55,15 @@
     view.layer.shadowRadius = 3.0;
     view.layer.shadowOpacity = 0.8;
     view.layer.shadowPath = [UIBezierPath bezierPathWithRect:view.bounds].CGPath;
+}
+
+- (NSString*)getOfflineVideoPath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDirectory = paths[0];
+    
+    NSString *filePath = [docDirectory stringByAppendingPathComponent:
+                          [NSString stringWithFormat:@"/Videos/%@_%i_%i_%@", [iFixitAPI sharedInstance].user.iUserid, self.step.stepid, self.step.video.videoid, self.step.video.filename]];
+    return filePath;
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -122,8 +131,11 @@
         CGRect frame = mainImage.frame;
         frame.origin.x = 10.0;
 
-        NSURL *url = [NSURL URLWithString:self.step.video.url];
-        
+        // If we are an offline guide, let's get our video from disk, otherwise we load the URL
+        NSURL *url = self.guideViewController.offlineGuide ?
+                     [NSURL fileURLWithPath:[self getOfflineVideoPath] isDirectory:NO] :
+                     [NSURL URLWithString:self.step.video.url];
+
         self.moviePlayer = [[[MPMoviePlayerController alloc] initWithContentURL:url] autorelease];
         self.moviePlayer.shouldAutoplay = NO;
         self.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;

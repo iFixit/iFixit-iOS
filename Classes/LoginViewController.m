@@ -651,7 +651,7 @@
         
         // Analytics
         [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@", results[@"type"]] withError:NULL];
-        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@/%@", results[@"type"], [iFixitAPI sharedInstance].user.userid] withError:NULL];
+        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@/%@", results[@"type"], [iFixitAPI sharedInstance].user.iUserid] withError:NULL];
         
     }
 }

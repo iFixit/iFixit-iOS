@@ -146,8 +146,8 @@ static int volatile openConnections = 0;
     [request startAsynchronous];
 }
 
-- (void)getGuide:(NSInteger)guideid forObject:(id)object withSelector:(SEL)selector {
-	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/guides/%d", [Config currentConfig].host, guideid];
+- (void)getGuide:(NSNumber *)iGuideid forObject:(id)object withSelector:(SEL)selector {
+	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/guides/%@", [Config currentConfig].host, iGuideid];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
@@ -476,11 +476,11 @@ static int volatile openConnections = 0;
     [request startAsynchronous];
 }
 
-- (void)like:(NSNumber *)guideid forObject:(id)object withSelector:(SEL)selector {
+- (void)like:(NSNumber *)iGuideid forObject:(id)object withSelector:(SEL)selector {
     [TestFlight passCheckpoint:@"Like"];
 
-    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/favorites/guides/%i", [Config currentConfig].host, [guideid intValue]];
-
+    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/favorites/guides/%@", [Config currentConfig].host, iGuideid];
+    
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
 
@@ -506,10 +506,10 @@ static int volatile openConnections = 0;
     [request startAsynchronous];
 }
 
-- (void)unlike:(NSNumber *)guideid forObject:(id)object withSelector:(SEL)selector {
+- (void)unlike:(NSNumber *)iGuideid forObject:(id)object withSelector:(SEL)selector {
     [TestFlight passCheckpoint:@"Unlike"];
 
-    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/favorites/guides/%i", [Config currentConfig].host, [guideid intValue]];
+    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/favorites/guides/%@", [Config currentConfig].host, iGuideid];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;

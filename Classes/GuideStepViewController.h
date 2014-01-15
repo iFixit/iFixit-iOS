@@ -9,6 +9,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "GuideViewController.h"
 #import "SDWebImageManager.h"
+#import "iFixitAPI.h"
 
 @class GuideStep;
 @class GuideCatchingWebView;

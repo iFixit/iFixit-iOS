@@ -14,7 +14,6 @@
 #import "SDWebImageManager.h"
 #import "LoginViewController.h"
 #import "User.h"
-#import "iFixitAPI.h"
 #import "Config.h"
 #import "GuideViewController.h"
 #import "ListViewController.h"
@@ -52,14 +51,14 @@
     
     // Construct the key-value list by device name.
     NSArray *allBookmarks = [[GuideBookmarks sharedBookmarks].guides allValues];
+  
     for (NSDictionary *guideData in allBookmarks) {
         Guide *guide = [Guide guideWithDictionary:guideData];
         NSMutableArray *guides = [b objectForKey:guide.category];
         
         if (guides) {
             [guides addObject:guide];
-        }
-        else {
+        } else {
             guides = [NSMutableArray arrayWithObject:guide];
             [b setObject:guides forKey:guide.category];
         }
@@ -78,8 +77,7 @@
     dispatch_sync(dispatch_get_main_queue(), ^{
         if ([bookmarks count]) {
             self.tableView.tableFooterView = nil;
-        }
-        else {
+        } else {
             // If there are no bookmarks, display a brief message.
             UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 110)];
@@ -241,7 +239,6 @@
             [lvc.view removeFromSuperview];
 
         [[GuideBookmarks sharedBookmarks] update];
-        //[self performSelectorInBackground:@selector(refreshHierarchy) withObject:nil];
     }
 }
 
@@ -359,7 +356,7 @@
     [nvc release];
     
     // Refresh any changes.
-    [[GuideBookmarks sharedBookmarks] addGuideid:[NSNumber numberWithInt:guide.guideid]];
+    [[GuideBookmarks sharedBookmarks] addGuideid:guide.iGuideid];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -406,7 +403,7 @@
     [[iFixitAPI sharedInstance] logout];
     
     [[GANTracker sharedTracker] trackPageview:@"/user/logout" withError:NULL];
-    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/logout/%@", [iFixitAPI sharedInstance].user.userid] withError:NULL];
+    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/logout/%@", [iFixitAPI sharedInstance].user.iUserid] withError:NULL];
     
     // Set bookmarks to be nil and reload the tableView to release the cells
     bookmarks = nil;
