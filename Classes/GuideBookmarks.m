@@ -490,10 +490,9 @@ static GuideBookmarks *sharedBookmarks = nil;
         
         // Now load: Guides
         NSDictionary *g = [NSDictionary dictionaryWithContentsOfFile:[self guidesFilePath]];
-        g = g ? [NSMutableDictionary dictionaryWithDictionary:g] : [NSMutableDictionary dictionary];
         
         // We must deserialize our guides first before using them
-        self.guides = [[NSMutableDictionary alloc] initWithDictionary:[self deserializeGuides:g]];
+        self.guides = [NSMutableDictionary dictionaryWithDictionary:[self deserializeGuides:g]];
         
         // Images
         NSDictionary *i = [NSDictionary dictionaryWithContentsOfFile:[self imagesFilePath]];

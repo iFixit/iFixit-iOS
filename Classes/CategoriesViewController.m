@@ -367,7 +367,6 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     NSString *filter = (searchBar.selectedScopeButtonIndex == 0) ? @"guide,teardown" : @"category";
 
-    [searchResults removeAllObjects];
     
     if ([searchText isEqual:@""]) {
         searching = NO;
@@ -387,6 +386,7 @@
 - (void)gotSearchResults:(NSDictionary *)results {
     NSString *filter = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
     
+    [searchResults removeAllObjects];
     if ([results[@"search"] isEqualToString:self.searchBar.text]) {
         self.currentSearchTerm = self.searchBar.text;
         searchResults[filter] = [results objectForKey:@"results"];
