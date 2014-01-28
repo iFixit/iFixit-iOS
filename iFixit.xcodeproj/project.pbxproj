@@ -16,6 +16,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
 		639994C77401475EB4A8AE36 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40331C958D2F4747A5B6D568 /* libPods.a */; };
 		9C002FBF182EE57C00822063 /* accustream_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */; };
+		9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A1982189735C3003E79F0 /* GuideLib.m */; };
 		9C47FB2E17F623D40074CEBE /* icon29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB1F17F623D40074CEBE /* icon29.png */; };
 		9C47FB2F17F623D40074CEBE /* icon40.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2017F623D40074CEBE /* icon40.png */; };
 		9C47FB3017F623D40074CEBE /* icon50.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2117F623D40074CEBE /* icon50.png */; };
@@ -275,6 +276,8 @@
 		70CAF29B9E394A3783A9D59C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accustream_logo_transparent.png; sourceTree = "<group>"; };
+		9C1A1981189735C3003E79F0 /* GuideLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideLib.h; sourceTree = "<group>"; };
+		9C1A1982189735C3003E79F0 /* GuideLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideLib.m; sourceTree = "<group>"; };
 		9C47FB1F17F623D40074CEBE /* icon29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon29.png; sourceTree = "<group>"; };
 		9C47FB2017F623D40074CEBE /* icon40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon40.png; sourceTree = "<group>"; };
 		9C47FB2117F623D40074CEBE /* icon50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon50.png; sourceTree = "<group>"; };
@@ -672,6 +675,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				9C1A1981189735C3003E79F0 /* GuideLib.h */,
+				9C1A1982189735C3003E79F0 /* GuideLib.m */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				C184D4E91210D3B400953C39 /* Images */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1537,6 +1542,7 @@
 				9CCF9E2517D1F55E00B0B0BB /* ASIDownloadCache.m in Sources */,
 				9CCF9E2717D1F55E00B0B0BB /* ASIFormDataRequest.m in Sources */,
 				9CCF9E2917D1F55E00B0B0BB /* ASIHTTPRequest.m in Sources */,
+				9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */,
 				9CCF9E2D17D1F55E00B0B0BB /* ASIInputStream.m in Sources */,
 				9CCF9E2F17D1F55E00B0B0BB /* ASINetworkQueue.m in Sources */,
 				9CCF9E3217D1F55E00B0B0BB /* Reachability.m in Sources */,

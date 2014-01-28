@@ -23,6 +23,8 @@
 #import "ZBarReaderViewController.h"
 #import "ZBarImageScanner.h"
 #import "Guide.h"
+#import "GuideBookmarks.h"
+#import "GuideLib.h"
 
 @implementation CategoriesViewController
 
@@ -386,8 +388,8 @@
 - (void)gotSearchResults:(NSDictionary *)results {
     NSString *filter = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
     
-    [searchResults removeAllObjects];
     if ([results[@"search"] isEqualToString:self.searchBar.text]) {
+        [searchResults removeAllObjects];
         self.currentSearchTerm = self.searchBar.text;
         searchResults[filter] = [results objectForKey:@"results"];
         noResults = ([searchResults[filter] count] == 0);
@@ -643,33 +645,23 @@
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Reachability *reachability = [Reachability reachabilityForInternetConnection];    
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
     iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
     NSString *filter = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
     
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    // If we can't connect to internet, let's bail early and display an error.
-    if (internetStatus == NotReachable) {
-        [iFixitAPI displayConnectionErrorAlert];
-        return;
-    }
-    
     [self.view endEditing:YES];
     
-    if (searching && ![searchResults[filter] count])
+    if (searching && ![searchResults[filter] count]) {
         return;
+    }
     
     NSDictionary *category = [[[NSDictionary alloc] init] autorelease];
     
     if (searching && [searchResults[filter] count]) {
         // If we are dealing with a guide we bail early
         if ([searchResults[filter][indexPath.row][@"dataType"] isEqualToString:@"guide"]) {
-            GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:searchResults[filter][indexPath.row][@"guideid"]];
-            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-            [appDelegate.window.rootViewController presentModalViewController:nc animated:YES];
-            [vc release];
-            [nc release];
-        
+            [GuideLib loadAndPresentGuideForGuideid:searchResults[filter][indexPath.row][@"guideid"]];
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             
             return;
@@ -707,14 +699,7 @@
         }
     // Guide
     } else {
-        NSNumber *iGuideid = category[@"guideid"];
-        
-        GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
-        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-        [appDelegate.window.rootViewController presentModalViewController:nc animated:YES];
-        
-        [vc release];
-        [nc release];
+        [GuideLib loadAndPresentGuideForGuideid:category[@"guideid"]];
         
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;

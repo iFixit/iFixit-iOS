@@ -15,6 +15,7 @@
 #import "GuideViewController.h"
 #import "Config.h"
 #import "ListViewController.h"
+#import "GuideLib.h"
 
 @implementation iPhoneDeviceViewController
 
@@ -204,17 +205,7 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSNumber *iGuideid = self.guides[indexPath.row][@"guideid"];
-
-    iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
-
-    GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-
-    [appDelegate.window.rootViewController presentModalViewController:nc animated:YES];
-    [vc release];
-    [nc release];
-
+    [GuideLib loadAndPresentGuideForGuideid:self.guides[indexPath.row][@"guideid"]];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

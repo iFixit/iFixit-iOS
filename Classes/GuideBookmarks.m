@@ -58,7 +58,8 @@ static GuideBookmarks *sharedBookmarks = nil;
     NSString *key = [NSString stringWithFormat:@"%@_%@",
                      [iFixitAPI sharedInstance].user.iUserid,
                      iGuideid];
-    return [guides objectForKey:key];
+    
+    return guides[key] ? [Guide guideWithDictionary:guides[key]] : nil;
 }
 
 - (void)addGuideid:(NSNumber *)iGuideid {
