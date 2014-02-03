@@ -174,12 +174,7 @@ static int volatile openConnections = 0;
 
 - (void)getCategoriesForObject:(id)object withSelector:(SEL)selector {
     // On iPhone and iPod touch, only show leaf nodes with viewable guides.
-    NSString *requireGuides = @"";
-
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        requireGuides = @"requireGuides=yes";
-    
-	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/categories?%@&withDisplayTitles", [Config currentConfig].host, requireGuides];
+	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/categories?withDisplayTitles", [Config currentConfig].host];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;

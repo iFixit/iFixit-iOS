@@ -109,15 +109,6 @@
     
     if (!self.guides)
         [self showRefreshButton];
-    else if (![self.guides count]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No guides found", nil)
-                                                        message:NSLocalizedString(@"This device has no guides.", nil)
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
-        [alert show];
-        [alert release];
-    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {

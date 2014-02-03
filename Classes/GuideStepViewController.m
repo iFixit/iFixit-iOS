@@ -80,7 +80,7 @@
     webView.backgroundColor = bgColor;
     webView.opaque = NO;
 
-    NSString *stepTitle = [NSString stringWithFormat:NSLocalizedString(@"Step %d", nil), self.step.number];
+    NSString *stepTitle = [NSString stringWithFormat:NSLocalizedString(@"Step %d", nil), self.guideViewController.pageControl.currentPage + 1];
     if (![self.step.title isEqual:@""])
       stepTitle = [NSString stringWithFormat:@"%@ - %@", stepTitle, self.step.title];
 

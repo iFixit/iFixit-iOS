@@ -498,10 +498,6 @@
         }
     }
 
-    // Sort both lists by alphabetical order
-    categories = [self sortCategories:categories];
-    devices = [self sortCategories:devices];
-    
     // If on iFixit, keep them separate
     if ([Config currentConfig].site == ConfigIFixit) {
         if (categories.count)
@@ -525,6 +521,7 @@
 }
 
 // Custom sort for our category objects
+// TODO: Not being used but let's keep it just in case
 - (NSMutableArray*)sortCategories:(NSMutableArray*)categories {
     // Sort by alphabetical order
     return [NSMutableArray arrayWithArray:[categories sortedArrayUsingComparator:^NSComparisonResult(id category1, id category2) {
@@ -676,7 +673,7 @@
     // Category
     if (category[@"type"] == @(CATEGORY)) {
         CategoriesViewController *vc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
-        vc.title = category[@"name"];
+        vc.title = category[@"display_title"];
         
         if (searching) {
             [self findChildCategoriesFromParent:category[@"name"]];
@@ -693,7 +690,7 @@
     } else if (category[@"type"] == @(DEVICE)) {
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
             iPhoneDeviceViewController *vc = [[iPhoneDeviceViewController alloc] initWithTopic:category[@"name"]];
-            vc.title = category[@"name"];
+            vc.title = category[@"display_title"];
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
         }
