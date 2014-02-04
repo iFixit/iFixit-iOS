@@ -181,7 +181,8 @@ static GuideBookmarks *sharedBookmarks = nil;
     NSMutableDictionary *deserializedGuides = [[NSMutableDictionary alloc] initWithCapacity:guides.count];
 
     for (NSString *key in guides) {
-        deserializedGuides[key] = [self deserializeJsonString:guides[key]];
+        deserializedGuides[key] = [guides[key] isKindOfClass:[NSString class]] ?
+                        [self deserializeJsonString:guides[key]] : guides[key];
     }
     
     return deserializedGuides;
