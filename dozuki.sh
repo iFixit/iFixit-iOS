@@ -25,7 +25,7 @@ elif [ "$1" == "mjtrim" ]; then
    echo "Mjtrim"
    cp Graphics/Sites/Mjtrim/*png .
    sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.mjtrim/g' iFixit-Info.plist
-   sed -i '.bak' -e 's/iFixit/MJ Trimming/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/iFixit/Project DIY/g' iFixit-Info.plist
    sed -i '.bak' -e 's/>ifixit</>mjtrim</g' iFixit-Info.plist
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigMjtrim;/' Classes/iFixitAppDelegate.m
