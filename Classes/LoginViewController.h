@@ -10,7 +10,7 @@
 @class ListViewController;
 #import "LoginViewControllerDelegate.h"
 
-@interface LoginViewController : UITableViewController <UITextFieldDelegate, UIGestureRecognizerDelegate>
+@interface LoginViewController : UITableViewController <UITextFieldDelegate, UIGestureRecognizerDelegate, LoginViewControllerDelegate>
 
 @property (nonatomic, assign) id<LoginViewControllerDelegate> delegate;
 @property (nonatomic, copy) NSString *message;

@@ -280,23 +280,30 @@
 }
 
 - (void)tapGoogle {
-    OpenIDViewController *vc = [OpenIDViewController viewControllerForHost:@"google" delegate:delegate];
-    if (modal) {
-        [self presentModalViewController:vc animated:YES];
-    }
-    else {
-        [delegate presentModalViewController:vc animated:YES];
-    }
+    OpenIDViewController *openIdViewController = [OpenIDViewController viewControllerForHost:@"google" delegate:delegate];
+    
+    [self presentOpenIdViewController:openIdViewController];
 }
-
+- (void)presentOpenIdViewController:(OpenIDViewController *)openIdViewController {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        // Special case if our delegate is a list due to being on an iPad
+        if ([delegate isKindOfClass:[ListViewController class]]) {
+            iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
+            [appDelegate presentModalViewController:openIdViewController animated:YES];
+        } else {
+            [delegate presentModalViewController:openIdViewController animated:YES];
+        }
+    } else {
+        openIdViewController.delegate = self;
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:openIdViewController];
+        [self presentModalViewController:nvc animated:YES];
+    }
+    
+}
 - (void)tapYahoo {
-    OpenIDViewController *vc = [OpenIDViewController viewControllerForHost:@"yahoo" delegate:delegate];
-    if (modal) {
-        [self presentModalViewController:vc animated:YES];
-    }
-    else {
-        [delegate presentModalViewController:vc animated:YES];
-    }
+    OpenIDViewController *openIdViewController = [OpenIDViewController viewControllerForHost:@"yahoo" delegate:delegate];
+    
+    [self presentOpenIdViewController:openIdViewController];
 }
 
 - (void)toggleRegister {
