@@ -28,12 +28,12 @@
 
 @implementation CategoriesViewController
 
-@synthesize delegate, searchBar, searching, searchResults, noResults, categorySearchResult;
+@synthesize delegate, searchBar, searchResults, noResults, categorySearchResult;
 
 - (id)init {
     if ((self = [super initWithNibName:nil bundle:nil])) {
         self.categories = nil;
-        searching = NO;
+        self.searching = NO;
         searchResults = [[NSMutableDictionary alloc] initWithCapacity:2];
     }
     return self;
@@ -45,6 +45,19 @@
 - (void)viewWillAppear:(BOOL)animated {    
     if (!self.categories)
         [self getAreas];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil
+    ];
+}
+
+- (void)orientationChanged:(NSNotification *)notification{
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        if (self.searching || [self.searchBar.text isEqualToString:@""])
+            [self enableSearchView:NO];
+    }
 }
 
 - (void)viewDidLoad {
@@ -300,45 +313,25 @@
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
+    // If the user is about to search for something, let's send them to the top of the tableview with a nice little animation
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                          atScrollPosition:UITableViewScrollPositionTop
+                                  animated:SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? YES : NO
+    ];
+    
     [searchBar setShowsCancelButton:YES animated:YES];
     
-    // Animate the table up.
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        [UIView beginAnimations:@"showSearch" context:nil];
-        [UIView setAnimationDuration:0.3];
-        CGRect bounds = self.navigationController.view.bounds;
-        bounds.origin.y = self.navigationController.navigationBar.frame.size.height;
-        self.navigationController.view.bounds = bounds;
-        [UIView commitAnimations];
-        
-        // Disable the favorites button to avoid accidental presses
-        self.listViewController.favoritesButton.enabled = NO;
-    }
-
     [self enableSearchView:YES];
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)theSearchBar {
     if ([theSearchBar.text isEqual:@""]) {
-        searching = NO;
+        self.searching = NO;
         noResults = NO;
         [self.tableView reloadData];
     }
 
-    [searchBar setShowsCancelButton:NO animated:YES];    
-    
-    // Animate the table back down.
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        [UIView beginAnimations:@"showSearch" context:nil];
-        [UIView setAnimationDuration:0.3];
-        CGRect bounds = self.navigationController.view.bounds;
-        bounds.origin.y = 0;
-        self.navigationController.view.bounds = bounds;
-        [UIView commitAnimations];
-        
-        self.listViewController.favoritesButton.enabled = YES;
-    }
-
+    [searchBar setShowsCancelButton:NO animated:YES];
     [self enableSearchView:NO];
 }
 
@@ -371,14 +364,14 @@
 
     
     if ([searchText isEqual:@""]) {
-        searching = NO;
+        self.searching = NO;
         noResults = NO;
         [self.tableView reloadData];    
         return;
     }
     
-    if (!searching) {
-        searching = YES;
+    if (!self.searching) {
+        self.searching = YES;
     }
     
     [[iFixitAPI sharedInstance] getSearchResults:searchText withFilter:filter forObject:self withSelector:@selector(gotSearchResults:)];
@@ -409,8 +402,16 @@
     [self.view endEditing:YES];
 }
 
-- (void)enableSearchView:(BOOL)option {
+// Helper function for devices older than 7.0 to help with odd UI rotation issues when using the search bar
+- (void)repositionFramesForLegacyDevices:(double)navigationBarHeight searchEnabled:(BOOL)enabled {
+    self.view.frame = CGRectMake(0, enabled ? -navigationBarHeight : 0, self.view.frame.size.width, self.view.frame.size.height);
+    self.navigationController.navigationBar.bounds = CGRectMake(0, 0, self.navigationController.navigationBar.bounds.size.width,
+                                                                enabled ? 0 : navigationBarHeight
+    );
+    
+}
 
+- (void)enableSearchView:(BOOL)option {
     [UIView transitionWithView:self.tableView
                       duration:0.2
                        options:UIViewAnimationOptionCurveEaseOut
@@ -419,22 +420,52 @@
                     } completion:nil
     ];
     
+    // Only on iPhone do we want to make more room
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        
+        // On iOS 7 we can simply move the whole view frame and take advantage of sexy animations
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            double statusBarHeight = 20;
+            [UIView beginAnimations:@"search" context:nil];
+            [UIView setAnimationDuration:0.3];
+            self.view.frame = CGRectMake(0,
+                                         option ? statusBarHeight :
+                                         (self.navigationController.navigationBar.frame.size.height + statusBarHeight), self.view.frame.size.width, self.view.frame.size.height
+            );
+            self.navigationController.navigationBar.hidden = option;
+            
+            [UIView commitAnimations];
+        // Older devices are a bit more complicated, we have to essentially remove the navigation bar bounds temporarily
+        } else {
+            double navigationBarHeightForPortrait = 44.0;
+            double navigationBarHeightForLandscape = 32.0;
+            UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+            
+            
+            [self repositionFramesForLegacyDevices:UIDeviceOrientationIsPortrait(interfaceOrientation)
+                                                   ? navigationBarHeightForPortrait : navigationBarHeightForLandscape
+                                     searchEnabled:option];
+        }
+        
+        [self.navigationController.navigationBar setHidden:option];
+        self.listViewController.favoritesButton.enabled = !option;
+    }
+    
+    // Toggle the favorites button
     [UIView transitionWithView:self.scannerIcon
                       duration:option ? 0 : 0.4
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
-                        self.scannerIcon.hidden = [Config currentConfig].scanner && !searching ? option : YES;
+                        self.scannerIcon.hidden = [Config currentConfig].scanner && !self.searching ? option : YES;
                     } completion:nil
     ];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [searchBar setShowsCancelButton:NO animated:NO];
-    CGRect bounds = self.navigationController.view.bounds;
-    bounds.origin.y = 0;
-    self.navigationController.view.bounds = bounds;
-    
-    [self.view endEditing:YES];
+    if (self.searching) {
+        [self.view endEditing:YES];
+        [self enableSearchView:NO];
+    }
 }
 
 // Ensure that the view controller supports rotation and that the split view can therefore show in both portrait and landscape.
@@ -530,7 +561,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
-    if (searching) {
+    if (self.searching) {
         return 1;
     }
     
@@ -538,7 +569,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (searching) {
+    if (self.searching) {
         NSString *string = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
         return NSLocalizedString(string, nil);
     }
@@ -548,7 +579,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (searching) {
+    if (self.searching) {
         NSString *filter = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
         if ([searchResults[filter] count]) {
             return [searchResults[filter] count];
@@ -569,7 +600,7 @@
     id cell;
     
     // If searching, create the cell and bail early
-    if (searching) {
+    if (self.searching) {
         NSString *filter = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
         cellIdentifier = @"SearchCell";
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -649,13 +680,13 @@
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.view endEditing:YES];
     
-    if (searching && ![searchResults[filter] count]) {
+    if (self.searching && ![searchResults[filter] count]) {
         return;
     }
     
     NSDictionary *category = [[[NSDictionary alloc] init] autorelease];
     
-    if (searching && [searchResults[filter] count]) {
+    if (self.searching && [searchResults[filter] count]) {
         // If we are dealing with a guide we bail early
         if ([searchResults[filter][indexPath.row][@"dataType"] isEqualToString:@"guide"]) {
             [GuideLib loadAndPresentGuideForGuideid:searchResults[filter][indexPath.row][@"guideid"]];
@@ -675,11 +706,11 @@
         CategoriesViewController *vc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
         vc.title = category[@"display_title"];
         
-        if (searching) {
+        if (self.searching) {
             [self findChildCategoriesFromParent:category[@"name"]];
         }
         
-        [vc setData:(searching) ? categorySearchResult : [self.categoryResults valueForKey:category[@"name"]]];
+        [vc setData:(self.searching) ? categorySearchResult : [self.categoryResults valueForKey:category[@"name"]]];
         
         [self.navigationController pushViewController:vc animated:YES];
         [vc.tableView reloadData];
