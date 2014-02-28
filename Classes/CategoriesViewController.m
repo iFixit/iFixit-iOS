@@ -30,6 +30,8 @@
 
 @synthesize delegate, searchBar, searchResults, noResults, categorySearchResult;
 
+BOOL searchViewEnabled;
+
 - (id)init {
     if ((self = [super initWithNibName:nil bundle:nil])) {
         self.categories = nil;
@@ -46,22 +48,30 @@
     if (!self.categories)
         [self getAreas];
     
+}
+
+- (void)orientationChanged:(NSNotification *)notification{
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone &&
+     searchViewEnabled && SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [self enableSearchView:YES];
+    }
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self orientationChanged:nil];
+}
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(orientationChanged:)
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil
-    ];
-}
-
-- (void)orientationChanged:(NSNotification *)notification{
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        if (self.searching || [self.searchBar.text isEqualToString:@""])
-            [self enableSearchView:NO];
-    }
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
+     ];
+    
+    searchViewEnabled = NO;
     
     // Create a reference to the navigation controller
     self.listViewController = (ListViewController*)self.navigationController;
@@ -313,26 +323,27 @@
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
-    // If the user is about to search for something, let's send them to the top of the tableview with a nice little animation
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
-                          atScrollPosition:UITableViewScrollPositionTop
-                                  animated:SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? YES : NO
-    ];
+    // If the user is about to search for something, let's sn
+    if (self.tableView.decelerating) {
+        [self.tableView scrollToRowAtIndexPath:self.tableView.indexPathsForVisibleRows[0]
+                              atScrollPosition:UITableViewScrollPositionNone
+                                      animated:NO
+        ];
+    }
     
-    [searchBar setShowsCancelButton:YES animated:YES];
     
     [self enableSearchView:YES];
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)theSearchBar {
-    if ([theSearchBar.text isEqual:@""]) {
-        self.searching = NO;
-        noResults = NO;
-        [self.tableView reloadData];
-    }
 
     [searchBar setShowsCancelButton:NO animated:YES];
     [self enableSearchView:NO];
+    
+    if ([theSearchBar.text isEqual:@""]) {
+        noResults = NO;
+        [self.tableView reloadData];
+    }
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)theSearchBar {
@@ -412,6 +423,8 @@
 }
 
 - (void)enableSearchView:(BOOL)option {
+    [searchBar setShowsCancelButton:option animated:YES];
+    
     [UIView transitionWithView:self.tableView
                       duration:0.2
                        options:UIViewAnimationOptionCurveEaseOut
@@ -432,7 +445,6 @@
                                          option ? statusBarHeight :
                                          (self.navigationController.navigationBar.frame.size.height + statusBarHeight), self.view.frame.size.width, self.view.frame.size.height
             );
-            self.navigationController.navigationBar.hidden = option;
             
             [UIView commitAnimations];
         // Older devices are a bit more complicated, we have to essentially remove the navigation bar bounds temporarily
@@ -459,10 +471,12 @@
                         self.scannerIcon.hidden = [Config currentConfig].scanner && !self.searching ? option : YES;
                     } completion:nil
     ];
+    
+    searchViewEnabled = option;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (self.searching) {
+    if (searchViewEnabled) {
         [self.view endEditing:YES];
         [self enableSearchView:NO];
     }
