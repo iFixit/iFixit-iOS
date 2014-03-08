@@ -17,6 +17,7 @@
 #import "GuideBookmarks.h"
 #import "BookmarksViewController.h"
 #import "LoginViewController.h"
+#import "Utility.h"
 
 @implementation iFixitAPI
 
@@ -42,9 +43,8 @@ static int volatile openConnections = 0;
 - (void)saveSession {
     if (self.user) {
         // Write to disk
-        [self.user.data writeToFile:[self sessionFilePath] atomically:YES];
-    }
-    else {
+        [@{@"userJson": [Utility serializeDictionary:self.user.data]} writeToFile:[self sessionFilePath] atomically:YES];
+    } else {
         // Clear the session
         [[NSFileManager defaultManager] removeItemAtPath:[self sessionFilePath] error:nil];
     }
@@ -53,6 +53,12 @@ static int volatile openConnections = 0;
 - (void)loadSession {
     // Read from disk
     NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:[self sessionFilePath]];
+    
+    // Only deserialize json data if we need to
+    if ([data objectForKey:@"userJson"]) {
+        data = [Utility deserializeJsonString:data[@"userJson"]];
+    }
+    
     self.user = data ? [User userWithDictionary:data] : nil;
 }
 

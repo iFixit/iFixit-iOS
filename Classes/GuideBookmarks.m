@@ -17,6 +17,7 @@
 #import "SDWebImageManager.h"
 #import "Config.h"
 #import "GANTracker.h"
+#import "Utility.h"
 #include <sys/xattr.h>
 
 static GuideBookmarks *sharedBookmarks = nil;
@@ -164,37 +165,23 @@ static GuideBookmarks *sharedBookmarks = nil;
     NSMutableDictionary *serializedGuides = [[NSMutableDictionary alloc] initWithCapacity:guides.count];
 
     for (NSString *key in guides) {
-        serializedGuides[key] = [self serializeDictionary:guides[key]];
+        serializedGuides[key] = [Utility serializeDictionary:guides[key]];
     }
 
     return serializedGuides;
 }
 
-- (NSString *)serializeDictionary:(NSDictionary *)dictionary {
-    NSError *error;
-
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:0 error:&error];
-    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-}
 - (NSDictionary *)deserializeGuides:(NSDictionary *)guides {
     NSMutableDictionary *deserializedGuides = [[NSMutableDictionary alloc] initWithCapacity:guides.count];
 
     for (NSString *key in guides) {
         deserializedGuides[key] = [guides[key] isKindOfClass:[NSString class]] ?
-                        [self deserializeJsonString:guides[key]] : guides[key];
+                        [Utility deserializeJsonString:guides[key]] : guides[key];
     }
     
     return deserializedGuides;
 }
 
-- (NSDictionary *)deserializeJsonString:(NSString*) jsonString {
-    NSError *error;
-
-    return [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]
-                                           options:0
-                                             error:&error];
-}
 - (void)saveBookmarks {
     // Write to disk
     if (guides) {
