@@ -39,7 +39,6 @@
                                                      name:GuideBookmarksUpdatedNotification
                                                    object:nil];
         
-        [[GuideBookmarks sharedBookmarks] update];
     }
     return self;
 }

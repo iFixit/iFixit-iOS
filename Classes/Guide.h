@@ -23,6 +23,8 @@
 @property (nonatomic, retain) NSString *introduction;
 @property (nonatomic, retain) NSString *summary;
 @property (nonatomic, retain) NSString *introduction_rendered;
+@property (nonatomic, retain) NSNumber *iModifiedDate;
+@property (nonatomic, retain) NSNumber *iPrereqModifiedDate;
 @property (nonatomic, retain) GuideImage *image;
 
 @property (nonatomic, retain) NSMutableArray *documents;
@@ -34,5 +36,7 @@
 @property (nonatomic, retain) NSMutableArray *steps;
 
 + (Guide *)guideWithDictionary:(NSDictionary *)dict;
+-(NSNumber*)getAbsoluteModifiedDate;
++(NSNumber*)getAbsoluteModifiedDateFromGuideDictionary:(NSDictionary*)guideData;
 
 @end

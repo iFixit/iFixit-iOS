@@ -408,6 +408,7 @@ static GuideBookmarks *sharedBookmarks = nil;
 - (void)update {
     [[iFixitAPI sharedInstance] getUserFavoritesForObject:self withSelector:@selector(gotUpdates:)];
 }
+
 - (void)gotUpdates:(NSArray *)likes {
 
     if (!likes) {
@@ -423,14 +424,20 @@ static GuideBookmarks *sharedBookmarks = nil;
     
     NSMutableArray *guideids = [NSMutableArray array];
     self.favorites = likes;
-
+    
     // Add new guides.
     for (NSDictionary *like in likes) {
         NSNumber *iGuideid = like[@"guide"][@"guideid"];
         
         [guideids addObject:iGuideid];
+        Guide *savedGuide = [self guideForGuideid:iGuideid];
 
-        if (![self guideForGuideid:iGuideid]) {
+        if (!savedGuide) {
+            [self addGuideid:iGuideid];
+        // Force both modified dates into integers when comparing, this is to deal with data type inconsistency across
+        // different endpoints. Remove when new version of API is released
+        } else if (![[Guide getAbsoluteModifiedDateFromGuideDictionary:like[@"guide"]] isEqualToNumber:[savedGuide getAbsoluteModifiedDate]]) {
+            [self removeGuideid:iGuideid];
             [self addGuideid:iGuideid];
         }
     }
@@ -503,7 +510,6 @@ static GuideBookmarks *sharedBookmarks = nil;
         self.currentItem = nil;
         self.bookmarker = nil;
         
-        [self update];
     }
     return self;
 }
