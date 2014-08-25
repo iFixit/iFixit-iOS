@@ -84,6 +84,7 @@ BOOL onTablet, initialLoad, showTabBar;
         [self.view.subviews[1] addSubview:self.browseButton];
         
         self.browseButton.hidden = UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]);
+        [self showTabBar:NO];
     }
     
     self.delegate = self;
