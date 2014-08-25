@@ -198,7 +198,7 @@
     BOOL showsTabBar = [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showsTabBar];
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        inset = UIEdgeInsetsMake(69.0, 0, (showsTabBar) ? 70.0 : 10.0 , 0);
+        inset = UIEdgeInsetsMake(78.0, 0, (showsTabBar) ? 70.0 : 10.0 , 0);
     } else {
         inset = UIEdgeInsetsMake(0,0,10,0);
     }
