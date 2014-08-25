@@ -35,7 +35,7 @@ static Config *currentConfig = nil;
             self.baseURL = @"http://www.ifixit.com/Guide";
             answersEnabled = YES;
             collectionsEnabled = YES;
-            self.store = @"http://www.ifixit.com/Parts-Store";
+            self.store = @"http://www.ifixit.com/Store";
             break;
         case ConfigIFixitDev:
             self.host = @"www.cominor.com";
