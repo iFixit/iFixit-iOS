@@ -100,7 +100,8 @@ BOOL onTablet, initialLoad, showTabBar;
 
 // We create different buttons depending on what version the user is on
 - (void)createBrowseButton {
-    CGRect frame = CGRectMake(7, 5, 100, 34);
+    // I hate these magic numbers
+    CGRect frame = CGRectMake(7, 10, 100, 34);
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         self.browseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         self.browseButton.frame = frame;
