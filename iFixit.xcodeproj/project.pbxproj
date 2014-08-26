@@ -34,6 +34,7 @@
 		9C47FB3C17F623D40074CEBE /* icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2D17F623D40074CEBE /* icon1024.png */; };
 		9C67A6C417E7A9040079C099 /* iFixit-App-Id.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */; };
 		9CA4756718CAFEF3005AFE08 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4756618CAFEF3005AFE08 /* Utility.m */; };
+		9CBA8DCF19AC2B8E00CA4460 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA8DCE19AC2B8E00CA4460 /* libTestFlight.a */; };
 		9CCF9E1E17D1F55E00B0B0BB /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */; };
 		9CCF9E2117D1F55E00B0B0BB /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0B17D1F44D00B0B0BB /* ASIDataCompressor.m */; };
 		9CCF9E2317D1F55E00B0B0BB /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0D17D1F44D00B0B0BB /* ASIDataDecompressor.m */; };
@@ -63,7 +64,6 @@
 		9CE6783F18387080001912DF /* accustream_step.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783E18387080001912DF /* accustream_step.css */; };
 		AB0B27AD15E7E3550088BA07 /* titleImageZeal.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */; };
 		AB0B27B015E7E36B0088BA07 /* titleImageZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */; };
-		AB10C28E17A7CF0E00684B41 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB10C28D17A7CF0E00684B41 /* libTestFlight.a */; };
 		AB1F950C17A584B4009F3419 /* NoImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB1F950B17A584B4009F3419 /* NoImage@2x.jpg */; };
 		AB26882217CD5AA6004AC6ED /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB26882017CD5AA6004AC6ED /* OpenSans-Bold.ttf */; };
 		AB26882317CD5AA6004AC6ED /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB26882117CD5AA6004AC6ED /* OpenSans-Regular.ttf */; };
@@ -297,6 +297,8 @@
 		9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-App-Id.plist"; sourceTree = "<group>"; };
 		9CA4756518CAFEF3005AFE08 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		9CA4756618CAFEF3005AFE08 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		9CBA8DCE19AC2B8E00CA4460 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		9CBA8DD019AC2B9C00CA4460 /* TestFlight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		9CCF9E0717D1F44D00B0B0BB /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = "asi-http-request/Classes/ASIAuthenticationDialog.h"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = "asi-http-request/Classes/ASIAuthenticationDialog.m"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0917D1F44D00B0B0BB /* ASICacheDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = "asi-http-request/Classes/ASICacheDelegate.h"; sourceTree = SOURCE_ROOT; };
@@ -343,8 +345,6 @@
 		9CE6783E18387080001912DF /* accustream_step.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accustream_step.css; sourceTree = "<group>"; };
 		AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageZeal.png; sourceTree = "<group>"; };
 		AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImageZeal@2x.png"; sourceTree = "<group>"; };
-		AB10C28C17A7CF0500684B41 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
-		AB10C28D17A7CF0E00684B41 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		AB1F950B17A584B4009F3419 /* NoImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "NoImage@2x.jpg"; sourceTree = "<group>"; };
 		AB26882017CD5AA6004AC6ED /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		AB26882117CD5AA6004AC6ED /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -631,11 +631,11 @@
 				DA0A0C03138B02310027721E /* CFNetwork.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				9CBA8DCF19AC2B8E00CA4460 /* libTestFlight.a in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				DAE4242113C3DE6C00F20EEE /* libz.dylib in Frameworks */,
 				DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */,
 				DAAAC7461433DF7600CB90AF /* libGoogleAnalytics.a in Frameworks */,
-				AB10C28E17A7CF0E00684B41 /* libTestFlight.a in Frameworks */,
 				639994C77401475EB4A8AE36 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -786,8 +786,8 @@
 		AB10C28B17A7CEF000684B41 /* TestFlight */ = {
 			isa = PBXGroup;
 			children = (
-				AB10C28D17A7CF0E00684B41 /* libTestFlight.a */,
-				AB10C28C17A7CF0500684B41 /* TestFlight.h */,
+				9CBA8DD019AC2B9C00CA4460 /* TestFlight.h */,
+				9CBA8DCE19AC2B8E00CA4460 /* libTestFlight.a */,
 			);
 			name = TestFlight;
 			sourceTree = "<group>";
@@ -1641,8 +1641,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1665,12 +1665,14 @@
 					"\"$(SRCROOT)/TestFlight\"",
 					"\"$(SRCROOT)/GAnalytics\"",
 					"\"$(SRCROOT)/Classes\"",
+					"$(PROJECT_DIR)/Classes",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
 		};
@@ -1680,8 +1682,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1702,22 +1704,28 @@
 					"\"$(SRCROOT)/TestFlight\"",
 					"\"$(SRCROOT)/GAnalytics\"",
 					"\"$(SRCROOT)/Classes\"",
+					"$(PROJECT_DIR)/Classes",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -1727,48 +1735,60 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = "armv7s armv7";
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = "armv7s armv7";
 			};
 			name = Release;
 		};
 		C1523E28120E382D007E8DD8 /* Ad-Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CODE_SIGN_FLAGS = "";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = "armv7s armv7";
 			};
 			name = "Ad-Hoc";
 		};
@@ -1778,8 +1798,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1802,12 +1822,14 @@
 					"\"$(SRCROOT)/TestFlight\"",
 					"\"$(SRCROOT)/GAnalytics\"",
 					"\"$(SRCROOT)/Classes\"",
+					"$(PROJECT_DIR)/Classes",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = "Ad-Hoc";
 		};
