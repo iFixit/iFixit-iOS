@@ -126,6 +126,13 @@ BOOL searchViewEnabled;
     
     // Be explicit for iOS 7
     self.tableView.backgroundColor = [UIColor whiteColor];
+    
+    // Only needed for iOS 7 + iPhone
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y
+                                          , self.tableView.frame.size.width, self.tableView.frame.size.height + self.tabBarController.tabBar.frame.size.height);
+        
+    }
 }
 
 - (void)configureSearchBar {
