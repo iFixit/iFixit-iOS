@@ -26,15 +26,18 @@
 @implementation GuideStepViewController
 
 @synthesize delegate, step=_step, titleLabel, mainImage, webView, moviePlayer, embedView;
-@synthesize image1, image2, image3, numImagesLoaded, html;
+@synthesize image1, image2, image3, numImagesLoaded, html, absoluteStepNumber;
 
 // Load the view nib and initialize the pageNumber ivar.
-- (id)initWithStep:(GuideStep *)step {
+- (id)initWithStep:(GuideStep *)step withAbsolute:(NSNumber *)stepNumber {
+    self.absoluteStepNumber = stepNumber;
+    
     if ((self = [super initWithNibName:nil bundle:nil])) {
         self.step = step;
         self.numImagesLoaded = 0;
         self.largeImages = [[NSMutableDictionary alloc] init];
     }
+
     return self;
 }
 
@@ -80,7 +83,7 @@
     webView.backgroundColor = bgColor;
     webView.opaque = NO;
 
-    NSString *stepTitle = [NSString stringWithFormat:NSLocalizedString(@"Step %d", nil), self.step.number];
+    NSString *stepTitle = [NSString stringWithFormat:NSLocalizedString(@"Step %@", nil), self.absoluteStepNumber];
     if (![self.step.title isEqual:@""])
       stepTitle = [NSString stringWithFormat:@"%@ - %@", stepTitle, self.step.title];
 

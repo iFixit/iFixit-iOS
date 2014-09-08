@@ -29,11 +29,12 @@
 @property (nonatomic, retain) IBOutlet UIButton *image2;
 @property (nonatomic, retain) IBOutlet UIButton *image3;
 @property (nonatomic) NSInteger numImagesLoaded;
+@property (nonatomic, retain) NSNumber *absoluteStepNumber;
 @property (nonatomic, retain) NSString *html;
 
 @property (nonatomic, retain) NSMutableDictionary *largeImages;
 
-- (id)initWithStep:(GuideStep *)step;
+- (id)initWithStep:(GuideStep *)step withAbsolute:(NSNumber *)stepNumber;
 - (IBAction)zoomImage:(id)sender;
 - (IBAction)changeImage:(UIButton *)button;
 - (void)startImageDownloads;

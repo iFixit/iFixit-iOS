@@ -257,7 +257,7 @@
 			controller = [[GuideIntroViewController alloc] initWithGuide:self.guide];
             ((GuideIntroViewController *)controller).delegate = self;
 		} else {
-			controller = [[GuideStepViewController alloc] initWithStep:[self.guide.steps objectAtIndex:stepNumber]];
+			controller = [[GuideStepViewController alloc] initWithStep:[self.guide.steps objectAtIndex:stepNumber] withAbsolute:[NSNumber numberWithInteger:stepNumber + 1]];
             ((GuideStepViewController *)controller).delegate = self;
             ((GuideStepViewController *)controller).guideViewController = self;
 		}
