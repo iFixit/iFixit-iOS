@@ -33,6 +33,12 @@
 		9C47FB3B17F623D40074CEBE /* icon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2C17F623D40074CEBE /* icon152.png */; };
 		9C47FB3C17F623D40074CEBE /* icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2D17F623D40074CEBE /* icon1024.png */; };
 		9C67A6C417E7A9040079C099 /* iFixit-App-Id.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */; };
+		9C6E961319AE8B9A00FE847D /* FA-Featured-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961119AE8B9A00FE847D /* FA-Featured-2x.png */; };
+		9C6E961419AE8B9A00FE847D /* FA-Featured.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961219AE8B9A00FE847D /* FA-Featured.png */; };
+		9C6E961719AE8BA700FE847D /* FA-Repair-Manuals-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961519AE8BA700FE847D /* FA-Repair-Manuals-2x.png */; };
+		9C6E961819AE8BA700FE847D /* FA-Repair-Manuals.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961619AE8BA700FE847D /* FA-Repair-Manuals.png */; };
+		9C6E961B19AE8BB200FE847D /* FA-Store-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961919AE8BB200FE847D /* FA-Store-2x.png */; };
+		9C6E961C19AE8BB200FE847D /* FA-Store.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961A19AE8BB200FE847D /* FA-Store.png */; };
 		9CA4756718CAFEF3005AFE08 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4756618CAFEF3005AFE08 /* Utility.m */; };
 		9CBA8DCF19AC2B8E00CA4460 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA8DCE19AC2B8E00CA4460 /* libTestFlight.a */; };
 		9CCF9E1E17D1F55E00B0B0BB /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */; };
@@ -295,6 +301,12 @@
 		9C47FB2C17F623D40074CEBE /* icon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon152.png; sourceTree = "<group>"; };
 		9C47FB2D17F623D40074CEBE /* icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1024.png; sourceTree = "<group>"; };
 		9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-App-Id.plist"; sourceTree = "<group>"; };
+		9C6E961119AE8B9A00FE847D /* FA-Featured-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Featured-2x.png"; sourceTree = "<group>"; };
+		9C6E961219AE8B9A00FE847D /* FA-Featured.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Featured.png"; sourceTree = "<group>"; };
+		9C6E961519AE8BA700FE847D /* FA-Repair-Manuals-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Repair-Manuals-2x.png"; sourceTree = "<group>"; };
+		9C6E961619AE8BA700FE847D /* FA-Repair-Manuals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Repair-Manuals.png"; sourceTree = "<group>"; };
+		9C6E961919AE8BB200FE847D /* FA-Store-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Store-2x.png"; sourceTree = "<group>"; };
+		9C6E961A19AE8BB200FE847D /* FA-Store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Store.png"; sourceTree = "<group>"; };
 		9CA4756518CAFEF3005AFE08 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		9CA4756618CAFEF3005AFE08 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		9CBA8DCE19AC2B8E00CA4460 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
@@ -944,6 +956,12 @@
 				DA3562AA14771E2B00683947 /* tabBarItemBook.png */,
 				DAB2697C146CA969000D3A7A /* tabBarItemBubbles.png */,
 				DAB2697A146CA483000D3A7A /* tabBarItemGears.png */,
+				9C6E961119AE8B9A00FE847D /* FA-Featured-2x.png */,
+				9C6E961219AE8B9A00FE847D /* FA-Featured.png */,
+				9C6E961519AE8BA700FE847D /* FA-Repair-Manuals-2x.png */,
+				9C6E961619AE8BA700FE847D /* FA-Repair-Manuals.png */,
+				9C6E961919AE8BB200FE847D /* FA-Store-2x.png */,
+				9C6E961A19AE8BB200FE847D /* FA-Store.png */,
 				DA35629D147717D700683947 /* tabBarItemList.png */,
 				DA6303A9147D712B006D8A2B /* tabBarItemPricetag.png */,
 				DAB26978146CA461000D3A7A /* tabBarItemWrench.png */,
@@ -1381,6 +1399,8 @@
 				DA59297513FB2ED800504CD3 /* DozukiSelectSiteViewController.xib in Resources */,
 				DAC26873140842B300752982 /* backtosites.png in Resources */,
 				DAC26874140842B300752982 /* backtosites@2x.png in Resources */,
+				9C6E961B19AE8BB200FE847D /* FA-Store-2x.png in Resources */,
+				9C6E961419AE8B9A00FE847D /* FA-Featured.png in Resources */,
 				DAF3AF581422897900913238 /* iPhoneDeviceViewController.xib in Resources */,
 				DA8860E21427DD490030F52C /* SVWebViewController.bundle in Resources */,
 				DA9948AA142AC55D00E4167D /* DozukiSplashView.xib in Resources */,
@@ -1398,6 +1418,7 @@
 				DAB26972146C96A2000D3A7A /* Ubuntu-Italic.ttf in Resources */,
 				DAB26979146CA461000D3A7A /* tabBarItemWrench.png in Resources */,
 				DAB2697B146CA483000D3A7A /* tabBarItemGears.png in Resources */,
+				9C6E961819AE8BA700FE847D /* FA-Repair-Manuals.png in Resources */,
 				DAB2697D146CA969000D3A7A /* tabBarItemBubbles.png in Resources */,
 				DA35628B1476EDDD00683947 /* detailViewFist.png in Resources */,
 				DA35629C1476F84C00683947 /* detailViewText.png in Resources */,
@@ -1431,6 +1452,7 @@
 				DA275DB615104CA400A8A09C /* logo_make@2x.png in Resources */,
 				DA275DB715104CA400A8A09C /* make_logo_transparent@2x.png in Resources */,
 				DA275DB915104CB400A8A09C /* noGuides@2x.png in Resources */,
+				9C6E961C19AE8BB200FE847D /* FA-Store.png in Resources */,
 				DA275DC11510510700A8A09C /* login@2x.png in Resources */,
 				DA275DC21510510700A8A09C /* register@2x.png in Resources */,
 				DAD2EB9F151671FD0053CC40 /* tabBarItemBook@2x.png in Resources */,
@@ -1475,6 +1497,7 @@
 				AB94D11817A57B67003ACDFD /* NoImage.jpg in Resources */,
 				9C47FB3B17F623D40074CEBE /* icon152.png in Resources */,
 				AB1F950C17A584B4009F3419 /* NoImage@2x.jpg in Resources */,
+				9C6E961319AE8B9A00FE847D /* FA-Featured-2x.png in Resources */,
 				9C47FB3217F623D40074CEBE /* icon58.png in Resources */,
 				AB5C74BE17A73069003AD63B /* WaitImage.png in Resources */,
 				AB5C74D517A76683003AD63B /* Default-568h-Landscape@2x.png in Resources */,
@@ -1490,6 +1513,7 @@
 				AB26882217CD5AA6004AC6ED /* OpenSans-Bold.ttf in Resources */,
 				AB26882317CD5AA6004AC6ED /* OpenSans-Regular.ttf in Resources */,
 				9C67A6C417E7A9040079C099 /* iFixit-App-Id.plist in Resources */,
+				9C6E961719AE8BA700FE847D /* FA-Repair-Manuals-2x.png in Resources */,
 				9CD8330617D7FE3C007F32F4 /* mjtrim_logo_transparent.png in Resources */,
 				9CD8330717D7FE3C007F32F4 /* mjtrim_logo_transparent@2x.png in Resources */,
 				9CD8330817D7FE3C007F32F4 /* detailViewTextMjtrim@2x.png in Resources */,

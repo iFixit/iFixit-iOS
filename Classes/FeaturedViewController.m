@@ -91,7 +91,7 @@
     if (!_collection)
         return;
     
-    self.gvc.title = [_collection valueForKey:@"title"];
+    self.gvc.title = NSLocalizedString(@"Featured", nil);
     
     // Create the header container view with a drop shadow.
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 256.0)];

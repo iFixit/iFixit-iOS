@@ -330,13 +330,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     // Optionally add the store button.
     SVWebViewController *storeViewController = nil;
     NSString *storeTitle = NSLocalizedString(@"Store", nil);
-    UIImage *storeImage = [UIImage imageNamed:@"tabBarItemPricetag.png"];
+    UIImage *storeImage = [UIImage imageNamed:@"FA-Store.png"];
 
     if ([Config currentConfig].store) {
-        if ([Config currentConfig].site == ConfigIFixit) {
-            storeTitle = NSLocalizedString(@"Parts & Tools", nil);
-            storeImage = [UIImage imageNamed:@"tabBarItemGears.png"];
-        }
         storeViewController = [[SVWebViewController alloc] initWithAddress:[Config currentConfig].store withTitle:storeTitle];
         storeViewController.tintColor = [Config currentConfig].toolbarColor;
         storeViewController.showsDoneButton = NO;
@@ -352,7 +348,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     if ([Config currentConfig].collectionsEnabled) {
         FeaturedViewController *featuredViewController = [[FeaturedViewController alloc] init];    
-        featuredViewController.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0] autorelease];
+        featuredViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Featured", nil) image:[UIImage imageNamed:@"FA-Featured.png"] tag:0] autorelease];
         tbc.viewControllers = [NSArray arrayWithObjects:featuredViewController, splitViewController, storeViewController, nil];
         [featuredViewController release];
     }
