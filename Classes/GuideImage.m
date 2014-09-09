@@ -11,11 +11,11 @@
 
 @implementation GuideImage
 
-@synthesize imageid, url, mini, thumbnail, standard, medium, large, huge;
+@synthesize iImageid, url, mini, thumbnail, standard, medium, large, huge;
 
 + (GuideImage *)guideImageWithDictionary:(NSDictionary *)dict {
 	GuideImage *guideImage = [[GuideImage alloc] init];
-	guideImage.imageid = dict[@"id"];
+	guideImage.iImageid = dict[@"id"];
 	guideImage.url = dict[@"original"];
 	return [guideImage autorelease];
 }
@@ -25,7 +25,7 @@
 }
 
 - (void)dealloc {
-    [imageid release];
+    [iImageid release];
     [url release];
     [mini release];
     [thumbnail release];

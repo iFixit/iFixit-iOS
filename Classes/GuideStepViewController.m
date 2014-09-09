@@ -7,9 +7,7 @@
 //
 
 #import "GuideStepViewController.h"
-
 #import <QuartzCore/QuartzCore.h>
-
 #import "ASIHTTPRequest.h"
 #import "JSON.h"
 #import "GuideImageViewController.h"
@@ -22,19 +20,24 @@
 #import "SVWebViewController.h"
 #import "SDImageCache.h"
 #import "GuideImage.h"
+#import "iFixitAPI.h"
+#import "User.h"
 
 @implementation GuideStepViewController
 
 @synthesize delegate, step=_step, titleLabel, mainImage, webView, moviePlayer, embedView;
-@synthesize image1, image2, image3, numImagesLoaded, html;
+@synthesize image1, image2, image3, numImagesLoaded, html, absoluteStepNumber;
 
 // Load the view nib and initialize the pageNumber ivar.
-- (id)initWithStep:(GuideStep *)step {
+- (id)initWithStep:(GuideStep *)step withAbsolute:(NSNumber *)stepNumber {
+    self.absoluteStepNumber = stepNumber;
+    
     if ((self = [super initWithNibName:nil bundle:nil])) {
         self.step = step;
         self.numImagesLoaded = 0;
         self.largeImages = [[NSMutableDictionary alloc] init];
     }
+
     return self;
 }
 
@@ -57,6 +60,15 @@
     view.layer.shadowPath = [UIBezierPath bezierPathWithRect:view.bounds].CGPath;
 }
 
+- (NSString*)getOfflineVideoPath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDirectory = paths[0];
+    
+    NSString *filePath = [docDirectory stringByAppendingPathComponent:
+                          [NSString stringWithFormat:@"/Videos/%@_%i_%i_%@", [iFixitAPI sharedInstance].user.iUserid, self.step.stepid, self.step.video.videoid, self.step.video.filename]];
+    return filePath;
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -71,7 +83,7 @@
     webView.backgroundColor = bgColor;
     webView.opaque = NO;
 
-    NSString *stepTitle = [NSString stringWithFormat:NSLocalizedString(@"Step %d", nil), self.step.number];
+    NSString *stepTitle = [NSString stringWithFormat:NSLocalizedString(@"Step %@", nil), self.absoluteStepNumber];
     if (![self.step.title isEqual:@""])
       stepTitle = [NSString stringWithFormat:@"%@ - %@", stepTitle, self.step.title];
 
@@ -122,14 +134,16 @@
         CGRect frame = mainImage.frame;
         frame.origin.x = 10.0;
 
-        NSURL *url = [NSURL URLWithString:self.step.video.url];
-        self.moviePlayer = [[[MPMoviePlayerController alloc] init] autorelease];
-        moviePlayer.contentURL = url;
-        moviePlayer.shouldAutoplay = NO;
-        moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
-        [moviePlayer.view setFrame:frame];
-        [moviePlayer prepareToPlay];
-        [self.view addSubview:moviePlayer.view];
+        // If we are an offline guide, let's get our video from disk, otherwise we load the URL
+        NSURL *url = self.guideViewController.offlineGuide ?
+                     [NSURL fileURLWithPath:[self getOfflineVideoPath] isDirectory:NO] :
+                     [NSURL URLWithString:self.step.video.url];
+
+        self.moviePlayer = [[[MPMoviePlayerController alloc] initWithContentURL:url] autorelease];
+        self.moviePlayer.shouldAutoplay = NO;
+        self.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
+        [self.moviePlayer.view setFrame:frame];
+        [self.view addSubview:self.moviePlayer.view];
     }
     // Embeds
     else if (self.step.embed) {
@@ -203,8 +217,9 @@
     // In iOS 6 and up, this method gets called when the video player goes into full screen.
     // This prevents the movie player from stopping itself by only stopping the video if not in
     // full screen (meaning the view has actually disappeared).
-    if (!self.moviePlayer.fullscreen)
-        [moviePlayer stop];
+    if (!self.moviePlayer.fullscreen) {
+        [self.moviePlayer stop];
+    }
 }
 
 - (void)startImageDownloads {

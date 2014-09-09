@@ -10,14 +10,14 @@
 
 @implementation User
 
-@synthesize data, userid, username, imageid, session;
+@synthesize data, iUserid, username, iImageid, session;
 
 + (User *)userWithDictionary:(NSDictionary *)dict {
 	User *user          = [[User alloc] init];
     user.data           = dict;
-	user.userid 		= dict[@"userid"];
+	user.iUserid 		= dict[@"userid"];
 	user.username 		= dict[@"username"];
-	user.imageid 		= ![dict[@"image"] isEqual:[NSNull null]] ? dict[@"image"][@"id"] : nil;
+	user.iImageid 		= ![dict[@"image"] isEqual:[NSNull null]] ? dict[@"image"][@"id"] : nil;
 	user.session 		= dict[@"authToken"];
     
 	return [user autorelease];
@@ -25,9 +25,9 @@
 
 - (void)dealloc {
     [data release];
-    [userid release];
+    [iUserid release];
     [username release];
-    [imageid release];
+    [iImageid release];
     [session release];
     
     [super dealloc];

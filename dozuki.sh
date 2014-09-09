@@ -16,7 +16,7 @@ elif [ "$1" == "zeal" ]; then
    echo "Zeal"
    cp Graphics/Sites/Zeal/*png .
    sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.zeal/g' iFixit-Info.plist
-   sed -i '.bak' -e 's/iFixit/Zeal/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/iFixit/Zeal Support/g' iFixit-Info.plist
    sed -i '.bak' -e 's/>ifixit</>zeal</g' iFixit-Info.plist
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigZeal;/' Classes/iFixitAppDelegate.m
@@ -25,11 +25,20 @@ elif [ "$1" == "mjtrim" ]; then
    echo "Mjtrim"
    cp Graphics/Sites/Mjtrim/*png .
    sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.mjtrim/g' iFixit-Info.plist
-   sed -i '.bak' -e 's/iFixit/MJ Trimming/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/iFixit/Project DIY/g' iFixit-Info.plist
    sed -i '.bak' -e 's/>ifixit</>mjtrim</g' iFixit-Info.plist
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigMjtrim;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/ifixit/mjtrim/g' Classes/iFixitAPI.m
+elif [ "$1" == "accustream" ]; then
+   echo "Accustream"
+   cp Graphics/Sites/Accustream/*png .
+   sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.hypertherm/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/iFixit/Hypertherm/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/>ifixit</>accustream</g' iFixit-Info.plist
+   sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
+   sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigAccustream;/' Classes/iFixitAppDelegate.m
+   sed -i '.bak' -e 's/ifixit/accustream/g' Classes/iFixitAPI.m
 #EAOPlist
 else
    echo "Dozuki"

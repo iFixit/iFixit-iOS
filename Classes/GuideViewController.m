@@ -21,19 +21,19 @@
 
 @synthesize scrollView, pageControl, viewControllers, spinner, bookmarker;
 @synthesize guide=_guide;
-@synthesize guideid=_guideid;
+@synthesize iGuideid=_iGuideid;
 @synthesize shouldLoadPage;
 
 - (id)initWithGuide:(Guide *)guide {
-    return [self initWithGuideid:0 guide:guide];
+    return [self initWithGuideid:@0 guide:guide];
 }
-- (id)initWithGuideid:(NSInteger)guideid {
-    return [self initWithGuideid:guideid guide:nil];
+- (id)initWithGuideid:(NSNumber *)iGuideid {
+    return [self initWithGuideid:iGuideid guide:nil];
 }
-- (id)initWithGuideid:(NSInteger)guideid guide:(Guide *)guide {
+- (id)initWithGuideid:(NSNumber *)iGuideid guide:(Guide *)guide {
     if ((self = [super initWithNibName:@"GuideView" bundle:nil])) {
         self.guide = guide;
-        self.guideid = guide ? guide.guideid : guideid;
+        self.iGuideid = guide ? guide.iGuideid : iGuideid;
         self.shouldLoadPage = 0;
         self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         
@@ -47,7 +47,7 @@
         [TestFlight passCheckpoint:@"Guide View"];
         
         // Analytics
-        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/view/%d", self.guideid] withError:NULL];
+        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/view/%@", self.iGuideid] withError:NULL];
         [[GANTracker sharedTracker] trackPageview:@"/guide/view" withError:NULL];
         
         if (!self.memoryCache) {
@@ -79,10 +79,9 @@
     
     if (self.guide) {
         [self gotGuide:self.guide];
-    }
-    else {
+    } else {
         // Load the data
-        [[iFixitAPI sharedInstance] getGuide:self.guideid forObject:self withSelector:@selector(gotGuide:)];
+        [[iFixitAPI sharedInstance] getGuide:self.iGuideid forObject:self withSelector:@selector(gotGuide:)];
     }
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -126,7 +125,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     // Try Again
     if (buttonIndex) {
-        [[iFixitAPI sharedInstance] getGuide:self.guideid forObject:self withSelector:@selector(gotGuide:)];
+        [[iFixitAPI sharedInstance] getGuide:self.iGuideid forObject:self withSelector:@selector(gotGuide:)];
     }
     // Cancel
     else {
@@ -225,7 +224,7 @@
     
     self.navigationItem.leftBarButtonItem = doneButton;
     
-    [bookmarker setNewGuideId:self.guide.guideid];
+    [bookmarker setNewGuideId:self.guide.iGuideid];
     
     if (shouldLoadPage) {
        [self showPage:shouldLoadPage];
@@ -258,7 +257,7 @@
 			controller = [[GuideIntroViewController alloc] initWithGuide:self.guide];
             ((GuideIntroViewController *)controller).delegate = self;
 		} else {
-			controller = [[GuideStepViewController alloc] initWithStep:[self.guide.steps objectAtIndex:stepNumber]];
+			controller = [[GuideStepViewController alloc] initWithStep:[self.guide.steps objectAtIndex:stepNumber] withAbsolute:[NSNumber numberWithInteger:stepNumber + 1]];
             ((GuideStepViewController *)controller).delegate = self;
             ((GuideStepViewController *)controller).guideViewController = self;
 		}
@@ -299,8 +298,6 @@
 // At the begin of scroll dragging, reset the boolean used when scrolls originate from the UIPageControl
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     pageControlUsed = NO;
-    [self preloadForCurrentPage:[NSNumber numberWithInt:pageControl.currentPage]];
-    
 }
 
 - (void)unloadViewControllers {
@@ -335,6 +332,7 @@
     
     // Only load secondary images if we are looking at the current view for longer than half a second
     if (pageControl.currentPage > 0) {
+        [[viewControllers[pageControl.currentPage] moviePlayer] prepareToPlay];
         [viewControllers[pageControl.currentPage] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:0.8];
     }
 }
@@ -343,7 +341,6 @@
     int page = pageControl.currentPage;
 	
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    //[self performSelector:@selector(preloadForCurrentPage:) withObject:[NSNumber numberWithInt:page] afterDelay:0.1];
     [self preloadForCurrentPage:[NSNumber numberWithInt:page]];
     [self unloadViewControllers];
     
@@ -359,13 +356,14 @@
     
     // Only load secondary images if we are looking at the current view for longer than .8 second
     if (page > 0) {
+        [[viewControllers[pageControl.currentPage] moviePlayer] prepareToPlay];
         [viewControllers[page] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:0.8];
         [self showOrHidePageControlForInterface:self.interfaceOrientation];
     }
 }
 
-- (void)preloadForCurrentPage:(NSNumber *)pageNumber {
-	int page = [pageNumber integerValue];
+- (void)preloadForCurrentPage:(NSNumber *)iPageNumber {
+	int page = [iPageNumber integerValue];
 	
 	[self loadScrollViewWithPage:page - 1];
     [self loadScrollViewWithPage:page];

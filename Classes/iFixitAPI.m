@@ -17,6 +17,7 @@
 #import "GuideBookmarks.h"
 #import "BookmarksViewController.h"
 #import "LoginViewController.h"
+#import "Utility.h"
 
 @implementation iFixitAPI
 
@@ -34,15 +35,16 @@ static int volatile openConnections = 0;
 - (void)loadAppId {
     // look for the iFixit app id by default
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"iFixit-App-Id" ofType: @"plist"];
-    self.appId = [NSDictionary dictionaryWithContentsOfFile:plistPath] ? [NSDictionary dictionaryWithContentsOfFile:plistPath][@"ifixit"] : @"";
+    NSString *appId = [NSDictionary dictionaryWithContentsOfFile:plistPath][@"ifixit"];
+    
+    self.appId = appId ? appId : @"";
 }
 
 - (void)saveSession {
     if (self.user) {
         // Write to disk
-        [self.user.data writeToFile:[self sessionFilePath] atomically:YES];
-    }
-    else {
+        [@{@"userJson": [Utility serializeDictionary:self.user.data]} writeToFile:[self sessionFilePath] atomically:YES];
+    } else {
         // Clear the session
         [[NSFileManager defaultManager] removeItemAtPath:[self sessionFilePath] error:nil];
     }
@@ -51,6 +53,12 @@ static int volatile openConnections = 0;
 - (void)loadSession {
     // Read from disk
     NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:[self sessionFilePath]];
+    
+    // Only deserialize json data if we need to
+    if ([data objectForKey:@"userJson"]) {
+        data = [Utility deserializeJsonString:data[@"userJson"]];
+    }
+    
     self.user = data ? [User userWithDictionary:data] : nil;
 }
 
@@ -144,8 +152,8 @@ static int volatile openConnections = 0;
     [request startAsynchronous];
 }
 
-- (void)getGuide:(NSInteger)guideid forObject:(id)object withSelector:(SEL)selector {
-	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/guides/%d", [Config currentConfig].host, guideid];
+- (void)getGuide:(NSNumber *)iGuideid forObject:(id)object withSelector:(SEL)selector {
+	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/guides/%@", [Config currentConfig].host, iGuideid];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
@@ -172,13 +180,7 @@ static int volatile openConnections = 0;
 
 - (void)getCategoriesForObject:(id)object withSelector:(SEL)selector {
     // On iPhone and iPod touch, only show leaf nodes with viewable guides.
-    NSString *requireGuides = @"";
-
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        requireGuides = @"?requireGuides=yes";
-
-	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/categories%@", [Config currentConfig].host, requireGuides];
-    NSLog(@"url: %@", url);
+	NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/categories?withDisplayTitles", [Config currentConfig].host];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
@@ -288,7 +290,6 @@ static int volatile openConnections = 0;
 
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/search/%@?limit=50&filter=%@", [Config currentConfig].host, search, filter];
 
-    NSLog(@"url is: %@", url);
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
 
@@ -474,11 +475,11 @@ static int volatile openConnections = 0;
     [request startAsynchronous];
 }
 
-- (void)like:(NSNumber *)guideid forObject:(id)object withSelector:(SEL)selector {
+- (void)like:(NSNumber *)iGuideid forObject:(id)object withSelector:(SEL)selector {
     [TestFlight passCheckpoint:@"Like"];
 
-    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/favorites/guides/%i", [Config currentConfig].host, [guideid intValue]];
-
+    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/favorites/guides/%@", [Config currentConfig].host, iGuideid];
+    
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
 
@@ -504,10 +505,10 @@ static int volatile openConnections = 0;
     [request startAsynchronous];
 }
 
-- (void)unlike:(NSNumber *)guideid forObject:(id)object withSelector:(SEL)selector {
+- (void)unlike:(NSNumber *)iGuideid forObject:(id)object withSelector:(SEL)selector {
     [TestFlight passCheckpoint:@"Unlike"];
 
-    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/favorites/guides/%i", [Config currentConfig].host, [guideid intValue]];
+    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/favorites/guides/%@", [Config currentConfig].host, iGuideid];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
@@ -589,29 +590,6 @@ static int volatile openConnections = 0;
 
     // iFixitiOS/1.4 (43) | iPad; Mac OS X 10.5.7; en_GB
     self.userAgent = [NSString stringWithFormat:@"%@iOS/%@ (%@) | %@; %@ %@; %@", appName, developmentVersionNumber, marketingVersionNumber, deviceName, OSName, OSVersion, locale];
-}
-
-// Strip the guide id from url using regex
-+ (NSInteger)getGuideIdFromUrl:(NSString*)url {
-    NSError *error = nil;
-    NSNumber *guideId = nil;
-    
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(guide|teardown)/.+?/(\\d+)"
-                                                                           options:NSRegularExpressionCaseInsensitive
-                                                                             error:&error];
-    NSArray *matches = [regex matchesInString:url
-                                      options:0
-                                        range:NSMakeRange(0, url.length)];
-    if (matches.count) {
-        NSRange guideIdRange = [matches[0] rangeAtIndex:2];
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        guideId = [formatter numberFromString:[url substringWithRange:guideIdRange]];
-        
-        [formatter release];
-    }
-    
-
-    return [guideId integerValue];
 }
 
 @end

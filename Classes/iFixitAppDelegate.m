@@ -153,6 +153,10 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     [[UINavigationBar appearance] setTintColor:[Config currentConfig].buttonColor];
     [[UISearchBar appearance] setTintColor:[UIColor grayColor]];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [[UITabBar appearance] setTintColor:[Config currentConfig].tabBarColor];
+    }
 }
 
 - (void)showDozukiSplash {
@@ -326,13 +330,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     // Optionally add the store button.
     SVWebViewController *storeViewController = nil;
     NSString *storeTitle = NSLocalizedString(@"Store", nil);
-    UIImage *storeImage = [UIImage imageNamed:@"tabBarItemPricetag.png"];
+    UIImage *storeImage = [UIImage imageNamed:@"FA-Store.png"];
 
     if ([Config currentConfig].store) {
-        if ([Config currentConfig].site == ConfigIFixit) {
-            storeTitle = NSLocalizedString(@"Parts & Tools", nil);
-            storeImage = [UIImage imageNamed:@"tabBarItemGears.png"];
-        }
         storeViewController = [[SVWebViewController alloc] initWithAddress:[Config currentConfig].store withTitle:storeTitle];
         storeViewController.tintColor = [Config currentConfig].toolbarColor;
         storeViewController.showsDoneButton = NO;
@@ -346,11 +346,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         tbc.tabBar.translucent = NO;
     }
     
-    tbc.tabBar.tintColor = [Config currentConfig].buttonColor;
-    
     if ([Config currentConfig].collectionsEnabled) {
         FeaturedViewController *featuredViewController = [[FeaturedViewController alloc] init];    
-        featuredViewController.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0] autorelease];
+        featuredViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Featured", nil) image:[UIImage imageNamed:@"FA-Featured.png"] tag:0] autorelease];
         tbc.viewControllers = [NSArray arrayWithObjects:featuredViewController, splitViewController, storeViewController, nil];
         [featuredViewController release];
     }
@@ -468,10 +466,10 @@ static const NSInteger kGANDispatchPeriodSec = 10;
             NSString *guideidString = [urlString substringWithRange:keyRange];
             NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
             [f setNumberStyle:NSNumberFormatterDecimalStyle];
-            NSNumber *guideid = [f numberFromString:guideidString];
+            NSNumber *iGuideid = [f numberFromString:guideidString];
             [f release];
             
-            GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:[guideid intValue]];
+            GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
             [self.window.rootViewController presentModalViewController:vc animated:NO];
             [vc release];
             

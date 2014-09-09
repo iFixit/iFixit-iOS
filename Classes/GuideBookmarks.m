@@ -17,17 +17,19 @@
 #import "SDWebImageManager.h"
 #import "Config.h"
 #import "GANTracker.h"
+#import "Utility.h"
 #include <sys/xattr.h>
 
 static GuideBookmarks *sharedBookmarks = nil;
 
 @implementation GuideBookmarks
 
-@synthesize guides, images, queue, currentItem, bookmarker;
-@synthesize guidesFilePath, imagesFilePath, queueFilePath;
+@synthesize guides, images, videos, queue, currentItem, bookmarker;
+@synthesize guidesFilePath, imagesFilePath, queueFilePath, videosFilePath;
 
 + (GuideBookmarks *)sharedBookmarks {
-    if (!sharedBookmarks && [iFixitAPI sharedInstance].user) sharedBookmarks = [[GuideBookmarks alloc] init];
+    if (!sharedBookmarks && [iFixitAPI sharedInstance].user)
+        sharedBookmarks = [[GuideBookmarks alloc] init];
     return sharedBookmarks;
 }
 
@@ -53,42 +55,45 @@ static GuideBookmarks *sharedBookmarks = nil;
     return allImages;
 }
 
-- (Guide *)guideForGuideid:(NSNumber *)guideid {
-    NSString *key = [NSString stringWithFormat:@"%d_%d",
-                     [[iFixitAPI sharedInstance].user.userid intValue],
-                     [guideid intValue]];
-    return [guides objectForKey:key];
+- (Guide *)guideForGuideid:(NSNumber *)iGuideid {
+    NSString *key = [NSString stringWithFormat:@"%@_%@",
+                     [iFixitAPI sharedInstance].user.iUserid,
+                     iGuideid];
+    
+    return guides[key] ? [Guide guideWithDictionary:guides[key]] : nil;
 }
 
-- (void)addGuideid:(NSNumber *)guideid {
+- (void)addGuideid:(NSNumber *)iGuideid {
     // Analytics
-    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/favorites/add/%d", guideid] withError:NULL];
+    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/favorites/add/%@", iGuideid] withError:NULL];
 
-    [queue setValue:@"add" forKey:[NSString stringWithFormat:@"%d_%d",
-                                   [[iFixitAPI sharedInstance].user.userid intValue],
-                                   [guideid intValue]]];
+    [queue setValue:@"add" forKey:[NSString stringWithFormat:@"%@_%@",
+                                   [iFixitAPI sharedInstance].user.iUserid,
+                                   iGuideid]];
     [self synchronize];
 }
 
-- (void)addGuideid:(NSNumber *)guideid forBookmarker:(GuideBookmarker *)theBookmarker {
+- (void)addGuideid:(NSNumber *)iGuideid forBookmarker:(GuideBookmarker *)theBookmarker {
     self.bookmarker = theBookmarker;
     
-    [self addGuideid:guideid];
+    [self addGuideid:iGuideid];
 }
 
-// Saves (1) the guide json data to disk, along with 
-// (2) a master list of images in another file so we never evict them.
+// Saves (1) the guide json data as a string to disk, along with
+// (2) a master list of images/videos in separate files so we never evict them
 - (void)saveGuide:(Guide *)guide {
     // Index bookmarks by userid and guideid to prevent duplicates.
-    NSString *key = [NSString stringWithFormat:@"%d_%d",
-                     [[iFixitAPI sharedInstance].user.userid intValue],
-                     guide.guideid];
+    NSString *key = [NSString stringWithFormat:@"%@_%@",
+                     [iFixitAPI sharedInstance].user.iUserid,
+                     guide.iGuideid];
     
     // 1. Save the guide data.
     [guides setObject:guide.data forKey:key];
     
-    // 2. Save the list of images.
+    // 2. Save the list of images/videos.
     NSMutableArray *guideImages = [NSMutableArray array];
+    NSMutableArray *guideVideos = [NSMutableArray array];
+    
     if (guide.image) {
         NSString *standardURL = [[guide.image URLForSize:@"standard"] absoluteString];
         [guideImages addObject:[SDImageCache cacheFilenameForKey:standardURL]];
@@ -101,58 +106,119 @@ static GuideBookmarks *sharedBookmarks = nil;
             [guideImages addObject:[SDImageCache cacheFilenameForKey:thumbnailURL]];
             [guideImages addObject:[SDImageCache cacheFilenameForKey:largeURL]]; 
         }
+      
+        if (step.video) {
+            [guideVideos addObject:[NSString stringWithFormat:@"%@_%i_%i_%@", [iFixitAPI sharedInstance].user.iUserid, step.stepid, step.video.videoid, step.video.filename]];
+        }
     }
     
     [images setObject:guideImages forKey:key];
+  
+    if (guideVideos.count) {
+        [videos setObject:guideVideos forKey:key];
+    }
     
     // Write to disk.
     [self saveBookmarks];
 }
 
-- (void)removeGuideid:(NSNumber *)guideid {
+- (void)removeGuideid:(NSNumber *)iGuideid {
     // Analytics
-    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/favorites/remove/%d", guideid] withError:NULL];
+    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/favorites/remove/%@", iGuideid] withError:NULL];
 
-    NSString *key = [NSString stringWithFormat:@"%d_%d",
-                     [[iFixitAPI sharedInstance].user.userid intValue],
-                     [guideid intValue]];
-    
+    NSString *key = [NSString stringWithFormat:@"%@_%@",
+                     [iFixitAPI sharedInstance].user.iUserid,
+                     iGuideid];
+
     [guides removeObjectForKey:key];
     [images removeObjectForKey:key];
-    [self saveBookmarks]; 
+
+    // Remove videos stored on disk
+    [self removeOfflineVideos:videos[key]];
+    [videos removeObjectForKey:key];
+    
+    [self saveBookmarks];
+}
+
+- (void)removeOfflineVideos:(NSArray *)videos {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *docDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *videosDirectory = [docDirectory stringByAppendingPathComponent:@"/Videos"];
+    NSString *filePath = nil;
+    NSError *error = nil;
+    
+    for (NSString *video in videos) {
+        filePath = [videosDirectory stringByAppendingPathComponent:video];
+        [fileManager removeItemAtPath:filePath error:&error];
+    }
 }
 
 - (void)removeGuide:(Guide *)guide {
-    [self removeGuideid:[NSNumber numberWithInt:guide.guideid]];
-    [queue setValue:@"remove" forKey:[NSString stringWithFormat:@"%d_%d",
-                                   [[iFixitAPI sharedInstance].user.userid intValue],
-                                   guide.guideid]];
+    [self removeGuideid:guide.iGuideid];
+    [queue setValue:@"remove" forKey:[NSString stringWithFormat:@"%@_%@",
+                                   [iFixitAPI sharedInstance].user.iUserid,
+                                   guide.iGuideid]];
     [self synchronize];
+}
+
+- (NSDictionary *)serializeGuides:(NSDictionary *)guides {
+    NSMutableDictionary *serializedGuides = [[NSMutableDictionary alloc] initWithCapacity:guides.count];
+
+    for (NSString *key in guides) {
+        serializedGuides[key] = [Utility serializeDictionary:guides[key]];
+    }
+
+    return serializedGuides;
+}
+
+- (NSDictionary *)deserializeGuides:(NSDictionary *)guides {
+    NSMutableDictionary *deserializedGuides = [[NSMutableDictionary alloc] initWithCapacity:guides.count];
+
+    for (NSString *key in guides) {
+        deserializedGuides[key] = [guides[key] isKindOfClass:[NSString class]] ?
+                        [Utility deserializeJsonString:guides[key]] : guides[key];
+    }
+    
+    return deserializedGuides;
 }
 
 - (void)saveBookmarks {
     // Write to disk
     if (guides) {
-        [guides writeToFile:[self guidesFilePath] atomically:YES];
+        
+        // We must first serialize the JSONData before writing to disk,
+        // otherwise it is possible for a write to fail if a dictionary contains
+        // NSNull values or non First Class Objects
+        [[self serializeGuides:guides] writeToFile:[self guidesFilePath] atomically:YES];
         [images writeToFile:[self imagesFilePath] atomically:YES];
         [queue  writeToFile:[self queueFilePath] atomically:YES];
-        
+        [videos writeToFile:[self videosFilePath] atomically:YES];
+
         // Mark favorites databases as offline storage
         [self AddSkipBackupAttributeToFile:[NSURL URLWithString:[self guidesFilePath]]];
         [self AddSkipBackupAttributeToFile:[NSURL URLWithString:[self imagesFilePath]]];
         [self AddSkipBackupAttributeToFile:[NSURL URLWithString:[self queueFilePath]]];
+        [self AddSkipBackupAttributeToFile:[NSURL URLWithString:[self videosFilePath]]];
         
         // Mark all images as offline storage
-        for (NSString *fileName in images)
+        for (NSString *fileName in images) {
             [self AddSkipBackupAttributeToFile:[NSURL URLWithString:fileName]];
+        }
+        
+        // Mark all videos as offline storage
+        for (NSString *fileName in videos) {
+            [self AddSkipBackupAttributeToFile:[NSURL URLWithString:fileName]];
+        }
     }
 }
 
 - (void)synchronize {    
     [self saveBookmarks]; 
     
-    if (![queue count])
+    if (![queue count]) {
         return;
+    }
+    
 
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     [f setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -160,11 +226,11 @@ static GuideBookmarks *sharedBookmarks = nil;
     // Loop through all items in the queue.
     for (NSString *key in [queue allKeys]) {
         NSArray *chunks = [key componentsSeparatedByString:@"_"];
-        NSNumber *userid = [f numberFromString:[chunks objectAtIndex:0]];
-        NSNumber *guideid = [f numberFromString:[chunks objectAtIndex:1]];
+        NSNumber *iUserid = [f numberFromString:[chunks objectAtIndex:0]];
+        NSNumber *iGuideid = [f numberFromString:[chunks objectAtIndex:1]];
         
         // Only synchronize for the current user.
-        if (![userid isEqual:[iFixitAPI sharedInstance].user.userid])
+        if (![iUserid isEqual:[iFixitAPI sharedInstance].user.iUserid])
             continue;
 
         // One at a time.
@@ -174,20 +240,19 @@ static GuideBookmarks *sharedBookmarks = nil;
         // Download a new guide
         if ([[queue valueForKey:key] isEqual:@"add"]) {
             self.currentItem = key;
-            
-            [[iFixitAPI sharedInstance] getGuide:[guideid intValue] forObject:self withSelector:@selector(gotGuide:)];
+            [[iFixitAPI sharedInstance] getGuide:iGuideid forObject:self withSelector:@selector(gotGuide:)];
         }
         // Remove an existing guide
         else {
             self.currentItem = key;
-            [[iFixitAPI sharedInstance] unlike:guideid forObject:self withSelector:@selector(unliked:)];
+            [[iFixitAPI sharedInstance] unlike:iGuideid forObject:self withSelector:@selector(unliked:)];
         }
-        
+       
         /*
          Stop the loop here.
          
          Guide download will continue in the background, and will call 
-         [self synchronize] again once all images have completed downloading.
+         [self synchronize] again once all images/videos have completed downloading.
          */
         break;
     }
@@ -227,10 +292,10 @@ static GuideBookmarks *sharedBookmarks = nil;
         [f setNumberStyle:NSNumberFormatterDecimalStyle];
         
         NSArray *chunks = [currentItem componentsSeparatedByString:@"_"];
-        NSNumber *guideid = [f numberFromString:[chunks objectAtIndex:1]];
+        NSNumber *iGuideid = [f numberFromString:[chunks objectAtIndex:1]];
         [f release];
         
-        guide.guideid = [guideid intValue];
+        guide.iGuideid = iGuideid;
         [self removeGuide:guide];
         return;
     }
@@ -238,8 +303,12 @@ static GuideBookmarks *sharedBookmarks = nil;
     // Save the result.
     [self saveGuide:guide];
     
-    // Count the images...
+    // Count the media items...
     for (GuideStep *step in guide.steps) {
+        if (step.video) {
+            videosRemaining++;
+        }
+
         for (GuideImage *image in step.images) {
             imagesRemaining += 2;
         }
@@ -252,29 +321,57 @@ static GuideBookmarks *sharedBookmarks = nil;
     }
 
     for (GuideStep *step in guide.steps) {
+        if (step.video) {
+            [self downloadGuideVideoForGuideStep:step];
+        }
+        
         for (GuideImage *image in step.images) {
             [[SDWebImageManager sharedManager] downloadWithURL:[image URLForSize:@"thumbnail"] delegate:self retryFailed:YES];
             [[SDWebImageManager sharedManager] downloadWithURL:[image URLForSize:@"large"] delegate:self retryFailed:YES];
         }
+        
     }
 }
 
-- (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image {
-    imagesDownloaded++;
-    imagesRemaining--;
+- (void)downloadGuideVideoForGuideStep:(GuideStep*)step {
+    // Create the request
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:step.video.url] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
     
-    // Update the progress bar.
-    @try {
-        bookmarker.progress.progress = (float)imagesDownloaded / (imagesRemaining + imagesDownloaded);
-    }
-    @catch (NSException *e) {
-        self.bookmarker = nil;
-    }
-
-    // Done
-    if (!imagesRemaining) {
+    // Let's ensure it's async =)
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *videoData, NSError *error) {
+        
+        // Let's ensure we got something valid back
+        if (videoData.length && !error) {
+            // Grab the path to the sandboxed directory given to us
+            NSString *docDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+            NSString *videosPath = [docDirectory stringByAppendingPathComponent:@"/Videos"];
+            
+            // Let's make sure that the Videos directory exists
+            if (![[NSFileManager defaultManager] fileExistsAtPath:videosPath]) {
+                [[NSFileManager defaultManager] createDirectoryAtPath:videosPath withIntermediateDirectories:NO attributes:nil error:&error];
+            }
+            
+            // Create the file path
+            NSString *filePath = [videosPath stringByAppendingPathComponent:
+                                  [NSString stringWithFormat:@"%@_%i_%i_%@", [iFixitAPI sharedInstance].user.iUserid, step.stepid, step.video.videoid, step.video.filename
+                                   ]];
+            
+            // Write to disk
+            [videoData writeToFile:filePath atomically:YES];
+            
+            videosDownloaded++;
+            videosRemaining--;
+            
+            [self updateProgessBar];
+            [self checkIfFinishedDownloading];
+        }
+    }];
+}
+- (void)checkIfFinishedDownloading {
+    if(!videosRemaining && !imagesRemaining) {
         // Reset counters.
         imagesDownloaded = 0;
+        videosDownloaded = 0;
         [bookmarker bookmarked];
         self.bookmarker = nil;
         
@@ -288,19 +385,38 @@ static GuideBookmarks *sharedBookmarks = nil;
     }
 }
 
+- (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image {
+    imagesDownloaded++;
+    imagesRemaining--;
+    
+    // Update the progress bar.
+    [self updateProgessBar];
+
+    // Done
+    [self checkIfFinishedDownloading];
+}
+
+- (void)updateProgessBar {
+    @try {
+        bookmarker.progress.progress = (float)(imagesDownloaded + videosDownloaded) / (imagesRemaining + imagesDownloaded + videosRemaining + videosDownloaded);
+    }
+    @catch (NSException *e) {
+        self.bookmarker = nil;
+    }
+}
+
 - (void)update {
     [[iFixitAPI sharedInstance] getUserFavoritesForObject:self withSelector:@selector(gotUpdates:)];
 }
+
 - (void)gotUpdates:(NSArray *)likes {
-    
+
     if (!likes) {
         [iFixitAPI displayConnectionErrorAlert];
         return;
     }
-    
-    [self synchronize];
 
-    if (!likes || ([likes isKindOfClass:[NSDictionary class]] && [likes valueForKey:@"error"])) {
+    if (([likes isKindOfClass:[NSDictionary class]] && [likes valueForKey:@"error"])) {
         // Notify listeners of a potential logout.
         [self announceUpdate];
         return;
@@ -308,28 +424,33 @@ static GuideBookmarks *sharedBookmarks = nil;
     
     NSMutableArray *guideids = [NSMutableArray array];
     self.favorites = likes;
-
+    
     // Add new guides.
     for (NSDictionary *like in likes) {
-        NSNumber *guideid = like[@"guide"][@"guideid"];
+        NSNumber *iGuideid = like[@"guide"][@"guideid"];
         
-        // This double-conversion is necessary for the "containsObject" check.
-        int guideIdInt = [guideid intValue];
-        [guideids addObject:[NSNumber numberWithInt:guideIdInt]];
+        [guideids addObject:iGuideid];
+        Guide *savedGuide = [self guideForGuideid:iGuideid];
 
-        if (![self guideForGuideid:guideid])
-            [self addGuideid:guideid];
+        if (!savedGuide) {
+            [self addGuideid:iGuideid];
+        // Force both modified dates into integers when comparing, this is to deal with data type inconsistency across
+        // different endpoints. Remove when new version of API is released
+        } else if (![[Guide getAbsoluteModifiedDateFromGuideDictionary:like[@"guide"]] isEqualToNumber:[savedGuide getAbsoluteModifiedDate]]) {
+            [self removeGuideid:iGuideid];
+            [self addGuideid:iGuideid];
+        }
     }
     
     // Remove deleted guides.
     NSArray *allBookmarks = [guides allValues];
-    for (NSDictionary *guideData in allBookmarks) {
-        // This double-conversion is necessary for the "containsObject" check.
-        int guideIdInt = [[guideData objectForKey:@"guideid"] intValue];
-        NSNumber *guideid = [NSNumber numberWithInt:guideIdInt];
+    
+    for (NSDictionary *guide in allBookmarks) {
+        NSNumber *iGuideid = guide[@"guideid"];
 
-        if (![guideids containsObject:guideid])
-            [self removeGuideid:guideid];
+        if (![guideids containsObject:iGuideid]) {
+            [self removeGuideid:iGuideid];
+        }
     }
     
     // Notify listeners.
@@ -343,28 +464,39 @@ static GuideBookmarks *sharedBookmarks = nil;
         NSString *docDirectory = [paths objectAtIndex:0];
         NSString *filename = nil;
         
-        filename = [NSString stringWithFormat:@"%@_%d_bookmarkedGuides.plist",
+        filename = [NSString stringWithFormat:@"%@_%@_bookmarkedGuides.plist",
                     [Config currentConfig].host,
-                    [[iFixitAPI sharedInstance].user.userid intValue]];
+                    [iFixitAPI sharedInstance].user.iUserid];
         self.guidesFilePath = [docDirectory stringByAppendingPathComponent:filename];
         
-        filename = [NSString stringWithFormat:@"%@_%d_bookmarkedImages.plist",
+        filename = [NSString stringWithFormat:@"%@_%@_bookmarkedImages.plist",
                     [Config currentConfig].host,
-                    [[iFixitAPI sharedInstance].user.userid intValue]];
+                    [iFixitAPI sharedInstance].user.iUserid];
         self.imagesFilePath = [docDirectory stringByAppendingPathComponent:filename];
         
-        filename = [NSString stringWithFormat:@"%@_%d_bookmarkQueue.plist",
+        filename = [NSString stringWithFormat:@"%@_%@_bookmarkQueue.plist",
                     [Config currentConfig].host,
-                    [[iFixitAPI sharedInstance].user.userid intValue]];
+                    [iFixitAPI sharedInstance].user.iUserid];
         self.queueFilePath = [docDirectory stringByAppendingPathComponent:filename];
+        
+        filename = [NSString stringWithFormat:@"%@_%@_bookmarkedVideos.plist",
+                    [Config currentConfig].host,
+                    [iFixitAPI sharedInstance].user.iUserid];
+        self.videosFilePath = [docDirectory stringByAppendingPathComponent:filename];
         
         // Now load: Guides
         NSDictionary *g = [NSDictionary dictionaryWithContentsOfFile:[self guidesFilePath]];
-        self.guides = g ? [NSMutableDictionary dictionaryWithDictionary:g] : [NSMutableDictionary dictionary];
+        
+        // We must deserialize our guides first before using them
+        self.guides = [NSMutableDictionary dictionaryWithDictionary:[self deserializeGuides:g]];
         
         // Images
         NSDictionary *i = [NSDictionary dictionaryWithContentsOfFile:[self imagesFilePath]];
         self.images = i ? [NSMutableDictionary dictionaryWithDictionary:i] : [NSMutableDictionary dictionary];
+        
+        // Media
+        NSDictionary *m = [NSDictionary dictionaryWithContentsOfFile:[self videosFilePath]];
+        self.videos = m ? [NSMutableDictionary dictionaryWithDictionary:m] : [NSMutableDictionary dictionary];
 
         // Queue
         NSDictionary *q = [NSDictionary dictionaryWithContentsOfFile:[self queueFilePath]];
@@ -372,10 +504,12 @@ static GuideBookmarks *sharedBookmarks = nil;
         
         imagesRemaining = 0;
         imagesDownloaded = 0;
+        videosRemaining = 0;
+        videosDownloaded = 0;
+
         self.currentItem = nil;
         self.bookmarker = nil;
         
-        [self update];
     }
     return self;
 }
@@ -386,6 +520,7 @@ static GuideBookmarks *sharedBookmarks = nil;
     [queue release];
     [guidesFilePath release];
     [imagesFilePath release];
+    [videosFilePath release];
     [queueFilePath release];
     [currentItem release];
     [bookmarker release];

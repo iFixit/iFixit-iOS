@@ -35,8 +35,7 @@ static Config *currentConfig = nil;
             self.baseURL = @"http://www.ifixit.com/Guide";
             answersEnabled = YES;
             collectionsEnabled = YES;
-            self.store = @"http://www.ifixit.com/Parts-Store";
-            self.scanner = YES;
+            self.store = @"http://www.ifixit.com/Store";
             break;
         case ConfigIFixitDev:
             self.host = @"www.cominor.com";
@@ -73,6 +72,15 @@ static Config *currentConfig = nil;
             collectionsEnabled = NO;
             self.store = @"http://www.mjtrim.com/";
             self.private = NO;
+            break;
+        case ConfigAccustream:
+            self.host = @"accustream.dozuki.com";
+            self.baseURL = @"http://accustream.dozuki.com";
+            answersEnabled = NO;
+            collectionsEnabled = NO;
+            self.store = @"http://www.accustream.com/waterjet-parts.html";
+            self.private = NO;
+            self.scanner = YES;
             break;
         /*EAOOptions*/
         default:
@@ -116,12 +124,26 @@ static Config *currentConfig = nil;
         case ConfigMjtrim:
             self.textColor = [UIColor blackColor];
             self.backgroundColor = [UIColor whiteColor];
-            self.toolbarColor = [UIColor blackColor];
-            self.buttonColor = [UIColor blackColor];
-            
+            self.toolbarColor = [UIColor colorWithRed:204/255.0f green:0.0f blue:0.0f alpha:1.0];
+            self.buttonColor = [UIColor colorWithRed:234/255.0f green:166.0/255.0f blue:160.0/255.0f alpha:1.0];
+            self.tabBarColor = self.toolbarColor;
+
             self.concreteBackgroundImage = [UIImage imageNamed:@"concreteBackgroundWhite.png"];
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            break;
+        case ConfigAccustream:
+            self.backgroundColor = [UIColor blackColor];
+            self.textColor = [UIColor whiteColor];
+            self.toolbarColor = [UIColor blackColor];
+            self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
+            
+            // Load intro and step css from the css folder.        
+            self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"accustream_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
+            self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"accustream_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            self.moreInfoCSS = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+            ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
+            : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             break;
         default:
             self.backgroundColor = [UIColor blackColor];

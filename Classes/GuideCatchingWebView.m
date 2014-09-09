@@ -44,7 +44,7 @@
     }
 }
 
-- (NSInteger)parseGuideURL:(NSString *)url {
+- (NSNumber *)parseGuideURL:(NSString *)url {
 	/*
 	 (
 	 "http:",
@@ -59,19 +59,19 @@
     
     NSString *regexString = [NSString stringWithFormat:@"https?://%@/(Guide|Teardown|Project)/(.*?)/([0-9]+)/([0-9]+)", [Config currentConfig].host];
     NSString *guideidString = [url stringByMatching:regexString capture:3];
-    NSNumber *guideid = guideidString ? [formatter numberFromString:guideidString] : [NSNumber numberWithInt:-1];
+    NSNumber *iGuideid = guideidString ? [formatter numberFromString:guideidString] : @(-1);
 
-    return [guideid intValue];
+    return iGuideid;
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	// Open guides with the native viewer.
-	NSInteger guideid = [self parseGuideURL:[[request URL] absoluteString]];
+	NSNumber *iGuideid = [self parseGuideURL:[[request URL] absoluteString]];
     
     iFixitAppDelegate *delegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];
     
-	if (guideid != -1) {
-        GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
+	if (![iGuideid isEqualToNumber:@(-1)]) {
+        GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
         if (!modalDelegate)
             [delegate.window.rootViewController presentModalViewController:vc animated:YES];
         else

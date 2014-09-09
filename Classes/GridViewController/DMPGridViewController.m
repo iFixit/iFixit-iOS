@@ -130,6 +130,10 @@
         // Title
         NSString *text = [_delegate gridViewController:self titleForCellAtIndex:offset + i];
         [gridCell.textLabel setText:text];
+        [gridCell textLabel].font = [UIFont systemFontOfSize:14.0];
+        [gridCell textLabel].minimumFontSize = 7.0;
+        [gridCell textLabel].numberOfLines = 2;
+        [gridCell textLabel].adjustsFontSizeToFitWidth = YES;
         
         // Handle taps.
         gridCell.tag = offset + i;

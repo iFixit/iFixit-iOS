@@ -215,7 +215,6 @@
         rb.backgroundColor = [UIColor whiteColor];
         [rb setBackgroundImage:nil forState:UIControlStateNormal];
         [rb setBackgroundImage:nil forState:UIControlStateHighlighted];
-        rb.titleLabel.textColor = [Config currentConfig].buttonColor;
         [rb setTitleColor:[Config currentConfig].buttonColor forState:UIControlStateNormal];
         [rb setTitleColor:[Config currentConfig].buttonColor forState:UIControlStateHighlighted];
         
@@ -225,6 +224,14 @@
         [lb setBackgroundImage:nil forState:UIControlStateHighlighted];
         [lb setTitleColor:[Config currentConfig].buttonColor forState:UIControlStateNormal];
         [lb setTitleColor:[Config currentConfig].buttonColor forState:UIControlStateHighlighted];
+        
+        // Special colors for MJTrimming
+        if ([Config currentConfig].site == ConfigMjtrim) {
+            [lb setTitleColor:[Config currentConfig].toolbarColor forState:UIControlStateNormal];
+            [lb setTitleColor:[Config currentConfig].toolbarColor forState:UIControlStateHighlighted];
+            [rb setTitleColor:[Config currentConfig].toolbarColor forState:UIControlStateNormal];
+            [rb setTitleColor:[Config currentConfig].toolbarColor forState:UIControlStateHighlighted];
+        }
     }
     
     // Cancel
@@ -273,23 +280,30 @@
 }
 
 - (void)tapGoogle {
-    OpenIDViewController *vc = [OpenIDViewController viewControllerForHost:@"google" delegate:delegate];
-    if (modal) {
-        [self presentModalViewController:vc animated:YES];
-    }
-    else {
-        [delegate presentModalViewController:vc animated:YES];
-    }
+    OpenIDViewController *openIdViewController = [OpenIDViewController viewControllerForHost:@"google" delegate:delegate];
+    
+    [self presentOpenIdViewController:openIdViewController];
 }
-
+- (void)presentOpenIdViewController:(OpenIDViewController *)openIdViewController {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        // Special case if our delegate is a list due to being on an iPad
+        if ([delegate isKindOfClass:[ListViewController class]]) {
+            iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
+            [appDelegate presentModalViewController:openIdViewController animated:YES];
+        } else {
+            [delegate presentModalViewController:openIdViewController animated:YES];
+        }
+    } else {
+        openIdViewController.delegate = self;
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:openIdViewController];
+        [self presentModalViewController:nvc animated:YES];
+    }
+    
+}
 - (void)tapYahoo {
-    OpenIDViewController *vc = [OpenIDViewController viewControllerForHost:@"yahoo" delegate:delegate];
-    if (modal) {
-        [self presentModalViewController:vc animated:YES];
-    }
-    else {
-        [delegate presentModalViewController:vc animated:YES];
-    }
+    OpenIDViewController *openIdViewController = [OpenIDViewController viewControllerForHost:@"yahoo" delegate:delegate];
+    
+    [self presentOpenIdViewController:openIdViewController];
 }
 
 - (void)toggleRegister {
@@ -644,7 +658,7 @@
         
         // Analytics
         [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@", results[@"type"]] withError:NULL];
-        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@/%@", results[@"type"], [iFixitAPI sharedInstance].user.userid] withError:NULL];
+        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@/%@", results[@"type"], [iFixitAPI sharedInstance].user.iUserid] withError:NULL];
         
     }
 }

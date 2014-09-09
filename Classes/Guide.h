@@ -13,7 +13,7 @@
 @interface Guide : NSObject
 
 @property (nonatomic, retain) NSDictionary *data;
-@property (nonatomic) NSInteger guideid;
+@property (nonatomic, retain) NSNumber *iGuideid;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *category;
 @property (nonatomic, retain) NSString *subject;
@@ -23,6 +23,8 @@
 @property (nonatomic, retain) NSString *introduction;
 @property (nonatomic, retain) NSString *summary;
 @property (nonatomic, retain) NSString *introduction_rendered;
+@property (nonatomic, retain) NSNumber *iModifiedDate;
+@property (nonatomic, retain) NSNumber *iPrereqModifiedDate;
 @property (nonatomic, retain) GuideImage *image;
 
 @property (nonatomic, retain) NSMutableArray *documents;
@@ -34,5 +36,7 @@
 @property (nonatomic, retain) NSMutableArray *steps;
 
 + (Guide *)guideWithDictionary:(NSDictionary *)dict;
+-(NSNumber*)getAbsoluteModifiedDate;
++(NSNumber*)getAbsoluteModifiedDateFromGuideDictionary:(NSDictionary*)guideData;
 
 @end

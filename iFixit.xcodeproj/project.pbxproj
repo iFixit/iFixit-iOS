@@ -15,6 +15,8 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
 		639994C77401475EB4A8AE36 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40331C958D2F4747A5B6D568 /* libPods.a */; };
+		9C002FBF182EE57C00822063 /* accustream_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */; };
+		9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A1982189735C3003E79F0 /* GuideLib.m */; };
 		9C47FB2E17F623D40074CEBE /* icon29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB1F17F623D40074CEBE /* icon29.png */; };
 		9C47FB2F17F623D40074CEBE /* icon40.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2017F623D40074CEBE /* icon40.png */; };
 		9C47FB3017F623D40074CEBE /* icon50.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2117F623D40074CEBE /* icon50.png */; };
@@ -31,6 +33,14 @@
 		9C47FB3B17F623D40074CEBE /* icon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2C17F623D40074CEBE /* icon152.png */; };
 		9C47FB3C17F623D40074CEBE /* icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2D17F623D40074CEBE /* icon1024.png */; };
 		9C67A6C417E7A9040079C099 /* iFixit-App-Id.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */; };
+		9C6E961319AE8B9A00FE847D /* FA-Featured-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961119AE8B9A00FE847D /* FA-Featured-2x.png */; };
+		9C6E961419AE8B9A00FE847D /* FA-Featured.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961219AE8B9A00FE847D /* FA-Featured.png */; };
+		9C6E961719AE8BA700FE847D /* FA-Repair-Manuals-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961519AE8BA700FE847D /* FA-Repair-Manuals-2x.png */; };
+		9C6E961819AE8BA700FE847D /* FA-Repair-Manuals.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961619AE8BA700FE847D /* FA-Repair-Manuals.png */; };
+		9C6E961B19AE8BB200FE847D /* FA-Store-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961919AE8BB200FE847D /* FA-Store-2x.png */; };
+		9C6E961C19AE8BB200FE847D /* FA-Store.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961A19AE8BB200FE847D /* FA-Store.png */; };
+		9CA4756718CAFEF3005AFE08 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4756618CAFEF3005AFE08 /* Utility.m */; };
+		9CBA8DCF19AC2B8E00CA4460 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA8DCE19AC2B8E00CA4460 /* libTestFlight.a */; };
 		9CCF9E1E17D1F55E00B0B0BB /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */; };
 		9CCF9E2117D1F55E00B0B0BB /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0B17D1F44D00B0B0BB /* ASIDataCompressor.m */; };
 		9CCF9E2317D1F55E00B0B0BB /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0D17D1F44D00B0B0BB /* ASIDataDecompressor.m */; };
@@ -56,9 +66,10 @@
 		9CDBCD871803540B00984A67 /* MGSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBCD831803540B00984A67 /* MGSplitDividerView.m */; };
 		9CDBCD881803540B00984A67 /* MGSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBCD851803540B00984A67 /* MGSplitViewController.m */; };
 		9CE6783B1837F146001912DF /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6783A1837F146001912DF /* SearchCell.m */; };
+		9CE6783D1838706F001912DF /* accustream_intro.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783C1838706F001912DF /* accustream_intro.css */; };
+		9CE6783F18387080001912DF /* accustream_step.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783E18387080001912DF /* accustream_step.css */; };
 		AB0B27AD15E7E3550088BA07 /* titleImageZeal.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */; };
 		AB0B27B015E7E36B0088BA07 /* titleImageZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */; };
-		AB10C28E17A7CF0E00684B41 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB10C28D17A7CF0E00684B41 /* libTestFlight.a */; };
 		AB1F950C17A584B4009F3419 /* NoImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB1F950B17A584B4009F3419 /* NoImage@2x.jpg */; };
 		AB26882217CD5AA6004AC6ED /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB26882017CD5AA6004AC6ED /* OpenSans-Bold.ttf */; };
 		AB26882317CD5AA6004AC6ED /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB26882117CD5AA6004AC6ED /* OpenSans-Regular.ttf */; };
@@ -271,6 +282,9 @@
 		40331C958D2F4747A5B6D568 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		70CAF29B9E394A3783A9D59C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accustream_logo_transparent.png; sourceTree = "<group>"; };
+		9C1A1981189735C3003E79F0 /* GuideLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideLib.h; sourceTree = "<group>"; };
+		9C1A1982189735C3003E79F0 /* GuideLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideLib.m; sourceTree = "<group>"; };
 		9C47FB1F17F623D40074CEBE /* icon29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon29.png; sourceTree = "<group>"; };
 		9C47FB2017F623D40074CEBE /* icon40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon40.png; sourceTree = "<group>"; };
 		9C47FB2117F623D40074CEBE /* icon50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon50.png; sourceTree = "<group>"; };
@@ -287,6 +301,16 @@
 		9C47FB2C17F623D40074CEBE /* icon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon152.png; sourceTree = "<group>"; };
 		9C47FB2D17F623D40074CEBE /* icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1024.png; sourceTree = "<group>"; };
 		9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-App-Id.plist"; sourceTree = "<group>"; };
+		9C6E961119AE8B9A00FE847D /* FA-Featured-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Featured-2x.png"; sourceTree = "<group>"; };
+		9C6E961219AE8B9A00FE847D /* FA-Featured.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Featured.png"; sourceTree = "<group>"; };
+		9C6E961519AE8BA700FE847D /* FA-Repair-Manuals-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Repair-Manuals-2x.png"; sourceTree = "<group>"; };
+		9C6E961619AE8BA700FE847D /* FA-Repair-Manuals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Repair-Manuals.png"; sourceTree = "<group>"; };
+		9C6E961919AE8BB200FE847D /* FA-Store-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Store-2x.png"; sourceTree = "<group>"; };
+		9C6E961A19AE8BB200FE847D /* FA-Store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Store.png"; sourceTree = "<group>"; };
+		9CA4756518CAFEF3005AFE08 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		9CA4756618CAFEF3005AFE08 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		9CBA8DCE19AC2B8E00CA4460 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		9CBA8DD019AC2B9C00CA4460 /* TestFlight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		9CCF9E0717D1F44D00B0B0BB /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = "asi-http-request/Classes/ASIAuthenticationDialog.h"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = "asi-http-request/Classes/ASIAuthenticationDialog.m"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0917D1F44D00B0B0BB /* ASICacheDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = "asi-http-request/Classes/ASICacheDelegate.h"; sourceTree = SOURCE_ROOT; };
@@ -329,10 +353,10 @@
 		9CDBCD851803540B00984A67 /* MGSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSplitViewController.m; path = ../MGSplitViewController/Classes/MGSplitViewController.m; sourceTree = "<group>"; };
 		9CE678391837F146001912DF /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
 		9CE6783A1837F146001912DF /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
+		9CE6783C1838706F001912DF /* accustream_intro.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accustream_intro.css; sourceTree = "<group>"; };
+		9CE6783E18387080001912DF /* accustream_step.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accustream_step.css; sourceTree = "<group>"; };
 		AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageZeal.png; sourceTree = "<group>"; };
 		AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImageZeal@2x.png"; sourceTree = "<group>"; };
-		AB10C28C17A7CF0500684B41 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
-		AB10C28D17A7CF0E00684B41 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		AB1F950B17A584B4009F3419 /* NoImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "NoImage@2x.jpg"; sourceTree = "<group>"; };
 		AB26882017CD5AA6004AC6ED /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		AB26882117CD5AA6004AC6ED /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -619,11 +643,11 @@
 				DA0A0C03138B02310027721E /* CFNetwork.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				9CBA8DCF19AC2B8E00CA4460 /* libTestFlight.a in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				DAE4242113C3DE6C00F20EEE /* libz.dylib in Frameworks */,
 				DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */,
 				DAAAC7461433DF7600CB90AF /* libGoogleAnalytics.a in Frameworks */,
-				AB10C28E17A7CF0E00684B41 /* libTestFlight.a in Frameworks */,
 				639994C77401475EB4A8AE36 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -666,6 +690,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				9C1A1981189735C3003E79F0 /* GuideLib.h */,
+				9C1A1982189735C3003E79F0 /* GuideLib.m */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				C184D4E91210D3B400953C39 /* Images */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -772,8 +798,8 @@
 		AB10C28B17A7CEF000684B41 /* TestFlight */ = {
 			isa = PBXGroup;
 			children = (
-				AB10C28D17A7CF0E00684B41 /* libTestFlight.a */,
-				AB10C28C17A7CF0500684B41 /* TestFlight.h */,
+				9CBA8DD019AC2B9C00CA4460 /* TestFlight.h */,
+				9CBA8DCE19AC2B8E00CA4460 /* libTestFlight.a */,
 			);
 			name = TestFlight;
 			sourceTree = "<group>";
@@ -833,6 +859,8 @@
 		C10F270F120CE5820027A28D /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				9CA4756518CAFEF3005AFE08 /* Utility.h */,
+				9CA4756618CAFEF3005AFE08 /* Utility.m */,
 				ABE00C41178BE34F006FD574 /* CategoriesSingleton.h */,
 				ABE00C42178BE34F006FD574 /* CategoriesSingleton.m */,
 				DACE7FF6165728010013FFFD /* Media Types */,
@@ -865,6 +893,7 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */,
 				9CD0B39C182779EF0023EB5F /* qr-icon.png */,
 				9CD8330017D7FE3C007F32F4 /* mjtrim_logo_transparent.png */,
 				9CD8330117D7FE3C007F32F4 /* mjtrim_logo_transparent@2x.png */,
@@ -927,6 +956,12 @@
 				DA3562AA14771E2B00683947 /* tabBarItemBook.png */,
 				DAB2697C146CA969000D3A7A /* tabBarItemBubbles.png */,
 				DAB2697A146CA483000D3A7A /* tabBarItemGears.png */,
+				9C6E961119AE8B9A00FE847D /* FA-Featured-2x.png */,
+				9C6E961219AE8B9A00FE847D /* FA-Featured.png */,
+				9C6E961519AE8BA700FE847D /* FA-Repair-Manuals-2x.png */,
+				9C6E961619AE8BA700FE847D /* FA-Repair-Manuals.png */,
+				9C6E961919AE8BB200FE847D /* FA-Store-2x.png */,
+				9C6E961A19AE8BB200FE847D /* FA-Store.png */,
 				DA35629D147717D700683947 /* tabBarItemList.png */,
 				DA6303A9147D712B006D8A2B /* tabBarItemPricetag.png */,
 				DAB26978146CA461000D3A7A /* tabBarItemWrench.png */,
@@ -1200,9 +1235,11 @@
 			isa = PBXGroup;
 			children = (
 				DACE446D1353CE3700F78360 /* ifixit_intro.css */,
+				9CE6783C1838706F001912DF /* accustream_intro.css */,
+				9CE6783E18387080001912DF /* accustream_step.css */,
+				DACE446E1353CE3700F78360 /* ifixit_step.css */,
 				AB4926A3175FF6200092E4B6 /* category_more_info_ipad.css */,
 				ABE51913177B77F400E9555E /* category_more_info_iphone.css */,
-				DACE446E1353CE3700F78360 /* ifixit_step.css */,
 				ABA8FC49177AA909000B5E74 /* category_answers.css */,
 				DACE446F1353CE3700F78360 /* make_intro.css */,
 				DACE44701353CE3700F78360 /* make_step.css */,
@@ -1287,7 +1324,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = G5Y57M9E28;
@@ -1362,6 +1399,8 @@
 				DA59297513FB2ED800504CD3 /* DozukiSelectSiteViewController.xib in Resources */,
 				DAC26873140842B300752982 /* backtosites.png in Resources */,
 				DAC26874140842B300752982 /* backtosites@2x.png in Resources */,
+				9C6E961B19AE8BB200FE847D /* FA-Store-2x.png in Resources */,
+				9C6E961419AE8B9A00FE847D /* FA-Featured.png in Resources */,
 				DAF3AF581422897900913238 /* iPhoneDeviceViewController.xib in Resources */,
 				DA8860E21427DD490030F52C /* SVWebViewController.bundle in Resources */,
 				DA9948AA142AC55D00E4167D /* DozukiSplashView.xib in Resources */,
@@ -1379,6 +1418,7 @@
 				DAB26972146C96A2000D3A7A /* Ubuntu-Italic.ttf in Resources */,
 				DAB26979146CA461000D3A7A /* tabBarItemWrench.png in Resources */,
 				DAB2697B146CA483000D3A7A /* tabBarItemGears.png in Resources */,
+				9C6E961819AE8BA700FE847D /* FA-Repair-Manuals.png in Resources */,
 				DAB2697D146CA969000D3A7A /* tabBarItemBubbles.png in Resources */,
 				DA35628B1476EDDD00683947 /* detailViewFist.png in Resources */,
 				DA35629C1476F84C00683947 /* detailViewText.png in Resources */,
@@ -1395,6 +1435,7 @@
 				DA3562B1147731C500683947 /* noGuides.png in Resources */,
 				DAA10465147C3EEC00DED9DF /* concreteBackgroundWhite.png in Resources */,
 				DA086C7B147CA39900BD9A2F /* detailViewArrowDark.png in Resources */,
+				9CE6783F18387080001912DF /* accustream_step.css in Resources */,
 				9C47FB3C17F623D40074CEBE /* icon1024.png in Resources */,
 				DA086C7C147CA39900BD9A2F /* detailViewArrowLight.png in Resources */,
 				DA086C7E147CA39E00BD9A2F /* make_logo_transparent.png in Resources */,
@@ -1411,6 +1452,7 @@
 				DA275DB615104CA400A8A09C /* logo_make@2x.png in Resources */,
 				DA275DB715104CA400A8A09C /* make_logo_transparent@2x.png in Resources */,
 				DA275DB915104CB400A8A09C /* noGuides@2x.png in Resources */,
+				9C6E961C19AE8BB200FE847D /* FA-Store.png in Resources */,
 				DA275DC11510510700A8A09C /* login@2x.png in Resources */,
 				DA275DC21510510700A8A09C /* register@2x.png in Resources */,
 				DAD2EB9F151671FD0053CC40 /* tabBarItemBook@2x.png in Resources */,
@@ -1424,6 +1466,7 @@
 				ABC5399415ED793A004B2865 /* detailViewTextZeal@2x.png in Resources */,
 				AB3C1776162718AD00323A1E /* dozukiLogo.png in Resources */,
 				AB3C1777162718AD00323A1E /* dozukiLogo@2x.png in Resources */,
+				9CE6783D1838706F001912DF /* accustream_intro.css in Resources */,
 				DACE7FF2165722710013FFFD /* GuideStepViewController.xib in Resources */,
 				ABC63D5516CF16140041A995 /* logo_zeal@2x.png in Resources */,
 				ABC63D5616CF16140041A995 /* logo_zeal.png in Resources */,
@@ -1446,6 +1489,7 @@
 				AB4D33BD17A042270080C40A /* answers.png in Resources */,
 				AB4D33BE17A042270080C40A /* answers@2x.png in Resources */,
 				9C47FB3617F623D40074CEBE /* icon80.png in Resources */,
+				9C002FBF182EE57C00822063 /* accustream_logo_transparent.png in Resources */,
 				AB4D33BF17A042270080C40A /* guides.png in Resources */,
 				AB4D33C017A042270080C40A /* guides@2x.png in Resources */,
 				AB4D33C117A042270080C40A /* moreinfo.png in Resources */,
@@ -1453,6 +1497,7 @@
 				AB94D11817A57B67003ACDFD /* NoImage.jpg in Resources */,
 				9C47FB3B17F623D40074CEBE /* icon152.png in Resources */,
 				AB1F950C17A584B4009F3419 /* NoImage@2x.jpg in Resources */,
+				9C6E961319AE8B9A00FE847D /* FA-Featured-2x.png in Resources */,
 				9C47FB3217F623D40074CEBE /* icon58.png in Resources */,
 				AB5C74BE17A73069003AD63B /* WaitImage.png in Resources */,
 				AB5C74D517A76683003AD63B /* Default-568h-Landscape@2x.png in Resources */,
@@ -1468,6 +1513,7 @@
 				AB26882217CD5AA6004AC6ED /* OpenSans-Bold.ttf in Resources */,
 				AB26882317CD5AA6004AC6ED /* OpenSans-Regular.ttf in Resources */,
 				9C67A6C417E7A9040079C099 /* iFixit-App-Id.plist in Resources */,
+				9C6E961719AE8BA700FE847D /* FA-Repair-Manuals-2x.png in Resources */,
 				9CD8330617D7FE3C007F32F4 /* mjtrim_logo_transparent.png in Resources */,
 				9CD8330717D7FE3C007F32F4 /* mjtrim_logo_transparent@2x.png in Resources */,
 				9CD8330817D7FE3C007F32F4 /* detailViewTextMjtrim@2x.png in Resources */,
@@ -1525,6 +1571,7 @@
 				9CCF9E2517D1F55E00B0B0BB /* ASIDownloadCache.m in Sources */,
 				9CCF9E2717D1F55E00B0B0BB /* ASIFormDataRequest.m in Sources */,
 				9CCF9E2917D1F55E00B0B0BB /* ASIHTTPRequest.m in Sources */,
+				9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */,
 				9CCF9E2D17D1F55E00B0B0BB /* ASIInputStream.m in Sources */,
 				9CCF9E2F17D1F55E00B0B0BB /* ASINetworkQueue.m in Sources */,
 				9CCF9E3217D1F55E00B0B0BB /* Reachability.m in Sources */,
@@ -1572,6 +1619,7 @@
 				DA6A0D1B14218973003B8BAD /* UIImage+Coder.m in Sources */,
 				DAF3AF571422897900913238 /* iPhoneDeviceViewController.m in Sources */,
 				DAF3AF5C1422A2E900913238 /* DictionaryHelper.m in Sources */,
+				9CA4756718CAFEF3005AFE08 /* Utility.m in Sources */,
 				DAF3AF621422AF4800913238 /* GuideCell.m in Sources */,
 				DA8860E31427DD490030F52C /* SVWebViewController.m in Sources */,
 				DA0877BD142D3E6200954482 /* UIColor+Hex.m in Sources */,
@@ -1616,13 +1664,9 @@
 			baseConfigurationReference = 70CAF29B9E394A3783A9D59C /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1645,12 +1689,14 @@
 					"\"$(SRCROOT)/TestFlight\"",
 					"\"$(SRCROOT)/GAnalytics\"",
 					"\"$(SRCROOT)/Classes\"",
+					"$(PROJECT_DIR)/Classes",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
 		};
@@ -1659,13 +1705,9 @@
 			baseConfigurationReference = 70CAF29B9E394A3783A9D59C /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1686,75 +1728,91 @@
 					"\"$(SRCROOT)/TestFlight\"",
 					"\"$(SRCROOT)/GAnalytics\"",
 					"\"$(SRCROOT)/Classes\"",
+					"$(PROJECT_DIR)/Classes",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = "armv7s armv7";
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = "armv7s armv7";
 			};
 			name = Release;
 		};
 		C1523E28120E382D007E8DD8 /* Ad-Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CODE_SIGN_FLAGS = "";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = "armv7s armv7";
 			};
 			name = "Ad-Hoc";
 		};
@@ -1763,13 +1821,9 @@
 			baseConfigurationReference = 70CAF29B9E394A3783A9D59C /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1792,12 +1846,14 @@
 					"\"$(SRCROOT)/TestFlight\"",
 					"\"$(SRCROOT)/GAnalytics\"",
 					"\"$(SRCROOT)/Classes\"",
+					"$(PROJECT_DIR)/Classes",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = "Ad-Hoc";
 		};

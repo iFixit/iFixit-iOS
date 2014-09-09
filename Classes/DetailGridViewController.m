@@ -155,6 +155,17 @@
             break;
         case ConfigMjtrim:
             self.siteLogo.image = [UIImage imageNamed:@"mjtrim_logo_transparent.png"];
+            self.siteLogo.frame = CGRectMake(140, 160, self.siteLogo.frame.size.width, self.siteLogo.frame.size.height);
+            [self.backgroundView addSubview:self.siteLogo];
+            break;
+        case ConfigAccustream:
+            self.siteLogo.image = [UIImage imageNamed:@"accustream_logo_transparent.png"];
+            self.siteLogo.frame = CGRectMake(-60, 140, 654, 226);
+            [self.backgroundView addSubview:self.siteLogo];
+            break;
+        case ConfigZeal:
+            self.siteLogo.image = [UIImage imageNamed:@"zeal_logo_transparent.png"];
+            self.siteLogo.frame = CGRectMake(60, 100, self.siteLogo.frame.size.width, self.siteLogo.frame.size.height);
             [self.backgroundView addSubview:self.siteLogo];
             break;
         /*EAOiPadSiteLogo*/
@@ -187,7 +198,7 @@
     BOOL showsTabBar = [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showsTabBar];
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        inset = UIEdgeInsetsMake(69.0, 0, (showsTabBar) ? 70.0 : 10.0 , 0);
+        inset = UIEdgeInsetsMake(78.0, 0, (showsTabBar) ? 70.0 : 10.0 , 0);
     } else {
         inset = UIEdgeInsetsMake(0,0,10,0);
     }
@@ -232,9 +243,15 @@
     l.shadowColor = [UIColor darkGrayColor];
     l.shadowOffset = CGSizeMake(0.0, 1.0);
     l.numberOfLines = 0;
-    l.text = [Config currentConfig].dozuki ?
-                NSLocalizedString(@"Looking for Guides? Browse them here.", nil) :
-                NSLocalizedString(@"Looking for Guides? Browse thousands of them here.", nil);
+    
+    // TODO: Make this a config setting, not a silly if else statement here
+    if ([Config currentConfig].site == ConfigAccustream) {
+        l.text = NSLocalizedString(@"Welcome to our 24/7 support app, below you will find an assortment of how-to guides that will lead you step by step through the assembly of various HyPrecision, Accustream, and OEM parts", nil);
+    } else {
+        l.text = [Config currentConfig].dozuki ?
+        NSLocalizedString(@"Looking for Guides? Browse them here.", nil) :
+        NSLocalizedString(@"Looking for Guides? Browse thousands of them here.", nil);
+    }
     [l sizeToFit];
     
     self.browseInstructions = l;
@@ -281,8 +298,8 @@
 - (void)gridViewController:(DMPGridViewController *)gridViewController tappedCellAtIndex:(NSUInteger)index {
     iFixitAppDelegate *delegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];
 
-    NSInteger guideid = [[[_guides objectAtIndex:index] valueForKey:@"guideid"] intValue];
-    GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
+    NSNumber *iGuideid = [_guides objectAtIndex:index][@"guideid"];
+    GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [delegate.window.rootViewController presentModalViewController:nc animated:YES];
     [vc release];

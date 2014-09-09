@@ -9,9 +9,9 @@
 @interface User : NSObject
 
 @property (nonatomic, retain) NSDictionary *data;
-@property (nonatomic, retain) NSNumber *userid;
+@property (nonatomic, retain) NSNumber *iUserid;
 @property (nonatomic, retain) NSString *username;
-@property (nonatomic, retain) NSNumber *imageid;
+@property (nonatomic, retain) NSNumber *iImageid;
 @property (nonatomic, retain) NSString *session;
 
 + (User *)userWithDictionary:(NSDictionary *)dict;

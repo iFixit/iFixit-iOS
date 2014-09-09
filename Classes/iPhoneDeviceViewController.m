@@ -15,6 +15,7 @@
 #import "GuideViewController.h"
 #import "Config.h"
 #import "ListViewController.h"
+#import "GuideLib.h"
 
 @implementation iPhoneDeviceViewController
 
@@ -108,15 +109,6 @@
     
     if (!self.guides)
         [self showRefreshButton];
-    else if (![self.guides count]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No guides found", nil)
-                                                        message:NSLocalizedString(@"This device has no guides.", nil)
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
-        [alert show];
-        [alert release];
-    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -204,17 +196,7 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger guideid = [[[self.guides objectAtIndex:indexPath.row] valueForKey:@"guideid"] intValue];
-
-    iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
-
-    GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    
-    [appDelegate.window.rootViewController presentModalViewController:nc animated:YES];
-    [vc release];
-    [nc release];
-
+    [GuideLib loadAndPresentGuideForGuideid:self.guides[indexPath.row][@"guideid"]];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

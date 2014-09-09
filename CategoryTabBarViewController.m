@@ -84,6 +84,7 @@ BOOL onTablet, initialLoad, showTabBar;
         [self.view.subviews[1] addSubview:self.browseButton];
         
         self.browseButton.hidden = UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]);
+        [self showTabBar:NO];
     }
     
     self.delegate = self;
@@ -99,11 +100,13 @@ BOOL onTablet, initialLoad, showTabBar;
 
 // We create different buttons depending on what version the user is on
 - (void)createBrowseButton {
-    CGRect frame = CGRectMake(7, 5, 100, 34);
+    CGRect frame;
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        frame = CGRectMake(7, 10, 100, 34);
         self.browseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         self.browseButton.frame = frame;
     } else {
+        frame = CGRectMake(7, 5, 100, 34);
         self.browseButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.browseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
@@ -528,7 +531,6 @@ BOOL onTablet, initialLoad, showTabBar;
     
 }
 
-// Method is called when we get a response back from our API
 - (void)gotCategoryResult:(NSDictionary *)results {
     if (!results) {
         [iFixitAPI displayConnectionErrorAlert];
@@ -650,6 +652,9 @@ BOOL onTablet, initialLoad, showTabBar;
 
 - (void)gotSiteInfoResults:(NSDictionary*)results {
     [Config currentConfig].siteInfo = results;
+
+    [Config currentConfig].scanner = [results[@"feature-mobile-scanner"] integerValue] ? YES : NO;
+    [self.listViewController.viewControllers[0] configureSearchBar];
     
     // We don't have logo data, so let's just configure the backup titles
     if (results[@"logo"] == [NSNull null]) {

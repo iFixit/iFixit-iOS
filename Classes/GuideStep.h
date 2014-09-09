@@ -15,6 +15,7 @@
 @interface GuideStep : NSObject
 
 @property (nonatomic) NSInteger number;
+@property (nonatomic) NSInteger stepid;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSMutableArray *lines;
 @property (nonatomic, retain) NSMutableArray *images;

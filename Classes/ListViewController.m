@@ -47,16 +47,28 @@
         
         self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
     } else if ([Config currentConfig].site == ConfigMjtrim) {
-        self.navigationBar.tintColor = [UIColor colorWithRed:204/255.0f green:0 blue:0 alpha:1];
-        self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:140/255.0f green:48/255.0f blue:49/255.0f alpha:1];
-    
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            self.navigationBar.translucent = NO;
+            self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
+        } else {
+            [[UINavigationBar appearance] setTintColor:[Config currentConfig].toolbarColor];
+        }
+
+        NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                   [UIColor whiteColor],UITextAttributeTextColor,
+                                                   nil];
+        
+        [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
     } else if ([Config currentConfig].site == ConfigDozuki) {
         self.navigationBar.translucent = NO;
         self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
     } else {
-        self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            self.navigationBar.translucent = NO;
+        }
+
         if ([Config currentConfig].buttonColor) {
-            self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
+            self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
         }
     }
     
@@ -104,11 +116,8 @@
 }
 
 - (void)statusBarBackground {
-    NSLog(@"self: %@", self.view.subviews);
     UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10000, 50)];
     statusBarView.backgroundColor = [UIColor blackColor];
-    
-    NSLog(@"statusBarView: %@", statusBarView);
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {

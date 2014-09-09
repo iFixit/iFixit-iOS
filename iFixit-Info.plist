@@ -12,8 +12,6 @@
 	<array>
 		<string>icon57.png</string>
 		<string>icon72.png</string>
-		<string>Icon@2x.png</string>
-		<string>Icon72@2x.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -29,8 +27,6 @@
 				<string>icon114</string>
 				<string>icon57.png</string>
 				<string>icon72.png</string>
-				<string>Icon@2x.png</string>
-				<string>Icon72@2x.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
@@ -54,8 +50,6 @@
 				<string>icon114</string>
 				<string>icon57.png</string>
 				<string>icon72.png</string>
-				<string>Icon@2x.png</string>
-				<string>Icon72@2x.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
@@ -70,7 +64,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>43</string>
+	<string>44</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -87,7 +81,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.4</string>
+	<string>1.5</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>

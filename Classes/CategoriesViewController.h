@@ -40,10 +40,8 @@ enum {
 @property (nonatomic, retain) NSMutableArray *categoryTypes;
 @property (nonatomic, retain) NSDictionary *categoryResults;
 @property (nonatomic, retain) ListViewController *listViewController;
-@property (nonatomic, retain) NSDictionary *categoryMetaData;
 @property (nonatomic, retain) NSDictionary *categorySearchResult;
-@property (retain, nonatomic) UIImagePickerController *imagePickerController;
-
+@property (nonatomic, retain) NSDictionary *categoryMetaData;
 
 - (void)getAreas;
 - (void)showLoading;
@@ -51,5 +49,6 @@ enum {
 - (void)addGuidesToTableView:(NSArray*)guides;
 - (void)setTableViewTitle;
 - (void)configureTableViewTitleLogoFromURL:(NSString*)URL;
+- (void)configureSearchBar;
     
 @end

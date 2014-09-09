@@ -91,7 +91,7 @@
     if (!_collection)
         return;
     
-    self.gvc.title = [_collection valueForKey:@"title"];
+    self.gvc.title = NSLocalizedString(@"Featured", nil);
     
     // Create the header container view with a drop shadow.
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 256.0)];
@@ -285,8 +285,8 @@
     return title;
 }
 - (void)gridViewController:(DMPGridViewController *)gridViewController tappedCellAtIndex:(NSUInteger)index {
-    NSInteger guideid = [_guides[index][@"guideid"] intValue] ;
-    GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
+    NSNumber *iGuideid = _guides[index][@"guideid"];
+    GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentModalViewController:nc animated:YES];
     [vc release];

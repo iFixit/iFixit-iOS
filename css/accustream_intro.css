@@ -1,0 +1,27 @@
+html, body {
+   background-color: transparent;
+   color: white;
+   font-family: "Helvetica", sans-serif;
+   margin: 0px 10px;
+   text-shadow: 0px 1px 0px rgba(0,0,0,0.6);
+}
+
+.videoBox_center {
+   max-width: 100%;
+}
+
+.youtube-player {
+   max-width: 100%;
+}
+
+body.small {
+   font-size: 0.8em;
+}
+
+a, a:visited {
+   color: #FFFFFF;
+}
+
+div.parts {
+   margin-bottom: 20px;
+}

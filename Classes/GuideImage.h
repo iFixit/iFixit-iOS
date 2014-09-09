@@ -8,7 +8,7 @@
 
 @interface GuideImage : NSObject
 
-@property (nonatomic, retain) NSNumber *imageid;
+@property (nonatomic, retain) NSNumber *iImageid;
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) UIImage *mini;
 @property (nonatomic, retain) UIImage *thumbnail;

@@ -11,7 +11,7 @@
 
 @implementation Guide
 
-@synthesize data, guideid, category, subject, title, author, timeRequired, difficulty, introduction, introduction_rendered, summary, image;
+@synthesize data, iGuideid, category, subject, title, author, timeRequired, difficulty, introduction, introduction_rendered, summary, image;
 @synthesize documents, parts, tools, flags;
 @synthesize prereqs, steps;
 
@@ -27,23 +27,23 @@
 }
 
 + (Guide *)guideWithDictionary:(NSDictionary *)dict {
-	Guide *guide		= [[Guide alloc] init];
-    dict                = [Guide repairNullsForDict:dict];
-    guide.data          = dict;
-	guide.guideid		= [dict[@"guideid"] integerValue];
-	
-	//NSDictionary *guideData = [dict valueForKey:@"guide"];
-	
+	Guide *guide                = [[Guide alloc] init];
+    dict                        = [Guide repairNullsForDict:dict];
+    guide.data                  = dict;
+	guide.iGuideid              = dict[@"guideid"];
+
 	// Meta information
-	guide.title          = dict[@"title"];
-	guide.category       = dict[@"category"];
-	guide.subject        = dict[@"subject"];
-	guide.author         = dict[@"author"][@"username"];
-	guide.timeRequired   = dict[@"time_required"];
-	guide.difficulty     = dict[@"difficulty"];
-	guide.introduction   = dict[@"introduction_raw"];
-	guide.summary        = dict[@"summary"];
+	guide.title                 = dict[@"title"];
+	guide.category              = dict[@"category"];
+	guide.subject               = dict[@"subject"];
+	guide.author                = dict[@"author"][@"username"];
+	guide.timeRequired          = dict[@"time_required"];
+	guide.difficulty            = dict[@"difficulty"];
+	guide.introduction          = dict[@"introduction_raw"];
+	guide.summary               = dict[@"summary"];
 	guide.introduction_rendered = dict[@"introduction_rendered"];
+    guide.iModifiedDate         = [NSNumber numberWithInteger:[dict[@"modified_date"] integerValue]];
+    guide.iPrereqModifiedDate   = [NSNumber numberWithInteger:[dict[@"prereq_modified_date"] integerValue]];
 
 	// Main image
 	id image	= dict[@"image"];
@@ -67,6 +67,16 @@
 	// Flags
 	
 	return [guide autorelease];
+}
+
+-(NSNumber*)getAbsoluteModifiedDate {
+    return [@[self.iModifiedDate, self.iPrereqModifiedDate] valueForKeyPath:@"@max.intValue"];
+}
+
++(NSNumber*)getAbsoluteModifiedDateFromGuideDictionary:(NSDictionary*)guideData {
+    return [@[[NSNumber numberWithInteger:[guideData[@"modified_date"] integerValue]],
+              [NSNumber numberWithInteger:[guideData[@"prereq_modified_date"] integerValue]]
+            ] valueForKeyPath:@"@max.intValue"];
 }
 
 - (void)dealloc {

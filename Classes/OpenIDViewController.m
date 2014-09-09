@@ -31,7 +31,7 @@
     [super webViewDidFinishLoad:webView];
 
     NSString *body = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
-    if ([body rangeOfString:@"loggedIn();"].location != NSNotFound) {
+    if ([body rangeOfString:@"loggedIn"].location != NSNotFound) {
         // Extract the sessionid.
         NSString *sessionid = nil;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -61,11 +61,11 @@
                                               otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
         [alert show];
         [alert release];
-    }
-    else {
-        [self dismissModalViewControllerAnimated:YES];
-        // The delegate is responsible for removing the login view.
-        [delegate refresh];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:^(void) {
+            // The delegate is responsible for removing the login view.
+            [delegate refresh];
+        }];
     }
 }
 
