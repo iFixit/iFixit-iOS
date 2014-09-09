@@ -1,39 +1,84 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4504" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1072" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3734.1"/>
+        <deployment defaultVersion="1296" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RootViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoriesViewController">
             <connections>
+                <outlet property="scannerBarView" destination="K2N-42-E0X" id="8Dt-T0-vaC"/>
+                <outlet property="scannerIcon" destination="3Iu-aP-o09" id="7RI-vB-Hc2"/>
                 <outlet property="searchBar" destination="6" id="7"/>
-                <outlet property="view" destination="2" id="3"/>
+                <outlet property="tableView" destination="2" id="DxB-PE-ju7"/>
+                <outlet property="view" destination="bMb-og-Rpq" id="hvN-ZQ-f6A"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-            <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="44"/>
-            <searchBar key="tableHeaderView" contentMode="redraw" prompt="" placeholder="Search" translucent="NO" id="6">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                <scopeButtonTitles>
-                    <string>Title</string>
-                    <string>Title</string>
-                </scopeButtonTitles>
-                <connections>
-                    <outlet property="delegate" destination="-1" id="8"/>
-                </connections>
-            </searchBar>
+        <view contentMode="scaleToFill" id="bMb-og-Rpq">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" prompt="" placeholder="Search" translucent="NO" showsScopeBar="YES" id="6">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                    <scopeButtonTitles>
+                        <string>Guides</string>
+                        <string>Categories</string>
+                    </scopeButtonTitles>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="8"/>
+                    </connections>
+                </searchBar>
+                <view contentMode="scaleToFill" id="K2N-42-E0X">
+                    <rect key="frame" x="0.0" y="87" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qr-icon.png" id="iRs-f9-cbL">
+                            <rect key="frame" x="217" y="7" width="30" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR Code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zpx-zl-13o">
+                            <rect key="frame" x="74" y="11" width="122" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="0.26125169836956519" green="0.26125169836956519" blue="0.26125169836956519" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.90083644701086962" green="0.90083644701086962" blue="0.90083644701086962" alpha="1" colorSpace="calibratedRGB"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="ube-Zc-rUw" appends="YES" id="fP4-CI-sBz"/>
+                    </connections>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qr-icon.png" id="3Iu-aP-o09">
+                    <rect key="frame" x="275" y="9" width="25" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2">
+                    <rect key="frame" x="0.0" y="42" width="320" height="510"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="44"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="4"/>
+                        <outlet property="delegate" destination="-1" id="5"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+        <tapGestureRecognizer id="ube-Zc-rUw">
             <connections>
-                <outlet property="dataSource" destination="-1" id="4"/>
-                <outlet property="delegate" destination="-1" id="5"/>
+                <action selector="scannerViewTouched:" destination="-1" id="uWk-nT-K2J"/>
             </connections>
-        </tableView>
+        </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="qr-icon.png" width="52" height="52"/>
+    </resources>
 </document>

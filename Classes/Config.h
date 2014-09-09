@@ -23,6 +23,7 @@ enum {
 @property (nonatomic) BOOL answersEnabled;
 @property (nonatomic) BOOL collectionsEnabled;
 @property (nonatomic) BOOL private;
+@property (nonatomic) BOOL scanner;
 @property (nonatomic, retain) NSString *store;
 @property (nonatomic) NSInteger site;
 @property (nonatomic, copy) NSString *sso;

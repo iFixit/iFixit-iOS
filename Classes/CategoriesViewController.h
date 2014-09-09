@@ -8,6 +8,7 @@
 
 #import "ListViewController.h"
 #import "CategoryTabBarViewController.h"
+#import <ZBarReaderController.h>
 
 @class ListViewController;
 
@@ -21,13 +22,19 @@ enum {
 #define CATEGORIES @"categories"
 #define DEVICES @"devices"
 
-@interface CategoriesViewController : UITableViewController <UISearchBarDelegate, UIAlertViewDelegate, UITextFieldDelegate>
+@interface CategoriesViewController : UIViewController <UISearchBarDelegate, UIAlertViewDelegate, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, ZBarReaderDelegate>
 
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
+@property (retain, nonatomic) IBOutlet UIView *scannerBarView;
+@property (retain, nonatomic) IBOutlet UIImageView *scannerIcon;
+@property (retain, nonatomic) IBOutlet UITableView *tableView;
+
 @property BOOL searching;
-@property (nonatomic, retain) NSArray *searchResults;
+
+@property (nonatomic, retain) NSMutableDictionary *searchResults;
 @property (nonatomic) BOOL noResults;
+@property (nonatomic, retain) NSString *currentSearchTerm;
 
 @property (nonatomic, retain) NSMutableDictionary *categories;
 @property (nonatomic, retain) NSMutableArray *categoryTypes;
@@ -35,6 +42,8 @@ enum {
 @property (nonatomic, retain) ListViewController *listViewController;
 @property (nonatomic, retain) NSDictionary *categoryMetaData;
 @property (nonatomic, retain) NSDictionary *categorySearchResult;
+@property (retain, nonatomic) UIImagePickerController *imagePickerController;
+
 
 - (void)getAreas;
 - (void)showLoading;

@@ -32,8 +32,9 @@ static int volatile openConnections = 0;
 }
 
 - (void)loadAppId {
+    // look for the iFixit app id by default
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"iFixit-App-Id" ofType: @"plist"];
-    self.appId = [NSDictionary dictionaryWithContentsOfFile:plistPath] ? [NSDictionary dictionaryWithContentsOfFile:plistPath][@"dozuki"] : @"";
+    self.appId = [NSDictionary dictionaryWithContentsOfFile:plistPath] ? [NSDictionary dictionaryWithContentsOfFile:plistPath][@"ifixit"] : @"";
 }
 
 - (void)saveSession {
@@ -280,13 +281,14 @@ static int volatile openConnections = 0;
     [request startAsynchronous];
 }
 
-- (void)getSearchResults:(NSString *)search forObject:(id)object withSelector:(SEL)selector {
+- (void)getSearchResults:(NSString *)search withFilter:(NSString *)filter forObject:(id)object withSelector:(SEL)selector {
     search = [search stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     search = [search stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
     search = [search stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
 
-    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/search/%@?filter=category&limit=50", [Config currentConfig].host, search];
+    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/search/%@?limit=50&filter=%@", [Config currentConfig].host, search, filter];
 
+    NSLog(@"url is: %@", url);
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
 
@@ -587,6 +589,29 @@ static int volatile openConnections = 0;
 
     // iFixitiOS/1.4 (43) | iPad; Mac OS X 10.5.7; en_GB
     self.userAgent = [NSString stringWithFormat:@"%@iOS/%@ (%@) | %@; %@ %@; %@", appName, developmentVersionNumber, marketingVersionNumber, deviceName, OSName, OSVersion, locale];
+}
+
+// Strip the guide id from url using regex
++ (NSInteger)getGuideIdFromUrl:(NSString*)url {
+    NSError *error = nil;
+    NSNumber *guideId = nil;
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(guide|teardown)/.+?/(\\d+)"
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:&error];
+    NSArray *matches = [regex matchesInString:url
+                                      options:0
+                                        range:NSMakeRange(0, url.length)];
+    if (matches.count) {
+        NSRange guideIdRange = [matches[0] rangeAtIndex:2];
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        guideId = [formatter numberFromString:[url substringWithRange:guideIdRange]];
+        
+        [formatter release];
+    }
+    
+
+    return [guideId integerValue];
 }
 
 @end
