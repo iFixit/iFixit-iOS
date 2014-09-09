@@ -1,3 +1,4 @@
+
 /* 
   Localizable.strings
   iFixit
@@ -5,3 +6,66 @@
   Created by Stefan Ayala on 5/17/13.
 
 */
+
+"Search" = "Search";
+"Categories" = "Categories";
+"Devices" = "Devices";
+"All" = "All";
+"Favorites" = "Favorites";
+"email@example.com" = "email@example.com";
+"Required" = "Required";
+"Login" = "Login";
+"Email" = "Email";
+"Password" = "Password";
+"Your Name" = "Your Name";
+"Register" = "Register";
+"again" = "again";
+"Cancel" = "Cancel";
+"Logout" = "Logout";
+"Could not load guide list." = "Could not load guide list.";
+"Please check your internet connection and try again." = "Please check your internet connection and try again.";
+"Retry" = "Retry";
+"Error" = "Error";
+"Could not load featured collections." = "Could not load featured collections.";
+"Failed loading guide." = "Failed loading guide.";
+"Try Again" = "Try Again";
+"Create an Account" = "Create an Account";
+"You haven't saved any guides for offline view yet. When you do, they'll appear here." = "You haven't saved any guides for offline view yet. When you do, they'll appear here.";
+"Logged in as %@" = "Logged in as %@";
+"Search Results" = "Search Results";
+"No Results Found" = "No Results Found";
+"General Information" = "General Information";
+"Loading..." = "Loading...";
+"Browse" = "Browse";
+"Guides" = "Guides";
+"Projects" = "Projects";
+"More Info" = "More Info";
+"Answers" = "Answers";
+"Back" = "Back";
+"Choose a Site" = "Choose a Site";
+"More Sites..." = "More Sites...";
+"Past Features" = "Past Features";
+"Favorite" = "Favorite";
+"Downloading..." = "Downloading...";
+"Saved" = "Saved";
+"Step %d" = "Step %d";
+"Private site. Authentication required." = "Private site. Authentication required.";
+"Repair Manuals" = "Repair Manuals";
+"Store" = "Store";
+"Parts & Tools" = "Parts & Tools";
+"No guides found" = "No guides found";
+"This device has no guides." = "This device has no guides.";
+"Okay" = "Okay";
+"Untitled" = "Untitled";
+"Favorites are saved offline and synced across devices." = "Favorites are saved offline and synced across devices.";
+"All fields are required" = "All fields are required";
+"Passwords don't match" = "Passwords don't match";
+"Swipe to Begin" = "Swipe to Begin";
+"Looking for Guides? Browse thousands of them here." = "Looking for Guides? Browse thousands of them here.";
+"START A REPAIR" = "START A REPAIR";
+"Edit" = "Edit";
+"Done" = "Done";
+"Looking for Guides? Browse them here." = "Looking for Guides? Browse them here.";
+"We make technical documentation come to life." = "We make technical documentation come to life.";
+"Dozuki has thousands of manuals in one place. Learn how to do all sorts of things-from repairing your iPad to building a water-powered rocket." = "Dozuki has thousands of manuals in one place. Learn how to do all sorts of things-from repairing your iPad to building a water-powered rocket.";
+"Get Started" = "Get Started";

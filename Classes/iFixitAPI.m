@@ -372,8 +372,6 @@ static int volatile openConnections = 0;
     [request setCompletionBlock:^{
         NSMutableDictionary *results = [[request responseString] JSONValue];
         [self checkLogin:results];
-
-        // find out what happens when we get here
         [results setObject:@"login" forKey:@"type"];
         [object performSelector:selector withObject:results];
     }];
