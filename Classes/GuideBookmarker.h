@@ -13,7 +13,6 @@
 
 @interface GuideBookmarker : NSObject <LoginViewControllerDelegate> {
     UIViewController *delegate;
-    UINavigationItem *navItem;
     NSNumber *guideid;
     
     UIPopoverController *poc;
@@ -23,7 +22,6 @@
 }
 
 @property (nonatomic, assign) UIViewController *delegate;
-@property (nonatomic, retain) UINavigationItem *navItem;
 @property (nonatomic, retain) NSNumber *guideid;
 
 @property (nonatomic, retain) UIPopoverController *poc;
@@ -31,7 +29,7 @@
 
 @property (nonatomic, retain) UIProgressView *progress;
 
-- (void)setNavItem:(UINavigationItem *)newNavItem andGuideid:(NSInteger)newGuideid;
+- (void)setNewGuideId:(NSInteger)newGuideid;
 - (void)bookmarked;
 
 @end

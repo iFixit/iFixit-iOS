@@ -59,8 +59,10 @@
 	// Prereqs
 	
 	// Parts
+    guide.parts = dict[@"parts"];
 	
 	// Tools
+    guide.tools = dict[@"tools"];
 	
 	// Flags
 	

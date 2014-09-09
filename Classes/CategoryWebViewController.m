@@ -39,6 +39,8 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         self.categoryNavigationBar.topItem.title = self.category;
         self.favoritesButton.title = NSLocalizedString(@"Favorites", nil);
+    } else {
+        [self resizeWebViewFrameForOrientation:[UIApplication sharedApplication].statusBarOrientation];
     }
 }
 
@@ -111,8 +113,8 @@
 
 // Use javascript to inject custom css to hide the iFixit Banner
 - (void)injectCSSIntoWebview {
-    NSString* css = @"\"#header { visibility: hidden; margin-bottom: -20px; } \"";
-    NSString* js = [NSString stringWithFormat:
+    NSString *css = @"\"header, #header { display: none; } #mainBody { margin-top: 20px; } \"";
+    NSString *js = [NSString stringWithFormat:
                     @"var styleNode = document.createElement('style');\n"
                     "styleNode.type = \"text/css\";\n"
                     "var styleText = document.createTextNode(%@);\n"
@@ -123,17 +125,37 @@
 }
 
 - (void)configureProperties {
+    
     // Only configure the nav bar on iPhone
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         [self configureNavigationBar];
-    } else if(![(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showsTabBar]){
-        // If we don't have a tab bar, let's make the webview full screen
-        self.webView.frame = self.view.frame;
+        self.view.autoresizesSubviews = YES;
+    }
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
+    // Only apply this hack to iPads...=(
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self resizeWebViewFrameForOrientation:toInterfaceOrientation];
+    }
+}
+
+- (void)resizeWebViewFrameForOrientation:(UIInterfaceOrientation)orientation {
+    BOOL showsTabBar = [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showsTabBar];
+    BOOL onIOS7 = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0");
+    
+    // TODO: Remove these ternary for reader's sanity
+    if (UIDeviceOrientationIsLandscape(orientation)) {
+        self.webView.frame = CGRectMake(0, onIOS7 ? 64 : showsTabBar ? 38 : 0, 703, (showsTabBar) ? 663 : 706);
+    } else {
+        self.webView.frame = CGRectMake(0, onIOS7 ? 64 : showsTabBar ? 38 : 0, 770, (showsTabBar) ? 919 : 963);
     }
 }
 
 - (void)configureNavigationBar {
     self.categoryNavigationBar.hidden = NO;
+    self.categoryNavigationBar.translucent = NO;
     
     UINavigationItem *backButtonItem = [[[UINavigationItem alloc] initWithTitle:@""] autorelease];
     UINavigationItem *titleItem = [[[UINavigationItem alloc] initWithTitle:@""] autorelease];
@@ -146,20 +168,11 @@
     if ([Config currentConfig].site == ConfigMjtrim) {
         self.categoryNavigationBar.tintColor = [UIColor colorWithRed:204/255.0f green:0 blue:0 alpha:1];
         favoritesButtonItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:140/255.0f green:48/255.0f blue:49/255.0f alpha:1];
-    } else {
-        self.categoryNavigationBar.tintColor = [Config currentConfig].toolbarColor;
     }
 }
 
 - (IBAction)favoritesButtonPushed:(id)sender {
-    BookmarksViewController *bvc = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:bvc];
-    
-    // Use deprecated method on purpose to preserve iOS 4.3
-    [self presentModalViewController:nvc animated:YES];
-    
-    [bvc release];
-    [nvc release];
+    [iFixitAPI checkCredentialsForViewController:self.listViewController];
 }
 
 // Configure our html and load custom CSS for our More Info webview
@@ -169,12 +182,12 @@
     NSString *footer = @"</body></html>";
     
     // Build our image tag that will display an image of the category we are looking at
-    NSString *image = [categoryMetaData[@"image"] count] > 0
-        ? [NSString stringWithFormat:@"<img id=\"categoryImage\" src=\"%@.standard\">", categoryMetaData[@"image"][@"text"]]
+    NSString *image = (categoryMetaData[@"image"] != [NSNull null])
+        ? [NSString stringWithFormat:@"<img id=\"categoryImage\" src=\"%@.standard\">", categoryMetaData[@"image"][@"original"]]
         : @"";
     
     // Add our wiki content
-    NSString *content = [NSString stringWithFormat:@"<div id=\"moreInfoContent\">%@</div>", categoryMetaData[@"contents"]];
+    NSString *content = [NSString stringWithFormat:@"<div id=\"moreInfoContent\">%@</div>", categoryMetaData[@"contents_rendered"]];
     
     return [NSString stringWithFormat:@"%@%@%@%@", header, image, content, footer];
 }

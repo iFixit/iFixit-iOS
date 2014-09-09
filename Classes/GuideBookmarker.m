@@ -18,7 +18,7 @@
 
 @implementation GuideBookmarker
 
-@synthesize delegate, navItem, guideid, poc, progress, lvc;
+@synthesize delegate, guideid, poc, progress, lvc;
 
 - (id)init {
     if ((self = [super init])) {
@@ -40,8 +40,7 @@
     return self;
 }
 
-- (void)setNavItem:(UINavigationItem *)newNavItem andGuideid:(NSInteger)newGuideid {
-    self.navItem = newNavItem;
+- (void)setNewGuideId:(NSInteger)newGuideid {
     self.guideid = [NSNumber numberWithInt:newGuideid];
     
     if (![[GuideBookmarks sharedBookmarks] guideForGuideid:guideid]) {
@@ -49,10 +48,7 @@
                                                                            style:UIBarButtonItemStyleBordered 
                                                                           target:self 
                                                                           action:@selector(bookmark:)];
-        if ([Config currentConfig].buttonColor) {
-            bookmarkButton.tintColor = [Config currentConfig].buttonColor;
-        }
-        navItem.rightBarButtonItem = bookmarkButton;
+        self.delegate.navigationItem.rightBarButtonItem = bookmarkButton;
         [bookmarkButton release];
     }
     else {
@@ -75,30 +71,15 @@
         }
         // On the iPhone, we need to first wrap the login view in a nav controller
         else {
-            UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:lvc];
-            nvc.navigationBar.tintColor = [UIColor blackColor];
-            nvc.title = NSLocalizedString(@"Login", nil);
-            
-            lvc.modal = YES;
-            [delegate presentModalViewController:nvc animated:YES];
-            
-            // Add a Cancel button
-            UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(hideLogin)];
-            lvc.navigationItem.leftBarButtonItem = cancelButton;
-            [cancelButton release];
-            
-            [nvc release];
+            [iFixitAPI checkCredentialsForViewController:self];
         }
+        
         return;
     }
     else {
         if (poc) {
             [poc dismissPopoverAnimated:YES];
             [lvc dismissModalViewControllerAnimated:YES];
-        }
-        else {
-            [lvc dismissModalViewControllerAnimated:YES];
-            [self performSelector:@selector(hideLogin) withObject:nil afterDelay:0.5];
         }
     }
     
@@ -107,7 +88,7 @@
     spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
     UIBarButtonItem *b = [[UIBarButtonItem alloc] initWithCustomView:spinner];
     [spinner startAnimating];
-    navItem.rightBarButtonItem = b;
+    self.delegate.navigationItem.rightBarButtonItem = b;
     [b release];
     [spinner release];
     
@@ -120,15 +101,12 @@
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
     poc.popoverContentSize = (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) ? CGSizeMake(320, screenSize.width / 2) : CGSizeMake(320, screenSize.height / 2);
 }
-- (void)hideLogin {
-    [lvc dismissModalViewControllerAnimated:YES];
-}
 
 - (void)liked:(NSDictionary *)result {
     if (![result[@"statusCode"] isEqualToNumber:@(204)]) {
         [iFixitAPI displayConnectionErrorAlert];
-        [self setNavItem:navItem andGuideid:[guideid intValue]];
-        [self bookmark:navItem.rightBarButtonItem];
+        [self setNewGuideId:[guideid intValue]];
+        [self bookmark:self.delegate.navigationItem.rightBarButtonItem];
         return;
     }
     
@@ -160,7 +138,7 @@
     [p release];
     
     UIBarButtonItem *progressItem = [[UIBarButtonItem alloc] initWithCustomView:progressContainer];
-    navItem.rightBarButtonItem = progressItem;
+    self.delegate.navigationItem.rightBarButtonItem = progressItem;
     [progressItem release];
     [progressContainer release];
     
@@ -177,10 +155,6 @@
 }
 
 - (void)bookmarked {
-    // Just hide.
-    //navItem.rightBarButtonItem = nil;
-    //return;
-
     // Change the button to a label.
     UILabel *bookmarkedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 40)];
     bookmarkedLabel.textAlignment = UITextAlignmentCenter;
@@ -201,7 +175,7 @@
     bookmarkedLabel.text = [NSString stringWithFormat:@" %@", NSLocalizedString(@"Saved", nil)];
     
     UIBarButtonItem *bookmarkedItem = [[UIBarButtonItem alloc] initWithCustomView:bookmarkedLabel];
-    navItem.rightBarButtonItem = bookmarkedItem;
+    self.delegate.navigationItem.rightBarButtonItem = bookmarkedItem;
     [bookmarkedItem release];
     [bookmarkedLabel release];
 }
@@ -213,7 +187,6 @@
 
 - (void)dealloc
 {
-    self.navItem = nil;
     self.guideid = nil;
     self.progress = nil;
     self.poc = nil;

@@ -11,16 +11,9 @@
 #import "BookmarksViewController.h"
 #import "Config.h"
 #import "CategoriesViewController.h"
+#import "LoginViewController.h"
 
 @implementation UINavigationBar (UINavigationBarCategory)
-
-// iOS 4.3
-- (void)drawRect:(CGRect)rect {
-    UIColor *color = [UIColor colorWithRed:39/255.0f green:41/255.0f blue:43/255.0f alpha:1.0f];
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColor(context, CGColorGetComponents([color CGColor]));
-    CGContextFillRect(context, rect);
-}
 
 @end
 
@@ -43,12 +36,23 @@
     
     // Set Navigation bar
     if ([Config currentConfig].site == ConfigIFixit) {
-        self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
-        [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-        [[UINavigationBar appearance] setBackgroundColor:[Config currentConfig].toolbarColor];
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            self.navigationBar.translucent = NO;
+        } else {
+            self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
+            [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+            [[UINavigationBar appearance] setBackgroundColor:[Config currentConfig].toolbarColor];
+            [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+        }
+        
+        self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
     } else if ([Config currentConfig].site == ConfigMjtrim) {
         self.navigationBar.tintColor = [UIColor colorWithRed:204/255.0f green:0 blue:0 alpha:1];
         self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:140/255.0f green:48/255.0f blue:49/255.0f alpha:1];
+    
+    } else if ([Config currentConfig].site == ConfigDozuki) {
+        self.navigationBar.translucent = NO;
+        self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
     } else {
         self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
         if ([Config currentConfig].buttonColor) {
@@ -91,7 +95,8 @@
         
         // Force a rotate to ensure our logo is the correct size
         [self.viewControllers[0] willAnimateRotationToInterfaceOrientation:[viewController interfaceOrientation] duration:0];
-    } else {
+    // Make sure that we only update the tabbar when we need to
+    } else if ([viewController isKindOfClass:[CategoriesViewController class]]) {
         [self.categoryTabBarViewController updateTabBar:[self.topViewController categoryMetaData]];
     }
     
@@ -133,6 +138,18 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+
+    // This is so bad, but we force a redraw only on iPad+Landscape to avoid an edgecases
+    if (UIDeviceOrientationIsLandscape(toInterfaceOrientation) && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad &&
+      SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+        UIView *view = [window.subviews objectAtIndex:0];
+        [view removeFromSuperview];
+        [window addSubview:view];
+    }
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
@@ -153,30 +170,12 @@
     [viewController navigationItem].rightBarButtonItem = self.favoritesButton;
 }
 
+- (void)refresh {
+    [iFixitAPI checkCredentialsForViewController:self];
+}
+
 - (void)favoritesButtonPushed {
-    
-    BookmarksViewController *bvc = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
-    bvc.listViewController = self;
-    
-    // Create the animation ourselves to mimic a modal presentation
-    // On iPad we must push the view onto a stack, instead of presenting
-    // it modally or else undesired side effects occur
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        [UIView animateWithDuration:0.7
-                         animations:^{
-                             [self pushViewController:bvc animated:NO];
-                             [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
-                         }];
-    else {
-        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:bvc];
-        
-        nvc.navigationBar.tintColor = [Config currentConfig].toolbarColor;
-        
-        [self presentModalViewController:nvc animated:YES];
-        [nvc release];
-    }
-        
-    [bvc release];
+    [iFixitAPI checkCredentialsForViewController:self];
 }
 
 @end

@@ -44,6 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     // Create a reference to the navigation controller
     self.listViewController = (ListViewController*)self.navigationController;
     
@@ -88,7 +89,11 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone && self.listViewController.viewControllers.count == 1) {
         [self viewWillAppear:NO];
     }
-} 
+    
+    // Be explicit for iOS 7
+    self.tableView.backgroundColor = [UIColor whiteColor];
+}
+
 
 - (void)displayBackToSitesButton {
     // Show the Dozuki sites select button if needed.
@@ -367,12 +372,8 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     // Make room for the toolbar
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad || UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
-        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 44, 0);
-    }
-    else {
-        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 44, 0);
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 60, 0);
     }
 
     // Reset the searching view offset to prevent rotating weirdness.
@@ -564,8 +565,8 @@
                    };
     } else
         category = self.categories[self.categoryTypes[indexPath.section]][indexPath.row];
-    
 
+    // Category
     if (category[@"type"] == @(CATEGORY)) {
         CategoriesViewController *vc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
         vc.title = category[@"name"];
@@ -594,8 +595,10 @@
         NSInteger guideid = [category[@"guideid"] integerValue];
         
         GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
-        [self presentModalViewController:vc animated:YES];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentModalViewController:nc animated:YES];
         [vc release];
+        [nc release];
         
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;

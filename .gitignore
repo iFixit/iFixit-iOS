@@ -7,3 +7,4 @@ iFixit-App-Id.plist
 .svn
 *.bak
 .DS_Store
+Reveal.framework/

@@ -16,6 +16,8 @@
 #import "SSOViewController.h"
 #import "GANTracker.h"
 #import "User.h"
+#import "ListViewController.h"
+#import "iFixitAppDelegate.h"
 
 @implementation LoginViewController
 
@@ -174,16 +176,19 @@
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
 
     // Login
-    UIButton *lb = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 300, 45)];
+    
+    UIButton *lb = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    lb.frame = CGRectMake(10,0,300,45);
     lb.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     lb.titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
     lb.titleLabel.shadowColor = [UIColor blackColor];
     lb.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
-
-    [lb setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
     [lb setBackgroundImage:[[UIImage imageNamed:@"login.png"] stretchableImageWithLeftCapWidth:150 topCapHeight:22] forState:UIControlStateNormal];
+    [lb setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
     [lb setContentMode:UIViewContentModeScaleToFill];
     [lb addTarget:self action:@selector(sendLogin) forControlEvents:UIControlEventTouchUpInside];
+    [lb setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [lb setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
 
     // Adjust the frame for modal sheet presentation.
     if ([[[[UIApplication sharedApplication].delegate window] rootViewController] isKindOfClass:[LoginBackgroundViewController class]]) {
@@ -191,17 +196,37 @@
     }
 
     // Register
-    UIButton *rb = [[UIButton alloc] initWithFrame:CGRectMake(10, 55, 300, 45)];
+    UIButton *rb = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    rb.frame = CGRectMake(10, 55, 300, 45);
     rb.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     rb.titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
     rb.titleLabel.shadowColor = [UIColor blackColor];
     rb.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
+    [rb setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rb setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [rb setBackgroundImage:[[UIImage imageNamed:@"register.png"] stretchableImageWithLeftCapWidth:150 topCapHeight:22] forState:UIControlStateNormal];
     
     [rb setTitle:NSLocalizedString(@"Create an Account", nil) forState:UIControlStateNormal];
-    [rb setBackgroundImage:[[UIImage imageNamed:@"register.png"] stretchableImageWithLeftCapWidth:150 topCapHeight:22] forState:UIControlStateNormal];
     [lb setContentMode:UIViewContentModeScaleToFill];
     [rb addTarget:self action:@selector(toggleRegister) forControlEvents:UIControlEventTouchUpInside];
 
+    // Update buttons for iOS 7 only, remove this when we come up with a more permanent button design.
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        rb.backgroundColor = [UIColor whiteColor];
+        [rb setBackgroundImage:nil forState:UIControlStateNormal];
+        [rb setBackgroundImage:nil forState:UIControlStateHighlighted];
+        rb.titleLabel.textColor = [Config currentConfig].buttonColor;
+        [rb setTitleColor:[Config currentConfig].buttonColor forState:UIControlStateNormal];
+        [rb setTitleColor:[Config currentConfig].buttonColor forState:UIControlStateHighlighted];
+        
+        lb.backgroundColor = [UIColor whiteColor];
+        lb.titleLabel.textColor = nil;
+        [lb setBackgroundImage:nil forState:UIControlStateNormal];
+        [lb setBackgroundImage:nil forState:UIControlStateHighlighted];
+        [lb setTitleColor:[Config currentConfig].buttonColor forState:UIControlStateNormal];
+        [lb setTitleColor:[Config currentConfig].buttonColor forState:UIControlStateHighlighted];
+    }
+    
     // Cancel
     UIButton *cb = [[UIButton alloc] initWithFrame:CGRectMake(10, 55, 300, 35)];
     cb.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -231,8 +256,6 @@
     self.cancelButton = cb;
     self.googleButton = gb;
     self.yahooButton = yb;
-    [lb release];
-    [rb release];
     [cb release];
     [gb release];
     [yb release];
@@ -329,7 +352,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.title = NSLocalizedString(@"Login", nil);
     self.tableView.backgroundView = nil;
     self.view.backgroundColor = [UIColor colorWithRed:0.86 green:0.86 blue:0.86 alpha:1.0];
@@ -348,6 +371,46 @@
     tapGesture.delegate = self;
     [[self tableView] addGestureRecognizer:tapGesture];
     [tapGesture release];
+    
+    [self configureAppearance];
+    [self configureLeftBarButtonItem];
+}
+
+- (void)configureLeftBarButtonItem {
+    UIBarButtonItem *button;
+
+    if (([Config currentConfig].site == ConfigDozuki && modal) || [delegate isKindOfClass:[iFixitAppDelegate class]]) {
+        UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
+        button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
+                                                 target:delegate
+                                                 action:@selector(showDozukiSplash)];
+        
+    } else {
+        button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
+                                                  style:UIBarButtonItemStyleDone
+                                                 target:self
+                                                 action:@selector(doneButtonPushed)];
+    }
+    
+    self.navigationItem.leftBarButtonItem = button;
+    [button release];
+}
+
+- (void)doneButtonPushed {
+    // Create the animation ourselves to mimic a modal presentation
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [UIView animateWithDuration:0.7
+                         animations:^{
+                             [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.navigationController.view cache:YES];
+                         }];
+        [self.navigationController popViewControllerAnimated:NO];
+    } else {
+        [self dismissModalViewControllerAnimated:YES];
+    }
+}
+
+- (void)configureAppearance {
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
@@ -503,8 +566,11 @@
 
 - (void)sendLogin {
     if ([Config currentConfig].sso) {
-        SSOViewController *vc = [SSOViewController viewControllerForURL:[Config currentConfig].sso delegate:delegate];
-        [delegate presentModalViewController:vc animated:YES];
+        SSOViewController *vc = [SSOViewController viewControllerForURL:[Config currentConfig].sso delegate:self];
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentModalViewController:nvc animated:YES];
+        
+        [nvc release];
         return;
     }
 
@@ -516,6 +582,10 @@
                                    andPassword:passwordField.text
                                      forObject:self
                                   withSelector:@selector(loginResults:)];
+}
+
+- (void)refresh {
+    [self dismissViewAndRefreshDelegate];
 }
 
 - (void)sendRegister {
@@ -569,14 +639,27 @@
         [passwordField resignFirstResponder];
         [passwordVerifyField resignFirstResponder];
         [fullNameField resignFirstResponder];
-
-        // The delegate is responsible for removing the login view.
-        [delegate refresh];
+        
+        [self dismissViewAndRefreshDelegate];
         
         // Analytics
         [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@", results[@"type"]] withError:NULL];
         [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@/%@", results[@"type"], [iFixitAPI sharedInstance].user.userid] withError:NULL];
         
+    }
+}
+
+- (void)dismissViewAndRefreshDelegate {
+    // If we are dealing with the app delegate, we don't dismiss anything, just refresh it
+    if ([delegate isKindOfClass:[iFixitAppDelegate class]]) {
+        [delegate refresh];
+    } else if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self.listViewController popViewControllerAnimated:YES];
+        [delegate refresh];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:^(void){
+            [delegate refresh];
+        }];
     }
 }
 

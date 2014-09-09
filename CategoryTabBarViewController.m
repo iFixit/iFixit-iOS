@@ -49,9 +49,6 @@ BOOL onTablet, initialLoad, showTabBar;
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    initialLoad = NO;
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -64,10 +61,11 @@ BOOL onTablet, initialLoad, showTabBar;
     onTablet = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad;
     initialLoad = YES;
     showTabBar = [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showsTabBar];
+    BOOL oniOS7 = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0");
     
     // This is a hack built on top of a hack. We have a filler image we use when we hide the tabbar to avoid funky resizing issues of the view
     if (onTablet) {
-        UIImageView *filler = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.tabBar.frame.size.width, self.tabBar.frame.size.height)];
+        UIImageView *filler = [[UIImageView alloc] initWithFrame:CGRectMake(0, oniOS7 ? 19 : 0, self.tabBar.frame.size.width, self.tabBar.frame.size.height)];
         
         filler.image = [Config currentConfig].concreteBackgroundImage ? [Config currentConfig].concreteBackgroundImage : [UIImage imageNamed:@"concreteBackground.png"];
         
@@ -76,28 +74,61 @@ BOOL onTablet, initialLoad, showTabBar;
         self.toolBarFillerImage = filler;
         [filler release];
         
-        self.browseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.browseButton setTitle:NSLocalizedString(@"Browse", nil) forState:UIControlStateNormal];
-        [self.browseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
-        self.browseButton.titleLabel.font = [UIFont boldSystemFontOfSize:13];
-        [self.browseButton setBackgroundColor:[UIColor blackColor]];
-        [self.browseButton addTarget:self action:@selector(browseButtonPushed) forControlEvents:UIControlEventTouchUpInside];
-        
-        self.browseButton.frame = CGRectMake(7, 5, 100, 34);
-        self.browseButton.layer.cornerRadius = 10;
-        self.browseButton.clipsToBounds = YES;
-        [self createGradient:self.browseButton];
+        [self createBrowseButton];
         [self.view.subviews[1] addSubview:self.browseButton];
         
         self.browseButton.hidden = UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]);
     }
     
     self.delegate = self;
+    
+    if (oniOS7)
+        [self createStatusBarBackgroundView];
+    
+    // Remove translucence on iOS 7 for iPhone only
+    if (oniOS7 && !onTablet) {
+        self.tabBar.translucent = NO;
+    }
+}
+
+// We create different buttons depending on what version the user is on
+- (void)createBrowseButton {
+    CGRect frame = CGRectMake(7, 5, 100, 34);
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        self.browseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        self.browseButton.frame = frame;
+    } else {
+        self.browseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.browseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        self.browseButton.titleLabel.font = [UIFont boldSystemFontOfSize:13];
+        [self.browseButton setBackgroundColor:[UIColor blackColor]];
+        
+        self.browseButton.frame = frame;
+        self.browseButton.layer.cornerRadius = 10;
+        self.browseButton.clipsToBounds = YES;
+        
+        [self createGradient:self.browseButton];
+    }
+    
+    [self.browseButton setTitle:NSLocalizedString(@"Browse", nil) forState:UIControlStateNormal];
+    [self.browseButton addTarget:self action:@selector(browseButtonPushed) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+- (void)createStatusBarBackgroundView {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
+    [view setBackgroundColor:[Config currentConfig].toolbarColor];
+    [self.view addSubview:view];
+    [view release];
 }
 
 - (void)browseButtonPushed {
-    [self.popOverController presentPopoverFromRect:self.browseButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    // For iOS 7, our popover content controller works differently, because of that we have to be explicit on our height
+    CGRect frame = (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+        ? CGRectMake(self.browseButton.frame.origin.x, 34, self.browseButton.frame.size.width, self.browseButton.frame.size.height)
+        : self.browseButton.frame;
+    
+    [self.popOverController presentPopoverFromRect:frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 - (void)createGradient:(UIButton*)btn {
@@ -142,12 +173,17 @@ BOOL onTablet, initialLoad, showTabBar;
 
 - (void)configureTabBar {
     // On iPad we move the tabbar to the top of the frame.
+    BOOL oniOS7 = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0");
+    
     if (onTablet) {
-        self.tabBar.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44);
-        self.tabBar.tintColor = [Config currentConfig].toolbarColor;
+        self.tabBar.frame = CGRectMake(0, (oniOS7) ? 20 : 0, [UIScreen mainScreen].bounds.size.width, 44);
         self.tabBar.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin;
     } else {
         [self showTabBar:NO];
+    }
+    
+    if (oniOS7) {
+        self.tabBar.backgroundColor = [UIColor whiteColor];
     }
 }
 
@@ -215,8 +251,11 @@ BOOL onTablet, initialLoad, showTabBar;
 }
 
 - (void)showTabBar:(BOOL)option {
+    // Disable the animation on iOS7+ as it is no longer needed
+    float duration = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? 0.0f : 0.3f;
+    
     [UIView transitionWithView:self.tabBar
-                      duration:0.3f
+                      duration:duration
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
                         // If on a tablet, we manipulate the opacity and show the filler image
@@ -244,6 +283,7 @@ BOOL onTablet, initialLoad, showTabBar;
 }
 
 - (void)enableTabBarItems:(BOOL)option {
+    
     [UIView transitionWithView:self.tabBar
                       duration:0.3f
                        options:UIViewAnimationOptionTransitionCrossDissolve
@@ -306,20 +346,43 @@ BOOL onTablet, initialLoad, showTabBar;
     
     // Tablet is tricky because we are already doing things we shouldn't be doing
     if (onTablet) {
-        if (UIDeviceOrientationIsLandscape(self.interfaceOrientation)) {
-            [subView setFrame:(viewControllerIndex == self.GUIDES)
-                ? CGRectMake(0, 44, [subView frame].size.width, 655)
-                : CGRectMake(0, 0, [subView frame].size.width, 746)];
-        } else {
-            [subView setFrame:(viewControllerIndex == self.GUIDES)
-                ? CGRectMake(0, 44, [subView frame].size.width, 950)
-                : CGRectMake(0, 0, [subView frame].size.width, 1005)];
+        // Forgive me father for I have sinned. This is why we shouldn't go against Apple's Guidelines
+        if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+            if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+                [subView setFrame:(viewControllerIndex == self.GUIDES)
+                    ? CGRectMake(0, 44, [subView frame].size.width, 655)
+                    : CGRectMake(0, 0, [subView frame].size.width, 719)];
+            } else {
+                [subView setFrame:(viewControllerIndex == self.GUIDES)
+                    ? CGRectMake(0, 44, [subView frame].size.width, 950)
+                    : CGRectMake(0, 0, [subView frame].size.width, 978)];
+            }
         }
     // For iPhone we change the subview frame to account for hidden tabbar
     } else {
-        [subView setFrame:(self.listViewController.viewControllers.count == 1)
-            ? CGRectMake(0, 0, bounds.size.width, bounds.size.height + 44)
-            : CGRectMake(0, 0, bounds.size.width, bounds.size.height - 2)];
+        // iOS7 works much differently, we essentially shrink and expand the tabbar frame
+        if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            self.tabBar.frame = (self.listViewController.viewControllers.count == 1)
+                ? CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y, 0, 0)
+                : CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y, bounds.size.width, 49);
+
+            [self configureFontSizeForTabBarItems];
+        // < iOS 7 we simply resize the subview
+        } else {
+            [subView setFrame:(self.listViewController.viewControllers.count == 1)
+                ? CGRectMake(0, 0, bounds.size.width, bounds.size.height + 44)
+                : CGRectMake(0, 0, bounds.size.width, bounds.size.height - 27)
+            ];
+        }
+    }
+}
+
+// Resize our fonts to avoid edge case on iOS 7 when resizing tabbar
+- (void)configureFontSizeForTabBarItems {
+    NSDictionary *textAttributes = @{UITextAttributeFont : [UIFont fontWithName:@"OpenSans" size:12.0]};
+
+    for (id viewController in self.tabBarViewControllers) {
+        [[viewController tabBarItem] setTitleTextAttributes:textAttributes forState:UIControlStateNormal];
     }
 }
 
@@ -327,8 +390,9 @@ BOOL onTablet, initialLoad, showTabBar;
 - (void)updateTabBar:(NSDictionary *)results {
     self.categoryMetaData = results;
     
+    float duration = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? 0.0f : 0.3f;
     [UIView transitionWithView:self.tabBar
-                      duration:0.3f
+                      duration:duration
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
                         
@@ -336,7 +400,7 @@ BOOL onTablet, initialLoad, showTabBar;
                         if (onTablet)
                             [self.tabBar.items[self.GUIDES] setEnabled:[results[@"guides"] count] > 0];
                         
-                        [self.tabBar.items[self.MORE_INFO] setEnabled:[results[@"contents"] length] > 0];
+                        [self.tabBar.items[self.MORE_INFO] setEnabled:[results[@"contents_rendered"] length] > 0];
                         
                         if ([Config currentConfig].answersEnabled) {
                             [self.tabBar.items[self.ANSWERS] setEnabled:[results[@"solutions"][@"count"] integerValue] > 0];
@@ -447,6 +511,7 @@ BOOL onTablet, initialLoad, showTabBar;
         }
         
         [viewController setCategory:category];
+        [viewController setListViewController:self.listViewController];
         
         // Hack to create the back arrow on a Navigation bar that is not using a navigation controller
         // This is the most elegant solution sadly.
@@ -488,7 +553,6 @@ BOOL onTablet, initialLoad, showTabBar;
 }
 
 - (void)reflowLayout:(UIInterfaceOrientation)orientation {
-    
     if (UIDeviceOrientationIsLandscape(orientation)) {
         [self showTabBar:(self.listViewController.viewControllers.count > 1 || self.detailGridViewController.category)];
         [self configureFistImageView:UIInterfaceOrientationLandscapeLeft];
@@ -509,6 +573,12 @@ BOOL onTablet, initialLoad, showTabBar;
 }
 
 - (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc {
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [pc.contentViewController navigationBar].translucent = NO;
+        [pc.contentViewController navigationBar].barStyle = UIBarStyleBlack;
+    }
+    
     self.popOverController = pc;
     [self reflowLayout:UIInterfaceOrientationPortrait];
     
@@ -528,7 +598,7 @@ BOOL onTablet, initialLoad, showTabBar;
         self.splitViewController.presentsWithGesture = option;
         
         // This is a hack to prevent a gesture bug only in iOS 6. In order to change this property
-        // after the splitview controller has been loadedwe must reset the layout and the delegates.
+        // after the splitview controller has been loaded we must reset the layout and the delegates.
         // This is really stupid but it works. It only happens on iOS 6 when only 1 tabbar is present.
         [self.splitViewController.view setNeedsLayout];
         self.splitViewController.delegate = nil;
@@ -539,6 +609,10 @@ BOOL onTablet, initialLoad, showTabBar;
 - (void)configureFistImageView:(UIInterfaceOrientation)orientation {
     UIImageView *fistImageView = self.detailGridViewController.fistImage;
     int yCoord = UIDeviceOrientationIsLandscape(orientation) ? 0 : 250;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        yCoord += 64;
+    }
     
     if (initialLoad)
         fistImageView.frame = CGRectMake(0, yCoord, [[UIScreen mainScreen] bounds].size.width, fistImageView.frame.size.height);

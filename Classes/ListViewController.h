@@ -16,5 +16,5 @@
 
 - (void)showFavoritesButton:(id)viewController;
 - (void)favoritesButtonPushed;
-
+    
 @end

@@ -142,7 +142,10 @@
         [cell.contentView addSubview:gridCell];
         [gridCell release];
     }
-
+    
+    // For iOS 7, ensures we have a transparent background
+    cell.backgroundColor = [UIColor clearColor];
+    
     return cell;
 }
 

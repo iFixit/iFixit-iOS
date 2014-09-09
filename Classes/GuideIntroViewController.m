@@ -13,6 +13,7 @@
 #import "Config.h"
 #import "SVWebViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "iFixitAppDelegate.h"
 
 @implementation GuideIntroViewController
 @synthesize headerTextDozuki;
@@ -73,7 +74,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 
     // Set the appropriate header image.
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -128,8 +128,10 @@
                           ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? @"big" : @"small"];
     NSString *footer = @"</body></html>";
 
-    NSString *body = self.guide.introduction_rendered;
-   //NSString *body = guide.introduction;
+    NSString *partsHtml = [self buildHtmlForItems:self.guide.parts fromType:@"part"];
+    NSString *toolsHtml = [self buildHtmlForItems:self.guide.tools fromType:@"tool"];
+    
+    NSString *body = [NSString stringWithFormat:@"%@%@", partsHtml, toolsHtml];
 	
     self.html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
@@ -145,6 +147,25 @@
     
     swipeLabel.adjustsFontSizeToFitWidth = YES;
     swipeLabel.text = [NSString stringWithFormat:@" ←%@ ", NSLocalizedString(@"Swipe to Begin", nil)];
+    
+}
+
+// Temporary method to build html for parts/tools, remove when we implement a native view
+- (NSString*)buildHtmlForItems:(NSMutableArray*)items fromType:(NSString*)itemType {
+    
+    // Return an empty string if we have no items
+    if (![items count]) {
+        return @"";
+    }
+    
+    NSString *html = [NSString stringWithFormat:@"<div class=\"%@s\"><strong>%@s</strong><ul>", itemType, [itemType capitalizedString]];
+    
+    for (id item in items) {
+        html = [html stringByAppendingString:[NSString stringWithFormat:@"<li><a href=\"%@\">%@ x %@</a></li>",
+                                              item[@"url"], item[@"quantity"], item[@"text"]]];
+    }
+    
+    return [html stringByAppendingString:[NSString stringWithFormat:@"</ul></div>"]];
 }
 
 // Because the web view has a white background, it starts hidden.
@@ -194,9 +215,7 @@
     }
     // iPhone
     else {
-        CGRect frame = webView.frame;
-        frame.size.height = screenSize.height - 175;// 305;
-        webView.frame = frame;
+        webView.frame = CGRectMake(0.0, 20, webView.frame.size.width, screenSize.height - 175); // 305
         swipeLabel.frame = CGRectMake(0.0, 0.0, 320.0, 45.0);
     }
 }

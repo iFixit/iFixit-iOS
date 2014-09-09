@@ -279,8 +279,11 @@
 }
 - (IBAction)zoomImage:(id)sender {
    	UIImage *image = [mainImage backgroundImageForState:UIControlStateNormal];
-    if (!image)
+
+    if (!image || [image isEqual:[UIImage imageNamed:@"NoImage.jpg"]] ||
+     [image isEqual:[UIImage imageNamed:@"WaitImage.png"]]) {
         return;
+    }
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 

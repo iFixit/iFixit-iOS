@@ -7,6 +7,7 @@
 //
 
 #import "Config.h"
+#import "iFixitAppDelegate.h"
 
 static Config *currentConfig = nil;
 
@@ -100,16 +101,15 @@ static Config *currentConfig = nil;
         case ConfigIFixitDev:
             self.backgroundColor = [UIColor colorWithRed:39/255.0f green:41/255.0f blue:43/255.0f alpha:1];
             self.textColor = [UIColor whiteColor];
-            self.toolbarColor = [UIColor colorWithRed:39/255.0f green:41/255.0f blue:43/255.0f alpha:1];
-            self.buttonColor = [UIColor blackColor];
-
+            self.toolbarColor = [UIColor colorWithRed:10/255.0f green:10/255.0f blue:10/255.0f alpha:1];
+            self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
+            
             // Load intro and step css from the css folder.        
             self.introCSS    = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             self.stepCSS     = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             self.moreInfoCSS = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
                 ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
                 : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
-            self.answersCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_answers" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             break;
         // MJ Trim
         case ConfigMjtrim:
@@ -125,8 +125,8 @@ static Config *currentConfig = nil;
         default:
             self.backgroundColor = [UIColor blackColor];
             self.textColor = [UIColor whiteColor];
-            //self.toolbarColor = [UIColor darkGrayColor];
-            self.toolbarColor = [UIColor colorWithRed:.19 green:.21 blue:.23 alpha:1.0];
+            self.toolbarColor = [UIColor blackColor];
+            self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
             
             // Load intro and step css from the css folder.        
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
@@ -134,9 +134,6 @@ static Config *currentConfig = nil;
             self.moreInfoCSS = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
                 ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
                 : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
-            self.answersCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_answers" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
-            break;
-            
     }
 }
 

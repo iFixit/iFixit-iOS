@@ -209,8 +209,11 @@
     iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
 
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:guideid];
-    [appDelegate.window.rootViewController presentModalViewController:vc animated:YES];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    
+    [appDelegate.window.rootViewController presentModalViewController:nc animated:YES];
     [vc release];
+    [nc release];
 
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

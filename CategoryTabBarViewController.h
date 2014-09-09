@@ -11,10 +11,11 @@
 #import "DetailGridViewController.h"
 #import "ListViewController.h"
 #import "CategoriesViewController.h"
+#import "MGSplitViewController.h"
 
 @class CategoriesViewController;
 
-@interface CategoryTabBarViewController : UITabBarController <UINavigationBarDelegate, UISplitViewControllerDelegate, UITabBarControllerDelegate>
+@interface CategoryTabBarViewController : UITabBarController <UINavigationBarDelegate, MGSplitViewControllerDelegate, UITabBarControllerDelegate>
 
 // View controllers that our tab bar is going to reference
 

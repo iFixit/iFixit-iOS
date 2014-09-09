@@ -4,3 +4,6 @@
 [submodule "asi-http-request"]
 	path = asi-http-request
 	url = git@github.com:pokeb/asi-http-request.git
+[submodule "MGSplitViewController"]
+	path = MGSplitViewController
+	url = git@github.com:mattgemmell/MGSplitViewController.git

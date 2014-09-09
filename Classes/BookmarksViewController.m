@@ -177,7 +177,7 @@
     self.navigationItem.rightBarButtonItem = [iFixitAPI sharedInstance].user ?
         self.editButton : nil;
     
-    self.tableView.tableHeaderView = [self headerView];
+    self.tableView.tableHeaderView = [iFixitAPI sharedInstance].user ? [self headerView] : nil;
     
     // Make room for the toolbar
     if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
@@ -194,11 +194,17 @@
                                                                    target:self
                                                                    action:@selector(doneButtonPushed)];
     
+    button.tintColor = [Config currentConfig].buttonColor;
     self.navigationItem.leftBarButtonItem = button;
     
-    // Color buttons for iOS 4.3
-    self.navigationController.navigationBar.tintColor = [Config currentConfig].toolbarColor;
     [button release];
+    
+    [self configureAppearance];
+}
+
+// iOS 7
+- (void)configureAppearance {
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)doneButtonPushed {
@@ -332,13 +338,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *key = [devices objectAtIndex:indexPath.section];
     Guide *guide = [[bookmarks objectForKey:key] objectAtIndex:indexPath.row];
-    //[(iFixitAppDelegate *)[[UIApplication sharedApplication] delegate] showGuide:guide];
     
     GuideViewController *vc = [[GuideViewController alloc] initWithGuide:guide];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
     vc.offlineGuide = YES;
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        [self.navigationController presentModalViewController:vc animated:YES];
+        [self.navigationController presentModalViewController:nvc animated:YES];
     } else {
         UIPopoverController *povc = [self.splitViewController.viewControllers[1] popOverController];
         
@@ -347,11 +353,11 @@
         }
         
         iFixitAppDelegate *delegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];
-        GuideViewController *vc = [[GuideViewController alloc] initWithGuide:guide];
-        [delegate.window.rootViewController presentModalViewController:vc animated:YES];
+        [delegate.window.rootViewController presentModalViewController:nvc animated:YES];
     }
     
     [vc release];
+    [nvc release];
     
     // Refresh any changes.
     [[GuideBookmarks sharedBookmarks] addGuideid:[NSNumber numberWithInt:guide.guideid]];
@@ -359,30 +365,20 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)showLogin {
-    // Show login screen again.
-    lvc.view.frame = self.view.frame;
-    [UIView beginAnimations:@"curldown" context:nil];
-    [UIView setAnimationDuration:1];
-    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:YES];
-    [self.view addSubview:lvc.view];
-    [UIView commitAnimations];  
-}
-- (void)hideLogin {
-    [UIView beginAnimations:@"curlup" context:nil];
-    [UIView setAnimationDuration:1];
-    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
-    [lvc.view removeFromSuperview];
-    [UIView commitAnimations];
+- (void)dismissView {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)refresh {
     
     // Show or hide login as needed.
     if (![iFixitAPI sharedInstance].user) {
-        [self showLogin];
+        [self dismissView];
     } else if ([[self.view subviews] containsObject:lvc.view]) {
-        [self hideLogin];
         [[GuideBookmarks sharedBookmarks] update];
     }
     
@@ -428,7 +424,7 @@
         [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showSiteSplash];
     // Everyone else who is public
     } else {
-        [self showLogin]; 
+        [self dismissView];
     }
 }
 

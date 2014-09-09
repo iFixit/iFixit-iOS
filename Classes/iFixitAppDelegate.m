@@ -24,8 +24,8 @@
 #import "GANTracker.h"
 #import "CategoryTabBarViewController.h"
 #import "iFixitSplashScreenViewController.h"
-#import "IntelligentSplitViewController.h"
 #import "TestFlight.h"
+#import "MGSplitViewController.h"
 
 static const NSInteger kGANDispatchPeriodSec = 10;
 
@@ -96,12 +96,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [Config currentConfig].site = ConfigIFixit;
     
     /* Track. */
-    [TestFlight takeOff:@"ee879878-6696-470b-af65-61548b796d9f"];
+    [self setupTestflight];
     [self setupAnalytics];
     
-    /* iOS 5 appearance */
-    if ([UITabBar respondsToSelector:@selector(appearance)])
-        [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"customTabBarBackground.png"]];
+    /* iOS appearance */
+    [self configureAppearance];
     
     /* Setup and launch. */
     self.window.rootViewController = nil;
@@ -120,7 +119,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
         if (site) {
             [self loadSite:site];
-            [self showSiteSplash];
         }
         else {
             [self showDozukiSplash];
@@ -130,6 +128,31 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
     
     return YES;
+}
+
+- (void)setupTestflight {
+    if ([Config currentConfig].site == ConfigIFixit) {
+        [TestFlight takeOff:@"ee879878-6696-470b-af65-61548b796d9f"];
+    } else if ([Config currentConfig].site == ConfigDozuki) {
+        [TestFlight takeOff:@"42858e8b-ec98-4e21-9bb7-c49f27732608"];
+    }
+}
+
+- (void)configureAppearance {
+    if ([UITabBar respondsToSelector:@selector(appearance)]) {
+        [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"customTabBarBackground.png"]];
+    }
+    
+    if ([[UINavigationBar class] instancesRespondToSelector:@selector(setBarTintColor:)]) {
+        [[UINavigationBar appearance] setBarTintColor:[Config currentConfig].toolbarColor];
+    }
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     @{ UITextAttributeTextColor : [Config currentConfig].textColor }
+     ];
+    
+    [[UINavigationBar appearance] setTintColor:[Config currentConfig].buttonColor];
+    [[UISearchBar appearance] setTintColor:[UIColor grayColor]];
 }
 
 - (void)showDozukiSplash {
@@ -178,6 +201,12 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     UIViewController *root = nil;
     UINavigationController *nvc = nil;
+    
+    // Only refresh our UIWindow on a very special edge case
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") && [UIDevice currentDevice].userInterfaceIdiom ==
+     UIUserInterfaceIdiomPad && [Config currentConfig].site == ConfigDozuki) {
+        [self refreshUIWindow];
+    }
 
     if (![iFixitAPI sharedInstance].user && [Config currentConfig].private) {
         // Private sites require immediate login.
@@ -186,18 +215,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         vc.delegate = self;
         nvc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];        
         nvc.modalPresentationStyle = UIModalPresentationFormSheet;
-        nvc.navigationBar.tintColor = [Config currentConfig].toolbarColor;
         [vc release];
-
-        // We only need this button if on Dozuki App
-        if ([Config currentConfig].dozuki) {
-            UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
-            UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
-                                                                      target:self
-                                                                      action:@selector(showDozukiSplash)];
-            vc.navigationItem.leftBarButtonItem = button;
-            [button release];
-        }
 
         // iPad: display in form sheet
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -219,7 +237,28 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
  
     self.window.rootViewController = root;
-    [window makeKeyAndVisible];
+    [self.window makeKeyAndVisible];
+}
+
+/**
+ * NOTE: This is a dirty hack, only to be used with iOS 7 and only on iPad.
+ * Short Answer : iOS 7 on iPad will "gray" out all
+ * UIButtons/UINavigationButtons/UITabBarItems when selecting a nanosite.
+ *
+ * Long Answer : When we select a nanosite, we remove all current subviews
+ * from within the context of window.rootViewController.
+ * We then replace window.rootViewController with a new viewcontroller that
+ * corresponds to the nanosite selected. Think of it as a "reset" button.
+ *
+ * This works, but iOS 7 will apply a gray tint color to all buttons when it
+ * detects that a view is not the main view (for example when a modal pops up,
+ * the current view becomes the background and the modal becomes the foreground).
+ * Releasing the current window and creating a new window was the only way to
+ * guarantee that our UIWindow is in the foreground always.
+ */
+- (void)refreshUIWindow {
+    [self.window release];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 }
 
 - (void)refresh {
@@ -235,13 +274,16 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (UIViewController *)iPadRoot {
     self.showsTabBar = [Config currentConfig].collectionsEnabled || [Config currentConfig].store;
     
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
     // Create the split controller children.
     CategoriesViewController *rvc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
     self.categoriesViewController = rvc;
     [rvc release];
     
     // Create the split view controller.
-    IntelligentSplitViewController *svc = [[IntelligentSplitViewController alloc] init];
+    MGSplitViewController *svc = [[MGSplitViewController alloc] init];
+    
     self.splitViewController = svc;
     [svc release];
     
@@ -300,7 +342,12 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     // Create the tab bar.
     UITabBarController *tbc = [[UITabBarController alloc] init];
     
-    tbc.tabBar.tintColor = [Config currentConfig].toolbarColor;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        tbc.tabBar.translucent = NO;
+    }
+    
+    tbc.tabBar.tintColor = [Config currentConfig].buttonColor;
+    
     if ([Config currentConfig].collectionsEnabled) {
         FeaturedViewController *featuredViewController = [[FeaturedViewController alloc] init];    
         featuredViewController.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0] autorelease];
@@ -323,6 +370,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [[iFixitAPI sharedInstance] getSiteInfoForObject:ctbvc withSelector:@selector(gotSiteInfoResults:)];
     }
     
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
     return [ctbvc autorelease];
 }
 
@@ -333,8 +382,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 - (void)loadSite:(NSDictionary *)site {
     NSString *domain = [site valueForKey:@"domain"];
-    //NSString *colorHex = [site valueForKey:@"color"];
-    //UIColor *color = [UIColor colorFromHexString:colorHex];
     
     // Load the right site
     if ([domain isEqual:@"www.ifixit.com"]) {
@@ -352,9 +399,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [Config currentConfig].custom_domain = [site valueForKey:@"custom_domain"];
         [Config currentConfig].baseURL = [NSString stringWithFormat:@"http://%@/Guide", domain];
         [Config currentConfig].title = site[@"title"];
-        
-        //if (color)
-        //    [Config currentConfig].toolbarColor = color;
     }
     
     // Enable/disable Answers and/or Collections

@@ -7,6 +7,7 @@
 //
 
 @class WBProgressHUD;
+@class ListViewController;
 #import "LoginViewControllerDelegate.h"
 
 @interface LoginViewController : UITableViewController <UITextFieldDelegate, UIGestureRecognizerDelegate>
@@ -21,6 +22,7 @@
 @property (nonatomic, retain) UITextField *passwordField;
 @property (nonatomic, retain) UITextField *passwordVerifyField;
 @property (nonatomic, retain) UITextField *fullNameField;
+@property (nonatomic, retain) ListViewController *listViewController;
 
 @property (nonatomic, retain) UIButton *loginButton;
 @property (nonatomic, retain) UIButton *registerButton;
@@ -31,5 +33,6 @@
 - (void)showLoading;
 - (void)sendLogin;
 - (void)sendRegister;
+- (void)refresh;
 
 @end

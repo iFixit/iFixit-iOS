@@ -7,6 +7,7 @@
 
 #import "SVWebViewController.h"
 #import "GuideCatchingWebView.h"
+#import "iFixitAppDelegate.h"
 
 @interface SVWebViewController (private)
 
@@ -102,10 +103,10 @@
 	}
 	
 	else {
-				
 		if(self.navigationController == nil) {
-			
-			navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,0,CGRectGetWidth(deviceBounds),44)];
+			navBar = [[UINavigationBar alloc] initWithFrame:
+                      CGRectMake(0, SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? 20 : 0, CGRectGetWidth(deviceBounds),44)
+                      ];
             navBar.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin;
 			[self.view addSubview:navBar];
 			[navBar release];
@@ -174,6 +175,11 @@
             titleLabel.shadowColor = [UIColor colorWithWhite:1 alpha:0.7];
             titleLabel.shadowOffset = CGSizeMake(0, 1);
         }
+        
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            titleLabel.textColor = [UIColor whiteColor];
+        }
+
 		titleLabel.backgroundColor = [UIColor clearColor];
 		titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
 		titleLabel.textAlignment = UITextAlignmentLeft;
@@ -194,6 +200,10 @@
     if (self.urlString) {
         NSURL *searchURL = [NSURL URLWithString:self.urlString];
         [self.webView loadRequest:[NSURLRequest requestWithURL:searchURL]];
+    }
+    
+    if (navBar) {
+        navBar.translucent = NO;
     }
 }
 
@@ -297,16 +307,26 @@
 
 
 - (void)setupToolbar {
-	
+    UIBarButtonItem *doneButton;
+    
     if (!showsDoneButton) {
         navItem.leftBarButtonItem = nil;
     }
     else if (!navItem.leftBarButtonItem) {
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissController)];
+        doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissController)];
+        
         [navItem setLeftBarButtonItem:doneButton animated:YES];
         [doneButton release];
+
     }
     
+    if (!self.navigationItem.leftBarButtonItem) {
+        doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissController)];
+        [self.navigationItem setLeftBarButtonItem:doneButton animated:YES];
+        [doneButton release];
+
+    }
+
 	if(self.navigationController != nil)
 		self.navigationItem.title = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 	else

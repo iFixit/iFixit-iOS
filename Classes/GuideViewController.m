@@ -19,7 +19,7 @@
 
 @implementation GuideViewController
 
-@synthesize navBar, scrollView, pageControl, viewControllers, spinner, bookmarker;
+@synthesize scrollView, pageControl, viewControllers, spinner, bookmarker;
 @synthesize guide=_guide;
 @synthesize guideid=_guideid;
 @synthesize shouldLoadPage;
@@ -62,6 +62,7 @@
     // view appears, this fixes orientation issues regarding
     // rotating after logging in.
     [self willRotateToInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation duration:0];
+    self.pageControl.hidden = YES;
 }
 
 - (void)viewDidLoad {
@@ -75,8 +76,6 @@
         bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
     
     self.view.backgroundColor = bgColor;
-
-    navBar.tintColor = [Config currentConfig].toolbarColor;
     
     if (self.guide) {
         [self gotGuide:self.guide];
@@ -99,6 +98,7 @@
         
     }
     
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)showOrHidePageControlForInterface:(UIInterfaceOrientation)orientation {
@@ -115,8 +115,12 @@
     if (bookmarker.poc.isPopoverVisible)
         [bookmarker.poc dismissPopoverAnimated:YES];
     
-    // Hide the guide.
-    [self dismissModalViewControllerAnimated:YES];
+    // Hide the guide. Only on iOS 7 do we want to cross disolve instead of horizontal flip
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -140,23 +144,23 @@
         // Landscape
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
             spinner.frame = CGRectMake(494.0, 333.0, 37.0, 37.0);
-            frame = CGRectMake(0, 44, screenSize.height, screenSize.width - 44);
+            frame = CGRectMake(0, 0, screenSize.height, screenSize.width - 44);
         }
         // Portrait
         else {
             spinner.frame = CGRectMake(365.0, 450.0, 37.0, 37.0);
-            frame = CGRectMake(0, 44, screenSize.width, screenSize.height - 44);
+            frame = CGRectMake(0, 0, screenSize.width, screenSize.height - 44);
         }        
     }
     // iPhone
     else {        
         // Landscape
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-            frame = CGRectMake(0, 44, screenSize.height, screenSize.width - 44);
+            frame = CGRectMake(0, 0, screenSize.height, screenSize.width - 44);
         }
         // Portrait
         else {
-            frame = CGRectMake(0, 44, screenSize.width, screenSize.height - 64);
+            frame = CGRectMake(0, 0, screenSize.width, screenSize.height - 64);
         }
     }
 
@@ -210,24 +214,19 @@
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad && [guide.subject length] > 0)
         title = guide.subject;
     
-	UINavigationItem *thisItem = [[UINavigationItem alloc] initWithTitle:title];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                target:self action:@selector(closeGuide)];
-    
-    if ([Config currentConfig].buttonColor) {
-        doneButton.tintColor = [Config currentConfig].buttonColor;
-    }
-    
-    thisItem.leftBarButtonItem = doneButton;
-    [doneButton release];
+    self.title = title;
     
     
-    [bookmarker setNavItem:thisItem andGuideid:self.guide.guideid];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
+                                                                   style:UIBarButtonItemStyleDone
+                                                                   target:self
+                                                                   action:@selector(closeGuide)
+                                  ];
     
-	NSArray *navItems = [NSArray arrayWithObjects:thisItem, nil];
-	[navBar setItems:navItems animated:NO];
-	[thisItem release];
-   
+    self.navigationItem.leftBarButtonItem = doneButton;
+    
+    [bookmarker setNewGuideId:self.guide.guideid];
+    
     if (shouldLoadPage) {
        [self showPage:shouldLoadPage];
     } else {
@@ -410,7 +409,6 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
     self.spinner = nil;
-    self.navBar = nil;
     self.scrollView = nil;
     self.pageControl = nil;
 
@@ -426,12 +424,9 @@
     [_guide release];
     
     [spinner release];
-    [navBar release];
     [scrollView release];
     [pageControl release];
     [bookmarker release];
-    // TODO: Figure out why this crashes.
-    //[viewControllers release];
      
     [UIApplication sharedApplication].idleTimerDisabled = NO;
      

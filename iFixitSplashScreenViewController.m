@@ -142,6 +142,12 @@ BOOL initialLoad;
     self.startRepairButton.backgroundColor = [UIColor colorWithRed:0.0 green:113.0f/255.0f blue:206.0f/255.0f alpha:1.0];
 }
 
+// iOS 7
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 - (void)configureButton {
     self.startRepairButton.layer.cornerRadius = 24.0;
     self.startRepairButton.clipsToBounds = YES;
