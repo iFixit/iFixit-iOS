@@ -143,6 +143,9 @@ BOOL searchViewEnabled;
         self.searchBar.placeholder = NSLocalizedString(@"Search", nil);
         self.scannerIcon.hidden = YES;
     }
+    
+    // Fix for iOS 8, without this, the search bar and scope bar won't show up
+    [self.searchBar sizeToFit];
 }
 
 - (void)displayBackToSitesButton {
