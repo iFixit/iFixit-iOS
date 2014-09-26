@@ -112,10 +112,8 @@ static int volatile openConnections = 0;
         request.validatesSecureCertificate = NO;
     }
 
-    if ([Config currentConfig].private) {
-        [request addRequestHeader:@"X-App-Id" value:self.appId];
-        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
-    }
+    [request addRequestHeader:@"X-App-Id" value:self.appId];
+    [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
 
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
@@ -137,10 +135,8 @@ static int volatile openConnections = 0;
         request.validatesSecureCertificate = NO;
     }
 
-    if ([Config currentConfig].private) {
-        [request addRequestHeader:@"X-App-Id" value:self.appId];
-        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
-    }
+    [request addRequestHeader:@"X-App-Id" value:self.appId];
+    [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
 
     [request setCompletionBlock:^{
         NSArray *results = [[request responseString] JSONValue];
@@ -162,10 +158,8 @@ static int volatile openConnections = 0;
         request.validatesSecureCertificate = NO;
     }
 
-    if ([Config currentConfig].private) {
-        [request addRequestHeader:@"X-App-Id" value:self.appId];
-        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
-    }
+    [request addRequestHeader:@"X-App-Id" value:self.appId];
+    [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
 
     [request setCompletionBlock:^{
         NSDictionary *result = [[request responseString] JSONValue];
@@ -189,10 +183,8 @@ static int volatile openConnections = 0;
         request.validatesSecureCertificate = NO;
     }
 
-    if ([Config currentConfig].private) {
-        [request addRequestHeader:@"X-App-Id" value:self.appId];
-        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
-    }
+    [request addRequestHeader:@"X-App-Id" value:self.appId];
+    [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
 
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
@@ -211,11 +203,9 @@ static int volatile openConnections = 0;
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
 
-    if ([Config currentConfig].private) {
-        [request addRequestHeader:@"X-App-Id" value:self.appId];
-        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
-    }
-
+    [request addRequestHeader:@"X-App-Id" value:self.appId];
+    [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
+    
     if ([Config currentConfig].site == ConfigIFixitDev) {
         request.validatesSecureCertificate = NO;
     }
@@ -242,10 +232,8 @@ static int volatile openConnections = 0;
         request.validatesSecureCertificate = NO;
     }
 
-    if ([Config currentConfig].private) {
-        [request addRequestHeader:@"X-App-Id" value:self.appId];
-        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
-    }
+    [request addRequestHeader:@"X-App-Id" value:self.appId];
+    [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
 
     [request setCompletionBlock:^{
         NSArray *results = [[request responseString] JSONValue];
@@ -264,10 +252,8 @@ static int volatile openConnections = 0;
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
 
-    if ([Config currentConfig].private) {
-        [request addRequestHeader:@"X-App-Id" value:self.appId];
-        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
-    }
+    [request addRequestHeader:@"X-App-Id" value:self.appId];
+    [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
 
     if ([Config currentConfig].site == ConfigIFixitDev) {
         request.validatesSecureCertificate = NO;
@@ -293,10 +279,8 @@ static int volatile openConnections = 0;
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
 
-    if ([Config currentConfig].private) {
-        [request addRequestHeader:@"X-App-Id" value:self.appId];
-        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
-    }
+    [request addRequestHeader:@"X-App-Id" value:self.appId];
+    [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
 
     [request setCompletionBlock:^{
         NSDictionary *results = [[request responseString] JSONValue];
