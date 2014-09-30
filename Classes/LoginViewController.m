@@ -14,7 +14,8 @@
 #import "Config.h"
 #import "OpenIDViewController.h"
 #import "SSOViewController.h"
-#import "GANTracker.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 #import "User.h"
 #import "ListViewController.h"
 #import "iFixitAppDelegate.h"
@@ -655,11 +656,6 @@
         [fullNameField resignFirstResponder];
         
         [self dismissViewAndRefreshDelegate];
-        
-        // Analytics
-        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@", results[@"type"]] withError:NULL];
-        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/%@/%@", results[@"type"], [iFixitAPI sharedInstance].user.iUserid] withError:NULL];
-        
     }
 }
 

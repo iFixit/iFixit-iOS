@@ -17,8 +17,9 @@
 #import "Config.h"
 #import "GuideViewController.h"
 #import "ListViewController.h"
-#import "GANTracker.h"
 #import "CategoryTabBarViewController.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 
 @implementation BookmarksViewController
 
@@ -401,9 +402,12 @@
     
     [[iFixitAPI sharedInstance] logout];
     
-    [[GANTracker sharedTracker] trackPageview:@"/user/logout" withError:NULL];
-    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/user/logout/%@", [iFixitAPI sharedInstance].user.iUserid] withError:NULL];
     
+    // Analytics
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"User"
+                                                                                        action:@"Logout"
+                                                                                         label:@"User logged out"
+                                                                                         value:[iFixitAPI sharedInstance].user.iUserid] build]];
     // Set bookmarks to be nil and reload the tableView to release the cells
     bookmarks = nil;
     [self.tableView reloadData];

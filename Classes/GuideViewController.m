@@ -15,7 +15,8 @@
 #import "Config.h"
 #import "UIImage+Coder.m"
 #import "Guide.h"
-#import "GANTracker.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 
 @implementation GuideViewController
 
@@ -47,8 +48,10 @@
         [TestFlight passCheckpoint:@"Guide View"];
         
         // Analytics
-        [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/view/%@", self.iGuideid] withError:NULL];
-        [[GANTracker sharedTracker] trackPageview:@"/guide/view" withError:NULL];
+        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Guide"
+                                                              action:@"Viewed"
+                                                               label:@"Guide"
+                                                               value:self.iGuideid] build]];
         
         if (!self.memoryCache) {
             self.memoryCache = [[NSCache alloc] init];

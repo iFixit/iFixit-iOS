@@ -14,7 +14,8 @@
 #import "Config.h"
 #import "UIImageView+WebCache.h"
 #import "WBProgressHUD.h"
-#import "GANTracker.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation FeaturedViewController
@@ -83,7 +84,10 @@
     pvc.collections = [NSMutableArray arrayWithArray:collections];
     
     // Analytics
-    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/collection/%d", [[self.collection valueForKey:@"collectionid"] intValue]] withError:NULL];
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Collections"
+                                                                                        action:@"Viewed"
+                                                                                         label:@"Viewed collections"
+                                                                                         value:[self.collection[@"collectionid"] intValue]] build]];
 }
 
 // Run this method both when we set the collection and on viewDidLoad, in case we're coming back from a low memory condition.

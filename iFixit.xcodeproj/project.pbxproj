@@ -65,6 +65,7 @@
 		9CDBCD861803540B00984A67 /* MGSplitCornersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBCD811803540B00984A67 /* MGSplitCornersView.m */; };
 		9CDBCD871803540B00984A67 /* MGSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBCD831803540B00984A67 /* MGSplitDividerView.m */; };
 		9CDBCD881803540B00984A67 /* MGSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBCD851803540B00984A67 /* MGSplitViewController.m */; };
+		9CE0D45419DB191B00292462 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE0D45319DB191B00292462 /* libGoogleAnalyticsServices.a */; };
 		9CE6783B1837F146001912DF /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6783A1837F146001912DF /* SearchCell.m */; };
 		9CE6783D1838706F001912DF /* accustream_intro.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783C1838706F001912DF /* accustream_intro.css */; };
 		9CE6783F18387080001912DF /* accustream_step.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783E18387080001912DF /* accustream_step.css */; };
@@ -222,7 +223,6 @@
 		DAA7508D1368DD71002AA546 /* splashButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA7508C1368DD71002AA546 /* splashButton.png */; };
 		DAA7508F1368DDA7002AA546 /* splashButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA7508E1368DDA7002AA546 /* splashButton@2x.png */; };
 		DAA750911368F45D002AA546 /* titleImage_make.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA750901368F45D002AA546 /* titleImage_make.png */; };
-		DAAAC7461433DF7600CB90AF /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAAC7451433DF7600CB90AF /* libGoogleAnalytics.a */; };
 		DAAAC7481433E03B00CB90AF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAAC7471433E03B00CB90AF /* libsqlite3.dylib */; };
 		DAAAC74A1433F43C00CB90AF /* GuideStepViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC7491433F43C00CB90AF /* GuideStepViewController~ipad.xib */; };
 		DAAAC74D1433F49300CB90AF /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC74B1433F49000CB90AF /* CategoriesViewController.xib */; };
@@ -351,6 +351,8 @@
 		9CDBCD831803540B00984A67 /* MGSplitDividerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSplitDividerView.m; path = ../MGSplitViewController/Classes/MGSplitDividerView.m; sourceTree = "<group>"; };
 		9CDBCD841803540B00984A67 /* MGSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSplitViewController.h; path = ../MGSplitViewController/Classes/MGSplitViewController.h; sourceTree = "<group>"; };
 		9CDBCD851803540B00984A67 /* MGSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSplitViewController.m; path = ../MGSplitViewController/Classes/MGSplitViewController.m; sourceTree = "<group>"; };
+		9CE0D44F19DB0DE900292462 /* libPods-GoogleAnalytics-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-GoogleAnalytics-iOS-SDK.a"; path = "Pods/build/Debug-iphoneos/libPods-GoogleAnalytics-iOS-SDK.a"; sourceTree = "<group>"; };
+		9CE0D45319DB191B00292462 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = "Pods/GoogleAnalytics-iOS-SDK/libGoogleAnalyticsServices.a"; sourceTree = "<group>"; };
 		9CE678391837F146001912DF /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
 		9CE6783A1837F146001912DF /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
 		9CE6783C1838706F001912DF /* accustream_intro.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accustream_intro.css; sourceTree = "<group>"; };
@@ -567,8 +569,6 @@
 		DAA7508C1368DD71002AA546 /* splashButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splashButton.png; path = Graphics/splashButton.png; sourceTree = "<group>"; };
 		DAA7508E1368DDA7002AA546 /* splashButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splashButton@2x.png"; path = "Graphics/splashButton@2x.png"; sourceTree = "<group>"; };
 		DAA750901368F45D002AA546 /* titleImage_make.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titleImage_make.png; path = Graphics/titleImage_make.png; sourceTree = "<group>"; };
-		DAAAC7441433DF7600CB90AF /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
-		DAAAC7451433DF7600CB90AF /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
 		DAAAC7471433E03B00CB90AF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DAAAC7491433F43C00CB90AF /* GuideStepViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuideStepViewController~ipad.xib"; sourceTree = "<group>"; };
 		DAAAC74B1433F49000CB90AF /* CategoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
@@ -649,8 +649,8 @@
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				DAE4242113C3DE6C00F20EEE /* libz.dylib in Frameworks */,
 				DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */,
-				DAAAC7461433DF7600CB90AF /* libGoogleAnalytics.a in Frameworks */,
 				639994C77401475EB4A8AE36 /* libPods.a in Frameworks */,
+				9CE0D45419DB191B00292462 /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,6 +761,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9CE0D45319DB191B00292462 /* libGoogleAnalyticsServices.a */,
+				9CE0D44F19DB0DE900292462 /* libPods-GoogleAnalytics-iOS-SDK.a */,
 				9CD0B3C918277F3D0023EB5F /* libiconv.dylib */,
 				9CD0B3C718277F260023EB5F /* CoreVideo.framework */,
 				9CD0B3C518277F120023EB5F /* CoreAudio.framework */,
@@ -1187,15 +1189,6 @@
 			path = wbprogresshud;
 			sourceTree = "<group>";
 		};
-		DAAAC7431433DF7600CB90AF /* GAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				DAAAC7441433DF7600CB90AF /* GANTracker.h */,
-				DAAAC7451433DF7600CB90AF /* libGoogleAnalytics.a */,
-			);
-			path = GAnalytics;
-			sourceTree = SOURCE_ROOT;
-		};
 		DAAED15B146870E800C476C1 /* Featured Collections */ = {
 			isa = PBXGroup;
 			children = (
@@ -1213,7 +1206,6 @@
 			isa = PBXGroup;
 			children = (
 				9CDBCD891803542400984A67 /* MGSplitViewController */,
-				DAAAC7431433DF7600CB90AF /* GAnalytics */,
 				DA0877B7142D3E3200954482 /* UIColor+Hex */,
 				DA8860BD1427DD0C0030F52C /* ASIHTTPRequest */,
 				DA8860DE1427DD490030F52C /* SVWebViewController */,
@@ -1698,17 +1690,22 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/TestFlight\"",
-					"\"$(SRCROOT)/GAnalytics\"",
 					"\"$(SRCROOT)/Classes\"",
 					"$(PROJECT_DIR)/Classes",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Pods/GoogleAnalytics-iOS-SDK",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"$(inherited)",
+					"-ObjC",
+					"-lGoogleAnalyticsServices",
+				);
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7";
+				VALID_ARCHS = "armv6 armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -1737,22 +1734,23 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/TestFlight\"",
-					"\"$(SRCROOT)/GAnalytics\"",
 					"\"$(SRCROOT)/Classes\"",
 					"$(PROJECT_DIR)/Classes",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Pods/GoogleAnalytics-iOS-SDK",
 				);
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-ObjC",
 					"$(inherited)",
+					"-lGoogleAnalyticsServices",
 				);
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 armv7";
+				VALID_ARCHS = "armv6 armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -1774,12 +1772,16 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CODE_SIGN_FLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lGoogleAnalyticsServices",
+				);
 				PRODUCT_NAME = "";
 				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7s armv7";
+				VALID_ARCHS = "armv6 armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -1800,11 +1802,15 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lGoogleAnalyticsServices",
+				);
 				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7s armv7";
+				VALID_ARCHS = "armv6 armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -1824,11 +1830,15 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CODE_SIGN_FLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lGoogleAnalyticsServices",
+				);
 				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7s armv7";
+				VALID_ARCHS = "armv6 armv7 armv7s arm64";
 			};
 			name = "Ad-Hoc";
 		};
@@ -1859,21 +1869,22 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/TestFlight\"",
-					"\"$(SRCROOT)/GAnalytics\"",
 					"\"$(SRCROOT)/Classes\"",
 					"$(PROJECT_DIR)/Classes",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Pods/GoogleAnalytics-iOS-SDK",
 				);
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-ObjC",
 					"$(inherited)",
+					"-lGoogleAnalyticsServices",
 				);
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7";
+				VALID_ARCHS = "armv6 armv7 armv7s arm64";
 			};
 			name = "Ad-Hoc";
 		};

@@ -14,7 +14,8 @@
 #import "iFixitAPI.h"
 #import "User.h"
 #import "LoginViewController.h"
-#import "GANTracker.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 #import "GuideViewController.h"
 
 @implementation GuideBookmarker
@@ -153,8 +154,12 @@
     [[GuideBookmarks sharedBookmarks] addGuideid:iGuideid forBookmarker:self];
     
     // Analytics
-    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/guide/download/%@", iGuideid] withError:NULL];
-    [[GANTracker sharedTracker] trackPageview:@"/guide/download" withError:NULL];
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Guide"
+                                                                                        action:@"download"
+                                                                                         label:@"Guide downloaded"
+                                                                                         value:iGuideid] build]];
+    
+    
 }
 
 - (void)refresh {

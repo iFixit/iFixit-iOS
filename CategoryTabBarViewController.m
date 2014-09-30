@@ -12,7 +12,8 @@
 #import "CategoryWebViewController.h"
 #import "iFixitAPI.h"
 #import "iFixitAppDelegate.h"
-#import "GANTracker.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface CategoryTabBarViewController ()
@@ -499,8 +500,12 @@ BOOL onTablet, initialLoad, showTabBar;
         eventType = @"answers";
     }
     
-    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/category/%@", eventType] withError:NULL];
-    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/category/%@/%@", eventType, category] withError:NULL];
+    // Analytics
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Category"
+                                                                                        action:eventType
+                                                                                         label:category
+                                                                                         value:nil] build]];
+    
 }
 
 // Prepare our webViewController before presenting it to the user

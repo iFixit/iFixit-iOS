@@ -21,7 +21,7 @@
 #import "LoginViewController.h"
 #import "LoginBackgroundViewController.h"
 #import "UIColor+Hex.h"
-#import "GANTracker.h"
+#import "GAI.h"
 #import "CategoryTabBarViewController.h"
 #import "iFixitSplashScreenViewController.h"
 #import "TestFlight.h"
@@ -73,20 +73,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     if ([Config currentConfig].dozuki)
         return;
     
-    [[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-30506-9"
-                                           dispatchPeriod:kGANDispatchPeriodSec
-                                                 delegate:nil];
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [GAI sharedInstance].dispatchInterval = kGANDispatchPeriodSec;
     
-    [[GANTracker sharedTracker] setCustomVariableAtIndex:1
-                                                    name:@"model"
-                                                   value:[UIDevice currentDevice].model
-                                               withError:NULL];
-    [[GANTracker sharedTracker] setCustomVariableAtIndex:2
-                                                    name:@"systemVersion"
-                                                   value:[UIDevice currentDevice].systemVersion
-                                               withError:NULL];
-    
-    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/launch/%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]] withError:NULL];
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-30506-9"];
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
 }
 
 // Override point for customization after app launch.

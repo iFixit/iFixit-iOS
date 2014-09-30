@@ -16,7 +16,9 @@
 #import "User.h"
 #import "SDWebImageManager.h"
 #import "Config.h"
-#import "GANTracker.h"
+#import "Guide.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 #import "Utility.h"
 #include <sys/xattr.h>
 
@@ -65,7 +67,10 @@ static GuideBookmarks *sharedBookmarks = nil;
 
 - (void)addGuideid:(NSNumber *)iGuideid {
     // Analytics
-    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/favorites/add/%@", iGuideid] withError:NULL];
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Guide"
+                                                                                        action:@"Add"
+                                                                                         label:@"Add to favorites"
+                                                                                         value:iGuideid] build]];
 
     [queue setValue:@"add" forKey:[NSString stringWithFormat:@"%@_%@",
                                    [iFixitAPI sharedInstance].user.iUserid,
@@ -124,7 +129,10 @@ static GuideBookmarks *sharedBookmarks = nil;
 
 - (void)removeGuideid:(NSNumber *)iGuideid {
     // Analytics
-    [[GANTracker sharedTracker] trackPageview:[NSString stringWithFormat:@"/favorites/remove/%@", iGuideid] withError:NULL];
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Guide"
+                                                                                        action:@"Remove"
+                                                                                         label:@"Remove from favorites"
+                                                                                         value:iGuideid] build]];
 
     NSString *key = [NSString stringWithFormat:@"%@_%@",
                      [iFixitAPI sharedInstance].user.iUserid,
