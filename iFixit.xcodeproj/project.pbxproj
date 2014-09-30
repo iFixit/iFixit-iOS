@@ -280,8 +280,8 @@
 		28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		40331C958D2F4747A5B6D568 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		70CAF29B9E394A3783A9D59C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		957C51BCFD710BB69E045663 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accustream_logo_transparent.png; sourceTree = "<group>"; };
 		9C1A1981189735C3003E79F0 /* GuideLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideLib.h; sourceTree = "<group>"; };
 		9C1A1982189735C3003E79F0 /* GuideLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideLib.m; sourceTree = "<group>"; };
@@ -412,6 +412,7 @@
 		ABE472461746E0750002F3D6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ABE51913177B77F400E9555E /* category_more_info_iphone.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = category_more_info_iphone.css; sourceTree = "<group>"; };
 		ABFA359B175E6D18000908E8 /* UINavigationBarDefaultBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UINavigationBarDefaultBack.png; path = Classes/UINavigationBarDefaultBack.png; sourceTree = "<group>"; };
+		BF0DDDCD8B0CEA836EDBD8B0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C10E3EB1120E369E008CE3AE /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		C10F26FD120CE5140027A28D /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		C10F26FE120CE5140027A28D /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
@@ -621,6 +622,7 @@
 		DAF3AF5B1422A2E900913238 /* DictionaryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryHelper.m; sourceTree = "<group>"; };
 		DAF3AF601422AF4800913238 /* GuideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCell.h; sourceTree = "<group>"; };
 		DAF3AF611422AF4800913238 /* GuideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCell.m; sourceTree = "<group>"; };
+		E353F8DB6E6C89DA7ADE25F5 /* Pods.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods.ad-hoc.xcconfig"; path = "Pods/Target Support Files/Pods/Pods.ad-hoc.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -698,7 +700,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				70CAF29B9E394A3783A9D59C /* Pods.xcconfig */,
+				704C0F241F92FB830DB883DE /* Pods */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -780,6 +782,16 @@
 				40331C958D2F4747A5B6D568 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		704C0F241F92FB830DB883DE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BF0DDDCD8B0CEA836EDBD8B0 /* Pods.debug.xcconfig */,
+				E353F8DB6E6C89DA7ADE25F5 /* Pods.ad-hoc.xcconfig */,
+				957C51BCFD710BB69E045663 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		9CDBCD891803542400984A67 /* MGSplitViewController */ = {
@@ -1540,7 +1552,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6DAA79E961574847B3059BB7 /* Check Pods Manifest.lock */ = {
@@ -1661,7 +1673,7 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70CAF29B9E394A3783A9D59C /* Pods.xcconfig */;
+			baseConfigurationReference = BF0DDDCD8B0CEA836EDBD8B0 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
@@ -1691,7 +1703,7 @@
 					"\"$(SRCROOT)/Classes\"",
 					"$(PROJECT_DIR)/Classes",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
@@ -1702,7 +1714,7 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70CAF29B9E394A3783A9D59C /* Pods.xcconfig */;
+			baseConfigurationReference = 957C51BCFD710BB69E045663 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
@@ -1730,7 +1742,11 @@
 					"\"$(SRCROOT)/Classes\"",
 					"$(PROJECT_DIR)/Classes",
 				);
-				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
@@ -1818,7 +1834,7 @@
 		};
 		C1523E29120E382D007E8DD8 /* Ad-Hoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70CAF29B9E394A3783A9D59C /* Pods.xcconfig */;
+			baseConfigurationReference = E353F8DB6E6C89DA7ADE25F5 /* Pods.ad-hoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
@@ -1848,7 +1864,11 @@
 					"\"$(SRCROOT)/Classes\"",
 					"$(PROJECT_DIR)/Classes",
 				);
-				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
