@@ -40,7 +40,6 @@
 		9C6E961B19AE8BB200FE847D /* FA-Store-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961919AE8BB200FE847D /* FA-Store-2x.png */; };
 		9C6E961C19AE8BB200FE847D /* FA-Store.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961A19AE8BB200FE847D /* FA-Store.png */; };
 		9CA4756718CAFEF3005AFE08 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4756618CAFEF3005AFE08 /* Utility.m */; };
-		9CBA8DCF19AC2B8E00CA4460 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA8DCE19AC2B8E00CA4460 /* libTestFlight.a */; };
 		9CCF9E1E17D1F55E00B0B0BB /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */; };
 		9CCF9E2117D1F55E00B0B0BB /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0B17D1F44D00B0B0BB /* ASIDataCompressor.m */; };
 		9CCF9E2317D1F55E00B0B0BB /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0D17D1F44D00B0B0BB /* ASIDataDecompressor.m */; };
@@ -309,8 +308,6 @@
 		9C6E961A19AE8BB200FE847D /* FA-Store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Store.png"; sourceTree = "<group>"; };
 		9CA4756518CAFEF3005AFE08 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		9CA4756618CAFEF3005AFE08 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
-		9CBA8DCE19AC2B8E00CA4460 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		9CBA8DD019AC2B9C00CA4460 /* TestFlight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		9CCF9E0717D1F44D00B0B0BB /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = "asi-http-request/Classes/ASIAuthenticationDialog.h"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = "asi-http-request/Classes/ASIAuthenticationDialog.m"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0917D1F44D00B0B0BB /* ASICacheDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = "asi-http-request/Classes/ASICacheDelegate.h"; sourceTree = SOURCE_ROOT; };
@@ -645,7 +642,6 @@
 				DA0A0C03138B02310027721E /* CFNetwork.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				9CBA8DCF19AC2B8E00CA4460 /* libTestFlight.a in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				DAE4242113C3DE6C00F20EEE /* libz.dylib in Frameworks */,
 				DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */,
@@ -807,15 +803,6 @@
 				9CDBCD851803540B00984A67 /* MGSplitViewController.m */,
 			);
 			name = MGSplitViewController;
-			sourceTree = "<group>";
-		};
-		AB10C28B17A7CEF000684B41 /* TestFlight */ = {
-			isa = PBXGroup;
-			children = (
-				9CBA8DD019AC2B9C00CA4460 /* TestFlight.h */,
-				9CBA8DCE19AC2B8E00CA4460 /* libTestFlight.a */,
-			);
-			name = TestFlight;
 			sourceTree = "<group>";
 		};
 		AB324BB2179477740001E29D /* iFixit Splash */ = {
@@ -1212,7 +1199,6 @@
 				C10F26FC120CE5140027A28D /* JSON */,
 				DAA7507E1368DA87002AA546 /* wbprogresshud */,
 				DA3E3E10133C0F580070615F /* SDWebImage */,
-				AB10C28B17A7CEF000684B41 /* TestFlight */,
 				DA53FA701413668700D5388F /* RegexKit */,
 				DAF3AF591422A29E00913238 /* DictionaryHelper */,
 			);
