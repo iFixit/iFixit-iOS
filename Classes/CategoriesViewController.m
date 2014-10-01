@@ -25,6 +25,8 @@
 #import "Guide.h"
 #import "GuideBookmarks.h"
 #import "GuideLib.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 
 @implementation CategoriesViewController
 
@@ -408,6 +410,9 @@ BOOL searchViewEnabled;
         searchResults[filter] = [results objectForKey:@"results"];
         noResults = ([searchResults[filter] count] == 0);
         [self.tableView reloadData];
+        
+        NSDictionary *gaInfo = [[GAIDictionaryBuilder createEventWithCategory:@"Search" action:@"query" label:[NSString stringWithFormat:@"User searched for: %@", results[@"search"]] value:nil] build];
+        [[[GAI sharedInstance] defaultTracker] send:gaInfo];
     }
 }
 

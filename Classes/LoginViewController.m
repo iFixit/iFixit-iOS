@@ -650,6 +650,12 @@
         [alert release];
     }
     else {
+        // Analytics
+        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"User"
+                                                                                            action:@"Login"
+                                                                                             label:@"User logged in"
+                                                                                             value:[iFixitAPI sharedInstance].user.iUserid] build]];
+        
         [emailField resignFirstResponder];
         [passwordField resignFirstResponder];
         [passwordVerifyField resignFirstResponder];

@@ -459,11 +459,14 @@ BOOL onTablet, initialLoad, showTabBar;
 
 // Delegate method, called when a tabBarItem is selected, or when I want to force a selection programatically
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    // Google Analytics
+    NSString *category = self.categoryMetaData[@"topic_info"][@"name"];
+    [self recordAnalyticsEvent:item.tag withCategory:category];
+    
     if (item.tag == self.selectedIndex && !onTablet) {
         return;
     }
     
-    NSString *category = self.categoryMetaData[@"topic_info"][@"name"];
     
     if (item.tag == self.GUIDES) {
         if (![category isEqualToString:self.detailGridViewController.category]) {
@@ -480,8 +483,6 @@ BOOL onTablet, initialLoad, showTabBar;
         [self configureSubViewFrame:item.tag];
     }
 
-    // Google Analytics
-    [self recordAnalyticsEvent:item.tag withCategory:category];
 }
 
 // Google Analytics: record category and action

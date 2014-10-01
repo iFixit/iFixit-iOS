@@ -83,11 +83,11 @@
     // Pass the whole list onto the popover view.
     pvc.collections = [NSMutableArray arrayWithArray:collections];
     
+    NSNumber *collectionId = [NSNumber numberWithInt:self.collection[@"collectionid"]];
+    
     // Analytics
-    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Collections"
-                                                                                        action:@"Viewed"
-                                                                                         label:@"Viewed collections"
-                                                                                         value:[self.collection[@"collectionid"] intValue]] build]];
+    NSDictionary *gaInfo = [[GAIDictionaryBuilder createEventWithCategory:@"Collections" action:@"Viewed" label:@"Viewed" value:collectionId] build];
+    [[[GAI sharedInstance] defaultTracker] send:gaInfo];
 }
 
 // Run this method both when we set the collection and on viewDidLoad, in case we're coming back from a low memory condition.

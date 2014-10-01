@@ -18,6 +18,7 @@
 #import "BookmarksViewController.h"
 #import "LoginViewController.h"
 #import "Utility.h"
+#import "TestFlight.h"
 
 @implementation iFixitAPI
 

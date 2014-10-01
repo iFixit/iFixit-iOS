@@ -8,6 +8,9 @@
 #import "SVWebViewController.h"
 #import "GuideCatchingWebView.h"
 #import "iFixitAppDelegate.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "iFixitAPI.h"
 
 @interface SVWebViewController (private)
 
@@ -241,6 +244,15 @@
 			actionButton.alpha = 1;
 		}];
 	}
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    // Make sure that user ids are only used if they exist, ensure certain actions work logged out
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Store"
+                                                                                        action:@"Viewed"
+                                                                                         label:@"User clicked on store tab"
+                                                                                         value:nil] build]];
     
 }
 

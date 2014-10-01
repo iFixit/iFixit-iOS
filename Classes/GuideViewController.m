@@ -17,6 +17,7 @@
 #import "Guide.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
+#import "TestFlight.h"
 
 @implementation GuideViewController
 

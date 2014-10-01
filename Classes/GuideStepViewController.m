@@ -21,6 +21,8 @@
 #import "SDImageCache.h"
 #import "GuideImage.h"
 #import "iFixitAPI.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 #import "User.h"
 
 @implementation GuideStepViewController
@@ -198,6 +200,12 @@
 
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    // Analytics
+    NSDictionary *gaInfo = [[GAIDictionaryBuilder createEventWithCategory:@"Guide" action:@"Step View" label:@"User viewed step" value:self.absoluteStepNumber] build];
+    [[[GAI sharedInstance] defaultTracker] send:gaInfo];
+}
+
 - (void)_moviePlayerPlaybackDidFinish:(NSNotification *)notification {
     if (self.moviePlayer.fullscreen)
         [self.moviePlayer setFullscreen:NO animated:YES];
@@ -305,6 +313,15 @@
 	// Create the image view controller and add it to the view hierarchy.
 	GuideImageViewController *imageVC = [GuideImageViewController zoomWithUIImage:image delegate:self];
     [delegate presentModalViewController:imageVC animated:YES];
+    
+    
+    // Analytics
+    NSDictionary *gaInfo = [[GAIDictionaryBuilder createEventWithCategory:@"Guide"
+                                                                   action:@"Image zoom"
+                                                                    label:@"User zoomed in on image"
+                                                                    value:self.guideViewController.iGuideid] build];
+    [[[GAI sharedInstance] defaultTracker] send:gaInfo];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
