@@ -1696,18 +1696,45 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
 					"$(PROJECT_DIR)/Classes",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Pods/GoogleAnalytics-iOS-SDK",
 				);
-				OTHER_LDFLAGS = "$(inherited)";
-				"OTHER_LDFLAGS[arch=*]" = (
-					"$(inherited)",
+				OTHER_LDFLAGS = (
 					"-ObjC",
-					"-lGoogleAnalyticsServices",
+					"-l\"GoogleAnalyticsServices\"",
+					"-l\"Pods-CrashlyticsFramework\"",
+					"-l\"Pods-GoogleAnalytics-iOS-SDK\"",
+					"-l\"Pods-TestFlightSDK\"",
+					"-l\"Pods-ZBarSDK\"",
+					"-l\"TestFlight\"",
+					"-l\"iconv\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreVideo\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				PROVISIONING_PROFILE = "5c65c83d-9936-4a62-9dda-9c8196bdb654";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1745,19 +1772,46 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
 					"$(PROJECT_DIR)/Classes",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Pods/GoogleAnalytics-iOS-SDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "";
-				"OTHER_LDFLAGS[arch=*]" = (
+				OTHER_LDFLAGS = (
 					"-ObjC",
+					"-l\"GoogleAnalyticsServices\"",
+					"-l\"Pods-CrashlyticsFramework\"",
+					"-l\"Pods-GoogleAnalytics-iOS-SDK\"",
+					"-l\"Pods-TestFlightSDK\"",
+					"-l\"Pods-ZBarSDK\"",
+					"-l\"TestFlight\"",
+					"-l\"iconv\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreVideo\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
 					"$(inherited)",
-					"-lGoogleAnalyticsServices",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				PROVISIONING_PROFILE = "5c65c83d-9936-4a62-9dda-9c8196bdb654";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1782,10 +1836,11 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lGoogleAnalyticsServices",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "";
-				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				PROVISIONING_PROFILE = "5c65c83d-9936-4a62-9dda-9c8196bdb654";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5c65c83d-9936-4a62-9dda-9c8196bdb654";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1809,9 +1864,10 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lGoogleAnalyticsServices",
+					"$(inherited)",
 				);
-				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				PROVISIONING_PROFILE = "5c65c83d-9936-4a62-9dda-9c8196bdb654";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5c65c83d-9936-4a62-9dda-9c8196bdb654";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1834,9 +1890,10 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lGoogleAnalyticsServices",
+					"$(inherited)",
 				);
-				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				PROVISIONING_PROFILE = "5c65c83d-9936-4a62-9dda-9c8196bdb654";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5c65c83d-9936-4a62-9dda-9c8196bdb654";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1876,18 +1933,45 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
 					"$(PROJECT_DIR)/Classes",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Pods/GoogleAnalytics-iOS-SDK",
 				);
-				OTHER_LDFLAGS = "";
-				"OTHER_LDFLAGS[arch=*]" = (
+				OTHER_LDFLAGS = (
 					"-ObjC",
+					"-l\"GoogleAnalyticsServices\"",
+					"-l\"Pods-CrashlyticsFramework\"",
+					"-l\"Pods-GoogleAnalytics-iOS-SDK\"",
+					"-l\"Pods-TestFlightSDK\"",
+					"-l\"Pods-ZBarSDK\"",
+					"-l\"TestFlight\"",
+					"-l\"iconv\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreVideo\"",
+					"-framework",
+					"\"Crashlytics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
 					"$(inherited)",
-					"-lGoogleAnalyticsServices",
 				);
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "15B04DED-48E9-4912-BC53-DA49C81DE7C4";
+				PROVISIONING_PROFILE = "5c65c83d-9936-4a62-9dda-9c8196bdb654";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
