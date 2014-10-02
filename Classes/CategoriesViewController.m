@@ -916,7 +916,7 @@ BOOL searchViewEnabled;
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         iGuideId = [formatter numberFromString:[url substringWithRange:guideIdRange]];
         [formatter release];
-        [[iFixitAPI sharedInstance] getGuide:[iGuideId integerValue] forObject:self withSelector:@selector(gotGuide:)];
+        [[iFixitAPI sharedInstance] getGuide:iGuideId forObject:self withSelector:@selector(gotGuide:)];
         
         return YES;
     }
