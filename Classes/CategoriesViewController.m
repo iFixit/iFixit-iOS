@@ -402,7 +402,7 @@ BOOL searchViewEnabled;
     if (searchText.length <= 3) {
         [[iFixitAPI sharedInstance] getSearchResults:searchText withFilter:[self getFilter] forObject:self withSelector:@selector(gotSearchResults:)];
     } else {
-        [self performSelector:@selector(throttle:) withObject:searchText afterDelay:0.5];
+        [self performSelector:@selector(throttle:) withObject:searchText afterDelay:0.3];
     }
     
 }
@@ -766,6 +766,8 @@ BOOL searchViewEnabled;
             vc.title = category[@"display_title"];
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
+        } else {
+            self.categoryMetaData = category;
         }
     // Guide
     } else {
