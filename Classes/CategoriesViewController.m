@@ -382,9 +382,11 @@ BOOL searchViewEnabled;
     return (searchBar.text.length <= 128 || [text isEqualToString:@""]);
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSString *filter = (searchBar.selectedScopeButtonIndex == 0) ? @"guide,teardown" : @"category";
+- (NSString*)getFilter {
+    return (searchBar.selectedScopeButtonIndex == 0) ? @"guide,teardown" : @"category";
+}
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     
     if ([searchText isEqual:@""]) {
         self.searching = NO;
@@ -397,9 +399,19 @@ BOOL searchViewEnabled;
         self.searching = YES;
     }
     
-    [[iFixitAPI sharedInstance] getSearchResults:searchText withFilter:filter forObject:self withSelector:@selector(gotSearchResults:)];
+    if (searchText.length <= 3) {
+        [[iFixitAPI sharedInstance] getSearchResults:searchText withFilter:[self getFilter] forObject:self withSelector:@selector(gotSearchResults:)];
+    } else {
+        [self performSelector:@selector(throttle:) withObject:searchText afterDelay:0.5];
+    }
+    
 }
 
+- (void)throttle:(NSString *)searchText {
+    if ([searchText isEqualToString:self.searchBar.text]) {
+        [[iFixitAPI sharedInstance] getSearchResults:searchText withFilter:[self getFilter] forObject:self withSelector:@selector(gotSearchResults:)];
+    }
+}
 
 - (void)gotSearchResults:(NSDictionary *)results {
     NSString *filter = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
