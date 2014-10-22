@@ -734,6 +734,7 @@ BOOL searchViewEnabled;
     if (category[@"type"] == @(CATEGORY)) {
         CategoriesViewController *vc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
         vc.title = category[@"display_title"];
+        vc.categoryMetaData = category;
         
         if (self.searching) {
             [self findChildCategoriesFromParent:category[@"name"]];

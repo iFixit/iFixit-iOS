@@ -543,17 +543,23 @@ BOOL onTablet, initialLoad, showTabBar;
         return;
     }
     
-    [self showTabBar:YES];
-    
-    [self.listViewController.topViewController setCategoryMetaData:results];
-    
-    // Only on iPhone do we want to add a guides section to the tableView
-    if (!onTablet && [self.listViewController.topViewController respondsToSelector:@selector(addGuidesToTableView:)] && [results[@"guides"] count] > 0) {
-        // Add guides to our top level view controller's tableview
-        [self.listViewController.topViewController addGuidesToTableView:results[@"guides"]];
+    // We need to find the view controller that this response belongs to
+    for (id viewController in self.listViewController.viewControllers) {
+        NSDictionary *categoryInfo = [viewController categoryMetaData];
+        NSString *categoryName = categoryInfo[@"name"] ? categoryInfo[@"name"] : categoryInfo[@"wiki_title"];
+        
+        if ([categoryName isEqualToString:results[@"wiki_title"]]) {
+            [self showTabBar:YES];
+            [viewController setCategoryMetaData:results];
+            [self updateTabBar:results];
+            
+            // Only on iPhone do we want to add a guides section to the tableView
+            if (!onTablet && [viewController respondsToSelector:@selector(addGuidesToTableView:)] && [results[@"guides"] count] > 0) {
+                // Add guides to our top level view controller's tableview
+                [viewController addGuidesToTableView:results[@"guides"]];
+            }
+        }
     }
-    
-    [self updateTabBar:results];
 }
 
 // Override the default behavior of our navigation bar. This is only used for iPhone
