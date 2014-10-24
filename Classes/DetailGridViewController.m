@@ -207,6 +207,11 @@
     
 }
 - (void)configureDozukiTitleLabel {
+    // Bail early if we are on iFixit within Dozuki
+    if ([[Config currentConfig].siteData[@"name"] isEqualToString:@"ifixit"]) {
+        return;
+    }
+    
     UILabel *l = [[UILabel alloc] init];
     l.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
     l.textAlignment = UITextAlignmentCenter;

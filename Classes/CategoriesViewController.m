@@ -192,6 +192,10 @@ BOOL searchViewEnabled;
 }
 
 - (void)configureTableViewTitleLogoFromURL:(NSString*)URL {
+    // Bail early if viewing iFixit from within the Dozuki app
+    if ([[Config currentConfig].siteData[@"name"] isEqualToString:@"ifixit"]) {
+        return;
+    }
     
     UIImageView *imageTitle = [[UIImageView alloc] init];
     imageTitle.contentMode = UIViewContentModeScaleAspectFit;
