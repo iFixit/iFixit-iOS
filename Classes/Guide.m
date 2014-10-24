@@ -63,7 +63,10 @@
 	
 	// Tools
     guide.tools = dict[@"tools"];
-	
+    
+    // Documents
+    guide.documents = dict[@"documents"];
+    
 	// Flags
 	
 	return [guide autorelease];

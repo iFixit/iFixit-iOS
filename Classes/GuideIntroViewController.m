@@ -131,10 +131,11 @@
                           ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? @"big" : @"small"];
     NSString *footer = @"</body></html>";
 
+    NSString *docsHtml = [self buildHtmlForDocs:self.guide.documents];
     NSString *partsHtml = [self buildHtmlForItems:self.guide.parts fromType:@"part"];
     NSString *toolsHtml = [self buildHtmlForItems:self.guide.tools fromType:@"tool"];
     
-    NSString *body = [NSString stringWithFormat:@"%@%@%@", self.guide.introduction_rendered, partsHtml, toolsHtml];
+    NSString *body = [NSString stringWithFormat:@"%@%@%@%@", self.guide.introduction_rendered, docsHtml, partsHtml, toolsHtml];
 	
     self.html = [NSString stringWithFormat:@"%@%@%@", header, body, footer];
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [Config host]]]];
@@ -151,6 +152,24 @@
     swipeLabel.adjustsFontSizeToFitWidth = YES;
     swipeLabel.text = [NSString stringWithFormat:@" ←%@ ", NSLocalizedString(@"Swipe to Begin", nil)];
     
+}
+
+- (NSString*)buildHtmlForDocs:(NSMutableArray*)docs {
+    // Return an empty string if no docs are found
+    if (![docs count]) {
+        return @"";
+    }
+    
+    NSString *html = [NSString stringWithFormat:@"<div class=\"files\"><strong>Files</strong><ul>"];
+    
+    for (id doc in docs) {
+        NSString *docUrl = [NSString stringWithFormat:@"%@", doc[@"download_url"]];
+        
+        html = [html stringByAppendingString:[NSString stringWithFormat:@"<li><a href=\"%@\">%@</a></li>",
+                                              docUrl, doc[@"text"]]];
+    }
+    
+    return [html stringByAppendingString:[NSString stringWithFormat:@"</ul></div>"]];
 }
 
 // Temporary method to build html for parts/tools, remove when we implement a native view
