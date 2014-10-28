@@ -18,16 +18,20 @@
     NSInteger imagesRemaining;
     NSInteger videosDownloaded;
     NSInteger videosRemaining;
+    NSInteger documentsDownloaded;
+    NSInteger documentsRemaining;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *guides;
 @property (nonatomic, retain) NSMutableDictionary *images;
 @property (nonatomic, retain) NSMutableDictionary *queue;
 @property (nonatomic, retain) NSMutableDictionary *videos;
+@property (nonatomic, retain) NSMutableDictionary *documents;
 @property (nonatomic, retain) NSString *guidesFilePath;
 @property (nonatomic, retain) NSString *imagesFilePath;
 @property (nonatomic, retain) NSString *queueFilePath;
 @property (nonatomic, retain) NSString *videosFilePath;
+@property (nonatomic, retain) NSString *documentsFilePath;
 @property (nonatomic, retain) NSString *currentItem;
 @property (nonatomic, retain) GuideBookmarker *bookmarker;
 @property (nonatomic, retain) NSArray *favorites;

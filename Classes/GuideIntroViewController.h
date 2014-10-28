@@ -6,6 +6,8 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
+#import "GuideViewController.h"
+
 @class Guide;
 @class GuideCatchingWebView;
 

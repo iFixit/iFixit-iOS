@@ -78,7 +78,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [GAI sharedInstance].dispatchInterval = kGANDispatchPeriodSec;
     
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-30506-9"];
-    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelError];
 }
 
 // Override point for customization after app launch.

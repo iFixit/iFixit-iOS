@@ -26,8 +26,8 @@ static GuideBookmarks *sharedBookmarks = nil;
 
 @implementation GuideBookmarks
 
-@synthesize guides, images, videos, queue, currentItem, bookmarker;
-@synthesize guidesFilePath, imagesFilePath, queueFilePath, videosFilePath;
+@synthesize guides, images, videos, documents, queue, currentItem, bookmarker;
+@synthesize guidesFilePath, imagesFilePath, queueFilePath, videosFilePath, documentsFilePath;
 
 + (GuideBookmarks *)sharedBookmarks {
     if (!sharedBookmarks && [iFixitAPI sharedInstance].user)
@@ -98,6 +98,11 @@ static GuideBookmarks *sharedBookmarks = nil;
     // 2. Save the list of images/videos.
     NSMutableArray *guideImages = [NSMutableArray array];
     NSMutableArray *guideVideos = [NSMutableArray array];
+    NSMutableArray *guideDocuments = [NSMutableArray array];
+    
+    for (id document in guide.documents) {
+        [guideDocuments addObject:[NSString stringWithFormat:@"%@_%@_%@", [iFixitAPI sharedInstance].user.iUserid, guide.iGuideid, document[@"documentid"]]];
+    }
     
     if (guide.image) {
         NSString *standardURL = [[guide.image URLForSize:@"standard"] absoluteString];
@@ -123,6 +128,10 @@ static GuideBookmarks *sharedBookmarks = nil;
         [videos setObject:guideVideos forKey:key];
     }
     
+    if (guideDocuments.count) {
+        [documents setObject:guideDocuments forKey:key];
+    }
+    
     // Write to disk.
     [self saveBookmarks];
 }
@@ -145,6 +154,10 @@ static GuideBookmarks *sharedBookmarks = nil;
     [self removeOfflineVideos:videos[key]];
     [videos removeObjectForKey:key];
     
+    // Remove documents stored on disk
+    [self removeOfflineDocuments:documents[key]];
+    [documents removeObjectForKey:key];
+    
     [self saveBookmarks];
 }
 
@@ -157,6 +170,19 @@ static GuideBookmarks *sharedBookmarks = nil;
     
     for (NSString *video in videos) {
         filePath = [videosDirectory stringByAppendingPathComponent:video];
+        [fileManager removeItemAtPath:filePath error:&error];
+    }
+}
+
+- (void)removeOfflineDocuments:(NSArray *)guideDocuments {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *docDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *videosDirectory = [docDirectory stringByAppendingPathComponent:@"/Documents"];
+    NSString *filePath = nil;
+    NSError *error = nil;
+    
+    for (NSString *document in guideDocuments) {
+        filePath = [videosDirectory stringByAppendingPathComponent:document];
         [fileManager removeItemAtPath:filePath error:&error];
     }
 }
@@ -201,12 +227,14 @@ static GuideBookmarks *sharedBookmarks = nil;
         [images writeToFile:[self imagesFilePath] atomically:YES];
         [queue  writeToFile:[self queueFilePath] atomically:YES];
         [videos writeToFile:[self videosFilePath] atomically:YES];
+        [documents writeToFile:[self documentsFilePath] atomically:YES];
 
         // Mark favorites databases as offline storage
         [self AddSkipBackupAttributeToFile:[NSURL URLWithString:[self guidesFilePath]]];
         [self AddSkipBackupAttributeToFile:[NSURL URLWithString:[self imagesFilePath]]];
         [self AddSkipBackupAttributeToFile:[NSURL URLWithString:[self queueFilePath]]];
         [self AddSkipBackupAttributeToFile:[NSURL URLWithString:[self videosFilePath]]];
+        [self AddSkipBackupAttributeToFile:[NSURL URLWithString:[self documentsFilePath]]];
         
         // Mark all images as offline storage
         for (NSString *fileName in images) {
@@ -215,6 +243,11 @@ static GuideBookmarks *sharedBookmarks = nil;
         
         // Mark all videos as offline storage
         for (NSString *fileName in videos) {
+            [self AddSkipBackupAttributeToFile:[NSURL URLWithString:fileName]];
+        }
+        
+        // Mark all documents as offline storage
+        for (NSString *fileName in documents) {
             [self AddSkipBackupAttributeToFile:[NSURL URLWithString:fileName]];
         }
     }
@@ -323,6 +356,8 @@ static GuideBookmarks *sharedBookmarks = nil;
     }
     
     // ...and now download them.
+    [self downloadDocumentsForGuide:guide];
+    
     if (guide.image) {
         imagesRemaining++;
         [[SDWebImageManager sharedManager] downloadWithURL:[guide.image URLForSize:@"standard"] delegate:self retryFailed:YES];
@@ -338,6 +373,42 @@ static GuideBookmarks *sharedBookmarks = nil;
             [[SDWebImageManager sharedManager] downloadWithURL:[image URLForSize:@"large"] delegate:self retryFailed:YES];
         }
         
+    }
+}
+
+- (void)downloadDocumentsForGuide:(Guide*)guide {
+    documentsRemaining = guide.documents.count;
+    
+    // Create the request
+    for (id document in guide.documents) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:document[@"download_url"]] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *documentData, NSError *error) {
+            
+            // Let's ensure we got something valid back
+            if (documentData.length && !error) {
+                // Grab the path to the sandboxed directory given to us
+                NSString *docDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+                NSString *documentsPath = [docDirectory stringByAppendingPathComponent:@"/Documents"];
+                
+                // Let's make sure that the Videos directory exists
+                if (![[NSFileManager defaultManager] fileExistsAtPath:documentsPath]) {
+                    [[NSFileManager defaultManager] createDirectoryAtPath:documentsPath withIntermediateDirectories:NO attributes:nil error:&error];
+                }
+                
+                // Create the file path
+                NSString *filePath = [documentsPath stringByAppendingPathComponent:
+                  [NSString stringWithFormat:@"%@_%@_%@.pdf", [iFixitAPI sharedInstance].user.iUserid, guide.iGuideid, document[@"documentid"]]];
+                // Write to disk
+                [documentData writeToFile:filePath atomically:YES];
+                
+                documentsDownloaded++;
+                documentsRemaining--;
+                
+                [self updateProgessBar];
+                [self checkIfFinishedDownloading];
+            }
+        }];
     }
 }
 
@@ -376,10 +447,12 @@ static GuideBookmarks *sharedBookmarks = nil;
     }];
 }
 - (void)checkIfFinishedDownloading {
-    if(!videosRemaining && !imagesRemaining) {
+    if(!videosRemaining && !imagesRemaining && !documentsRemaining) {
         // Reset counters.
         imagesDownloaded = 0;
         videosDownloaded = 0;
+        documentsDownloaded = 0;
+        
         [bookmarker bookmarked];
         self.bookmarker = nil;
         
@@ -406,7 +479,7 @@ static GuideBookmarks *sharedBookmarks = nil;
 
 - (void)updateProgessBar {
     @try {
-        bookmarker.progress.progress = (float)(imagesDownloaded + videosDownloaded) / (imagesRemaining + imagesDownloaded + videosRemaining + videosDownloaded);
+        bookmarker.progress.progress = (float)(imagesDownloaded + videosDownloaded + documentsDownloaded) / (imagesRemaining + imagesDownloaded + videosRemaining + videosDownloaded + documentsRemaining + documentsDownloaded);
     }
     @catch (NSException *e) {
         self.bookmarker = nil;
@@ -492,6 +565,11 @@ static GuideBookmarks *sharedBookmarks = nil;
                     [iFixitAPI sharedInstance].user.iUserid];
         self.videosFilePath = [docDirectory stringByAppendingPathComponent:filename];
         
+        filename = [NSString stringWithFormat:@"%@_%@_bookmarkedDocuments.plist",
+                    [Config currentConfig].host,
+                    [iFixitAPI sharedInstance].user.iUserid];
+        self.documentsFilePath = [docDirectory stringByAppendingPathComponent:filename];
+        
         // Now load: Guides
         NSDictionary *g = [NSDictionary dictionaryWithContentsOfFile:[self guidesFilePath]];
         
@@ -506,6 +584,10 @@ static GuideBookmarks *sharedBookmarks = nil;
         NSDictionary *m = [NSDictionary dictionaryWithContentsOfFile:[self videosFilePath]];
         self.videos = m ? [NSMutableDictionary dictionaryWithDictionary:m] : [NSMutableDictionary dictionary];
 
+        // Documents
+        NSDictionary *d = [NSDictionary dictionaryWithContentsOfFile:[self documentsFilePath]];
+        self.documents = d ? [NSMutableDictionary dictionaryWithDictionary:d] : [NSMutableDictionary dictionary];
+        
         // Queue
         NSDictionary *q = [NSDictionary dictionaryWithContentsOfFile:[self queueFilePath]];
         self.queue = q ? [NSMutableDictionary dictionaryWithDictionary:q] : [NSMutableDictionary dictionary];
@@ -514,6 +596,8 @@ static GuideBookmarks *sharedBookmarks = nil;
         imagesDownloaded = 0;
         videosRemaining = 0;
         videosDownloaded = 0;
+        documentsRemaining = 0;
+        documentsDownloaded = 0;
 
         self.currentItem = nil;
         self.bookmarker = nil;
@@ -526,9 +610,11 @@ static GuideBookmarks *sharedBookmarks = nil;
     [guides release];
     [images release];
     [queue release];
+    [documents release];
     [guidesFilePath release];
     [imagesFilePath release];
     [videosFilePath release];
+    [documentsFilePath release];
     [queueFilePath release];
     [currentItem release];
     [bookmarker release];

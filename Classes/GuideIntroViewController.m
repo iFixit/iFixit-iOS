@@ -14,6 +14,8 @@
 #import "SVWebViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "iFixitAppDelegate.h"
+#import "iFixitAPI.h"
+#import "User.h"
 
 @implementation GuideIntroViewController
 @synthesize headerTextDozuki;
@@ -163,8 +165,10 @@
     NSString *html = [NSString stringWithFormat:@"<div class=\"files\"><strong>Files</strong><ul>"];
     
     for (id doc in docs) {
+        // We cannot display offline pdfs in our current
+        // Guide Intro view because it's full of Webviews. When we make a
+        // pretty native view, we can enable offline documents.
         NSString *docUrl = [NSString stringWithFormat:@"%@", doc[@"download_url"]];
-        
         html = [html stringByAppendingString:[NSString stringWithFormat:@"<li><a href=\"%@\">%@</a></li>",
                                               docUrl, doc[@"text"]]];
     }
@@ -240,6 +244,15 @@
         webView.frame = CGRectMake(0.0, 20, webView.frame.size.width, screenSize.height - 175); // 305
         swipeLabel.frame = CGRectMake(0.0, 0.0, 320.0, 45.0);
     }
+}
+
+- (NSString*)getOfflineDocumentPath:(NSMutableDictionary*) guideDocument {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDirectory = paths[0];
+    
+    NSString *filePath = [docDirectory stringByAppendingPathComponent:
+                          [NSString stringWithFormat:@"/Documents/%@_%@_%@.pdf", [iFixitAPI sharedInstance].user.iUserid, self.guide.iGuideid, guideDocument[@"documentid"]]];
+    return [[NSURL fileURLWithPath:filePath] absoluteString];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
