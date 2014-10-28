@@ -543,15 +543,16 @@ BOOL onTablet, initialLoad, showTabBar;
         return;
     }
     
+    NSLog(@"category wiki: %@", results[@"wiki_title"]);
+    
     // We need to find the view controller that this response belongs to
     for (id viewController in self.listViewController.viewControllers) {
         NSDictionary *categoryInfo = [viewController categoryMetaData];
         NSString *categoryName = categoryInfo[@"name"] ? categoryInfo[@"name"] : categoryInfo[@"wiki_title"];
+        NSLog(@"category name: %@", categoryName);
         
         if ([categoryName isEqualToString:results[@"wiki_title"]]) {
-            [self showTabBar:YES];
             [viewController setCategoryMetaData:results];
-            [self updateTabBar:results];
             
             // Only on iPhone do we want to add a guides section to the tableView
             if (!onTablet && [viewController respondsToSelector:@selector(addGuidesToTableView:)] && [results[@"guides"] count] > 0) {
@@ -560,6 +561,9 @@ BOOL onTablet, initialLoad, showTabBar;
             }
         }
     }
+    
+    [self showTabBar:YES];
+    [self updateTabBar:results];
 }
 
 // Override the default behavior of our navigation bar. This is only used for iPhone
