@@ -394,17 +394,19 @@
 - (void)configureLeftBarButtonItem {
     UIBarButtonItem *button;
 
-    if (([Config currentConfig].site == ConfigDozuki && modal) || [delegate isKindOfClass:[iFixitAppDelegate class]]) {
+    if (([Config currentConfig].site == ConfigDozuki && modal) || ([Config currentConfig].site == ConfigDozuki && [delegate isKindOfClass:[iFixitAppDelegate class]])) {
         UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
         button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
                                                  target:delegate
                                                  action:@selector(showDozukiSplash)];
         
-    } else {
+    } else if ([Config currentConfig].site == ConfigDozuki) {
         button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
                                                   style:UIBarButtonItemStyleDone
                                                  target:self
                                                  action:@selector(doneButtonPushed)];
+    } else {
+        button = nil;
     }
     
     self.navigationItem.leftBarButtonItem = button;

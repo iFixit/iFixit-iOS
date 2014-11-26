@@ -158,7 +158,12 @@ static NSMutableArray *prioritySites = nil;
     [super viewDidLoad];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
+    if ([Config currentConfig].site == ConfigMagnolia) {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
+    } else {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    }
     
     // Add the search bar
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 36.0)];

@@ -82,6 +82,15 @@ static Config *currentConfig = nil;
             self.private = NO;
             self.scanner = YES;
             break;
+        case ConfigMagnolia:
+            self.host = @"magnoliamedical.dozuki.com";
+            self.baseURL = @"http://magnoliamedical.dozuki.com";
+            answersEnabled = NO;
+            collectionsEnabled = NO;
+            self.store = nil;
+            self.private = YES;
+            self.scanner = NO;
+            break;
         /*EAOOptions*/
         default:
             self.host = nil;
@@ -127,6 +136,18 @@ static Config *currentConfig = nil;
             self.toolbarColor = [UIColor colorWithRed:204/255.0f green:0.0f blue:0.0f alpha:1.0];
             self.buttonColor = [UIColor colorWithRed:234/255.0f green:166.0/255.0f blue:160.0/255.0f alpha:1.0];
             self.tabBarColor = self.toolbarColor;
+
+            self.concreteBackgroundImage = [UIImage imageNamed:@"concreteBackgroundWhite.png"];
+            self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
+            self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            break;
+        // MJ Trim
+        case ConfigMagnolia:
+            self.textColor = [UIColor blackColor];
+            self.backgroundColor = [UIColor whiteColor];
+            self.toolbarColor = [UIColor whiteColor];
+            self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
+            self.tabBarColor = self.buttonColor;
 
             self.concreteBackgroundImage = [UIImage imageNamed:@"concreteBackgroundWhite.png"];
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];

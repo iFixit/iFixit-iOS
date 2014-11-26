@@ -272,7 +272,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (UIViewController *)iPadRoot {
     self.showsTabBar = [Config currentConfig].collectionsEnabled || [Config currentConfig].store;
     
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    if ([Config currentConfig].site == ConfigMagnolia) {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
+    } else {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    }
     
     // Create the split controller children.
     CategoriesViewController *rvc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
@@ -362,7 +366,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [[iFixitAPI sharedInstance] getSiteInfoForObject:ctbvc withSelector:@selector(gotSiteInfoResults:)];
     }
     
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    if ([Config currentConfig].site == ConfigMagnolia) {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
+    } else {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    }
     
     return [ctbvc autorelease];
 }

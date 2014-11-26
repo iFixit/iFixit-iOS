@@ -106,6 +106,11 @@ BOOL searchViewEnabled;
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
+            case ConfigMagnolia:
+                titleImage = [UIImage imageNamed:@"titleImageMagnoliamedical.png"];
+                imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+                self.navigationItem.titleView = imageTitle;
+                break;
             /*EAOTitle*/
         }
     }
@@ -297,6 +302,12 @@ BOOL searchViewEnabled;
                 frame.size.height = 44.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
+            case ConfigMagnolia:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 257.0;
+                frame.size.height = 70.0;
+                self.navigationItem.titleView.frame = frame;
+                break;
             /*EAOLandscapeResize*/
             default:
                 frame = self.navigationItem.titleView.frame;
@@ -325,6 +336,12 @@ BOOL searchViewEnabled;
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 157.0;
                 frame.size.height = 55.0;
+                self.navigationItem.titleView.frame = frame;
+                break;
+            case ConfigMagnolia:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 157;
+                frame.size.height = 65.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
             /*EAOPortraitResize*/

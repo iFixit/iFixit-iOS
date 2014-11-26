@@ -39,6 +39,15 @@ elif [ "$1" == "accustream" ]; then
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigAccustream;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/ifixit/accustream/g' Classes/iFixitAPI.m
+elif [ "$1" == "magnoliamedical" ]; then
+   echo "Magnoliamedical"
+   cp Graphics/Sites/Magnoliamedical/*png .
+   sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.magnoliamedical/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/iFixit/Magnolia/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/>ifixit</>magnoliamedical</g' iFixit-Info.plist
+   sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
+   sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigMagnolia;/' Classes/iFixitAppDelegate.m
+   sed -i '.bak' -e 's/ifixit/magnoliamedical/g' Classes/iFixitAPI.m
 #EAOPlist
 else
    echo "Dozuki"

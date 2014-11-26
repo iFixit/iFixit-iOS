@@ -17,6 +17,8 @@
 		639994C77401475EB4A8AE36 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40331C958D2F4747A5B6D568 /* libPods.a */; };
 		9C002FBF182EE57C00822063 /* accustream_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */; };
 		9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A1982189735C3003E79F0 /* GuideLib.m */; };
+		9C3811451A240985004DC698 /* titleImageMagnoliamedical.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3811441A240985004DC698 /* titleImageMagnoliamedical.png */; };
+		9C3811471A240A68004DC698 /* magnoliamedical_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3811461A240A68004DC698 /* magnoliamedical_logo_transparent.png */; };
 		9C47FB2E17F623D40074CEBE /* icon29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB1F17F623D40074CEBE /* icon29.png */; };
 		9C47FB2F17F623D40074CEBE /* icon40.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2017F623D40074CEBE /* icon40.png */; };
 		9C47FB3017F623D40074CEBE /* icon50.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2117F623D40074CEBE /* icon50.png */; };
@@ -284,6 +286,8 @@
 		9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accustream_logo_transparent.png; sourceTree = "<group>"; };
 		9C1A1981189735C3003E79F0 /* GuideLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideLib.h; sourceTree = "<group>"; };
 		9C1A1982189735C3003E79F0 /* GuideLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideLib.m; sourceTree = "<group>"; };
+		9C3811441A240985004DC698 /* titleImageMagnoliamedical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageMagnoliamedical.png; sourceTree = "<group>"; };
+		9C3811461A240A68004DC698 /* magnoliamedical_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnoliamedical_logo_transparent.png; sourceTree = "<group>"; };
 		9C47FB1F17F623D40074CEBE /* icon29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon29.png; sourceTree = "<group>"; };
 		9C47FB2017F623D40074CEBE /* icon40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon40.png; sourceTree = "<group>"; };
 		9C47FB2117F623D40074CEBE /* icon50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon50.png; sourceTree = "<group>"; };
@@ -894,6 +898,8 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9C3811461A240A68004DC698 /* magnoliamedical_logo_transparent.png */,
+				9C3811441A240985004DC698 /* titleImageMagnoliamedical.png */,
 				9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */,
 				9CD0B39C182779EF0023EB5F /* qr-icon.png */,
 				9CD8330017D7FE3C007F32F4 /* mjtrim_logo_transparent.png */,
@@ -1485,11 +1491,13 @@
 				AB4D33C017A042270080C40A /* guides@2x.png in Resources */,
 				AB4D33C117A042270080C40A /* moreinfo.png in Resources */,
 				AB4D33C217A042270080C40A /* moreinfo@2x.png in Resources */,
+				9C3811471A240A68004DC698 /* magnoliamedical_logo_transparent.png in Resources */,
 				AB94D11817A57B67003ACDFD /* NoImage.jpg in Resources */,
 				9C47FB3B17F623D40074CEBE /* icon152.png in Resources */,
 				AB1F950C17A584B4009F3419 /* NoImage@2x.jpg in Resources */,
 				9C6E961319AE8B9A00FE847D /* FA-Featured-2x.png in Resources */,
 				9C47FB3217F623D40074CEBE /* icon58.png in Resources */,
+				9C3811451A240985004DC698 /* titleImageMagnoliamedical.png in Resources */,
 				AB5C74BE17A73069003AD63B /* WaitImage.png in Resources */,
 				AB5C74D517A76683003AD63B /* Default-568h-Landscape@2x.png in Resources */,
 				AB5C74D617A76683003AD63B /* Default-568h@2x.png in Resources */,
