@@ -104,6 +104,11 @@
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width/1.5, image.size.height/1.5);
                 headerImageLogo.image = image;
                 break;
+            case ConfigComcast:
+                image = [UIImage imageNamed:@"comcast_logo_transparent.png"];
+                headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y - 30, image.size.width/2, image.size.height/2);
+                headerImageLogo.image = image;
+                break;
             /*EAOGuideIntro*/
             case ConfigDozuki:
                 [self configureIntroTitleLogo];

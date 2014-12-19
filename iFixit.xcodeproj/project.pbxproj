@@ -17,6 +17,7 @@
 		639994C77401475EB4A8AE36 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40331C958D2F4747A5B6D568 /* libPods.a */; };
 		9C002FBF182EE57C00822063 /* accustream_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */; };
 		9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A1982189735C3003E79F0 /* GuideLib.m */; };
+		9C318ECE1A44C6FF0048AE81 /* titleImageComcast.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C318ECD1A44C6FF0048AE81 /* titleImageComcast.png */; };
 		9C3811451A240985004DC698 /* titleImageMagnoliamedical.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3811441A240985004DC698 /* titleImageMagnoliamedical.png */; };
 		9C3811471A240A68004DC698 /* magnoliamedical_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3811461A240A68004DC698 /* magnoliamedical_logo_transparent.png */; };
 		9C47FB2E17F623D40074CEBE /* icon29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB1F17F623D40074CEBE /* icon29.png */; };
@@ -70,6 +71,8 @@
 		9CE6783B1837F146001912DF /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6783A1837F146001912DF /* SearchCell.m */; };
 		9CE6783D1838706F001912DF /* accustream_intro.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783C1838706F001912DF /* accustream_intro.css */; };
 		9CE6783F18387080001912DF /* accustream_step.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783E18387080001912DF /* accustream_step.css */; };
+		9CF8AB2F1A44D2400083B725 /* comcast_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CF8AB2E1A44D2400083B725 /* comcast_logo_transparent.png */; };
+		9CF8AB331A44D7A30083B725 /* titleImageComcast.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CF8AB321A44D7A30083B725 /* titleImageComcast.png */; };
 		AB0B27AD15E7E3550088BA07 /* titleImageZeal.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */; };
 		AB0B27B015E7E36B0088BA07 /* titleImageZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */; };
 		AB1F950C17A584B4009F3419 /* NoImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB1F950B17A584B4009F3419 /* NoImage@2x.jpg */; };
@@ -286,6 +289,7 @@
 		9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accustream_logo_transparent.png; sourceTree = "<group>"; };
 		9C1A1981189735C3003E79F0 /* GuideLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideLib.h; sourceTree = "<group>"; };
 		9C1A1982189735C3003E79F0 /* GuideLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideLib.m; sourceTree = "<group>"; };
+		9C318ECD1A44C6FF0048AE81 /* titleImageComcast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titleImageComcast.png; path = Pods/titleImageComcast.png; sourceTree = "<group>"; };
 		9C3811441A240985004DC698 /* titleImageMagnoliamedical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageMagnoliamedical.png; sourceTree = "<group>"; };
 		9C3811461A240A68004DC698 /* magnoliamedical_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnoliamedical_logo_transparent.png; sourceTree = "<group>"; };
 		9C47FB1F17F623D40074CEBE /* icon29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon29.png; sourceTree = "<group>"; };
@@ -358,6 +362,8 @@
 		9CE6783A1837F146001912DF /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
 		9CE6783C1838706F001912DF /* accustream_intro.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accustream_intro.css; sourceTree = "<group>"; };
 		9CE6783E18387080001912DF /* accustream_step.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accustream_step.css; sourceTree = "<group>"; };
+		9CF8AB2E1A44D2400083B725 /* comcast_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comcast_logo_transparent.png; sourceTree = "<group>"; };
+		9CF8AB321A44D7A30083B725 /* titleImageComcast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageComcast.png; sourceTree = "<group>"; };
 		AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageZeal.png; sourceTree = "<group>"; };
 		AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImageZeal@2x.png"; sourceTree = "<group>"; };
 		AB1F950B17A584B4009F3419 /* NoImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "NoImage@2x.jpg"; sourceTree = "<group>"; };
@@ -898,6 +904,8 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9CF8AB2E1A44D2400083B725 /* comcast_logo_transparent.png */,
+				9C318ECD1A44C6FF0048AE81 /* titleImageComcast.png */,
 				9C3811461A240A68004DC698 /* magnoliamedical_logo_transparent.png */,
 				9C3811441A240985004DC698 /* titleImageMagnoliamedical.png */,
 				9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */,
@@ -973,6 +981,7 @@
 				DA6303A9147D712B006D8A2B /* tabBarItemPricetag.png */,
 				DAB26978146CA461000D3A7A /* tabBarItemWrench.png */,
 				DAD2EB9B151671FD0053CC40 /* tabBarItemBook@2x.png */,
+				9CF8AB321A44D7A30083B725 /* titleImageComcast.png */,
 				DAD2EB9C151671FD0053CC40 /* tabBarItemGears@2x.png */,
 				DAD2EB9D151671FD0053CC40 /* tabBarItemPricetag@2x.png */,
 				DAD2EB9E151671FD0053CC40 /* tabBarItemWrench@2x.png */,
@@ -1382,11 +1391,13 @@
 				DACE44711353CE3700F78360 /* ifixit_intro.css in Resources */,
 				DACE44721353CE3700F78360 /* ifixit_step.css in Resources */,
 				DACE44731353CE3700F78360 /* make_intro.css in Resources */,
+				9CF8AB2F1A44D2400083B725 /* comcast_logo_transparent.png in Resources */,
 				DACE44741353CE3700F78360 /* make_step.css in Resources */,
 				DAA7508D1368DD71002AA546 /* splashButton.png in Resources */,
 				DAA7508F1368DDA7002AA546 /* splashButton@2x.png in Resources */,
 				DAA750911368F45D002AA546 /* titleImage_make.png in Resources */,
 				DAB9344413722AEB00B6AA9A /* login.png in Resources */,
+				9C318ECE1A44C6FF0048AE81 /* titleImageComcast.png in Resources */,
 				DAB9344613722FB300B6AA9A /* register.png in Resources */,
 				9C47FB3717F623D40074CEBE /* icon100.png in Resources */,
 				DABE9CF513C54D2200B778FE /* GuideView.xib in Resources */,
@@ -1425,6 +1436,7 @@
 				DA3562A6147718FA00683947 /* sv-back-white.png in Resources */,
 				9C47FB3317F623D40074CEBE /* icon60.png in Resources */,
 				DA3562A7147718FA00683947 /* sv-forward-white.png in Resources */,
+				9CF8AB331A44D7A30083B725 /* titleImageComcast.png in Resources */,
 				DA3562A8147718FA00683947 /* sv-refresh-white.png in Resources */,
 				DA3562A9147718FA00683947 /* sv-stop-white.png in Resources */,
 				DA3562AB14771E2B00683947 /* tabBarItemBook.png in Resources */,

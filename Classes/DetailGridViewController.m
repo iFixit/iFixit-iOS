@@ -173,6 +173,11 @@
             self.siteLogo.frame = CGRectMake(140, 180, self.siteLogo.frame.size.width, self.siteLogo.frame.size.height);
             [self.backgroundView addSubview:self.siteLogo];
             break;
+        case ConfigComcast:
+            self.siteLogo.image = [UIImage imageNamed:@"comcast_logo_transparent.png"];
+            self.siteLogo.frame = CGRectMake(50, 120, self.siteLogo.frame.size.width, self.siteLogo.frame.size.height);
+            [self.backgroundView addSubview:self.siteLogo];
+            break;
         /*EAOiPadSiteLogo*/
     }
     

@@ -91,6 +91,15 @@ static Config *currentConfig = nil;
             self.private = YES;
             self.scanner = NO;
             break;
+        case ConfigComcast:
+            self.host = @"comcast.dozuki.com";
+            self.baseURL = @"http://comcast.dozuki.com";
+            answersEnabled = YES;
+            collectionsEnabled = NO;
+            self.store = nil;
+            self.private = YES;
+            self.scanner = NO;
+            break;
         /*EAOOptions*/
         default:
             self.host = nil;

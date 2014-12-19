@@ -111,6 +111,11 @@ BOOL searchViewEnabled;
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
+            case ConfigComcast:
+                titleImage = [UIImage imageNamed:@"titleImageComcast.png"];
+                imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+                self.navigationItem.titleView = imageTitle;
+                break;
             /*EAOTitle*/
         }
     }
@@ -308,6 +313,12 @@ BOOL searchViewEnabled;
                 frame.size.height = 70.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
+            case ConfigComcast:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 257.0;
+                frame.size.height = 30.0;
+                self.navigationItem.titleView.frame = frame;
+                break;
             /*EAOLandscapeResize*/
             default:
                 frame = self.navigationItem.titleView.frame;
@@ -342,6 +353,12 @@ BOOL searchViewEnabled;
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 157;
                 frame.size.height = 65.0;
+                self.navigationItem.titleView.frame = frame;
+                break;
+            case ConfigComcast:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 157.0;
+                frame.size.height = 40.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
             /*EAOPortraitResize*/

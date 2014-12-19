@@ -16,6 +16,7 @@ enum {
     ConfigMjtrim,
     ConfigAccustream,
     ConfigMagnolia,
+    ConfigComcast,
     /*EAOConfig*/
 };
 
