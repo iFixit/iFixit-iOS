@@ -6,4 +6,4 @@
 	url = git@github.com:pokeb/asi-http-request.git
 [submodule "MGSplitViewController"]
 	path = MGSplitViewController
-	url = git@github.com:mattgemmell/MGSplitViewController.git
+	url = git@github.com:asprega/MGSplitViewController.git

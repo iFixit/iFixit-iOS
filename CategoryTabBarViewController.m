@@ -638,14 +638,24 @@ BOOL onTablet, initialLoad, showTabBar;
         yCoord += 64;
     }
     
-    if (initialLoad)
+    if (initialLoad) {
         fistImageView.frame = CGRectMake(0, yCoord, [[UIScreen mainScreen] bounds].size.width, fistImageView.frame.size.height);
-    else {
+        initialLoad = NO;
+    } else {
         [UIView transitionWithView:fistImageView
                           duration:0.3
                            options:UIViewAnimationOptionCurveEaseInOut
                         animations:^{
-                            fistImageView.frame = CGRectMake(0, yCoord, [[UIScreen mainScreen] bounds].size.width, fistImageView.frame.size.height);
+                            double width;
+                            
+                            // Nasty...nasty hack
+                            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0") && UIDeviceOrientationIsLandscape(orientation)) {
+                                width = [[UIScreen mainScreen] bounds].size.height;
+                            } else {
+                                width = [[UIScreen mainScreen] bounds].size.width;
+                            }
+                            
+                            fistImageView.frame = CGRectMake(0, yCoord, width, fistImageView.frame.size.height);
                         } completion:nil
          ];
     }
