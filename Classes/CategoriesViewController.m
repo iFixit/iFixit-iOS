@@ -145,6 +145,8 @@ BOOL searchViewEnabled;
                                           , self.tableView.frame.size.width, self.tableView.frame.size.height + self.tabBarController.tabBar.frame.size.height);
         
     }
+
+    self.tableView.rowHeight = 43.5;
 }
 
 - (void)configureSearchBar {
