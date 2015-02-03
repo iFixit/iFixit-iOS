@@ -90,7 +90,7 @@
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         
-        // Landscape        
+        // Landscape
         if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
             spinner.frame = CGRectMake(494.0, 333.0, 37.0, 37.0);
         }
@@ -147,12 +147,23 @@
         // Landscape
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
             spinner.frame = CGRectMake(494.0, 333.0, 37.0, 37.0);
-            frame = CGRectMake(0, 0, screenSize.height, screenSize.width - 44);
+            // A nasty hack to make sure our view frame isn't cut off.
+            // In iOS 8, screenSize.height returns a different value before and after
+            // the view is drawn, so it'd be wrong the first time around. So we hardcode it.
+            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+                frame = CGRectMake(0, 0, 1024.0, 724.0);
+            } else {
+                frame = CGRectMake(0, 0, screenSize.height, screenSize.width - 44);
+            }
         }
         // Portrait
         else {
             spinner.frame = CGRectMake(365.0, 450.0, 37.0, 37.0);
-            frame = CGRectMake(0, 0, screenSize.width, screenSize.height - 44);
+            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+                frame = CGRectMake(0, 0, 768.0, 980.0);
+            } else {
+                frame = CGRectMake(0, 0, screenSize.width, screenSize.height - 44);
+            }
         }        
     }
     // iPhone
