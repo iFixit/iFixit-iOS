@@ -609,6 +609,10 @@ BOOL searchViewEnabled;
             }];
         }
     }
+    
+    // Sort categories and devices alphabetically
+    categories = [self sortCategories:categories];
+    devices = [self sortCategories:devices];
 
     // If on iFixit, keep them separate
     if ([Config currentConfig].site == ConfigIFixit) {
@@ -632,12 +636,11 @@ BOOL searchViewEnabled;
     return allCategories;
 }
 
-// Custom sort for our category objects
-// TODO: Not being used but let's keep it just in case
+// Custom sort for our category objects, sort by alphabetical order
 - (NSMutableArray*)sortCategories:(NSMutableArray*)categories {
     // Sort by alphabetical order
     return [NSMutableArray arrayWithArray:[categories sortedArrayUsingComparator:^NSComparisonResult(id category1, id category2) {
-        return [category1[@"name"] compare:category2[@"name"] options:NSCaseInsensitiveSearch];
+        return [category1[@"display_title"] compare:category2[@"display_title"] options:NSCaseInsensitiveSearch];
     }]];
 }
 
