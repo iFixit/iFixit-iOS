@@ -94,11 +94,12 @@ static Config *currentConfig = nil;
         case ConfigComcast:
             self.host = @"comcast.dozuki.com";
             self.baseURL = @"http://comcast.dozuki.com";
-            answersEnabled = YES;
+            answersEnabled = NO;
             collectionsEnabled = NO;
             self.store = nil;
             self.private = YES;
             self.scanner = NO;
+            self.sso = @"http://comcast.dozuki.com";
             break;
         /*EAOOptions*/
         default:
