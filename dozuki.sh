@@ -57,6 +57,15 @@ elif [ "$1" == "comcast" ]; then
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigComcast;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/ifixit/comcast/g' Classes/iFixitAPI.m
+elif [ "$1" == "dripassist" ]; then
+   echo "Dripassist"
+   cp Graphics/Sites/Dripassist/*png .
+   sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.dripassist/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/iFixit/DripAssistant/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/>ifixit</>dripassist</g' iFixit-Info.plist
+   sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
+   sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigDripAssist;/' Classes/iFixitAppDelegate.m
+   sed -i '.bak' -e 's/ifixit/dripassist/g' Classes/iFixitAPI.m
 #EAOPlist
 else
    echo "Dozuki"

@@ -101,6 +101,15 @@ static Config *currentConfig = nil;
             self.scanner = NO;
             self.sso = @"http://comcast.dozuki.com";
             break;
+        case ConfigDripAssist:
+            self.host = @"dripassist.dozuki.com";
+            self.baseURL = @"http://dripassist.dozuki.com";
+            answersEnabled = NO;
+            collectionsEnabled = NO;
+            self.store = nil;
+            self.private = NO;
+            self.scanner = NO;
+            break;
         /*EAOOptions*/
         default:
             self.host = nil;
