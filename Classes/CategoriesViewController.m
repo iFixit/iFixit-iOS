@@ -328,8 +328,8 @@ BOOL searchViewEnabled;
                 break;
             case ConfigDripAssist:
                 frame = self.navigationItem.titleView.frame;
-                frame.size.width = 0.0;
-                frame.size.height = 0.0;
+                frame.size.width = 257.0;
+                frame.size.height = 30.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
             /*EAOLandscapeResize*/
@@ -376,8 +376,8 @@ BOOL searchViewEnabled;
                 break;
             case ConfigDripAssist:
                 frame = self.navigationItem.titleView.frame;
-                frame.size.width = 0.0;
-                frame.size.height = 0.0;
+                frame.size.width = 157.0;
+                frame.size.height = 40.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
             /*EAOPortraitResize*/

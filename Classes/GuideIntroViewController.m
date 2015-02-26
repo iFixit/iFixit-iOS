@@ -111,7 +111,7 @@
                 break;
             case ConfigDripAssist:
                 image = [UIImage imageNamed:@"dripassist_logo_transparent.png"];
-                headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);
+                headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width/1.5, image.size.height/1.5);
                 headerImageLogo.image = image;
                 break;
             /*EAOGuideIntro*/
