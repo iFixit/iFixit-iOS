@@ -43,6 +43,8 @@
 		9C6E961B19AE8BB200FE847D /* FA-Store-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961919AE8BB200FE847D /* FA-Store-2x.png */; };
 		9C6E961C19AE8BB200FE847D /* FA-Store.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961A19AE8BB200FE847D /* FA-Store.png */; };
 		9CA4756718CAFEF3005AFE08 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4756618CAFEF3005AFE08 /* Utility.m */; };
+		9CA6617C1A9EAD4C001C40D7 /* titleImageDripassist.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA6617B1A9EAD4C001C40D7 /* titleImageDripassist.png */; };
+		9CA6617E1A9EAE18001C40D7 /* dripassist_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA6617D1A9EAE18001C40D7 /* dripassist_logo_transparent.png */; };
 		9CCF9E1E17D1F55E00B0B0BB /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */; };
 		9CCF9E2117D1F55E00B0B0BB /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0B17D1F44D00B0B0BB /* ASIDataCompressor.m */; };
 		9CCF9E2317D1F55E00B0B0BB /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0D17D1F44D00B0B0BB /* ASIDataDecompressor.m */; };
@@ -316,6 +318,8 @@
 		9C6E961A19AE8BB200FE847D /* FA-Store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Store.png"; sourceTree = "<group>"; };
 		9CA4756518CAFEF3005AFE08 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		9CA4756618CAFEF3005AFE08 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		9CA6617B1A9EAD4C001C40D7 /* titleImageDripassist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageDripassist.png; sourceTree = "<group>"; };
+		9CA6617D1A9EAE18001C40D7 /* dripassist_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dripassist_logo_transparent.png; sourceTree = "<group>"; };
 		9CCF9E0717D1F44D00B0B0BB /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = "asi-http-request/Classes/ASIAuthenticationDialog.h"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = "asi-http-request/Classes/ASIAuthenticationDialog.m"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0917D1F44D00B0B0BB /* ASICacheDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = "asi-http-request/Classes/ASICacheDelegate.h"; sourceTree = SOURCE_ROOT; };
@@ -904,6 +908,8 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9CA6617D1A9EAE18001C40D7 /* dripassist_logo_transparent.png */,
+				9CA6617B1A9EAD4C001C40D7 /* titleImageDripassist.png */,
 				9C4723821A45056800EA2899 /* titleImageComcast.png */,
 				9CF8AB2E1A44D2400083B725 /* comcast_logo_transparent.png */,
 				9C3811461A240A68004DC698 /* magnoliamedical_logo_transparent.png */,
@@ -1367,6 +1373,7 @@
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */,
 				C184D4C71210CDB900953C39 /* GuideView~ipad.xib in Resources */,
+				9CA6617C1A9EAD4C001C40D7 /* titleImageDripassist.png in Resources */,
 				C184D5391210D8CD00953C39 /* GuideIntroView~ipad.xib in Resources */,
 				DA61C52513380E4C000028C3 /* back.png in Resources */,
 				9C47FB3017F623D40074CEBE /* icon50.png in Resources */,
@@ -1505,6 +1512,7 @@
 				AB4D33C217A042270080C40A /* moreinfo@2x.png in Resources */,
 				9C3811471A240A68004DC698 /* magnoliamedical_logo_transparent.png in Resources */,
 				AB94D11817A57B67003ACDFD /* NoImage.jpg in Resources */,
+				9CA6617E1A9EAE18001C40D7 /* dripassist_logo_transparent.png in Resources */,
 				9C47FB3B17F623D40074CEBE /* icon152.png in Resources */,
 				AB1F950C17A584B4009F3419 /* NoImage@2x.jpg in Resources */,
 				9C6E961319AE8B9A00FE847D /* FA-Featured-2x.png in Resources */,

@@ -101,6 +101,15 @@ static Config *currentConfig = nil;
             self.scanner = NO;
             self.sso = @"http://comcast.dozuki.com";
             break;
+        case ConfigDripAssist:
+            self.host = @"dripassist.dozuki.com";
+            self.baseURL = @"http://dripassist.dozuki.com";
+            answersEnabled = NO;
+            collectionsEnabled = NO;
+            self.store = nil;
+            self.private = NO;
+            self.scanner = NO;
+            break;
         /*EAOOptions*/
         default:
             self.host = nil;
@@ -151,7 +160,7 @@ static Config *currentConfig = nil;
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
             self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             break;
-        // MJ Trim
+        // Config Magnolia
         case ConfigMagnolia:
             self.textColor = [UIColor blackColor];
             self.backgroundColor = [UIColor whiteColor];
@@ -175,6 +184,20 @@ static Config *currentConfig = nil;
             self.moreInfoCSS = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
             ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
             : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            break;
+            
+        case ConfigDripAssist:
+            self.backgroundColor = [UIColor blackColor];
+            self.textColor = [UIColor whiteColor];
+            self.toolbarColor = [UIColor colorWithRed:192.0f/255.0f green:192.0f/255.0f blue:192.0/255.0f alpha:1.0];
+            self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:109.0f/255.0f green:109.0f/255.0f blue:109.0f/255.0f alpha:1.0] : self.toolbarColor;
+            
+            // Load intro and step css from the css folder.        
+            self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
+            self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            self.moreInfoCSS = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+                ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
+                : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             break;
         default:
             self.backgroundColor = [UIColor blackColor];

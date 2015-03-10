@@ -178,6 +178,11 @@
             self.siteLogo.frame = CGRectMake(50, 120, self.siteLogo.frame.size.width, self.siteLogo.frame.size.height);
             [self.backgroundView addSubview:self.siteLogo];
             break;
+        case ConfigDripAssist:
+            self.siteLogo.image = [UIImage imageNamed:@"dripassist_logo_transparent.png"];
+            self.siteLogo.frame = CGRectMake(60, 110, self.siteLogo.frame.size.width, self.siteLogo.frame.size.height);
+            [self.backgroundView addSubview:self.siteLogo];
+            break;
         /*EAOiPadSiteLogo*/
     }
     
