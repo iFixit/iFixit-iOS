@@ -107,7 +107,7 @@ static Config *currentConfig = nil;
             answersEnabled = NO;
             collectionsEnabled = NO;
             self.store = nil;
-            self.private = YES;
+            self.private = NO;
             self.scanner = NO;
             break;
         /*EAOOptions*/
