@@ -404,13 +404,11 @@
                                                  target:delegate
                                                  action:@selector(showDozukiSplash)];
         
-    } else if ([Config currentConfig].site == ConfigDozuki) {
+    } else {
         button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
                                                   style:UIBarButtonItemStyleDone
                                                  target:self
                                                  action:@selector(doneButtonPushed)];
-    } else {
-        button = nil;
     }
     
     self.navigationItem.leftBarButtonItem = button;
