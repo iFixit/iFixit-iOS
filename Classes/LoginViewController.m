@@ -273,8 +273,12 @@
     if (![Config currentConfig].sso && ![Config currentConfig].private) {
         [container addSubview:registerButton];
         [container addSubview:cancelButton];
-        [container addSubview:googleButton];
-        [container addSubview:yahooButton];
+        
+        // This is horrible, we should be respecting the feature switch instead of hardcoding this.
+        if ([Config currentConfig].site != ConfigDripAssist) {
+            [container addSubview:googleButton];
+            [container addSubview:yahooButton];
+        }
     }
 
     return [container autorelease];
