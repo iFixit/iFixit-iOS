@@ -41,8 +41,6 @@ static CGRect frameView;
 }
 
 + (id)zoomWithUIImage:(UIImage *)image delegate:(id)delegate {
-    [TestFlight passCheckpoint:@"Image Zoom"];
-
 	GuideImageViewController *vc = [[GuideImageViewController alloc] initWithUIImage:image delegate:delegate];
     vc.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

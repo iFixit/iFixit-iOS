@@ -1724,43 +1724,9 @@
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"GoogleAnalyticsServices\"",
-					"-l\"Pods-CrashlyticsFramework\"",
-					"-l\"Pods-GoogleAnalytics-iOS-SDK\"",
-					"-l\"Pods-TestFlightSDK\"",
-					"-l\"Pods-ZBarSDK\"",
-					"-l\"TestFlight\"",
-					"-l\"iconv\"",
-					"-l\"sqlite3\"",
-					"-l\"z\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreData\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"CoreVideo\"",
-					"-framework",
-					"\"Crashlytics\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-					"$(inherited)",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "5c65c83d-9936-4a62-9dda-9c8196bdb654";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1798,43 +1764,9 @@
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"GoogleAnalyticsServices\"",
-					"-l\"Pods-CrashlyticsFramework\"",
-					"-l\"Pods-GoogleAnalytics-iOS-SDK\"",
-					"-l\"Pods-TestFlightSDK\"",
-					"-l\"Pods-ZBarSDK\"",
-					"-l\"TestFlight\"",
-					"-l\"iconv\"",
-					"-l\"sqlite3\"",
-					"-l\"z\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreData\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"CoreVideo\"",
-					"-framework",
-					"\"Crashlytics\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-					"$(inherited)",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "5c65c83d-9936-4a62-9dda-9c8196bdb654";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1968,43 +1900,9 @@
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"GoogleAnalyticsServices\"",
-					"-l\"Pods-CrashlyticsFramework\"",
-					"-l\"Pods-GoogleAnalytics-iOS-SDK\"",
-					"-l\"Pods-TestFlightSDK\"",
-					"-l\"Pods-ZBarSDK\"",
-					"-l\"TestFlight\"",
-					"-l\"iconv\"",
-					"-l\"sqlite3\"",
-					"-l\"z\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreData\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"CoreVideo\"",
-					"-framework",
-					"\"Crashlytics\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-					"$(inherited)",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "5c65c83d-9936-4a62-9dda-9c8196bdb654";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";

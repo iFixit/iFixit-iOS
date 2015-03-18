@@ -20,7 +20,6 @@
 #import "CategoryTabBarViewController.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
-#import "TestFlight.h"
 
 @implementation BookmarksViewController
 
@@ -229,8 +228,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {    
-    [TestFlight passCheckpoint:@"Bookmarks View"];
-
     // Show login view if needed.
     if (![iFixitAPI sharedInstance].user) {
         lvc.view.frame = self.view.frame;

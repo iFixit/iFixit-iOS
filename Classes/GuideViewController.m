@@ -17,7 +17,6 @@
 #import "Guide.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
-#import "TestFlight.h"
 
 @implementation GuideViewController
 
@@ -46,7 +45,6 @@
         
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         
-        [TestFlight passCheckpoint:@"Guide View"];
         
         // Analytics
         [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Guide"

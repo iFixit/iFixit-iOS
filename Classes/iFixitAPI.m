@@ -18,7 +18,6 @@
 #import "BookmarksViewController.h"
 #import "LoginViewController.h"
 #import "Utility.h"
-#import "TestFlight.h"
 
 @implementation iFixitAPI
 
@@ -311,7 +310,6 @@ static int volatile openConnections = 0;
 }
 
 - (void)loginWithSessionId:(NSString *)sessionId forObject:(id)object withSelector:(SEL)selector {
-    [TestFlight passCheckpoint:@"OpenID Login"];
 
     // .dozuki.com hosts force SSL, so we match that here. Otherwise, for SSO sites with custom domains,
     // SSL doesn't exist so we just use HTTP.
@@ -341,7 +339,6 @@ static int volatile openConnections = 0;
 }
 
 - (void)loginWithLogin:(NSString *)login andPassword:(NSString *)password forObject:(id)object withSelector:(SEL)selector {
-    [TestFlight passCheckpoint:@"Login"];
 
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/token", [Config currentConfig].host];
     NSString *json = [@{@"email" : login, @"password" : password} JSONRepresentation];
@@ -373,7 +370,6 @@ static int volatile openConnections = 0;
 }
 
 - (void)registerWithLogin:(NSString *)login andPassword:(NSString *)password andName:(NSString *)name forObject:(id)object withSelector:(SEL)selector {
-    [TestFlight passCheckpoint:@"Register"];
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/users", [Config currentConfig].host];
     NSString *json = [@{@"email" : login, @"username" : name, @"password" : password} JSONRepresentation];
 
@@ -461,7 +457,6 @@ static int volatile openConnections = 0;
 }
 
 - (void)like:(NSNumber *)iGuideid forObject:(id)object withSelector:(SEL)selector {
-    [TestFlight passCheckpoint:@"Like"];
 
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/favorites/guides/%@", [Config currentConfig].host, iGuideid];
     
@@ -491,7 +486,6 @@ static int volatile openConnections = 0;
 }
 
 - (void)unlike:(NSNumber *)iGuideid forObject:(id)object withSelector:(SEL)selector {
-    [TestFlight passCheckpoint:@"Unlike"];
 
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/favorites/guides/%@", [Config currentConfig].host, iGuideid];
 

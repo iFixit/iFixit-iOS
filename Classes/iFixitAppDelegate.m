@@ -24,7 +24,6 @@
 #import "GAI.h"
 #import "CategoryTabBarViewController.h"
 #import "iFixitSplashScreenViewController.h"
-#import "TestFlight.h"
 #import "MGSplitViewController.h"
 #import <Crashlytics/Crashlytics.h>
 
@@ -88,7 +87,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [Config currentConfig].site = ConfigIFixit;
     
     /* Track. */
-    [self setupTestflight];
     [self setupAnalytics];
     
     /* iOS appearance */
@@ -122,14 +120,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [Crashlytics startWithAPIKey:@"25b29ddac9745140e41d9a00281ea38965b44f4c"];
     
     return YES;
-}
-
-- (void)setupTestflight {
-    if ([Config currentConfig].site == ConfigIFixit) {
-        [TestFlight takeOff:@"ee879878-6696-470b-af65-61548b796d9f"];
-    } else if ([Config currentConfig].site == ConfigDozuki) {
-        [TestFlight takeOff:@"42858e8b-ec98-4e21-9bb7-c49f27732608"];
-    }
 }
 
 - (void)configureAppearance {

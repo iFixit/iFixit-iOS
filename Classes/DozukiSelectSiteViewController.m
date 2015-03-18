@@ -351,8 +351,6 @@ static NSMutableArray *prioritySites = nil;
     else
         sitesArray = sites;
 
-    [TestFlight passCheckpoint:@"Dozuki Site Select"];
-
     if (!searching && simple && indexPath.row == [sitesArray count]) {
         DozukiSelectSiteViewController *vc = [[DozukiSelectSiteViewController alloc] initWithSimple:NO];
         [self.navigationController pushViewController:vc animated:YES];
