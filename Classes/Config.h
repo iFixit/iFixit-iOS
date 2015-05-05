@@ -18,6 +18,7 @@ enum {
     ConfigMagnolia,
     ConfigComcast,
     ConfigDripAssist,
+    ConfigPva,
     /*EAOConfig*/
 };
 
