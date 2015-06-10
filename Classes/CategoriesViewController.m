@@ -799,8 +799,9 @@ BOOL searchViewEnabled;
                          @"type" : @(CATEGORY)
                          };
         }
-    } else
+    } else {
         category = self.categories[self.categoryTypes[indexPath.section]][indexPath.row];
+    }
 
     // Category
     if (category[@"type"] == @(CATEGORY)) {

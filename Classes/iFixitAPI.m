@@ -204,7 +204,10 @@ static int volatile openConnections = 0;
 }
 
 - (void)getCategory:(NSString *)category forObject:(id)object withSelector:(SEL)selector {
-    category = [category stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    category = [category stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    category = [category stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
+    category = [category stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
+
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/categories/%@", [Config currentConfig].host, category];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
