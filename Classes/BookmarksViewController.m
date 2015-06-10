@@ -126,13 +126,13 @@
     if ([Config currentConfig].site == ConfigZeal || [Config currentConfig].site == ConfigMagnolia)
         b.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
 
-    b.titleLabel.font = [UIFont italicSystemFontOfSize:14];
+    b.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     b.titleLabel.shadowColor = [UIColor blackColor];
     b.titleLabel.shadowOffset = CGSizeMake(0, 1);
     b.titleLabel.backgroundColor = [UIColor clearColor];
     b.titleLabel.textColor = [UIColor whiteColor];
     
-    [b setTitle:[NSString stringWithFormat:NSLocalizedString(@"Logged in as %@", nil), [iFixitAPI sharedInstance].user.username] forState:UIControlStateNormal];
+    [b setTitle:[NSString stringWithFormat:NSLocalizedString(@"LOGOUT", nil), [iFixitAPI sharedInstance].user.username] forState:UIControlStateNormal];
 
     [b addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     
