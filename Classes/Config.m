@@ -110,6 +110,15 @@ static Config *currentConfig = nil;
             self.private = NO;
             self.scanner = NO;
             break;
+        case ConfigPva:
+            self.host = @"pva.dozuki.com";
+            self.baseURL = @"http://pva.dozuki.com";
+            answersEnabled = NO;
+            collectionsEnabled = NO;
+            self.store = nil;
+            self.private = NO;
+            self.scanner = NO;
+            break;
         /*EAOOptions*/
         default:
             self.host = nil;

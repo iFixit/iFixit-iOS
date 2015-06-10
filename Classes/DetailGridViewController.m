@@ -183,6 +183,11 @@
             self.siteLogo.frame = CGRectMake(60, 110, self.siteLogo.frame.size.width, self.siteLogo.frame.size.height);
             [self.backgroundView addSubview:self.siteLogo];
             break;
+        case ConfigPva:
+            self.siteLogo.image = [UIImage imageNamed:@"pva_logo_transparent.png"];
+            self.siteLogo.frame = CGRectMake(60, 110, self.siteLogo.frame.size.width, self.siteLogo.frame.size.height);
+            [self.backgroundView addSubview:self.siteLogo];
+            break;
         /*EAOiPadSiteLogo*/
     }
     
