@@ -45,8 +45,6 @@
 		9CA4756718CAFEF3005AFE08 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4756618CAFEF3005AFE08 /* Utility.m */; };
 		9CA6617C1A9EAD4C001C40D7 /* titleImageDripassist.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA6617B1A9EAD4C001C40D7 /* titleImageDripassist.png */; };
 		9CA6617E1A9EAE18001C40D7 /* dripassist_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA6617D1A9EAE18001C40D7 /* dripassist_logo_transparent.png */; };
-		9CB9B8391AF986B100A01709 /* titleImagePva.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9B8381AF986B100A01709 /* titleImagePva.png */; };
-		9CB9B83B1AF9877C00A01709 /* pva_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9B83A1AF9877C00A01709 /* pva_logo_transparent.png */; };
 		9CCF9E1E17D1F55E00B0B0BB /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */; };
 		9CCF9E2117D1F55E00B0B0BB /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0B17D1F44D00B0B0BB /* ASIDataCompressor.m */; };
 		9CCF9E2317D1F55E00B0B0BB /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0D17D1F44D00B0B0BB /* ASIDataDecompressor.m */; };
@@ -68,6 +66,8 @@
 		9CD8330917D7FE3C007F32F4 /* detailViewTextMjtrim.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD8330317D7FE3C007F32F4 /* detailViewTextMjtrim.png */; };
 		9CD8330A17D7FE3C007F32F4 /* titleImageMjtrim@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD8330417D7FE3C007F32F4 /* titleImageMjtrim@2x.png */; };
 		9CD8330B17D7FE3C007F32F4 /* titleImageMjtrim.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD8330517D7FE3C007F32F4 /* titleImageMjtrim.png */; };
+		9CD9DA441B281A8C0044EF56 /* titleImagePva.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD9DA431B281A8C0044EF56 /* titleImagePva.png */; };
+		9CD9DA461B281AC90044EF56 /* pva_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD9DA451B281AC90044EF56 /* pva_logo_transparent.png */; };
 		9CDBCD861803540B00984A67 /* MGSplitCornersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBCD811803540B00984A67 /* MGSplitCornersView.m */; };
 		9CDBCD871803540B00984A67 /* MGSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBCD831803540B00984A67 /* MGSplitDividerView.m */; };
 		9CDBCD881803540B00984A67 /* MGSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBCD851803540B00984A67 /* MGSplitViewController.m */; };
@@ -322,8 +322,6 @@
 		9CA4756618CAFEF3005AFE08 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		9CA6617B1A9EAD4C001C40D7 /* titleImageDripassist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageDripassist.png; sourceTree = "<group>"; };
 		9CA6617D1A9EAE18001C40D7 /* dripassist_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dripassist_logo_transparent.png; sourceTree = "<group>"; };
-		9CB9B8381AF986B100A01709 /* titleImagePva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImagePva.png; sourceTree = "<group>"; };
-		9CB9B83A1AF9877C00A01709 /* pva_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pva_logo_transparent.png; sourceTree = "<group>"; };
 		9CCF9E0717D1F44D00B0B0BB /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = "asi-http-request/Classes/ASIAuthenticationDialog.h"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = "asi-http-request/Classes/ASIAuthenticationDialog.m"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0917D1F44D00B0B0BB /* ASICacheDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = "asi-http-request/Classes/ASICacheDelegate.h"; sourceTree = SOURCE_ROOT; };
@@ -358,6 +356,8 @@
 		9CD8330317D7FE3C007F32F4 /* detailViewTextMjtrim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detailViewTextMjtrim.png; sourceTree = "<group>"; };
 		9CD8330417D7FE3C007F32F4 /* titleImageMjtrim@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImageMjtrim@2x.png"; sourceTree = "<group>"; };
 		9CD8330517D7FE3C007F32F4 /* titleImageMjtrim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageMjtrim.png; sourceTree = "<group>"; };
+		9CD9DA431B281A8C0044EF56 /* titleImagePva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImagePva.png; sourceTree = "<group>"; };
+		9CD9DA451B281AC90044EF56 /* pva_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pva_logo_transparent.png; sourceTree = "<group>"; };
 		9CDBCD801803540B00984A67 /* MGSplitCornersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSplitCornersView.h; path = ../MGSplitViewController/Classes/MGSplitCornersView.h; sourceTree = "<group>"; };
 		9CDBCD811803540B00984A67 /* MGSplitCornersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSplitCornersView.m; path = ../MGSplitViewController/Classes/MGSplitCornersView.m; sourceTree = "<group>"; };
 		9CDBCD821803540B00984A67 /* MGSplitDividerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSplitDividerView.h; path = ../MGSplitViewController/Classes/MGSplitDividerView.h; sourceTree = "<group>"; };
@@ -912,8 +912,8 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				9CB9B83A1AF9877C00A01709 /* pva_logo_transparent.png */,
-				9CB9B8381AF986B100A01709 /* titleImagePva.png */,
+				9CD9DA451B281AC90044EF56 /* pva_logo_transparent.png */,
+				9CD9DA431B281A8C0044EF56 /* titleImagePva.png */,
 				9CA6617D1A9EAE18001C40D7 /* dripassist_logo_transparent.png */,
 				9CA6617B1A9EAD4C001C40D7 /* titleImageDripassist.png */,
 				9C4723821A45056800EA2899 /* titleImageComcast.png */,
@@ -1384,7 +1384,6 @@
 				DA61C52513380E4C000028C3 /* back.png in Resources */,
 				9C47FB3017F623D40074CEBE /* icon50.png in Resources */,
 				DA61C52613380E4C000028C3 /* back@2x.png in Resources */,
-				9CB9B8391AF986B100A01709 /* titleImagePva.png in Resources */,
 				DA61C52813380E4C000028C3 /* browse_manuals.png in Resources */,
 				DA61C52B13380E4C000028C3 /* browse_projects.png in Resources */,
 				DA61C52E13380E4C000028C3 /* forward.png in Resources */,
@@ -1434,6 +1433,7 @@
 				DAAAC74D1433F49300CB90AF /* CategoriesViewController.xib in Resources */,
 				DAC0C19D146B182000EF42DC /* collectionsImagePlaceholder.png in Resources */,
 				DAC0C1A1146B37E000EF42DC /* concreteBackground.png in Resources */,
+				9CD9DA441B281A8C0044EF56 /* titleImagePva.png in Resources */,
 				DAC0C1A5146B411A00EF42DC /* collectionsHeaderGradient.png in Resources */,
 				DAC0C1A7146B49AA00EF42DC /* Lobster.ttf in Resources */,
 				DAB26972146C96A2000D3A7A /* Ubuntu-Italic.ttf in Resources */,
@@ -1480,7 +1480,7 @@
 				DA275DC21510510700A8A09C /* register@2x.png in Resources */,
 				DAD2EB9F151671FD0053CC40 /* tabBarItemBook@2x.png in Resources */,
 				DAD2EBA0151671FD0053CC40 /* tabBarItemGears@2x.png in Resources */,
-				9CB9B83B1AF9877C00A01709 /* pva_logo_transparent.png in Resources */,
+				9CD9DA461B281AC90044EF56 /* pva_logo_transparent.png in Resources */,
 				DAD2EBA1151671FD0053CC40 /* tabBarItemPricetag@2x.png in Resources */,
 				DAD2EBA2151671FD0053CC40 /* tabBarItemWrench@2x.png in Resources */,
 				AB0B27AD15E7E3550088BA07 /* titleImageZeal.png in Resources */,

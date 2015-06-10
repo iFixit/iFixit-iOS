@@ -70,7 +70,7 @@ elif [ "$1" == "pva" ]; then
    echo "Pva"
    cp Graphics/Sites/Pva/*png .
    sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.pva/g' iFixit-Info.plist
-   sed -i '.bak' -e 's/iFixit/PVA Support Hub/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/iFixit/PVA Support/g' iFixit-Info.plist
    sed -i '.bak' -e 's/>ifixit</>pva</g' iFixit-Info.plist
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigPva;/' Classes/iFixitAppDelegate.m
