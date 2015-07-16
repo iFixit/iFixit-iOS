@@ -1031,7 +1031,7 @@ BOOL searchViewEnabled;
         return;
     }
 
-    NSString *category = results[@"wiki_title"];
+    NSString *category = results[@"title"];
     [self findChildCategoriesFromParent:category];
 
     if (categorySearchResult) {

@@ -543,15 +543,12 @@ BOOL onTablet, initialLoad, showTabBar;
         return;
     }
     
-    NSLog(@"category wiki: %@", results[@"wiki_title"]);
-    
     // We need to find the view controller that this response belongs to
     for (id viewController in self.listViewController.viewControllers) {
         NSDictionary *categoryInfo = [viewController categoryMetaData];
-        NSString *categoryName = categoryInfo[@"name"] ? categoryInfo[@"name"] : categoryInfo[@"wiki_title"];
-        NSLog(@"category name: %@", categoryName);
+        NSString *categoryName = categoryInfo[@"name"] ? categoryInfo[@"name"] : categoryInfo[@"title"];
         
-        if ([categoryName isEqualToString:results[@"wiki_title"]]) {
+        if ([categoryName isEqualToString:results[@"title"]]) {
             [viewController setCategoryMetaData:results];
             
             // Only on iPhone do we want to add a guides section to the tableView
