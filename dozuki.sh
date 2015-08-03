@@ -75,6 +75,15 @@ elif [ "$1" == "pva" ]; then
    sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigPva;/' Classes/iFixitAppDelegate.m
    sed -i '.bak' -e 's/ifixit/pva/g' Classes/iFixitAPI.m
+elif [ "$1" == "oscaro" ]; then
+   echo "Oscaro"
+   cp Graphics/Sites/Oscaro/*png .
+   sed -i '.bak' -e 's/com.ifixit.ifixit/com.dozuki.oscaro/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/iFixit/Les Tutoriels Oscaro/g' iFixit-Info.plist
+   sed -i '.bak' -e 's/>ifixit</>oscaro</g' iFixit-Info.plist
+   sed -i '.bak' -e 's/\[Config currentConfig\].dozuki = YES;/\[Config currentConfig\].dozuki = NO;/' Classes/iFixitAppDelegate.m
+   sed -i '.bak' -e 's/\[Config currentConfig\].site = ConfigIFixit;/\[Config currentConfig\].site = ConfigOscaro;/' Classes/iFixitAppDelegate.m
+   sed -i '.bak' -e 's/ifixit/oscaro/g' Classes/iFixitAPI.m
 #EAOPlist
 else
    echo "Dozuki"

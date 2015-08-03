@@ -119,6 +119,11 @@
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width/2, image.size.height/2);
                 headerImageLogo.image = image;
                 break;
+            case ConfigOscaro:
+                image = [UIImage imageNamed:@"oscaro_logo_transparent.png"];
+                headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);
+                headerImageLogo.image = image;
+                break;
             /*EAOGuideIntro*/
             case ConfigDozuki:
                 [self configureIntroTitleLogo];
