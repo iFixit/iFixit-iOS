@@ -208,7 +208,7 @@ static int volatile openConnections = 0;
     category = [category stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
     category = [category stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
 
-    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/wikis/CATEGORY/%@", [Config currentConfig].host, category];
+    NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/wikis/CATEGORY/%@?langid=%@", [Config currentConfig].host, category, [Utility getDeviceLanguage]];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
