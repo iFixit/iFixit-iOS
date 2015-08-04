@@ -17,6 +17,9 @@
 		639994C77401475EB4A8AE36 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40331C958D2F4747A5B6D568 /* libPods.a */; };
 		9C002FBF182EE57C00822063 /* accustream_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */; };
 		9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A1982189735C3003E79F0 /* GuideLib.m */; };
+		9C1EB8121B703BE200CE11F5 /* detailViewTextOscaro.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1EB80F1B703BE200CE11F5 /* detailViewTextOscaro.png */; };
+		9C1EB8131B703BE200CE11F5 /* oscaro_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1EB8101B703BE200CE11F5 /* oscaro_logo_transparent.png */; };
+		9C1EB8141B703BE200CE11F5 /* titleImageOscaro.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1EB8111B703BE200CE11F5 /* titleImageOscaro.png */; };
 		9C3811451A240985004DC698 /* titleImageMagnoliamedical.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3811441A240985004DC698 /* titleImageMagnoliamedical.png */; };
 		9C3811471A240A68004DC698 /* magnoliamedical_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3811461A240A68004DC698 /* magnoliamedical_logo_transparent.png */; };
 		9C4723831A45056800EA2899 /* titleImageComcast.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4723821A45056800EA2899 /* titleImageComcast.png */; };
@@ -293,6 +296,9 @@
 		9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accustream_logo_transparent.png; sourceTree = "<group>"; };
 		9C1A1981189735C3003E79F0 /* GuideLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideLib.h; sourceTree = "<group>"; };
 		9C1A1982189735C3003E79F0 /* GuideLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideLib.m; sourceTree = "<group>"; };
+		9C1EB80F1B703BE200CE11F5 /* detailViewTextOscaro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detailViewTextOscaro.png; sourceTree = "<group>"; };
+		9C1EB8101B703BE200CE11F5 /* oscaro_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oscaro_logo_transparent.png; sourceTree = "<group>"; };
+		9C1EB8111B703BE200CE11F5 /* titleImageOscaro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageOscaro.png; sourceTree = "<group>"; };
 		9C3811441A240985004DC698 /* titleImageMagnoliamedical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageMagnoliamedical.png; sourceTree = "<group>"; };
 		9C3811461A240A68004DC698 /* magnoliamedical_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnoliamedical_logo_transparent.png; sourceTree = "<group>"; };
 		9C4723821A45056800EA2899 /* titleImageComcast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageComcast.png; sourceTree = "<group>"; };
@@ -912,6 +918,9 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9C1EB80F1B703BE200CE11F5 /* detailViewTextOscaro.png */,
+				9C1EB8101B703BE200CE11F5 /* oscaro_logo_transparent.png */,
+				9C1EB8111B703BE200CE11F5 /* titleImageOscaro.png */,
 				9CD9DA451B281AC90044EF56 /* pva_logo_transparent.png */,
 				9CD9DA431B281A8C0044EF56 /* titleImagePva.png */,
 				9CA6617D1A9EAE18001C40D7 /* dripassist_logo_transparent.png */,
@@ -1471,6 +1480,7 @@
 				DA275DA815104C4A00A8A09C /* detailViewArrowDark@2x.png in Resources */,
 				DA275DA915104C4A00A8A09C /* detailViewArrowLight@2x.png in Resources */,
 				DA275DAC15104C6200A8A09C /* detailViewFist@2x.png in Resources */,
+				9C1EB8141B703BE200CE11F5 /* titleImageOscaro.png in Resources */,
 				DA275DAD15104C6200A8A09C /* detailViewText@2x.png in Resources */,
 				DA275DB615104CA400A8A09C /* logo_make@2x.png in Resources */,
 				DA275DB715104CA400A8A09C /* make_logo_transparent@2x.png in Resources */,
@@ -1497,6 +1507,7 @@
 				ABE472431746E0610002F3D6 /* Localizable.strings in Resources */,
 				ABDB16C51756AE2D00053573 /* CategoryWebViewController.xib in Resources */,
 				9CD0B39D182779EF0023EB5F /* qr-icon.png in Resources */,
+				9C1EB8131B703BE200CE11F5 /* oscaro_logo_transparent.png in Resources */,
 				ABFA359C175E6D19000908E8 /* UINavigationBarDefaultBack.png in Resources */,
 				AB4926A4175FF6200092E4B6 /* category_more_info_ipad.css in Resources */,
 				ABE38C9B1773B9AC00777F60 /* CategoryTabBarViewController.xib in Resources */,
@@ -1536,6 +1547,7 @@
 				AB5C74DF17A766E2003AD63B /* Default-Landscape@2x~ipad.png in Resources */,
 				AB5C74E017A766E2003AD63B /* Default-Landscape~ipad.png in Resources */,
 				AB5C74E117A766E2003AD63B /* Default-Portrait@2x~ipad.png in Resources */,
+				9C1EB8121B703BE200CE11F5 /* detailViewTextOscaro.png in Resources */,
 				AB5C74E217A766E2003AD63B /* Default-Portrait~ipad.png in Resources */,
 				AB26882217CD5AA6004AC6ED /* OpenSans-Bold.ttf in Resources */,
 				AB26882317CD5AA6004AC6ED /* OpenSans-Regular.ttf in Resources */,
