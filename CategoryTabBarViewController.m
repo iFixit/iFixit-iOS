@@ -460,7 +460,7 @@ BOOL onTablet, initialLoad, showTabBar;
 // Delegate method, called when a tabBarItem is selected, or when I want to force a selection programatically
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     // Google Analytics
-    NSString *category = self.categoryMetaData[@"topic_info"][@"name"];
+    NSString *category = self.categoryMetaData[@"title"];
     [self recordAnalyticsEvent:item.tag withCategory:category];
     
     if (item.tag == self.selectedIndex && !onTablet) {

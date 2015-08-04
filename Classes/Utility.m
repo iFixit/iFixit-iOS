@@ -25,4 +25,8 @@
                                              error:&error];
 }
 
++ (NSString *)getDeviceLanguage {
+    return [[[NSLocale preferredLanguages] objectAtIndex:0] substringToIndex:2];
+}
+
 @end

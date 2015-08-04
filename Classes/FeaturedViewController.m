@@ -129,7 +129,7 @@
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.adjustsFontSizeToFitWidth = YES;
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    titleLabel.font = [UIFont fontWithName:@"Helvetica" size:120.0];
+    titleLabel.font = [UIFont fontWithName:@"Helvetica" size:80.0];
     
     if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigMake) {
         titleLabel.frame = CGRectMake(110.0, 150.0, self.view.frame.size.width - 110.0, 106.0);

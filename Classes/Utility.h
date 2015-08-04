@@ -11,5 +11,6 @@
 @interface Utility : NSObject
 + (NSString *)serializeDictionary:(NSDictionary *)dictionary;
 + (NSDictionary *)deserializeJsonString:(NSString*)jsonString;
++ (NSString *)getDeviceLanguage;
 @end
 
