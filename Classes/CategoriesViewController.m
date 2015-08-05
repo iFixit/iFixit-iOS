@@ -126,6 +126,11 @@ BOOL searchViewEnabled;
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
+            case ConfigOscaro:
+                titleImage = [UIImage imageNamed:@"titleImageOscaro.png"];
+                imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+                self.navigationItem.titleView = imageTitle;
+                break;
             /*EAOTitle*/
         }
     }
@@ -343,6 +348,12 @@ BOOL searchViewEnabled;
                 frame.size.height = 30.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
+            case ConfigOscaro:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 257.0;
+                frame.size.height = 30.0;
+                self.navigationItem.titleView.frame = frame;
+                break;
             /*EAOLandscapeResize*/
             default:
                 frame = self.navigationItem.titleView.frame;
@@ -392,6 +403,12 @@ BOOL searchViewEnabled;
                 self.navigationItem.titleView.frame = frame;
                 break;
             case ConfigPva:
+                frame = self.navigationItem.titleView.frame;
+                frame.size.width = 157.0;
+                frame.size.height = 40.0;
+                self.navigationItem.titleView.frame = frame;
+                break;
+            case ConfigOscaro:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 157.0;
                 frame.size.height = 40.0;
