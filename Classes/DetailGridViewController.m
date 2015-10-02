@@ -29,14 +29,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [_category release];
-    [_guides release];
-    [loading release];
-    
-    [super dealloc];
-}
-
 - (void)showLoading {
     if (loading.superview) {
         [loading showInView:self.view];
@@ -44,7 +36,7 @@
     }
     
     CGRect frame = CGRectMake(self.view.frame.size.width / 2.0 - 60, 260.0, 120.0, 120.0);
-    self.loading = [[[WBProgressHUD alloc] initWithFrame:frame] autorelease];
+    self.loading = [[WBProgressHUD alloc] initWithFrame:frame];
     self.loading.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [loading showInView:self.view];
 }
@@ -70,7 +62,6 @@
     [siteLogoImageView setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
     
     self.siteLogo = siteLogoImageView;
-    [siteLogoImageView release];
 }
 
 - (void)gotCategory:(NSDictionary *)data {
@@ -84,7 +75,6 @@
                                               cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                               otherButtonTitles:NSLocalizedString(@"Retry", nil), nil];
         [alert show];
-        [alert release];
         return;
     }
     else if (![_guides count]) {
@@ -108,7 +98,6 @@
 }
 
 - (void)setCategory:(NSString *)category{
-    [_category release];
     _category = [category copy];
     
     self.guides = nil;
@@ -138,10 +127,9 @@
     
     BOOL oniOS7 = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0");
     
-    self.backgroundView = [[[UIImageView alloc] initWithImage:[Config currentConfig].concreteBackgroundImage
+    self.backgroundView = [[UIImageView alloc] initWithImage:[Config currentConfig].concreteBackgroundImage
                             ? [Config currentConfig].concreteBackgroundImage
-                            : [UIImage imageNamed:@"concreteBackground.png"]]
-                           autorelease];
+                            : [UIImage imageNamed:@"concreteBackground.png"]];
     
     if (![Config currentConfig].dozuki) {
         [self configureSiteLogo];
@@ -149,7 +137,7 @@
     
     switch ([Config currentConfig].site) {
         case ConfigIFixit:
-            self.fistImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewFist.png"]] autorelease];
+            self.fistImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewFist.png"]];
             self.fistImage.frame = CGRectMake(0, (oniOS7) ? 64 : 0, 703, 660);
             [self.backgroundView addSubview:self.fistImage];
             break;
@@ -196,7 +184,7 @@
         /*EAOiPadSiteLogo*/
     }
     
-    self.guideArrow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewArrowDark.png"]] autorelease];
+    self.guideArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewArrowDark.png"]];
     self.guideArrow.frame = CGRectMake(45, (oniOS7) ? 64 : 6, self.guideArrow.frame.size.width, self.guideArrow.frame.size.height);
     
     [self.backgroundView addSubview:self.guideArrow];
@@ -209,7 +197,7 @@
     // Decide how much margin we give our tableview
     [self configureTableViewContentInsent];
     
-    self.noGuidesImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noGuides.png"]] autorelease];
+    self.noGuidesImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noGuides.png"]];
     self.noGuidesImage.frame = CGRectMake(135.0, 30.0, self.noGuidesImage.frame.size.width, self.noGuidesImage.frame.size.height);
     [self.view addSubview:self.noGuidesImage];
     
@@ -332,8 +320,6 @@
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [delegate.window.rootViewController presentModalViewController:nc animated:YES];
-    [vc release];
-    [nc release];
 }
 
 @end

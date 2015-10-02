@@ -6,7 +6,7 @@
 //  Copyright 2011 iFixit. All rights reserved.
 //
 
-#import "SDWebImageManagerDelegate.h"
+#import "SDWebImageManager.h"
 
 #define GuideBookmarksUpdatedNotification @"GuideBookmarksUpdatedNotification"
 

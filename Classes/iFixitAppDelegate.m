@@ -25,7 +25,7 @@
 #import "CategoryTabBarViewController.h"
 #import "iFixitSplashScreenViewController.h"
 #import "MGSplitViewController.h"
-#import <Crashlytics/Crashlytics.h>
+//#import <Crashlytics/Crashlytics.h>
 
 static const NSInteger kGANDispatchPeriodSec = 10;
 
@@ -117,7 +117,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         firstLoad = NO;
     }
     
-    [Crashlytics startWithAPIKey:@"25b29ddac9745140e41d9a00281ea38965b44f4c"];
+//    [Crashlytics startWithAPIKey:@"25b29ddac9745140e41d9a00281ea38965b44f4c"];
     
     return YES;
 }
@@ -156,7 +156,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     DozukiSplashViewController *dsvc = [[DozukiSplashViewController alloc] init];
     dsvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     self.window.rootViewController = dsvc;
-    [dsvc release];
 
     [window makeKeyAndVisible];
     if (!firstLoad) {
@@ -176,7 +175,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     } completion:nil];
     
     [window makeKeyAndVisible];
-    [svc release];
 }
 
 - (void)showSiteSplash {
@@ -201,13 +199,12 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         LoginViewController *vc = [[LoginViewController alloc] init];
         vc.message = NSLocalizedString(@"Private site. Authentication required.", nil);
         vc.delegate = self;
-        nvc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];        
+        nvc = [[UINavigationController alloc] initWithRootViewController:vc];
         nvc.modalPresentationStyle = UIModalPresentationFormSheet;
-        [vc release];
 
         // iPad: display in form sheet
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-            root = [[[LoginBackgroundViewController alloc] init] autorelease];
+            root = [[LoginBackgroundViewController alloc] init];
             self.window.rootViewController = root;
             [window makeKeyAndVisible];
             vc.modal = YES;
@@ -245,7 +242,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
  * guarantee that our UIWindow is in the foreground always.
  */
 - (void)refreshUIWindow {
-    [self.window release];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 }
 
@@ -271,13 +267,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     // Create the split controller children.
     CategoriesViewController *rvc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
     self.categoriesViewController = rvc;
-    [rvc release];
     
     // Create the split view controller.
     MGSplitViewController *svc = [[MGSplitViewController alloc] init];
     
     self.splitViewController = svc;
-    [svc release];
     
     ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:categoriesViewController];
     CategoryTabBarViewController *ctvc = [[CategoryTabBarViewController alloc] initWithNibName:@"CategoryTabBarViewController" bundle:nil];
@@ -291,9 +285,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     splitViewController.viewControllers = @[lvc, ctvc];
     splitViewController.delegate = ctvc;
-    
-    [lvc release];
-    [ctvc release];
     
     categoriesViewController.delegate = self;
     
@@ -309,10 +300,10 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         guideTitle = NSLocalizedString(@"Repair Manuals", nil);
     
     if ([Config currentConfig].site == ConfigIFixit) {
-        splitViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:guideTitle image:[UIImage imageNamed:@"tabBarItemWrench.png"] tag:0] autorelease];
+        splitViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:guideTitle image:[UIImage imageNamed:@"tabBarItemWrench.png"] tag:0];
     }
     else {
-        splitViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:guideTitle image:[UIImage imageNamed:@"tabBarItemBook.png"] tag:0] autorelease];
+        splitViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:guideTitle image:[UIImage imageNamed:@"tabBarItemBook.png"] tag:0];
     }
     
     // Optionally add the store button.
@@ -324,7 +315,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         storeViewController = [[SVWebViewController alloc] initWithAddress:[Config currentConfig].store withTitle:storeTitle];
         storeViewController.tintColor = [Config currentConfig].toolbarColor;
         storeViewController.showsDoneButton = NO;
-        storeViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:storeTitle image:storeImage tag:0] autorelease];
+        storeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:storeTitle image:storeImage tag:0];
     }
 
     // Create the tab bar.
@@ -336,17 +327,14 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     if ([Config currentConfig].collectionsEnabled) {
         FeaturedViewController *featuredViewController = [[FeaturedViewController alloc] init];    
-        featuredViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Featured", nil) image:[UIImage imageNamed:@"FA-Featured.png"] tag:0] autorelease];
+        featuredViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Featured", nil) image:[UIImage imageNamed:@"FA-Featured.png"] tag:0];
         tbc.viewControllers = [NSArray arrayWithObjects:featuredViewController, splitViewController, storeViewController, nil];
-        [featuredViewController release];
     }
     else {
         tbc.viewControllers = [NSArray arrayWithObjects:splitViewController, storeViewController, nil];
     }
-
-    [storeViewController release];
     
-    return [tbc autorelease];
+    return tbc;
 }
 
 - (UIViewController *)iPhoneRoot {
@@ -362,7 +350,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     }
     
-    return [ctbvc autorelease];
+    return ctbvc;
 }
 
 - (void)loadSiteWithDomain:(NSString *)domain {
@@ -459,11 +447,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
             NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
             [f setNumberStyle:NSNumberFormatterDecimalStyle];
             NSNumber *iGuideid = [f numberFromString:guideidString];
-            [f release];
             
             GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
             [self.window.rootViewController presentModalViewController:vc animated:NO];
-            [vc release];
             
             return YES;
         }
@@ -503,14 +489,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
      Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
      */
 }
-
-
-- (void)dealloc {
-    [splitViewController release];
-    [window release];
-    [super dealloc];
-}
-
 
 @end
 

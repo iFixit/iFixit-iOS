@@ -52,7 +52,7 @@
 
 @interface TapDetectingImageView : UIImageView {
 	
-    id <TapDetectingImageViewDelegate> delegate;
+    id  <TapDetectingImageViewDelegate> delegate;
     
     // Touch detection
     CGPoint tapLocation;         // Needed to record location of single tap, which will only be registered after delayed perform.

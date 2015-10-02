@@ -27,9 +27,6 @@
     
     return self;
 }
-- (void)dealloc {
-    [super dealloc];
-}
 
 - (void)configureProperties {
     [self showFavoritesButton:self];
@@ -109,7 +106,7 @@
         [self.viewControllers[0] willAnimateRotationToInterfaceOrientation:[viewController interfaceOrientation] duration:0];
     // Make sure that we only update the tabbar when we need to
     } else if ([viewController isKindOfClass:[CategoriesViewController class]]) {
-        [self.categoryTabBarViewController updateTabBar:[self.topViewController categoryMetaData]];
+        [self.categoryTabBarViewController updateTabBar:[(CategoriesViewController *)self.topViewController categoryMetaData]];
     }
     
     return viewController;
@@ -184,7 +181,6 @@
                                             target:self action:@selector(favoritesButtonPushed)];
         
         self.favoritesButton = favoritesButton;
-        [favoritesButton release];
     }
     
     [viewController navigationItem].rightBarButtonItem = self.favoritesButton;

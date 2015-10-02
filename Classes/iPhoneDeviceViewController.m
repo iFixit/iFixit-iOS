@@ -48,7 +48,6 @@
                                                                                    target:self
                                                                                    action:@selector(getGuides)];
     self.navigationItem.rightBarButtonItem = refreshButton;
-    [refreshButton release];   
 }
 
 - (void)showLoading {
@@ -59,12 +58,9 @@
     UIActivityIndicatorViewStyleGray : UIActivityIndicatorViewStyleWhite;
     [container addSubview:spinner];
     [spinner startAnimating];
-    [spinner release];
     
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithCustomView:container];
     self.navigationItem.rightBarButtonItem = button;
-    [container release];
-    [button release];
 }
 - (void)hideLoading {
     loading = NO;
@@ -134,7 +130,6 @@
                                                                   target:[[UIApplication sharedApplication] delegate]
                                                                   action:@selector(showDozukiSplash)];
         self.navigationItem.leftBarButtonItem = button;
-        [button release];
     }
 }
 
@@ -172,7 +167,7 @@
     
     GuideCell *cell = (GuideCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[GuideCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[GuideCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
@@ -198,12 +193,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [GuideLib loadAndPresentGuideForGuideid:self.guides[indexPath.row][@"guideid"]];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)dealloc {
-    [_topic release];
-    [_guides release];
-    [super dealloc];
 }
 
 @end

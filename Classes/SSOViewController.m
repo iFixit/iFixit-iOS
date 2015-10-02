@@ -32,7 +32,7 @@
 
     SSOViewController* vc = [[SSOViewController alloc] initWithAddress:url];
     vc.delegate = delegate;
-    return [vc autorelease];
+    return vc;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -73,7 +73,6 @@
                                               cancelButtonTitle:nil
                                               otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
         [alert show];
-        [alert release];
     } else {
         [self dismissViewControllerAnimated:NO completion:^(void) {
             // The delegate is responsible for removing the login view.

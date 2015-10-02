@@ -31,8 +31,6 @@
         nvc.modalTransitionStyle = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ?
             UIModalTransitionStyleFlipHorizontal : UIModalTransitionStyleCrossDissolve;
         self.nextViewController = nvc;
-        [nvc release];
-        [divc release];
         
     }
     return self;
@@ -129,12 +127,4 @@
     
 }
 
-- (void)dealloc {
-    [introView release];
-    [nextViewController release];
-    [_dozukiSlogan release];
-    [_dozukiDescription release];
-    [_getStarted release];
-    [super dealloc];
-}
 @end

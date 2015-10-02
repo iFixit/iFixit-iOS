@@ -37,8 +37,5 @@
     
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [appDelegate.window.rootViewController presentModalViewController:nc animated:YES];
-    
-    [vc release];
-    [nc release];
 }
 @end

@@ -21,14 +21,7 @@
   guideEmbed.type = [dict valueForKey:@"type"];
   guideEmbed.size = CGSizeMake([[dict valueForKey:@"width"] floatValue],
                                [[dict valueForKey:@"height"] floatValue]);
-  return [guideEmbed autorelease];
-}
-
-- (void)dealloc {
-  [_url release];
-  [_type release];
-
-  [super dealloc];
+  return guideEmbed;
 }
 
 @end

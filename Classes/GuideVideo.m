@@ -26,17 +26,11 @@
             guideVideo.url = encoding[@"url"];
             guideVideo.size = CGSizeMake([encoding[@"width"] floatValue],
                                          [encoding[@"height"] floatValue]);
-            return [guideVideo autorelease];
+            return guideVideo;
         }
     }
     
     return nil;
-}
-
-- (void)dealloc {
-    [_url release];
-    
-    [super dealloc];
 }
 
 @end

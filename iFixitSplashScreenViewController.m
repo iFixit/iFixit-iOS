@@ -61,11 +61,6 @@ BOOL initialLoad;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc {
-    [_startRepairButton release];
-    [_splashBackground release];
-    [super dealloc];
-}
 - (void)viewDidUnload {
     [self setStartRepairButton:nil];
     [self setSplashBackground:nil];

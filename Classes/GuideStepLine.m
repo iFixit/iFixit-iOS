@@ -18,13 +18,7 @@
 	guideStepLine.bullet = dict[@"bullet"];
 	guideStepLine.level  = [dict[@"level"] integerValue];
 	guideStepLine.text   = dict[@"text_rendered"];
-	return [guideStepLine autorelease];
+	return guideStepLine;
 }
 
-- (void)dealloc {
-    [bullet release];
-    [text release];
-    
-    [super dealloc];
-}
 @end

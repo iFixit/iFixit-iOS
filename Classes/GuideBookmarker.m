@@ -31,13 +31,11 @@
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             UIPopoverController *pc = [[UIPopoverController alloc] initWithContentViewController:vc];
             self.poc = pc;
-            [pc release];
         }
         else {
             self.poc = nil;
         }
 
-        [vc release];
     }
     return self;
 }
@@ -48,7 +46,7 @@
     BOOL guideExists = [[GuideBookmarks sharedBookmarks] guideForGuideid:newGuideid] ? YES : NO;
     
     if ([delegate isKindOfClass:[GuideViewController class]]) {
-        [delegate setOfflineGuide:guideExists];
+//        [delegate setOfflineGuide:guideExists];
     }
     
     if (![[GuideBookmarks sharedBookmarks] guideForGuideid:newGuideid]) {
@@ -57,7 +55,6 @@
                                                                           target:self 
                                                                           action:@selector(bookmark:)];
         self.delegate.navigationItem.rightBarButtonItem = bookmarkButton;
-        [bookmarkButton release];
     }
     else {
         [self bookmarked];
@@ -97,8 +94,6 @@
     UIBarButtonItem *b = [[UIBarButtonItem alloc] initWithCustomView:spinner];
     [spinner startAnimating];
     self.delegate.navigationItem.rightBarButtonItem = b;
-    [b release];
-    [spinner release];
     
     // Save online
     [[iFixitAPI sharedInstance] like:iGuideid forObject:self withSelector:@selector(liked:)];
@@ -138,17 +133,13 @@
     progressLabel.shadowOffset = CGSizeMake(0.0f, -1.0f);
     progressLabel.text = NSLocalizedString(@"Downloading...", nil);
     [progressContainer addSubview:progressLabel];
-    [progressLabel release];
     
     UIProgressView *p = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 25, 85, 10)];
     [progressContainer addSubview:p];
     self.progress = p;
-    [p release];
     
     UIBarButtonItem *progressItem = [[UIBarButtonItem alloc] initWithCustomView:progressContainer];
     self.delegate.navigationItem.rightBarButtonItem = progressItem;
-    [progressItem release];
-    [progressContainer release];
     
     // Save the guide in the bookmarks list.
     [[GuideBookmarks sharedBookmarks] addGuideid:iGuideid forBookmarker:self];
@@ -188,8 +179,6 @@
     
     UIBarButtonItem *bookmarkedItem = [[UIBarButtonItem alloc] initWithCustomView:bookmarkedLabel];
     self.delegate.navigationItem.rightBarButtonItem = bookmarkedItem;
-    [bookmarkedItem release];
-    [bookmarkedLabel release];
 }
 
 - (void)presentModalViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -204,8 +193,6 @@
     self.poc = nil;
     self.lvc = nil;
     self.delegate = nil;
-    
-    [super dealloc];
 }
 
 @end

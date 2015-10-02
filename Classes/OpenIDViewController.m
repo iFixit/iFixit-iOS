@@ -24,7 +24,7 @@
     NSString *url = [NSString stringWithFormat:@"%@/login/openid?host=%@", [Config currentConfig].baseURL, host];
     OpenIDViewController* vc = [[OpenIDViewController alloc] initWithAddress:url];
     vc.delegate = delegate;
-    return [vc autorelease];
+    return vc;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -60,7 +60,6 @@
                                               cancelButtonTitle:nil
                                               otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
         [alert show];
-        [alert release];
     } else {
         [self dismissViewControllerAnimated:YES completion:^(void) {
             // The delegate is responsible for removing the login view.

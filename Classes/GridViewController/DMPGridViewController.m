@@ -95,7 +95,7 @@
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     else {
@@ -141,10 +141,8 @@
         g.numberOfTapsRequired = 1;
         g.numberOfTouchesRequired = 1;
         [gridCell addGestureRecognizer:g];
-        [g release];
         
         [cell.contentView addSubview:gridCell];
-        [gridCell release];
     }
     
     // For iOS 7, ensures we have a transparent background

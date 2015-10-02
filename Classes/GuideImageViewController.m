@@ -55,7 +55,7 @@ static CGRect frameView;
         [vc detectOrientation];
     }
     
-    return [vc autorelease];
+    return vc;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -77,7 +77,7 @@ static CGRect frameView;
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
     // set up main scroll view
-	self.imageScrollView = [[[UIScrollView alloc] initWithFrame:self.view.frame] autorelease];
+	self.imageScrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
     imageScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [imageScrollView setBackgroundColor:[Config currentConfig].backgroundColor];
     [imageScrollView setDelegate:self];
@@ -94,7 +94,6 @@ static CGRect frameView;
     imageView.frame = CGRectMake(0.0, 0.0, 1600.0, 1200.0);
     [imageScrollView setContentSize:CGSizeMake(1600.0f, 1200.0f)];
 	[imageScrollView addSubview:imageView];
-    [imageView release];
    
     // calculate minimum scale to perfectly fit longer edge, and begin at that scale
     float minimumWidthScale = [imageScrollView frame].size.width / [imageView frame].size.width;
@@ -139,18 +138,6 @@ static CGRect frameView;
    [imageView addGestureRecognizer:doubleTapG];
    [imageView addGestureRecognizer:twoFingerTapG];
    
-   [singleTapG release];
-   [doubleTapG release];
-   [twoFingerTapG release];
-   
-}
-
-- (void)dealloc {
-    [image release];
-    [imageScrollView release];
-    [delay release];
-    
-    [super dealloc];
 }
 
 #pragma mark UIScrollViewDelegate methods

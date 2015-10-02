@@ -94,7 +94,7 @@
 
 - (void)showLoading {
     if (!loading) {
-        self.loading = [[[WBProgressHUD alloc] init] autorelease];
+        self.loading = [[WBProgressHUD alloc] init];
     }
 
     CGFloat width = 160;
@@ -116,24 +116,6 @@
 
     // Allow editing again.
     self.view.userInteractionEnabled = YES;
-}
-
-- (void)dealloc {
-    [message release];
-    [loading release];
-
-    [emailField release];
-    [passwordField release];
-    [passwordVerifyField release];
-    [fullNameField release];
-
-    [loginButton release];
-    [registerButton release];
-    [cancelButton release];
-    [googleButton release];
-    [yahooButton release];
-
-    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -168,9 +150,8 @@
     frame.origin.x = (320 - frame.size.width) / 2;
     container.frame = CGRectMake(0, 0, 320, frame.size.height + 10);
     l.frame = frame;
-    [l release];
 
-    return [container autorelease];
+    return container;
 }
 
 - (UIView *)createActionButtons {
@@ -264,9 +245,6 @@
     self.cancelButton = cb;
     self.googleButton = gb;
     self.yahooButton = yb;
-    [cb release];
-    [gb release];
-    [yb release];
 
     [container addSubview:loginButton];
 
@@ -281,7 +259,7 @@
         }
     }
 
-    return [container autorelease];
+    return container;
 }
 
 - (void)tapGoogle {
@@ -389,7 +367,6 @@
 
     tapGesture.delegate = self;
     [[self tableView] addGestureRecognizer:tapGesture];
-    [tapGesture release];
     
     [self configureAppearance];
     [self configureLeftBarButtonItem];
@@ -412,7 +389,6 @@
     }
     
     self.navigationItem.leftBarButtonItem = button;
-    [button release];
 }
 
 - (void)doneButtonPushed {
@@ -487,7 +463,6 @@
 
     if (row == 0) {
         if (emailField) {
-            [inputField release];
             return emailField;
         }
 
@@ -501,7 +476,6 @@
     }
     else if (row == 1) {
         if (passwordField) {
-            [inputField release];
             passwordField.returnKeyType = showRegister ? UIReturnKeyNext : UIReturnKeyDone;
             return passwordField;
         }
@@ -515,7 +489,6 @@
     }
     else if (row == 2) {
         if (passwordVerifyField) {
-            [inputField release];
             return passwordVerifyField;
         }
 
@@ -528,7 +501,6 @@
     }
     else if (row == 3) {
         if (fullNameField) {
-            [inputField release];
             return fullNameField;
         }
 
@@ -548,7 +520,7 @@
     inputField.clearButtonMode = UITextFieldViewModeNever;
     [inputField setEnabled:YES];
 
-    return [inputField autorelease];
+    return inputField;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -556,7 +528,7 @@
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
@@ -589,7 +561,6 @@
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
         [self presentModalViewController:nvc animated:YES];
         
-        [nvc release];
         return;
     }
 
@@ -615,7 +586,6 @@
                                               cancelButtonTitle:nil
                                               otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
         [alert show];
-        [alert release];
     }
     else if (![passwordVerifyField.text isEqual:passwordField.text]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
@@ -624,7 +594,6 @@
                                               cancelButtonTitle:nil
                                               otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
         [alert show];
-        [alert release];
     }
     else {
         [self showLoading];
@@ -651,7 +620,6 @@
                                               cancelButtonTitle:nil
                                               otherButtonTitles:NSLocalizedString(@"Okay", nil), nil];
         [alert show];
-        [alert release];
     }
     else {
         // Analytics

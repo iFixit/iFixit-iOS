@@ -309,20 +309,6 @@
 
 - (void)dealloc {
     webView.delegate = nil;
-    
-    [_guide release];
-    [huge release];
-    [html release];
-
-    [headerImageLogo release];
-    [swipeLabel release];
-    [device release];
-    [mainImage release];
-    [webView release];
-    
-    [overlayView release];
-    [headerTextDozuki release];
-    [super dealloc];
 }
 
 

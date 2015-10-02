@@ -39,8 +39,6 @@ static UIColor* defaultForegroundColor()
     self.colorForeground   = nil;
     self.progressIndicator = nil;
     self.progressMessage   = nil;
-    
-    [super dealloc];
 }
 
 // draw background: semi-transparent round rect
@@ -81,12 +79,11 @@ static UIColor* defaultForegroundColor()
     type = UIActivityIndicatorViewStyleWhiteLarge;
     prog = [UIActivityIndicatorView alloc];
     prog = [prog initWithActivityIndicatorStyle:type];
-    [prog autorelease];
     prog.frame = [self rectIndicator:prog.frame.size];
     
     // create text label
     rect = [self rectMessage];
-    text = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    text = [[UILabel alloc] initWithFrame:rect];
     
     // text properties
     text.backgroundColor = [UIColor clearColor];
@@ -221,7 +218,7 @@ static UIColor* defaultForegroundColor()
 
 +(WBProgressHUD*)viewWithFrame:(CGRect)frame
 {
-    return [[[WBProgressHUD alloc] initWithFrame:frame] autorelease];
+    return [[WBProgressHUD alloc] initWithFrame:frame];
 }
 
 @end

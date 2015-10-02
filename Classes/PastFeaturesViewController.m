@@ -18,15 +18,14 @@
         self.title = NSLocalizedString(@"Past Features", nil);
         self.collections = [NSMutableArray array];
         
-        self.dateFormat = [[[NSDateFormatter alloc] init] autorelease];
+        self.dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"MM/dd"];
     }
     return self;
 }
 
 - (void)setCollections:(NSMutableArray *)collections {
-    [_collections release];
-    _collections = [collections retain];
+    _collections = collections;
     [self.tableView reloadData];
 }
 
@@ -64,7 +63,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
@@ -83,11 +82,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     _delegate.collection = [_collections objectAtIndex:indexPath.row];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)dealloc {
-    [_collections release];
-    [super dealloc];
 }
 
 @end

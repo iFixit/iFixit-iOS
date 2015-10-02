@@ -9,7 +9,7 @@
 #import "GuideStepViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ASIHTTPRequest.h"
-#import "JSON.h"
+#import "SBJSON.h"
 #import "GuideImageViewController.h"
 #import "GuideCatchingWebView.h"
 #import "GuideStep.h"
@@ -67,7 +67,7 @@
     NSString *docDirectory = paths[0];
     
     NSString *filePath = [docDirectory stringByAppendingPathComponent:
-                          [NSString stringWithFormat:@"/Videos/%@_%i_%i_%@", [iFixitAPI sharedInstance].user.iUserid, self.step.stepid, self.step.video.videoid, self.step.video.filename]];
+                          [NSString stringWithFormat:@"/Videos/%@_%li_%li_%@", [iFixitAPI sharedInstance].user.iUserid, (long)self.step.stepid, (long)self.step.video.videoid, self.step.video.filename]];
     return filePath;
 }
 
@@ -141,7 +141,7 @@
                      [NSURL fileURLWithPath:[self getOfflineVideoPath] isDirectory:NO] :
                      [NSURL URLWithString:self.step.video.url];
 
-        self.moviePlayer = [[[MPMoviePlayerController alloc] initWithContentURL:url] autorelease];
+        self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
         self.moviePlayer.shouldAutoplay = NO;
         self.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
         [self.moviePlayer.view setFrame:frame];
@@ -154,7 +154,7 @@
         CGRect frame = mainImage.frame;
         frame.origin.x = 10.0;
 
-        self.embedView = [[[UIWebView alloc] initWithFrame:frame] autorelease];
+        self.embedView = [[UIWebView alloc] initWithFrame:frame];
         self.embedView.backgroundColor = [UIColor clearColor];
         self.embedView.opaque = NO;
         [self.view addSubview:embedView];
@@ -454,24 +454,9 @@
 
 
 - (void)dealloc {
-    [_step release];
-    // TODO: Figure out why this crashes.
-    [html release];
-
     webView.delegate = nil;
 
-    [titleLabel release];
-    [mainImage release];
-    [webView release];
-    [image1 release];
-    [image2 release];
-    [image3 release];
-    [moviePlayer release];
-    [embedView release];
-
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    [super dealloc];
 }
 
 

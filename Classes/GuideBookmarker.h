@@ -12,7 +12,7 @@
 @class LoginViewController;
 
 @interface GuideBookmarker : NSObject <LoginViewControllerDelegate> {
-    UIViewController *delegate;
+    UIViewController * __unsafe_unretained delegate;
     
     UIPopoverController *poc;
     LoginViewController *lvc;

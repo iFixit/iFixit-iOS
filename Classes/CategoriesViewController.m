@@ -185,7 +185,6 @@ BOOL searchViewEnabled;
                                                                   target:[[UIApplication sharedApplication] delegate]
                                                                   action:@selector(showDozukiSplash)];
         self.navigationItem.leftBarButtonItem = button;
-        [button release];
     }
 }
 
@@ -195,12 +194,9 @@ BOOL searchViewEnabled;
     spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
     [container addSubview:spinner];
     [spinner startAnimating];
-    [spinner release];
     
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithCustomView:container];
     self.navigationItem.rightBarButtonItem = button;
-    [container release];
-    [button release];
 }
 
 - (void)showRefreshButton {
@@ -214,8 +210,6 @@ BOOL searchViewEnabled;
     } else {
         self.navigationItem.rightBarButtonItem = refreshButton;
     }
-    
-    [refreshButton release];
 }
 
 - (void)configureTableViewTitleLogoFromURL:(NSString*)URL {
@@ -233,7 +227,7 @@ BOOL searchViewEnabled;
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0];
 }
 - (void)setTableViewTitle {
-    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:24.0];
     titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
@@ -292,7 +286,6 @@ BOOL searchViewEnabled;
         if ([areas[@"hierarchy"] isKindOfClass:[NSArray class]] && ![areas count]) {
             iPhoneDeviceViewController *dvc = [[iPhoneDeviceViewController alloc] initWithTopic:nil];
             [self.navigationController pushViewController:dvc animated:YES];
-            [dvc release];
         }
     }
 }
@@ -459,7 +452,7 @@ BOOL searchViewEnabled;
 - (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
     NSString *scopeFilter = self.searchBar.scopeButtonTitles[selectedScope];
     
-    if (self.searchBar.text.length && ![self.searchResults[scopeFilter] count]) {
+    if (self.searchBar.text.length && ![(NSArray *)self.searchResults[scopeFilter] count]) {
         NSString *filter = self.searchBar.selectedScopeButtonIndex == 0 ? @"guide,teardown" : @"category";
         [[iFixitAPI sharedInstance] getSearchResults:self.searchBar.text withFilter:filter forObject:self withSelector:@selector(gotSearchResults:)];
     } else {
@@ -511,7 +504,7 @@ BOOL searchViewEnabled;
         [searchResults removeAllObjects];
         self.currentSearchTerm = self.searchBar.text;
         searchResults[filter] = [results objectForKey:@"results"];
-        noResults = ([searchResults[filter] count] == 0);
+        noResults = ([(NSArray *)searchResults[filter] count] == 0);
         [self.tableView reloadData];
         
         NSDictionary *gaInfo = [[GAIDictionaryBuilder createEventWithCategory:@"Search" action:@"query" label:[NSString stringWithFormat:@"User searched for: %@", results[@"search"]] value:nil] build];
@@ -632,12 +625,11 @@ BOOL searchViewEnabled;
 }
 
 - (NSMutableDictionary*)parseCategories:(NSDictionary *)categoriesCollection {
-    NSMutableArray *categories = [[[NSMutableArray alloc] init] autorelease];
-    NSMutableArray *devices = [[[NSMutableArray alloc] init] autorelease];
-    NSMutableDictionary *allCategories = [[[NSMutableDictionary alloc] init] autorelease];
-    NSDictionary *categoryDisplayTitles = [[[NSDictionary alloc]
-                                           initWithDictionary:[CategoriesSingleton sharedInstance].masterDisplayTitleList]
-                                           autorelease];
+    NSMutableArray *categories = [[NSMutableArray alloc] init];
+    NSMutableArray *devices = [[NSMutableArray alloc] init];
+    NSMutableDictionary *allCategories = [[NSMutableDictionary alloc] init];
+    NSDictionary *categoryDisplayTitles = [[NSDictionary alloc]
+                                           initWithDictionary:[CategoriesSingleton sharedInstance].masterDisplayTitleList];
 
     // Bail early, we are working with a category with no children
     if ([categoriesCollection isEqual:[NSNull null]]) {
@@ -716,8 +708,8 @@ BOOL searchViewEnabled;
     
     if (self.searching) {
         NSString *filter = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
-        if ([searchResults[filter] count]) {
-            return [searchResults[filter] count];
+        if ([(NSArray *)searchResults[filter] count]) {
+            return [(NSArray *)searchResults[filter] count];
         } else if (noResults) {
             return 1;
         } else {
@@ -726,7 +718,7 @@ BOOL searchViewEnabled;
         
     }
     
-    return [self.categories[self.categoryTypes[section]] count];
+    return [(NSArray *)self.categories[self.categoryTypes[section]] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -741,11 +733,11 @@ BOOL searchViewEnabled;
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
         if (cell == nil) {
-            cell = [[[SearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+            cell = [[SearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         
-        if ([searchResults[filter] count] > 0) {
-            NSDictionary *result = [[[NSDictionary alloc] init] autorelease];
+        if ([(NSArray *)searchResults[filter] count] > 0) {
+            NSDictionary *result = [[NSDictionary alloc] init];
             result = searchResults[filter][indexPath.row];
             
             if ([result[@"dataType"] isEqualToString:@"guide"]) {
@@ -771,7 +763,7 @@ BOOL searchViewEnabled;
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         
         [cell setAccessoryType: (category[@"type"] == @(CATEGORY))
@@ -784,7 +776,7 @@ BOOL searchViewEnabled;
         cell = (GuideCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
         if (cell == nil) {
-            cell = [[[GuideCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+            cell = [[GuideCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         
         [cell setAccessoryType:UITableViewCellAccessoryNone];
@@ -815,13 +807,13 @@ BOOL searchViewEnabled;
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.view endEditing:YES];
     
-    if (self.searching && ![searchResults[filter] count]) {
+    if (self.searching && ![(NSArray *)searchResults[filter] count]) {
         return;
     }
     
-    NSDictionary *category = [[[NSDictionary alloc] init] autorelease];
+    NSDictionary *category = [[NSDictionary alloc] init];
     
-    if (self.searching && [searchResults[filter] count]) {
+    if (self.searching && [(NSArray *)searchResults[filter] count]) {
         // If we are dealing with a guide we bail early
         if ([searchResults[filter][indexPath.row][@"dataType"] isEqualToString:@"guide"]) {
             [GuideLib loadAndPresentGuideForGuideid:searchResults[filter][indexPath.row][@"guideid"]];
@@ -852,7 +844,6 @@ BOOL searchViewEnabled;
         [self.navigationController pushViewController:vc animated:YES];
         [vc.tableView reloadData];
         categorySearchResult = nil;
-        [vc release];
         
     // Device
     } else if (category[@"type"] == @(DEVICE)) {
@@ -860,7 +851,6 @@ BOOL searchViewEnabled;
             iPhoneDeviceViewController *vc = [[iPhoneDeviceViewController alloc] initWithTopic:category[@"name"]];
             vc.title = category[@"display_title"];
             [self.navigationController pushViewController:vc animated:YES];
-            [vc release];
         } else {
             self.categoryMetaData = category;
         }
@@ -970,7 +960,6 @@ BOOL searchViewEnabled;
                                                       cancelButtonTitle:NSLocalizedString(@"Okay", nil)
                                                       otherButtonTitles:nil, nil];
             [alertView show];
-            [alertView release];
         }
     }];
     
@@ -987,8 +976,6 @@ BOOL searchViewEnabled;
         iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
         [appDelegate.window.rootViewController presentModalViewController:navigationController animated:YES];
 
-        [guideViewController release];
-        [navigationController release];
     } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
                                                                 message:NSLocalizedString(@"Guide not found", nil)
@@ -996,7 +983,6 @@ BOOL searchViewEnabled;
                                                       cancelButtonTitle:NSLocalizedString(@"Okay", nil)
                                                       otherButtonTitles:nil, nil];
             [alertView show];
-            [alertView release];
     }
 
     [self.listViewController showFavoritesButton:self];
@@ -1025,7 +1011,6 @@ BOOL searchViewEnabled;
         NSRange guideIdRange = [guideMatches[0] rangeAtIndex:2];
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         iGuideId = [formatter numberFromString:[url substringWithRange:guideIdRange]];
-        [formatter release];
         [[iFixitAPI sharedInstance] getGuide:iGuideId forObject:self withSelector:@selector(gotGuide:)];
         
         return YES;
@@ -1061,12 +1046,10 @@ BOOL searchViewEnabled;
         
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone &&
             [self.listViewController.topViewController respondsToSelector:@selector
-             (addGuidesToTableView:)] && [results[@"guides"] count]) {
+             (addGuidesToTableView:)] && [(NSArray *)results[@"guides"] count]) {
                 [vc addGuidesToTableView:results[@"guides"]];
             }
 
-        [vc release];
-        
         categorySearchResult = nil;
         
         [self.listViewController.categoryTabBarViewController updateTabBar:results];
@@ -1078,7 +1061,6 @@ BOOL searchViewEnabled;
                                                   cancelButtonTitle:NSLocalizedString(@"Okay", nil)
                                                   otherButtonTitles:nil, nil];
         [alertView show];
-        [alertView release];
     }
     
     [self.listViewController showFavoritesButton:self];
@@ -1101,20 +1083,6 @@ BOOL searchViewEnabled;
     self.searchBar = nil;
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
-}
-
-- (void)dealloc {
-    [_scannerBarView release];
-    [_scannerIcon release];
-    [searchBar release];
-    [searchResults release];
-    [self.listViewController release];
-    [self.categories release];
-    [self.categoryTypes release];
-    [self.categoryResults release];
-    
-    [_tableView release];
-    [super dealloc];
 }
 
 @end

@@ -50,8 +50,8 @@ static NSMutableArray *prioritySites = nil;
     if ((self = [super initWithNibName:nil bundle:nil])) {
         // Custom initialization
         if (!sites) {
-            sites = [[NSMutableArray array] retain];
-            prioritySites = [[NSMutableArray array] retain];
+            sites = [NSMutableArray array];
+            prioritySites = [NSMutableArray array];
         }
         hasMoreSites = YES;
         simple = simple_;
@@ -69,12 +69,9 @@ static NSMutableArray *prioritySites = nil;
         UIActivityIndicatorViewStyleGray : UIActivityIndicatorViewStyleWhite;
     [container addSubview:spinner];
     [spinner startAnimating];
-    [spinner release];
     
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithCustomView:container];
     self.navigationItem.rightBarButtonItem = button;
-    [container release];
-    [button release];
 }
 - (void)hideLoading {
     loading = NO;
@@ -125,8 +122,6 @@ static NSMutableArray *prioritySites = nil;
         // If we failed to get fresh data, use the cached site list if available.
         NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[self storedListPath]];
         if (![sites count] && dict) {
-            [sites release];
-            [prioritySites release];
             sites = [[dict objectForKey:@"sites"] mutableCopy];
             prioritySites = [[dict objectForKey:@"prioritySites"] mutableCopy];
             [self.tableView reloadData];
@@ -138,7 +133,6 @@ static NSMutableArray *prioritySites = nil;
                                                   cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                   otherButtonTitles:NSLocalizedString(@"Retry", nil), nil];
             [alert show];
-            [alert release];
         }
     }
 }
@@ -185,10 +179,10 @@ static NSMutableArray *prioritySites = nil;
         self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
     }
     
-    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back"
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back"
                                                                               style:UIBarButtonItemStyleBordered
                                                                              target:nil
-                                                                             action:nil] autorelease];
+                                                                             action:nil];
     // Update loading display status.
     if (loading)
         [self showLoading];
@@ -303,7 +297,7 @@ static NSMutableArray *prioritySites = nil;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     if (searching) {
@@ -354,7 +348,6 @@ static NSMutableArray *prioritySites = nil;
     if (!searching && simple && indexPath.row == [sitesArray count]) {
         DozukiSelectSiteViewController *vc = [[DozukiSelectSiteViewController alloc] initWithSimple:NO];
         [self.navigationController pushViewController:vc animated:YES];
-        [vc release];
     }
     else {
         NSDictionary *site = [sitesArray objectAtIndex:indexPath.row];
@@ -370,11 +363,6 @@ static NSMutableArray *prioritySites = nil;
         [self loadMore];
 }
 
-- (void)dealloc {
-    [searchBar release];
-    [searchResults release];
-    [super dealloc];
-}
 - (void)viewDidUnload {
     [self setSearchBar:nil];
     [super viewDidUnload];

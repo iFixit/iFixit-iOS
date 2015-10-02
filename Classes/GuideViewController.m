@@ -41,7 +41,6 @@
         GuideBookmarker *b = [[GuideBookmarker alloc] init];
         b.delegate = self;
         self.bookmarker = b;
-        [b release];
         
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         
@@ -190,7 +189,6 @@
                                                   cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                   otherButtonTitles:NSLocalizedString(@"Try Again", nil), nil];
         [alertView show];
-        [alertView release];
         return;
     }
     
@@ -206,7 +204,6 @@
         [controllers addObject:[NSNull null]];
     }
     self.viewControllers = controllers;
-    [controllers release];
 	
     // a page is the width of the scroll view
     scrollView.pagingEnabled = YES;
@@ -276,7 +273,6 @@
 		}
 
         [viewControllers replaceObjectAtIndex:page withObject:controller];
-        [controller release];
     }
 	
     // add the controller's view to the scroll view
@@ -432,16 +428,7 @@
 }
 
 - (void)dealloc {
-    [_guide release];
-    
-    [spinner release];
-    [scrollView release];
-    [pageControl release];
-    [bookmarker release];
-     
     [UIApplication sharedApplication].idleTimerDisabled = NO;
-     
-    [super dealloc];
 }
 
 

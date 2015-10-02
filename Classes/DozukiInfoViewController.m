@@ -19,7 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.dssvc = [[[DozukiSelectSiteViewController alloc] initWithSimple:YES] autorelease];
+        self.dssvc = [[DozukiSelectSiteViewController alloc] initWithSimple:YES];
         self.title = NSLocalizedString(@"Back", nil);
     }
     return self;
@@ -49,8 +49,4 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)dealloc {
-    [dssvc release];
-    [super dealloc];
-}
 @end

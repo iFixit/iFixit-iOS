@@ -9,7 +9,7 @@
 #import "iFixitAPI.h"
 #import "iFixitAppDelegate.h"
 #import "Guide.h"
-#import "JSON.h"
+#import "SBJSON.h"
 #import "Config.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
@@ -531,7 +531,6 @@ static int volatile openConnections = 0;
                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                           otherButtonTitles:nil, nil];
     [alert show];
-    [alert release];
 }
 
 + (void)checkCredentialsForViewController:(id)viewController {
@@ -558,10 +557,8 @@ static int volatile openConnections = 0;
         // Wrap this in a navigation controller to avoid side effects from new status bar in iOS7
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:viewControllerToPresent];
         [viewController presentModalViewController:nvc animated:YES];
-        [nvc release];
     }
 
-    [viewControllerToPresent release];
 }
 
 // Build our own custom user agent and set it

@@ -36,8 +36,6 @@ static GuideBookmarks *sharedBookmarks = nil;
 }
 
 + (void)reset {
-    if (sharedBookmarks)
-        [sharedBookmarks release];
     sharedBookmarks = nil;
 }
 
@@ -106,15 +104,15 @@ static GuideBookmarks *sharedBookmarks = nil;
     
     if (guide.image) {
         NSString *standardURL = [[guide.image URLForSize:@"standard"] absoluteString];
-        [guideImages addObject:[SDImageCache cacheFilenameForKey:standardURL]];
+        // TODO[guideImages addObject:[SDImageCache cacheFilenameForKey:standardURL]];
     }
     
     for (GuideStep *step in guide.steps) {
         for (GuideImage *image in step.images) {
             NSString *thumbnailURL = [[image URLForSize:@"thumbnail"] absoluteString];
             NSString *largeURL = [[image URLForSize:@"large"] absoluteString];
-            [guideImages addObject:[SDImageCache cacheFilenameForKey:thumbnailURL]];
-            [guideImages addObject:[SDImageCache cacheFilenameForKey:largeURL]]; 
+            //TODO[guideImages addObject:[SDImageCache cacheFilenameForKey:thumbnailURL]];
+            //TODO[guideImages addObject:[SDImageCache cacheFilenameForKey:largeURL]];
         }
       
         if (step.video) {
@@ -297,8 +295,7 @@ static GuideBookmarks *sharedBookmarks = nil;
          */
         break;
     }
-        
-    [f release];
+    
 }
 
 - (void)announceUpdate {
@@ -334,7 +331,6 @@ static GuideBookmarks *sharedBookmarks = nil;
         
         NSArray *chunks = [currentItem componentsSeparatedByString:@"_"];
         NSNumber *iGuideid = [f numberFromString:[chunks objectAtIndex:1]];
-        [f release];
         
         guide.iGuideid = iGuideid;
         [self removeGuide:guide];
@@ -360,7 +356,7 @@ static GuideBookmarks *sharedBookmarks = nil;
     
     if (guide.image) {
         imagesRemaining++;
-        [[SDWebImageManager sharedManager] downloadWithURL:[guide.image URLForSize:@"standard"] delegate:self retryFailed:YES];
+        // TODO [[[SDWebImageManager sharedManager] downloadWithURL:[guide.image URLForSize:@"standard"] delegate:self retryFailed:YES];
     }
 
     for (GuideStep *step in guide.steps) {
@@ -369,8 +365,8 @@ static GuideBookmarks *sharedBookmarks = nil;
         }
         
         for (GuideImage *image in step.images) {
-            [[SDWebImageManager sharedManager] downloadWithURL:[image URLForSize:@"thumbnail"] delegate:self retryFailed:YES];
-            [[SDWebImageManager sharedManager] downloadWithURL:[image URLForSize:@"large"] delegate:self retryFailed:YES];
+            // TODO [[SDWebImageManager sharedManager] downloadWithURL:[image URLForSize:@"thumbnail"] delegate:self retryFailed:YES];
+            // TODO [[SDWebImageManager sharedManager] downloadWithURL:[image URLForSize:@"large"] delegate:self retryFailed:YES];
         }
         
     }
@@ -604,22 +600,6 @@ static GuideBookmarks *sharedBookmarks = nil;
         
     }
     return self;
-}
-
-- (void)dealloc {
-    [guides release];
-    [images release];
-    [queue release];
-    [documents release];
-    [guidesFilePath release];
-    [imagesFilePath release];
-    [videosFilePath release];
-    [documentsFilePath release];
-    [queueFilePath release];
-    [currentItem release];
-    [bookmarker release];
-    
-    [super dealloc];
 }
 
 @end

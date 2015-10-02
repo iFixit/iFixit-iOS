@@ -20,17 +20,7 @@
 	user.iImageid 		= ![dict[@"image"] isEqual:[NSNull null]] ? dict[@"image"][@"id"] : nil;
 	user.session 		= dict[@"authToken"];
     
-	return [user autorelease];
-}
-
-- (void)dealloc {
-    [data release];
-    [iUserid release];
-    [username release];
-    [iImageid release];
-    [session release];
-    
-    [super dealloc];
+	return user;
 }
 
 @end

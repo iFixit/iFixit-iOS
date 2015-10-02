@@ -50,7 +50,6 @@
 #import "TapDetectingImageView.h"
 
 @implementation TapDetectingImageView
-@synthesize delegate;
 
 - (id)initWithImage:(UIImage *)image {
     self = [super initWithImage:image];
@@ -67,10 +66,6 @@
         [self addGestureRecognizer:singleTap];
         [self addGestureRecognizer:doubleTap];
         [self addGestureRecognizer:twoFingerTap];
-        
-        [singleTap release];
-        [doubleTap release];
-        [twoFingerTap release];
     }
     return self;
 }

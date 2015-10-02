@@ -28,12 +28,6 @@
 
 - (void)dealloc {
 	navItem = nil;
-	
-	[backBarButton release];
-	[forwardBarButton release];
-	[actionBarButton release];
-	
-    [super dealloc];
 }
 
 - (id)initWithAddress:(NSString*)string {
@@ -87,16 +81,13 @@
             navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,0,CGRectGetWidth(deviceBounds),44)];
             navBar.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin;
 			[self.view addSubview:navBar];
-			[navBar release];
             
 			navItem = [[UINavigationItem alloc] initWithTitle:self.title];
 			[navBar setItems:[NSArray arrayWithObject:navItem] animated:YES];
-			[navItem release];
             
             toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.bounds)-44, CGRectGetWidth(deviceBounds), 44)];
             toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth;
             [self.view addSubview:toolbar];
-            [toolbar release];
         }
         
         else {
@@ -112,16 +103,13 @@
                       ];
             navBar.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin;
 			[self.view addSubview:navBar];
-			[navBar release];
 			
 			UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissController)];
 			
 			navItem = [[UINavigationItem alloc] initWithTitle:nil];
 			navItem.leftBarButtonItem = doneButton;
-			[doneButton release];
 			
 			[navBar setItems:[NSArray arrayWithObject:navItem] animated:YES];
-			[navItem release];
 			
 			titleLeftOffset = showsDoneButton ? [@"Done" sizeWithFont:[UIFont boldSystemFontOfSize:12]].width+33 : 20;
 		}
@@ -191,7 +179,6 @@
         [self tintNavBar];
         
 		[navBar addSubview:titleLabel];	
-		[titleLabel release];
 		
 		[navBar addSubview:refreshStopButton];	
 		[navBar addSubview:backButton];	
@@ -328,14 +315,12 @@
         doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissController)];
         
         [navItem setLeftBarButtonItem:doneButton animated:YES];
-        [doneButton release];
 
     }
     
     if (!self.navigationItem.leftBarButtonItem) {
         doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissController)];
         [self.navigationItem setLeftBarButtonItem:doneButton animated:YES];
-        [doneButton release];
 
     }
 
@@ -374,10 +359,6 @@
 	NSArray *newButtons = [NSArray arrayWithObjects:fixedSpace, backBarButton, flexSpace, forwardBarButton, flexSpace, refreshStopBarButton, flexSpace, actionBarButton, fixedSpace, nil];
 	[toolbar setItems:newButtons];
     [toolbar sizeToFit];
-    	
-	[refreshStopBarButton release];
-    [flexSpace release];
-    [fixedSpace release];
 }
 
 
@@ -390,7 +371,6 @@
     else if (!navItem.leftBarButtonItem) {
         UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissController)];
         [navItem setLeftBarButtonItem:doneButton animated:YES];
-        [doneButton release];
     }
     
 	if(![self.webView canGoBack])
@@ -521,8 +501,6 @@
 		[actionSheet showFromRect:CGRectOffset(actionButton.frame, 0, -5) inView:self.view animated:YES];
 	else if(self.navigationController)
 		[actionSheet showFromRect:CGRectOffset(actionButton.frame, 0, -49) inView:self.view animated:YES];
-		
-	[actionSheet release];
 }
 
 
@@ -551,7 +529,6 @@
 		emailComposer.modalPresentationStyle = UIModalPresentationFormSheet;
 		
 		[self presentModalViewController:emailComposer animated:YES];
-		[emailComposer release];
 	}
 	
 }

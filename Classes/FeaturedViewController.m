@@ -31,7 +31,7 @@
     }
     
     CGRect frame = CGRectMake(self.view.frame.size.width / 2.0 - 60, 400.0, 120.0, 120.0);
-    self.loading = [[[WBProgressHUD alloc] initWithFrame:frame] autorelease];
+    self.loading = [[WBProgressHUD alloc] initWithFrame:frame];
     self.loading.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [loading showInView:self.gvc.view];
 }
@@ -44,17 +44,16 @@
 
 - (id)init {
     if ((self = [super init])) {
-        self.pvc = [[[PastFeaturesViewController alloc] init] autorelease];
+        self.pvc = [[PastFeaturesViewController alloc] init];
         self.pvc.delegate = self;
 
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:pvc];
         nvc.navigationBar.barStyle = UIBarStyleBlack;
         nvc.navigationBar.translucent = NO;
-        self.poc = [[[UIPopoverController alloc] initWithContentViewController:nvc] autorelease];
+        self.poc = [[UIPopoverController alloc] initWithContentViewController:nvc];
         poc.popoverContentSize = CGSizeMake(320.0, 500.0);
-        [nvc release];
         
-        self.gvc = [[[DMPGridViewController alloc] initWithDelegate:nil] autorelease];
+        self.gvc = [[DMPGridViewController alloc] initWithDelegate:nil];
         self.viewControllers = [NSArray arrayWithObject:gvc];
         self.gvc.delegate = self;
         
@@ -73,7 +72,6 @@
                                               otherButtonTitles:NSLocalizedString(@"Retry", nil), nil];
         alert.tag = 1;
         [alert show];
-        [alert release];
         return;
     }
     
@@ -113,7 +111,6 @@
     imageView.backgroundColor = [UIColor lightGrayColor];
     [imageView setImageWithURL:[NSURL URLWithString:[[_collection objectForKey:@"image"] objectForKey:@"large"]]];
     [headerView addSubview:imageView];
-    [imageView release];
 
     // Add a gradient overlay.
     UIImageView *gradientView = [[UIImageView alloc] initWithFrame:headerView.frame];
@@ -123,7 +120,6 @@
     gradientView.contentMode = UIViewContentModeScaleToFill;
     gradientView.clipsToBounds = YES;
     [headerView addSubview:gradientView];
-    [gradientView release];
     
     // Add the giant text.
     UILabel *titleLabel = [[UILabel alloc] init];
@@ -146,17 +142,14 @@
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = UITextAlignmentRight;
     [headerView addSubview:titleLabel];
-    [titleLabel release];
     
     // Apply!
     self.gvc.tableView.tableHeaderView = headerView;
-    [headerView release];
 }
 
 - (void)setCollection:(NSDictionary *)collection {
     // Save the collection.
-    [_collection release];
-    _collection = [collection retain];
+    _collection = collection;
     
     // Reset the guides list.
     self.guides = collection[@"guides"];
@@ -191,7 +184,6 @@
         }
         
         self.gvc.navigationItem.rightBarButtonItem = refreshItem;
-        [refreshItem release];
         return;
     }
     
@@ -199,7 +191,7 @@
         [self loadCollections];
     }
     else if (alertView.tag == 2) {
-        [self loadGuides];
+        // TODO [self loadGuides];
     }
 }
 
@@ -226,7 +218,6 @@
                                                               target:self
                                                               action:@selector(showPastFeatures:)];
     self.gvc.navigationItem.leftBarButtonItem = button;
-    [button release];
     
     [self updateTitleAndHeader];
 }
@@ -245,15 +236,6 @@
 - (void)dealloc {
     self.gvc.delegate = nil;
     self.pvc.delegate = nil;
-    
-    [poc release];
-    [gvc release];
-    [pvc release];
-    [_collection release];
-    [_guides release];
-    [loading release];
-    
-    [super dealloc];
 }
 
 - (void)showPastFeatures:(id)sender {
@@ -293,8 +275,6 @@
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentModalViewController:nc animated:YES];
-    [vc release];
-    [nc release];
 }
 
 @end

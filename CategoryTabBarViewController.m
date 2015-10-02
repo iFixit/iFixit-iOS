@@ -79,7 +79,6 @@ BOOL onTablet, initialLoad, showTabBar;
         [self.view addSubview:filler];
         
         self.toolBarFillerImage = filler;
-        [filler release];
         
         [self createBrowseButton];
         [self.view.subviews[1] addSubview:self.browseButton];
@@ -129,7 +128,6 @@ BOOL onTablet, initialLoad, showTabBar;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
     [view setBackgroundColor:[Config currentConfig].toolbarColor];
     [self.view addSubview:view];
-    [view release];
 }
 
 - (void)browseButtonPushed {
@@ -248,7 +246,6 @@ BOOL onTablet, initialLoad, showTabBar;
     
     self.tabBarViewControllers = viewControllers;
     [self setViewControllers:self.tabBarViewControllers animated:YES];
-    [viewControllers release];
     
     // Disable our tabBarItems since we don't show it on the root view
     [self enableTabBarItems:NO];
@@ -319,9 +316,9 @@ BOOL onTablet, initialLoad, showTabBar;
 - (void)initializeViewControllers {
     // Only create the references if we need to
     if (onTablet) {
-        self.detailGridViewController = [[[DetailGridViewController alloc] init] autorelease];
+        self.detailGridViewController = [[DetailGridViewController alloc] init];
     } else {
-        self.categoriesViewController = [[[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil] autorelease];
+        self.categoriesViewController = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
         self.listViewController = [[ListViewController alloc] initWithRootViewController:self.categoriesViewController];
     }
     
@@ -408,7 +405,7 @@ BOOL onTablet, initialLoad, showTabBar;
                         
                         // Only on a tablet can the Guides tab be enabled/disabled
                         if (onTablet)
-                            [self.tabBar.items[self.GUIDES] setEnabled:[results[@"guides"] count] > 0];
+                            [self.tabBar.items[self.GUIDES] setEnabled:[(NSArray *)results[@"guides"] count] > 0];
                         
                         [self.tabBar.items[self.MORE_INFO] setEnabled:[results[@"contents_rendered"] length] > 0];
                         
@@ -525,7 +522,7 @@ BOOL onTablet, initialLoad, showTabBar;
             [[viewController webView] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.categoryMetaData[@"solutions"][@"url"]]]];
         }
         
-        [viewController setCategory:category];
+        [(CategoryWebViewController *)viewController setCategory:category];
         [viewController setListViewController:self.listViewController];
         
         // Hack to create the back arrow on a Navigation bar that is not using a navigation controller
@@ -552,7 +549,7 @@ BOOL onTablet, initialLoad, showTabBar;
             [viewController setCategoryMetaData:results];
             
             // Only on iPhone do we want to add a guides section to the tableView
-            if (!onTablet && [viewController respondsToSelector:@selector(addGuidesToTableView:)] && [results[@"guides"] count] > 0) {
+            if (!onTablet && [viewController respondsToSelector:@selector(addGuidesToTableView:)] && [(NSArray *)results[@"guides"] count] > 0) {
                 // Add guides to our top level view controller's tableview
                 [viewController addGuidesToTableView:results[@"guides"]];
             }
@@ -596,8 +593,8 @@ BOOL onTablet, initialLoad, showTabBar;
 - (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc {
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        [pc.contentViewController navigationBar].translucent = NO;
-        [pc.contentViewController navigationBar].barStyle = UIBarStyleBlack;
+        //TODO[pc.contentViewController navigationBar].translucent = NO;
+        //TODO[pc.contentViewController navigationBar].barStyle = UIBarStyleBlack;
     }
     
     self.popOverController = pc;

@@ -20,7 +20,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if ((self = [super initWithCoder:aDecoder])) {
         self.delegate = self;
-        self.formatter = [[[NSNumberFormatter alloc] init] autorelease];
+        self.formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     }
     return self;
@@ -29,7 +29,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         self.delegate = self;
-        self.formatter = [[[NSNumberFormatter alloc] init] autorelease];
+        self.formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     }
     return self;
@@ -76,7 +76,6 @@
             [delegate.window.rootViewController presentModalViewController:vc animated:YES];
         else
             [modalDelegate presentModalViewController:vc animated:YES];            
-        [vc release];
 		return NO;
 	}
     
@@ -97,7 +96,6 @@
             else
                 [modalDelegate presentModalViewController:viewControllerToPresent animated:YES];
             
-            [viewControllerToPresent release];
             return NO;
         }
     }
@@ -112,7 +110,6 @@
     // Wrap our custom webview controller in a navigation controller on iPhone
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
-        [webViewController release];
         
         return navigationController;
     }
@@ -140,10 +137,4 @@
     }
 }
 
-- (void)dealloc {
-    [formatter release];
-    [externalURL release];
-    
-    [super dealloc];
-}
 @end

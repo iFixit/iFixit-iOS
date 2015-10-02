@@ -45,17 +45,7 @@
 	for (NSDictionary *line in lines)
 		[guideStep.lines addObject:[GuideStepLine guideStepLineWithDictionary:line]];
 	
-	return [guideStep autorelease];
-}
-
-- (void)dealloc {
-    [title release];
-    [lines release];
-    [images release];
-    [video release];
-    [embed release];
-    
-    [super dealloc];
+	return guideStep;
 }
 
 @end

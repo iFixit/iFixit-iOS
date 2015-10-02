@@ -17,24 +17,11 @@
 	GuideImage *guideImage = [[GuideImage alloc] init];
 	guideImage.iImageid = dict[@"id"];
 	guideImage.url = dict[@"original"];
-	return [guideImage autorelease];
+	return guideImage;
 }
 
 - (NSURL *)URLForSize:(NSString *)size {
    return [NSURL URLWithString:[NSString stringWithFormat:@"%@.%@", url, size]];
-}
-
-- (void)dealloc {
-    [iImageid release];
-    [url release];
-    [mini release];
-    [thumbnail release];
-    [standard release];
-    [medium release];
-    [large release];
-    [huge release];
-    
-    [super dealloc];
 }
 
 @end

@@ -152,7 +152,7 @@
     CGFloat height = self.frame.size.height;
     
     // Image
-    self.imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, height)] autorelease];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, height)];
     _imageView.backgroundColor = [UIColor whiteColor];
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
     _imageView.clipsToBounds = YES;
@@ -161,19 +161,12 @@
     // Title
     UIView *overlayView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 175.0, width, 50.0)];
     overlayView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
-    self.textLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10.0, 5.0, width - 20.0, 40.0)] autorelease];
+    self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 5.0, width - 20.0, 40.0)];
     _textLabel.font = [UIFont boldSystemFontOfSize:16.0];
     _textLabel.textColor = [UIColor whiteColor];
     _textLabel.backgroundColor = [UIColor clearColor];
     [overlayView addSubview:_textLabel];
     [self addSubview:overlayView];
-    [overlayView release];
-}
-
-- (void)dealloc {
-    [_imageView release];
-    [_textLabel release];
-    [super dealloc];
 }
 
 @end

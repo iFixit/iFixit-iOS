@@ -50,11 +50,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc {
-    [_webView release];
-    [_categoryNavigationBar release];
-    [super dealloc];
-}
 - (void)viewDidUnload {
     [self setWebView:nil];
     [self setCategoryNavigationBar:nil];
@@ -90,7 +85,7 @@
     
     CGRect frame = CGRectMake(self.view.frame.size.width/ 2.0 - 60, yCoord, 120.0, 120.0);
     
-    self.loading = [[[WBProgressHUD alloc] initWithFrame:frame] autorelease];
+    self.loading = [[WBProgressHUD alloc] initWithFrame:frame];
     self.loading.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     
     [self.loading showInView:self.view];
@@ -157,8 +152,8 @@
     self.categoryNavigationBar.hidden = NO;
     self.categoryNavigationBar.translucent = NO;
     
-    UINavigationItem *backButtonItem = [[[UINavigationItem alloc] initWithTitle:@""] autorelease];
-    UINavigationItem *titleItem = [[[UINavigationItem alloc] initWithTitle:@""] autorelease];
+    UINavigationItem *backButtonItem = [[UINavigationItem alloc] initWithTitle:@""];
+    UINavigationItem *titleItem = [[UINavigationItem alloc] initWithTitle:@""];
     UINavigationItem *favoritesButtonItem = self.categoryNavigationBar.items[0];
     
     // Hack to get a back button, title view, and a right bar button item on a navigation bar without having to use a navigation controller

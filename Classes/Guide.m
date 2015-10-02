@@ -69,7 +69,7 @@
     
 	// Flags
 	
-	return [guide autorelease];
+	return guide;
 }
 
 -(NSNumber*)getAbsoluteModifiedDate {
@@ -80,30 +80,6 @@
     return [@[[NSNumber numberWithInteger:[guideData[@"modified_date"] integerValue]],
               [NSNumber numberWithInteger:[guideData[@"prereq_modified_date"] integerValue]]
             ] valueForKeyPath:@"@max.intValue"];
-}
-
-- (void)dealloc {
-    [data release];
-    [title release];
-    [category release];
-    [subject release];
-    [author release];
-    [timeRequired release];
-    [difficulty release];
-    [introduction release];
-    [summary release];
-    [introduction_rendered release];
-    [image release];
-    
-    [documents release];
-    [parts release];
-    [tools release];
-    [flags release];
-    
-    [prereqs release];
-    [steps release];
-    
-    [super dealloc];
 }
 
 @end

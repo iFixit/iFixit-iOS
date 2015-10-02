@@ -33,7 +33,6 @@
         vc.delegate = self;
         self.lvc = vc;
         self.devices = [NSMutableArray array];
-        [vc release];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(refresh)
@@ -45,8 +44,8 @@
 }
 
 - (void)refreshHierarchy {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
+    @autoreleasepool {
     NSMutableDictionary *b = [NSMutableDictionary dictionary];
     
     // Construct the key-value list by device name.
@@ -91,22 +90,12 @@
             label.text = NSLocalizedString(@"You haven't saved any guides for offline view yet. When you do, they'll appear here.", nil);
             [footer addSubview:label];
             self.tableView.tableFooterView = footer;
-            [label release];
-            [footer release];
         }
         
         [self.tableView reloadData];
     });
     
-    [pool drain];
-}
-
-- (void)dealloc {
-    [bookmarks release];
-    [lvc release];
-    [devices release];
-    
-    [super dealloc];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -136,11 +125,11 @@
 
     [b addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     
-    return [b autorelease];
+    return b;
 }
 
 - (void)applyPaddedFooter {
-	UIView *footer = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 45)] autorelease];
+	UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 45)];
 	footer.backgroundColor = [UIColor clearColor];
 	self.tableView.tableFooterView = footer;
 }
@@ -150,8 +139,6 @@
     
     self.editButton = barButtonItem;
     self.navigationItem.rightBarButtonItem = self.editButton;
-    
-    [barButtonItem release];
 }
 
 - (void)toggleEdit {
@@ -194,8 +181,6 @@
                                                                    action:@selector(doneButtonPushed)];
     
     self.navigationItem.leftBarButtonItem = button;
-    
-    [button release];
     
     [self configureAppearance];
 }
@@ -269,7 +254,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     NSString *key = [devices objectAtIndex:section];
-    return [[bookmarks objectForKey:key] count];
+    return [(NSArray *)[bookmarks objectForKey:key] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -282,7 +267,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
         
     // Configure the cell...
@@ -351,9 +336,6 @@
         [delegate.window.rootViewController presentModalViewController:nvc animated:YES];
     }
     
-    [vc release];
-    [nvc release];
-    
     // Refresh any changes.
     [[GuideBookmarks sharedBookmarks] addGuideid:guide.iGuideid];
     
@@ -392,7 +374,6 @@
                                          destructiveButtonTitle:NSLocalizedString(@"Logout", nil)
                                               otherButtonTitles:nil];
     [sheet showFromRect:self.tableView.tableHeaderView.frame inView:self.view animated:YES];
-    [sheet release];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
