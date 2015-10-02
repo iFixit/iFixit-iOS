@@ -6,7 +6,7 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
-@class User;
+#import "User.h"
 
 @interface iFixitAPI : NSObject
 
