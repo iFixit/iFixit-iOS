@@ -4,6 +4,15 @@
       "idiom" : "universal",
       "filename" : "FA-Featured.png",
       "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "FA-Featured-2x.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
