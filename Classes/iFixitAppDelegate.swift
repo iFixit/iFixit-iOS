@@ -193,7 +193,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         window!.makeKeyAndVisible()
     }
     
-    /**
+    /*
     * NOTE: This is a dirty hack, only to be used with iOS 7 and only on iPad.
     * Short Answer : iOS 7 on iPad will "gray" out all
     * UIButtons/UINavigationButtons/UITabBarItems when selecting a nanosite.
