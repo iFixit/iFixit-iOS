@@ -11,7 +11,7 @@
 #import "CategoriesViewController.h"
 #import "CategoryWebViewController.h"
 #import "iFixitAPI.h"
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import <QuartzCore/QuartzCore.h>
@@ -598,7 +598,7 @@ BOOL onTablet, initialLoad, showTabBar;
                             double width;
                             
                             // Nasty...nasty hack
-                            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0") && UIDeviceOrientationIsLandscape(orientation)) {
+                            if (UIDeviceOrientationIsLandscape(orientation)) {
                                 width = [[UIScreen mainScreen] bounds].size.height;
                             } else {
                                 width = [[UIScreen mainScreen] bounds].size.width;

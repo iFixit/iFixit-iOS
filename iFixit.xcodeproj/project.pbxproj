@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3623260D0F684500981E51 /* iFixitAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* iFixitAppDelegate.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2804200B108E984D000629CD /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28042008108E984D000629CD /* CategoriesViewController.m */; };
@@ -124,8 +123,6 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* iFixitAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iFixitAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* iFixitAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iFixitAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* iFixit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFixit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28042007108E984D000629CD /* CategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesViewController.h; sourceTree = "<group>"; };
@@ -360,8 +357,6 @@
 				DA1977211473009A00CD6305 /* DetailGridViewController.m */,
 				DA38111B147AE2C000BBFB9C /* DetailGridViewControllerDelegate.h */,
 				C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */,
-				1D3623240D0F684500981E51 /* iFixitAppDelegate.h */,
-				1D3623250D0F684500981E51 /* iFixitAppDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -879,7 +874,6 @@
 			files = (
 				C0538CE41BC028650031B35D /* GuideStepLine.swift in Sources */,
 				9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */,
-				1D3623260D0F684500981E51 /* iFixitAppDelegate.m in Sources */,
 				2804200B108E984D000629CD /* CategoriesViewController.m in Sources */,
 				C10F2712120CE5900027A28D /* Guide.m in Sources */,
 				C10F271A120CE6980027A28D /* iFixitAPI.m in Sources */,

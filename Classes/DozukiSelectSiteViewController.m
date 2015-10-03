@@ -7,7 +7,7 @@
 //
 
 #import "DozukiSelectSiteViewController.h"
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 #import "Config.h"
 #import "iFixitAPI.h"
 #import "UIColor+Hex.h"

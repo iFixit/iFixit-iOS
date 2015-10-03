@@ -18,7 +18,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "User.h"
 #import "ListViewController.h"
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 
 @implementation LoginViewController
 

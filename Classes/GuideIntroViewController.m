@@ -13,7 +13,7 @@
 #import "Config.h"
 #import "SVWebViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 #import "iFixitAPI.h"
 #import "User.h"
 

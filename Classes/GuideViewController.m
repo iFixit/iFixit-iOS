@@ -6,7 +6,7 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 #import "GuideViewController.h"
 #import "iFixitAPI.h"
 #import "GuideIntroViewController.h"
@@ -145,20 +145,13 @@
             // A nasty hack to make sure our view frame isn't cut off.
             // In iOS 8, screenSize.height returns a different value before and after
             // the view is drawn, so it'd be wrong the first time around. So we hardcode it.
-            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
                 frame = CGRectMake(0, 0, 1024.0, 724.0);
-            } else {
-                frame = CGRectMake(0, 0, screenSize.height, screenSize.width - 44);
-            }
         }
         // Portrait
         else {
             spinner.frame = CGRectMake(365.0, 450.0, 37.0, 37.0);
-            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+
                 frame = CGRectMake(0, 0, 768.0, 980.0);
-            } else {
-                frame = CGRectMake(0, 0, screenSize.width, screenSize.height - 44);
-            }
         }        
     }
     // iPhone

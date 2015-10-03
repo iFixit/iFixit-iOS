@@ -6,7 +6,7 @@
 //  Copyright iFixit 2010. All rights reserved.
 //
 
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 #import "Config.h"
 #import "CategoriesViewController.h"
 #import "iPhoneDeviceViewController.h"

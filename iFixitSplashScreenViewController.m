@@ -8,7 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "iFixitSplashScreenViewController.h"
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 
 @interface iFixitSplashScreenViewController ()
 

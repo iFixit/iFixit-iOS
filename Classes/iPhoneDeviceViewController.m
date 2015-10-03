@@ -11,7 +11,7 @@
 #import "DictionaryHelper.h"
 #import "GuideCell.h"
 #import "UIImageView+WebCache.h"
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 #import "GuideViewController.h"
 #import "Config.h"
 #import "ListViewController.h"

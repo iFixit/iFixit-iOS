@@ -7,7 +7,7 @@
 //
 
 #import "ListViewController.h"
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 #import "BookmarksViewController.h"
 #import "Config.h"
 #import "CategoriesViewController.h"

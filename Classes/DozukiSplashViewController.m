@@ -9,7 +9,7 @@
 #import "DozukiSplashViewController.h"
 #import "DozukiInfoViewController.h"
 #import "DozukiSelectSiteViewController.h"
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 
 @implementation DozukiSplashViewController
 

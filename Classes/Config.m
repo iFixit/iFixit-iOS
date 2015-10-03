@@ -7,7 +7,7 @@
 //
 
 #import "Config.h"
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 
 static Config *currentConfig = nil;
 

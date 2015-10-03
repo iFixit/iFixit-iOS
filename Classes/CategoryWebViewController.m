@@ -11,7 +11,7 @@
 #import "BookmarksViewController.h"
 #import "WBProgressHUD.h"
 #import "Config.h"
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 
 @interface CategoryWebViewController ()
 

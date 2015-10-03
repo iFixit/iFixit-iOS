@@ -7,7 +7,7 @@
 //
 
 #import "GuideCatchingWebView.h"
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 #import "Config.h"
 #import "RegexKitLite.h"
 #import "SVWebViewController.h"

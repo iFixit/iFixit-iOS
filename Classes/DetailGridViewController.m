@@ -12,7 +12,7 @@
 #import "DictionaryHelper.h"
 #import "GuideViewController.h"
 #import "DMPGridViewCell.h"
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 #import "Config.h"
 #import "UIImageView+WebCache.h"
 

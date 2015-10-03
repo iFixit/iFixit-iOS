@@ -10,7 +10,6 @@
 #import "GuideBookmarks.h"
 #import "Guide.h"
 #import "iFixit-Swift.h"
-//#import "iFixitAppDelegate.h"
 #import "iFixitAPI.h"
 #import "SDWebImageManager.h"
 #import "LoginViewController.h"

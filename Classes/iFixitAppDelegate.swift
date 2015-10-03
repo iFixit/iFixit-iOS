@@ -62,7 +62,9 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         config.site = ConfigIFixit
         
         /* Track. */
+#if !DEBUG
         self.setupAnalytics()
+#endif
         
         /* iOS appearance */
         self.configureAppearance()
@@ -163,7 +165,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
             refreshUIWindow()
         }
         
-        if (iFixitAPI.sharedInstance().user == nil /* TODO && Config.currentConfig().private*/) {
+        if (iFixitAPI.sharedInstance().user == nil && Config.currentConfig().`private`) {
             // Private sites require immediate login.
             let vc = LoginViewController()
             vc.message = NSLocalizedString("Private site. Authentication required.", comment:"")
