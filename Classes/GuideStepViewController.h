@@ -10,6 +10,7 @@
 #import "GuideViewController.h"
 #import "SDWebImageManager.h"
 #import "iFixitAPI.h"
+#import "iFixit-Swift.h"
 
 @class GuideStep;
 @class GuideCatchingWebView;

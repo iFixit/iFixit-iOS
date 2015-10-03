@@ -7,7 +7,7 @@
 //
 
 #import "Guide.h"
-#import "GuideStep.h"
+#import "iFixit-Swift.h"
 
 @implementation Guide
 

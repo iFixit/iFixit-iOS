@@ -6,9 +6,7 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
-#import "GuideImage.h"
-//#import "GuideStep.h"
-//#import "GuideStepLine.h"
+@class GuideImage;
 
 @interface Guide : NSObject
 

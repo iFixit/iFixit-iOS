@@ -6,10 +6,10 @@
 //  Copyright 2011 iFixit. All rights reserved.
 //
 
+#import "iFixit-Swift.h"
 #import "GuideBookmarker.h"
 #import "GuideBookmarks.h"
 #import "Guide.h"
-#import "GuideImage.h"
 #import "Config.h"
 #import "iFixitAPI.h"
 #import "User.h"

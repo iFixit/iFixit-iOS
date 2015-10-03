@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GuideImage.h"
+#import "iFixit-Swift.h"
 #import "TapDetectingImageView.h"
 
 @interface GuideImageViewController : UIViewController <UIScrollViewDelegate, TapDetectingImageViewDelegate> {
