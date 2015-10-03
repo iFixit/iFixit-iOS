@@ -8,7 +8,6 @@
 
 #import "BookmarksViewController.h"
 #import "GuideBookmarks.h"
-#import "Guide.h"
 #import "iFixit-Swift.h"
 #import "iFixitAPI.h"
 #import "SDWebImageManager.h"

@@ -8,7 +8,6 @@
 
 #import "iFixitAPI.h"
 #import "iFixit-Swift.h"
-#import "Guide.h"
 #import "SBJSON.h"
 #import "Config.h"
 #import "ASIHTTPRequest.h"

@@ -22,7 +22,6 @@
 #import "Reachability.h"
 #import "ZBarReaderViewController.h"
 #import "ZBarImageScanner.h"
-#import "Guide.h"
 #import "GuideBookmarks.h"
 #import "GuideLib.h"
 #import "GAI.h"

@@ -39,8 +39,8 @@
 + (GuideBookmarks *)sharedBookmarks;
 + (void)reset;
 - (NSArray *)cachedImages;
-- (Guide *)guideForGuideid:(NSNumber *)iGuideid;
-- (void)addGuideid:(NSNumber *)iGuideid;
+- (Guide *)guideForGuideid:(NSInteger)iGuideid;
+- (void)addGuideid:(NSInteger)iGuideid;
 - (void)addGuideid:(NSNumber *)iGuideid forBookmarker:(GuideBookmarker *)theBookmarker;
 - (void)saveGuide:(Guide *)guide;
 - (void)removeGuide:(Guide *)guide;

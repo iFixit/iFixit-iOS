@@ -28,7 +28,7 @@
 
 @property (nonatomic, retain) UIProgressView *progress;
 
-- (void)setNewGuideId:(NSNumber *)newGuideid;
+- (void)setNewGuideId:(NSInteger)newGuideid;
 - (void)bookmarked;
 
 @end

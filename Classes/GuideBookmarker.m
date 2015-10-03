@@ -9,7 +9,6 @@
 #import "iFixit-Swift.h"
 #import "GuideBookmarker.h"
 #import "GuideBookmarks.h"
-#import "Guide.h"
 #import "Config.h"
 #import "iFixitAPI.h"
 #import "User.h"
@@ -40,10 +39,10 @@
     return self;
 }
 
-- (void)setNewGuideId:(NSNumber *)newGuideid {
-    self.iGuideid = newGuideid;
+- (void)setNewGuideId:(NSInteger)newGuideid {
+    self.iGuideid = [NSNumber numberWithLong:newGuideid];
     
-    BOOL guideExists = [[GuideBookmarks sharedBookmarks] guideForGuideid:newGuideid] ? YES : NO;
+    BOOL guideExists = [[GuideBookmarks sharedBookmarks] guideForGuideid:self.iGuideid] ? YES : NO;
     
     if ([delegate isKindOfClass:[GuideViewController class]]) {
 //        [delegate setOfflineGuide:guideExists];

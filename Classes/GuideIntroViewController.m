@@ -6,14 +6,13 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
+#import "iFixit-Swift.h"
 #import "GuideIntroViewController.h"
 #import "GuideCatchingWebView.h"
-#import "Guide.h"
 #import "UIImageView+WebCache.h"
 #import "Config.h"
 #import "SVWebViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "iFixit-Swift.h"
 #import "iFixitAPI.h"
 #import "User.h"
 

@@ -14,7 +14,6 @@
 #import "GuideBookmarker.h"
 #import "Config.h"
 #import "UIImage+Coder.m"
-#import "Guide.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 
@@ -34,7 +33,7 @@
 - (id)initWithGuideid:(NSNumber *)iGuideid guide:(Guide *)guide {
     if ((self = [super initWithNibName:@"GuideView" bundle:nil])) {
         self.guide = guide;
-        self.iGuideid = guide ? guide.iGuideid : iGuideid;
+        self.iGuideid = guide ? [NSNumber numberWithLong:guide.iGuideid] : iGuideid;
         self.shouldLoadPage = 0;
         self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         

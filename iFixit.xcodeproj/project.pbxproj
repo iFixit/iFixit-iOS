@@ -52,8 +52,8 @@
 		C0538CE81BC03FE70031B35D /* GuideStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CE71BC03FE70031B35D /* GuideStep.swift */; settings = {ASSET_TAGS = (); }; };
 		C0538CEA1BC043F50031B35D /* GuideVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CE91BC043F50031B35D /* GuideVideo.swift */; settings = {ASSET_TAGS = (); }; };
 		C0538CEC1BC045510031B35D /* GuideImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CEB1BC045510031B35D /* GuideImage.swift */; settings = {ASSET_TAGS = (); }; };
+		C0538CEE1BC047E00031B35D /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CED1BC047E00031B35D /* Guide.swift */; settings = {ASSET_TAGS = (); }; };
 		C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
-		C10F2712120CE5900027A28D /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2711120CE5900027A28D /* Guide.m */; };
 		C10F271A120CE6980027A28D /* iFixitAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2719120CE6980027A28D /* iFixitAPI.m */; };
 		C115FC2D12174FA1005D0B77 /* GuideImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */; };
 		C184D4C61210CDB900953C39 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D4C41210CDB900953C39 /* GuideViewController.m */; };
@@ -194,11 +194,10 @@
 		C0538CE71BC03FE70031B35D /* GuideStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideStep.swift; sourceTree = "<group>"; };
 		C0538CE91BC043F50031B35D /* GuideVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideVideo.swift; sourceTree = "<group>"; };
 		C0538CEB1BC045510031B35D /* GuideImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideImage.swift; sourceTree = "<group>"; };
+		C0538CED1BC047E00031B35D /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		C0D569111BBE2C7600B50651 /* iFixit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "iFixit-Bridging-Header.h"; path = "Classes/iFixit-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iFixitAppDelegate.swift; path = Classes/iFixitAppDelegate.swift; sourceTree = "<group>"; };
 		C10E3EB1120E369E008CE3AE /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
-		C10F2710120CE5900027A28D /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guide.h; sourceTree = "<group>"; };
-		C10F2711120CE5900027A28D /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guide.m; sourceTree = "<group>"; };
 		C10F2718120CE6980027A28D /* iFixitAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iFixitAPI.h; sourceTree = "<group>"; };
 		C10F2719120CE6980027A28D /* iFixitAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iFixitAPI.m; sourceTree = "<group>"; };
 		C115FC2A12174FA1005D0B77 /* GuideImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideImageViewController.h; sourceTree = "<group>"; };
@@ -488,8 +487,7 @@
 				ABE00C41178BE34F006FD574 /* CategoriesSingleton.h */,
 				ABE00C42178BE34F006FD574 /* CategoriesSingleton.m */,
 				DACE7FF6165728010013FFFD /* Media Types */,
-				C10F2710120CE5900027A28D /* Guide.h */,
-				C10F2711120CE5900027A28D /* Guide.m */,
+				C0538CED1BC047E00031B35D /* Guide.swift */,
 				C0538CE71BC03FE70031B35D /* GuideStep.swift */,
 				C0538CE31BC028650031B35D /* GuideStepLine.swift */,
 				DAF0C6D1134E62BF003B4DF6 /* GuideBookmarks.h */,
@@ -867,7 +865,7 @@
 				C0538CE41BC028650031B35D /* GuideStepLine.swift in Sources */,
 				9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */,
 				2804200B108E984D000629CD /* CategoriesViewController.m in Sources */,
-				C10F2712120CE5900027A28D /* Guide.m in Sources */,
+				C0538CEE1BC047E00031B35D /* Guide.swift in Sources */,
 				C10F271A120CE6980027A28D /* iFixitAPI.m in Sources */,
 				9CE6783B1837F146001912DF /* SearchCell.m in Sources */,
 				C0538CD91BBE9C190031B35D /* SDWebImageDownloader.m in Sources */,

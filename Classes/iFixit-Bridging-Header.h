@@ -20,7 +20,6 @@
 #import "DozukiInfoViewController.h"
 #import "SVWebViewController.h"
 #import "GuideBookmarks.h"
-#import "Guide.h"
 #import "LoginBackgroundViewController.h"
 #import "UIColor+Hex.h"
 #import "GAI.h"

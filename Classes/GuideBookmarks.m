@@ -9,13 +9,11 @@
 #import "iFixit-Swift.h"
 #import "GuideBookmarks.h"
 #import "GuideBookmarker.h"
-#import "Guide.h"
 #import "SDImageCache.h"
 #import "iFixitAPI.h"
 #import "User.h"
 #import "SDWebImageManager.h"
 #import "Config.h"
-#import "Guide.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "Utility.h"
@@ -62,7 +60,8 @@ static GuideBookmarks *sharedBookmarks = nil;
     return guides[key] ? [Guide guideWithDictionary:guides[key]] : nil;
 }
 
-- (void)addGuideid:(NSNumber *)iGuideid {
+- (void)addGuideid:(NSInteger)aiGuideid {
+    NSNumber *iGuideid = [NSNumber numberWithInt:aiGuideid];
     // Analytics
     [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Guide"
                                                                                         action:@"Add"
@@ -133,7 +132,8 @@ static GuideBookmarks *sharedBookmarks = nil;
     [self saveBookmarks];
 }
 
-- (void)removeGuideid:(NSNumber *)iGuideid {
+- (void)removeGuideid:(NSInteger)aiGuideid {
+    NSNumber *iGuideid = [NSNumber numberWithLong:aiGuideid];
     // Analytics
     [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Guide"
                                                                                         action:@"Remove"
@@ -512,7 +512,7 @@ static GuideBookmarks *sharedBookmarks = nil;
             [self addGuideid:iGuideid];
         // Force both modified dates into integers when comparing, this is to deal with data type inconsistency across
         // different endpoints. Remove when new version of API is released
-        } else if (![[Guide getAbsoluteModifiedDateFromGuideDictionary:like[@"guide"]] isEqualToNumber:[savedGuide getAbsoluteModifiedDate]]) {
+        } else if (![Guide getAbsoluteModifiedDateFromGuideDictionary:like[@"guide"]] == [savedGuide getAbsoluteModifiedDate]) {
             [self removeGuideid:iGuideid];
             [self addGuideid:iGuideid];
         }
