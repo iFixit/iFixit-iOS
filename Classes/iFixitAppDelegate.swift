@@ -376,7 +376,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         var simpleSite = [:]
         for key in site.keys {
             let value = site[key]
-            if value != NSNull.Type {
+            if value is NSNull {
                 simpleSite[key] = value
             }
         }
