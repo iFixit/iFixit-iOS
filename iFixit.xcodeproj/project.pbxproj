@@ -47,6 +47,7 @@
 		C0538CDB1BBE9C190031B35D /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CD31BBE9C190031B35D /* UIButton+WebCache.m */; settings = {ASSET_TAGS = (); }; };
 		C0538CDC1BBE9C190031B35D /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CD51BBE9C190031B35D /* UIImageView+WebCache.m */; settings = {ASSET_TAGS = (); }; };
 		C0538CE01BC011A50031B35D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0538CDF1BC011A50031B35D /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
+		C0538CE21BC0244A0031B35D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0538CE11BC0244A0031B35D /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
 		C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		C10F2712120CE5900027A28D /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2711120CE5900027A28D /* Guide.m */; };
 		C10F271A120CE6980027A28D /* iFixitAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2719120CE6980027A28D /* iFixitAPI.m */; };
@@ -190,6 +191,7 @@
 		C0538CD41BBE9C190031B35D /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		C0538CD51BBE9C190031B35D /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		C0538CDF1BC011A50031B35D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C0538CE11BC0244A0031B35D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-568h@2x.png"; sourceTree = "<group>"; };
 		C0D569111BBE2C7600B50651 /* iFixit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "iFixit-Bridging-Header.h"; path = "Classes/iFixit-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iFixitAppDelegate.swift; sourceTree = "<group>"; };
 		C10E3EB1120E369E008CE3AE /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C0538CE11BC0244A0031B35D /* Default-568h@2x.png */,
 				9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */,
 				AB26882017CD5AA6004AC6ED /* OpenSans-Bold.ttf */,
 				AB26882117CD5AA6004AC6ED /* OpenSans-Regular.ttf */,
@@ -811,6 +814,7 @@
 				AB4926A4175FF6200092E4B6 /* category_more_info_ipad.css in Resources */,
 				ABE38C9B1773B9AC00777F60 /* CategoryTabBarViewController.xib in Resources */,
 				ABA8FC4A177AA90A000B5E74 /* category_answers.css in Resources */,
+				C0538CE21BC0244A0031B35D /* Default-568h@2x.png in Resources */,
 				ABE51914177B77F400E9555E /* category_more_info_iphone.css in Resources */,
 				AB324BB1179473680001E29D /* iFixitSplashScreenViewController.xib in Resources */,
 				AB26882217CD5AA6004AC6ED /* OpenSans-Bold.ttf in Resources */,
