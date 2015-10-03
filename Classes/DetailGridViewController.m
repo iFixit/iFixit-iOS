@@ -125,8 +125,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    BOOL oniOS7 = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0");
-    
     self.backgroundView = [[UIImageView alloc] initWithImage:[Config currentConfig].concreteBackgroundImage
                             ? [Config currentConfig].concreteBackgroundImage
                             : [UIImage imageNamed:@"concreteBackground.png"]];
@@ -138,7 +136,7 @@
     switch ([Config currentConfig].site) {
         case ConfigIFixit:
             self.fistImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewFist.png"]];
-            self.fistImage.frame = CGRectMake(0, (oniOS7) ? 64 : 0, 703, 660);
+            self.fistImage.frame = CGRectMake(0, 64, 703, 660);
             [self.backgroundView addSubview:self.fistImage];
             break;
         case ConfigMjtrim:
@@ -185,7 +183,7 @@
     }
     
     self.guideArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailViewArrowDark.png"]];
-    self.guideArrow.frame = CGRectMake(45, (oniOS7) ? 64 : 6, self.guideArrow.frame.size.width, self.guideArrow.frame.size.height);
+    self.guideArrow.frame = CGRectMake(45, 64, self.guideArrow.frame.size.width, self.guideArrow.frame.size.height);
     
     [self.backgroundView addSubview:self.guideArrow];
     
@@ -210,11 +208,7 @@
     UIEdgeInsets inset;
     BOOL showsTabBar = [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showsTabBar];
     
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         inset = UIEdgeInsetsMake(78.0, 0, (showsTabBar) ? 70.0 : 10.0 , 0);
-    } else {
-        inset = UIEdgeInsetsMake(0,0,10,0);
-    }
     
     self.tableView.contentInset = inset;
     
@@ -250,7 +244,7 @@
     }];
 }
 - (void)configureInstructionsLabel {
-    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(135, (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? 254 : 190, 280, 30)];
+    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(135, 254, 280, 30)];
     l.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     l.textAlignment = UITextAlignmentCenter;
     l.lineBreakMode = UILineBreakModeWordWrap;

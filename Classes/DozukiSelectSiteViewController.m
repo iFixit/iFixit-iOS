@@ -167,7 +167,6 @@ static NSMutableArray *prioritySites = nil;
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     
     // For iOS 7 we want a different color scheme because the default colors are too aggressive
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         [[UINavigationBar appearance] setBarTintColor:[Config currentConfig].toolbarColor];
         self.navigationController.navigationBar.translucent = NO;
         [[UINavigationBar appearance] setTitleTextAttributes:
@@ -177,7 +176,6 @@ static NSMutableArray *prioritySites = nil;
         [[UINavigationBar appearance] setTintColor:[Config currentConfig].buttonColor];
         
         self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
-    }
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back"
                                                                               style:UIBarButtonItemStyleBordered

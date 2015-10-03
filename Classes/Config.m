@@ -157,7 +157,7 @@ static Config *currentConfig = nil;
             self.backgroundColor = [UIColor colorWithRed:39/255.0f green:41/255.0f blue:43/255.0f alpha:1];
             self.textColor = [UIColor whiteColor];
             self.toolbarColor = [UIColor colorWithRed:10/255.0f green:10/255.0f blue:10/255.0f alpha:1];
-            self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
+            self.buttonColor = [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0];
             
             // Load intro and step css from the css folder.        
             self.introCSS    = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
@@ -183,7 +183,7 @@ static Config *currentConfig = nil;
             self.textColor = [UIColor blackColor];
             self.backgroundColor = [UIColor whiteColor];
             self.toolbarColor = [UIColor whiteColor];
-            self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
+            self.buttonColor = [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0];
             self.tabBarColor = self.buttonColor;
 
             self.concreteBackgroundImage = [UIImage imageNamed:@"concreteBackgroundWhite.png"];
@@ -194,7 +194,7 @@ static Config *currentConfig = nil;
             self.backgroundColor = [UIColor blackColor];
             self.textColor = [UIColor whiteColor];
             self.toolbarColor = [UIColor blackColor];
-            self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
+            self.buttonColor = [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0];
             
             // Load intro and step css from the css folder.        
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"accustream_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
@@ -208,7 +208,7 @@ static Config *currentConfig = nil;
             self.backgroundColor = [UIColor blackColor];
             self.textColor = [UIColor whiteColor];
             self.toolbarColor = [UIColor colorWithRed:192.0f/255.0f green:192.0f/255.0f blue:192.0/255.0f alpha:1.0];
-            self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:109.0f/255.0f green:109.0f/255.0f blue:109.0f/255.0f alpha:1.0] : self.toolbarColor;
+            self.buttonColor = [UIColor colorWithRed:109.0f/255.0f green:109.0f/255.0f blue:109.0f/255.0f alpha:1.0];
             
             // Load intro and step css from the css folder.        
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
@@ -221,7 +221,7 @@ static Config *currentConfig = nil;
             self.backgroundColor = [UIColor blackColor];
             self.textColor = [UIColor whiteColor];
             self.toolbarColor = [UIColor blackColor];
-            self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
+            self.buttonColor = [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0];
             
             // Load intro and step css from the css folder.        
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];

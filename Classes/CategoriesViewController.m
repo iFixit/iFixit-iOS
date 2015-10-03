@@ -54,7 +54,7 @@ BOOL searchViewEnabled;
 
 - (void)orientationChanged:(NSNotification *)notification{
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone &&
-     searchViewEnabled && SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+     searchViewEnabled) {
         [self enableSearchView:YES];
     }
 }
@@ -155,7 +155,7 @@ BOOL searchViewEnabled;
     self.tableView.backgroundColor = [UIColor whiteColor];
     
     // Only needed for iOS 7 + iPhone
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y
                                           , self.tableView.frame.size.width, self.tableView.frame.size.height + self.tabBarController.tabBar.frame.size.height);
         
@@ -548,7 +548,6 @@ BOOL searchViewEnabled;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         
         // On iOS 7 we can simply move the whole view frame and take advantage of sexy animations
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
             double statusBarHeight = 20;
             [UIView beginAnimations:@"search" context:nil];
             [UIView setAnimationDuration:0.3];
@@ -558,17 +557,6 @@ BOOL searchViewEnabled;
             );
             
             [UIView commitAnimations];
-        // Older devices are a bit more complicated, we have to essentially remove the navigation bar bounds temporarily
-        } else {
-            double navigationBarHeightForPortrait = 44.0;
-            double navigationBarHeightForLandscape = 32.0;
-            UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
-            
-            
-            [self repositionFramesForLegacyDevices:UIDeviceOrientationIsPortrait(interfaceOrientation)
-                                                   ? navigationBarHeightForPortrait : navigationBarHeightForLandscape
-                                     searchEnabled:option];
-        }
         
         [self.navigationController.navigationBar setHidden:option];
         self.listViewController.favoritesButton.enabled = !option;

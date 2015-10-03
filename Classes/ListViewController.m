@@ -33,23 +33,12 @@
     
     // Set Navigation bar
     if ([Config currentConfig].site == ConfigIFixit) {
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
             self.navigationBar.translucent = NO;
-        } else {
-            self.navigationBar.tintColor = [Config currentConfig].toolbarColor;
-            [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-            [[UINavigationBar appearance] setBackgroundColor:[Config currentConfig].toolbarColor];
-            [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
-        }
         
         self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
     } else if ([Config currentConfig].site == ConfigMjtrim) {
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
             self.navigationBar.translucent = NO;
             self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
-        } else {
-            [[UINavigationBar appearance] setTintColor:[Config currentConfig].toolbarColor];
-        }
 
         NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                                    [UIColor whiteColor],UITextAttributeTextColor,
@@ -60,9 +49,7 @@
         self.navigationBar.translucent = NO;
         self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
     } else {
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
             self.navigationBar.translucent = NO;
-        }
 
         if ([Config currentConfig].buttonColor) {
             self.navigationItem.leftBarButtonItem.tintColor = self.navigationItem.rightBarButtonItem.tintColor = [Config currentConfig].buttonColor;
@@ -156,8 +143,7 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
 
     // This is so bad, but we force a redraw only on iPad+Landscape to avoid an edgecases
-    if (UIDeviceOrientationIsLandscape(toInterfaceOrientation) && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad &&
-      SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+    if (UIDeviceOrientationIsLandscape(toInterfaceOrientation) && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         UIWindow *window = [[UIApplication sharedApplication] keyWindow];
         UIView *view = [window.subviews objectAtIndex:0];
         [view removeFromSuperview];

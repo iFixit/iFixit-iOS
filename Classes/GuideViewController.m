@@ -116,9 +116,7 @@
         [bookmarker.poc dismissPopoverAnimated:YES];
     
     // Hide the guide. Only on iOS 7 do we want to cross disolve instead of horizontal flip
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    }
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

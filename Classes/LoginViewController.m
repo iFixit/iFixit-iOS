@@ -193,7 +193,6 @@
     [rb addTarget:self action:@selector(toggleRegister) forControlEvents:UIControlEventTouchUpInside];
 
     // Update buttons for iOS 7 only, remove this when we come up with a more permanent button design.
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         rb.backgroundColor = [UIColor whiteColor];
         [rb setBackgroundImage:nil forState:UIControlStateNormal];
         [rb setBackgroundImage:nil forState:UIControlStateHighlighted];
@@ -214,7 +213,6 @@
             [rb setTitleColor:[Config currentConfig].toolbarColor forState:UIControlStateNormal];
             [rb setTitleColor:[Config currentConfig].toolbarColor forState:UIControlStateHighlighted];
         }
-    }
     
     // Cancel
     UIButton *cb = [[UIButton alloc] initWithFrame:CGRectMake(10, 55, 300, 35)];

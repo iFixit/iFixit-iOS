@@ -99,7 +99,7 @@
 	else {
 		if(self.navigationController == nil) {
 			navBar = [[UINavigationBar alloc] initWithFrame:
-                      CGRectMake(0, SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? 20 : 0, CGRectGetWidth(deviceBounds),44)
+                      CGRectMake(0, 20, CGRectGetWidth(deviceBounds),44)
                       ];
             navBar.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin;
 			[self.view addSubview:navBar];
@@ -167,9 +167,7 @@
             titleLabel.shadowOffset = CGSizeMake(0, 1);
         }
         
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
             titleLabel.textColor = [UIColor whiteColor];
-        }
 
 		titleLabel.backgroundColor = [UIColor clearColor];
 		titleLabel.lineBreakMode = UILineBreakModeTailTruncation;

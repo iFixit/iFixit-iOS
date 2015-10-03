@@ -138,13 +138,12 @@
 
 - (void)resizeWebViewFrameForOrientation:(UIInterfaceOrientation)orientation {
     BOOL showsTabBar = [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showsTabBar];
-    BOOL onIOS7 = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0");
     
     // TODO: Remove these ternary for reader's sanity
     if (UIDeviceOrientationIsLandscape(orientation)) {
-        self.webView.frame = CGRectMake(0, onIOS7 ? 64 : showsTabBar ? 38 : 0, 703, (showsTabBar) ? 663 : 706);
+        self.webView.frame = CGRectMake(0, 64, 703, (showsTabBar) ? 663 : 706);
     } else {
-        self.webView.frame = CGRectMake(0, onIOS7 ? 64 : showsTabBar ? 38 : 0, 770, (showsTabBar) ? 919 : 963);
+        self.webView.frame = CGRectMake(0, 64, 770, (showsTabBar) ? 919 : 963);
     }
 }
 
