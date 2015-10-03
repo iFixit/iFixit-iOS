@@ -7,8 +7,8 @@
 //
 
 #import "GuideImage.h"
-#import "GuideStep.h"
-#import "GuideStepLine.h"
+//#import "GuideStep.h"
+//#import "GuideStepLine.h"
 
 @interface Guide : NSObject
 

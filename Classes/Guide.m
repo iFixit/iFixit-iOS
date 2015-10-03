@@ -7,7 +7,7 @@
 //
 
 #import "Guide.h"
-
+#import "GuideStep.h"
 
 @implementation Guide
 

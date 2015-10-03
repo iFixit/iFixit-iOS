@@ -10,7 +10,7 @@
 #import "GuideEmbed.h"
 #import "GuideImage.h"
 #import "GuideVideo.h"
-#import "GuideStepLine.h"
+#import "iFixit-Swift.h"
 
 @interface GuideStep : NSObject
 
