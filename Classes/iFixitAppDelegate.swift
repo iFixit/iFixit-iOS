@@ -8,6 +8,7 @@
 
 import UIKit
 
+@UIApplicationMain
 class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewControllerDelegate {
     
     var window: UIWindow?
@@ -36,7 +37,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
 //    
 //    // ...running iOS <5.0
 //    NSString* version = [[UIDevice currentDevice] systemVersion];
-//    if ([version compare:@"5.0" options:NSNumericSearch] != NSOrderedAscending)
+//    if ([version compare:"5.0" options:NSNumericSearch] != NSOrderedAscending)
 //    return;
 //    
 //    // If we're in landscape, force portrait!
@@ -65,10 +66,11 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
     
     // Override point for customization after app launch.
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        let config = Config.currentConfig()
         
         /* Configure. */
-        Config.currentConfig().dozuki = false
-        Config.currentConfig().site = ConfigIFixit
+        config.dozuki = false
+        config.site = ConfigIFixit
         
         /* Track. */
         self.setupAnalytics()
@@ -81,17 +83,17 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         firstLoad = true
         
         /* iFixit is easy. */
-        if Config.currentConfig().site == ConfigIFixit {
+        if config.site == ConfigIFixit {
             self.showiFixitSplash()
-        } else if Config.currentConfig().dozuki == false {
+        } else if config.dozuki == false {
             self.showSiteSplash()
         } else {
             
             /* Dozuki gets a little more complicated. */
             let site = NSUserDefaults.standardUserDefaults().dictionaryForKey("site")
             
-            if site {
-                self.loadSite(site)
+            if site != nil {
+                self.loadSite(site!)
             } else {
                 self.showDozukiSplash()
             }
@@ -100,22 +102,23 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         }
         
         
-        //    [Crashlytics startWithAPIKey:@"25b29ddac9745140e41d9a00281ea38965b44f4c"];
+        //    [Crashlytics startWithAPIKey:"25b29ddac9745140e41d9a00281ea38965b44f4c"];
         
         return true
     }
     
     func configureAppearance() {
+        let config = Config.currentConfig()
         
         UITabBar.appearance().backgroundImage = UIImage(named: "customTabBarBackground.png")
         
-        UINavigationBar.appearance().barTintColor = Config.currentConfig().toolbarColor
-        UINavigationBar.appearance().titleTextAttributes = [ NSForegroundColorAttributeName: Config.currentConfig().textColor ]
-        UINavigationBar.appearance().tintColor = Config.currentConfig().buttonColor
+        UINavigationBar.appearance().barTintColor = config.toolbarColor
+        UINavigationBar.appearance().titleTextAttributes = [ NSForegroundColorAttributeName: config.textColor ]
+        UINavigationBar.appearance().tintColor = config.buttonColor
 
         UISearchBar.appearance().tintColor = UIColor.grayColor()
         
-        UITabBar.appearance().tintColor = Config.currentConfig().tabBarColor
+        UITabBar.appearance().tintColor = config.tabBarColor
     }
     
     func showDozukiSplash() {
@@ -163,44 +166,42 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
             }
         }
         
-        let root:UIViewController?
-        let nvc:UINavigationController?
+        var root:UIViewController?
+        var nvc:UINavigationController?
         
         // Only refresh our UIWindow on a very special edge case
-        if ([UIDevice currentDevice].userInterfaceIdiom ==
-            UIUserInterfaceIdiomPad && [Config currentConfig].site == ConfigDozuki) {
-                [self refreshUIWindow];
+        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad && Config.currentConfig().site == ConfigDozuki) {
+            refreshUIWindow()
         }
         
-        if (![iFixitAPI sharedInstance].user && [Config currentConfig].private) {
+        if (iFixitAPI.sharedInstance().user == nil /* TODO && Config.currentConfig().private*/) {
             // Private sites require immediate login.
-            LoginViewController *vc = [[LoginViewController alloc] init];
-            vc.message = NSLocalizedString(@"Private site. Authentication required.", nil);
-            vc.delegate = self;
-            nvc = [[UINavigationController alloc] initWithRootViewController:vc];
-            nvc.modalPresentationStyle = UIModalPresentationFormSheet;
+            let vc = LoginViewController()
+            vc.message = NSLocalizedString("Private site. Authentication required.", comment:"")
+            vc.delegate = self
+            nvc = UINavigationController(rootViewController:vc)
+            nvc!.modalPresentationStyle = .FormSheet
             
             // iPad: display in form sheet
-            if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-                root = [[LoginBackgroundViewController alloc] init];
-                self.window.rootViewController = root;
-                [window makeKeyAndVisible];
-                vc.modal = YES;
-                [root presentModalViewController:nvc animated:NO];
-                return;
-            }
-            else {
+            if (UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
+                root = LoginViewController()
+
+                self.window!.rootViewController = root
+                self.window!.makeKeyAndVisible()
+                vc.modal = true
+                root!.presentViewController(nvc!, animated: false, completion: nil)
+                return
+            } else {
                 // iPhone: set as root
-                root = nvc;
+                root = nvc
             }
-        }
-        else {
-            root = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ?
-                [self iPadRoot] : [self iPhoneRoot];
+        } else {
+            root = UIDevice.currentDevice().userInterfaceIdiom == .Pad ?
+                self.iPadRoot() : self.iPhoneRoot()
         }
         
-        self.window.rootViewController = root;
-        [self.window makeKeyAndVisible];
+        self.window!.rootViewController = root;
+        window!.makeKeyAndVisible()
     }
     
     /**
@@ -235,101 +236,101 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
     
     func iPadRoot() -> UIViewController {
         let config = Config.currentConfig()
-    self.showsTabBar = config.collectionsEnabled || config.store
-    
-    if (config.site == ConfigMagnolia) {
-        UIApplication.sharedApplication().statusBarStyle = .Default
-    } else {
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-    }
-    
-    // Create the split controller children.
-    CategoriesViewController *rvc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil]
-    self.categoriesViewController = rvc
-    
-    // Create the split view controller.
-    MGSplitViewController *svc = [[MGSplitViewController alloc] init]
-    
-    self.splitViewController = svc
-    
-    ListViewController *lvc = [[ListViewController alloc] initWithRootViewController:categoriesViewController];
-    CategoryTabBarViewController *ctvc = [[CategoryTabBarViewController alloc] initWithNibName:@"CategoryTabBarViewController" bundle:nil]
-    
-    if (config.dozuki) {
-    [[iFixitAPI sharedInstance] getSiteInfoForObject:ctvc withSelector:@selector(gotSiteInfoResults:)]
-    }
-    
-    lvc.categoryTabBarViewController = ctvc
-    ctvc.listViewController = lvc
-    
-    splitViewController.viewControllers = [lvc, ctvc]
-    splitViewController.delegate = ctvc
-    
-    categoriesViewController.delegate = self
-    
-    // Stop here, or put a fancy tab bar at the bottom.
-        if (!self.showsTabBar) {
-    return splitViewController
+        self.showsTabBar = config.collectionsEnabled || config.store != nil
+        
+        if (config.site == ConfigMagnolia) {
+            UIApplication.sharedApplication().statusBarStyle = .Default
+        } else {
+            UIApplication.sharedApplication().statusBarStyle = .LightContent
         }
-    
-    // Initialize the tab bar items.
-    var guideTitle = NSLocalizedString(@"Guides", nil);
-    if ([Config currentConfig].site == ConfigMake)
-    guideTitle = NSLocalizedString(@"Projects", nil);
-    else if (config.site == ConfigIFixit)
-    guideTitle = NSLocalizedString(@"Repair Manuals", nil);
-    
-    if (config.site == ConfigIFixit) {
-    splitViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:guideTitle image:[UIImage imageNamed:@"tabBarItemWrench.png"] tag:0];
-    }
-    else {
-    splitViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:guideTitle image:[UIImage imageNamed:@"tabBarItemBook.png"] tag:0];
-    }
-    
-    // Optionally add the store button.
-    SVWebViewController *storeViewController = nil;
-    NSString *storeTitle = NSLocalizedString(@"Store", nil);
-    UIImage *storeImage = [UIImage imageNamed:@"FA-Store.png"];
-    
-    if (config.store) {
-    storeViewController = [[SVWebViewController alloc] initWithAddress:[Config currentConfig].store withTitle:storeTitle];
-    storeViewController.tintColor = config.toolbarColor;
-    storeViewController.showsDoneButton = NO;
-    storeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:storeTitle image:storeImage tag:0];
-    }
-    
-    // Create the tab bar.
-    let tbc = UITabBarController()
-    
-    tbc.tabBar.translucent = false
-    
-    if (config.collectionsEnabled) {
-    FeaturedViewController *featuredViewController = [[FeaturedViewController alloc] init];
-    featuredViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Featured", nil) image:[UIImage imageNamed:@"FA-Featured.png"] tag:0];
-    tbc.viewControllers = [NSArray arrayWithObjects:featuredViewController, splitViewController, storeViewController, nil];
-    }
-    else {
-    tbc.viewControllers = [NSArray arrayWithObjects:splitViewController, storeViewController, nil];
-    }
-    
-    return tbc;
+        
+        // Create the split controller children.
+        let rvc = CategoriesViewController(nibName:"CategoriesViewController", bundle:nil)
+        self.categoriesViewController = rvc
+        
+        // Create the split view controller.
+        self.splitViewController = MGSplitViewController()
+        
+        let lvc = ListViewController(rootViewController:categoriesViewController!)
+        let ctvc = CategoryTabBarViewController(nibName:"CategoryTabBarViewController", bundle:nil)
+        
+        if (config.dozuki) {
+            iFixitAPI.sharedInstance().getSiteInfoForObject(ctvc, withSelector: "gotSiteInfoResults:")
+        }
+        
+        lvc.categoryTabBarViewController = ctvc
+        ctvc.listViewController = lvc
+        
+        splitViewController!.viewControllers = [lvc, ctvc]
+        splitViewController!.delegate = ctvc
+        
+        categoriesViewController!.delegate = self
+        
+        // Stop here, or put a fancy tab bar at the bottom.
+        if (!self.showsTabBar) {
+            return splitViewController!
+        }
+        
+        // Initialize the tab bar items.
+        var guideTitle = NSLocalizedString("Guides", comment:"")
+        if (config.site == ConfigMake) {
+            guideTitle = NSLocalizedString("Projects", comment:"")
+        } else if (config.site == ConfigIFixit) {
+            guideTitle = NSLocalizedString("Repair Manuals", comment:"")
+        }
+        
+        if (config.site == ConfigIFixit) {
+            splitViewController!.tabBarItem = UITabBarItem(title:guideTitle, image:UIImage(named:"tabBarItemWrench.png"), tag:0)
+        }
+        else {
+            splitViewController!.tabBarItem = UITabBarItem(title:guideTitle, image:UIImage(named:"tabBarItemBook.png"), tag:0)
+        }
+        
+        // Optionally add the store button.
+        let storeViewController: SVWebViewController?
+        let storeTitle = NSLocalizedString("Store", comment:"")
+        let storeImage = UIImage(named:"FA-Store.png")
+        
+        if (config.store != nil) {
+            storeViewController = SVWebViewController(address:config.store, withTitle:storeTitle)
+            storeViewController!.tintColor = config.toolbarColor
+            storeViewController!.showsDoneButton = false
+            storeViewController!.tabBarItem = UITabBarItem(title:storeTitle, image:storeImage, tag:0)
+        }
+        
+        // Create the tab bar.
+        let tbc = UITabBarController()
+        
+        tbc.tabBar.translucent = false
+        
+        if (config.collectionsEnabled) {
+            let featuredViewController = FeaturedViewController()
+            featuredViewController.tabBarItem = UITabBarItem(title:NSLocalizedString("Featured", comment:""), image:UIImage(named:"FA-Featured.png"), tag:0)
+            tbc.viewControllers = [featuredViewController, splitViewController!, storeViewController!]
+        }
+        else {
+            tbc.viewControllers = [splitViewController!, storeViewController!]
+        }
+        
+        return tbc;
     }
     
     func iPhoneRoot() -> UIViewController {
-        CategoryTabBarViewController *ctbvc = [[CategoryTabBarViewController alloc] initWithNibName:@"CategoryTabBarViewController" bundle:nil];
+        let config = Config.currentConfig()
+        let ctbvc = CategoryTabBarViewController(nibName:"CategoryTabBarViewController", bundle:nil)
         
-        if ([Config currentConfig].dozuki) {
-        [[iFixitAPI sharedInstance] getSiteInfoForObject:ctbvc withSelector:@selector(gotSiteInfoResults:)];
+        if (config.dozuki) {
+            iFixitAPI.sharedInstance().getSiteInfoForObject(ctbvc, withSelector: "gotSiteInfoResults:")
         }
         
-        if ([Config currentConfig].site == ConfigMagnolia) {
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
+        if (config.site == ConfigMagnolia) {
+            UIApplication.sharedApplication().statusBarStyle = .Default
         } else {
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+            UIApplication.sharedApplication().statusBarStyle = .LightContent
         }
         
-        return ctbvc;
-        }
+        return ctbvc
+    }
     
     func loadSiteWithDomain(domain: String) {
         self.loadSite(["domain": domain])
@@ -363,20 +364,21 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         
         // Enable/disable Answers and/or Collections
         if (config.site != ConfigIFixit) {
-            config.answersEnabled = [[site valueForKey:@"answers"] boolValue];
-            config.collectionsEnabled = [[site valueForKey:@"collections"] boolValue];
+            config.answersEnabled = site["answers"] as? Bool ?? false
+            config.collectionsEnabled = site["collections"] as? Bool ?? false
         }
         
-        config.private = [[site valueForKey:@"private"] boolValue];
-        config.sso = [[site valueForKey:@"authentication"] valueForKey:@"sso"];
-        config.store = [site valueForKey:@"store"];
+        config.private = site["private"] as? Bool ?? false
+        config.sso = [[site valueForKey:"authentication"] valueForKey:"sso"]
+        config.store = site["store"]
         
         // Save this choice for future launches, first removing any null values.
-        var simpleSite = []
-        for (NSString *key in [site allKeys]) {
-            NSObject *value = [site objectForKey:key];
-            if (![value isEqual:[NSNull null]])
-            [simpleSite setValue:value forKey:key];
+        var simpleSite = [:]
+        for key in site.keys {
+            let value = site[key]
+            if value != NSNull.Type {
+                simpleSite[key] = value
+            }
         }
         
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -392,50 +394,48 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         
-        NSString *urlString = [url absoluteString];
+        let urlString = url.absoluteString
         
         // Pull out the site name with a regex.
-        if ([Config currentConfig].dozuki) {
-            if (urlString) {
-                NSError *error = nil;
-                NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^dozuki://(.*?)$"
-                options:NSRegularExpressionCaseInsensitive error:&error];
-                NSTextCheckingResult *match = [regex firstMatchInString:urlString options:0 range:NSMakeRange(0, [urlString length])];
+        if (Config.currentConfig().dozuki) {
+                let regex = NSRegularExpression(pattern:"^dozuki://(.*?)$",
+                options:.CaseInsensitive)
+                let match = regex.firstMatchInString(urlString, options:.ReportProgress, range:NSMakeRange(0, urlString.length))
                 
                 if (match) {
-                    NSRange keyRange = [match rangeAtIndex:1];
-                    NSString *domain = [urlString substringWithRange:keyRange];
-                    NSDictionary *site = [NSDictionary dictionaryWithObject:domain forKey:@"domain"];
+                    let keyRange = match.rangeAtIndex(1)
+                    let domain = urlString.substringWithRange(keyRange)
+                    let site = ["domain": domain]
                     
-                    [[NSUserDefaults standardUserDefaults] setValue:site forKey:@"site"];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    let defaults = NSUserDefaults.standardUserDefaults()
                     
-                    [self loadSite:site];
-                    return YES;
+                    defaults.setValue(site, forKey:"site")
+                    defaults.synchronize()
+                    
+                    loadSite(site)
+                    return true
                 }
-            }
         }
         else {
-            NSError *error = nil;
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^ifixit://guide/(.*?)$"
-            options:NSRegularExpressionCaseInsensitive error:&error];
-            NSTextCheckingResult *match = [regex firstMatchInString:urlString options:0 range:NSMakeRange(0, [urlString length])];
+            let regex = NSRegularExpression(pattern:"^ifixit://guide/(.*?)$",
+            options:.CaseInsensitive)
+            let match = regex.firstMatchInString(urlString, options:.ReportProgress, range:NSMakeRange(0, urlString.length))
             
             if (match) {
-                NSRange keyRange = [match rangeAtIndex:1];
-                NSString *guideidString = [urlString substringWithRange:keyRange];
-                NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-                [f setNumberStyle:NSNumberFormatterDecimalStyle];
-                NSNumber *iGuideid = [f numberFromString:guideidString];
+                let keyRange = match.rangeAtIndex(1)
+                let guideidString = urlString.substringWithRange(keyRange)
+                let f = NSNumberFormatter()
+                f.numberStyle = .DecimalStyle
+                let iGuideid = f.numberFromString(guideidString)
                 
-                GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
-                [self.window.rootViewController presentModalViewController:vc animated:NO];
+                let vc = GuideViewController(guideid:iGuideid)
+                window!.rootViewController.presentModalViewController(vc, animated:false)
                 
-                return YES;
+                return true
             }
         }
         
-        return NO;
+        return false
     }
     
     func applicationWillResignActive(application: UIApplication) {
