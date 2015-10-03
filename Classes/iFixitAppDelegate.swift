@@ -376,8 +376,8 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         var simpleSite = [:]
         for key in site.keys {
             let value = site[key]
-            if value is NSNull {
-                simpleSite[key] = value
+            if (value is NSNull) == false {
+                simpleSite.setValue(value, forKey: key)
             }
         }
         
@@ -385,7 +385,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         defaults.setValue(simpleSite, forKey:"site")
         defaults.synchronize()
         
-        config.siteData = simpleSite
+        config.siteData = simpleSite as [NSObject : AnyObject]
         
         // Show the main app!
         iFixitAPI.sharedInstance().loadSession()
@@ -398,12 +398,13 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         
         // Pull out the site name with a regex.
         if (Config.currentConfig().dozuki) {
-                let regex = NSRegularExpression(pattern:"^dozuki://(.*?)$",
-                options:.CaseInsensitive)
-                let match = regex.firstMatchInString(urlString, options:.ReportProgress, range:NSMakeRange(0, urlString.length))
+            do {
+                let regex = try NSRegularExpression(pattern:"^dozuki://(.*?)$",
+                    options:.CaseInsensitive)
+                let match = regex.firstMatchInString(urlString, options:.ReportProgress, range:NSMakeRange(0, urlString.characters.count))
                 
-                if (match) {
-                    let keyRange = match.rangeAtIndex(1)
+                if (match != nil) {
+                    let keyRange = match!.rangeAtIndex(1)
                     let domain = urlString.substringWithRange(keyRange)
                     let site = ["domain": domain]
                     
@@ -415,23 +416,30 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
                     loadSite(site)
                     return true
                 }
+            } catch {
+                
+            }
         }
         else {
-            let regex = NSRegularExpression(pattern:"^ifixit://guide/(.*?)$",
-            options:.CaseInsensitive)
-            let match = regex.firstMatchInString(urlString, options:.ReportProgress, range:NSMakeRange(0, urlString.length))
-            
-            if (match) {
-                let keyRange = match.rangeAtIndex(1)
-                let guideidString = urlString.substringWithRange(keyRange)
-                let f = NSNumberFormatter()
-                f.numberStyle = .DecimalStyle
-                let iGuideid = f.numberFromString(guideidString)
+            do {
+                let regex = try NSRegularExpression(pattern:"^ifixit://guide/(.*?)$",
+                    options:.CaseInsensitive)
+                let match = regex.firstMatchInString(urlString, options:.ReportProgress, range:NSMakeRange(0, urlString.characters.count))
                 
-                let vc = GuideViewController(guideid:iGuideid)
-                window!.rootViewController.presentModalViewController(vc, animated:false)
+                if (match != nil) {
+                    let keyRange = match!.rangeAtIndex(1)
+                    let guideidString = urlString.substringWithRange(keyRange)
+                    let f = NSNumberFormatter()
+                    f.numberStyle = .DecimalStyle
+                    let iGuideid = f.numberFromString(guideidString)
+                    
+                    let vc = GuideViewController(guideid:iGuideid)
+                    window!.rootViewController.presentModalViewController(vc, animated:false)
+                    
+                    return true
+                }
+            } catch {
                 
-                return true
             }
         }
         

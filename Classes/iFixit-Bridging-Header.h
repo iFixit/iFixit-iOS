@@ -6,6 +6,7 @@
 #import <UIKit/UIKit.h>
 
 #import "LoginViewControllerDelegate.h"
+#import "LoginViewController.h"
 #import "MGSplitViewController.h"
 #import "CategoriesViewController.h"
 //#import "DetailViewController.h"
