@@ -7,7 +7,7 @@
 
 #import "LoginViewControllerDelegate.h"
 #import "LoginViewController.h"
-#import "MGSplitViewController.h"
+//#import "MGSplitViewController.h"
 #import "CategoriesViewController.h"
 //#import "DetailViewController.h"
 #import "iFixitAPI.h"

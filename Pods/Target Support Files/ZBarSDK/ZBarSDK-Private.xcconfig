@@ -2,7 +2,7 @@
 EXCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*][arch=*] = ${ZBARSDK_EXCLUDED_SOURCE_FILE_NAMES}
 EXCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*][arch=*] = ${ZBARSDK_EXCLUDED_SOURCE_FILE_NAMES}
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 ${ZBARSDK_GCC_PREPROCESSOR_DEFINITIONS}
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/ZBarSDK" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/ASIHTTPRequest" "${PODS_ROOT}/Headers/Public/GoogleAnalytics" "${PODS_ROOT}/Headers/Public/MGSplitViewController" "${PODS_ROOT}/Headers/Public/Reachability" "${PODS_ROOT}/Headers/Public/RegexKitLite" "${PODS_ROOT}/Headers/Public/SBJson" "${PODS_ROOT}/Headers/Public/UIColor-Hex" "${PODS_ROOT}/Headers/Public/ZBarSDK"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/ZBarSDK" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GoogleAnalytics"
 OTHER_LDFLAGS = ${ZBARSDK_OTHER_LDFLAGS}
 PODS_ROOT = ${SRCROOT}
 SKIP_INSTALL = YES

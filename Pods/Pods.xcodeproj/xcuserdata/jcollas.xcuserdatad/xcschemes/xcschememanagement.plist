@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MGSplitViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,42 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>15E9A6251DB923D5FBC00ECEFC2EB075</key>
+		<key>24A0EAE1F576301465DC6F0ABECA5480</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>34B902B6682158616C8CAF19823D4F07</key>
+		<key>36B485ACD2210B9B17AC3B27D03E1FFA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5A5AC1274B54C0452385898922EC0435</key>
+		<key>4E29D716AD2AD7EF5DD69FBFA9483636</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7FF2B511855EB680801B7ECC01203256</key>
+		<key>4E9468BC9CA6217C1AB6A55BDC363640</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8FBC6D78050B6A9A3525DC2984428A13</key>
+		<key>7399850A11D4D3105099B00503E7C966</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C9D35E7BB9A55A12C9029DD525B219DE</key>
+		<key>7E609175FE6DE11AB937D004FCDC5D1C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D554BDD2BC6180AA347EA812B48AEF67</key>
+		<key>8940D2B8ADFD8155E91077DD8794DAAB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DF39BC199F1E763CE981F1489600182D</key>
+		<key>BBC61A09DEEE921011988C4D9739DB3B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CA9E3965D7A9A7D7A46CD323CA5B6409</key>
 		<dict>
 			<key>primary</key>
 			<true/>

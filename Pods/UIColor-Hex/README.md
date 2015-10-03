@@ -16,10 +16,10 @@ pod "UIColor-Hex"
 
 ```
 # red
-[UIColor colorWithHex:0xff0000];
+UIColor.(hex:0xff0000)
 
 # red
-[UIColor colorWithHex:0xff0000 alpha:0.1];
+UIColor.(hex:0xff0000, alpha:0.1);
 ```
 
 ## Author
@@ -29,4 +29,3 @@ nakajijapan
 ## License
 
 UIColor-Hex is available under the MIT license. See the LICENSE file for more info.
-

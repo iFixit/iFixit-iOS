@@ -11,9 +11,17 @@
       "scale" : "2x"
     },
     {
+      "idiom" : "iphone",
+      "scale" : "3x"
+    },
+    {
       "idiom" : "ipad",
       "filename" : "vignette~ipad.png",
       "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "scale" : "2x"
     }
   ],
   "info" : {

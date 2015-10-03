@@ -1,8 +1,10 @@
-source 'https://github.com/CocoaPods/Specs.git'
+#source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '6.0'
+platform :ios, '8.0'
+use_frameworks!
 inhibit_all_warnings!
 
+pod 'Alamofire', '~> 2.0'
 pod 'ASIHTTPRequest'
 #pod 'SDWebImage'
 pod 'SBJson', '~> 3.2'

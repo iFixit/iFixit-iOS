@@ -1,0 +1,6 @@
+framework module MGSplitViewController {
+  umbrella header "MGSplitViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}

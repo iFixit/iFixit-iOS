@@ -13,7 +13,7 @@
 		2804200B108E984D000629CD /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28042008108E984D000629CD /* CategoriesViewController.m */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
-		639994C77401475EB4A8AE36 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40331C958D2F4747A5B6D568 /* libPods.a */; };
+		74A90607FE7B75F9B42BABC0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94340EBC8F9B98554E9BFA8B /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A1982189735C3003E79F0 /* GuideLib.m */; };
 		9C67A6C417E7A9040079C099 /* iFixit-App-Id.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */; };
 		9CA4756718CAFEF3005AFE08 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4756618CAFEF3005AFE08 /* Utility.m */; };
@@ -132,9 +132,8 @@
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* iFixit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iFixit_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		40331C958D2F4747A5B6D568 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		94340EBC8F9B98554E9BFA8B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		957C51BCFD710BB69E045663 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9C1A1981189735C3003E79F0 /* GuideLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideLib.h; sourceTree = "<group>"; };
 		9C1A1982189735C3003E79F0 /* GuideLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideLib.m; sourceTree = "<group>"; };
@@ -334,7 +333,7 @@
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				DAE4242113C3DE6C00F20EEE /* libz.dylib in Frameworks */,
 				DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */,
-				639994C77401475EB4A8AE36 /* libPods.a in Frameworks */,
+				74A90607FE7B75F9B42BABC0 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,7 +400,6 @@
 				DAB26971146C96A2000D3A7A /* Ubuntu-Italic.ttf */,
 				C0D569111BBE2C7600B50651 /* iFixit-Bridging-Header.h */,
 				28A0AAE50D9B0CCF005BE974 /* iFixit_Prefix.pch */,
-				29B97316FDCFA39411CA2CEA /* main.m */,
 				C10E3EB1120E369E008CE3AE /* Entitlements.plist */,
 			);
 			name = "Other Sources";
@@ -442,7 +440,7 @@
 				DAAAC7471433E03B00CB90AF /* libsqlite3.dylib */,
 				DAE4242013C3DE6C00F20EEE /* libz.dylib */,
 				DA0A0C15138B07DA0027721E /* libxml2.2.dylib */,
-				40331C958D2F4747A5B6D568 /* libPods.a */,
+				94340EBC8F9B98554E9BFA8B /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -729,6 +727,7 @@
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				58371555D0BB4407AA5E5015 /* Copy Pods Resources */,
+				4BB92FCF0DD9A220FE37C885 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -824,6 +823,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4BB92FCF0DD9A220FE37C885 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		58371555D0BB4407AA5E5015 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -942,6 +956,8 @@
 			baseConfigurationReference = BF0DDDCD8B0CEA836EDBD8B0 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
@@ -961,9 +977,11 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"$(SDKROOT)/usr/include/libxml2/**",
+					"${PODS_ROOT}/Headers/Private/MGSplitViewController",
+					"${PODS_ROOT}/Headers/Private/ZBarSDK",
 				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -989,6 +1007,8 @@
 			baseConfigurationReference = 957C51BCFD710BB69E045663 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
@@ -1006,9 +1026,11 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"$(SDKROOT)/usr/include/libxml2/**",
+					"${PODS_ROOT}/Headers/Private/MGSplitViewController",
+					"${PODS_ROOT}/Headers/Private/ZBarSDK",
 				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1044,7 +1066,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
@@ -1075,7 +1097,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
@@ -1105,7 +1127,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1124,6 +1146,8 @@
 			baseConfigurationReference = E353F8DB6E6C89DA7ADE25F5 /* Pods.ad-hoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
@@ -1143,9 +1167,11 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"$(SDKROOT)/usr/include/libxml2/**",
+					"${PODS_ROOT}/Headers/Private/MGSplitViewController",
+					"${PODS_ROOT}/Headers/Private/ZBarSDK",
 				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
