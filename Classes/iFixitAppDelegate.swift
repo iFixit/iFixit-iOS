@@ -7,6 +7,19 @@
 //
 
 import UIKit
+import Foundation
+
+extension String {
+    func rangeFromNSRange(nsRange : NSRange) -> Range<String.Index>? {
+        let from16 = utf16.startIndex.advancedBy(nsRange.location, limit: utf16.endIndex)
+        let to16 = from16.advancedBy(nsRange.length, limit: utf16.endIndex)
+        if let from = String.Index(from16, within: self),
+            let to = String.Index(to16, within: self) {
+                return from ..< to
+        }
+        return nil
+    }
+}
 
 @UIApplicationMain
 class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewControllerDelegate {
@@ -287,7 +300,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         }
         
         // Optionally add the store button.
-        let storeViewController: SVWebViewController?
+        var storeViewController: SVWebViewController? = nil
         let storeTitle = NSLocalizedString("Store", comment:"")
         let storeImage = UIImage(named:"FA-Store.png")
         
@@ -306,10 +319,12 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         if (config.collectionsEnabled) {
             let featuredViewController = FeaturedViewController()
             featuredViewController.tabBarItem = UITabBarItem(title:NSLocalizedString("Featured", comment:""), image:UIImage(named:"FA-Featured.png"), tag:0)
-            tbc.viewControllers = [featuredViewController, splitViewController!, storeViewController!]
+            tbc.viewControllers?.append(featuredViewController)
         }
-        else {
-            tbc.viewControllers = [splitViewController!, storeViewController!]
+        
+        tbc.viewControllers?.append(splitViewController!)
+        if storeViewController != nil {
+            tbc.viewControllers?.append(storeViewController!)
         }
         
         return tbc;
@@ -368,12 +383,12 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
             config.collectionsEnabled = site["collections"] as? Bool ?? false
         }
         
-        config.private = site["private"] as? Bool ?? false
-        config.sso = [[site valueForKey:"authentication"] valueForKey:"sso"]
-        config.store = site["store"]
+        config.`private` = site["private"] as? Bool ?? false
+        config.sso = (site["authentication"] as! Dictionary)["sso"]
+        config.store = site["store"] as! String
         
         // Save this choice for future launches, first removing any null values.
-        var simpleSite = [:]
+        let simpleSite = [:]
         for key in site.keys {
             let value = site[key]
             if (value is NSNull) == false {
@@ -405,7 +420,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
                 
                 if (match != nil) {
                     let keyRange = match!.rangeAtIndex(1)
-                    let domain = urlString.substringWithRange(keyRange)
+                    let domain = urlString.substringWithRange(urlString.rangeFromNSRange(keyRange)!)
                     let site = ["domain": domain]
                     
                     let defaults = NSUserDefaults.standardUserDefaults()
@@ -428,13 +443,13 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
                 
                 if (match != nil) {
                     let keyRange = match!.rangeAtIndex(1)
-                    let guideidString = urlString.substringWithRange(keyRange)
+                    let guideidString = urlString.substringWithRange(urlString.rangeFromNSRange(keyRange)!)
                     let f = NSNumberFormatter()
                     f.numberStyle = .DecimalStyle
                     let iGuideid = f.numberFromString(guideidString)
                     
                     let vc = GuideViewController(guideid:iGuideid)
-                    window!.rootViewController.presentModalViewController(vc, animated:false)
+                    window!.rootViewController!.presentViewController(vc, animated:false, completion:nil)
                     
                     return true
                 }
