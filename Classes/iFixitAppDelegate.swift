@@ -9,6 +9,8 @@
 import UIKit
 import Foundation
 
+//#import <Crashlytics/Crashlytics.h>
+
 extension String {
     func rangeFromNSRange(nsRange : NSRange) -> Range<String.Index>? {
         let from16 = utf16.startIndex.advancedBy(nsRange.location, limit: utf16.endIndex)
@@ -33,34 +35,8 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
     var firstLoad = true
     var showsTabBar = false
 
-    //#import <Crashlytics/Crashlytics.h>
-    
     static let kGANDispatchPeriodSec = 10
     
-//    
-//    @implementation UITabBarController (Rotate)
-//    
-//    // Hack fix for wonky landscape/portrait orientation on iOS 4.x iPads after Dozuki site select.
-//    - (void)viewDidAppear:(BOOL)animated {
-//    [super viewDidAppear:animated];
-//    
-//    // Only apply this hack to iPads...
-//    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad)
-//    return;
-//    
-//    // ...running iOS <5.0
-//    NSString* version = [[UIDevice currentDevice] systemVersion];
-//    if ([version compare:"5.0" options:NSNumericSearch] != NSOrderedAscending)
-//    return;
-//    
-//    // If we're in landscape, force portrait!
-//    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-//    if (UIInterfaceOrientationIsLandscape(orientation)) {
-//    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO];
-//    }
-//    }
-//    
-//    @end
     
     // MARK: - Application lifecycle
     
@@ -115,7 +91,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         }
         
         
-        //    [Crashlytics startWithAPIKey:"25b29ddac9745140e41d9a00281ea38965b44f4c"];
+//    [Crashlytics startWithAPIKey:"25b29ddac9745140e41d9a00281ea38965b44f4c"];
         
         return true
     }
