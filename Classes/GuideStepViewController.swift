@@ -65,12 +65,15 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         view.layer.shadowPath = UIBezierPath(rect:view.bounds).CGPath
     }
 
-    func getOfflineVideoPath() -> String {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)
-        NSString *docDirectory = paths[0]
+    func getOfflineVideoPath() -> NSURL? {
+        let uid = iFixitAPI.sharedInstance.user!.iUserid
+        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let documentDirectory = urls[urls.count-1]
+        let filename = "/Videos/\(uid)_\(step.stepid)_\(step.video.videoid)_\(step.video.filename)"
+
         
-        NSString *filePath = [docDirectory stringByAppendingPathComponent:
-                              [NSString stringWithFormat:"/Videos/%@_%li_%li_%", [iFixitAPI sharedInstance].user.iUserid, (long)self.step.stepid, (long)self.step.video.videoid, self.step.video.filename]]
+        let filePath = documentDirectory.URLByAppendingPathComponent(filename)
+        
         return filePath
     }
 
@@ -78,6 +81,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let config = Config.currentConfig()
         UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ?
         layoutLandscape() : layoutPortrait()
         
@@ -88,18 +92,19 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         webView.backgroundColor = bgColor
         webView.opaque = false
         
-        let stepTitle = NSLocalizedString("Step \(absoluteStepNumber)", comment:"")
+        var stepTitle = NSLocalizedString("Step \(absoluteStepNumber)", comment:"")
         if self.step.title != "" {
-            stepTitle = [NSString stringWithFormat:"%@ - %", stepTitle, self.step.title]
+            stepTitle = "\(stepTitle) - \(step.title)"
         }
         
         titleLabel.text = stepTitle
-        titleLabel.textColor = [Config currentConfig].textColor;
+        titleLabel.textColor = config.textColor;
         
         // Load the step contents as HTML.
-        let bodyClass = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? "big" : "small"
-        if ([UIScreen mainScreen].scale == 2.0)
-            bodyClass = [bodyClass stringByAppendingString:" retina"];
+        var bodyClass = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? "big" : "small"
+        if UIScreen.mainScreen().scale == 2.0 {
+            bodyClass = "\(bodyClass) retina"
+        }
         let header = "<html><head><style type=\"text/css\"> \(config.stepCSS) </style></head><body class=\"\(bodyClass)\"><ul>"
         let footer = "</ul></body></html>"
         
@@ -116,17 +121,17 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         }
         
         self.html = "\(header)\(body)\(footer)"
-        [webView loadHTMLString:html baseURL:[NSURL URLWithString:[NSString stringWithFormat:"http://%", [Config host]]]];
+        [webView loadHTMLString:html baseURL:[NSURL URLWithString:"http://%", [Config host]]];
         
         removeWebViewShadows()
         
         // Images
-        if (self.step.images != nil) {
+        if (step.images != nil) {
             // Add a shadow to the images
-            [self addViewShadow:mainImage];
-            [self addViewShadow:image1];
-            [self addViewShadow:image2];
-            [self addViewShadow:image3];
+            addViewShadow(mainImage)
+            addViewShadow(image1)
+            addViewShadow(image2)
+            addViewShadow(image3)
             
             startImageDownloads()
         }
@@ -139,15 +144,13 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
             frame.origin.x = 10.0
             
             // If we are an offline guide, let's get our video from disk, otherwise we load the URL
-            let url = self.guideViewController.offlineGuide ?
-            [NSURL fileURLWithPath:[self getOfflineVideoPath] isDirectory:NO] :
-            [NSURL URLWithString:self.step.video.url];
+            let url = self.guideViewController.offlineGuide ? getOfflineVideoPath() : step.video.url
             
             self.moviePlayer = MPMoviePlayerController(contentURL:url)
             self.moviePlayer.shouldAutoplay = false
             self.moviePlayer.controlStyle = .Embedded
-            [self.moviePlayer.view setFrame:frame]
-            [self.view addSubview:self.moviePlayer.view]
+            moviePlayer.view.frame = frame
+            view.addSubview(moviePlayer.view)
         }
         // Embeds
         else if (self.step.embed != nil) {
@@ -161,49 +164,38 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
             self.embedView.opaque = false
             self.view.addSubview(embedView)
             
-            let oembedURL = "\(step.embed.url)&maxwidth=%d&maxheight=%d",
-                                   (int)self.embedView.frame.size.width,
-                                   (int)self.embedView.frame.size.height];
-            NSURL *url = [NSURL URLWithString:oembedURL];
-            [ASIHTTPRequest requestWithURL:url];
+            let embedSize = embedView.frame.size
             
-            __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-            [request setCompletionBlock:^{
-                let json:[String:AnyObject] = [[request responseString] JSONValue];
-                let embedHtml = json["html"] as! String
-                let header = "<html><head><style type=\"text/css\"> \(config.stepCSS) </style></head><body>"
-                let htmlString = "\(header) \(embedHtml)"
-                
-                [embedView loadHTMLString:htmlString
-                                  baseURL:[NSURL URLWithString:[json objectForKey:"provider_url"]]];
-            }];
-            [request startAsynchronous];
+            let oembedURL = "\(step.embed.url)&maxwidth=\(embedSize.width)&maxheight=\(embedSize.height)"
+            
+            let url = NSURL(string:oembedURL)
+            
+            Alamofire.request(.GET, oembedURL).responseJSON { (req, resp, result) in
+                if result.isSuccess {
+                    let json = result.value as! [String:AnyObject]
+                    let embedHtml = json["html"] as! String
+                    let header = "<html><head><style type=\"text/css\"> \(config.stepCSS) </style></head><body>"
+                    let htmlString = "\(header) \(embedHtml)"
+                    
+                    self.embedView.loadHTMLString(htmlString, baseURL:NSURL(string:json["provider_url"] as! String))
+                }
+            }
         }
         
         // Notification to Fix rotation while playing video.
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(_moviePlayerWillExitFullscreen:)
-                                                     name:MPMoviePlayerWillExitFullscreenNotification
-                                                   object:nil];
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"_moviePlayerWillExitFullscreen:", name:MPMoviePlayerWillExitFullscreenNotification, object:nil)
         
         // Notification to track when the movie player state changes (ie: Pause, Play)
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(_moviePlayerPlaybackStateDidChange:)
-                                                     name:MPMoviePlayerPlaybackStateDidChangeNotification
-                                                   object:nil];
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"_moviePlayerPlaybackStateDidChange:", name:MPMoviePlayerPlaybackStateDidChangeNotification, object:nil)
         
         // Notification to track when a movie finishes playing
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(_moviePlayerPlaybackDidFinish:)
-                                                     name:MPMoviePlayerPlaybackDidFinishNotification
-                                                   object:nil];
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"_moviePlayerPlaybackDidFinish:", name:MPMoviePlayerPlaybackDidFinishNotification, object:nil)
     }
 
     override func viewDidAppear(animated:Bool) {
         // Analytics
-        let gaInfo = [[GAIDictionaryBuilder createEventWithCategory:"Guide" action:"Step View" label:"User viewed step" value:self.absoluteStepNumber] build];
-        GAI.sharedInstance.defaultTracker.send(gaInfo)
+        let gaInfo = GAIDictionaryBuilder.createEventWithCategory("Guide", action:"Step View", label:"User viewed step", value:absoluteStepNumber).build() as [NSObject:AnyObject]
+        GAI.sharedInstance().defaultTracker.send(gaInfo)
     }
 
     func _moviePlayerPlaybackDidFinish(notification:NSNotification) {
@@ -213,13 +205,13 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
     }
 
     func _moviePlayerPlaybackStateDidChange(notification:NSNotification) {
-        if (!self.moviePlayer.fullscreen && self.moviePlayer.playbackState == MPMoviePlaybackStatePlaying) {
-            [self.moviePlayer setFullscreen:YES animated:YES];
+        if (!self.moviePlayer.fullscreen && self.moviePlayer.playbackState == .Playing) {
+            moviePlayer.setFullscreen(true, animated:true)
         }
     }
 
     func moviePlayerWillExitFullscreen(notification:NSNotification) {
-        delegate.willRotateToInterfaceOrientation(delegate.interfaceOrientation, duration:0)
+        delegate!.willRotateToInterfaceOrientation(delegate!.interfaceOrientation, duration:0)
     }
 
     override func viewWillDisappear(animated:Bool) {
@@ -232,50 +224,53 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
     }
 
     func startImageDownloads() {
-        if ([self.step.images count] > 0) {
+        let waitImage = UIImage(named:"WaitImage.png")
+        
+        if step.images.count > 0 {
             // Download the image
-            [mainImage setImageWithURL:[self.step.images[0] URLForSize:"large"] placeholderImage:[UIImage imageNamed:"WaitImage.png"]];
+            mainImage.setImageWithURL(step.images[0].URLForSize("large"), placeholderImage:waitImage)
             
-            if ([self.step.images count] > 1) {
-                [image1 setImageWithURL:[[self.step.images objectAtIndex:0] URLForSize:"thumbnail"] placeholderImage:[UIImage imageNamed:"WaitImage.png"]];
+            if (step.images.count > 1) {
+                image1.setImageWithURL(step.images[0].URLForSize("thumbnail"), placeholderImage:waitImage)
                 image1.hidden = false
             }
         }
         
-        if ([self.step.images count] > 1) {
-            [image2 setImageWithURL:[[self.step.images objectAtIndex:1] URLForSize:"thumbnail"] placeholderImage:[UIImage imageNamed:"WaitImage.png"]];
+        if (step.images.count > 1) {
+            image2.setImageWithURL(step.images[1].URLForSize("thumbnail"), placeholderImage:waitImage)
             image2.hidden = false
         }
         
-        if ([self.step.images count] > 2) {
-            [image3 setImageWithURL:[[self.step.images objectAtIndex:2] URLForSize:"thumbnail"] placeholderImage:[UIImage imageNamed:"WaitImage.png"]];
+        if (step.images.count > 2) {
+            image3.setImageWithURL(step.images[2].URLForSize("thumbnail"), placeholderImage:waitImage)
             image3.hidden = false
         }
     }
 
     @IBAction func changeImage(button:UIButton) {
+        let waitImage = UIImage(named:"WaitImage.png")
         let guideImage = self.step.images[button.tag]
-        SDWebImageManager *manager = [SDWebImageManager sharedManager];
-        UIImage *cachedImage = [manager imageWithURL:[guideImage URLForSize:"large"]];
+        let manager = SDWebImageManager.sharedManager()
+        let cachedImage = manager.imageWithURL(guideImage.URLForSize("large"))
         
         // Use the cached image if we have it, otherwise download it
-        if (cachedImage) {
-            [UIView transitionWithView:mainImage
-                              duration:0.3
-                               options:UIViewAnimationOptionTransitionCrossDissolve
-                            animations:^{
-                                [mainImage setBackgroundImage:cachedImage forState:UIControlStateNormal];
-                            } completion:nil];
+        if (cachedImage != nil) {
+            UIView.transitionWithView(mainImage,
+                              duration:0.3,
+                               options:.TransitionCrossDissolve,
+                            animations:{
+                                self.mainImage.setBackgroundImage(cachedImage, forState:.Normal)
+                            }, completion:nil)
         } else {
-            [mainImage setImageWithURL:[guideImage URLForSize:"large"] placeholderImage:[UIImage imageNamed:"WaitImage.png"]];
+            mainImage.setImageWithURL(guideImage.URLForSize("large"), placeholderImage:waitImage)
         }
     }
 
     // Because the web view has a white background, it starts hidden.
     // After the content is loaded, we wait a small amount of time before showing it to prevent flicker.
     func webViewDidFinishLoad(webView:UIWebView) {
-        [self performSelector:@selector(showWebView:) withObject:nil afterDelay:0.2];
-        [self.webView enableScrollingIfNeeded];
+        self.performSelector("showWebView:", withObject:nil, afterDelay:0.2)
+//     TODO   webView.enabledScrollingIfNeeded()
     }
     
     func showWebView(sender:AnyObject) {
@@ -290,7 +285,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         
         // Only load the secondary large images if we are looking at the current view being presented on the screen
         if (self.step.number == self.guideViewController.pageControl.currentPage) {
-            SDWebImageManager *manager = [SDWebImageManager sharedManager];
+            let manager = SDWebImageManager.sharedManager
             
             if (self.step.images.count > 1 && ![manager imageWithURL:[self.step.images[1] URLForSize:"large"]]) {
                 [manager downloadWithURL:[self.step.images[1] URLForSize:"large"] delegate:self retryFailed:YES];
@@ -304,7 +299,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
     }
     
     @IBAction func zoomImage(sender: AnyObject) {
-        let image = mainImage.backgroundImageForState(UIControlStateNormal)
+        let image = mainImage.backgroundImageForState(.Normal)
         
         if (!image || [image isEqual:[UIImage imageNamed:"NoImage.jpg"]] ||
             [image isEqual:[UIImage imageNamed:"WaitImage.png"]]) {
@@ -320,11 +315,8 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         
         
         // Analytics
-        let gaInfo = [[GAIDictionaryBuilder createEventWithCategory:"Guide"
-                                                                       action:"Image zoom"
-                                                                        label:"User zoomed in on image"
-                                                                        value:self.guideViewController.iGuideid] build];
-        GAI.sharedInstance.defaultTracker.send(gaInfo)
+        let gaInfo = GAIDictionaryBuilder.createEventWithCategory("Guide", action:"Image zoom", label:"User zoomed in on image", value:guideViewController.iGuideid).build() as [NSObject:AnyObject]
+        GAI.sharedInstance().defaultTracker.send(gaInfo)
     }
 
     func layoutLandscape() {
@@ -422,6 +414,8 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
     }
 
     override func willRotateToInterfaceOrientation(toInterfaceOrientation:UIInterfaceOrientation, duration:NSTimeInterval) {
+        let config = Config.currentConfig()
+        
         // Really stupid hack. This prevents the status bar from overlapping with the view controller on iOS
         // versions < 6.0. This works by forcing the status bar to always appear before we manipulate the view,
         // otherwise the view thinks that it does not exist and creates the overlapping issue.
@@ -435,7 +429,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         }
         
         // Re-flow HTML
-        [webView loadHTMLString:html baseURL:[NSURL URLWithString:"http://%@", [Config host]]]];
+        webView.loadHTMLString(html, baseURL:NSURL(string:"http://\(config.host)"))
     }
 
     deinit {

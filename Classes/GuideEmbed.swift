@@ -10,13 +10,13 @@ import Foundation
 
 class GuideEmbed: NSObject {
 
-    var url: String!
+    var url: NSURL!
     var type: String!
     var size: CGSize = CGSizeMake(0.0, 0.0)
 
     init(json:[String:AnyObject]) {
-        let url = json["url"] as! String
-        self.url = "\(url)&format=json"
+        url = json["url"] as! String
+        self.url = NSURL(string:"\(url)&format=json")
         
         type = json["type"] as! String
 

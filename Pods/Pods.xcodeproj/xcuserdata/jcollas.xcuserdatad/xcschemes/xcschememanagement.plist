@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ASIHTTPRequest.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -20,11 +15,6 @@
 			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Reachability.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,27 +42,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>24A0EAE1F576301465DC6F0ABECA5480</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>36B485ACD2210B9B17AC3B27D03E1FFA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4E29D716AD2AD7EF5DD69FBFA9483636</key>
+		<key>3E2A02F9A9ED76685750C9BF88832524</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>4E9468BC9CA6217C1AB6A55BDC363640</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7399850A11D4D3105099B00503E7C966</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,12 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BBC61A09DEEE921011988C4D9739DB3B</key>
+		<key>9037599EA766BABE2CFD79E4977593E6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CA9E3965D7A9A7D7A46CD323CA5B6409</key>
+		<key>9071D518E15EF71476270EF707C58D79</key>
 		<dict>
 			<key>primary</key>
 			<true/>

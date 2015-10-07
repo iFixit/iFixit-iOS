@@ -11,7 +11,7 @@ import Foundation
 class GuideVideo: NSObject {
 
     var videoid = 0
-    var url: String!
+    var url: NSURL!
     var filename: String!
     var size = CGSizeMake(0.0, 0.0)
     
@@ -25,7 +25,7 @@ class GuideVideo: NSObject {
             if encoding["format"] as! String == "mp4" {
                 videoid = json["videoid"] as! Int
                 filename = json["filename"] as! String
-                url = encoding["url"] as! String
+                url = NSURL(string:encoding["url"] as! String)
                 
                 size = CGSizeMake(encoding["width"] as! CGFloat,
                     encoding["height"] as! CGFloat)
