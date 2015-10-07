@@ -46,11 +46,10 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
     }
     
     func removeWebViewShadows() {
-//        for subview in webView.subviews {
-        NSArray *subviews = [webView subviews];
-        if ([subviews count]) {
-            for (UIView *wview in [[subviews objectAtIndex:0] subviews]) {
-                if ([wview isKindOfClass:[UIImageView class]]) {
+        let subviews = webView.subviews
+        if subviews.count != 0 {
+            for wview in subviews[0].subviews {
+                if wview is UIImageView {
                     wview.hidden = true
                 }
             }
@@ -112,21 +111,21 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         for line in self.step.lines {
             var icon = ""
             
-            if ([line.bullet isEqual:"icon_note"] || [line.bullet isEqual:"icon_reminder"] || [line.bullet isEqual:"icon_caution"]) {
+            if line.bullet == "icon_note" || line.bullet == "icon_reminder" || line.bullet == "icon_caution" {
                 icon = "<div class=\"bulletIcon bullet_\(line.bullet)\"></div>"
                 line.bullet = "black"
             }
             
-            [body appendFormat:"<li class=\"l_%d\"><div class=\"bullet bullet_%@\"></div>%@<p>%@</p><div style=\"clear: both\"></div></li>\n", line.level, line.bullet, icon, line.text];
+            body = "\(body)<li class=\"l_\(line.level)\"><div class=\"bullet bullet_\(line.bullet)\"></div>\(icon)<p>\(line.text)</p><div style=\"clear: both\"></div></li>\n"
         }
         
         self.html = "\(header)\(body)\(footer)"
-        [webView loadHTMLString:html baseURL:[NSURL URLWithString:"http://%", [Config host]]];
+        webView.loadHTMLString(html, baseURL:NSURL(string:"http://\(config.host)"))
         
         removeWebViewShadows()
         
         // Images
-        if (step.images != nil) {
+        if (step.images.count != 0) {
             // Add a shadow to the images
             addViewShadow(mainImage)
             addViewShadow(image1)
@@ -285,25 +284,31 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         
         // Only load the secondary large images if we are looking at the current view being presented on the screen
         if (self.step.number == self.guideViewController.pageControl.currentPage) {
-            let manager = SDWebImageManager.sharedManager
+            let manager = SDWebImageManager.sharedManager()
             
-            if (self.step.images.count > 1 && ![manager imageWithURL:[self.step.images[1] URLForSize:"large"]]) {
-                [manager downloadWithURL:[self.step.images[1] URLForSize:"large"] delegate:self retryFailed:YES];
+            if (step.images.count > 1) {
+                let url = step.images[1].URLForSize("large")
+                
+                if manager.imageWithURL(url) == nil {
+                    manager.downloadWithURL(url, delegate:self, retryFailed:true)
+                }
             }
             
-            if (self.step.images.count > 2 && ![manager imageWithURL:[self.step.images[2] URLForSize:"large"]]) {
-                [manager downloadWithURL:[self.step.images[2] URLForSize:"large"] delegate:self retryFailed:YES];
+            if (step.images.count > 2) {
+                let url = step.images[2].URLForSize("large")
+                
+                if manager.imageWithURL(url) == nil {
+                    manager.downloadWithURL(url, delegate:self, retryFailed:true)
+                }
             }
         }
-        
     }
     
     @IBAction func zoomImage(sender: AnyObject) {
         let image = mainImage.backgroundImageForState(.Normal)
         
-        if (!image || [image isEqual:[UIImage imageNamed:"NoImage.jpg"]] ||
-            [image isEqual:[UIImage imageNamed:"WaitImage.png"]]) {
-            return;
+        if (image == nil || image! == UIImage(named:"NoImage.jpg") || image! == UIImage(named:"WaitImage.png")) {
+            return
         }
         
         UIApplication.sharedApplication().statusBarHidden = true
