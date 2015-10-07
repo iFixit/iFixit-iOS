@@ -15,21 +15,22 @@ class GuideVideo: NSObject {
     var filename: String!
     var size = CGSizeMake(0.0, 0.0)
     
-    class func guideVideoWithDictionary(dict: [String:AnyObject]) -> GuideVideo? {
-        let encodings = dict["encodings"] as! [[String:AnyObject]]
+    init?(json: [String:AnyObject]) {
+        super.init()
+
+        let encodings = json["encodings"] as! [[String:AnyObject]]
         
         for encoding in encodings {
             // Just grab the first mp4 available.
             if encoding["format"] as! String == "mp4" {
-                let guideVideo = GuideVideo()
-                guideVideo.videoid = dict["videoid"] as! Int
-                guideVideo.filename = dict["filename"] as! String
-                guideVideo.url = encoding["url"] as! String
+                videoid = json["videoid"] as! Int
+                filename = json["filename"] as! String
+                url = encoding["url"] as! String
                 
-                guideVideo.size = CGSizeMake(encoding["width"] as! CGFloat,
+                size = CGSizeMake(encoding["width"] as! CGFloat,
                     encoding["height"] as! CGFloat)
                 
-                return guideVideo
+                return
             }
         }
         

@@ -18,15 +18,13 @@ class GuideStep: NSObject {
     var video: GuideVideo!
     var embed: GuideEmbed!
     
-    class func guideStepWithDictionary(dict: [String:AnyObject]) -> GuideStep {
-        let guideStep = GuideStep()
-        
-        guideStep.number = dict["orderby"] as! Int
-        guideStep.title = dict["title"] as! String
-        guideStep.stepid = dict["stepid"] as! Int
+    init(json: [String:AnyObject]) {
+        number = json["orderby"] as! Int
+        title = json["title"] as! String
+        stepid = json["stepid"] as! Int
         
         // Media
-        let media = dict["media"] as! [String: AnyObject]
+        let media = json["media"] as! [String: AnyObject]
         
         // Possible types: image, video, embed
         let type = media["type"] as? String
@@ -35,27 +33,25 @@ class GuideStep: NSObject {
             
         case "image":
             for image in media["data"] as! [[String:AnyObject]] {
-                guideStep.images.append(GuideImage.guideImageWithDictionary(image))
+                images.append(GuideImage(json: image))
             }
             
         case "video":
             let video = media["data"] as! [String:AnyObject]
-            guideStep.video = GuideVideo.guideVideoWithDictionary(video)
+            self.video = GuideVideo(json: video)
             
         case "embed":
             let embed = media["data"] as! [String:AnyObject]
-            guideStep.embed = GuideEmbed.guideEmbedWithDictionary(embed)
+            self.embed = GuideEmbed(json: embed)
             
         default:
             break
         }
         
         // Lines
-        for line in dict["lines"] as! [[String:AnyObject]] {
-            guideStep.lines.append(GuideStepLine.guideStepLineWithDictionary(line))
+        for line in json["lines"] as! [[String:AnyObject]] {
+            lines.append(GuideStepLine(json: line))
         }
-        
-        return guideStep
     }
 
 }

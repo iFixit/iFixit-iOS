@@ -9,10 +9,8 @@
 #import "BookmarksViewController.h"
 #import "GuideBookmarks.h"
 #import "iFixit-Swift.h"
-#import "iFixitAPI.h"
 #import "SDWebImageManager.h"
 #import "LoginViewController.h"
-#import "User.h"
 #import "Config.h"
 #import "GuideViewController.h"
 #import "ListViewController.h"
@@ -51,7 +49,7 @@
     NSArray *allBookmarks = [[GuideBookmarks sharedBookmarks].guides allValues];
   
     for (NSDictionary *guideData in allBookmarks) {
-        Guide *guide = [Guide guideWithDictionary:guideData];
+        Guide *guide = [[Guide alloc] initWithJson:guideData];
         NSMutableArray *guides = [b objectForKey:guide.category];
         
         if (guides) {
@@ -383,10 +381,11 @@
     
     
     // Analytics
+    NSNumber *userId = [NSNumber numberWithLong:[iFixitAPI sharedInstance].user.iUserid];
     [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"User"
                                                                                         action:@"Logout"
                                                                                          label:@"User logged out"
-                                                                                         value:[iFixitAPI sharedInstance].user.iUserid] build]];
+                                                                                         value:userId] build]];
     // Set bookmarks to be nil and reload the tableView to release the cells
     bookmarks = nil;
     [self.tableView reloadData];

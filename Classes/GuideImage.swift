@@ -13,13 +13,9 @@ class GuideImage: NSObject {
     var iImageid = 0
     var url: String!
 
-    class func guideImageWithDictionary(dict: [String:AnyObject]) -> GuideImage {
-        let guideImage = GuideImage()
-        
-        guideImage.iImageid = dict["id"] as! Int
-        guideImage.url = dict["original"] as! String
-        
-        return guideImage
+    init(json: [String:AnyObject]) {
+        iImageid = json["id"] as! Int
+        url = json["original"] as! String
     }
     
     func URLForSize(size:String) -> NSURL? {

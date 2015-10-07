@@ -13,8 +13,6 @@
 #import "Config.h"
 #import "SVWebViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "iFixitAPI.h"
-#import "User.h"
 
 @implementation GuideIntroViewController
 @synthesize headerTextDozuki;

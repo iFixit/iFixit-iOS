@@ -10,7 +10,6 @@
 #import "iFixit-Swift.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
-#import "iFixitAPI.h"
 
 @interface SVWebViewController (private)
 

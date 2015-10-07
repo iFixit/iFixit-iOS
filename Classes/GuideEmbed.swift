@@ -14,19 +14,15 @@ class GuideEmbed: NSObject {
     var type: String!
     var size: CGSize = CGSizeMake(0.0, 0.0)
 
-    class func guideEmbedWithDictionary(dict:[String:AnyObject]) -> GuideEmbed {
-        let guideEmbed = GuideEmbed()
+    init(json:[String:AnyObject]) {
+        let url = json["url"] as! String
+        self.url = "\(url)&format=json"
         
-        let url = dict["url"] as! String
-        guideEmbed.url = "\(url)&format=json"
-        
-        guideEmbed.type = dict["type"] as! String
+        type = json["type"] as! String
 
-        let width = dict["width"] as! CGFloat
-        let height = dict["height"] as! CGFloat
-        guideEmbed.size = CGSizeMake(width, height)
-        
-        return guideEmbed
+        let width = json["width"] as! CGFloat
+        let height = json["height"] as! CGFloat
+        size = CGSizeMake(width, height)
     }
 
 }

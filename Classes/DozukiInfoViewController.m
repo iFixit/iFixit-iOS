@@ -6,9 +6,9 @@
 //  Copyright (c) 2011 iFixit. All rights reserved.
 //
 
+#import "iFixit-Swift.h"
 #import "DozukiInfoViewController.h"
 #import "DozukiSelectSiteViewController.h"
-#import "iFixitAPI.h"
 
 @implementation DozukiInfoViewController
 

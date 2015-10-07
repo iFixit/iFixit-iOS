@@ -7,7 +7,6 @@
 //
 
 #import "DetailGridViewController.h"
-#import "iFixitAPI.h"
 #import "WBProgressHUD.h"
 #import "DictionaryHelper.h"
 #import "GuideViewController.h"
@@ -43,7 +42,11 @@
 
 - (void)loadCategory {
     [self showLoading];
-    [[iFixitAPI sharedInstance] getCategory:_category forObject:self withSelector:@selector(gotCategory:)];
+//    [[iFixitAPI sharedInstance] getCategory:_category forObject:self withSelector:@selector(gotCategory:)];
+    [[iFixitAPI sharedInstance] getCategory:_category handler:^(NSDictionary<NSString *,id> * _Nullable results) {
+        [self gotCategory:results];
+    }];
+
 }
 
 - (void)configureSiteLogoFromURL:(NSString *)url {

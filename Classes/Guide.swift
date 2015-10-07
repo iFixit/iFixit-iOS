@@ -33,7 +33,7 @@ class Guide: NSObject {
     var reqreqs = []
     var steps:[GuideStep] = []
 
-    class func repairNullsForDict(dict:[String:AnyObject]) -> [String:AnyObject] {
+    func repairNullsForDict(dict:[String:AnyObject]) -> [String:AnyObject] {
         
         var newDict:[String:AnyObject] = [:]
         
@@ -49,51 +49,51 @@ class Guide: NSObject {
         return dict
     }
     
-    class func guideWithDictionary(dict:[String:AnyObject]) -> Guide {
-        let guide = Guide()
-
-        guide.data = repairNullsForDict(dict)
-        guide.iGuideid = dict["guideid"] as! Int
+    init(json:[String:AnyObject]) {
+        super.init()
+        
+        data = repairNullsForDict(json)
+        
+        iGuideid = json["guideid"] as! Int
         
         // Meta information
-        guide.title                 = dict["title"] as! String
-        guide.category              = dict["category"] as! String
-        guide.subject               = dict["subject"] as! String
-        guide.author                = (dict["author"] as! [String:AnyObject])["username"] as! String
-        guide.timeRequired          = dict["time_required"] as! String
-        guide.difficulty            = dict["difficulty"] as! String
-        guide.introduction          = dict["introduction_raw"] as! String
-        guide.summary               = dict["summary"] as! String
-        guide.introduction_rendered = dict["introduction_rendered"] as! String
-        guide.iModifiedDate         = dict["modified_date"] as! Int
-        guide.iPrereqModifiedDate   = dict["prereq_modified_date"] as! Int
+        title                 = json["title"] as! String
+        category              = json["category"] as! String
+        subject               = json["subject"] as! String
+        author                = (json["author"] as! [String:AnyObject])["username"] as! String
+        timeRequired          = json["time_required"] as! String
+        difficulty            = json["difficulty"] as! String
+        introduction          = json["introduction_raw"] as! String
+        summary               = json["summary"] as! String
+        introduction_rendered = json["introduction_rendered"] as! String
+        iModifiedDate         = json["modified_date"] as! Int
+        iPrereqModifiedDate   = json["prereq_modified_date"] as! Int
         
         // Main image
-        let image	= dict["image"] as? [String:AnyObject]
+        let image	= json["image"] as? [String:AnyObject]
         if (image != nil) {
-            guide.image = GuideImage.guideImageWithDictionary(image!)
+            self.image = GuideImage(json: image!)
         }
         
         // Steps
-        let steps = dict["steps"] as! [[String:AnyObject]]
+        let steps = json["steps"] as! [[String:AnyObject]]
         for step in steps {
-            guide.steps.append(GuideStep.guideStepWithDictionary(step))
+            self.steps.append(GuideStep(json: step))
         }
         
         // Prereqs
         
         // Parts
-        guide.parts = dict["parts"] as! [[String:AnyObject]]
+        parts = json["parts"] as! [[String:AnyObject]]
         
         // Tools
-        guide.tools = dict["tools"] as! [[String:AnyObject]]
+        tools = json["tools"] as! [[String:AnyObject]]
         
         // Documents
-        guide.documents = dict["documents"] as! [[String:AnyObject]]
+        documents = json["documents"] as! [[String:AnyObject]]
         
         // Flags
         
-        return guide
     }
     
     func getAbsoluteModifiedDate() -> Int {

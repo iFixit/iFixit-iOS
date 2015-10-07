@@ -6,11 +6,11 @@
 //  Copyright (c) 2011 iFixit. All rights reserved.
 //
 
+#import "iFixit-Swift.h"
 #import "FeaturedViewController.h"
 #import "PastFeaturesViewController.h"
 #import "DMPGridViewController.h"
 #import "GuideViewController.h"
-#import "iFixitAPI.h"
 #import "Config.h"
 #import "UIImageView+WebCache.h"
 #import "WBProgressHUD.h"
@@ -39,7 +39,10 @@
 - (void)loadCollections {
     [self showLoading];
     self.gvc.navigationItem.rightBarButtonItem = nil;
-    [[iFixitAPI sharedInstance] getCollectionsWithLimit:200 andOffset:0 forObject:self withSelector:@selector(gotCollections:)];
+//    [[iFixitAPI sharedInstance] getCollectionsWithLimit:200 andOffset:0 forObject:self withSelector:@selector(gotCollections:)];
+    [[iFixitAPI sharedInstance] getCollections:200 offset:0 handler:^(NSArray<NSDictionary<NSString *,id> *> * _Nullable results) {
+        [self gotCollections:results];
+    }];
 }
 
 - (id)init {

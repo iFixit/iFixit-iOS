@@ -6,10 +6,10 @@
 //
 //
 
+#import "iFixit-Swift.h"
 #import "GuideLib.h"
 #import "GuideBookmarks.h"
 #import "GuideViewController.h"
-#import "iFixit-Swift.h"
 #import "Reachability.h"
 
 @implementation GuideLib

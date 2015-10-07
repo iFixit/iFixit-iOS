@@ -6,12 +6,11 @@
 //  Copyright (c) 2011 iFixit. All rights reserved.
 //
 
+#import "iFixit-Swift.h"
 #import "iPhoneDeviceViewController.h"
-#import "iFixitAPI.h"
 #import "DictionaryHelper.h"
 #import "GuideCell.h"
 #import "UIImageView+WebCache.h"
-#import "iFixit-Swift.h"
 #import "GuideViewController.h"
 #import "Config.h"
 #import "ListViewController.h"
@@ -73,10 +72,17 @@
         loading = YES;
         [self showLoading];
         
-        if (self.topic)
-            [[iFixitAPI sharedInstance] getCategory:self.topic forObject:self withSelector:@selector(gotCategory:)];
-        else
-            [[iFixitAPI sharedInstance] getGuides:nil forObject:self withSelector:@selector(gotGuides:)];
+        if (self.topic) {
+//            [[iFixitAPI sharedInstance] getCategory:self.topic forObject:self withSelector:@selector(gotCategory:)];
+            [[iFixitAPI sharedInstance] getCategory:self.topic handler:^(NSDictionary<NSString *,id> * _Nullable result) {
+                [self gotCategory:result];
+            }];
+        } else {
+//            [[iFixitAPI sharedInstance] getGuides:nil forObject:self withSelector:@selector(gotGuides:)];
+            [[iFixitAPI sharedInstance] getGuides:nil handler:^(NSArray<NSDictionary<NSString *,id> *> * _Nullable results) {
+                [self gotGuides:results];
+            }];
+        }
     }
 }
 

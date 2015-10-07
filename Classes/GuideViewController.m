@@ -8,7 +8,6 @@
 
 #import "iFixit-Swift.h"
 #import "GuideViewController.h"
-#import "iFixitAPI.h"
 #import "GuideIntroViewController.h"
 #import "GuideStepViewController.h"
 #import "GuideBookmarker.h"
@@ -81,7 +80,11 @@
         [self gotGuide:self.guide];
     } else {
         // Load the data
-        [[iFixitAPI sharedInstance] getGuide:self.iGuideid forObject:self withSelector:@selector(gotGuide:)];
+//        [[iFixitAPI sharedInstance] getGuide:self.iGuideid forObject:self withSelector:@selector(gotGuide:)];
+        [[iFixitAPI sharedInstance] getGuide:self.iGuideid handler:^(Guide * _Nullable aGuide) {
+            [self gotGuide:aGuide];
+        }];
+
     }
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -123,7 +126,10 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     // Try Again
     if (buttonIndex) {
-        [[iFixitAPI sharedInstance] getGuide:self.iGuideid forObject:self withSelector:@selector(gotGuide:)];
+//        [[iFixitAPI sharedInstance] getGuide:self.iGuideid forObject:self withSelector:@selector(gotGuide:)];
+        [[iFixitAPI sharedInstance] getGuide:self.iGuideid handler:^(Guide * _Nullable aGuide) {
+            [self gotGuide:aGuide];
+        }];
     }
     // Cancel
     else {

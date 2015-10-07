@@ -9,14 +9,12 @@
 #import "LoginViewController.h"
 #import "LoginBackgroundViewController.h"
 #import "WBProgressHUD.h"
-#import "iFixitAPI.h"
 #import "BookmarksViewController.h"
 #import "Config.h"
 #import "OpenIDViewController.h"
 #import "SSOViewController.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
-#import "User.h"
 #import "ListViewController.h"
 #import "iFixit-Swift.h"
 
@@ -566,10 +564,14 @@
         return;
 
     [self showLoading];
-    [[iFixitAPI sharedInstance] loginWithLogin:emailField.text
-                                   andPassword:passwordField.text
-                                     forObject:self
-                                  withSelector:@selector(loginResults:)];
+//    [[iFixitAPI sharedInstance] loginWithLogin:emailField.text
+//                                   andPassword:passwordField.text
+//                                     forObject:self
+//                                  withSelector:@selector(loginResults:)];
+    [[iFixitAPI sharedInstance] loginWithName:emailField.text password:passwordField.text handler:^(NSDictionary<NSString *,id> * _Nullable results) {
+        [self loginResults:results];
+    }];
+
 }
 
 - (void)refresh {
@@ -595,11 +597,16 @@
     }
     else {
         [self showLoading];
-        [[iFixitAPI sharedInstance] registerWithLogin:emailField.text
-                                          andPassword:passwordField.text
-                                              andName:fullNameField.text
-                                            forObject:self
-                                         withSelector:@selector(loginResults:)];
+//        [[iFixitAPI sharedInstance] registerWithLogin:emailField.text
+//                                          andPassword:passwordField.text
+//                                              andName:fullNameField.text
+//                                            forObject:self
+//                                         withSelector:@selector(loginResults:)];
+        
+        [[iFixitAPI sharedInstance] registerWithLogin:emailField.text password:passwordField.text name:fullNameField.text handler:^(NSDictionary<NSString *,id> * _Nullable results) {
+            [self loginResults:results];
+        }];
+
     }
 }
 
@@ -621,10 +628,11 @@
     }
     else {
         // Analytics
+        NSNumber *userId = [NSNumber numberWithLong:[iFixitAPI sharedInstance].user.iUserid];
         [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"User"
                                                                                             action:@"Login"
                                                                                              label:@"User logged in"
-                                                                                             value:[iFixitAPI sharedInstance].user.iUserid] build]];
+                                                                                             value:userId] build]];
         
         [emailField resignFirstResponder];
         [passwordField resignFirstResponder];

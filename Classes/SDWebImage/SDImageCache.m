@@ -6,6 +6,7 @@
  * file that was distributed with this source code.
  */
 
+#import "iFixit-Swift.h"
 #import "SDImageCache.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "GuideBookmarks.h"

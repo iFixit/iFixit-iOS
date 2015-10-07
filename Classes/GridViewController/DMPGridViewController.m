@@ -6,6 +6,7 @@
 //  Copyright (c) 2011. All rights reserved.
 //
 
+#import "iFixit-Swift.h"
 #import "DMPGridViewController.h"
 #import "DMPGridViewCell.h"
 #import "UIImageView+WebCache.h"

@@ -20,33 +20,34 @@
 // View controllers that our tab bar is going to reference
 
 // iPad
-@property (nonatomic, retain) DetailGridViewController *detailGridViewController;
-@property (nonatomic, retain) UIPopoverController *popOverController;
-@property (nonatomic, retain) UIButton *browseButton;
+@property (nonatomic, retain, nullable)  DetailGridViewController *detailGridViewController;
+@property (nonatomic, retain, nullable) UIPopoverController *popOverController;
+@property (nonatomic, retain, nullable) UIButton *browseButton;
 
 // iPhone
-@property (nonatomic, retain) CategoriesViewController *categoriesViewController;
-@property (nonatomic, retain) ListViewController *listViewController;
+@property (nonatomic, retain, nullable) CategoriesViewController *categoriesViewController;
+@property (nonatomic, retain, nullable) ListViewController *listViewController;
 
 // Both
-@property (nonatomic, retain) CategoryWebViewController *categoryMoreInfoViewController;
-@property (nonatomic, retain) CategoryWebViewController *categoryAnswersWebViewController;
-@property (nonatomic, retain) NSMutableArray *tabBarViewControllers;
+@property (nonatomic, retain, nullable) CategoryWebViewController *categoryMoreInfoViewController;
+@property (nonatomic, retain, nullable) CategoryWebViewController *categoryAnswersWebViewController;
+@property (nonatomic, retain, nullable) NSMutableArray *tabBarViewControllers;
 
-@property (nonatomic, retain) NSDictionary *categoryMetaData;
-@property (nonatomic, retain) UIImageView *toolBarFillerImage;
+@property (nonatomic, retain, nullable) NSDictionary *categoryMetaData;
+@property (nonatomic, retain, nullable) UIImageView *toolBarFillerImage;
 
 // Integers to be used as constants
 @property int GUIDES;
 @property int ANSWERS;
 @property int MORE_INFO;
 
-- (void)updateTabBar:(NSDictionary *)results;
+- (void)updateTabBar:(nonnull NSDictionary *)results;
 - (void)enableTabBarItems:(BOOL)option;
 - (void)showTabBar:(BOOL)option;
 - (void)configureSubViewFrame:(int)viewControllerIndex;
-- (void)gotCategoryResult:(NSDictionary *)results;
+- (void)gotCategoryResult:(nonnull NSDictionary *)results;
 - (void)reflowLayout:(UIInterfaceOrientation)orientation;
 - (void)hideBrowseInstructions:(BOOL)option;
+- (void)gotSiteInfoResults:(nullable NSDictionary *)results;
 
 @end

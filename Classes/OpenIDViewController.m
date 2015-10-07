@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 iFixit. All rights reserved.
 //
 
+#import "iFixit-Swift.h"
 #import "OpenIDViewController.h"
 #import "Config.h"
-#import "iFixitAPI.h"
 
 @implementation OpenIDViewController
 
@@ -42,7 +42,10 @@
             }
         }
         // Validate and obtain user data.
-        [[iFixitAPI sharedInstance] loginWithSessionId:sessionid forObject:self withSelector:@selector(loginResults:)];
+        //        [[iFixitAPI sharedInstance] loginWithSessionId:sessionid forObject:self withSelector:@selector(loginResults:)];
+        [[iFixitAPI sharedInstance] loginWithSessionId:sessionid handler:^(NSDictionary<NSString *,id> * _Nullable results) {
+            [self loginResults:results];
+        }];
     }
 }
 

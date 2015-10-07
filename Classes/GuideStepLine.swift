@@ -16,13 +16,10 @@ class GuideStepLine: NSObject {
     var bullet: String!
     var text: String!
     
-    class func guideStepLineWithDictionary(dict:[String:AnyObject]) -> GuideStepLine {
-        let guideStepLine = GuideStepLine()
-
-        guideStepLine.bullet = dict["bullet"] as! String
-        guideStepLine.level  = dict["level"] as! Int
-        guideStepLine.text   = dict["text_rendered"] as! String
-        return guideStepLine
+    init(json:[String:AnyObject]) {
+        bullet = json["bullet"] as! String
+        level  = json["level"] as! Int
+        text   = json["text_rendered"] as! String
     }
     
 }

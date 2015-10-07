@@ -10,7 +10,6 @@
 #import "Config.h"
 #import "CategoriesViewController.h"
 #import "CategoryWebViewController.h"
-#import "iFixitAPI.h"
 #import "iFixit-Swift.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"

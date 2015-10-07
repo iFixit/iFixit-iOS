@@ -9,7 +9,6 @@
 #import "DozukiSelectSiteViewController.h"
 #import "iFixit-Swift.h"
 #import "Config.h"
-#import "iFixitAPI.h"
 #import "UIColor+Hex.h"
 
 #define SITES_REQUEST_LIMIT 500
@@ -39,10 +38,14 @@ static NSMutableArray *prioritySites = nil;
         [prioritySites removeAllObjects];
         loading = YES;
         [self showLoading];
-        [[iFixitAPI sharedInstance] getSitesWithLimit:SITES_REQUEST_LIMIT
-                                            andOffset:[sites count]
-                                            forObject:self
-                                         withSelector:@selector(gotSites:)];
+//        [[iFixitAPI sharedInstance] getSitesWithLimit:SITES_REQUEST_LIMIT
+//                                            andOffset:[sites count]
+//                                            forObject:self
+//                                         withSelector:@selector(gotSites:)];
+        [[iFixitAPI sharedInstance] getSites:SITES_REQUEST_LIMIT offset:[sites count] handler:^(NSArray<NSDictionary<NSString *,id> *> * _Nullable results) {
+            [self gotSites:results];
+        }];
+
     }
 }
 

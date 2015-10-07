@@ -9,7 +9,7 @@
 #import "SDWebImageManager.h"
 
 #define GuideBookmarksUpdatedNotification @"GuideBookmarksUpdatedNotification"
-
+/*
 @class Guide;
 @class GuideBookmarker;
 
@@ -49,3 +49,4 @@
 - (void)update;
 
 @end
+*/

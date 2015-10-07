@@ -165,7 +165,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
             refreshUIWindow()
         }
         
-        if (iFixitAPI.sharedInstance().user == nil && Config.currentConfig().`private`) {
+        if (iFixitAPI.sharedInstance.user == nil && Config.currentConfig().`private`) {
             // Private sites require immediate login.
             let vc = LoginViewController()
             vc.message = NSLocalizedString("Private site. Authentication required.", comment:"")
@@ -216,7 +216,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
     }
     
     func refresh() {
-        if iFixitAPI.sharedInstance().user != nil {
+        if iFixitAPI.sharedInstance.user != nil {
             self.showSiteSplash()
         }
     }
@@ -246,7 +246,9 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         let ctvc = CategoryTabBarViewController(nibName:"CategoryTabBarViewController", bundle:nil)
         
         if (config.dozuki) {
-            iFixitAPI.sharedInstance().getSiteInfoForObject(ctvc, withSelector: "gotSiteInfoResults:")
+//            iFixitAPI.sharedInstance.getSiteInfoForObject(ctvc, withSelector: "gotSiteInfoResults:")
+            iFixitAPI.sharedInstance.getSiteInfo(ctvc.gotSiteInfoResults)
+
         }
         
         lvc.categoryTabBarViewController = ctvc
@@ -313,7 +315,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         let ctbvc = CategoryTabBarViewController(nibName:"CategoryTabBarViewController", bundle:nil)
         
         if (config.dozuki) {
-            iFixitAPI.sharedInstance().getSiteInfoForObject(ctbvc, withSelector: "gotSiteInfoResults:")
+            iFixitAPI.sharedInstance.getSiteInfo(ctbvc.gotSiteInfoResults)
         }
         
         if (config.site == ConfigMagnolia) {
@@ -381,7 +383,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         config.siteData = simpleSite as [NSObject : AnyObject]
         
         // Show the main app!
-        iFixitAPI.sharedInstance().loadSession()
+        iFixitAPI.sharedInstance.loadSession()
         self.showSiteSplash()
     }
     

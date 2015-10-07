@@ -10,8 +10,6 @@
 #import "GuideBookmarker.h"
 #import "GuideBookmarks.h"
 #import "Config.h"
-#import "iFixitAPI.h"
-#import "User.h"
 #import "LoginViewController.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
@@ -48,7 +46,7 @@
 //        [delegate setOfflineGuide:guideExists];
     }
     
-    if (![[GuideBookmarks sharedBookmarks] guideForGuideid:newGuideid]) {
+    if (![[GuideBookmarks sharedBookmarks] guideForGuideid:iGuideid]) {
         UIBarButtonItem *bookmarkButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Favorite", nil)
                                                                            style:UIBarButtonItemStyleBordered 
                                                                           target:self 
@@ -95,7 +93,11 @@
     self.delegate.navigationItem.rightBarButtonItem = b;
     
     // Save online
-    [[iFixitAPI sharedInstance] like:iGuideid forObject:self withSelector:@selector(liked:)];
+//    [[iFixitAPI sharedInstance] like:iGuideid forObject:self withSelector:@selector(liked:)];
+    [[iFixitAPI sharedInstance] like:iGuideid handler:^(NSDictionary<NSString *,id> * _Nullable aDict) {
+        [self liked:aDict];
+    }];
+
 }
 
 // Resize the popover view controller contents

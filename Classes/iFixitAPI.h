@@ -5,7 +5,7 @@
 //  Created by David Patierno on 8/6/10.
 //  Copyright 2010 iFixit. All rights reserved.
 //
-
+/*
 #import "User.h"
 
 @interface iFixitAPI : NSObject
@@ -46,3 +46,4 @@
 + (void)checkCredentialsForViewController:(id)viewController;
 
 @end
+*/

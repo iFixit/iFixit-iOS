@@ -246,7 +246,10 @@ BOOL searchViewEnabled;
 }
 - (void)getAreas {
     [self showLoading];
-    [[iFixitAPI sharedInstance] getCategoriesForObject:self withSelector:@selector(gotAreas:)];
+//    [[iFixitAPI sharedInstance] getCategoriesForObject:self withSelector:@selector(gotAreas:)];
+    [[iFixitAPI sharedInstance] getCategories:^(NSDictionary<NSString *,id> * _Nullable result) {
+        [self gotAreas:result];
+    }];
 }
 
 
@@ -453,7 +456,11 @@ BOOL searchViewEnabled;
     
     if (self.searchBar.text.length && ![(NSArray *)self.searchResults[scopeFilter] count]) {
         NSString *filter = self.searchBar.selectedScopeButtonIndex == 0 ? @"guide,teardown" : @"category";
-        [[iFixitAPI sharedInstance] getSearchResults:self.searchBar.text withFilter:filter forObject:self withSelector:@selector(gotSearchResults:)];
+//        [[iFixitAPI sharedInstance] getSearchResults:self.searchBar.text withFilter:filter forObject:self withSelector:@selector(gotSearchResults:)];
+        [[iFixitAPI sharedInstance] getSearchResults:self.searchBar.text filter:filter handler:^(NSDictionary<NSString *,id> * _Nullable results) {
+            [self gotSearchResults:results];
+        }];
+
     } else {
         [self.tableView reloadData];
     }
@@ -483,7 +490,11 @@ BOOL searchViewEnabled;
     }
     
     if (searchText.length <= 3) {
-        [[iFixitAPI sharedInstance] getSearchResults:searchText withFilter:[self getFilter] forObject:self withSelector:@selector(gotSearchResults:)];
+//        [[iFixitAPI sharedInstance] getSearchResults:searchText withFilter:[self getFilter] forObject:self withSelector:@selector(gotSearchResults:)];
+        [[iFixitAPI sharedInstance] getSearchResults:searchText filter:[self getFilter] handler:^(NSDictionary<NSString *,id> * _Nullable results) {
+            [self gotSearchResults:results];
+        }];
+
     } else {
         [self performSelector:@selector(throttle:) withObject:searchText afterDelay:0.3];
     }
@@ -492,7 +503,11 @@ BOOL searchViewEnabled;
 
 - (void)throttle:(NSString *)searchText {
     if ([searchText isEqualToString:self.searchBar.text]) {
-        [[iFixitAPI sharedInstance] getSearchResults:searchText withFilter:[self getFilter] forObject:self withSelector:@selector(gotSearchResults:)];
+//        [[iFixitAPI sharedInstance] getSearchResults:searchText withFilter:[self getFilter] forObject:self withSelector:@selector(gotSearchResults:)];
+        [[iFixitAPI sharedInstance] getSearchResults:searchText filter:[self getFilter] handler:^(NSDictionary<NSString *,id> * _Nullable results) {
+            [self gotSearchResults:results];
+        }];
+
     }
 }
 
@@ -849,7 +864,10 @@ BOOL searchViewEnabled;
         return;
     }
     
-    [[iFixitAPI sharedInstance] getCategory:category[@"name"] forObject:self.listViewController.categoryTabBarViewController withSelector:@selector(gotCategoryResult:)];
+//    [[iFixitAPI sharedInstance] getCategory:category[@"name"] forObject:self.listViewController.categoryTabBarViewController withSelector:@selector(gotCategoryResult:)];
+    [[iFixitAPI sharedInstance] getCategory:category[@"name"] handler:^(NSDictionary<NSString *,id> * _Nullable result) {
+        [self.listViewController.categoryTabBarViewController gotCategoryResult:result];
+    }];
     
     // Change the back button title to @"Home", only if we have 2 views on the stack
     if (self.navigationController.viewControllers.count == 2) {
@@ -887,16 +905,23 @@ BOOL searchViewEnabled;
 }
 
 // Massage the data to match our already gathered data
-- (void)modifyTypesForGuides:(NSArray*)guides {
+- (NSArray *)modifyTypesForGuides:(NSArray*)guides {
+    NSMutableArray *anArray = [NSMutableArray array];
+    
     for (id guide in guides) {
-        guide[@"type"] = @(GUIDE);
-        guide[@"name"] = [guide[@"title"] isEqual:@""] ? NSLocalizedString(@"Untitled", nil) : guide[@"title"];
+        NSMutableDictionary *aDict = [guide mutableCopy];
+        aDict[@"type"] = @(GUIDE);
+        aDict[@"name"] = [guide[@"title"] isEqual:@""] ? NSLocalizedString(@"Untitled", nil) : guide[@"title"];
+        [anArray addObject:aDict];
     }
+    
+    return anArray;
 }
 
 // Add guides to the tableview if they exist
 - (void)addGuidesToTableView:(NSArray*)guides {
-    [self modifyTypesForGuides:guides];
+    
+    guides = [self modifyTypesForGuides:guides];
     
     // Begin the update
     [self.tableView beginUpdates];
@@ -998,15 +1023,21 @@ BOOL searchViewEnabled;
         NSRange guideIdRange = [guideMatches[0] rangeAtIndex:2];
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         iGuideId = [formatter numberFromString:[url substringWithRange:guideIdRange]];
-        [[iFixitAPI sharedInstance] getGuide:iGuideId forObject:self withSelector:@selector(gotGuide:)];
-        
+//        [[iFixitAPI sharedInstance] getGuide:iGuideId forObject:self withSelector:@selector(gotGuide:)];
+        [[iFixitAPI sharedInstance] getGuide:iGuideId handler:^(Guide * _Nullable aGuide) {
+            [self gotGuide:aGuide];
+        }];
+
         return YES;
     }
 
     if (categoryMatches.count) {
         NSRange categoryIdRange = [categoryMatches[0] rangeAtIndex:2];
         NSString *category = [url substringWithRange:categoryIdRange];
-        [[iFixitAPI sharedInstance] getCategory:category forObject:self withSelector:@selector(gotCategoryResult:)];
+//        [[iFixitAPI sharedInstance] getCategory:category forObject:self withSelector:@selector(gotCategoryResult:)];
+        [[iFixitAPI sharedInstance] getCategory:category handler:^(NSDictionary<NSString *,id> * _Nullable result) {
+            [self gotCategoryResult:result];
+        }];
 
         return YES;
     }
