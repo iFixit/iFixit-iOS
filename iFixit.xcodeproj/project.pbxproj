@@ -136,7 +136,6 @@
 		9C1A1981189735C3003E79F0 /* GuideLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideLib.h; sourceTree = "<group>"; };
 		9C1A1982189735C3003E79F0 /* GuideLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideLib.m; sourceTree = "<group>"; };
 		9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-App-Id.plist"; sourceTree = "<group>"; };
-		9CA4756518CAFEF3005AFE08 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		9CA4756618CAFEF3005AFE08 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		9CD0B3C118277EED0023EB5F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9CD0B3C318277EFF0023EB5F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -212,7 +211,6 @@
 		C1C894F6121B447E0036FAFC /* TapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapDetectingImageView.m; sourceTree = "<group>"; };
 		C1D9814D120E09BA00509D18 /* GuideStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideStepViewController.h; sourceTree = "<group>"; };
 		C1D9814E120E09BA00509D18 /* GuideStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GuideStepViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		DA056779138D976600660C86 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DA05677A138D976600660C86 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DA0A0C02138B02310027721E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		DA0A0C04138B02370027721E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -291,7 +289,6 @@
 		DACE7FFA16572C710013FFFD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		DAD77267138EAC4F00D107B8 /* LoginViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewControllerDelegate.h; sourceTree = "<group>"; };
 		DAE4242013C3DE6C00F20EEE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		DAF0C6D1134E62BF003B4DF6 /* GuideBookmarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideBookmarks.h; sourceTree = "<group>"; };
 		DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideBookmarks.swift; sourceTree = "<group>"; };
 		DAF3AF541422897900913238 /* iPhoneDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneDeviceViewController.h; sourceTree = "<group>"; };
 		DAF3AF551422897900913238 /* iPhoneDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = iPhoneDeviceViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -482,7 +479,6 @@
 		C10F270F120CE5820027A28D /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				9CA4756518CAFEF3005AFE08 /* Utility.h */,
 				9CA4756618CAFEF3005AFE08 /* Utility.swift */,
 				ABE00C41178BE34F006FD574 /* CategoriesSingleton.h */,
 				ABE00C42178BE34F006FD574 /* CategoriesSingleton.m */,
@@ -490,12 +486,10 @@
 				C0538CED1BC047E00031B35D /* Guide.swift */,
 				C0538CE71BC03FE70031B35D /* GuideStep.swift */,
 				C0538CE31BC028650031B35D /* GuideStepLine.swift */,
-				DAF0C6D1134E62BF003B4DF6 /* GuideBookmarks.h */,
 				DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.swift */,
 				DAAED15B146870E800C476C1 /* Featured Collections */,
 				DA2F766E12FB87D900683D33 /* Config.h */,
 				DA2F766F12FB87D900683D33 /* Config.m */,
-				DA056779138D976600660C86 /* User.h */,
 				DA05677A138D976600660C86 /* User.swift */,
 			);
 			name = Objects;
