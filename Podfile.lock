@@ -2,6 +2,7 @@ PODS:
   - Alamofire (2.0.2)
   - GoogleAnalytics (3.13.0)
   - MGSplitViewController (1.0.0)
+  - Reachability (3.2)
   - RegexKitLite (4.0)
   - SBJson (3.2)
   - UIColor-Hex (1.0.4)
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - Alamofire (~> 2.0)
   - GoogleAnalytics
   - MGSplitViewController
+  - Reachability
   - RegexKitLite
   - SBJson (~> 3.2)
   - UIColor-Hex
@@ -20,6 +22,7 @@ SPEC CHECKSUMS:
   Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
   GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
   MGSplitViewController: 6b00d09dad11af84450fecf4dfd9f03e73271072
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   SBJson: 9626892a7dc75ccaa2aad207ed4e4f73d6762846
   UIColor-Hex: 6aa2b620f51f31d6017c1548bc38a798ab5b2f2a

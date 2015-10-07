@@ -15,7 +15,7 @@ class GuideEmbed: NSObject {
     var size: CGSize = CGSizeMake(0.0, 0.0)
 
     init(json:[String:AnyObject]) {
-        url = json["url"] as! String
+        let url = json["url"] as! String
         self.url = NSURL(string:"\(url)&format=json")
         
         type = json["type"] as! String

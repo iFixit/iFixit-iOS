@@ -5,6 +5,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 pod 'Alamofire', '~> 2.0'
+pod 'Reachability'
 #pod 'SDWebImage'
 pod 'SBJson', '~> 3.2'
 pod 'RegexKitLite'
