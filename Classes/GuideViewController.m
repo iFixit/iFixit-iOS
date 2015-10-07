@@ -6,6 +6,7 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
+#import <MediaPlayer/MediaPlayer.h>
 #import "iFixit-Swift.h"
 #import "GuideViewController.h"
 #import "GuideIntroViewController.h"

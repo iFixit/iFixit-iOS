@@ -5,7 +5,7 @@
 //  Created by David Patierno on 8/7/10.
 //  Copyright 2010 iFixit. All rights reserved.
 //
-
+/*
 #import <MediaPlayer/MediaPlayer.h>
 #import "GuideViewController.h"
 #import "SDWebImageManager.h"
@@ -44,3 +44,4 @@
 - (void)layoutLandscape;
 
 @end
+*/
