@@ -53,17 +53,18 @@ class iFixitSplashScreenViewController :  UIViewController {
     
     @IBAction func startRepairButtonPushed(sender: UIButton)  {
         self.startRepairButton.backgroundColor = UIColor(red:0.0, green:113.0/255.0, blue:206.0/255.0, alpha:1.0)
-    
-    
-        UIView.transitionWithView(self.view, duration:1.0, options:nil,
+        
+        UIView.transitionWithView(self.view, duration:1.0, options:UIViewAnimationOptions.TransitionNone,
             animations:{
                 self.view.alpha = 0;
             }, completion:{ finished in
-                appDelegate.showSiteSplash()
+                self.appDelegate.showSiteSplash()
                 self.view.alpha = 1
             }
         )
     }
+    
+    
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         
@@ -73,24 +74,21 @@ class iFixitSplashScreenViewController :  UIViewController {
             
             switch orient {
             case .Portrait:
-                println("Portrait")
+                print("Portrait")
                 // Do something
             default:
-                println("Anything But Portrait")
+                print("Anything But Portrait")
                 // Do something else
             }
             
             }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
-                println("rotation completed")
+                print("rotation completed")
         })
         
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     }
 
-    func shouldAutorotateToInterfaceOrientation( toInterfaceOrientation : UIInterfaceOrientation)
-    {
-        return true;
-    }
+  
     
     func configureButton() {
        
@@ -99,7 +97,9 @@ class iFixitSplashScreenViewController :  UIViewController {
         self.startRepairButton.layer.masksToBounds = true
         self.startRepairButton.titleLabel!.font = UIFont(name: "OpenSans-Bold", size: 17)
         self.startRepairButton.titleLabel!.adjustsFontSizeToFitWidth = true
-        self.startRepairButton.setTitle(NSLocalizedString("START A REPAIR", nil) forState:UIControlStateNormal)
+        
+        // was a localized string research
+        self.startRepairButton.setTitle("START A REPAIR", forState: UIControlState.Normal)
     }
     
     override func prefersStatusBarHidden() -> Bool
