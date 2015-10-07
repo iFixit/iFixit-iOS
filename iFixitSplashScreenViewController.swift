@@ -21,7 +21,13 @@ class iFixitSplashScreenViewController :  UIViewController {
     var initialLoad:  Bool?
     @IBOutlet  var startRepairButton : UIButton!
     @IBOutlet  var splashBackground : UIImageView!
+   
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        print("init with nib")
+        super.init(nibName nibNameOrNil: String, bundle, nibBundleOrNil:NSBundle)
+   
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +56,8 @@ class iFixitSplashScreenViewController :  UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+   
     
     @IBAction func startRepairButtonPushed(sender: UIButton)  {
         self.startRepairButton.backgroundColor = UIColor(red:0.0, green:113.0/255.0, blue:206.0/255.0, alpha:1.0)
@@ -107,5 +115,8 @@ class iFixitSplashScreenViewController :  UIViewController {
         return true;
     }
 
+   func buttonTouchedDown(sender: UIButton) {
+        self.startRepairButton.backgroundColor = UIColor(red:0.0, green:46.0/255.0, blue:95.0/255.0, alpha:1.0)
+    }
     
 }
