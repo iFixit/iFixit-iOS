@@ -10,7 +10,7 @@ class SSOViewController: SVWebViewController, UIAlertViewDelegate {
     
     var delegate: LoginViewControllerDelegate?
 
-    func viewControllerForURL(url:String, delegate:LoginViewControllerDelegate) -> SVWebViewController {
+    class func viewControllerForURL(url:String, delegate:LoginViewControllerDelegate) -> SVWebViewController {
         // First clear all cookies.
         let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
         for cookie in storage.cookies! {

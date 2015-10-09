@@ -39,7 +39,6 @@
 		ABE472431746E0610002F3D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABE472451746E0610002F3D6 /* Localizable.strings */; };
 		ABE51914177B77F400E9555E /* category_more_info_iphone.css in Resources */ = {isa = PBXBuildFile; fileRef = ABE51913177B77F400E9555E /* category_more_info_iphone.css */; };
 		C0538CD61BBE9C190031B35D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C0538CC71BBE9C190031B35D /* LICENSE */; settings = {ASSET_TAGS = (); }; };
-		C0538CD71BBE9C190031B35D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = C0538CC81BBE9C190031B35D /* README.md */; settings = {ASSET_TAGS = (); }; };
 		C0538CD81BBE9C190031B35D /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CCA1BBE9C190031B35D /* SDImageCache.m */; settings = {ASSET_TAGS = (); }; };
 		C0538CD91BBE9C190031B35D /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CCD1BBE9C190031B35D /* SDWebImageDownloader.m */; settings = {ASSET_TAGS = (); }; };
 		C0538CDA1BBE9C190031B35D /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CD01BBE9C190031B35D /* SDWebImageManager.m */; settings = {ASSET_TAGS = (); }; };
@@ -98,7 +97,7 @@
 		DAAAC74A1433F43C00CB90AF /* GuideStepViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC7491433F43C00CB90AF /* GuideStepViewController~ipad.xib */; };
 		DAAAC74D1433F49300CB90AF /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAAC74B1433F49000CB90AF /* CategoriesViewController.xib */; };
 		DAAED15914686A2D00C476C1 /* FeaturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAED15714686A2D00C476C1 /* FeaturedViewController.m */; };
-		DAAED15E1468710C00C476C1 /* PastFeaturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAED15D1468710C00C476C1 /* PastFeaturesViewController.m */; };
+		DAAED15E1468710C00C476C1 /* PastFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAED15D1468710C00C476C1 /* PastFeaturesViewController.swift */; };
 		DAB26972146C96A2000D3A7A /* Ubuntu-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAB26971146C96A2000D3A7A /* Ubuntu-Italic.ttf */; };
 		DAB9343A137228AD00B6AA9A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB93439137228AD00B6AA9A /* LoginViewController.m */; };
 		DABE9CF513C54D2200B778FE /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF413C54D2200B778FE /* GuideView.xib */; };
@@ -263,8 +262,7 @@
 		DAAAC74B1433F49000CB90AF /* CategoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
 		DAAED15614686A2D00C476C1 /* FeaturedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedViewController.h; sourceTree = "<group>"; };
 		DAAED15714686A2D00C476C1 /* FeaturedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedViewController.m; sourceTree = "<group>"; };
-		DAAED15C1468710C00C476C1 /* PastFeaturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastFeaturesViewController.h; sourceTree = "<group>"; };
-		DAAED15D1468710C00C476C1 /* PastFeaturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastFeaturesViewController.m; sourceTree = "<group>"; };
+		DAAED15D1468710C00C476C1 /* PastFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastFeaturesViewController.swift; sourceTree = "<group>"; };
 		DAB26971146C96A2000D3A7A /* Ubuntu-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Italic.ttf"; sourceTree = "<group>"; };
 		DAB93438137228AD00B6AA9A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		DAB93439137228AD00B6AA9A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -587,8 +585,7 @@
 				DA8F60001469B25B00482D29 /* GridViewController */,
 				DAAED15614686A2D00C476C1 /* FeaturedViewController.h */,
 				DAAED15714686A2D00C476C1 /* FeaturedViewController.m */,
-				DAAED15C1468710C00C476C1 /* PastFeaturesViewController.h */,
-				DAAED15D1468710C00C476C1 /* PastFeaturesViewController.m */,
+				DAAED15D1468710C00C476C1 /* PastFeaturesViewController.swift */,
 				DA8F60081469F8E600482D29 /* PastFeaturesViewDelegate.h */,
 			);
 			name = "Featured Collections";
@@ -862,14 +859,13 @@
 				DA59296F13FB28B600504CD3 /* DozukiInfoViewController.m in Sources */,
 				DA59297413FB2ED800504CD3 /* DozukiSelectSiteViewController.m in Sources */,
 				C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */,
-				C0538CD71BBE9C190031B35D /* README.md in Sources */,
 				DAF3AF571422897900913238 /* iPhoneDeviceViewController.m in Sources */,
 				9CA4756718CAFEF3005AFE08 /* Utility.swift in Sources */,
 				DAF3AF621422AF4800913238 /* GuideCell.m in Sources */,
 				C0538CE61BC03E000031B35D /* GuideEmbed.swift in Sources */,
 				DA8860E31427DD490030F52C /* SVWebViewController.m in Sources */,
 				DAAED15914686A2D00C476C1 /* FeaturedViewController.m in Sources */,
-				DAAED15E1468710C00C476C1 /* PastFeaturesViewController.m in Sources */,
+				DAAED15E1468710C00C476C1 /* PastFeaturesViewController.swift in Sources */,
 				C0538CD81BBE9C190031B35D /* SDImageCache.m in Sources */,
 				DA8F60061469B29700482D29 /* DMPGridViewCell.m in Sources */,
 				DA8F60071469B29700482D29 /* DMPGridViewController.m in Sources */,
