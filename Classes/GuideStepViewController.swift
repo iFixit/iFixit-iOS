@@ -210,7 +210,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
     }
 
     func moviePlayerWillExitFullscreen(notification:NSNotification) {
-        delegate!.willRotateToInterfaceOrientation(delegate!.interfaceOrientation, duration:0)
+//        delegate!.willRotateToInterfaceOrientation(delegate!.interfaceOrientation, duration:0)
     }
 
     override func viewWillDisappear(animated:Bool) {

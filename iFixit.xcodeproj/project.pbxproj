@@ -34,7 +34,7 @@
 		ABDB16C41756AE2D00053573 /* CategoryWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDB16C21756AE2C00053573 /* CategoryWebViewController.m */; };
 		ABDB16C51756AE2D00053573 /* CategoryWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */; };
 		ABE00C43178BE34F006FD574 /* CategoriesSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE00C42178BE34F006FD574 /* CategoriesSingleton.m */; };
-		ABE38C9A1773B9AC00777F60 /* CategoryTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE38C981773B9AC00777F60 /* CategoryTabBarViewController.m */; };
+		ABE38C9A1773B9AC00777F60 /* CategoryTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE38C981773B9AC00777F60 /* CategoryTabBarViewController.swift */; };
 		ABE38C9B1773B9AC00777F60 /* CategoryTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE38C991773B9AC00777F60 /* CategoryTabBarViewController.xib */; };
 		ABE472431746E0610002F3D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABE472451746E0610002F3D6 /* Localizable.strings */; };
 		ABE51914177B77F400E9555E /* category_more_info_iphone.css in Resources */ = {isa = PBXBuildFile; fileRef = ABE51913177B77F400E9555E /* category_more_info_iphone.css */; };
@@ -164,8 +164,7 @@
 		ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryWebViewController.xib; sourceTree = "<group>"; };
 		ABE00C41178BE34F006FD574 /* CategoriesSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoriesSingleton.h; path = ../CategoriesSingleton.h; sourceTree = "<group>"; };
 		ABE00C42178BE34F006FD574 /* CategoriesSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoriesSingleton.m; path = ../CategoriesSingleton.m; sourceTree = "<group>"; };
-		ABE38C971773B9AC00777F60 /* CategoryTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTabBarViewController.h; path = ../CategoryTabBarViewController.h; sourceTree = "<group>"; };
-		ABE38C981773B9AC00777F60 /* CategoryTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryTabBarViewController.m; path = ../CategoryTabBarViewController.m; sourceTree = "<group>"; };
+		ABE38C981773B9AC00777F60 /* CategoryTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryTabBarViewController.swift; path = ../CategoryTabBarViewController.swift; sourceTree = "<group>"; };
 		ABE38C991773B9AC00777F60 /* CategoryTabBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryTabBarViewController.xib; path = ../CategoryTabBarViewController.xib; sourceTree = "<group>"; };
 		ABE472441746E0610002F3D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ABE472461746E0750002F3D6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -664,8 +663,7 @@
 			children = (
 				ABB84A68177F591100C58514 /* ListViewController.h */,
 				ABB84A69177F591200C58514 /* ListViewController.m */,
-				ABE38C971773B9AC00777F60 /* CategoryTabBarViewController.h */,
-				ABE38C981773B9AC00777F60 /* CategoryTabBarViewController.m */,
+				ABE38C981773B9AC00777F60 /* CategoryTabBarViewController.swift */,
 				ABE38C991773B9AC00777F60 /* CategoryTabBarViewController.xib */,
 				DA666AF11360E2A4002B1D62 /* GuideCatchingWebView.h */,
 				DA666AF21360E2A4002B1D62 /* GuideCatchingWebView.m */,
@@ -906,7 +904,7 @@
 				DA9B290714E88E650093273B /* SSOViewController.m in Sources */,
 				DA58CB3414EA17F400A2CBAB /* LoginBackgroundViewController.m in Sources */,
 				ABDB16C41756AE2D00053573 /* CategoryWebViewController.m in Sources */,
-				ABE38C9A1773B9AC00777F60 /* CategoryTabBarViewController.m in Sources */,
+				ABE38C9A1773B9AC00777F60 /* CategoryTabBarViewController.swift in Sources */,
 				C0538CE81BC03FE70031B35D /* GuideStep.swift in Sources */,
 				ABB84A6A177F591200C58514 /* ListViewController.m in Sources */,
 				ABE00C43178BE34F006FD574 /* CategoriesSingleton.m in Sources */,

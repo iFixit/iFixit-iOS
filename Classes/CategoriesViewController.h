@@ -7,7 +7,6 @@
 //
 
 #import "ListViewController.h"
-#import "CategoryTabBarViewController.h"
 #import "ZBarReaderController.h"
 
 @class ListViewController;

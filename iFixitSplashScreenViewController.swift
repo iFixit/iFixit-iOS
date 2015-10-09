@@ -25,8 +25,12 @@ class iFixitSplashScreenViewController :  UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         print("init with nib")
-        super.init(nibName nibNameOrNil: String, bundle, nibBundleOrNil:NSBundle)
+        super.init(nibName:nibNameOrNil, bundle:nibBundleOrNil)
    
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -42,7 +46,7 @@ class iFixitSplashScreenViewController :  UIViewController {
     func presentStartRepairButton() {
         UIView.transitionWithView(self.startRepairButton, duration:0.3, options:UIViewAnimationOptions.TransitionCrossDissolve,
             animations:{
-                self.startRepairButton.hidden = true
+                self.startRepairButton.hidden = false
             },
             completion: nil
             
@@ -50,7 +54,7 @@ class iFixitSplashScreenViewController :  UIViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-        self.reflowImages(self.interfaceOrientation())
+//        self.reflowImages(self.interfaceOrientation())
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,7 +66,7 @@ class iFixitSplashScreenViewController :  UIViewController {
     @IBAction func startRepairButtonPushed(sender: UIButton)  {
         self.startRepairButton.backgroundColor = UIColor(red:0.0, green:113.0/255.0, blue:206.0/255.0, alpha:1.0)
         
-        UIView.transitionWithView(self.view, duration:1.0, options:UIViewAnimationOptions.TransitionNone,
+        UIView.transitionWithView(self.view, duration:1.0, options:.TransitionNone,
             animations:{
                 self.view.alpha = 0;
             }, completion:{ finished in
