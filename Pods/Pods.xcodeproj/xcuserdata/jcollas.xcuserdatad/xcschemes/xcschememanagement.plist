@@ -24,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RegexKitLite.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>UIColor-Hex.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,7 +42,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>38249BA1D7B742FDCDD12B1446576E20</key>
+		<key>4AB5AFAEFD9C2569C1B23A0C7CE4F630</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7B5BBD59046E1C8106D937BDB9BEA922</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,22 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8940D2B8ADFD8155E91077DD8794DAAB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C137727EF978FFFB74B558F114A23961</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>CA9E3965D7A9A7D7A46CD323CA5B6409</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F01A4681EC0273C79CB2CFD6FEEF2C4B</key>
+		<key>FB7C5E1FCBFD2B2F3AA96A1DF6FF2853</key>
 		<dict>
 			<key>primary</key>
 			<true/>
