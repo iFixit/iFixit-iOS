@@ -8,7 +8,6 @@
 
 #import "iFixit-Swift.h"
 #import "FeaturedViewController.h"
-#import "PastFeaturesViewController.h"
 #import "DMPGridViewController.h"
 #import "GuideViewController.h"
 #import "Config.h"

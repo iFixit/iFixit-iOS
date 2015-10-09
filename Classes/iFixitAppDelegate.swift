@@ -247,11 +247,12 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         
         if (config.dozuki) {
 //            iFixitAPI.sharedInstance.getSiteInfoForObject(ctvc, withSelector: "gotSiteInfoResults:")
-            iFixitAPI.sharedInstance.getSiteInfo(ctvc.gotSiteInfoResults)
-
+            iFixitAPI.sharedInstance.getSiteInfo({ (results) in
+                ctvc.gotSiteInfoResults(results)
+            })
         }
         
-        lvc.categoryTabBarViewController = ctvc
+// TODO        lvc.categoryTabBarViewController = ctvc
         ctvc.listViewController = lvc
         
         splitViewController!.viewControllers = [lvc, ctvc]
@@ -315,7 +316,9 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         let ctbvc = CategoryTabBarViewController(nibName:"CategoryTabBarViewController", bundle:nil)
         
         if (config.dozuki) {
-            iFixitAPI.sharedInstance.getSiteInfo(ctbvc.gotSiteInfoResults)
+            iFixitAPI.sharedInstance.getSiteInfo({ (results) in
+                ctbvc.gotSiteInfoResults(results)
+            })
         }
         
         if (config.site == ConfigMagnolia) {

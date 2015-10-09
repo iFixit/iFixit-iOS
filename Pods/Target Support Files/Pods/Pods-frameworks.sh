@@ -55,8 +55,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/Alamofire.framework'
   install_framework 'Pods/MGSplitViewController.framework'
   install_framework 'Pods/Reachability.framework'
-  install_framework 'Pods/RegexKitLite.framework'
-  install_framework 'Pods/SBJson.framework'
   install_framework 'Pods/UIColor_Hex.framework'
   install_framework 'Pods/ZBarSDK.framework'
 fi
@@ -64,8 +62,6 @@ if [[ "$CONFIGURATION" == "Ad-Hoc" ]]; then
   install_framework 'Pods/Alamofire.framework'
   install_framework 'Pods/MGSplitViewController.framework'
   install_framework 'Pods/Reachability.framework'
-  install_framework 'Pods/RegexKitLite.framework'
-  install_framework 'Pods/SBJson.framework'
   install_framework 'Pods/UIColor_Hex.framework'
   install_framework 'Pods/ZBarSDK.framework'
 fi
@@ -73,8 +69,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Alamofire.framework'
   install_framework 'Pods/MGSplitViewController.framework'
   install_framework 'Pods/Reachability.framework'
-  install_framework 'Pods/RegexKitLite.framework'
-  install_framework 'Pods/SBJson.framework'
   install_framework 'Pods/UIColor_Hex.framework'
   install_framework 'Pods/ZBarSDK.framework'
 fi

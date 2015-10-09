@@ -22,7 +22,7 @@
 @property (retain, nonatomic) IBOutlet UINavigationBar *categoryNavigationBar;
 
 @property (retain, nonatomic) ListViewController *listViewController;
-@property (retain, nonatomic) CategoryTabBarViewController *categoryTabBarViewController;
+@property (retain, nonatomic, nullable) CategoryTabBarViewController *categoryTabBarViewController;
 
 
 - (void)configureProperties;

@@ -8,7 +8,6 @@
 
 #import "iFixit-Swift.h"
 #import "iPhoneDeviceViewController.h"
-#import "DictionaryHelper.h"
 #import "GuideCell.h"
 #import "UIImageView+WebCache.h"
 #import "GuideViewController.h"
@@ -105,7 +104,7 @@
     }
     
     
-    self.guides = [data arrayForKey:@"guides"];
+    self.guides = [data objectForKey:@"guides"];    // Check if NSNull
     [self.tableView reloadData];
     [self hideLoading];
     

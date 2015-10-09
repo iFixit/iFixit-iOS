@@ -9,7 +9,6 @@
 #import "GuideCatchingWebView.h"
 #import "iFixit-Swift.h"
 #import "Config.h"
-#import "RegexKitLite.h"
 #import "SVWebViewController.h"
 #import "GuideViewController.h"
 
@@ -57,8 +56,15 @@
 	 )
 	 */
     
+    NSString *guideidString = nil;
+    NSError *error;
     NSString *regexString = [NSString stringWithFormat:@"https?://%@/(Guide|Teardown|Project)/(.*?)/([0-9]+)/([0-9]+)", [Config currentConfig].host];
-    NSString *guideidString = [url stringByMatching:regexString capture:3];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:NSRegularExpressionCaseInsensitive error:&error];
+    NSArray *matches = [regex matchesInString:url options:NSMatchingProgress range:NSMakeRange(0, url.length)];
+    if (matches.count == 3) {
+        NSTextCheckingResult *match = matches[2];
+        guideidString = [url substringWithRange:match.range];
+    }
     NSNumber *iGuideid = guideidString ? [formatter numberFromString:guideidString] : @(-1);
 
     return iGuideid;

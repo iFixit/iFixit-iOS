@@ -22,7 +22,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
 
     var delegate: UIViewController?
     var step:GuideStep!
-    var moviePlayer:MPMoviePlayerController!
+    var moviePlayer:MPMoviePlayerController?
     var embedView:UIWebView!
     var guideViewController:GuideViewController!
     var numImagesLoaded = 0
@@ -84,7 +84,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ?
         layoutLandscape() : layoutPortrait()
         
-        var bgColor = UIColor.clearColor()
+        let bgColor = UIColor.clearColor()
         
         self.view.backgroundColor = bgColor
         webView.modalDelegate = delegate
@@ -96,8 +96,10 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
             stepTitle = "\(stepTitle) - \(step.title)"
         }
         
-        titleLabel.text = stepTitle
-        titleLabel.textColor = config.textColor;
+        if let titleLabel = self.titleLabel {
+            titleLabel.text = stepTitle
+            titleLabel.textColor = config.textColor
+        }
         
         // Load the step contents as HTML.
         var bodyClass = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? "big" : "small"
@@ -146,10 +148,10 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
             let url = self.guideViewController.offlineGuide ? getOfflineVideoPath() : step.video.url
             
             self.moviePlayer = MPMoviePlayerController(contentURL:url)
-            self.moviePlayer.shouldAutoplay = false
-            self.moviePlayer.controlStyle = .Embedded
-            moviePlayer.view.frame = frame
-            view.addSubview(moviePlayer.view)
+            self.moviePlayer!.shouldAutoplay = false
+            self.moviePlayer!.controlStyle = .Embedded
+            moviePlayer!.view.frame = frame
+            view.addSubview(moviePlayer!.view)
         }
         // Embeds
         else if (self.step.embed != nil) {
@@ -166,8 +168,6 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
             let embedSize = embedView.frame.size
             
             let oembedURL = "\(step.embed.url)&maxwidth=\(embedSize.width)&maxheight=\(embedSize.height)"
-            
-            let url = NSURL(string:oembedURL)
             
             Alamofire.request(.GET, oembedURL).responseJSON { (req, resp, result) in
                 if result.isSuccess {
@@ -198,27 +198,27 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
     }
 
     func _moviePlayerPlaybackDidFinish(notification:NSNotification) {
-        if (self.moviePlayer.fullscreen) {
-            moviePlayer.setFullscreen(false, animated:true)
+        if ((moviePlayer?.fullscreen) != nil) {
+            moviePlayer!.setFullscreen(false, animated:true)
         }
     }
 
     func _moviePlayerPlaybackStateDidChange(notification:NSNotification) {
-        if (!self.moviePlayer.fullscreen && self.moviePlayer.playbackState == .Playing) {
-            moviePlayer.setFullscreen(true, animated:true)
+        if (moviePlayer?.fullscreen == false && moviePlayer?.playbackState == .Playing) {
+            moviePlayer!.setFullscreen(true, animated:true)
         }
     }
 
     func moviePlayerWillExitFullscreen(notification:NSNotification) {
-        delegate!.willRotateToInterfaceOrientation(delegate!.interfaceOrientation, duration:0)
+//        delegate!.willRotateToInterfaceOrientation(delegate!.interfaceOrientation, duration:0)
     }
 
     override func viewWillDisappear(animated:Bool) {
         // In iOS 6 and up, this method gets called when the video player goes into full screen.
         // This prevents the movie player from stopping itself by only stopping the video if not in
         // full screen (meaning the view has actually disappeared).
-        if (!self.moviePlayer.fullscreen) {
-            moviePlayer.stop()
+        if (moviePlayer?.fullscreen == false) {
+            moviePlayer!.stop()
         }
     }
 
@@ -330,12 +330,17 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             mainImage.frame = CGRectMake(20.0, 103.0, 592.0, 444.0)
             webView.frame = CGRectMake(620.0, 103.0, 404.0, 562.0)
-            titleLabel.frame = CGRectMake(30.0, 30.0, 975.0, 65.0)
-            titleLabel.textAlignment = .Right;
+            
+            if let titleLabel = self.titleLabel {
+                titleLabel.frame = CGRectMake(30.0, 30.0, 975.0, 65.0)
+                titleLabel.textAlignment = .Right
+            }
             
             var frame = mainImage.frame
             frame.origin.x = 10.0
-            moviePlayer.view.frame = frame
+            if moviePlayer != nil {
+                moviePlayer!.view.frame = frame
+            }
             embedView.frame = frame
             
             frame = image1.frame
@@ -377,12 +382,17 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             mainImage.frame = CGRectMake(20.0, 30.0, 592.0, 444.0)
             webView.frame = CGRectMake(20.0, 554.0, 615.0, 380.0)
-            titleLabel.frame = CGRectMake(30.0, 489.0, 708.0, 65.0)
-            titleLabel.textAlignment = .Left;
+            
+            if let titleLabel = self.titleLabel {
+                titleLabel.frame = CGRectMake(30.0, 489.0, 708.0, 65.0)
+                titleLabel.textAlignment = .Left
+            }
             
             var frame = mainImage.frame
             frame.origin.x = 10.0
-            moviePlayer.view.frame = frame
+            if moviePlayer != nil {
+                moviePlayer!.view.frame = frame
+            }
             embedView.frame = frame
             
             frame = image1.frame

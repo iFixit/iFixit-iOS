@@ -9,7 +9,6 @@
 #import "iFixit-Swift.h"
 #import "SDImageCache.h"
 #import <CommonCrypto/CommonDigest.h>
-#import "GuideBookmarks.h"
 
 static NSInteger cacheMaxCacheAge = 60*60*24*3; // 3 days
 

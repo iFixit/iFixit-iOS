@@ -113,7 +113,7 @@ class iFixitAPI: NSObject {
     }
     
 //    - (void)getSiteInfoForObject:(id)object withSelector:(SEL)selector {
-    func getSiteInfo(handler:(([NSObject:AnyObject]?) -> ())) {
+    func getSiteInfo(handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         
         let url = "https://\(config.host)/api/2.0/info"

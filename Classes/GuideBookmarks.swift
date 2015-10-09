@@ -9,6 +9,8 @@
 import Foundation
 import Alamofire
 
+let GuideBookmarksUpdatedNotification = "GuideBookmarksUpdatedNotification"
+
 class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
     
     static var _sharedBookmarks:GuideBookmarks?

@@ -4,8 +4,8 @@ GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 NDEBUG=1
 HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GoogleAnalytics"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
 LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAnalytics/Libraries"
-OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Alamofire.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MGSplitViewController.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Reachability.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/RegexKitLite.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SBJson.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/UIColor_Hex.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/ZBarSDK.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/GoogleAnalytics"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"GoogleAnalytics" -l"sqlite3" -l"z" -framework "Alamofire" -framework "CoreData" -framework "MGSplitViewController" -framework "Reachability" -framework "RegexKitLite" -framework "SBJson" -framework "SystemConfiguration" -framework "UIColor_Hex" -framework "ZBarSDK"
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Alamofire.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MGSplitViewController.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Reachability.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/UIColor_Hex.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/ZBarSDK.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/GoogleAnalytics"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"GoogleAnalytics" -l"sqlite3" -l"z" -framework "Alamofire" -framework "CoreData" -framework "MGSplitViewController" -framework "Reachability" -framework "SystemConfiguration" -framework "UIColor_Hex" -framework "ZBarSDK"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods
 PODS_ROOT = ${SRCROOT}/Pods
