@@ -23,7 +23,6 @@
 #import "SVWebViewController.h"
 #import "GuideBookmarker.h"
 #import "GuideCatchingWebView.h"
-#import "LoginBackgroundViewController.h"
 #import "UIColor+Hex.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
