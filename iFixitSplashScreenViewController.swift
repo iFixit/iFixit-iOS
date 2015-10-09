@@ -71,7 +71,8 @@ class iFixitSplashScreenViewController :  UIViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-//        self.reflowImages(self.interfaceOrientation())
+        let interfaceOrientation = UIDevice.currentDevice().orientation
+        self.reflowImages(interfaceOrientation)
     }
 
     override func didReceiveMemoryWarning() {
@@ -121,53 +122,47 @@ class iFixitSplashScreenViewController :  UIViewController {
         self.startRepairButton.backgroundColor = UIColor(red:0.0, green:113.0/255.0, blue:206.0/255.0, alpha:1.0)
     }
 
-    func reflowImages(orientation: UIInterfaceOrientation) {
+    func reflowImages(orientation: UIDeviceOrientation) {
        let landscape = UIDeviceOrientationIsLandscape(orientation)
         let deviceIdiom = UIScreen.mainScreen().traitCollection.userInterfaceIdiom
-        let model =UIScreen.mainScreen().traitCollection.
+      
         
         switch (deviceIdiom){
         case .Phone:
             // It's an iPhone
-            if IS_IPHONE_5 {
-                self.startRepairButton.frame = CGRectMake(177, 170, 219, 45)
-                self.splashBackground.image = UIImage.imageNamed("Default-568h-Landscape");
+            if landscape{
+                if DeviceType.IS_IPHONE_5 {
+                    self.startRepairButton.frame = CGRectMake(177, 170, 219, 45)
+                    self.splashBackground.image = UIImage(named:"Default-568h-Landscape")
+                } else {
+                    self.startRepairButton.frame = CGRectMake(131, 170, 219, 45)
+                    self.splashBackground.image = UIImage(named:"Default-Landscape")
+                }
+                
+            } else {
+                if DeviceType.IS_IPHONE_5 {
+                    self.startRepairButton.frame = CGRectMake(51, 292, 218, 45)
+                    self.splashBackground.image = UIImage(named:"Default-568h")
+                } else {
+                    self.startRepairButton.frame = CGRectMake(51, 244, 218, 45)
+                    self.splashBackground.image = UIImage(named:"Default")
+                }
             }
-        case .Pad:
+         case .Pad:
             // It's an iPad
+            if landscape {
+                self.startRepairButton.frame = CGRectMake(390, 410, 244, 50)
+                self.splashBackground.image = UIImage(named:"Default-Landscape")
+            } else {
+                self.startRepairButton.frame = CGRectMake(263, 550, 244, 50);
+                self.splashBackground.image = UIImage(named:"Default-Portrait")
+            }
         default:
             // Uh, oh! What could it be?
+        self.startRepairButton.frame = CGRectMake(51, 244, 218, 45)
+        self.splashBackground.image = UIImage(named:"Default")
         }
-        
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        if (UIDeviceOrientationIsLandscape(orientation)) {
-            // iPhone 5
-            if ([UIScreen mainScreen].bounds.size.height == 568.0) {
-                self.startRepairButton.frame = CGRectMake(177, 170, 219, 45);
-                self.splashBackground.image = [UIImage imageNamed:@"Default-568h-Landscape"];
-            } else {
-                self.startRepairButton.frame = CGRectMake(131, 170, 219, 45);
-                self.splashBackground.image = [UIImage imageNamed:@"Default-Landscape"];
-            }
     
-        } else {
-            if ([UIScreen mainScreen].bounds.size.height == 568.0) {
-                self.startRepairButton.frame = CGRectMake(51, 292, 218, 45);
-                self.splashBackground.image = [UIImage imageNamed:@"Default-568h"];
-            } else {
-                self.startRepairButton.frame = CGRectMake(51, 244, 218, 45);
-                self.splashBackground.image = [UIImage imageNamed:@"Default"];
-            }
-        }
-    } else {
-        if (UIDeviceOrientationIsLandscape(orientation)) {
-            self.startRepairButton.frame = CGRectMake(390, 410, 244, 50);
-            self.splashBackground.image = [UIImage imageNamed:@"Default-Landscape"];
-        } else {
-            self.startRepairButton.frame = CGRectMake(263, 550, 244, 50);
-            self.splashBackground.image = [UIImage imageNamed:@"Default-Portrait"];
-        }
-    }
 }
   
     
