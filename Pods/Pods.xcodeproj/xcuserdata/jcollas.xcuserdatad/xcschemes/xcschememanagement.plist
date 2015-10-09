@@ -29,11 +29,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SBJson.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>UIColor-Hex.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,22 +42,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2DE0CD9292CBFB3E5B6609DCD404687B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>36B485ACD2210B9B17AC3B27D03E1FFA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4E9468BC9CA6217C1AB6A55BDC363640</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4F3A48E0C44F4D9643B8851936CF5323</key>
+		<key>38249BA1D7B742FDCDD12B1446576E20</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +62,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C137727EF978FFFB74B558F114A23961</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CA9E3965D7A9A7D7A46CD323CA5B6409</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EFF0BFDC1D6EC4C6D4EE4B8615BB6842</key>
+		<key>F01A4681EC0273C79CB2CFD6FEEF2C4B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

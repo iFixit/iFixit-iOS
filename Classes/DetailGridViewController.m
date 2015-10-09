@@ -8,7 +8,6 @@
 
 #import "DetailGridViewController.h"
 #import "WBProgressHUD.h"
-#import "DictionaryHelper.h"
 #import "GuideViewController.h"
 #import "DMPGridViewCell.h"
 #import "iFixit-Swift.h"
@@ -68,7 +67,7 @@
 }
 
 - (void)gotCategory:(NSDictionary *)data {
-    self.guides = [data arrayForKey:@"guides"];
+    self.guides = [data objectForKey:@"guides"];    // Check if NSNull
 
     if (!_guides) {
         [self.loading hide];

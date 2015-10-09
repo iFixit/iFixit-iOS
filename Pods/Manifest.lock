@@ -4,7 +4,6 @@ PODS:
   - MGSplitViewController (1.0.0)
   - Reachability (3.2)
   - RegexKitLite (4.0)
-  - SBJson (3.2)
   - UIColor-Hex (1.0.4)
   - ZBarSDK (1.3.1)
 
@@ -14,7 +13,6 @@ DEPENDENCIES:
   - MGSplitViewController
   - Reachability
   - RegexKitLite
-  - SBJson (~> 3.2)
   - UIColor-Hex
   - ZBarSDK (~> 1.3)
 
@@ -24,7 +22,6 @@ SPEC CHECKSUMS:
   MGSplitViewController: 6b00d09dad11af84450fecf4dfd9f03e73271072
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
-  SBJson: 9626892a7dc75ccaa2aad207ed4e4f73d6762846
   UIColor-Hex: 6aa2b620f51f31d6017c1548bc38a798ab5b2f2a
   ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
 

@@ -10,7 +10,6 @@
 #import "iFixit-Swift.h"
 #import "GuideViewController.h"
 #import "GuideIntroViewController.h"
-#import "GuideStepViewController.h"
 #import "GuideBookmarker.h"
 #import "Config.h"
 #import "GAI.h"

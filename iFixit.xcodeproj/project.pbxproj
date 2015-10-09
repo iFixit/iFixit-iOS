@@ -116,7 +116,6 @@
 		DAF0C6D3134E62BF003B4DF6 /* GuideBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.swift */; };
 		DAF3AF571422897900913238 /* iPhoneDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF551422897900913238 /* iPhoneDeviceViewController.m */; };
 		DAF3AF581422897900913238 /* iPhoneDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */; };
-		DAF3AF5C1422A2E900913238 /* DictionaryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF5B1422A2E900913238 /* DictionaryHelper.m */; };
 		DAF3AF621422AF4800913238 /* GuideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF611422AF4800913238 /* GuideCell.m */; };
 /* End PBXBuildFile section */
 
@@ -207,7 +206,6 @@
 		C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideIntroView~ipad.xib"; sourceTree = "<group>"; };
 		C1C894F5121B447E0036FAFC /* TapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapDetectingImageView.h; sourceTree = "<group>"; };
 		C1C894F6121B447E0036FAFC /* TapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapDetectingImageView.m; sourceTree = "<group>"; };
-		C1D9814D120E09BA00509D18 /* GuideStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideStepViewController.h; sourceTree = "<group>"; };
 		C1D9814E120E09BA00509D18 /* GuideStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GuideStepViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DA05677A138D976600660C86 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DA0A0C02138B02310027721E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -290,8 +288,6 @@
 		DAF3AF541422897900913238 /* iPhoneDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneDeviceViewController.h; sourceTree = "<group>"; };
 		DAF3AF551422897900913238 /* iPhoneDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = iPhoneDeviceViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPhoneDeviceViewController.xib; sourceTree = "<group>"; };
-		DAF3AF5A1422A2E900913238 /* DictionaryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryHelper.h; sourceTree = "<group>"; };
-		DAF3AF5B1422A2E900913238 /* DictionaryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryHelper.m; sourceTree = "<group>"; };
 		DAF3AF601422AF4800913238 /* GuideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCell.h; sourceTree = "<group>"; };
 		DAF3AF611422AF4800913238 /* GuideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCell.m; sourceTree = "<group>"; };
 		E353F8DB6E6C89DA7ADE25F5 /* Pods.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods.ad-hoc.xcconfig"; path = "Pods/Target Support Files/Pods/Pods.ad-hoc.xcconfig"; sourceTree = "<group>"; };
@@ -523,7 +519,6 @@
 				C184D5351210D8CD00953C39 /* GuideIntroViewController.h */,
 				C184D5361210D8CD00953C39 /* GuideIntroViewController.m */,
 				DABE9CF613C5519800B778FE /* GuideIntroViewController.xib */,
-				C1D9814D120E09BA00509D18 /* GuideStepViewController.h */,
 				C1D9814E120E09BA00509D18 /* GuideStepViewController.swift */,
 				DACE7FF1165722710013FFFD /* GuideStepViewController.xib */,
 				DAAAC7491433F43C00CB90AF /* GuideStepViewController~ipad.xib */,
@@ -608,7 +603,6 @@
 				C0538CC61BBE9C190031B35D /* SDWebImage */,
 				DA8860DE1427DD490030F52C /* SVWebViewController */,
 				DAA7507E1368DA87002AA546 /* wbprogresshud */,
-				DAF3AF591422A29E00913238 /* DictionaryHelper */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -679,15 +673,6 @@
 				9CE6783A1837F146001912DF /* SearchCell.m */,
 			);
 			name = Navigation;
-			sourceTree = "<group>";
-		};
-		DAF3AF591422A29E00913238 /* DictionaryHelper */ = {
-			isa = PBXGroup;
-			children = (
-				DAF3AF5A1422A2E900913238 /* DictionaryHelper.h */,
-				DAF3AF5B1422A2E900913238 /* DictionaryHelper.m */,
-			);
-			name = DictionaryHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -885,7 +870,6 @@
 				C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */,
 				C0538CD71BBE9C190031B35D /* README.md in Sources */,
 				DAF3AF571422897900913238 /* iPhoneDeviceViewController.m in Sources */,
-				DAF3AF5C1422A2E900913238 /* DictionaryHelper.m in Sources */,
 				9CA4756718CAFEF3005AFE08 /* Utility.swift in Sources */,
 				DAF3AF621422AF4800913238 /* GuideCell.m in Sources */,
 				C0538CE61BC03E000031B35D /* GuideEmbed.swift in Sources */,

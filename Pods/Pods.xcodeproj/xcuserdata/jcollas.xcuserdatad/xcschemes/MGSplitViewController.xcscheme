@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EE7E0674EDEE0697BC22EEC7"
+               BlueprintIdentifier = "E0A0CDFD185A7719EB3347E4"
                BuildableName = "MGSplitViewController.framework"
                BlueprintName = "MGSplitViewController"
                ReferencedContainer = "container:Pods.xcodeproj">
