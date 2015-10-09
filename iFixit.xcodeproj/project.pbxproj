@@ -81,7 +81,6 @@
 		DA59297413FB2ED800504CD3 /* DozukiSelectSiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA59297213FB2ED800504CD3 /* DozukiSelectSiteViewController.m */; };
 		DA59297513FB2ED800504CD3 /* DozukiSelectSiteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA59297313FB2ED800504CD3 /* DozukiSelectSiteViewController.xib */; };
 		DA666AF31360E2A4002B1D62 /* GuideCatchingWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA666AF21360E2A4002B1D62 /* GuideCatchingWebView.m */; };
-		DA6A0D1B14218973003B8BAD /* UIImage+Coder.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A0D1A14218973003B8BAD /* UIImage+Coder.m */; };
 		DA881857134A5AFE004387CE /* BookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA881855134A5AFE004387CE /* BookmarksViewController.m */; };
 		DA881858134A5AFE004387CE /* BookmarksView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA881856134A5AFE004387CE /* BookmarksView.xib */; };
 		DA8860E21427DD490030F52C /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA8860DF1427DD490030F52C /* SVWebViewController.bundle */; };
@@ -238,7 +237,6 @@
 		DA59297313FB2ED800504CD3 /* DozukiSelectSiteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DozukiSelectSiteViewController.xib; sourceTree = "<group>"; };
 		DA666AF11360E2A4002B1D62 /* GuideCatchingWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCatchingWebView.h; sourceTree = "<group>"; };
 		DA666AF21360E2A4002B1D62 /* GuideCatchingWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCatchingWebView.m; sourceTree = "<group>"; };
-		DA6A0D1A14218973003B8BAD /* UIImage+Coder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Coder.m"; sourceTree = "<group>"; };
 		DA881854134A5AFE004387CE /* BookmarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksViewController.h; sourceTree = "<group>"; };
 		DA881855134A5AFE004387CE /* BookmarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksViewController.m; sourceTree = "<group>"; };
 		DA881856134A5AFE004387CE /* BookmarksView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarksView.xib; sourceTree = "<group>"; };
@@ -531,7 +529,6 @@
 				DAAAC7491433F43C00CB90AF /* GuideStepViewController~ipad.xib */,
 				DA3DE74A134CF57000AD5050 /* GuideBookmarker.h */,
 				DA3DE74B134CF57000AD5050 /* GuideBookmarker.m */,
-				DA6A0D1A14218973003B8BAD /* UIImage+Coder.m */,
 			);
 			name = "Guide View";
 			sourceTree = "<group>";
@@ -887,7 +884,6 @@
 				DA59297413FB2ED800504CD3 /* DozukiSelectSiteViewController.m in Sources */,
 				C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */,
 				C0538CD71BBE9C190031B35D /* README.md in Sources */,
-				DA6A0D1B14218973003B8BAD /* UIImage+Coder.m in Sources */,
 				DAF3AF571422897900913238 /* iPhoneDeviceViewController.m in Sources */,
 				DAF3AF5C1422A2E900913238 /* DictionaryHelper.m in Sources */,
 				9CA4756718CAFEF3005AFE08 /* Utility.swift in Sources */,

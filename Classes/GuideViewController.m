@@ -13,7 +13,6 @@
 #import "GuideStepViewController.h"
 #import "GuideBookmarker.h"
 #import "Config.h"
-#import "UIImage+Coder.m"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 
