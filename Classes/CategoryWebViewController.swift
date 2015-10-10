@@ -59,4 +59,48 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    func didReceiveMemoryWarning()
+    {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    ebViewDidStartLoad:(UIWebView *)webView {
+    // Hide any previous loading items
+    [self.loading hide];
+    
+    // Hide the webview with a transition
+    [UIView transitionWithView:self.webView
+    duration:0.3f
+    options:UIViewAnimationOptionTransitionCrossDissolve
+    animations:^{
+    self.webView.hidden = YES;
+    }
+    completion:nil
+    ];
+    
+    double yCoord = 0;
+    // Figure out the yCoord for the loading icon
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    yCoord = UIDeviceOrientationIsPortrait(self.interfaceOrientation) ? 400 : 300;
+    } else {
+    yCoord = 160;
+    }
+    
+    yCoord = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    ? (UIDeviceOrientationIsPortrait(self.interfaceOrientation)
+    ? 400 : 300)
+    : 160;
+    
+    CGRect frame = CGRectMake(self.view.frame.size.width/ 2.0 - 60, yCoord, 120.0, 120.0);
+    
+    self.loading = [[WBProgressHUD alloc] initWithFrame:frame];
+    self.loading.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    
+    [self.loading showInView:self.view];
+    }
+
+
+    
 }
