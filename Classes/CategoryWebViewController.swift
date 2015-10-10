@@ -34,6 +34,7 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        webView?.delegate = self
     }
     
     override func viewWillAppear(animated:Bool) {
@@ -66,39 +67,30 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
     }
     
 
-    ebViewDidStartLoad:(UIWebView *)webView {
-    // Hide any previous loading items
-    [self.loading hide];
+    override func webViewDidStartLoad(webView: UIWebView ) {
+        // Hide any previous loading items
+        self.loading.hide()
     
-    // Hide the webview with a transition
-    [UIView transitionWithView:self.webView
-    duration:0.3f
-    options:UIViewAnimationOptionTransitionCrossDissolve
-    animations:^{
-    self.webView.hidden = YES;
-    }
-    completion:nil
-    ];
+        // Hide the webview with a transition
+        UIView.transitionWithView(self.webView, duration: 0.3, options: UIViewAnimationOptionTransitionCrossDissolve, animations: {
+            self.webView?.hidden = true
+            }, completion: nil)
     
-    double yCoord = 0;
-    // Figure out the yCoord for the loading icon
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-    yCoord = UIDeviceOrientationIsPortrait(self.interfaceOrientation) ? 400 : 300;
-    } else {
-    yCoord = 160;
-    }
+        var yCoord : double = 0
+        // Figure out the yCoord for the loading icon
+        if IS_IPAD {
+            yCoord = UIDeviceOrientationIsPortrait(self.interfaceOrientation) ? 400 : 300
+        } else {
+            yCoord = 160
+        }
     
-    yCoord = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    ? (UIDeviceOrientationIsPortrait(self.interfaceOrientation)
-    ? 400 : 300)
-    : 160;
+        
+        var frame :CGRect = CGRectMake(self.view.frame.size.width/2.0 - 60, yCoord, 120.0, 120.0)
     
-    CGRect frame = CGRectMake(self.view.frame.size.width/ 2.0 - 60, yCoord, 120.0, 120.0);
+        self.loading = WBProgressHUD.init()
+        self.loading.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     
-    self.loading = [[WBProgressHUD alloc] initWithFrame:frame];
-    self.loading.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-    
-    [self.loading showInView:self.view];
+        self.loading.showInView(self.view)
     }
 
 
