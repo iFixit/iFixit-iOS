@@ -265,14 +265,14 @@
         // Special case if our delegate is a list due to being on an iPad
         if ([delegate isKindOfClass:[ListViewController class]]) {
             iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
-            [appDelegate presentModalViewController:openIdViewController animated:YES];
+            [appDelegate presentViewController:openIdViewController animated:YES completion:nil];
         } else {
-            [delegate presentModalViewController:openIdViewController animated:YES];
+            [delegate presentViewController:openIdViewController animated:YES completion:nil];
         }
     } else {
         openIdViewController.delegate = self;
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:openIdViewController];
-        [self presentModalViewController:nvc animated:YES];
+        [self presentViewController:nvc animated:YES completion:nil];
     }
     
 }
@@ -393,7 +393,7 @@
                          }];
         [self.navigationController popViewControllerAnimated:NO];
     } else {
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -552,7 +552,7 @@
     if ([Config currentConfig].sso) {
         SSOViewController *vc = [SSOViewController viewControllerForURL:[Config currentConfig].sso delegate:self];
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
-        [self presentModalViewController:nvc animated:YES];
+        [self presentViewController:nvc animated:YES completion:nil];
         
         return;
     }

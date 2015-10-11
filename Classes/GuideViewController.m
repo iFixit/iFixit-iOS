@@ -10,7 +10,6 @@
 #import "iFixit-Swift.h"
 #import "GuideViewController.h"
 #import "GuideIntroViewController.h"
-#import "GuideBookmarker.h"
 #import "Config.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
@@ -132,7 +131,7 @@
     }
     // Cancel
     else {
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

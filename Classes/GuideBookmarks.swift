@@ -507,7 +507,7 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
     func updateProgessBar() {
         let totalDownloaded = imagesDownloaded + videosDownloaded + documentsDownloaded
         let totalRemaining = imagesRemaining + imagesDownloaded + videosRemaining
-        bookmarker!.progress.progress = Float(totalDownloaded) / Float(totalRemaining + videosDownloaded + documentsRemaining + documentsDownloaded);
+        bookmarker!.progress!.progress = Float(totalDownloaded) / Float(totalRemaining + videosDownloaded + documentsRemaining + documentsDownloaded);
     }
 
     func update() {

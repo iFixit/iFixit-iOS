@@ -79,9 +79,9 @@
 	if (![iGuideid isEqualToNumber:@(-1)]) {
         GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
         if (!modalDelegate)
-            [delegate.window.rootViewController presentModalViewController:vc animated:YES];
+            [delegate.window.rootViewController presentViewController:vc animated:YES completion:nil];
         else
-            [modalDelegate presentModalViewController:vc animated:YES];            
+            [modalDelegate presentViewController:vc animated:YES completion:nil];
 		return NO;
 	}
     
@@ -98,9 +98,9 @@
             id viewControllerToPresent = [self createWebViewControllerFromRequest:request];
             
             if (!modalDelegate)
-                [delegate.window.rootViewController presentModalViewController:viewControllerToPresent animated:YES];
+                [delegate.window.rootViewController presentViewController:viewControllerToPresent animated:YES completion:nil];
             else
-                [modalDelegate presentModalViewController:viewControllerToPresent animated:YES];
+                [modalDelegate presentViewController:viewControllerToPresent animated:YES completion:nil];
             
             return NO;
         }

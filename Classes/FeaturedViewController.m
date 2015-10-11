@@ -276,7 +276,7 @@
     NSNumber *iGuideid = _guides[index][@"guideid"];
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self presentModalViewController:nc animated:YES];
+    [self presentViewController:nc animated:YES completion:nil];
 }
 
 @end

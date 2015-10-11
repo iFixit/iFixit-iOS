@@ -442,7 +442,7 @@ class iFixitAPI: NSObject {
     
     // MARK: - Authentication Handling
     
-    class func checkCredentialsForViewController(viewController:UIViewController) {
+    class func checkCredentialsForViewController(viewController:LoginViewControllerDelegate) {
         let viewControllerToPresent:UIViewController!
         
         if (iFixitAPI.sharedInstance.user != nil) {
@@ -459,7 +459,7 @@ class iFixitAPI: NSObject {
             // TODO viewController.popViewControllerAnimated(false)
             UIView.animateWithDuration(0.7, animations: { () -> Void in
                 // TODO viewController.pushViewController(viewControllerToPresent, animated:false)
-                UIView.setAnimationTransition(.CurlUp, forView: viewController.view, cache: true)
+// TODO                 UIView.setAnimationTransition(.CurlUp, forView: viewController.view, cache: true)
             })
         } else {
             // Wrap this in a navigation controller to avoid side effects from new status bar in iOS7

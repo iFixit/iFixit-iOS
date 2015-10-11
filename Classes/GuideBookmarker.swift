@@ -6,193 +6,174 @@
 //  Copyright 2011 iFixit. All rights reserved.
 //
 
-#import "iFixit-Swift.h"
-#import "GuideBookmarker.h"
-#import "Config.h"
-#import "LoginViewController.h"
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
-#import "GuideViewController.h"
+import UIKit
 
-@implementation GuideBookmarker
-
-@synthesize delegate, iGuideid, poc, progress, lvc;
-
-- (id)init {
-    if ((self = [super init])) {
-        LoginViewController *vc = [[LoginViewController alloc] init];
-        vc.delegate = self;
-        self.lvc = vc;
+class GuideBookmarker : NSObject, LoginViewControllerDelegate {
+    
+    var delegate: UIViewController?
+    var poc:UIPopoverController?
+    var lvc:LoginViewController!
+    var progress:UIProgressView?
+    var iGuideid = 0
+    
+    override init() {
+        super.init()
+        let vc = LoginViewController()
+        vc.delegate = self
+        self.lvc = vc
         
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            UIPopoverController *pc = [[UIPopoverController alloc] initWithContentViewController:vc];
-            self.poc = pc;
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            let pc = UIPopoverController(contentViewController:vc)
+            self.poc = pc
+        }
+    }
+
+    func setNewGuideId(newGuideid:Int) {
+        self.iGuideid = newGuideid
+        
+        let guideExists = (GuideBookmarks.sharedBookmarks()?.guideForGuideid(self.iGuideid) != nil) ? true : false
+        
+//        if ([delegate isKindOfClass:[GuideViewController class]]) {
+            //        [delegate setOfflineGuide:guideExists];
+//        }
+        
+        if (guideExists == false) {
+            let bookmarkButton = UIBarButtonItem(title:NSLocalizedString("Favorite", comment:""),
+                style:.Plain,
+                target:self,
+                action:"bookmark:")
+            self.delegate!.navigationItem.rightBarButtonItem = bookmarkButton
         }
         else {
-            self.poc = nil;
+            self.bookmarked()
         }
+    }
 
-    }
-    return self;
-}
-
-- (void)setNewGuideId:(NSInteger)newGuideid {
-    self.iGuideid = [NSNumber numberWithLong:newGuideid];
-    
-    BOOL guideExists = [[GuideBookmarks sharedBookmarks] guideForGuideid:self.iGuideid] ? YES : NO;
-    
-    if ([delegate isKindOfClass:[GuideViewController class]]) {
-//        [delegate setOfflineGuide:guideExists];
-    }
-    
-    if (![[GuideBookmarks sharedBookmarks] guideForGuideid:iGuideid]) {
-        UIBarButtonItem *bookmarkButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Favorite", nil)
-                                                                           style:UIBarButtonItemStyleBordered 
-                                                                          target:self 
-                                                                          action:@selector(bookmark:)];
-        self.delegate.navigationItem.rightBarButtonItem = bookmarkButton;
-    }
-    else {
-        [self bookmarked];
-    }
-}
-
-- (void)bookmark:(UIBarButtonItem *)button {
-    // Require a login
-    if (![iFixitAPI sharedInstance].user) {
-        // iPad is easy, just show the popover.
-        if (poc) {
-            if (poc.isPopoverVisible) {
-                [poc dismissPopoverAnimated:YES];
+    func bookmark(button:UIBarButtonItem?) {
+        // Require a login
+        if (iFixitAPI.sharedInstance.user == nil) {
+            // iPad is easy, just show the popover.
+            if (poc != nil) {
+                if (poc!.popoverVisible) {
+                    poc!.dismissPopoverAnimated(true)
+                }
+                else {
+                    self.resizePopoverViewControllerContents()
+                    poc!.presentPopoverFromBarButtonItem(button!, permittedArrowDirections:.Any, animated:true)
+                }
             }
+                // On the iPhone, we need to first wrap the login view in a nav controller
             else {
-                [self resizePopoverViewControllerContents];
-                [poc presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+                iFixitAPI.checkCredentialsForViewController(self)
+            }
+            
+            return;
+        }
+        else {
+            if (poc != nil) {
+                poc!.dismissPopoverAnimated(true)
+                lvc.dismissViewControllerAnimated(true, completion:nil)
             }
         }
-        // On the iPhone, we need to first wrap the login view in a nav controller
-        else {
-            [iFixitAPI checkCredentialsForViewController:self];
-        }
         
-        return;
+        // Show a spinner
+        let spinner = UIActivityIndicatorView(frame:CGRectMake(0, 0, 20, 20))
+        spinner.activityIndicatorViewStyle = .White
+        let b = UIBarButtonItem(customView:spinner)
+        spinner.startAnimating()
+        self.delegate!.navigationItem.rightBarButtonItem = b
+        
+        // Save online
+        //    [[iFixitAPI sharedInstance] like:iGuideid forObject:self withSelector:@selector(liked:)];
+        iFixitAPI.sharedInstance.like(iGuideid, handler:{ (results) in
+            self.liked(results)
+        })
+        
     }
-    else {
-        if (poc) {
-            [poc dismissPopoverAnimated:YES];
-            [lvc dismissModalViewControllerAnimated:YES];
-        }
-    }
-    
-    // Show a spinner
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
-    UIBarButtonItem *b = [[UIBarButtonItem alloc] initWithCustomView:spinner];
-    [spinner startAnimating];
-    self.delegate.navigationItem.rightBarButtonItem = b;
-    
-    // Save online
-//    [[iFixitAPI sharedInstance] like:iGuideid forObject:self withSelector:@selector(liked:)];
-    [[iFixitAPI sharedInstance] like:iGuideid handler:^(NSDictionary<NSString *,id> * _Nullable aDict) {
-        [self liked:aDict];
-    }];
-
-}
 
 // Resize the popover view controller contents
-- (void)resizePopoverViewControllerContents {
-    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-    poc.popoverContentSize = (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) ? CGSizeMake(320, screenSize.width / 2) : CGSizeMake(320, screenSize.height / 2);
-}
-
-- (void)liked:(NSDictionary *)result {
-    if (![result[@"statusCode"] isEqualToNumber:@(204)]) {
-        [iFixitAPI displayConnectionErrorAlert];
-        [self setNewGuideId:iGuideid];
-        [self bookmark:self.delegate.navigationItem.rightBarButtonItem];
-        return;
+    func resizePopoverViewControllerContents() {
+        let screenSize = UIScreen.mainScreen().bounds.size
+        let isLandscape = UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)
+        poc!.popoverContentSize = isLandscape ? CGSizeMake(320, screenSize.width / 2) : CGSizeMake(320, screenSize.height / 2)
     }
-    
-    // Show a progress bar
-    UIView *progressContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 90, 40)];
-    
-    UILabel *progressLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 2, 90, 20)];
-    progressLabel.textAlignment = UITextAlignmentCenter;
-    progressLabel.font = [UIFont italicSystemFontOfSize:12.0f];
-    progressLabel.backgroundColor = [UIColor clearColor];
-    
-    if ([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) {
-        progressLabel.textColor = [UIColor darkGrayColor];
-        progressLabel.shadowColor = [UIColor whiteColor];
+
+    func liked(result:[String:AnyObject]?) {
+        let config = Config.currentConfig()
+        
+        if (result!["statusCode"] as! Int) != 204 {
+            iFixitAPI.displayConnectionErrorAlert()
+            self.setNewGuideId(self.iGuideid)
+            self.bookmark(self.delegate!.navigationItem.rightBarButtonItem)
+            return
+        }
+        
+        // Show a progress bar
+        let progressContainer = UIView(frame:CGRectMake(0, 0, 90, 40))
+        let progressLabel = UILabel(frame:CGRectMake(0, 2, 90, 20))
+        progressLabel.textAlignment = .Center
+        progressLabel.font = UIFont.italicSystemFontOfSize(12.0)
+        progressLabel.backgroundColor = UIColor.clearColor()
+        
+        if (config.site == ConfigMake || config.site == ConfigMakeDev) {
+            progressLabel.textColor = UIColor.darkGrayColor()
+            progressLabel.shadowColor = UIColor.whiteColor()
+        } else {
+            progressLabel.textColor = UIColor.whiteColor()
+            progressLabel.shadowColor = UIColor.darkGrayColor()
+        }
+        
+        progressLabel.shadowOffset = CGSizeMake(0.0, -1.0)
+        progressLabel.text = NSLocalizedString("Downloading...", comment:"")
+        progressContainer.addSubview(progressLabel)
+        
+        let p = UIProgressView(frame:CGRectMake(0, 25, 85, 10))
+        progressContainer.addSubview(p)
+        self.progress = p
+        
+        let progressItem = UIBarButtonItem(customView:progressContainer)
+        self.delegate!.navigationItem.rightBarButtonItem = progressItem
+        
+        // Save the guide in the bookmarks list.
+        GuideBookmarks.sharedBookmarks()!.addGuideid(iGuideid, forBookmarker:self)
+        
+        // Analytics
+        let gaInfo = GAIDictionaryBuilder.createEventWithCategory("Guide", action: "download", label: "Guide downloaded", value: iGuideid).build()
+        GAI.sharedInstance().defaultTracker.send(gaInfo as [NSObject:AnyObject])
     }
-    else {
-        progressLabel.textColor = [UIColor whiteColor];
-        progressLabel.shadowColor = [UIColor darkGrayColor];
+
+    func refresh() {
+        self.bookmark(nil)
     }
-    
-    progressLabel.shadowOffset = CGSizeMake(0.0f, -1.0f);
-    progressLabel.text = NSLocalizedString(@"Downloading...", nil);
-    [progressContainer addSubview:progressLabel];
-    
-    UIProgressView *p = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 25, 85, 10)];
-    [progressContainer addSubview:p];
-    self.progress = p;
-    
-    UIBarButtonItem *progressItem = [[UIBarButtonItem alloc] initWithCustomView:progressContainer];
-    self.delegate.navigationItem.rightBarButtonItem = progressItem;
-    
-    // Save the guide in the bookmarks list.
-    [[GuideBookmarks sharedBookmarks] addGuideid:iGuideid forBookmarker:self];
-    
-    // Analytics
-    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Guide"
-                                                                                        action:@"download"
-                                                                                         label:@"Guide downloaded"
-                                                                                         value:iGuideid] build]];
-    
-    
-}
 
-- (void)refresh {
-    [self bookmark:nil];
-}
-
-- (void)bookmarked {
-    // Change the button to a label.
-    UILabel *bookmarkedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 40)];
-    bookmarkedLabel.textAlignment = UITextAlignmentCenter;
-    bookmarkedLabel.font = [UIFont italicSystemFontOfSize:14.0f];
-    bookmarkedLabel.backgroundColor = [UIColor clearColor];
-    
-    if (([Config currentConfig].site == ConfigMake || [Config currentConfig].site == ConfigMakeDev) &&
-     [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        bookmarkedLabel.textColor = [UIColor darkGrayColor];
-        bookmarkedLabel.shadowColor = [UIColor whiteColor];
+    func bookmarked() {
+        let config = Config.currentConfig()
+        // Change the button to a label.
+        let bookmarkedLabel = UILabel(frame:CGRectMake(0, 0, 80, 40))
+        bookmarkedLabel.textAlignment = .Center
+        bookmarkedLabel.font = UIFont.italicSystemFontOfSize(14.0)
+        bookmarkedLabel.backgroundColor = UIColor.clearColor()
+        
+        if ((config.site == ConfigMake || config.site == ConfigMakeDev) &&
+            UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
+                bookmarkedLabel.textColor = UIColor.darkGrayColor()
+                bookmarkedLabel.shadowColor = UIColor.whiteColor()
+        }
+        else {
+            bookmarkedLabel.textColor = UIColor.whiteColor()
+            bookmarkedLabel.shadowColor = UIColor.darkGrayColor()
+        }
+        
+        bookmarkedLabel.shadowOffset = CGSizeMake(0.0, -1.0)
+        bookmarkedLabel.text = NSLocalizedString("Saved", comment:"")
+        
+        let bookmarkedItem = UIBarButtonItem(customView:bookmarkedLabel)
+        self.delegate!.navigationItem.rightBarButtonItem = bookmarkedItem
     }
-    else {
-        bookmarkedLabel.textColor = [UIColor whiteColor];
-        bookmarkedLabel.shadowColor = [UIColor darkGrayColor];
+
+    func presentViewController(viewController:UIViewController, animated:Bool, completion: (() -> Void)?) {
+        delegate!.presentViewController(viewController, animated:animated, completion:nil)
+        poc!.dismissPopoverAnimated(true)
     }
-    
-    bookmarkedLabel.shadowOffset = CGSizeMake(0.0f, -1.0f);
-    bookmarkedLabel.text = [NSString stringWithFormat:@" %@", NSLocalizedString(@"Saved", nil)];
-    
-    UIBarButtonItem *bookmarkedItem = [[UIBarButtonItem alloc] initWithCustomView:bookmarkedLabel];
-    self.delegate.navigationItem.rightBarButtonItem = bookmarkedItem;
-}
 
-- (void)presentModalViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    [delegate presentModalViewController:viewController animated:animated];
-    [poc dismissPopoverAnimated:YES];
 }
-
-- (void)dealloc
-{
-    self.iGuideid = nil;
-    self.progress = nil;
-    self.poc = nil;
-    self.lvc = nil;
-    self.delegate = nil;
-}
-
-@end

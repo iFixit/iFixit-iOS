@@ -35,6 +35,6 @@
     }
     
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    [appDelegate.window.rootViewController presentModalViewController:nc animated:YES];
+    [appDelegate.window.rootViewController presentViewController:nc animated:YES completion:nil];
 }
 @end

@@ -944,7 +944,7 @@ BOOL searchViewEnabled;
     [qrScanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
     
     iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.window.rootViewController presentModalViewController:qrReader animated:YES];
+    [appDelegate.window.rootViewController presentViewController:qrReader animated:YES completion:nil];
 
 }
 
@@ -984,7 +984,7 @@ BOOL searchViewEnabled;
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:guideViewController];
         
         iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
-        [appDelegate.window.rootViewController presentModalViewController:navigationController animated:YES];
+        [appDelegate.window.rootViewController presentViewController:navigationController animated:YES completion:nil];
 
     } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)

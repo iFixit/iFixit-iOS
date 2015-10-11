@@ -221,8 +221,8 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         }
     }
     
-    func presentModalViewController(viewController: UIViewController!, animated: Bool) {
-        window!.rootViewController?.presentViewController(viewController, animated: animated, completion: nil)
+    func presentViewController(viewController: UIViewController!, animated: Bool, completion: (() -> Void)?) {
+        window!.rootViewController?.presentViewController(viewController, animated: animated, completion: completion)
     }
     
     func iPadRoot() -> UIViewController {

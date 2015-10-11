@@ -6,6 +6,7 @@
 #import <UIKit/UIKit.h>
 
 #import "SDWebImageManager.h"
+#import "GuideImageViewController.h"
 #import "UIButton+WebCache.h"
 #import "LoginViewControllerDelegate.h"
 #import "LoginViewController.h"
@@ -21,7 +22,6 @@
 #import "DozukiSplashViewController.h"
 #import "DozukiInfoViewController.h"
 #import "SVWebViewController.h"
-#import "GuideBookmarker.h"
 #import "GuideCatchingWebView.h"
 #import "UIColor+Hex.h"
 #import "GAI.h"

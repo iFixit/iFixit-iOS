@@ -100,7 +100,7 @@
         [(DozukiInfoViewController *)nextViewController.topViewController showList];
     }
 
-    [self presentModalViewController:self.nextViewController animated:YES];
+    [self presentViewController:self.nextViewController animated:YES completion:nil];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController

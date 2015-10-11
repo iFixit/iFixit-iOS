@@ -314,10 +314,9 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         UIApplication.sharedApplication().statusBarHidden = true
         
         // Create the image view controller and add it to the view hierarchy.
-        // TODO
-//        let imageVC = GuideImageViewController(zoomWithUIImage:image, delegate:self)
-//        
-//        [delegate presentModalViewController:imageVC animated:YES];
+        let imageVC = GuideImageViewController.zoomWithUIImage(image, delegate:self) as! GuideImageViewController
+        
+        delegate!.presentViewController(imageVC, animated:true, completion:nil)
         
         
         // Analytics
