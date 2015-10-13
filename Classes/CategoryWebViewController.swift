@@ -67,7 +67,7 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
     }
     
 
-    override func webViewDidStartLoad(webView: UIWebView ) {
+     func webViewDidStartLoad(webView: UIWebView ) {
         // Hide any previous loading items
         self.loading.hide()
     
@@ -93,6 +93,20 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
         self.loading.showInView(self.view)
     }
 
+    func webViewDidFinishLoad(webView: UIWebView ) {
+    
+    [UIView transitionWithView:self.webView
+    duration:0.3f
+    options:UIViewAnimationOptionTransitionCrossDissolve
+    animations:^{
+    [self.loading hide];
+    if ([self.webViewType isEqualToString:@"answers"])
+    [self injectCSSIntoWebview];
+    }
+    completion:^(BOOL animation){
+    self.webView.hidden = NO;
+    }];
+    }
 
     
 }
