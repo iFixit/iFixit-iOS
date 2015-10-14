@@ -11,7 +11,6 @@
 #import "SDWebImageManager.h"
 #import "LoginViewController.h"
 #import "Config.h"
-#import "GuideViewController.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 

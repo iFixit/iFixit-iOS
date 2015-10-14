@@ -21,7 +21,6 @@
 #import "Config.h"
 #import "CategoriesViewController.h"
 #import "FeaturedViewController.h"
-#import "GuideViewController.h"
 #import "DozukiSplashViewController.h"
 #import "DozukiInfoViewController.h"
 #import "SVWebViewController.h"

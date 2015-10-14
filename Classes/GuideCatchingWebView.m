@@ -10,7 +10,6 @@
 #import "iFixit-Swift.h"
 #import "Config.h"
 #import "SVWebViewController.h"
-#import "GuideViewController.h"
 
 @implementation GuideCatchingWebView
 

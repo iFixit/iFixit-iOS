@@ -8,7 +8,6 @@
 
 #import "DetailGridViewController.h"
 #import "WBProgressHUD.h"
-#import "GuideViewController.h"
 #import "DMPGridViewCell.h"
 #import "iFixit-Swift.h"
 #import "Config.h"

@@ -14,7 +14,6 @@
 #import "GuideCell.h"
 #import "SearchCell.h"
 #import "UIImageView+WebCache.h"
-#import "GuideViewController.h"
 #import "CategoriesSingleton.h"
 #import "Reachability.h"
 #import "ZBarReaderViewController.h"

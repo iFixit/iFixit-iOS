@@ -427,11 +427,9 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
                 if (match != nil) {
                     let keyRange = match!.rangeAtIndex(1)
                     let guideidString = urlString.substringWithRange(urlString.rangeFromNSRange(keyRange)!)
-                    let f = NSNumberFormatter()
-                    f.numberStyle = .DecimalStyle
-                    let iGuideid = f.numberFromString(guideidString)
+                    let iGuideid = Int(guideidString)
                     
-                    let vc = GuideViewController(guideid:iGuideid)
+                    let vc = GuideViewController(guideid:iGuideid!)
                     window!.rootViewController!.presentViewController(vc, animated:false, completion:nil)
                     
                     return true

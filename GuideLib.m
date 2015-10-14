@@ -8,7 +8,6 @@
 
 #import "iFixit-Swift.h"
 #import "GuideLib.h"
-#import "GuideViewController.h"
 #import "Reachability.h"
 
 @implementation GuideLib

@@ -9,7 +9,6 @@
 #import "iFixit-Swift.h"
 #import "FeaturedViewController.h"
 #import "DMPGridViewController.h"
-#import "GuideViewController.h"
 #import "Config.h"
 #import "UIImageView+WebCache.h"
 #import "WBProgressHUD.h"
