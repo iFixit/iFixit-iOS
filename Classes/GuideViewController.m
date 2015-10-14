@@ -9,7 +9,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "iFixit-Swift.h"
 #import "GuideViewController.h"
-#import "GuideIntroViewController.h"
 #import "Config.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"

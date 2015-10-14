@@ -173,7 +173,7 @@ class GuideBookmarker : NSObject, LoginViewControllerDelegate {
 
     func presentViewController(viewController:UIViewController, animated:Bool, completion: (() -> Void)?) {
         delegate!.presentViewController(viewController, animated:animated, completion:nil)
-        poc!.dismissPopoverAnimated(true)
+        poc?.dismissPopoverAnimated(true)
     }
 
 }

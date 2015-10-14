@@ -25,9 +25,9 @@ class Guide: NSObject {
     var iPrereqModifiedDate = 0
     var image:GuideImage? = nil
 
-    var documents = []
-    var parts = []
-    var tools = []
+    var documents:[[String:AnyObject]] = []
+    var parts:[[String:AnyObject]] = []
+    var tools:[[String:AnyObject]] = []
     var flags = []
 
     var reqreqs = []

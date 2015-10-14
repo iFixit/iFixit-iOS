@@ -58,7 +58,7 @@
 		C115FC2D12174FA1005D0B77 /* GuideImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */; };
 		C184D4C61210CDB900953C39 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D4C41210CDB900953C39 /* GuideViewController.m */; };
 		C184D4C71210CDB900953C39 /* GuideView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D4C51210CDB900953C39 /* GuideView~ipad.xib */; };
-		C184D5381210D8CD00953C39 /* GuideIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D5361210D8CD00953C39 /* GuideIntroViewController.m */; };
+		C184D5381210D8CD00953C39 /* GuideIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C184D5361210D8CD00953C39 /* GuideIntroViewController.swift */; };
 		C184D5391210D8CD00953C39 /* GuideIntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */; };
 		C1C894F7121B447E0036FAFC /* TapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C894F6121B447E0036FAFC /* TapDetectingImageView.m */; };
 		C1D98150120E09BA00509D18 /* GuideStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D9814E120E09BA00509D18 /* GuideStepViewController.swift */; };
@@ -200,8 +200,7 @@
 		C184D4C31210CDB900953C39 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		C184D4C41210CDB900953C39 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		C184D4C51210CDB900953C39 /* GuideView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideView~ipad.xib"; sourceTree = "<group>"; };
-		C184D5351210D8CD00953C39 /* GuideIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideIntroViewController.h; sourceTree = "<group>"; };
-		C184D5361210D8CD00953C39 /* GuideIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideIntroViewController.m; sourceTree = "<group>"; };
+		C184D5361210D8CD00953C39 /* GuideIntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideIntroViewController.swift; sourceTree = "<group>"; };
 		C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideIntroView~ipad.xib"; sourceTree = "<group>"; };
 		C1C894F5121B447E0036FAFC /* TapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapDetectingImageView.h; sourceTree = "<group>"; };
 		C1C894F6121B447E0036FAFC /* TapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapDetectingImageView.m; sourceTree = "<group>"; };
@@ -509,8 +508,7 @@
 				C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */,
 				C184D4C31210CDB900953C39 /* GuideViewController.h */,
 				C184D4C41210CDB900953C39 /* GuideViewController.m */,
-				C184D5351210D8CD00953C39 /* GuideIntroViewController.h */,
-				C184D5361210D8CD00953C39 /* GuideIntroViewController.m */,
+				C184D5361210D8CD00953C39 /* GuideIntroViewController.swift */,
 				DABE9CF613C5519800B778FE /* GuideIntroViewController.xib */,
 				C1D9814E120E09BA00509D18 /* GuideStepViewController.swift */,
 				DACE7FF1165722710013FFFD /* GuideStepViewController.xib */,
@@ -834,7 +832,7 @@
 				C1D98150120E09BA00509D18 /* GuideStepViewController.swift in Sources */,
 				C0538CDA1BBE9C190031B35D /* SDWebImageManager.m in Sources */,
 				C184D4C61210CDB900953C39 /* GuideViewController.m in Sources */,
-				C184D5381210D8CD00953C39 /* GuideIntroViewController.m in Sources */,
+				C184D5381210D8CD00953C39 /* GuideIntroViewController.swift in Sources */,
 				C115FC2D12174FA1005D0B77 /* GuideImageViewController.m in Sources */,
 				C1C894F7121B447E0036FAFC /* TapDetectingImageView.m in Sources */,
 				DA2F767012FB87D900683D33 /* Config.m in Sources */,
