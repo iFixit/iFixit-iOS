@@ -6,7 +6,6 @@
 //  Copyright iFixit 2010. All rights reserved.
 //
 
-#import "ListViewController.h"
 #import "ZBarReaderController.h"
 
 @class ListViewController;

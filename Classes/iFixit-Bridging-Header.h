@@ -7,6 +7,7 @@
 
 #import "SDWebImageManager.h"
 #import "GuideImageViewController.h"
+#import "CategoryWebViewController.h"
 #import "GuideLib.h"
 #import "GuideCell.h"
 #import "UIButton+WebCache.h"
@@ -18,7 +19,6 @@
 #import "CategoriesViewController.h"
 #import "DetailGridViewController.h"
 #import "Config.h"
-#import "ListViewController.h"
 #import "CategoriesViewController.h"
 #import "FeaturedViewController.h"
 #import "GuideViewController.h"

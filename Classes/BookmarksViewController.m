@@ -12,7 +12,6 @@
 #import "LoginViewController.h"
 #import "Config.h"
 #import "GuideViewController.h"
-#import "ListViewController.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 

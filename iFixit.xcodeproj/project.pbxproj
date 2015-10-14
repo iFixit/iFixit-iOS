@@ -30,7 +30,7 @@
 		AB324BB1179473680001E29D /* iFixitSplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB324BAF179473680001E29D /* iFixitSplashScreenViewController.xib */; };
 		AB4926A4175FF6200092E4B6 /* category_more_info_ipad.css in Resources */ = {isa = PBXBuildFile; fileRef = AB4926A3175FF6200092E4B6 /* category_more_info_ipad.css */; };
 		ABA8FC4A177AA90A000B5E74 /* category_answers.css in Resources */ = {isa = PBXBuildFile; fileRef = ABA8FC49177AA909000B5E74 /* category_answers.css */; };
-		ABB84A6A177F591200C58514 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB84A69177F591200C58514 /* ListViewController.m */; };
+		ABB84A6A177F591200C58514 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB84A69177F591200C58514 /* ListViewController.swift */; };
 		ABDB16C41756AE2D00053573 /* CategoryWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDB16C21756AE2C00053573 /* CategoryWebViewController.m */; };
 		ABDB16C51756AE2D00053573 /* CategoryWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */; };
 		ABE00C43178BE34F006FD574 /* CategoriesSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE00C42178BE34F006FD574 /* CategoriesSingleton.m */; };
@@ -155,8 +155,7 @@
 		AB8805EA1750459300CD5281 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB8805EB1750459800CD5281 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ABA8FC49177AA909000B5E74 /* category_answers.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = category_answers.css; sourceTree = "<group>"; };
-		ABB84A68177F591100C58514 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
-		ABB84A69177F591200C58514 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		ABB84A69177F591200C58514 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		ABDB16C11756AE2C00053573 /* CategoryWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryWebViewController.h; sourceTree = "<group>"; };
 		ABDB16C21756AE2C00053573 /* CategoryWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryWebViewController.m; sourceTree = "<group>"; };
 		ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryWebViewController.xib; sourceTree = "<group>"; };
@@ -641,8 +640,7 @@
 		DAF3AF511422881B00913238 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				ABB84A68177F591100C58514 /* ListViewController.h */,
-				ABB84A69177F591200C58514 /* ListViewController.m */,
+				ABB84A69177F591200C58514 /* ListViewController.swift */,
 				ABE38C981773B9AC00777F60 /* CategoryTabBarViewController.swift */,
 				ABE38C991773B9AC00777F60 /* CategoryTabBarViewController.xib */,
 				DA666AF11360E2A4002B1D62 /* GuideCatchingWebView.h */,
@@ -875,7 +873,7 @@
 				ABDB16C41756AE2D00053573 /* CategoryWebViewController.m in Sources */,
 				ABE38C9A1773B9AC00777F60 /* CategoryTabBarViewController.swift in Sources */,
 				C0538CE81BC03FE70031B35D /* GuideStep.swift in Sources */,
-				ABB84A6A177F591200C58514 /* ListViewController.m in Sources */,
+				ABB84A6A177F591200C58514 /* ListViewController.swift in Sources */,
 				ABE00C43178BE34F006FD574 /* CategoriesSingleton.m in Sources */,
 				AB324BB0179473680001E29D /* iFixitSplashScreenViewController.swift in Sources */,
 			);
