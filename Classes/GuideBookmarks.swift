@@ -150,14 +150,14 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
         }
         
         if (guide.image != nil) {
-            let standardURL = guide.image!.URLForSize("standard")!.absoluteString
+            let standardURL = guide.image!.standard.absoluteString
             // TODO[guideImages addObject:[SDImageCache cacheFilenameForKey:standardURL]];
         }
         
         for step in guide.steps {
             for image in step.images {
-                let thumbnailURL = guide.image!.URLForSize("thumbnail")!.absoluteString
-                let largeURL = guide.image!.URLForSize("large")!.absoluteString
+                let thumbnailURL = guide.image!.thumbnail.absoluteString
+                let largeURL = guide.image!.large.absoluteString
                 // TODO [guideImages addObject:[SDImageCache cacheFilenameForKey:thumbnailURL]];
                 // TODO [guideImages addObject:[SDImageCache cacheFilenameForKey:largeURL]];
             }
@@ -389,7 +389,7 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
         
         if guide?.image != nil {
             imagesRemaining++
-            SDWebImageManager.sharedManager().downloadWithURL(guide!.image?.URLForSize("standard"), delegate: self, retryFailed:true)
+            SDWebImageManager.sharedManager().downloadWithURL(guide!.image?.standard, delegate: self, retryFailed:true)
         }
         
         for step in guide!.steps {
@@ -398,8 +398,8 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
             }
             
             for image in step.images {
-                SDWebImageManager.sharedManager().downloadWithURL(guide!.image?.URLForSize("thumbnail"), delegate: self, retryFailed:true)
-                SDWebImageManager.sharedManager().downloadWithURL(guide!.image?.URLForSize("large"), delegate: self, retryFailed:true)
+                SDWebImageManager.sharedManager().downloadWithURL(guide!.image?.thumbnail, delegate: self, retryFailed:true)
+                SDWebImageManager.sharedManager().downloadWithURL(guide!.image?.large, delegate: self, retryFailed:true)
             }
         }
     }

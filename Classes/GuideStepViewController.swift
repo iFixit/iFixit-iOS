@@ -227,21 +227,21 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         
         if step.images.count > 0 {
             // Download the image
-            mainImage.setImageWithURL(step.images[0].URLForSize("large"), placeholderImage:waitImage)
+            mainImage.setImageWithURL(step.images[0].large, placeholderImage:waitImage)
             
             if (step.images.count > 1) {
-                image1.setImageWithURL(step.images[0].URLForSize("thumbnail"), placeholderImage:waitImage)
+                image1.setImageWithURL(step.images[0].thumbnail, placeholderImage:waitImage)
                 image1.hidden = false
             }
         }
         
         if (step.images.count > 1) {
-            image2.setImageWithURL(step.images[1].URLForSize("thumbnail"), placeholderImage:waitImage)
+            image2.setImageWithURL(step.images[1].thumbnail, placeholderImage:waitImage)
             image2.hidden = false
         }
         
         if (step.images.count > 2) {
-            image3.setImageWithURL(step.images[2].URLForSize("thumbnail"), placeholderImage:waitImage)
+            image3.setImageWithURL(step.images[2].thumbnail, placeholderImage:waitImage)
             image3.hidden = false
         }
     }
@@ -250,7 +250,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         let waitImage = UIImage(named:"WaitImage.png")
         let guideImage = self.step.images[button.tag]
         let manager = SDWebImageManager.sharedManager()
-        let cachedImage = manager.imageWithURL(guideImage.URLForSize("large"))
+        let cachedImage = manager.imageWithURL(guideImage.large)
         
         // Use the cached image if we have it, otherwise download it
         if (cachedImage != nil) {
@@ -261,7 +261,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
                                 self.mainImage.setBackgroundImage(cachedImage, forState:.Normal)
                             }, completion:nil)
         } else {
-            mainImage.setImageWithURL(guideImage.URLForSize("large"), placeholderImage:waitImage)
+            mainImage.setImageWithURL(guideImage.large, placeholderImage:waitImage)
         }
     }
 
@@ -287,7 +287,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
             let manager = SDWebImageManager.sharedManager()
             
             if (step.images.count > 1) {
-                let url = step.images[1].URLForSize("large")
+                let url = step.images[1].large
                 
                 if manager.imageWithURL(url) == nil {
                     manager.downloadWithURL(url, delegate:self, retryFailed:true)
@@ -295,7 +295,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
             }
             
             if (step.images.count > 2) {
-                let url = step.images[2].URLForSize("large")
+                let url = step.images[2].large
                 
                 if manager.imageWithURL(url) == nil {
                     manager.downloadWithURL(url, delegate:self, retryFailed:true)

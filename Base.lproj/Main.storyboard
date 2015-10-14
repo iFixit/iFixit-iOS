@@ -68,6 +68,9 @@
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <dataDetectorType key="dataDetectorTypes"/>
+                                <connections>
+                                    <outlet property="delegate" destination="eQA-GH-4pJ" id="08D-fD-HZb"/>
+                                </connections>
                             </webView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cn3-uL-E1G">
                                 <rect key="frame" x="0.0" y="415" width="320" height="45"/>
@@ -88,6 +91,11 @@
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="mainImage" destination="nTo-vv-kJc" id="0sh-uL-DkS"/>
+                        <outlet property="swipeLabel" destination="v36-nX-oDJ" id="7MY-2i-gg8"/>
+                        <outlet property="webView" destination="0CW-Z7-D8V" id="0tZ-WA-sRe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4X-XC-R9a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -103,7 +111,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7We-0o-aO4">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GuideCell" id="7We-0o-aO4">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7We-0o-aO4" id="FEx-Sn-nCI">
@@ -433,7 +441,7 @@
     </scenes>
     <resources>
         <image name="Default-568h.png" width="640" height="1136"/>
-        <image name="NoImage.jpg" width="640" height="1136"/>
+        <image name="NoImage.jpg" width="52" height="52"/>
         <image name="qr-icon.png" width="640" height="1136"/>
     </resources>
 </document>

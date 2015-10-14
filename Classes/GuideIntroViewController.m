@@ -171,7 +171,7 @@
     // Add a shadow to the image
     [self addViewShadow:mainImage];
 
-    [mainImage setImageWithURL:[self.guide.image URLForSize:@"standard"] placeholderImage:nil];
+    [mainImage setImageWithURL:self.guide.image.standard placeholderImage:nil];
     
     swipeLabel.adjustsFontSizeToFitWidth = YES;
     swipeLabel.text = [NSString stringWithFormat:@" ←%@ ", NSLocalizedString(@"Swipe to Begin", nil)];

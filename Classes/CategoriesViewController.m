@@ -9,7 +9,6 @@
 #import "iFixit-Swift.h"
 #import "Config.h"
 #import "CategoriesViewController.h"
-#import "iPhoneDeviceViewController.h"
 #import "DetailGridViewController.h"
 #import "BookmarksViewController.h"
 #import "ListViewController.h"

@@ -7,7 +7,10 @@
 
 #import "SDWebImageManager.h"
 #import "GuideImageViewController.h"
+#import "GuideLib.h"
+#import "GuideCell.h"
 #import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
 #import "LoginViewControllerDelegate.h"
 #import "LoginViewController.h"
 #import "BookmarksViewController.h"

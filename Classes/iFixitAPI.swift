@@ -178,7 +178,7 @@ class iFixitAPI: NSObject {
     }
     
 //    - (void)getCategory:(NSString *)category forObject:(id)object withSelector:(SEL)selector {
-    func getCategory(category:String, handler:(([NSObject:AnyObject]?) -> ())) {
+    func getCategory(category:String, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         let language = Utility.getDeviceLanguage()
         
@@ -189,7 +189,7 @@ class iFixitAPI: NSObject {
         Alamofire.request(.GET, url, encoding:.URLEncodedInURL, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
             if JSON.isSuccess {
                 // Make writeable.
-                let value = JSON.value as! [NSObject:AnyObject]
+                let value = JSON.value as! [String:AnyObject]
                 handler(value)
             } else {
                 handler(nil)
@@ -198,7 +198,7 @@ class iFixitAPI: NSObject {
     }
     
 //    - (void)getGuides:(NSString *)type forObject:(id)object withSelector:(SEL)selector {
-    func getGuides(type:String, handler:(([[String:AnyObject]]?) -> ())) {
+    func getGuides(type:String?, handler:(([Guide]?) -> ())) {
         let config = Config.currentConfig()
         let limit = 100;
         
@@ -207,7 +207,9 @@ class iFixitAPI: NSObject {
         Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
             if JSON.isSuccess {
                 let value = JSON.value as! [[String:AnyObject]]
-                handler(value)
+                let guides = value.map { Guide(json:$0) }
+                
+                handler(guides)
             } else {
                 handler(nil)
             }
