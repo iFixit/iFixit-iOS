@@ -74,7 +74,7 @@
 		DA3E3E3B133C1A8E0070615F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3E3E3A133C1A8E0070615F /* MainWindow.xib */; };
 		DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA53FA74141368BB00D5388F /* libicucore.dylib */; };
 		DA58CB3414EA17F400A2CBAB /* LoginBackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA58CB3314EA17F400A2CBAB /* LoginBackgroundViewController.swift */; };
-		DA59293813FB253B00504CD3 /* DozukiSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA59293613FB253B00504CD3 /* DozukiSplashViewController.m */; };
+		DA59293813FB253B00504CD3 /* DozukiSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59293613FB253B00504CD3 /* DozukiSplashViewController.swift */; };
 		DA59293913FB253B00504CD3 /* DozukiSplashView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA59293713FB253B00504CD3 /* DozukiSplashView~ipad.xib */; };
 		DA59296F13FB28B600504CD3 /* DozukiInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA59296D13FB28B600504CD3 /* DozukiInfoViewController.m */; };
 		DA59297013FB28B600504CD3 /* DozukiInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA59296E13FB28B600504CD3 /* DozukiInfoView.xib */; };
@@ -219,8 +219,7 @@
 		DA3E3E3A133C1A8E0070615F /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		DA53FA74141368BB00D5388F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		DA58CB3314EA17F400A2CBAB /* LoginBackgroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginBackgroundViewController.swift; sourceTree = "<group>"; };
-		DA59293513FB253B00504CD3 /* DozukiSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DozukiSplashViewController.h; sourceTree = "<group>"; };
-		DA59293613FB253B00504CD3 /* DozukiSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DozukiSplashViewController.m; sourceTree = "<group>"; };
+		DA59293613FB253B00504CD3 /* DozukiSplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DozukiSplashViewController.swift; sourceTree = "<group>"; };
 		DA59293713FB253B00504CD3 /* DozukiSplashView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DozukiSplashView~ipad.xib"; sourceTree = "<group>"; };
 		DA59296C13FB28B600504CD3 /* DozukiInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DozukiInfoViewController.h; sourceTree = "<group>"; };
 		DA59296D13FB28B600504CD3 /* DozukiInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DozukiInfoViewController.m; sourceTree = "<group>"; };
@@ -518,8 +517,7 @@
 		DA59293413FB250800504CD3 /* Dozuki */ = {
 			isa = PBXGroup;
 			children = (
-				DA59293513FB253B00504CD3 /* DozukiSplashViewController.h */,
-				DA59293613FB253B00504CD3 /* DozukiSplashViewController.m */,
+				DA59293613FB253B00504CD3 /* DozukiSplashViewController.swift */,
 				DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */,
 				DA59293713FB253B00504CD3 /* DozukiSplashView~ipad.xib */,
 				DA59296C13FB28B600504CD3 /* DozukiInfoViewController.h */,
@@ -846,7 +844,7 @@
 				DA05677B138D976600660C86 /* User.swift in Sources */,
 				C0538CDC1BBE9C190031B35D /* UIImageView+WebCache.m in Sources */,
 				C0538CEC1BC045510031B35D /* GuideImage.swift in Sources */,
-				DA59293813FB253B00504CD3 /* DozukiSplashViewController.m in Sources */,
+				DA59293813FB253B00504CD3 /* DozukiSplashViewController.swift in Sources */,
 				DA59296F13FB28B600504CD3 /* DozukiInfoViewController.m in Sources */,
 				DA59297413FB2ED800504CD3 /* DozukiSelectSiteViewController.m in Sources */,
 				C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */,
