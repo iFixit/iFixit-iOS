@@ -8,8 +8,6 @@
 
 #import "BookmarksViewController.h"
 #import "iFixit-Swift.h"
-#import "SDWebImageManager.h"
-#import "LoginViewController.h"
 #import "Config.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"

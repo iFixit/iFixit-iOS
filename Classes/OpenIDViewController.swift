@@ -7,11 +7,11 @@
 //
 
 
-class OpenIDViewController : SVWebViewController, UIAlertViewDelegate {
+class OpenIDViewController: SVWebViewController, UIAlertViewDelegate {
     
     var delegate: LoginViewControllerDelegate?
 
-    class func viewControllerForHost(host: String, delegate:LoginViewControllerDelegate) -> SVWebViewController {
+    class func viewControllerForHost(host: String, delegate:LoginViewControllerDelegate) -> OpenIDViewController {
         let config = Config.currentConfig()
         
         // First clear all cookies.

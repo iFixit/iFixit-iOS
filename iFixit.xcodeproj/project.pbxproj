@@ -100,7 +100,7 @@
 		DAAED15914686A2D00C476C1 /* FeaturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAED15714686A2D00C476C1 /* FeaturedViewController.m */; };
 		DAAED15E1468710C00C476C1 /* PastFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAED15D1468710C00C476C1 /* PastFeaturesViewController.swift */; };
 		DAB26972146C96A2000D3A7A /* Ubuntu-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAB26971146C96A2000D3A7A /* Ubuntu-Italic.ttf */; };
-		DAB9343A137228AD00B6AA9A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB93439137228AD00B6AA9A /* LoginViewController.m */; };
+		DAB9343A137228AD00B6AA9A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB93439137228AD00B6AA9A /* LoginViewController.swift */; };
 		DABE9CF513C54D2200B778FE /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF413C54D2200B778FE /* GuideView.xib */; };
 		DABE9CF713C5519800B778FE /* GuideIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF613C5519800B778FE /* GuideIntroViewController.xib */; };
 		DAC0C1A3146B3F6F00EF42DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC0C1A2146B3F6F00EF42DC /* QuartzCore.framework */; };
@@ -261,8 +261,7 @@
 		DAAED15714686A2D00C476C1 /* FeaturedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedViewController.m; sourceTree = "<group>"; };
 		DAAED15D1468710C00C476C1 /* PastFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastFeaturesViewController.swift; sourceTree = "<group>"; };
 		DAB26971146C96A2000D3A7A /* Ubuntu-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Italic.ttf"; sourceTree = "<group>"; };
-		DAB93438137228AD00B6AA9A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		DAB93439137228AD00B6AA9A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		DAB93439137228AD00B6AA9A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DABE9CF413C54D2200B778FE /* GuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideView.xib; sourceTree = "<group>"; };
 		DABE9CF613C5519800B778FE /* GuideIntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideIntroViewController.xib; sourceTree = "<group>"; };
 		DAC0C1A2146B3F6F00EF42DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -597,8 +596,7 @@
 		DACD8FD414DDD7970020A06C /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				DAB93438137228AD00B6AA9A /* LoginViewController.h */,
-				DAB93439137228AD00B6AA9A /* LoginViewController.m */,
+				DAB93439137228AD00B6AA9A /* LoginViewController.swift */,
 				DAD77267138EAC4F00D107B8 /* LoginViewControllerDelegate.h */,
 				DA58CB3314EA17F400A2CBAB /* LoginBackgroundViewController.swift */,
 				DACD8FD614DDD7B80020A06C /* OpenIDViewController.swift */,
@@ -844,7 +842,7 @@
 				DAA7508A1368DA87002AA546 /* WBView.mm in Sources */,
 				DAA7508B1368DA87002AA546 /* WBViewRect.mm in Sources */,
 				C0538CEA1BC043F50031B35D /* GuideVideo.swift in Sources */,
-				DAB9343A137228AD00B6AA9A /* LoginViewController.m in Sources */,
+				DAB9343A137228AD00B6AA9A /* LoginViewController.swift in Sources */,
 				DA05677B138D976600660C86 /* User.swift in Sources */,
 				C0538CDC1BBE9C190031B35D /* UIImageView+WebCache.m in Sources */,
 				C0538CEC1BC045510031B35D /* GuideImage.swift in Sources */,

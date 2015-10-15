@@ -13,7 +13,6 @@
 #import "UIButton+WebCache.h"
 #import "UIImageView+WebCache.h"
 #import "LoginViewControllerDelegate.h"
-#import "LoginViewController.h"
 #import "BookmarksViewController.h"
 #import "MGSplitViewController.h"
 #import "CategoriesViewController.h"
