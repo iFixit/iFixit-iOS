@@ -271,15 +271,6 @@
     [self.backgroundView addSubview:self.browseInstructions];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return YES;
-}
-
 - (DMPGridViewCellStyle)styleForRow:(NSUInteger)row {
     return UIInterfaceOrientationIsPortrait(orientationOverride) ?
         DMPGridViewCellStylePortraitColumns : DMPGridViewCellStyleLandscapeColumns;        

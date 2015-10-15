@@ -364,8 +364,4 @@ static NSMutableArray *prioritySites = nil;
         [self loadMore];
 }
 
-- (void)viewDidUnload {
-    [self setSearchBar:nil];
-    [super viewDidUnload];
-}
 @end

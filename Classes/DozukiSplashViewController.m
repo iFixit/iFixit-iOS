@@ -65,23 +65,6 @@
     }];
 }
 
-- (void)viewDidUnload
-{
-    [self setIntroView:nil];
-    [self setDozukiSlogan:nil];
-    [self setDozukiDescription:nil];
-    [self setGetStarted:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
-        return YES;
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 - (IBAction)getStarted:(id)sender {
     CGRect originalFrame = self.introView.frame;
 

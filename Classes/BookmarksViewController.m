@@ -196,13 +196,6 @@
     [self.listViewController configureProperties];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated {    
     // Show login view if needed.
     if (![iFixitAPI sharedInstance].user) {
