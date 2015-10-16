@@ -12,7 +12,6 @@
 #import "DetailGridViewController.h"
 #import "BookmarksViewController.h"
 #import "GuideCell.h"
-#import "SearchCell.h"
 #import "UIImageView+WebCache.h"
 #import "CategoriesSingleton.h"
 #import "Reachability.h"

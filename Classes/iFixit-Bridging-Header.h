@@ -6,6 +6,7 @@
 #import <UIKit/UIKit.h>
 
 #import "SDWebImageManager.h"
+#import "SDImageCache.h"
 #import "DozukiSelectSiteViewController.h"
 #import "GuideImageViewController.h"
 #import "CategoryWebViewController.h"
@@ -24,7 +25,6 @@
 #import "DozukiInfoViewController.h"
 #import "SVWebViewController.h"
 #import "GuideCatchingWebView.h"
-#import "UIColor+Hex.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 

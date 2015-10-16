@@ -123,7 +123,7 @@ class GuideViewController: UIViewController, UIScrollViewDelegate, UIAlertViewDe
     }
     
     func closeGuide() {
-        if (bookmarker.poc!.popoverVisible) {
+        if ((bookmarker.poc?.popoverVisible) != nil) {
             bookmarker.poc?.dismissPopoverAnimated(true)
         }
         

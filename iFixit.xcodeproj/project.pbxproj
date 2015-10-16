@@ -21,7 +21,7 @@
 		9CD0B3C618277F120023EB5F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD0B3C518277F120023EB5F /* CoreAudio.framework */; };
 		9CD0B3C818277F260023EB5F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD0B3C718277F260023EB5F /* CoreVideo.framework */; };
 		9CD0B3CA18277F3D0023EB5F /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD0B3C918277F3D0023EB5F /* libiconv.dylib */; };
-		9CE6783B1837F146001912DF /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6783A1837F146001912DF /* SearchCell.m */; };
+		9CE6783B1837F146001912DF /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6783A1837F146001912DF /* SearchCell.swift */; };
 		9CE6783D1838706F001912DF /* accustream_intro.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783C1838706F001912DF /* accustream_intro.css */; };
 		9CE6783F18387080001912DF /* accustream_step.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783E18387080001912DF /* accustream_step.css */; };
 		AB26882217CD5AA6004AC6ED /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB26882017CD5AA6004AC6ED /* OpenSans-Bold.ttf */; };
@@ -142,8 +142,7 @@
 		9CD0B3C918277F3D0023EB5F /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		9CE0D44F19DB0DE900292462 /* libPods-GoogleAnalytics-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-GoogleAnalytics-iOS-SDK.a"; path = "Pods/build/Debug-iphoneos/libPods-GoogleAnalytics-iOS-SDK.a"; sourceTree = "<group>"; };
 		9CE0D45319DB191B00292462 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = "Pods/GoogleAnalytics-iOS-SDK/libGoogleAnalyticsServices.a"; sourceTree = "<group>"; };
-		9CE678391837F146001912DF /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
-		9CE6783A1837F146001912DF /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
+		9CE6783A1837F146001912DF /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		9CE6783C1838706F001912DF /* accustream_intro.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accustream_intro.css; sourceTree = "<group>"; };
 		9CE6783E18387080001912DF /* accustream_step.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accustream_step.css; sourceTree = "<group>"; };
 		AB26882017CD5AA6004AC6ED /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -647,8 +646,7 @@
 				DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */,
 				DAF3AF601422AF4800913238 /* GuideCell.h */,
 				DAF3AF611422AF4800913238 /* GuideCell.m */,
-				9CE678391837F146001912DF /* SearchCell.h */,
-				9CE6783A1837F146001912DF /* SearchCell.m */,
+				9CE6783A1837F146001912DF /* SearchCell.swift */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -821,7 +819,7 @@
 				2804200B108E984D000629CD /* CategoriesViewController.m in Sources */,
 				C0538CEE1BC047E00031B35D /* Guide.swift in Sources */,
 				C10F271A120CE6980027A28D /* iFixitAPI.swift in Sources */,
-				9CE6783B1837F146001912DF /* SearchCell.m in Sources */,
+				9CE6783B1837F146001912DF /* SearchCell.swift in Sources */,
 				C0538CD91BBE9C190031B35D /* SDWebImageDownloader.m in Sources */,
 				C1D98150120E09BA00509D18 /* GuideStepViewController.swift in Sources */,
 				C0538CDA1BBE9C190031B35D /* SDWebImageManager.m in Sources */,

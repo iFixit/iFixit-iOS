@@ -151,15 +151,15 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
         
         if (guide.image != nil) {
             let standardURL = guide.image!.standard.absoluteString
-            // TODO[guideImages addObject:[SDImageCache cacheFilenameForKey:standardURL]];
+            guideImages.append(SDImageCache.cacheFilenameForKey(standardURL))
         }
         
         for step in guide.steps {
             for image in step.images {
-                let thumbnailURL = guide.image!.thumbnail.absoluteString
-                let largeURL = guide.image!.large.absoluteString
-                // TODO [guideImages addObject:[SDImageCache cacheFilenameForKey:thumbnailURL]];
-                // TODO [guideImages addObject:[SDImageCache cacheFilenameForKey:largeURL]];
+                let thumbnailURL = image.thumbnail.absoluteString
+                let largeURL = image.large.absoluteString
+                guideImages.append(SDImageCache.cacheFilenameForKey(thumbnailURL))
+                guideImages.append(SDImageCache.cacheFilenameForKey(largeURL))
             }
             
             if step.video != nil {
@@ -398,8 +398,8 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
             }
             
             for image in step.images {
-                SDWebImageManager.sharedManager().downloadWithURL(guide!.image?.thumbnail, delegate: self, retryFailed:true)
-                SDWebImageManager.sharedManager().downloadWithURL(guide!.image?.large, delegate: self, retryFailed:true)
+                SDWebImageManager.sharedManager().downloadWithURL(image.thumbnail, delegate: self, retryFailed:true)
+                SDWebImageManager.sharedManager().downloadWithURL(image.large, delegate: self, retryFailed:true)
             }
         }
     }

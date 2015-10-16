@@ -9,7 +9,6 @@
 #import "DozukiSelectSiteViewController.h"
 #import "iFixit-Swift.h"
 #import "Config.h"
-#import "UIColor+Hex.h"
 
 #define SITES_REQUEST_LIMIT 500
 
