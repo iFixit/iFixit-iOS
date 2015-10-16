@@ -26,5 +26,6 @@
 #import "UIColor+Hex.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
+#import "MBProgressHUD.h"
 
 #define GuideBookmarksUpdatedNotification @"GuideBookmarksUpdatedNotification"

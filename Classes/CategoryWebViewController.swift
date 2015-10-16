@@ -13,7 +13,7 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
     
     var favoritesButton: UIBarButtonItem?
     var webView : UIWebView?
-    var loading : WBProgressHUD?
+    var loadingProgress : MBProgressHUD?
     var category : String?
     var categoryNavigationBar : UINavigationBar?
     var listViewController : ListViewController?
@@ -69,7 +69,7 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
 
      func webViewDidStartLoad(webView: UIWebView ) {
         // Hide any previous loading items
-        self.loading.hide()
+        self.loadingProgress.hide()
     
         // Hide the webview with a transition
         UIView.transitionWithView(self.webView, duration: 0.3, options: UIViewAnimationOptionTransitionCrossDissolve, animations: {
@@ -87,10 +87,8 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
         
         var frame :CGRect = CGRectMake(self.view.frame.size.width/2.0 - 60, yCoord, 120.0, 120.0)
     
-        self.loading = WBProgressHUD.init()
-        self.loading.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-    
-        self.loading.showInView(self.view)
+        self.loadingProgress = MBProgressHUD. .initWithFrame()
+        self.loadingProgress.showInView(self.view)
     }
 
     func webViewDidFinishLoad(webView: UIWebView ) {
@@ -99,7 +97,7 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
     duration:0.3f
     options:UIViewAnimationOptionTransitionCrossDissolve
     animations:^{
-    [self.loading hide];
+    [self.loadingProgress hide];
     if ([self.webViewType isEqualToString:@"answers"])
     [self injectCSSIntoWebview];
     }
