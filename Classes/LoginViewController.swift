@@ -194,7 +194,7 @@ class LoginViewController: UITableViewController, UITextFieldDelegate, UIGesture
         lb.setTitleColor(config.buttonColor, forState:[.Normal, .Highlighted])
         
         // Special colors for MJTrimming
-        if (config.site == ConfigMjtrim) {
+        if (config.site == .Mjtrim) {
             lb.setTitleColor(config.toolbarColor, forState:[.Normal, .Highlighted])
             rb.setTitleColor(config.toolbarColor, forState:[.Normal, .Highlighted])
         }
@@ -236,7 +236,7 @@ class LoginViewController: UITableViewController, UITextFieldDelegate, UIGesture
             container.addSubview(cancelButton!)
             
             // This is horrible, we should be respecting the feature switch instead of hardcoding this.
-            if (config.site != ConfigDripAssist) {
+            if (config.site != .DripAssist) {
                 container.addSubview(googleButton)
                 container.addSubview(yahooButton)
             }
@@ -360,7 +360,7 @@ class LoginViewController: UITableViewController, UITextFieldDelegate, UIGesture
 
         let button:UIBarButtonItem!
         
-        if ((config.site == ConfigDozuki && modal) || (config.site == ConfigDozuki && delegate is iFixitAppDelegate)) {
+        if ((config.site == .Dozuki && modal) || (config.site == .Dozuki && delegate is iFixitAppDelegate)) {
             let icon = UIImage(named:"backtosites.png")
             button = UIBarButtonItem(image:icon, style:.Plain,
                                                      target:delegate,
@@ -521,7 +521,7 @@ class LoginViewController: UITableViewController, UITextFieldDelegate, UIGesture
         let config = Config.currentConfig()
         
         if (config.sso != nil) {
-            let vc = SSOViewController.viewControllerForURL(config.sso, delegate:self)
+            let vc = SSOViewController.viewControllerForURL(config.sso!, delegate:self)
             let nvc = UINavigationController(rootViewController:vc)
             presentViewController(nvc, animated:true, completion:nil)
             

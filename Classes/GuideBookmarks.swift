@@ -62,19 +62,19 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
         var filename:String!
         let docDirectory = documentDirectoryURL()
         
-        filename = "\(config.host)_\(uid)_bookmarkedGuides.plist"
+        filename = "\(config.host!)_\(uid)_bookmarkedGuides.plist"
         self.guidesFilePath = docDirectory.URLByAppendingPathComponent(filename)
         
-        filename = "\(config.host)_\(uid)_bookmarkedImages.plist"
+        filename = "\(config.host!)_\(uid)_bookmarkedImages.plist"
         self.imagesFilePath = docDirectory.URLByAppendingPathComponent(filename)
         
-        filename = "\(config.host)_\(uid)_bookmarkedQueue.plist"
+        filename = "\(config.host!)_\(uid)_bookmarkedQueue.plist"
         self.queueFilePath = docDirectory.URLByAppendingPathComponent(filename)
         
-        filename = "\(config.host)_\(uid)_bookmarkedVideos.plist"
+        filename = "\(config.host!)_\(uid)_bookmarkedVideos.plist"
         self.videosFilePath = docDirectory.URLByAppendingPathComponent(filename)
         
-        filename = "\(config.host)_\(uid)_bookmarkedDocuments.plist"
+        filename = "\(config.host!)_\(uid)_bookmarkedDocuments.plist"
         self.documentsFilePath = docDirectory.URLByAppendingPathComponent(filename)
         
         // Now load: Guides
@@ -511,7 +511,7 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
     }
 
     func update() {
-        //    [[iFixitAPI sharedInstance] getUserFavoritesForObject:self withSelector:@selector(gotUpdates:)];
+
         iFixitAPI.sharedInstance.getUserFavorites { (likes) in
             
             if likes == nil {

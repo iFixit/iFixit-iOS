@@ -128,7 +128,7 @@
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     titleLabel.font = [UIFont fontWithName:@"Helvetica" size:80.0];
     
-    if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigMake) {
+    if ([Config currentConfig].site == SiteIFixit || [Config currentConfig].site == SiteMake) {
         titleLabel.frame = CGRectMake(110.0, 150.0, self.view.frame.size.width - 110.0, 106.0);
         titleLabel.text = [[_collection valueForKey:@"title"] stringByAppendingString:@" "];
     }

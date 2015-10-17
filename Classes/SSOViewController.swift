@@ -21,7 +21,7 @@ class SSOViewController: SVWebViewController, UIAlertViewDelegate {
         if let cookie = NSHTTPCookie(properties:
             [NSHTTPCookieName: "sso-origin",
                 NSHTTPCookieValue:"SHOW_SUCCESS",
-                NSHTTPCookieDomain: Config.currentConfig().host,
+                NSHTTPCookieDomain: Config.currentConfig().host!,
                 NSHTTPCookiePath: "/"]) {
                     storage.setCookie(cookie)
         }

@@ -106,7 +106,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         if UIScreen.mainScreen().scale == 2.0 {
             bodyClass = "\(bodyClass) retina"
         }
-        let header = "<html><head><style type=\"text/css\"> \(config.stepCSS) </style></head><body class=\"\(bodyClass)\"><ul>"
+        let header = "<html><head><style type=\"text/css\"> \(config.stepCSS!) </style></head><body class=\"\(bodyClass)\"><ul>"
         let footer = "</ul></body></html>"
         
         var body = ""
@@ -122,7 +122,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         }
         
         self.html = "\(header)\(body)\(footer)"
-        webView.loadHTMLString(html, baseURL:NSURL(string:"http://\(config.host)"))
+        webView.loadHTMLString(html, baseURL:NSURL(string:"http://\(config.host!)"))
         
         removeWebViewShadows()
         
@@ -173,7 +173,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
                 if result.isSuccess {
                     let json = result.value as! [String:AnyObject]
                     let embedHtml = json["html"] as! String
-                    let header = "<html><head><style type=\"text/css\"> \(config.stepCSS) </style></head><body>"
+                    let header = "<html><head><style type=\"text/css\"> \(config.stepCSS!) </style></head><body>"
                     let htmlString = "\(header) \(embedHtml)"
                     
                     self.embedView.loadHTMLString(htmlString, baseURL:NSURL(string:json["provider_url"] as! String))
@@ -444,7 +444,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         }
         
         // Re-flow HTML
-        webView.loadHTMLString(html, baseURL:NSURL(string:"http://\(config.host)"))
+        webView.loadHTMLString(html, baseURL:NSURL(string:"http://\(config.host!)"))
     }
 
     deinit {

@@ -6,6 +6,7 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
+#import "iFixit-Swift.h"
 #import "GuideImageViewController.h"
 #import "Config.h"
 

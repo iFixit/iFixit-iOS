@@ -59,7 +59,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         
         /* Configure. */
         config.dozuki = false
-        config.site = ConfigIFixit
+        config.site = .IFixit
         
         /* Track. */
 #if !DEBUG
@@ -74,7 +74,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         firstLoad = true
         
         /* iFixit is easy. */
-        if config.site == ConfigIFixit {
+        if config.site == .IFixit {
             self.showiFixitSplash()
         } else if config.dozuki == false {
             self.showSiteSplash()
@@ -115,7 +115,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
     func showDozukiSplash() {
         
         // Make sure we're not pointing at a site requiring setup.
-        Config.currentConfig().site = ConfigIFixit
+        Config.currentConfig().site = .IFixit
         
         // Reset the saved choice.
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -161,7 +161,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         var nvc:UINavigationController?
         
         // Only refresh our UIWindow on a very special edge case
-        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad && Config.currentConfig().site == ConfigDozuki) {
+        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad && Config.currentConfig().site == .Dozuki) {
             refreshUIWindow()
         }
         
@@ -229,7 +229,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         let config = Config.currentConfig()
         self.showsTabBar = config.collectionsEnabled || config.store != nil
         
-        if (config.site == ConfigMagnolia) {
+        if (config.site == .Magnolia) {
             UIApplication.sharedApplication().statusBarStyle = .Default
         } else {
             UIApplication.sharedApplication().statusBarStyle = .LightContent
@@ -267,13 +267,13 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         
         // Initialize the tab bar items.
         var guideTitle = NSLocalizedString("Guides", comment:"")
-        if (config.site == ConfigMake) {
+        if (config.site == .Make) {
             guideTitle = NSLocalizedString("Projects", comment:"")
-        } else if (config.site == ConfigIFixit) {
+        } else if (config.site == .IFixit) {
             guideTitle = NSLocalizedString("Repair Manuals", comment:"")
         }
         
-        if (config.site == ConfigIFixit) {
+        if (config.site == .IFixit) {
             splitViewController!.tabBarItem = UITabBarItem(title:guideTitle, image:UIImage(named:"tabBarItemWrench.png"), tag:0)
         }
         else {
@@ -321,7 +321,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
             })
         }
         
-        if (config.site == ConfigMagnolia) {
+        if (config.site == .Magnolia) {
             UIApplication.sharedApplication().statusBarStyle = .Default
         } else {
             UIApplication.sharedApplication().statusBarStyle = .LightContent
@@ -342,26 +342,24 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         switch domain {
             
         case "www.ifixit.com"?:
-            config.site = ConfigIFixit
-            config.answersEnabled = true
-            config.collectionsEnabled = true
+            config.site = .IFixit
             
         case "www.cminor.com"?:
-            config.site = ConfigIFixitDev
+            config.site = .IFixitDev
             
         case "makeprojects.com"?:
-            config.site = ConfigMake
+            config.site = .Make
             
         default:
-            config.site = ConfigDozuki
+            config.site = .Dozuki
             config.host = domain!
-            config.custom_domain = site["custom_domain"] as! String
-            config.baseURL = "http://\(domain)/Guide"
-            config.title = site["title"] as! String
+            config.custom_domain = site["custom_domain"] as? String
+            config.baseURL = NSURL(string:"http://\(domain)/Guide")
+            config.title = site["title"] as? String
         }
         
         // Enable/disable Answers and/or Collections
-        if (config.site != ConfigIFixit) {
+        if (config.site != .IFixit) {
             config.answersEnabled = site["answers"] as? Bool ?? false
             config.collectionsEnabled = site["collections"] as? Bool ?? false
         }
@@ -383,7 +381,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         defaults.setValue(simpleSite, forKey:"site")
         defaults.synchronize()
         
-        config.siteData = simpleSite as [NSObject : AnyObject]
+        config.siteData = simpleSite as? [String : AnyObject]
         
         // Show the main app!
         iFixitAPI.sharedInstance.loadSession()

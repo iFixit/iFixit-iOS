@@ -35,12 +35,12 @@ class ListViewController: UINavigationController, UINavigationControllerDelegate
         showFavoritesButton(self)
         
         // Set Navigation bar
-        if (config.site == ConfigIFixit) {
+        if (config.site == .IFixit) {
             self.navigationBar.translucent = false
             
             self.navigationItem.leftBarButtonItem?.tintColor = config.buttonColor
             self.navigationItem.rightBarButtonItem?.tintColor = config.buttonColor
-        } else if (config.site == ConfigMjtrim) {
+        } else if (config.site == .Mjtrim) {
             self.navigationBar.translucent = false
             self.navigationItem.leftBarButtonItem?.tintColor = config.buttonColor
             self.navigationItem.rightBarButtonItem?.tintColor = config.buttonColor
@@ -48,7 +48,7 @@ class ListViewController: UINavigationController, UINavigationControllerDelegate
             let navbarTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
             
             UINavigationBar.appearance().titleTextAttributes = navbarTitleTextAttributes
-        } else if (config.site == ConfigDozuki) {
+        } else if (config.site == .Dozuki) {
             self.navigationBar.translucent = false
             self.navigationItem.leftBarButtonItem?.tintColor = config.buttonColor
             self.navigationItem.rightBarButtonItem?.tintColor = config.buttonColor

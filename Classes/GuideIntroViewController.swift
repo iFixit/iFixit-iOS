@@ -62,9 +62,7 @@ class GuideIntroViewController: UIViewController, UIWebViewDelegate {
     func configureIntroTitleLogo() {
         let config = Config.currentConfig()
         
-        let siteInfo = config.siteInfo
-        
-        if let logo = siteInfo["logo"] as? [String:AnyObject],
+        if let logo = config.siteInfo["logo"] as? [String:AnyObject],
             let image = logo["image"] as? [String:AnyObject],
             let large = image["large"] as? String {
                 headerImageLogo.contentMode = .ScaleAspectFit
@@ -87,51 +85,51 @@ class GuideIntroViewController: UIViewController, UIWebViewDelegate {
             var image:UIImage!
             
             switch (config.site) {
-            case ConfigMake:
+            case .Make:
                 image = UIImage(named:"logo_make.png")
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height)
                 headerImageLogo.image = image
 
-            case ConfigZeal:
+            case .Zeal:
                 image = UIImage(named:"logo_zeal@2x.png")
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height)
                 headerImageLogo.image = image
 
-            case ConfigMjtrim:
+            case .Mjtrim:
                 image = UIImage(named:"mjtrim_logo_transparent.png")
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height)
                 headerImageLogo.image = image
 
-            case ConfigAccustream:
+            case .Accustream:
                 headerImageLogo.image = UIImage(named:"accustream_logo_transparent.png")
 
-            case ConfigMagnolia:
+            case .Magnolia:
                 image = UIImage(named:"magnoliamedical_logo_transparent.png")
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width/1.5, image.size.height/1.5)
                 headerImageLogo.image = image
                 break;
-            case ConfigComcast:
+            case .Comcast:
                 image = UIImage(named:"comcast_logo_transparent.png")
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y - 30, image.size.width/2, image.size.height/2)
                 headerImageLogo.image = image
 
-            case ConfigDripAssist:
+            case .DripAssist:
                 image = UIImage(named:"dripassist_logo_transparent.png")
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width/2, image.size.height/2)
                 headerImageLogo.image = image
 
-            case ConfigPva:
+            case .Pva:
                 image = UIImage(named:"pva_logo_transparent.png")
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width/2, image.size.height/2)
                 headerImageLogo.image = image
 
-            case ConfigOscaro:
+            case .Oscaro:
                 image = UIImage(named:"oscaro_logo_transparent.png")
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width/2, image.size.height/2)
                 headerImageLogo.image = image
 
                 /*EAOGuideIntro*/
-            case ConfigDozuki:
+            case .Dozuki:
                 self.configureIntroTitleLogo()
                 
             default:
@@ -163,7 +161,7 @@ class GuideIntroViewController: UIViewController, UIWebViewDelegate {
         
         // Load the intro contents as HTML.
         let deviceSize = (UIDevice.currentDevice().userInterfaceIdiom == .Pad) ? "big" : "small"
-        let header = "<html><head><style type=\"text/css\"> \(config.introCSS) </style></head><body class=\"\(deviceSize)\">"
+        let header = "<html><head><style type=\"text/css\"> \(config.introCSS!) </style></head><body class=\"\(deviceSize)\">"
         
         let docsHtml = buildHtmlForDocs(self.guide.documents)
         let partsHtml = buildHtmlForItems(self.guide.parts, fromType:"part")
@@ -173,7 +171,7 @@ class GuideIntroViewController: UIViewController, UIWebViewDelegate {
         
         self.html = "\(header)\(body)</body></html>"
 
-        webView.loadHTMLString(html!, baseURL:NSURL(string:"http://\(config.host)"))
+        webView.loadHTMLString(html!, baseURL:NSURL(string:"http://\(config.host!)"))
         
         self.removeWebViewShadows()
         
@@ -308,7 +306,7 @@ class GuideIntroViewController: UIViewController, UIWebViewDelegate {
         }
         
         // Re-flow HTML
-        webView.loadHTMLString(html!, baseURL:NSURL(string:"http://\(config.host)"))
+        webView.loadHTMLString(html!, baseURL:NSURL(string:"http://\(config.host!)"))
     }
 
 }

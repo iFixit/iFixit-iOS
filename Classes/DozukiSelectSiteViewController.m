@@ -155,7 +155,7 @@ static NSMutableArray *prioritySites = nil;
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
-    if ([Config currentConfig].site == ConfigMagnolia) {
+    if ([Config currentConfig].site == SiteMagnolia) {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
     } else {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;

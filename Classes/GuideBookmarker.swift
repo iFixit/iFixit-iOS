@@ -115,7 +115,7 @@ class GuideBookmarker : NSObject, LoginViewControllerDelegate {
         progressLabel.font = UIFont.italicSystemFontOfSize(12.0)
         progressLabel.backgroundColor = UIColor.clearColor()
         
-        if (config.site == ConfigMake || config.site == ConfigMakeDev) {
+        if (config.site == .Make || config.site == .MakeDev) {
             progressLabel.textColor = UIColor.darkGrayColor()
             progressLabel.shadowColor = UIColor.whiteColor()
         } else {
@@ -154,7 +154,7 @@ class GuideBookmarker : NSObject, LoginViewControllerDelegate {
         bookmarkedLabel.font = UIFont.italicSystemFontOfSize(14.0)
         bookmarkedLabel.backgroundColor = UIColor.clearColor()
         
-        if ((config.site == ConfigMake || config.site == ConfigMakeDev) &&
+        if ((config.site == .Make || config.site == .MakeDev) &&
             UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
                 bookmarkedLabel.textColor = UIColor.darkGrayColor()
                 bookmarkedLabel.shadowColor = UIColor.whiteColor()

@@ -22,7 +22,7 @@ class OpenIDViewController: SVWebViewController, UIAlertViewDelegate {
             }
         }
     
-        let url = "\(config.baseURL)/login/openid?host=\(host)"
+        let url = "\(config.baseURL!)/login/openid?host=\(host)"
         let vc = OpenIDViewController(address:url)
         vc.delegate = delegate
         return vc
