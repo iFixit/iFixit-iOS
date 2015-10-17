@@ -13,12 +13,32 @@ class GuideImage: NSObject {
     var iImageid = 0
     var url: String!
 
+    var thumbnail: NSURL {
+        get { return self.URLForSize("thumbnail")! }
+    }
+    
+    var medium: NSURL {
+        get { return self.URLForSize("medium")! }
+    }
+    
+    var large: NSURL {
+        get { return self.URLForSize("large")! }
+    }
+    
+    var huge: NSURL {
+        get { return self.URLForSize("huge")! }
+    }
+    
+    var standard: NSURL {
+        get { return self.URLForSize("standard")! }
+    }
+
     init(json: [String:AnyObject]) {
         iImageid = json["id"] as! Int
         url = json["original"] as! String
     }
     
-    func URLForSize(size:String) -> NSURL? {
+    private func URLForSize(size:String) -> NSURL? {
         return NSURL(string: "\(url).\(size)")
     }
 

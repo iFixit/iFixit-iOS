@@ -36,7 +36,7 @@ class iFixitAPI: NSObject {
     
     func sessionFilePath() -> String {
         let config = Config.currentConfig()
-        let filename = "\(config.host)_session.plist"
+        let filename = "\(config.host!)_session.plist"
         
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         let url = urls[urls.count-1]
@@ -100,7 +100,7 @@ class iFixitAPI: NSObject {
     func getSites(limit:Int, offset:Int, handler:(([[String:AnyObject]]?) -> ())) {
         let config = Config.currentConfig()
         
-        let url = "https://\(config.host)/api/2.0/sites?limit=\(limit)&offset=\(offset)"
+        let url = "https://\(config.host!)/api/2.0/sites?limit=\(limit)&offset=\(offset)"
 
         Alamofire.request(.GET, url, headers:commonHeaders()).responseJSON {(req, resp, JSON) in
             if JSON.isSuccess {
@@ -116,7 +116,7 @@ class iFixitAPI: NSObject {
     func getSiteInfo(handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         
-        let url = "https://\(config.host)/api/2.0/info"
+        let url = "https://\(config.host!)/api/2.0/info"
 
         Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
             if JSON.isSuccess {
@@ -132,7 +132,7 @@ class iFixitAPI: NSObject {
     func getCollections(limit:Int, offset:Int, handler:(([[String:AnyObject]]?) -> ())) {
         let config = Config.currentConfig()
         
-        let url = "https://\(config.host)/api/2.0/collections?limit=\(limit)&offset=\(offset)"
+        let url = "https://\(config.host!)/api/2.0/collections?limit=\(limit)&offset=\(offset)"
         
         Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
             if JSON.isSuccess {
@@ -148,7 +148,7 @@ class iFixitAPI: NSObject {
     func getGuide(iGuideid:NSNumber, handler:((Guide?) -> ())) {
         let config = Config.currentConfig()
         
-        let url = "https://\(config.host)/api/2.0/guides/\(iGuideid)"
+        let url = "https://\(config.host!)/api/2.0/guides/\(iGuideid)"
         
         Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
             if JSON.isSuccess {
@@ -165,7 +165,7 @@ class iFixitAPI: NSObject {
     func getCategories(handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         // On iPhone and iPod touch, only show leaf nodes with viewable guides.
-        let url = "https://\(config.host)/api/2.0/categories?withDisplayTitles"
+        let url = "https://\(config.host!)/api/2.0/categories?withDisplayTitles"
         
         Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
             if JSON.isSuccess {
@@ -178,18 +178,18 @@ class iFixitAPI: NSObject {
     }
     
 //    - (void)getCategory:(NSString *)category forObject:(id)object withSelector:(SEL)selector {
-    func getCategory(category:String, handler:(([NSObject:AnyObject]?) -> ())) {
+    func getCategory(category:String, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         let language = Utility.getDeviceLanguage()
         
         let escapedCategory = category.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
         
-        let url = "https://\(config.host)/api/2.0/wikis/CATEGORY/\(escapedCategory!)?langid=\(language)"
+        let url = "https://\(config.host!)/api/2.0/wikis/CATEGORY/\(escapedCategory!)?langid=\(language)"
         
         Alamofire.request(.GET, url, encoding:.URLEncodedInURL, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
             if JSON.isSuccess {
                 // Make writeable.
-                let value = JSON.value as! [NSObject:AnyObject]
+                let value = JSON.value as! [String:AnyObject]
                 handler(value)
             } else {
                 handler(nil)
@@ -198,16 +198,18 @@ class iFixitAPI: NSObject {
     }
     
 //    - (void)getGuides:(NSString *)type forObject:(id)object withSelector:(SEL)selector {
-    func getGuides(type:String, handler:(([[String:AnyObject]]?) -> ())) {
+    func getGuides(type:String?, handler:(([Guide]?) -> ())) {
         let config = Config.currentConfig()
         let limit = 100;
         
-        let url = "https://\(config.host)/api/2.0/guides?limit=\(limit)"
+        let url = "https://\(config.host!)/api/2.0/guides?limit=\(limit)"
         
         Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
             if JSON.isSuccess {
                 let value = JSON.value as! [[String:AnyObject]]
-                handler(value)
+                let guides = value.map { Guide(json:$0) }
+                
+                handler(guides)
             } else {
                 handler(nil)
             }
@@ -218,7 +220,7 @@ class iFixitAPI: NSObject {
     func getGuides(ids guideids:[NSNumber], handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         let guideidsString = guideids.map { $0.description }.joinWithSeparator(",")
-        let url = "https://\(config.host)/api/2.0/guides?guideids=\(guideidsString)"
+        let url = "https://\(config.host!)/api/2.0/guides?guideids=\(guideidsString)"
         
         Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
             if JSON.isSuccess {
@@ -237,7 +239,7 @@ class iFixitAPI: NSObject {
         let escapedSearch = search.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
         let escapedFilter = filter.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
 
-        let url = "https://\(config.host)/api/2.0/search/\(escapedSearch!)?limit=50&filter=\(escapedFilter!)"
+        let url = "https://\(config.host!)/api/2.0/search/\(escapedSearch!)?limit=50&filter=\(escapedFilter!)"
         
         Alamofire.request(.GET, url, encoding:.URLEncodedInURL, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
             if JSON.isSuccess {
@@ -277,7 +279,7 @@ class iFixitAPI: NSObject {
         
         // .dozuki.com hosts force SSL, so we match that here. Otherwise, for SSO sites with custom domains,
         // SSL doesn't exist so we just use HTTP.
-        let url = "https://\(config.host)/api/2.0/user"
+        let url = "https://\(config.host!)/api/2.0/user"
 
 //        request.useCookiePersistence = NO;
         
@@ -299,7 +301,7 @@ class iFixitAPI: NSObject {
     func login(name login:String, password:String, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         
-        let url = "https://\(config.host)/api/2.0/user/token"
+        let url = "https://\(config.host!)/api/2.0/user/token"
 
         let parameters = ["email": login, "password": password]
         
@@ -324,7 +326,7 @@ class iFixitAPI: NSObject {
     func register(login login:String, password:String, name:String, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         
-        let url = "https://\(config.host)/api/2.0/users"
+        let url = "https://\(config.host!)/api/2.0/users"
 
         let parameters = ["email" : login, "username" : name, "password" : password]
         
@@ -354,7 +356,7 @@ class iFixitAPI: NSObject {
             storage.deleteCookie(cookie)
         }
         
-        let url = "https://\(config.host)/api/2.0/user/token"
+        let url = "https://\(config.host!)/api/2.0/user/token"
         
         Alamofire.request(.DELETE, url, headers:commonHeaders(secure: true))
         
@@ -372,7 +374,7 @@ class iFixitAPI: NSObject {
     func getUserFavorites(handler:(([[String:AnyObject]]?) -> ())) {
         let config = Config.currentConfig()
         
-        let url = "https://\(config.host)/api/2.0/user/favorites/guides"
+        let url = "https://\(config.host!)/api/2.0/user/favorites/guides"
         
 //        request.useCookiePersistence = NO;
 
@@ -393,7 +395,7 @@ class iFixitAPI: NSObject {
     func like(iGuideid:NSNumber, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         
-        let url = "https://\(config.host)/api/2.0/user/favorites/guides/\(iGuideid)"
+        let url = "https://\(config.host!)/api/2.0/user/favorites/guides/\(iGuideid)"
         
         //        request.useCookiePersistence = NO;
 
@@ -414,7 +416,7 @@ class iFixitAPI: NSObject {
     func unlike(iGuideid:NSNumber, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         
-        let url = "https://\(config.host)/api/2.0/user/favorites/guides/\(iGuideid)"
+        let url = "https://\(config.host!)/api/2.0/user/favorites/guides/\(iGuideid)"
         
         Alamofire.request(.DELETE, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
             if JSON.isSuccess {
@@ -442,7 +444,7 @@ class iFixitAPI: NSObject {
     
     // MARK: - Authentication Handling
     
-    class func checkCredentialsForViewController(viewController:UIViewController) {
+    class func checkCredentialsForViewController(viewController:LoginViewControllerDelegate) {
         let viewControllerToPresent:UIViewController!
         
         if (iFixitAPI.sharedInstance.user != nil) {
@@ -459,7 +461,7 @@ class iFixitAPI: NSObject {
             // TODO viewController.popViewControllerAnimated(false)
             UIView.animateWithDuration(0.7, animations: { () -> Void in
                 // TODO viewController.pushViewController(viewControllerToPresent, animated:false)
-                UIView.setAnimationTransition(.CurlUp, forView: viewController.view, cache: true)
+// TODO                 UIView.setAnimationTransition(.CurlUp, forView: viewController.view, cache: true)
             })
         } else {
             // Wrap this in a navigation controller to avoid side effects from new status bar in iOS7

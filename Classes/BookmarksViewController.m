@@ -8,11 +8,7 @@
 
 #import "BookmarksViewController.h"
 #import "iFixit-Swift.h"
-#import "SDWebImageManager.h"
-#import "LoginViewController.h"
 #import "Config.h"
-#import "GuideViewController.h"
-#import "ListViewController.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 
@@ -107,7 +103,7 @@
     
     b.backgroundColor = [Config currentConfig].toolbarColor;
     
-    if ([Config currentConfig].site == ConfigZeal || [Config currentConfig].site == ConfigMagnolia)
+    if ([Config currentConfig].site == SiteZeal || [Config currentConfig].site == SiteMagnolia)
         b.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
 
     b.titleLabel.font = [UIFont boldSystemFontOfSize:14];
@@ -194,17 +190,10 @@
                          }];
         [self.navigationController popViewControllerAnimated:NO];
     } else {
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     
     [self.listViewController configureProperties];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {    
@@ -319,7 +308,7 @@
     vc.offlineGuide = YES;
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        [self.navigationController presentModalViewController:nvc animated:YES];
+        [self.navigationController presentViewController:nvc animated:YES completion:nil];
     } else {
         UIPopoverController *povc = [self.splitViewController.viewControllers[1] popOverController];
         
@@ -328,7 +317,7 @@
         }
         
         iFixitAppDelegate *delegate = (iFixitAppDelegate*)[[UIApplication sharedApplication] delegate];
-        [delegate.window.rootViewController presentModalViewController:nvc animated:YES];
+        [delegate.window.rootViewController presentViewController:nvc animated:YES completion:nil];
     }
     
     // Refresh any changes.

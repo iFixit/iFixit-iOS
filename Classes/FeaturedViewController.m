@@ -9,7 +9,6 @@
 #import "iFixit-Swift.h"
 #import "FeaturedViewController.h"
 #import "DMPGridViewController.h"
-#import "GuideViewController.h"
 #import "Config.h"
 #import "UIImageView+WebCache.h"
 #import "WBProgressHUD.h"
@@ -129,7 +128,7 @@
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     titleLabel.font = [UIFont fontWithName:@"Helvetica" size:80.0];
     
-    if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigMake) {
+    if ([Config currentConfig].site == SiteIFixit || [Config currentConfig].site == SiteMake) {
         titleLabel.frame = CGRectMake(110.0, 150.0, self.view.frame.size.width - 110.0, 106.0);
         titleLabel.text = [[_collection valueForKey:@"title"] stringByAppendingString:@" "];
     }
@@ -224,22 +223,6 @@
     [self updateTitleAndHeader];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-	return YES;
-}
-
-- (void)dealloc {
-    self.gvc.delegate = nil;
-    self.pvc.delegate = nil;
-}
-
 - (void)showPastFeatures:(id)sender {
     if (poc.popoverVisible)
         [poc dismissPopoverAnimated:YES];
@@ -276,7 +259,7 @@
     NSNumber *iGuideid = _guides[index][@"guideid"];
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self presentModalViewController:nc animated:YES];
+    [self presentViewController:nc animated:YES completion:nil];
 }
 
 @end

@@ -62,19 +62,19 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
         var filename:String!
         let docDirectory = documentDirectoryURL()
         
-        filename = "\(config.host)_\(uid)_bookmarkedGuides.plist"
+        filename = "\(config.host!)_\(uid)_bookmarkedGuides.plist"
         self.guidesFilePath = docDirectory.URLByAppendingPathComponent(filename)
         
-        filename = "\(config.host)_\(uid)_bookmarkedImages.plist"
+        filename = "\(config.host!)_\(uid)_bookmarkedImages.plist"
         self.imagesFilePath = docDirectory.URLByAppendingPathComponent(filename)
         
-        filename = "\(config.host)_\(uid)_bookmarkedQueue.plist"
+        filename = "\(config.host!)_\(uid)_bookmarkedQueue.plist"
         self.queueFilePath = docDirectory.URLByAppendingPathComponent(filename)
         
-        filename = "\(config.host)_\(uid)_bookmarkedVideos.plist"
+        filename = "\(config.host!)_\(uid)_bookmarkedVideos.plist"
         self.videosFilePath = docDirectory.URLByAppendingPathComponent(filename)
         
-        filename = "\(config.host)_\(uid)_bookmarkedDocuments.plist"
+        filename = "\(config.host!)_\(uid)_bookmarkedDocuments.plist"
         self.documentsFilePath = docDirectory.URLByAppendingPathComponent(filename)
         
         // Now load: Guides
@@ -150,16 +150,16 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
         }
         
         if (guide.image != nil) {
-            let standardURL = guide.image!.URLForSize("standard")!.absoluteString
-            // TODO[guideImages addObject:[SDImageCache cacheFilenameForKey:standardURL]];
+            let standardURL = guide.image!.standard.absoluteString
+            guideImages.append(SDImageCache.cacheFilenameForKey(standardURL))
         }
         
         for step in guide.steps {
             for image in step.images {
-                let thumbnailURL = guide.image!.URLForSize("thumbnail")!.absoluteString
-                let largeURL = guide.image!.URLForSize("large")!.absoluteString
-                // TODO [guideImages addObject:[SDImageCache cacheFilenameForKey:thumbnailURL]];
-                // TODO [guideImages addObject:[SDImageCache cacheFilenameForKey:largeURL]];
+                let thumbnailURL = image.thumbnail.absoluteString
+                let largeURL = image.large.absoluteString
+                guideImages.append(SDImageCache.cacheFilenameForKey(thumbnailURL))
+                guideImages.append(SDImageCache.cacheFilenameForKey(largeURL))
             }
             
             if step.video != nil {
@@ -389,7 +389,7 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
         
         if guide?.image != nil {
             imagesRemaining++
-            SDWebImageManager.sharedManager().downloadWithURL(guide!.image?.URLForSize("standard"), delegate: self, retryFailed:true)
+            SDWebImageManager.sharedManager().downloadWithURL(guide!.image?.standard, delegate: self, retryFailed:true)
         }
         
         for step in guide!.steps {
@@ -398,8 +398,8 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
             }
             
             for image in step.images {
-                SDWebImageManager.sharedManager().downloadWithURL(guide!.image?.URLForSize("thumbnail"), delegate: self, retryFailed:true)
-                SDWebImageManager.sharedManager().downloadWithURL(guide!.image?.URLForSize("large"), delegate: self, retryFailed:true)
+                SDWebImageManager.sharedManager().downloadWithURL(image.thumbnail, delegate: self, retryFailed:true)
+                SDWebImageManager.sharedManager().downloadWithURL(image.large, delegate: self, retryFailed:true)
             }
         }
     }
@@ -507,11 +507,11 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
     func updateProgessBar() {
         let totalDownloaded = imagesDownloaded + videosDownloaded + documentsDownloaded
         let totalRemaining = imagesRemaining + imagesDownloaded + videosRemaining
-        bookmarker!.progress.progress = Float(totalDownloaded) / Float(totalRemaining + videosDownloaded + documentsRemaining + documentsDownloaded);
+        bookmarker!.progress!.progress = Float(totalDownloaded) / Float(totalRemaining + videosDownloaded + documentsRemaining + documentsDownloaded);
     }
 
     func update() {
-        //    [[iFixitAPI sharedInstance] getUserFavoritesForObject:self withSelector:@selector(gotUpdates:)];
+
         iFixitAPI.sharedInstance.getUserFavorites { (likes) in
             
             if likes == nil {

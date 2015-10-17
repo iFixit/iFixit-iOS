@@ -22,7 +22,7 @@
 		9CD0B3C618277F120023EB5F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD0B3C518277F120023EB5F /* CoreAudio.framework */; };
 		9CD0B3C818277F260023EB5F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD0B3C718277F260023EB5F /* CoreVideo.framework */; };
 		9CD0B3CA18277F3D0023EB5F /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD0B3C918277F3D0023EB5F /* libiconv.dylib */; };
-		9CE6783B1837F146001912DF /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6783A1837F146001912DF /* SearchCell.m */; };
+		9CE6783B1837F146001912DF /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6783A1837F146001912DF /* SearchCell.swift */; };
 		9CE6783D1838706F001912DF /* accustream_intro.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783C1838706F001912DF /* accustream_intro.css */; };
 		9CE6783F18387080001912DF /* accustream_step.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783E18387080001912DF /* accustream_step.css */; };
 		AB26882217CD5AA6004AC6ED /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB26882017CD5AA6004AC6ED /* OpenSans-Bold.ttf */; };
@@ -31,7 +31,7 @@
 		AB324BB1179473680001E29D /* iFixitSplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB324BAF179473680001E29D /* iFixitSplashScreenViewController.xib */; };
 		AB4926A4175FF6200092E4B6 /* category_more_info_ipad.css in Resources */ = {isa = PBXBuildFile; fileRef = AB4926A3175FF6200092E4B6 /* category_more_info_ipad.css */; };
 		ABA8FC4A177AA90A000B5E74 /* category_answers.css in Resources */ = {isa = PBXBuildFile; fileRef = ABA8FC49177AA909000B5E74 /* category_answers.css */; };
-		ABB84A6A177F591200C58514 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB84A69177F591200C58514 /* ListViewController.m */; };
+		ABB84A6A177F591200C58514 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB84A69177F591200C58514 /* ListViewController.swift */; };
 		ABDB16C41756AE2D00053573 /* CategoryWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDB16C21756AE2C00053573 /* CategoryWebViewController.m */; };
 		ABDB16C51756AE2D00053573 /* CategoryWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */; };
 		ABE00C43178BE34F006FD574 /* CategoriesSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE00C42178BE34F006FD574 /* CategoriesSingleton.m */; };
@@ -53,12 +53,13 @@
 		C0538CEA1BC043F50031B35D /* GuideVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CE91BC043F50031B35D /* GuideVideo.swift */; settings = {ASSET_TAGS = (); }; };
 		C0538CEC1BC045510031B35D /* GuideImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CEB1BC045510031B35D /* GuideImage.swift */; settings = {ASSET_TAGS = (); }; };
 		C0538CEE1BC047E00031B35D /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CED1BC047E00031B35D /* Guide.swift */; settings = {ASSET_TAGS = (); }; };
+		C06E55C21BCB393300D5D0C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06E55C01BCB393300D5D0C6 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		C10F271A120CE6980027A28D /* iFixitAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F2719120CE6980027A28D /* iFixitAPI.swift */; };
 		C115FC2D12174FA1005D0B77 /* GuideImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */; };
-		C184D4C61210CDB900953C39 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D4C41210CDB900953C39 /* GuideViewController.m */; };
+		C184D4C61210CDB900953C39 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C184D4C41210CDB900953C39 /* GuideViewController.swift */; };
 		C184D4C71210CDB900953C39 /* GuideView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D4C51210CDB900953C39 /* GuideView~ipad.xib */; };
-		C184D5381210D8CD00953C39 /* GuideIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D5361210D8CD00953C39 /* GuideIntroViewController.m */; };
+		C184D5381210D8CD00953C39 /* GuideIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C184D5361210D8CD00953C39 /* GuideIntroViewController.swift */; };
 		C184D5391210D8CD00953C39 /* GuideIntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */; };
 		C1C894F7121B447E0036FAFC /* TapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C894F6121B447E0036FAFC /* TapDetectingImageView.m */; };
 		C1D98150120E09BA00509D18 /* GuideStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D9814E120E09BA00509D18 /* GuideStepViewController.swift */; };
@@ -68,13 +69,13 @@
 		DA0A0C07138B023C0027721E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C06138B023C0027721E /* MobileCoreServices.framework */; };
 		DA0A0C16138B07DA0027721E /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C15138B07DA0027721E /* libxml2.2.dylib */; };
 		DA1977221473009A00CD6305 /* DetailGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1977211473009A00CD6305 /* DetailGridViewController.m */; };
-		DA2F767012FB87D900683D33 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2F766F12FB87D900683D33 /* Config.m */; };
+		DA2F767012FB87D900683D33 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F766F12FB87D900683D33 /* Config.swift */; };
 		DA3562AD1477254500683947 /* Ubuntu-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA3562AC1477254500683947 /* Ubuntu-BoldItalic.ttf */; };
-		DA3DE74C134CF57000AD5050 /* GuideBookmarker.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3DE74B134CF57000AD5050 /* GuideBookmarker.m */; };
+		DA3DE74C134CF57000AD5050 /* GuideBookmarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DE74B134CF57000AD5050 /* GuideBookmarker.swift */; };
 		DA3E3E3B133C1A8E0070615F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3E3E3A133C1A8E0070615F /* MainWindow.xib */; };
 		DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA53FA74141368BB00D5388F /* libicucore.dylib */; };
 		DA58CB3414EA17F400A2CBAB /* LoginBackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA58CB3314EA17F400A2CBAB /* LoginBackgroundViewController.swift */; };
-		DA59293813FB253B00504CD3 /* DozukiSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA59293613FB253B00504CD3 /* DozukiSplashViewController.m */; };
+		DA59293813FB253B00504CD3 /* DozukiSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59293613FB253B00504CD3 /* DozukiSplashViewController.swift */; };
 		DA59293913FB253B00504CD3 /* DozukiSplashView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA59293713FB253B00504CD3 /* DozukiSplashView~ipad.xib */; };
 		DA59296F13FB28B600504CD3 /* DozukiInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA59296D13FB28B600504CD3 /* DozukiInfoViewController.m */; };
 		DA59297013FB28B600504CD3 /* DozukiInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA59296E13FB28B600504CD3 /* DozukiInfoView.xib */; };
@@ -100,7 +101,7 @@
 		DAAED15914686A2D00C476C1 /* FeaturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAED15714686A2D00C476C1 /* FeaturedViewController.m */; };
 		DAAED15E1468710C00C476C1 /* PastFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAED15D1468710C00C476C1 /* PastFeaturesViewController.swift */; };
 		DAB26972146C96A2000D3A7A /* Ubuntu-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAB26971146C96A2000D3A7A /* Ubuntu-Italic.ttf */; };
-		DAB9343A137228AD00B6AA9A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB93439137228AD00B6AA9A /* LoginViewController.m */; };
+		DAB9343A137228AD00B6AA9A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB93439137228AD00B6AA9A /* LoginViewController.swift */; };
 		DABE9CF513C54D2200B778FE /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF413C54D2200B778FE /* GuideView.xib */; };
 		DABE9CF713C5519800B778FE /* GuideIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABE9CF613C5519800B778FE /* GuideIntroViewController.xib */; };
 		DAC0C1A3146B3F6F00EF42DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC0C1A2146B3F6F00EF42DC /* QuartzCore.framework */; };
@@ -114,7 +115,7 @@
 		DACE7FFB16572C710013FFFD /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACE7FFA16572C710013FFFD /* MediaPlayer.framework */; };
 		DAE4242113C3DE6C00F20EEE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE4242013C3DE6C00F20EEE /* libz.dylib */; };
 		DAF0C6D3134E62BF003B4DF6 /* GuideBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.swift */; };
-		DAF3AF571422897900913238 /* iPhoneDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF551422897900913238 /* iPhoneDeviceViewController.m */; };
+		DAF3AF571422897900913238 /* iPhoneDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF551422897900913238 /* iPhoneDeviceViewController.swift */; };
 		DAF3AF581422897900913238 /* iPhoneDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */; };
 		DAF3AF621422AF4800913238 /* GuideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF611422AF4800913238 /* GuideCell.m */; };
 /* End PBXBuildFile section */
@@ -143,8 +144,7 @@
 		9CD0B3C918277F3D0023EB5F /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		9CE0D44F19DB0DE900292462 /* libPods-GoogleAnalytics-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-GoogleAnalytics-iOS-SDK.a"; path = "Pods/build/Debug-iphoneos/libPods-GoogleAnalytics-iOS-SDK.a"; sourceTree = "<group>"; };
 		9CE0D45319DB191B00292462 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = "Pods/GoogleAnalytics-iOS-SDK/libGoogleAnalyticsServices.a"; sourceTree = "<group>"; };
-		9CE678391837F146001912DF /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
-		9CE6783A1837F146001912DF /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
+		9CE6783A1837F146001912DF /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		9CE6783C1838706F001912DF /* accustream_intro.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accustream_intro.css; sourceTree = "<group>"; };
 		9CE6783E18387080001912DF /* accustream_step.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accustream_step.css; sourceTree = "<group>"; };
 		AB26882017CD5AA6004AC6ED /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -156,8 +156,7 @@
 		AB8805EA1750459300CD5281 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB8805EB1750459800CD5281 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ABA8FC49177AA909000B5E74 /* category_answers.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = category_answers.css; sourceTree = "<group>"; };
-		ABB84A68177F591100C58514 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
-		ABB84A69177F591200C58514 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		ABB84A69177F591200C58514 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		ABDB16C11756AE2C00053573 /* CategoryWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryWebViewController.h; sourceTree = "<group>"; };
 		ABDB16C21756AE2C00053573 /* CategoryWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryWebViewController.m; sourceTree = "<group>"; };
 		ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryWebViewController.xib; sourceTree = "<group>"; };
@@ -192,18 +191,16 @@
 		C0538CE91BC043F50031B35D /* GuideVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideVideo.swift; sourceTree = "<group>"; };
 		C0538CEB1BC045510031B35D /* GuideImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideImage.swift; sourceTree = "<group>"; };
 		C0538CED1BC047E00031B35D /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
+		C06E55C11BCB393300D5D0C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C0D569111BBE2C7600B50651 /* iFixit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "iFixit-Bridging-Header.h"; path = "Classes/iFixit-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iFixitAppDelegate.swift; path = Classes/iFixitAppDelegate.swift; sourceTree = "<group>"; };
 		C10E3EB1120E369E008CE3AE /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
-		C10F2718120CE6980027A28D /* iFixitAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iFixitAPI.h; sourceTree = "<group>"; };
 		C10F2719120CE6980027A28D /* iFixitAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iFixitAPI.swift; sourceTree = "<group>"; };
 		C115FC2A12174FA1005D0B77 /* GuideImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideImageViewController.h; sourceTree = "<group>"; };
 		C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideImageViewController.m; sourceTree = "<group>"; };
-		C184D4C31210CDB900953C39 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
-		C184D4C41210CDB900953C39 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
+		C184D4C41210CDB900953C39 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		C184D4C51210CDB900953C39 /* GuideView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideView~ipad.xib"; sourceTree = "<group>"; };
-		C184D5351210D8CD00953C39 /* GuideIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideIntroViewController.h; sourceTree = "<group>"; };
-		C184D5361210D8CD00953C39 /* GuideIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideIntroViewController.m; sourceTree = "<group>"; };
+		C184D5361210D8CD00953C39 /* GuideIntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideIntroViewController.swift; sourceTree = "<group>"; };
 		C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideIntroView~ipad.xib"; sourceTree = "<group>"; };
 		C1C894F5121B447E0036FAFC /* TapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapDetectingImageView.h; sourceTree = "<group>"; };
 		C1C894F6121B447E0036FAFC /* TapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapDetectingImageView.m; sourceTree = "<group>"; };
@@ -215,17 +212,14 @@
 		DA0A0C15138B07DA0027721E /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		DA1977201473009A00CD6305 /* DetailGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailGridViewController.h; sourceTree = "<group>"; };
 		DA1977211473009A00CD6305 /* DetailGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailGridViewController.m; sourceTree = "<group>"; };
-		DA2F766E12FB87D900683D33 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
-		DA2F766F12FB87D900683D33 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
+		DA2F766F12FB87D900683D33 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		DA3562AC1477254500683947 /* Ubuntu-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-BoldItalic.ttf"; sourceTree = "<group>"; };
 		DA38111B147AE2C000BBFB9C /* DetailGridViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailGridViewControllerDelegate.h; sourceTree = "<group>"; };
-		DA3DE74A134CF57000AD5050 /* GuideBookmarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideBookmarker.h; sourceTree = "<group>"; };
-		DA3DE74B134CF57000AD5050 /* GuideBookmarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideBookmarker.m; sourceTree = "<group>"; };
+		DA3DE74B134CF57000AD5050 /* GuideBookmarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideBookmarker.swift; sourceTree = "<group>"; };
 		DA3E3E3A133C1A8E0070615F /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		DA53FA74141368BB00D5388F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		DA58CB3314EA17F400A2CBAB /* LoginBackgroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginBackgroundViewController.swift; sourceTree = "<group>"; };
-		DA59293513FB253B00504CD3 /* DozukiSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DozukiSplashViewController.h; sourceTree = "<group>"; };
-		DA59293613FB253B00504CD3 /* DozukiSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DozukiSplashViewController.m; sourceTree = "<group>"; };
+		DA59293613FB253B00504CD3 /* DozukiSplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DozukiSplashViewController.swift; sourceTree = "<group>"; };
 		DA59293713FB253B00504CD3 /* DozukiSplashView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DozukiSplashView~ipad.xib"; sourceTree = "<group>"; };
 		DA59296C13FB28B600504CD3 /* DozukiInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DozukiInfoViewController.h; sourceTree = "<group>"; };
 		DA59296D13FB28B600504CD3 /* DozukiInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DozukiInfoViewController.m; sourceTree = "<group>"; };
@@ -266,8 +260,7 @@
 		DAAED15714686A2D00C476C1 /* FeaturedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedViewController.m; sourceTree = "<group>"; };
 		DAAED15D1468710C00C476C1 /* PastFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastFeaturesViewController.swift; sourceTree = "<group>"; };
 		DAB26971146C96A2000D3A7A /* Ubuntu-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Italic.ttf"; sourceTree = "<group>"; };
-		DAB93438137228AD00B6AA9A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		DAB93439137228AD00B6AA9A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		DAB93439137228AD00B6AA9A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DABE9CF413C54D2200B778FE /* GuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideView.xib; sourceTree = "<group>"; };
 		DABE9CF613C5519800B778FE /* GuideIntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideIntroViewController.xib; sourceTree = "<group>"; };
 		DAC0C1A2146B3F6F00EF42DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -282,8 +275,7 @@
 		DAD77267138EAC4F00D107B8 /* LoginViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewControllerDelegate.h; sourceTree = "<group>"; };
 		DAE4242013C3DE6C00F20EEE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideBookmarks.swift; sourceTree = "<group>"; };
-		DAF3AF541422897900913238 /* iPhoneDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneDeviceViewController.h; sourceTree = "<group>"; };
-		DAF3AF551422897900913238 /* iPhoneDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = iPhoneDeviceViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DAF3AF551422897900913238 /* iPhoneDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = iPhoneDeviceViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPhoneDeviceViewController.xib; sourceTree = "<group>"; };
 		DAF3AF601422AF4800913238 /* GuideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCell.h; sourceTree = "<group>"; };
 		DAF3AF611422AF4800913238 /* GuideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCell.m; sourceTree = "<group>"; };
@@ -387,6 +379,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C06E55C01BCB393300D5D0C6 /* Main.storyboard */,
 				ABE472451746E0610002F3D6 /* Localizable.strings */,
 				DACE446C1353CE3700F78360 /* css */,
 				28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */,
@@ -478,8 +471,7 @@
 				C0538CE31BC028650031B35D /* GuideStepLine.swift */,
 				DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.swift */,
 				DAAED15B146870E800C476C1 /* Featured Collections */,
-				DA2F766E12FB87D900683D33 /* Config.h */,
-				DA2F766F12FB87D900683D33 /* Config.m */,
+				DA2F766F12FB87D900683D33 /* Config.swift */,
 				DA05677A138D976600660C86 /* User.swift */,
 			);
 			name = Objects;
@@ -488,7 +480,6 @@
 		C10F2767120CF1830027A28D /* Net */ = {
 			isa = PBXGroup;
 			children = (
-				C10F2718120CE6980027A28D /* iFixitAPI.h */,
 				C10F2719120CE6980027A28D /* iFixitAPI.swift */,
 			);
 			name = Net;
@@ -511,16 +502,13 @@
 				DABE9CF413C54D2200B778FE /* GuideView.xib */,
 				C184D4C51210CDB900953C39 /* GuideView~ipad.xib */,
 				C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */,
-				C184D4C31210CDB900953C39 /* GuideViewController.h */,
-				C184D4C41210CDB900953C39 /* GuideViewController.m */,
-				C184D5351210D8CD00953C39 /* GuideIntroViewController.h */,
-				C184D5361210D8CD00953C39 /* GuideIntroViewController.m */,
+				C184D4C41210CDB900953C39 /* GuideViewController.swift */,
+				C184D5361210D8CD00953C39 /* GuideIntroViewController.swift */,
 				DABE9CF613C5519800B778FE /* GuideIntroViewController.xib */,
 				C1D9814E120E09BA00509D18 /* GuideStepViewController.swift */,
 				DACE7FF1165722710013FFFD /* GuideStepViewController.xib */,
 				DAAAC7491433F43C00CB90AF /* GuideStepViewController~ipad.xib */,
-				DA3DE74A134CF57000AD5050 /* GuideBookmarker.h */,
-				DA3DE74B134CF57000AD5050 /* GuideBookmarker.m */,
+				DA3DE74B134CF57000AD5050 /* GuideBookmarker.swift */,
 			);
 			name = "Guide View";
 			sourceTree = "<group>";
@@ -528,8 +516,7 @@
 		DA59293413FB250800504CD3 /* Dozuki */ = {
 			isa = PBXGroup;
 			children = (
-				DA59293513FB253B00504CD3 /* DozukiSplashViewController.h */,
-				DA59293613FB253B00504CD3 /* DozukiSplashViewController.m */,
+				DA59293613FB253B00504CD3 /* DozukiSplashViewController.swift */,
 				DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */,
 				DA59293713FB253B00504CD3 /* DozukiSplashView~ipad.xib */,
 				DA59296C13FB28B600504CD3 /* DozukiInfoViewController.h */,
@@ -606,8 +593,7 @@
 		DACD8FD414DDD7970020A06C /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				DAB93438137228AD00B6AA9A /* LoginViewController.h */,
-				DAB93439137228AD00B6AA9A /* LoginViewController.m */,
+				DAB93439137228AD00B6AA9A /* LoginViewController.swift */,
 				DAD77267138EAC4F00D107B8 /* LoginViewControllerDelegate.h */,
 				DA58CB3314EA17F400A2CBAB /* LoginBackgroundViewController.swift */,
 				DACD8FD614DDD7B80020A06C /* OpenIDViewController.swift */,
@@ -645,26 +631,21 @@
 		DAF3AF511422881B00913238 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				28042007108E984D000629CD /* CategoriesViewController.h */,
-				28042008108E984D000629CD /* CategoriesViewController.m */,
-				DAAAC74B1433F49000CB90AF /* CategoriesViewController.xib */,
+				ABB84A69177F591200C58514 /* ListViewController.swift */,
 				ABE38C981773B9AC00777F60 /* CategoryTabBarViewController.swift */,
 				ABE38C991773B9AC00777F60 /* CategoryTabBarViewController.xib */,
 				ABDB16C11756AE2C00053573 /* CategoryWebViewController.h */,
 				ABDB16C21756AE2C00053573 /* CategoryWebViewController.m */,
 				67CBC0001BC828790077AD70 /* CategoryWebViewController.swift */,
 				ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */,
-				DA666AF11360E2A4002B1D62 /* GuideCatchingWebView.h */,
-				DA666AF21360E2A4002B1D62 /* GuideCatchingWebView.m */,
+				28042007108E984D000629CD /* CategoriesViewController.h */,
+				28042008108E984D000629CD /* CategoriesViewController.m */,
+				DAAAC74B1433F49000CB90AF /* CategoriesViewController.xib */,
+				DAF3AF551422897900913238 /* iPhoneDeviceViewController.swift */,
+				DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */,
 				DAF3AF601422AF4800913238 /* GuideCell.h */,
 				DAF3AF611422AF4800913238 /* GuideCell.m */,
-				DAF3AF541422897900913238 /* iPhoneDeviceViewController.h */,
-				DAF3AF551422897900913238 /* iPhoneDeviceViewController.m */,
-				DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */,
-				ABB84A68177F591100C58514 /* ListViewController.h */,
-				ABB84A69177F591200C58514 /* ListViewController.m */,
-				9CE678391837F146001912DF /* SearchCell.h */,
-				9CE6783A1837F146001912DF /* SearchCell.m */,
+				9CE6783A1837F146001912DF /* SearchCell.swift */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -719,6 +700,7 @@
 				fr,
 				de,
 				es,
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -767,6 +749,7 @@
 				ABA8FC4A177AA90A000B5E74 /* category_answers.css in Resources */,
 				C0538CE21BC0244A0031B35D /* Default-568h@2x.png in Resources */,
 				ABE51914177B77F400E9555E /* category_more_info_iphone.css in Resources */,
+				C06E55C21BCB393300D5D0C6 /* Main.storyboard in Resources */,
 				AB324BB1179473680001E29D /* iFixitSplashScreenViewController.xib in Resources */,
 				AB26882217CD5AA6004AC6ED /* OpenSans-Bold.ttf in Resources */,
 				AB26882317CD5AA6004AC6ED /* OpenSans-Regular.ttf in Resources */,
@@ -835,17 +818,17 @@
 				2804200B108E984D000629CD /* CategoriesViewController.m in Sources */,
 				C0538CEE1BC047E00031B35D /* Guide.swift in Sources */,
 				C10F271A120CE6980027A28D /* iFixitAPI.swift in Sources */,
-				9CE6783B1837F146001912DF /* SearchCell.m in Sources */,
+				9CE6783B1837F146001912DF /* SearchCell.swift in Sources */,
 				C0538CD91BBE9C190031B35D /* SDWebImageDownloader.m in Sources */,
 				C1D98150120E09BA00509D18 /* GuideStepViewController.swift in Sources */,
 				C0538CDA1BBE9C190031B35D /* SDWebImageManager.m in Sources */,
-				C184D4C61210CDB900953C39 /* GuideViewController.m in Sources */,
-				C184D5381210D8CD00953C39 /* GuideIntroViewController.m in Sources */,
+				C184D4C61210CDB900953C39 /* GuideViewController.swift in Sources */,
+				C184D5381210D8CD00953C39 /* GuideIntroViewController.swift in Sources */,
 				C115FC2D12174FA1005D0B77 /* GuideImageViewController.m in Sources */,
 				C1C894F7121B447E0036FAFC /* TapDetectingImageView.m in Sources */,
-				DA2F767012FB87D900683D33 /* Config.m in Sources */,
+				DA2F767012FB87D900683D33 /* Config.swift in Sources */,
 				DA881857134A5AFE004387CE /* BookmarksViewController.m in Sources */,
-				DA3DE74C134CF57000AD5050 /* GuideBookmarker.m in Sources */,
+				DA3DE74C134CF57000AD5050 /* GuideBookmarker.swift in Sources */,
 				DAF0C6D3134E62BF003B4DF6 /* GuideBookmarks.swift in Sources */,
 				C0538CDB1BBE9C190031B35D /* UIButton+WebCache.m in Sources */,
 				DA666AF31360E2A4002B1D62 /* GuideCatchingWebView.m in Sources */,
@@ -855,15 +838,15 @@
 				DAA7508B1368DA87002AA546 /* WBViewRect.mm in Sources */,
 				67CBC0011BC8287A0077AD70 /* CategoryWebViewController.swift in Sources */,
 				C0538CEA1BC043F50031B35D /* GuideVideo.swift in Sources */,
-				DAB9343A137228AD00B6AA9A /* LoginViewController.m in Sources */,
+				DAB9343A137228AD00B6AA9A /* LoginViewController.swift in Sources */,
 				DA05677B138D976600660C86 /* User.swift in Sources */,
 				C0538CDC1BBE9C190031B35D /* UIImageView+WebCache.m in Sources */,
 				C0538CEC1BC045510031B35D /* GuideImage.swift in Sources */,
-				DA59293813FB253B00504CD3 /* DozukiSplashViewController.m in Sources */,
+				DA59293813FB253B00504CD3 /* DozukiSplashViewController.swift in Sources */,
 				DA59296F13FB28B600504CD3 /* DozukiInfoViewController.m in Sources */,
 				DA59297413FB2ED800504CD3 /* DozukiSelectSiteViewController.m in Sources */,
 				C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */,
-				DAF3AF571422897900913238 /* iPhoneDeviceViewController.m in Sources */,
+				DAF3AF571422897900913238 /* iPhoneDeviceViewController.swift in Sources */,
 				9CA4756718CAFEF3005AFE08 /* Utility.swift in Sources */,
 				DAF3AF621422AF4800913238 /* GuideCell.m in Sources */,
 				C0538CE61BC03E000031B35D /* GuideEmbed.swift in Sources */,
@@ -880,7 +863,7 @@
 				ABDB16C41756AE2D00053573 /* CategoryWebViewController.m in Sources */,
 				ABE38C9A1773B9AC00777F60 /* CategoryTabBarViewController.swift in Sources */,
 				C0538CE81BC03FE70031B35D /* GuideStep.swift in Sources */,
-				ABB84A6A177F591200C58514 /* ListViewController.m in Sources */,
+				ABB84A6A177F591200C58514 /* ListViewController.swift in Sources */,
 				ABE00C43178BE34F006FD574 /* CategoriesSingleton.m in Sources */,
 				AB324BB0179473680001E29D /* iFixitSplashScreenViewController.swift in Sources */,
 			);
@@ -898,6 +881,14 @@
 				AB8805EB1750459800CD5281 /* es */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C06E55C01BCB393300D5D0C6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C06E55C11BCB393300D5D0C6 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

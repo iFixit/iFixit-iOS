@@ -6,6 +6,7 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
+#import "iFixit-Swift.h"
 #import "GuideImageViewController.h"
 #import "Config.h"
 
@@ -161,7 +162,7 @@ static CGRect frameView;
 		if (!doubleTap) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[UIApplication sharedApplication] setStatusBarHidden:NO];
-                [[delegate delegate] dismissModalViewControllerAnimated:YES];
+                [[delegate delegate] dismissViewControllerAnimated:YES completion:nil];
             });
         }
 		

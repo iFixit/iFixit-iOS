@@ -9,7 +9,6 @@
 #import "DozukiSelectSiteViewController.h"
 #import "iFixit-Swift.h"
 #import "Config.h"
-#import "UIColor+Hex.h"
 
 #define SITES_REQUEST_LIMIT 500
 
@@ -156,7 +155,7 @@ static NSMutableArray *prioritySites = nil;
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
-    if ([Config currentConfig].site == ConfigMagnolia) {
+    if ([Config currentConfig].site == SiteMagnolia) {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
     } else {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
@@ -364,8 +363,4 @@ static NSMutableArray *prioritySites = nil;
         [self loadMore];
 }
 
-- (void)viewDidUnload {
-    [self setSearchBar:nil];
-    [super viewDidUnload];
-}
 @end

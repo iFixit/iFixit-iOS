@@ -7,7 +7,6 @@
 //
 
 #import "CategoryWebViewController.h"
-#import "ListViewController.h"
 #import "BookmarksViewController.h"
 #import "WBProgressHUD.h"
 #import "Config.h"
@@ -48,12 +47,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidUnload {
-    [self setWebView:nil];
-    [self setCategoryNavigationBar:nil];
-    [super viewDidUnload];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {

@@ -25,9 +25,9 @@ class Guide: NSObject {
     var iPrereqModifiedDate = 0
     var image:GuideImage? = nil
 
-    var documents = []
-    var parts = []
-    var tools = []
+    var documents:[[String:AnyObject]] = []
+    var parts:[[String:AnyObject]] = []
+    var tools:[[String:AnyObject]] = []
     var flags = []
 
     var reqreqs = []
@@ -60,12 +60,12 @@ class Guide: NSObject {
         title                 = json["title"] as! String
         category              = json["category"] as! String
         subject               = json["subject"] as! String
-        author                = (json["author"] as! [String:AnyObject])["username"] as! String
-        timeRequired          = json["time_required"] as! String
-        difficulty            = json["difficulty"] as! String
-        introduction          = json["introduction_raw"] as! String
+        author                = json["username"] as? String ?? (json["author"] as! [String:AnyObject])["username"] as! String
+        timeRequired          = json["time_required"] as? String ?? ""
+        difficulty            = json["difficulty"] as? String ?? ""
+        introduction          = json["introduction_raw"] as? String ?? ""
         summary               = json["summary"] as! String
-        introduction_rendered = json["introduction_rendered"] as! String
+        introduction_rendered = json["introduction_rendered"] as? String ?? ""
         iModifiedDate         = json["modified_date"] as! Int
         iPrereqModifiedDate   = json["prereq_modified_date"] as! Int
         
@@ -76,21 +76,22 @@ class Guide: NSObject {
         }
         
         // Steps
-        let steps = json["steps"] as! [[String:AnyObject]]
-        for step in steps {
-            self.steps.append(GuideStep(json: step))
+        if let steps = json["steps"] as? [[String:AnyObject]] {
+            for step in steps {
+                self.steps.append(GuideStep(json: step))
+            }
         }
         
         // Prereqs
         
         // Parts
-        parts = json["parts"] as! [[String:AnyObject]]
+        parts = json["parts"] as? [[String:AnyObject]] ?? []
         
         // Tools
-        tools = json["tools"] as! [[String:AnyObject]]
+        tools = json["tools"] as? [[String:AnyObject]] ?? []
         
         // Documents
-        documents = json["documents"] as! [[String:AnyObject]]
+        documents = json["documents"] as? [[String:AnyObject]] ?? [[:]]
         
         // Flags
         

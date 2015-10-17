@@ -9,14 +9,10 @@
 #import "iFixit-Swift.h"
 #import "Config.h"
 #import "CategoriesViewController.h"
-#import "iPhoneDeviceViewController.h"
 #import "DetailGridViewController.h"
 #import "BookmarksViewController.h"
-#import "ListViewController.h"
 #import "GuideCell.h"
-#import "SearchCell.h"
 #import "UIImageView+WebCache.h"
-#import "GuideViewController.h"
 #import "CategoriesSingleton.h"
 #import "Reachability.h"
 #import "ZBarReaderViewController.h"
@@ -82,48 +78,48 @@ BOOL searchViewEnabled;
         UIImage *titleImage;
         UIImageView *imageTitle;
         switch ([Config currentConfig].site) {
-            case ConfigIFixit:
+            case SiteIFixit:
                 titleImage = [UIImage imageNamed:@"iPhone-ifixit-logo.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 imageTitle.contentMode = UIViewContentModeScaleAspectFit;
                 self.navigationItem.titleView = imageTitle;
                 break;
-            case ConfigZeal:
+            case SiteZeal:
                 titleImage = [UIImage imageNamed:@"titleImageZeal.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
-            case ConfigMjtrim:
+            case SiteMjtrim:
                 titleImage = [UIImage imageNamed:@"titleImageMjtrim.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
-            case ConfigAccustream:
+            case SiteAccustream:
                 titleImage = [UIImage imageNamed:@"accustream_logo_transparent.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
-            case ConfigMagnolia:
+            case SiteMagnolia:
                 titleImage = [UIImage imageNamed:@"titleImageMagnoliamedical.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
-            case ConfigComcast:
+            case SiteComcast:
                 titleImage = [UIImage imageNamed:@"titleImageComcast.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
-            case ConfigDripAssist:
+            case SiteDripAssist:
                 titleImage = [UIImage imageNamed:@"titleImageDripassist.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
-            case ConfigPva:
+            case SitePva:
                 titleImage = [UIImage imageNamed:@"titleImagePva.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
-            case ConfigOscaro:
+            case SiteOscaro:
                 titleImage = [UIImage imageNamed:@"titleImageOscaro.png"];
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
@@ -296,52 +292,52 @@ BOOL searchViewEnabled;
     
     if ((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         switch ([Config currentConfig].site) {
-            case ConfigMake:
+            case SiteMake:
                 break;
-            case ConfigDozuki:
-            case ConfigZeal:
+            case SiteDozuki:
+            case SiteZeal:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 100;
                 frame.size.height = 25;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigMjtrim:
+            case SiteMjtrim:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 75;
                 frame.size.height = 24;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigAccustream:
+            case SiteAccustream:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 95.0;
                 frame.size.height = 44.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigMagnolia:
+            case SiteMagnolia:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 257.0;
                 frame.size.height = 70.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigComcast:
+            case SiteComcast:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 257.0;
                 frame.size.height = 30.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigDripAssist:
+            case SiteDripAssist:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 257.0;
                 frame.size.height = 30.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigPva:
+            case SitePva:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 257.0;
                 frame.size.height = 30.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigOscaro:
+            case SiteOscaro:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 257.0;
                 frame.size.height = 30.0;
@@ -356,52 +352,52 @@ BOOL searchViewEnabled;
         }
     } else {
         switch ([Config currentConfig].site) {
-            case ConfigMake:
+            case SiteMake:
                 break;
-            case ConfigDozuki:
-            case ConfigZeal:
+            case SiteDozuki:
+            case SiteZeal:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 137;
                 frame.size.height = 35;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigMjtrim:
+            case SiteMjtrim:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 137;
                 frame.size.height = 35;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigAccustream:
+            case SiteAccustream:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 157.0;
                 frame.size.height = 55.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigMagnolia:
+            case SiteMagnolia:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 157;
                 frame.size.height = 65.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigComcast:
+            case SiteComcast:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 157.0;
                 frame.size.height = 40.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigDripAssist:
+            case SiteDripAssist:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 157.0;
                 frame.size.height = 40.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigPva:
+            case SitePva:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 157.0;
                 frame.size.height = 40.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigOscaro:
+            case SiteOscaro:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 157.0;
                 frame.size.height = 40.0;
@@ -658,7 +654,7 @@ BOOL searchViewEnabled;
     devices = [self sortCategories:devices];
 
     // If on iFixit, keep them separate
-    if ([Config currentConfig].site == ConfigIFixit) {
+    if ([Config currentConfig].site == SiteIFixit) {
         if (categories.count)
             allCategories[CATEGORIES] = categories;
         if (devices.count)
@@ -944,7 +940,7 @@ BOOL searchViewEnabled;
     [qrScanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
     
     iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.window.rootViewController presentModalViewController:qrReader animated:YES];
+    [appDelegate.window.rootViewController presentViewController:qrReader animated:YES completion:nil];
 
 }
 
@@ -984,7 +980,7 @@ BOOL searchViewEnabled;
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:guideViewController];
         
         iFixitAppDelegate *appDelegate = (iFixitAppDelegate*)[UIApplication sharedApplication].delegate;
-        [appDelegate.window.rootViewController presentModalViewController:navigationController animated:YES];
+        [appDelegate.window.rootViewController presentViewController:navigationController animated:YES completion:nil];
 
     } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
@@ -1089,16 +1085,6 @@ BOOL searchViewEnabled;
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     // Relinquish ownership any cached data, images, etc. that aren't in use.
-}
-
-- (void)viewDidUnload {
-    [self setScannerBarView:nil];
-    [self setScannerIcon:nil];
-    [self setTableView:nil];
-    [super viewDidUnload];
-    self.searchBar = nil;
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 }
 
 @end
