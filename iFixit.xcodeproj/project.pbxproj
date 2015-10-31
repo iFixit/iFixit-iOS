@@ -14,7 +14,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
 		67CBC0011BC8287A0077AD70 /* CategoryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CBC0001BC828790077AD70 /* CategoryWebViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		74A90607FE7B75F9B42BABC0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94340EBC8F9B98554E9BFA8B /* Pods.framework */; };
-		9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A1982189735C3003E79F0 /* GuideLib.m */; };
+		9C1A1983189735C3003E79F0 /* GuideLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A1982189735C3003E79F0 /* GuideLib.swift */; };
 		9C67A6C417E7A9040079C099 /* iFixit-App-Id.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */; };
 		9CA4756718CAFEF3005AFE08 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4756618CAFEF3005AFE08 /* Utility.swift */; };
 		9CD0B3C218277EED0023EB5F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD0B3C118277EED0023EB5F /* AVFoundation.framework */; };
@@ -56,12 +56,12 @@
 		C06E55C21BCB393300D5D0C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06E55C01BCB393300D5D0C6 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		C10F271A120CE6980027A28D /* iFixitAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F2719120CE6980027A28D /* iFixitAPI.swift */; };
-		C115FC2D12174FA1005D0B77 /* GuideImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */; };
+		C115FC2D12174FA1005D0B77 /* GuideImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115FC2B12174FA1005D0B77 /* GuideImageViewController.swift */; };
 		C184D4C61210CDB900953C39 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C184D4C41210CDB900953C39 /* GuideViewController.swift */; };
 		C184D4C71210CDB900953C39 /* GuideView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D4C51210CDB900953C39 /* GuideView~ipad.xib */; };
 		C184D5381210D8CD00953C39 /* GuideIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C184D5361210D8CD00953C39 /* GuideIntroViewController.swift */; };
 		C184D5391210D8CD00953C39 /* GuideIntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */; };
-		C1C894F7121B447E0036FAFC /* TapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C894F6121B447E0036FAFC /* TapDetectingImageView.m */; };
+		C1C894F7121B447E0036FAFC /* TapDetectingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C894F6121B447E0036FAFC /* TapDetectingImageView.swift */; };
 		C1D98150120E09BA00509D18 /* GuideStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D9814E120E09BA00509D18 /* GuideStepViewController.swift */; };
 		DA05677B138D976600660C86 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA05677A138D976600660C86 /* User.swift */; };
 		DA0A0C03138B02310027721E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C02138B02310027721E /* CFNetwork.framework */; };
@@ -133,8 +133,7 @@
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		94340EBC8F9B98554E9BFA8B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		957C51BCFD710BB69E045663 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		9C1A1981189735C3003E79F0 /* GuideLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideLib.h; sourceTree = "<group>"; };
-		9C1A1982189735C3003E79F0 /* GuideLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideLib.m; sourceTree = "<group>"; };
+		9C1A1982189735C3003E79F0 /* GuideLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideLib.swift; sourceTree = "<group>"; };
 		9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-App-Id.plist"; sourceTree = "<group>"; };
 		9CA4756618CAFEF3005AFE08 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		9CD0B3C118277EED0023EB5F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -194,16 +193,16 @@
 		C06E55C11BCB393300D5D0C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C0D569111BBE2C7600B50651 /* iFixit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "iFixit-Bridging-Header.h"; path = "Classes/iFixit-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iFixitAppDelegate.swift; path = Classes/iFixitAppDelegate.swift; sourceTree = "<group>"; };
+		C0F0FFC11BD2A25F0022436B /* GuideCatchingWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCatchingWebView.h; sourceTree = "<group>"; };
+		C0F0FFC21BD2A25F0022436B /* GuideCatchingWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCatchingWebView.m; sourceTree = "<group>"; };
 		C10E3EB1120E369E008CE3AE /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		C10F2719120CE6980027A28D /* iFixitAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iFixitAPI.swift; sourceTree = "<group>"; };
-		C115FC2A12174FA1005D0B77 /* GuideImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideImageViewController.h; sourceTree = "<group>"; };
-		C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideImageViewController.m; sourceTree = "<group>"; };
+		C115FC2B12174FA1005D0B77 /* GuideImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideImageViewController.swift; sourceTree = "<group>"; };
 		C184D4C41210CDB900953C39 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		C184D4C51210CDB900953C39 /* GuideView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideView~ipad.xib"; sourceTree = "<group>"; };
 		C184D5361210D8CD00953C39 /* GuideIntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideIntroViewController.swift; sourceTree = "<group>"; };
 		C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideIntroView~ipad.xib"; sourceTree = "<group>"; };
-		C1C894F5121B447E0036FAFC /* TapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapDetectingImageView.h; sourceTree = "<group>"; };
-		C1C894F6121B447E0036FAFC /* TapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapDetectingImageView.m; sourceTree = "<group>"; };
+		C1C894F6121B447E0036FAFC /* TapDetectingImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapDetectingImageView.swift; sourceTree = "<group>"; };
 		C1D9814E120E09BA00509D18 /* GuideStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GuideStepViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DA05677A138D976600660C86 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DA0A0C02138B02310027721E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -346,8 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */,
-				9C1A1981189735C3003E79F0 /* GuideLib.h */,
-				9C1A1982189735C3003E79F0 /* GuideLib.m */,
+				9C1A1982189735C3003E79F0 /* GuideLib.swift */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				C0538CDF1BC011A50031B35D /* Images.xcassets */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -488,10 +486,8 @@
 		C1C894F9121B44FA0036FAFC /* Image View */ = {
 			isa = PBXGroup;
 			children = (
-				C1C894F5121B447E0036FAFC /* TapDetectingImageView.h */,
-				C1C894F6121B447E0036FAFC /* TapDetectingImageView.m */,
-				C115FC2A12174FA1005D0B77 /* GuideImageViewController.h */,
-				C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */,
+				C1C894F6121B447E0036FAFC /* TapDetectingImageView.swift */,
+				C115FC2B12174FA1005D0B77 /* GuideImageViewController.swift */,
 			);
 			name = "Image View";
 			sourceTree = "<group>";
@@ -814,7 +810,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0538CE41BC028650031B35D /* GuideStepLine.swift in Sources */,
-				9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */,
+				9C1A1983189735C3003E79F0 /* GuideLib.swift in Sources */,
 				2804200B108E984D000629CD /* CategoriesViewController.m in Sources */,
 				C0538CEE1BC047E00031B35D /* Guide.swift in Sources */,
 				C10F271A120CE6980027A28D /* iFixitAPI.swift in Sources */,
@@ -824,8 +820,8 @@
 				C0538CDA1BBE9C190031B35D /* SDWebImageManager.m in Sources */,
 				C184D4C61210CDB900953C39 /* GuideViewController.swift in Sources */,
 				C184D5381210D8CD00953C39 /* GuideIntroViewController.swift in Sources */,
-				C115FC2D12174FA1005D0B77 /* GuideImageViewController.m in Sources */,
-				C1C894F7121B447E0036FAFC /* TapDetectingImageView.m in Sources */,
+				C115FC2D12174FA1005D0B77 /* GuideImageViewController.swift in Sources */,
+				C1C894F7121B447E0036FAFC /* TapDetectingImageView.swift in Sources */,
 				DA2F767012FB87D900683D33 /* Config.swift in Sources */,
 				DA881857134A5AFE004387CE /* BookmarksViewController.m in Sources */,
 				DA3DE74C134CF57000AD5050 /* GuideBookmarker.swift in Sources */,
@@ -922,6 +918,8 @@
 					"$(SDKROOT)/usr/include/libxml2/**",
 					"${PODS_ROOT}/Headers/Private/MGSplitViewController",
 					"${PODS_ROOT}/Headers/Private/ZBarSDK",
+					"$(PODS_ROOT)/Headers/Private/MBProgressHUD",
+					"$(PODS_ROOT)/Headers/Private/Reachability",
 				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -971,6 +969,8 @@
 					"$(SDKROOT)/usr/include/libxml2/**",
 					"${PODS_ROOT}/Headers/Private/MGSplitViewController",
 					"${PODS_ROOT}/Headers/Private/ZBarSDK",
+					"$(PODS_ROOT)/Headers/Private/MBProgressHUD",
+					"$(PODS_ROOT)/Headers/Private/Reachability",
 				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1112,6 +1112,8 @@
 					"$(SDKROOT)/usr/include/libxml2/**",
 					"${PODS_ROOT}/Headers/Private/MGSplitViewController",
 					"${PODS_ROOT}/Headers/Private/ZBarSDK",
+					"$(PODS_ROOT)/Headers/Private/MBProgressHUD",
+					"$(PODS_ROOT)/Headers/Private/Reachability",
 				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

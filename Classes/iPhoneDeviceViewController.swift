@@ -197,7 +197,7 @@ class iPhoneDeviceViewController: UITableViewController, UIAlertViewDelegate {
     // MARK: - Table view delegate
 
     override func tableView(tableView:UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath) {
-        GuideLib.loadAndPresentGuideForGuideid(self.guides[indexPath.row].iGuideid as NSNumber)
+        GuideLib.loadAndPresentGuideForGuideid(self.guides[indexPath.row].iGuideid)
         self.tableView.deselectRowAtIndexPath(indexPath, animated:true)
     }
 

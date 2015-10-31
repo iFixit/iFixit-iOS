@@ -17,7 +17,6 @@
 #import "Reachability.h"
 #import "ZBarReaderViewController.h"
 #import "ZBarImageScanner.h"
-#import "GuideLib.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 

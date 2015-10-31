@@ -8,9 +8,7 @@
 #import "SDWebImageManager.h"
 #import "SDImageCache.h"
 #import "DozukiSelectSiteViewController.h"
-#import "GuideImageViewController.h"
 #import "CategoryWebViewController.h"
-#import "GuideLib.h"
 #import "GuideCell.h"
 #import "UIButton+WebCache.h"
 #import "UIImageView+WebCache.h"
@@ -28,5 +26,6 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "MBProgressHUD.h"
+#import "Reachability.h"
 
 #define GuideBookmarksUpdatedNotification @"GuideBookmarksUpdatedNotification"
