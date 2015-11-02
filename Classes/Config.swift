@@ -41,6 +41,9 @@ class Config: NSObject {
         }
         return Static.instance
     }
+    
+    var sites:[Site] = []
+    var prioritySites:[Site] = []
 
     private var _answersEnabled:Bool?
     var answersEnabled:Bool {
