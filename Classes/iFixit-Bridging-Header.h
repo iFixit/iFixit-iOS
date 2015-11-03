@@ -18,7 +18,6 @@
 #import "Config.h"
 #import "CategoriesViewController.h"
 #import "FeaturedViewController.h"
-#import "DozukiInfoViewController.h"
 #import "SVWebViewController.h"
 #import "GuideCatchingWebView.h"
 #import "GAI.h"
