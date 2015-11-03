@@ -8,7 +8,6 @@
 #import "SDWebImageManager.h"
 #import "SDImageCache.h"
 #import "CategoryWebViewController.h"
-#import "GuideCell.h"
 #import "UIButton+WebCache.h"
 #import "UIImageView+WebCache.h"
 #import "LoginViewControllerDelegate.h"

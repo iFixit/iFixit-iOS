@@ -118,7 +118,7 @@
 		DAF0C6D3134E62BF003B4DF6 /* GuideBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.swift */; };
 		DAF3AF571422897900913238 /* iPhoneDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF551422897900913238 /* iPhoneDeviceViewController.swift */; };
 		DAF3AF581422897900913238 /* iPhoneDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */; };
-		DAF3AF621422AF4800913238 /* GuideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF611422AF4800913238 /* GuideCell.m */; };
+		DAF3AF621422AF4800913238 /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF3AF611422AF4800913238 /* GuideCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -276,8 +276,7 @@
 		DAF0C6D2134E62BF003B4DF6 /* GuideBookmarks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideBookmarks.swift; sourceTree = "<group>"; };
 		DAF3AF551422897900913238 /* iPhoneDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = iPhoneDeviceViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPhoneDeviceViewController.xib; sourceTree = "<group>"; };
-		DAF3AF601422AF4800913238 /* GuideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCell.h; sourceTree = "<group>"; };
-		DAF3AF611422AF4800913238 /* GuideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCell.m; sourceTree = "<group>"; };
+		DAF3AF611422AF4800913238 /* GuideCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideCell.swift; sourceTree = "<group>"; };
 		E353F8DB6E6C89DA7ADE25F5 /* Pods.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods.ad-hoc.xcconfig"; path = "Pods/Target Support Files/Pods/Pods.ad-hoc.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -638,8 +637,7 @@
 				DAAAC74B1433F49000CB90AF /* CategoriesViewController.xib */,
 				DAF3AF551422897900913238 /* iPhoneDeviceViewController.swift */,
 				DAF3AF561422897900913238 /* iPhoneDeviceViewController.xib */,
-				DAF3AF601422AF4800913238 /* GuideCell.h */,
-				DAF3AF611422AF4800913238 /* GuideCell.m */,
+				DAF3AF611422AF4800913238 /* GuideCell.swift */,
 				9CE6783A1837F146001912DF /* SearchCell.swift */,
 			);
 			name = Navigation;
@@ -843,7 +841,7 @@
 				C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */,
 				DAF3AF571422897900913238 /* iPhoneDeviceViewController.swift in Sources */,
 				9CA4756718CAFEF3005AFE08 /* Utility.swift in Sources */,
-				DAF3AF621422AF4800913238 /* GuideCell.m in Sources */,
+				DAF3AF621422AF4800913238 /* GuideCell.swift in Sources */,
 				C0538CE61BC03E000031B35D /* GuideEmbed.swift in Sources */,
 				DA8860E31427DD490030F52C /* SVWebViewController.m in Sources */,
 				DAAED15914686A2D00C476C1 /* FeaturedViewController.m in Sources */,
