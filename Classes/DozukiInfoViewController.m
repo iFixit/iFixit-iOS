@@ -8,7 +8,6 @@
 
 #import "iFixit-Swift.h"
 #import "DozukiInfoViewController.h"
-#import "DozukiSelectSiteViewController.h"
 
 @implementation DozukiInfoViewController
 

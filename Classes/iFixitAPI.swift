@@ -97,7 +97,7 @@ class iFixitAPI: NSObject {
     }
     
 //    - (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
-    func getSites(limit:Int, offset:Int, handler:(([[String:AnyObject]]?) -> ())) {
+    func getSites(limit:Int, offset:Int, handler:(([Site]?) -> ())) {
         let config = Config.currentConfig()
         
         let url = "https://\(config.host!)/api/2.0/sites?limit=\(limit)&offset=\(offset)"
@@ -105,7 +105,8 @@ class iFixitAPI: NSObject {
         Alamofire.request(.GET, url, headers:commonHeaders()).responseJSON {(req, resp, JSON) in
             if JSON.isSuccess {
                 let value = JSON.value as! [[String:AnyObject]]
-                handler(value)
+                let sites = value.map { Site(json:$0) }
+                handler(sites)
             } else {
                 handler(nil)
             }

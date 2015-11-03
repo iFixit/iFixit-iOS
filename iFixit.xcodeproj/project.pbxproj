@@ -39,22 +39,23 @@
 		ABE38C9B1773B9AC00777F60 /* CategoryTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE38C991773B9AC00777F60 /* CategoryTabBarViewController.xib */; };
 		ABE472431746E0610002F3D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABE472451746E0610002F3D6 /* Localizable.strings */; };
 		ABE51914177B77F400E9555E /* category_more_info_iphone.css in Resources */ = {isa = PBXBuildFile; fileRef = ABE51913177B77F400E9555E /* category_more_info_iphone.css */; };
-		C0538CD61BBE9C190031B35D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C0538CC71BBE9C190031B35D /* LICENSE */; settings = {ASSET_TAGS = (); }; };
-		C0538CD81BBE9C190031B35D /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CCA1BBE9C190031B35D /* SDImageCache.m */; settings = {ASSET_TAGS = (); }; };
-		C0538CD91BBE9C190031B35D /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CCD1BBE9C190031B35D /* SDWebImageDownloader.m */; settings = {ASSET_TAGS = (); }; };
-		C0538CDA1BBE9C190031B35D /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CD01BBE9C190031B35D /* SDWebImageManager.m */; settings = {ASSET_TAGS = (); }; };
-		C0538CDB1BBE9C190031B35D /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CD31BBE9C190031B35D /* UIButton+WebCache.m */; settings = {ASSET_TAGS = (); }; };
-		C0538CDC1BBE9C190031B35D /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CD51BBE9C190031B35D /* UIImageView+WebCache.m */; settings = {ASSET_TAGS = (); }; };
-		C0538CE01BC011A50031B35D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0538CDF1BC011A50031B35D /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
-		C0538CE21BC0244A0031B35D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0538CE11BC0244A0031B35D /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
-		C0538CE41BC028650031B35D /* GuideStepLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CE31BC028650031B35D /* GuideStepLine.swift */; settings = {ASSET_TAGS = (); }; };
-		C0538CE61BC03E000031B35D /* GuideEmbed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CE51BC03E000031B35D /* GuideEmbed.swift */; settings = {ASSET_TAGS = (); }; };
-		C0538CE81BC03FE70031B35D /* GuideStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CE71BC03FE70031B35D /* GuideStep.swift */; settings = {ASSET_TAGS = (); }; };
-		C0538CEA1BC043F50031B35D /* GuideVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CE91BC043F50031B35D /* GuideVideo.swift */; settings = {ASSET_TAGS = (); }; };
-		C0538CEC1BC045510031B35D /* GuideImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CEB1BC045510031B35D /* GuideImage.swift */; settings = {ASSET_TAGS = (); }; };
-		C0538CEE1BC047E00031B35D /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CED1BC047E00031B35D /* Guide.swift */; settings = {ASSET_TAGS = (); }; };
-		C06E55C21BCB393300D5D0C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06E55C01BCB393300D5D0C6 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
-		C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		C0538CD61BBE9C190031B35D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C0538CC71BBE9C190031B35D /* LICENSE */; };
+		C0538CD81BBE9C190031B35D /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CCA1BBE9C190031B35D /* SDImageCache.m */; };
+		C0538CD91BBE9C190031B35D /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CCD1BBE9C190031B35D /* SDWebImageDownloader.m */; };
+		C0538CDA1BBE9C190031B35D /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CD01BBE9C190031B35D /* SDWebImageManager.m */; };
+		C0538CDB1BBE9C190031B35D /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CD31BBE9C190031B35D /* UIButton+WebCache.m */; };
+		C0538CDC1BBE9C190031B35D /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C0538CD51BBE9C190031B35D /* UIImageView+WebCache.m */; };
+		C0538CE01BC011A50031B35D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0538CDF1BC011A50031B35D /* Images.xcassets */; };
+		C0538CE21BC0244A0031B35D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0538CE11BC0244A0031B35D /* Default-568h@2x.png */; };
+		C0538CE41BC028650031B35D /* GuideStepLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CE31BC028650031B35D /* GuideStepLine.swift */; };
+		C0538CE61BC03E000031B35D /* GuideEmbed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CE51BC03E000031B35D /* GuideEmbed.swift */; };
+		C0538CE81BC03FE70031B35D /* GuideStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CE71BC03FE70031B35D /* GuideStep.swift */; };
+		C0538CEA1BC043F50031B35D /* GuideVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CE91BC043F50031B35D /* GuideVideo.swift */; };
+		C0538CEC1BC045510031B35D /* GuideImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CEB1BC045510031B35D /* GuideImage.swift */; };
+		C0538CEE1BC047E00031B35D /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CED1BC047E00031B35D /* Guide.swift */; };
+		C06E55C21BCB393300D5D0C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06E55C01BCB393300D5D0C6 /* Main.storyboard */; };
+		C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */; };
+		C0F0FFC31BD2A25F0022436B /* GuideCatchingWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F0FFC21BD2A25F0022436B /* GuideCatchingWebView.m */; };
 		C10F271A120CE6980027A28D /* iFixitAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F2719120CE6980027A28D /* iFixitAPI.swift */; };
 		C115FC2D12174FA1005D0B77 /* GuideImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115FC2B12174FA1005D0B77 /* GuideImageViewController.swift */; };
 		C184D4C61210CDB900953C39 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C184D4C41210CDB900953C39 /* GuideViewController.swift */; };
@@ -79,7 +80,7 @@
 		DA59293913FB253B00504CD3 /* DozukiSplashView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA59293713FB253B00504CD3 /* DozukiSplashView~ipad.xib */; };
 		DA59296F13FB28B600504CD3 /* DozukiInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA59296D13FB28B600504CD3 /* DozukiInfoViewController.m */; };
 		DA59297013FB28B600504CD3 /* DozukiInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA59296E13FB28B600504CD3 /* DozukiInfoView.xib */; };
-		DA59297413FB2ED800504CD3 /* DozukiSelectSiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA59297213FB2ED800504CD3 /* DozukiSelectSiteViewController.m */; };
+		DA59297413FB2ED800504CD3 /* DozukiSelectSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59297213FB2ED800504CD3 /* DozukiSelectSiteViewController.swift */; };
 		DA59297513FB2ED800504CD3 /* DozukiSelectSiteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA59297313FB2ED800504CD3 /* DozukiSelectSiteViewController.xib */; };
 		DA666AF31360E2A4002B1D62 /* GuideCatchingWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA666AF21360E2A4002B1D62 /* GuideCatchingWebView.m */; };
 		DA881857134A5AFE004387CE /* BookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA881855134A5AFE004387CE /* BookmarksViewController.m */; };
@@ -223,8 +224,7 @@
 		DA59296C13FB28B600504CD3 /* DozukiInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DozukiInfoViewController.h; sourceTree = "<group>"; };
 		DA59296D13FB28B600504CD3 /* DozukiInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DozukiInfoViewController.m; sourceTree = "<group>"; };
 		DA59296E13FB28B600504CD3 /* DozukiInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DozukiInfoView.xib; sourceTree = "<group>"; };
-		DA59297113FB2ED800504CD3 /* DozukiSelectSiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DozukiSelectSiteViewController.h; sourceTree = "<group>"; };
-		DA59297213FB2ED800504CD3 /* DozukiSelectSiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DozukiSelectSiteViewController.m; sourceTree = "<group>"; };
+		DA59297213FB2ED800504CD3 /* DozukiSelectSiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DozukiSelectSiteViewController.swift; sourceTree = "<group>"; };
 		DA59297313FB2ED800504CD3 /* DozukiSelectSiteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DozukiSelectSiteViewController.xib; sourceTree = "<group>"; };
 		DA666AF11360E2A4002B1D62 /* GuideCatchingWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCatchingWebView.h; sourceTree = "<group>"; };
 		DA666AF21360E2A4002B1D62 /* GuideCatchingWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCatchingWebView.m; sourceTree = "<group>"; };
@@ -518,8 +518,7 @@
 				DA59296C13FB28B600504CD3 /* DozukiInfoViewController.h */,
 				DA59296D13FB28B600504CD3 /* DozukiInfoViewController.m */,
 				DA59296E13FB28B600504CD3 /* DozukiInfoView.xib */,
-				DA59297113FB2ED800504CD3 /* DozukiSelectSiteViewController.h */,
-				DA59297213FB2ED800504CD3 /* DozukiSelectSiteViewController.m */,
+				DA59297213FB2ED800504CD3 /* DozukiSelectSiteViewController.swift */,
 				DA59297313FB2ED800504CD3 /* DozukiSelectSiteViewController.xib */,
 			);
 			name = Dozuki;
@@ -676,7 +675,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = G5Y57M9E28;
@@ -840,7 +839,7 @@
 				C0538CEC1BC045510031B35D /* GuideImage.swift in Sources */,
 				DA59293813FB253B00504CD3 /* DozukiSplashViewController.swift in Sources */,
 				DA59296F13FB28B600504CD3 /* DozukiInfoViewController.m in Sources */,
-				DA59297413FB2ED800504CD3 /* DozukiSelectSiteViewController.m in Sources */,
+				DA59297413FB2ED800504CD3 /* DozukiSelectSiteViewController.swift in Sources */,
 				C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */,
 				DAF3AF571422897900913238 /* iPhoneDeviceViewController.swift in Sources */,
 				9CA4756718CAFEF3005AFE08 /* Utility.swift in Sources */,
@@ -933,6 +932,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ifixit.ifixit;
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/iFixit-Bridging-Header.h";
@@ -984,6 +984,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ifixit.ifixit;
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/iFixit-Bridging-Header.h";
@@ -996,21 +997,18 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					arm64,
-					armv7,
-					armv6,
-				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1028,15 +1026,11 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					arm64,
-					armv7,
-					armv6,
-				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1058,15 +1052,11 @@
 		C1523E28120E382D007E8DD8 /* Ad-Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					arm64,
-					armv7,
-					armv6,
-				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1127,6 +1117,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ifixit.ifixit;
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/iFixit-Bridging-Header.h";
