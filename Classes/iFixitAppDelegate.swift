@@ -81,10 +81,8 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         } else {
             
             /* Dozuki gets a little more complicated. */
-            let site = NSUserDefaults.standardUserDefaults().dictionaryForKey("site")
-            
-            if site != nil {
-                self.loadSite(site!)
+            if let site = NSUserDefaults.standardUserDefaults().dictionaryForKey("site") {
+                self.loadSite(Site(domain:site["domain"] as! String))
             } else {
                 self.showDozukiSplash()
             }
@@ -331,12 +329,12 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
     }
     
     func loadSiteWithDomain(domain: String) {
-        self.loadSite(["domain": domain])
+        self.loadSite(Site(domain: domain))
     }
     
-    func loadSite(site:[String: AnyObject]) {
+    func loadSite(site:Site) {
         let config = Config.currentConfig()
-        let domain = site["domain"] as? String
+        let domain = site.domain
         
         // Load the right site
         switch domain {
@@ -353,29 +351,29 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
         default:
             config.site = .Dozuki
             config.host = domain!
-            config.custom_domain = site["custom_domain"] as? String
+            config.custom_domain = site.custom_domain
             config.baseURL = NSURL(string:"http://\(domain)/Guide")
-            config.title = site["title"] as? String
+            config.title = site.title
         }
         
         // Enable/disable Answers and/or Collections
         if (config.site != .IFixit) {
-            config.answersEnabled = site["answers"] as? Bool ?? false
-            config.collectionsEnabled = site["collections"] as? Bool ?? false
+            config.answersEnabled = site.answers ?? false
+            config.collectionsEnabled = site.collections ?? false
         }
         
-        config.`private` = site["private"] as? Bool ?? false
-        config.sso = (site["authentication"] as! Dictionary)["sso"]
-        config.store = site["store"] as! String
+        config.`private` = site.`private` ?? false
+        config.sso = site.authentication?["sso"] as? String
+        config.store = site.store
         
         // Save this choice for future launches, first removing any null values.
         let simpleSite = [:]
-        for key in site.keys {
-            let value = site[key]
-            if (value is NSNull) == false {
-                simpleSite.setValue(value, forKey: key)
-            }
-        }
+//        for key in site.keys {
+//            let value = site[key]
+//            if (value is NSNull) == false {
+//                simpleSite.setValue(value, forKey: key)
+//            }
+//        }
         
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setValue(simpleSite, forKey:"site")
@@ -409,7 +407,7 @@ class iFixitAppDelegate: UIResponder, UIApplicationDelegate, LoginViewController
                     defaults.setValue(site, forKey:"site")
                     defaults.synchronize()
                     
-                    loadSite(site)
+                    loadSite(Site(domain:domain))
                     return true
                 }
             } catch {

@@ -9,7 +9,7 @@
 import Foundation
 
 @objc
-enum Site: Int {
+enum SiteID: Int {
     case IFixit = 0
     case IFixitDev
     case Make
@@ -25,9 +25,51 @@ enum Site: Int {
     case Oscaro
 }
 
+class Site {
+    
+    var siteid = 0
+    var priority = false
+    var hideFromiOS = false
+    var name:String?
+    var domain:String?
+    var custom_domain:String?
+    var title:String?
+    var theme:String?
+    var color:String?
+    var `private` = false
+    var siteDescription:String?
+    var authentication:[String:AnyObject]?
+    var answers = false
+    var collections = false
+    var store:String?
+    
+    init(json:[String:AnyObject]) {
+        
+        siteid = json["siteid"] as? Int ?? 0
+        priority = json["priority"] as? Bool ?? false
+        hideFromiOS = json["hideFromiOS"] as? Bool ?? false
+        name = json["name"] as? String
+        domain = json["domain"] as? String
+        custom_domain = json["custom_domain"] as? String
+        title = json["title"] as? String
+        theme = json["theme"] as? String
+        color = json["color"] as? String
+        `private` = json["private"] as? Bool ?? false
+        siteDescription = json["description"] as? String
+        authentication = json["authentication"] as? [String:AnyObject]
+        answers = json["answers"] as? Bool ?? false
+        collections = json["collections"] as? Bool ?? false
+        store = json["store"] as? String
+    }
+    
+    init(domain:String) {
+        self.domain = domain
+    }
+}
+
 class Config: NSObject {
     
-    var site: Site = .IFixit
+    var site: SiteID = .IFixit
     var dozuki:Bool = false
     var siteData:[String:AnyObject]!
     var custom_domain:String?
@@ -41,6 +83,9 @@ class Config: NSObject {
         }
         return Static.instance
     }
+    
+    var sites:[Site] = []
+    var prioritySites:[Site] = []
 
     private var _answersEnabled:Bool?
     var answersEnabled:Bool {

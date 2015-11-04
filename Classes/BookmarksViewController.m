@@ -103,7 +103,7 @@
     
     b.backgroundColor = [Config currentConfig].toolbarColor;
     
-    if ([Config currentConfig].site == SiteZeal || [Config currentConfig].site == SiteMagnolia)
+    if ([Config currentConfig].site == SiteIDZeal || [Config currentConfig].site == SiteIDMagnolia)
         b.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
 
     b.titleLabel.font = [UIFont boldSystemFontOfSize:14];

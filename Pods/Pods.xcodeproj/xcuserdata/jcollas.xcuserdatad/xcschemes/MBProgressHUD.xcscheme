@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "70C1FC50FE729437F9EB6B1CF99F0425"
-               BuildableName = "ZBarSDK.framework"
-               BlueprintName = "ZBarSDK"
+               BlueprintIdentifier = "F6050CB9C20133936F551B08325A5466"
+               BuildableName = "MBProgressHUD.framework"
+               BlueprintName = "MBProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "70C1FC50FE729437F9EB6B1CF99F0425"
-            BuildableName = "ZBarSDK.framework"
-            BlueprintName = "ZBarSDK"
+            BlueprintIdentifier = "F6050CB9C20133936F551B08325A5466"
+            BuildableName = "MBProgressHUD.framework"
+            BlueprintName = "MBProgressHUD"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,6 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F6050CB9C20133936F551B08325A5466"
+            BuildableName = "MBProgressHUD.framework"
+            BlueprintName = "MBProgressHUD"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

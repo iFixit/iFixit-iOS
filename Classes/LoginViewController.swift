@@ -608,7 +608,7 @@ class LoginViewController: UITableViewController, UITextFieldDelegate, UIGesture
             delegate?.refresh()
         } else {
             dismissViewControllerAnimated(true, completion:{
-                delegate?.refresh()
+                self.delegate?.refresh()
             })
         }
     }
