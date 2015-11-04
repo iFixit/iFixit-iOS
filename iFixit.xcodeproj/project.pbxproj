@@ -69,7 +69,7 @@
 		DA0A0C05138B02370027721E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C04138B02370027721E /* SystemConfiguration.framework */; };
 		DA0A0C07138B023C0027721E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C06138B023C0027721E /* MobileCoreServices.framework */; };
 		DA0A0C16138B07DA0027721E /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0A0C15138B07DA0027721E /* libxml2.2.dylib */; };
-		DA1977221473009A00CD6305 /* DetailGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1977211473009A00CD6305 /* DetailGridViewController.m */; };
+		DA1977221473009A00CD6305 /* DetailGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1977211473009A00CD6305 /* DetailGridViewController.swift */; };
 		DA2F767012FB87D900683D33 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F766F12FB87D900683D33 /* Config.swift */; };
 		DA3562AD1477254500683947 /* Ubuntu-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA3562AC1477254500683947 /* Ubuntu-BoldItalic.ttf */; };
 		DA3DE74C134CF57000AD5050 /* GuideBookmarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DE74B134CF57000AD5050 /* GuideBookmarker.swift */; };
@@ -210,8 +210,7 @@
 		DA0A0C04138B02370027721E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DA0A0C06138B023C0027721E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DA0A0C15138B07DA0027721E /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
-		DA1977201473009A00CD6305 /* DetailGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailGridViewController.h; sourceTree = "<group>"; };
-		DA1977211473009A00CD6305 /* DetailGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailGridViewController.m; sourceTree = "<group>"; };
+		DA1977211473009A00CD6305 /* DetailGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailGridViewController.swift; sourceTree = "<group>"; };
 		DA2F766F12FB87D900683D33 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		DA3562AC1477254500683947 /* Ubuntu-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-BoldItalic.ttf"; sourceTree = "<group>"; };
 		DA38111B147AE2C000BBFB9C /* DetailGridViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailGridViewControllerDelegate.h; sourceTree = "<group>"; };
@@ -324,8 +323,7 @@
 				DA881854134A5AFE004387CE /* BookmarksViewController.h */,
 				DA881855134A5AFE004387CE /* BookmarksViewController.m */,
 				DA881856134A5AFE004387CE /* BookmarksView.xib */,
-				DA1977201473009A00CD6305 /* DetailGridViewController.h */,
-				DA1977211473009A00CD6305 /* DetailGridViewController.m */,
+				DA1977211473009A00CD6305 /* DetailGridViewController.swift */,
 				DA38111B147AE2C000BBFB9C /* DetailGridViewControllerDelegate.h */,
 			);
 			path = Classes;
@@ -847,7 +845,7 @@
 				C0538CD81BBE9C190031B35D /* SDImageCache.m in Sources */,
 				DA8F60061469B29700482D29 /* DMPGridViewCell.m in Sources */,
 				DA8F60071469B29700482D29 /* DMPGridViewController.m in Sources */,
-				DA1977221473009A00CD6305 /* DetailGridViewController.m in Sources */,
+				DA1977221473009A00CD6305 /* DetailGridViewController.swift in Sources */,
 				DACD8FD714DDD7B80020A06C /* OpenIDViewController.swift in Sources */,
 				DA9B290714E88E650093273B /* SSOViewController.swift in Sources */,
 				DA58CB3414EA17F400A2CBAB /* LoginBackgroundViewController.swift in Sources */,

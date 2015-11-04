@@ -6,6 +6,9 @@
 #import <UIKit/UIKit.h>
 
 #import "SDWebImageManager.h"
+#import "DMPGridViewController.h"
+#import "DetailGridViewControllerDelegate.h"
+#import "DMPGridViewCell.h"
 #import "SDImageCache.h"
 #import "CategoryWebViewController.h"
 #import "UIButton+WebCache.h"
@@ -14,7 +17,6 @@
 #import "BookmarksViewController.h"
 #import "MGSplitViewController.h"
 #import "CategoriesViewController.h"
-#import "DetailGridViewController.h"
 #import "Config.h"
 #import "CategoriesViewController.h"
 #import "FeaturedViewController.h"
