@@ -6,9 +6,7 @@
 #import <UIKit/UIKit.h>
 
 #import "SDWebImageManager.h"
-#import "DMPGridViewController.h"
 #import "DetailGridViewControllerDelegate.h"
-#import "DMPGridViewCell.h"
 #import "SDImageCache.h"
 #import "CategoryWebViewController.h"
 #import "UIButton+WebCache.h"

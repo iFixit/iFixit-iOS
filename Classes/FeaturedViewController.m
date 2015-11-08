@@ -8,7 +8,6 @@
 
 #import "iFixit-Swift.h"
 #import "FeaturedViewController.h"
-#import "DMPGridViewController.h"
 #import "Config.h"
 #import "UIImageView+WebCache.h"
 #import "WBProgressHUD.h"
@@ -234,12 +233,12 @@
 - (NSInteger)numberOfCellsForGridViewController:(DMPGridViewController *)gridViewController {
     return _guides.count;
 }
-- (NSString *)gridViewController:(DMPGridViewController *)gridViewController imageURLForCellAtIndex:(NSUInteger)index {
+- (NSURL *)gridViewController:(DMPGridViewController *)gridViewController imageURLForCellAtIndex:(NSInteger)index {
     if (![_guides count])
         return nil;
     return _guides[index][@"image"][@"medium"];
 }
-- (NSString *)gridViewController:(DMPGridViewController *)gridViewController titleForCellAtIndex:(NSUInteger)index {
+- (NSString *)gridViewController:(DMPGridViewController *)gridViewController titleForCellAtIndex:(NSInteger)index {
     if (![_guides count])
         return NSLocalizedString(@"Loading...", nil);
     
@@ -255,7 +254,7 @@
     title = [title stringByReplacingOccurrencesOfString:@"<wbr />" withString:@""];
     return title;
 }
-- (void)gridViewController:(DMPGridViewController *)gridViewController tappedCellAtIndex:(NSUInteger)index {
+- (void)gridViewController:(DMPGridViewController *)gridViewController tappedCellAtIndex:(NSInteger)index {
     NSNumber *iGuideid = _guides[index][@"guideid"];
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];

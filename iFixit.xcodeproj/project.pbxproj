@@ -88,8 +88,8 @@
 		DA8860E21427DD490030F52C /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA8860DF1427DD490030F52C /* SVWebViewController.bundle */; };
 		DA8860E31427DD490030F52C /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8860E11427DD490030F52C /* SVWebViewController.m */; };
 		DA8860E51427DE590030F52C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA8860E41427DE590030F52C /* MessageUI.framework */; };
-		DA8F60061469B29700482D29 /* DMPGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8F60021469B29700482D29 /* DMPGridViewCell.m */; };
-		DA8F60071469B29700482D29 /* DMPGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8F60041469B29700482D29 /* DMPGridViewController.m */; };
+		DA8F60061469B29700482D29 /* DMPGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8F60021469B29700482D29 /* DMPGridViewCell.swift */; };
+		DA8F60071469B29700482D29 /* DMPGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8F60041469B29700482D29 /* DMPGridViewController.swift */; };
 		DA9948AA142AC55D00E4167D /* DozukiSplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */; };
 		DA9B290714E88E650093273B /* SSOViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9B290614E88E640093273B /* SSOViewController.swift */; };
 		DAA750881368DA87002AA546 /* WBFont.mm in Sources */ = {isa = PBXBuildFile; fileRef = DAA750801368DA87002AA546 /* WBFont.mm */; };
@@ -233,11 +233,9 @@
 		DA8860E01427DD490030F52C /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
 		DA8860E11427DD490030F52C /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
 		DA8860E41427DE590030F52C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		DA8F60011469B29700482D29 /* DMPGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMPGridViewCell.h; path = GridViewController/DMPGridViewCell.h; sourceTree = "<group>"; };
-		DA8F60021469B29700482D29 /* DMPGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMPGridViewCell.m; path = GridViewController/DMPGridViewCell.m; sourceTree = "<group>"; };
-		DA8F60031469B29700482D29 /* DMPGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMPGridViewController.h; path = GridViewController/DMPGridViewController.h; sourceTree = "<group>"; };
-		DA8F60041469B29700482D29 /* DMPGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = DMPGridViewController.m; path = GridViewController/DMPGridViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		DA8F60051469B29700482D29 /* DMPGridViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMPGridViewDelegate.h; path = GridViewController/DMPGridViewDelegate.h; sourceTree = "<group>"; };
+		DA8F60021469B29700482D29 /* DMPGridViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DMPGridViewCell.swift; path = GridViewController/DMPGridViewCell.swift; sourceTree = "<group>"; };
+		DA8F60041469B29700482D29 /* DMPGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = DMPGridViewController.swift; path = GridViewController/DMPGridViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DA8F60051469B29700482D29 /* DMPGridViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DMPGridViewDelegate.swift; path = GridViewController/DMPGridViewDelegate.swift; sourceTree = "<group>"; };
 		DA8F60081469F8E600482D29 /* PastFeaturesViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastFeaturesViewDelegate.h; sourceTree = "<group>"; };
 		DA9948A9142AC55D00E4167D /* DozukiSplashView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DozukiSplashView.xib; sourceTree = "<group>"; };
 		DA9B290614E88E640093273B /* SSOViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSOViewController.swift; sourceTree = "<group>"; };
@@ -533,11 +531,9 @@
 		DA8F60001469B25B00482D29 /* GridViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DA8F60011469B29700482D29 /* DMPGridViewCell.h */,
-				DA8F60021469B29700482D29 /* DMPGridViewCell.m */,
-				DA8F60031469B29700482D29 /* DMPGridViewController.h */,
-				DA8F60041469B29700482D29 /* DMPGridViewController.m */,
-				DA8F60051469B29700482D29 /* DMPGridViewDelegate.h */,
+				DA8F60021469B29700482D29 /* DMPGridViewCell.swift */,
+				DA8F60041469B29700482D29 /* DMPGridViewController.swift */,
+				DA8F60051469B29700482D29 /* DMPGridViewDelegate.swift */,
 			);
 			name = GridViewController;
 			sourceTree = "<group>";
@@ -843,8 +839,8 @@
 				DAAED15914686A2D00C476C1 /* FeaturedViewController.m in Sources */,
 				DAAED15E1468710C00C476C1 /* PastFeaturesViewController.swift in Sources */,
 				C0538CD81BBE9C190031B35D /* SDImageCache.m in Sources */,
-				DA8F60061469B29700482D29 /* DMPGridViewCell.m in Sources */,
-				DA8F60071469B29700482D29 /* DMPGridViewController.m in Sources */,
+				DA8F60061469B29700482D29 /* DMPGridViewCell.swift in Sources */,
+				DA8F60071469B29700482D29 /* DMPGridViewController.swift in Sources */,
 				DA1977221473009A00CD6305 /* DetailGridViewController.swift in Sources */,
 				DACD8FD714DDD7B80020A06C /* OpenIDViewController.swift in Sources */,
 				DA9B290714E88E650093273B /* SSOViewController.swift in Sources */,

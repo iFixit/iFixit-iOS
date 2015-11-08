@@ -293,24 +293,24 @@ class DetailGridViewController : DMPGridViewController, DMPGridViewDelegate, UIA
 
     func styleForRow(row:Int) -> DMPGridViewCellStyle? {
         return UIInterfaceOrientationIsPortrait(orientationOverride) ?
-        DMPGridViewCellStylePortraitColumns : DMPGridViewCellStyleLandscapeColumns
+        .PortraitColumns : .LandscapeColumns
     }
 
     func numberOfCellsForGridViewController(gridViewController:DMPGridViewController) -> Int {
         return guides?.count ?? 0
     }
     
-    func gridViewController(gridViewController:DMPGridViewController, imageURLForCellAtIndex index:UInt) -> String? {
+    func gridViewController(gridViewController:DMPGridViewController, imageURLForCellAtIndex index:Int) -> NSURL? {
         if guides?.count == 0 {
             return nil
         }
         
         let image = guides?[Int(index)].image
         
-        return String(image?.medium)
+        return image?.medium
     }
     
-    func gridViewController(gridViewController:DMPGridViewController, titleForCellAtIndex index:UInt) -> String {
+    func gridViewController(gridViewController:DMPGridViewController, titleForCellAtIndex index:Int) -> String {
         
         if guides?.count == 0 {
             return NSLocalizedString("Loading...", comment:"");
@@ -326,7 +326,7 @@ class DetailGridViewController : DMPGridViewController, DMPGridViewDelegate, UIA
         return title
     }
     
-    func gridViewController(gridViewController:DMPGridViewController, tappedCellAtIndex index: UInt) {
+    func gridViewController(gridViewController:DMPGridViewController, tappedCellAtIndex index: Int) {
         let delegate = UIApplication.sharedApplication().delegate as! iFixitAppDelegate
         
         let iGuideid = guides?[Int(index)].iGuideid
