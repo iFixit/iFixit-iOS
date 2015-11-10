@@ -83,7 +83,7 @@
 		DA59297413FB2ED800504CD3 /* DozukiSelectSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59297213FB2ED800504CD3 /* DozukiSelectSiteViewController.swift */; };
 		DA59297513FB2ED800504CD3 /* DozukiSelectSiteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA59297313FB2ED800504CD3 /* DozukiSelectSiteViewController.xib */; };
 		DA666AF31360E2A4002B1D62 /* GuideCatchingWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA666AF21360E2A4002B1D62 /* GuideCatchingWebView.m */; };
-		DA881857134A5AFE004387CE /* BookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA881855134A5AFE004387CE /* BookmarksViewController.m */; };
+		DA881857134A5AFE004387CE /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA881855134A5AFE004387CE /* BookmarksViewController.swift */; };
 		DA881858134A5AFE004387CE /* BookmarksView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA881856134A5AFE004387CE /* BookmarksView.xib */; };
 		DA8860E21427DD490030F52C /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA8860DF1427DD490030F52C /* SVWebViewController.bundle */; };
 		DA8860E31427DD490030F52C /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8860E11427DD490030F52C /* SVWebViewController.m */; };
@@ -226,8 +226,7 @@
 		DA59297313FB2ED800504CD3 /* DozukiSelectSiteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DozukiSelectSiteViewController.xib; sourceTree = "<group>"; };
 		DA666AF11360E2A4002B1D62 /* GuideCatchingWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCatchingWebView.h; sourceTree = "<group>"; };
 		DA666AF21360E2A4002B1D62 /* GuideCatchingWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCatchingWebView.m; sourceTree = "<group>"; };
-		DA881854134A5AFE004387CE /* BookmarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksViewController.h; sourceTree = "<group>"; };
-		DA881855134A5AFE004387CE /* BookmarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksViewController.m; sourceTree = "<group>"; };
+		DA881855134A5AFE004387CE /* BookmarksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
 		DA881856134A5AFE004387CE /* BookmarksView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarksView.xib; sourceTree = "<group>"; };
 		DA8860DF1427DD490030F52C /* SVWebViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVWebViewController.bundle; sourceTree = "<group>"; };
 		DA8860E01427DD490030F52C /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
@@ -318,8 +317,7 @@
 				DA59293413FB250800504CD3 /* Dozuki */,
 				DAF3AF511422881B00913238 /* Navigation */,
 				DACD8FD414DDD7970020A06C /* Login */,
-				DA881854134A5AFE004387CE /* BookmarksViewController.h */,
-				DA881855134A5AFE004387CE /* BookmarksViewController.m */,
+				DA881855134A5AFE004387CE /* BookmarksViewController.swift */,
 				DA881856134A5AFE004387CE /* BookmarksView.xib */,
 				DA1977211473009A00CD6305 /* DetailGridViewController.swift */,
 				DA38111B147AE2C000BBFB9C /* DetailGridViewControllerDelegate.h */,
@@ -812,7 +810,7 @@
 				C115FC2D12174FA1005D0B77 /* GuideImageViewController.swift in Sources */,
 				C1C894F7121B447E0036FAFC /* TapDetectingImageView.swift in Sources */,
 				DA2F767012FB87D900683D33 /* Config.swift in Sources */,
-				DA881857134A5AFE004387CE /* BookmarksViewController.m in Sources */,
+				DA881857134A5AFE004387CE /* BookmarksViewController.swift in Sources */,
 				DA3DE74C134CF57000AD5050 /* GuideBookmarker.swift in Sources */,
 				DAF0C6D3134E62BF003B4DF6 /* GuideBookmarks.swift in Sources */,
 				C0538CDB1BBE9C190031B35D /* UIButton+WebCache.m in Sources */,
