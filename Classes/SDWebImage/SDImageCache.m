@@ -6,9 +6,9 @@
  * file that was distributed with this source code.
  */
 
+#import "iFixit-Swift.h"
 #import "SDImageCache.h"
 #import <CommonCrypto/CommonDigest.h>
-#import "GuideBookmarks.h"
 
 static NSInteger cacheMaxCacheAge = 60*60*24*3; // 3 days
 
@@ -27,7 +27,7 @@ static SDImageCache *instance;
 
         // Init the disk cache
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        diskCachePath = [[[paths objectAtIndex:0] stringByAppendingPathComponent:@"ImageCache"] retain];
+        diskCachePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"ImageCache"];
 
         if (![[NSFileManager defaultManager] fileExistsAtPath:diskCachePath])
         {
@@ -72,13 +72,11 @@ static SDImageCache *instance;
 
 - (void)dealloc
 {
-    [memCache release], memCache = nil;
-    [diskCachePath release], diskCachePath = nil;
-    [cacheInQueue release], cacheInQueue = nil;
+    memCache = nil;
+    diskCachePath = nil;
+    cacheInQueue = nil;
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    [super dealloc];
 }
 
 #pragma mark SDImageCache (class methods)
@@ -125,15 +123,13 @@ static SDImageCache *instance;
     {
         // If no data representation given, convert the UIImage in JPEG and store it
         // This trick is more CPU/memory intensive and doesn't preserve alpha channel
-        UIImage *image = [[self imageFromKey:key fromDisk:YES] retain]; // be thread safe with no lock
+        UIImage *image = [self imageFromKey:key fromDisk:YES]; // be thread safe with no lock
         if (image)
         {
             [fileManager createFileAtPath:[self cachePathForKey:key] contents:UIImageJPEGRepresentation(image, (CGFloat)1.0) attributes:nil];
-            [image release];
         }
     }
 
-    [fileManager release];
 }
 
 - (void)notifyDelegate:(NSDictionary *)arguments
@@ -164,9 +160,9 @@ static SDImageCache *instance;
 - (void)queryDiskCacheOperation:(NSDictionary *)arguments
 {
     NSString *key = [arguments objectForKey:@"key"];
-    NSMutableDictionary *mutableArguments = [[arguments mutableCopy] autorelease];
+    NSMutableDictionary *mutableArguments = [arguments mutableCopy];
 
-    UIImage *image = [[[UIImage alloc] initWithContentsOfFile:[self cachePathForKey:key]] autorelease];
+    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[self cachePathForKey:key]];
     if (image)
     {
         [mutableArguments setObject:image forKey:@"image"];
@@ -212,9 +208,9 @@ static SDImageCache *instance;
         {
             keyWithData = [NSArray arrayWithObjects:key, nil];
         }
-        [cacheInQueue addOperation:[[[NSInvocationOperation alloc] initWithTarget:self
+        [cacheInQueue addOperation:[[NSInvocationOperation alloc] initWithTarget:self
                                                                          selector:@selector(storeKeyWithDataToDisk:)
-                                                                           object:keyWithData] autorelease]];
+                                                                           object:keyWithData]];
     }
 }
 
@@ -245,7 +241,7 @@ static SDImageCache *instance;
 
     if (!image && fromDisk)
     {
-        image = [[[UIImage alloc] initWithContentsOfFile:[self cachePathForKey:key]] autorelease];
+        image = [[UIImage alloc] initWithContentsOfFile:[self cachePathForKey:key]];
         if (image)
         {
             [memCache setObject:image forKey:key];
@@ -290,7 +286,7 @@ static SDImageCache *instance;
     {
         [arguments setObject:info forKey:@"userInfo"];
     }
-    [cacheOutQueue addOperation:[[[NSInvocationOperation alloc] initWithTarget:self selector:@selector(queryDiskCacheOperation:) object:arguments] autorelease]];
+    [cacheOutQueue addOperation:[[NSInvocationOperation alloc] initWithTarget:self selector:@selector(queryDiskCacheOperation:) object:arguments]];
 }
 
 - (void)removeImageForKey:(NSString *)key

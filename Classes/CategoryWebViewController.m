@@ -7,11 +7,9 @@
 //
 
 #import "CategoryWebViewController.h"
-#import "ListViewController.h"
-#import "BookmarksViewController.h"
 #import "WBProgressHUD.h"
 #import "Config.h"
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 
 @interface CategoryWebViewController ()
 
@@ -50,17 +48,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc {
-    [_webView release];
-    [_categoryNavigationBar release];
-    [super dealloc];
-}
-- (void)viewDidUnload {
-    [self setWebView:nil];
-    [self setCategoryNavigationBar:nil];
-    [super viewDidUnload];
-}
-
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     // Hide any previous loading items
     [self.loading hide];
@@ -90,7 +77,7 @@
     
     CGRect frame = CGRectMake(self.view.frame.size.width/ 2.0 - 60, yCoord, 120.0, 120.0);
     
-    self.loading = [[[WBProgressHUD alloc] initWithFrame:frame] autorelease];
+    self.loading = [[WBProgressHUD alloc] initWithFrame:frame];
     self.loading.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     
     [self.loading showInView:self.view];
@@ -143,13 +130,12 @@
 
 - (void)resizeWebViewFrameForOrientation:(UIInterfaceOrientation)orientation {
     BOOL showsTabBar = [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showsTabBar];
-    BOOL onIOS7 = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0");
     
     // TODO: Remove these ternary for reader's sanity
     if (UIDeviceOrientationIsLandscape(orientation)) {
-        self.webView.frame = CGRectMake(0, onIOS7 ? 64 : showsTabBar ? 38 : 0, 703, (showsTabBar) ? 663 : 706);
+        self.webView.frame = CGRectMake(0, 64, 703, (showsTabBar) ? 663 : 706);
     } else {
-        self.webView.frame = CGRectMake(0, onIOS7 ? 64 : showsTabBar ? 38 : 0, 770, (showsTabBar) ? 919 : 963);
+        self.webView.frame = CGRectMake(0, 64, 770, (showsTabBar) ? 919 : 963);
     }
 }
 
@@ -157,8 +143,8 @@
     self.categoryNavigationBar.hidden = NO;
     self.categoryNavigationBar.translucent = NO;
     
-    UINavigationItem *backButtonItem = [[[UINavigationItem alloc] initWithTitle:@""] autorelease];
-    UINavigationItem *titleItem = [[[UINavigationItem alloc] initWithTitle:@""] autorelease];
+    UINavigationItem *backButtonItem = [[UINavigationItem alloc] initWithTitle:@""];
+    UINavigationItem *titleItem = [[UINavigationItem alloc] initWithTitle:@""];
     UINavigationItem *favoritesButtonItem = self.categoryNavigationBar.items[0];
     
     // Hack to get a back button, title view, and a right bar button item on a navigation bar without having to use a navigation controller

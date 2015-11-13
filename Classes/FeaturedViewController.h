@@ -6,12 +6,24 @@
 //  Copyright (c) 2011 iFixit. All rights reserved.
 //
 
-#import "DMPGridViewDelegate.h"
 #import "PastFeaturesViewDelegate.h"
 
+@class DMPGridViewController;
 @class PastFeaturesViewController;
 @class DMPGridViewController;
 @class WBProgressHUD;
+
+@protocol DMPGridViewDelegate <UITableViewDelegate>
+
+- (NSString *)gridViewController:(DMPGridViewController *)gridViewController titleForCellAtIndex:(NSInteger)index;
+- (NSInteger)numberOfCellsForGridViewController:(DMPGridViewController *)gridViewController;
+- (void)gridViewController:(DMPGridViewController *)gridViewController tappedCellAtIndex:(NSInteger)index;
+
+@optional
+- (NSURL *)gridViewController:(DMPGridViewController *)gridViewController imageURLForCellAtIndex:(NSInteger)index;
+- (UIImage *)gridViewController:(DMPGridViewController *)gridViewController imageForCellAtIndex:(NSInteger)index;
+    
+@end
 
 @interface FeaturedViewController : UINavigationController <UIAlertViewDelegate, DMPGridViewDelegate, PastFeaturesViewDelegate>
 

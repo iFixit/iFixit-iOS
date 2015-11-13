@@ -7,11 +7,9 @@
 //
 
 #import "GuideCatchingWebView.h"
-#import "iFixitAppDelegate.h"
+#import "iFixit-Swift.h"
 #import "Config.h"
-#import "RegexKitLite.h"
 #import "SVWebViewController.h"
-#import "GuideViewController.h"
 
 @implementation GuideCatchingWebView
 
@@ -20,7 +18,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if ((self = [super initWithCoder:aDecoder])) {
         self.delegate = self;
-        self.formatter = [[[NSNumberFormatter alloc] init] autorelease];
+        self.formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     }
     return self;
@@ -29,7 +27,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         self.delegate = self;
-        self.formatter = [[[NSNumberFormatter alloc] init] autorelease];
+        self.formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     }
     return self;
@@ -57,8 +55,15 @@
 	 )
 	 */
     
+    NSString *guideidString = nil;
+    NSError *error;
     NSString *regexString = [NSString stringWithFormat:@"https?://%@/(Guide|Teardown|Project)/(.*?)/([0-9]+)/([0-9]+)", [Config currentConfig].host];
-    NSString *guideidString = [url stringByMatching:regexString capture:3];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:NSRegularExpressionCaseInsensitive error:&error];
+    NSArray *matches = [regex matchesInString:url options:NSMatchingProgress range:NSMakeRange(0, url.length)];
+    if (matches.count == 3) {
+        NSTextCheckingResult *match = matches[2];
+        guideidString = [url substringWithRange:match.range];
+    }
     NSNumber *iGuideid = guideidString ? [formatter numberFromString:guideidString] : @(-1);
 
     return iGuideid;
@@ -73,10 +78,9 @@
 	if (![iGuideid isEqualToNumber:@(-1)]) {
         GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
         if (!modalDelegate)
-            [delegate.window.rootViewController presentModalViewController:vc animated:YES];
+            [delegate.window.rootViewController presentViewController:vc animated:YES completion:nil];
         else
-            [modalDelegate presentModalViewController:vc animated:YES];            
-        [vc release];
+            [modalDelegate presentViewController:vc animated:YES completion:nil];
 		return NO;
 	}
     
@@ -93,11 +97,10 @@
             id viewControllerToPresent = [self createWebViewControllerFromRequest:request];
             
             if (!modalDelegate)
-                [delegate.window.rootViewController presentModalViewController:viewControllerToPresent animated:YES];
+                [delegate.window.rootViewController presentViewController:viewControllerToPresent animated:YES completion:nil];
             else
-                [modalDelegate presentModalViewController:viewControllerToPresent animated:YES];
+                [modalDelegate presentViewController:viewControllerToPresent animated:YES completion:nil];
             
-            [viewControllerToPresent release];
             return NO;
         }
     }
@@ -112,7 +115,6 @@
     // Wrap our custom webview controller in a navigation controller on iPhone
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
-        [webViewController release];
         
         return navigationController;
     }
@@ -140,10 +142,4 @@
     }
 }
 
-- (void)dealloc {
-    [formatter release];
-    [externalURL release];
-    
-    [super dealloc];
-}
 @end

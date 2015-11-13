@@ -6,11 +6,8 @@
 //  Copyright (c) 2011 iFixit. All rights reserved.
 //
 
+#import "iFixit-Swift.h"
 #import "FeaturedViewController.h"
-#import "PastFeaturesViewController.h"
-#import "DMPGridViewController.h"
-#import "GuideViewController.h"
-#import "iFixitAPI.h"
 #import "Config.h"
 #import "UIImageView+WebCache.h"
 #import "WBProgressHUD.h"
@@ -31,7 +28,7 @@
     }
     
     CGRect frame = CGRectMake(self.view.frame.size.width / 2.0 - 60, 400.0, 120.0, 120.0);
-    self.loading = [[[WBProgressHUD alloc] initWithFrame:frame] autorelease];
+    self.loading = [[WBProgressHUD alloc] initWithFrame:frame];
     self.loading.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [loading showInView:self.gvc.view];
 }
@@ -39,22 +36,24 @@
 - (void)loadCollections {
     [self showLoading];
     self.gvc.navigationItem.rightBarButtonItem = nil;
-    [[iFixitAPI sharedInstance] getCollectionsWithLimit:200 andOffset:0 forObject:self withSelector:@selector(gotCollections:)];
+//    [[iFixitAPI sharedInstance] getCollectionsWithLimit:200 andOffset:0 forObject:self withSelector:@selector(gotCollections:)];
+    [[iFixitAPI sharedInstance] getCollections:200 offset:0 handler:^(NSArray<NSDictionary<NSString *,id> *> * _Nullable results) {
+        [self gotCollections:results];
+    }];
 }
 
 - (id)init {
     if ((self = [super init])) {
-        self.pvc = [[[PastFeaturesViewController alloc] init] autorelease];
+        self.pvc = [[PastFeaturesViewController alloc] init];
         self.pvc.delegate = self;
 
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:pvc];
         nvc.navigationBar.barStyle = UIBarStyleBlack;
         nvc.navigationBar.translucent = NO;
-        self.poc = [[[UIPopoverController alloc] initWithContentViewController:nvc] autorelease];
+        self.poc = [[UIPopoverController alloc] initWithContentViewController:nvc];
         poc.popoverContentSize = CGSizeMake(320.0, 500.0);
-        [nvc release];
         
-        self.gvc = [[[DMPGridViewController alloc] initWithDelegate:nil] autorelease];
+        self.gvc = [[DMPGridViewController alloc] initWithDelegate:nil];
         self.viewControllers = [NSArray arrayWithObject:gvc];
         self.gvc.delegate = self;
         
@@ -73,7 +72,6 @@
                                               otherButtonTitles:NSLocalizedString(@"Retry", nil), nil];
         alert.tag = 1;
         [alert show];
-        [alert release];
         return;
     }
     
@@ -113,7 +111,6 @@
     imageView.backgroundColor = [UIColor lightGrayColor];
     [imageView setImageWithURL:[NSURL URLWithString:[[_collection objectForKey:@"image"] objectForKey:@"large"]]];
     [headerView addSubview:imageView];
-    [imageView release];
 
     // Add a gradient overlay.
     UIImageView *gradientView = [[UIImageView alloc] initWithFrame:headerView.frame];
@@ -123,7 +120,6 @@
     gradientView.contentMode = UIViewContentModeScaleToFill;
     gradientView.clipsToBounds = YES;
     [headerView addSubview:gradientView];
-    [gradientView release];
     
     // Add the giant text.
     UILabel *titleLabel = [[UILabel alloc] init];
@@ -131,7 +127,7 @@
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     titleLabel.font = [UIFont fontWithName:@"Helvetica" size:80.0];
     
-    if ([Config currentConfig].site == ConfigIFixit || [Config currentConfig].site == ConfigMake) {
+    if ([Config currentConfig].site == SiteIDIFixit || [Config currentConfig].site == SiteIDMake) {
         titleLabel.frame = CGRectMake(110.0, 150.0, self.view.frame.size.width - 110.0, 106.0);
         titleLabel.text = [[_collection valueForKey:@"title"] stringByAppendingString:@" "];
     }
@@ -146,17 +142,14 @@
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = UITextAlignmentRight;
     [headerView addSubview:titleLabel];
-    [titleLabel release];
     
     // Apply!
     self.gvc.tableView.tableHeaderView = headerView;
-    [headerView release];
 }
 
 - (void)setCollection:(NSDictionary *)collection {
     // Save the collection.
-    [_collection release];
-    _collection = [collection retain];
+    _collection = collection;
     
     // Reset the guides list.
     self.guides = collection[@"guides"];
@@ -191,7 +184,6 @@
         }
         
         self.gvc.navigationItem.rightBarButtonItem = refreshItem;
-        [refreshItem release];
         return;
     }
     
@@ -199,7 +191,7 @@
         [self loadCollections];
     }
     else if (alertView.tag == 2) {
-        [self loadGuides];
+        // TODO [self loadGuides];
     }
 }
 
@@ -226,34 +218,8 @@
                                                               target:self
                                                               action:@selector(showPastFeatures:)];
     self.gvc.navigationItem.leftBarButtonItem = button;
-    [button release];
     
     [self updateTitleAndHeader];
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-	return YES;
-}
-
-- (void)dealloc {
-    self.gvc.delegate = nil;
-    self.pvc.delegate = nil;
-    
-    [poc release];
-    [gvc release];
-    [pvc release];
-    [_collection release];
-    [_guides release];
-    [loading release];
-    
-    [super dealloc];
 }
 
 - (void)showPastFeatures:(id)sender {
@@ -267,12 +233,12 @@
 - (NSInteger)numberOfCellsForGridViewController:(DMPGridViewController *)gridViewController {
     return _guides.count;
 }
-- (NSString *)gridViewController:(DMPGridViewController *)gridViewController imageURLForCellAtIndex:(NSUInteger)index {
+- (NSURL *)gridViewController:(DMPGridViewController *)gridViewController imageURLForCellAtIndex:(NSInteger)index {
     if (![_guides count])
         return nil;
     return _guides[index][@"image"][@"medium"];
 }
-- (NSString *)gridViewController:(DMPGridViewController *)gridViewController titleForCellAtIndex:(NSUInteger)index {
+- (NSString *)gridViewController:(DMPGridViewController *)gridViewController titleForCellAtIndex:(NSInteger)index {
     if (![_guides count])
         return NSLocalizedString(@"Loading...", nil);
     
@@ -288,13 +254,11 @@
     title = [title stringByReplacingOccurrencesOfString:@"<wbr />" withString:@""];
     return title;
 }
-- (void)gridViewController:(DMPGridViewController *)gridViewController tappedCellAtIndex:(NSUInteger)index {
+- (void)gridViewController:(DMPGridViewController *)gridViewController tappedCellAtIndex:(NSInteger)index {
     NSNumber *iGuideid = _guides[index][@"guideid"];
     GuideViewController *vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self presentModalViewController:nc animated:YES];
-    [vc release];
-    [nc release];
+    [self presentViewController:nc animated:YES completion:nil];
 }
 
 @end
