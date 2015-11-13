@@ -96,7 +96,6 @@ class iFixitAPI: NSObject {
         return headers
     }
     
-//    - (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
     func getSites(limit:Int, offset:Int, handler:(([Site]?) -> ())) {
         let config = Config.currentConfig()
         
@@ -113,7 +112,6 @@ class iFixitAPI: NSObject {
         }
     }
     
-//    - (void)getSiteInfoForObject:(id)object withSelector:(SEL)selector {
     func getSiteInfo(handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         
@@ -129,7 +127,6 @@ class iFixitAPI: NSObject {
         }
     }
     
-//    - (void)getCollectionsWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
     func getCollections(limit:Int, offset:Int, handler:(([[String:AnyObject]]?) -> ())) {
         let config = Config.currentConfig()
         
@@ -145,7 +142,6 @@ class iFixitAPI: NSObject {
         }
     }
 
-//    - (void)getGuide:(NSNumber *)iGuideid forObject:(id)object withSelector:(SEL)selector {
     func getGuide(iGuideid:NSNumber, handler:((Guide?) -> ())) {
         let config = Config.currentConfig()
         
@@ -162,7 +158,6 @@ class iFixitAPI: NSObject {
         }
     }
     
-//    - (void)getCategoriesForObject:(id)object withSelector:(SEL)selector {
     func getCategories(handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         // On iPhone and iPod touch, only show leaf nodes with viewable guides.
@@ -178,7 +173,6 @@ class iFixitAPI: NSObject {
         }
     }
     
-//    - (void)getCategory:(NSString *)category forObject:(id)object withSelector:(SEL)selector {
     func getCategory(category:String, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         let language = Utility.getDeviceLanguage()
@@ -198,7 +192,6 @@ class iFixitAPI: NSObject {
         }
     }
     
-//    - (void)getGuides:(NSString *)type forObject:(id)object withSelector:(SEL)selector {
     func getGuides(type:String?, handler:(([Guide]?) -> ())) {
         let config = Config.currentConfig()
         let limit = 100;
@@ -217,7 +210,6 @@ class iFixitAPI: NSObject {
         }
     }
     
-//    - (void)getGuidesByIds:(NSArray *)guideids forObject:(id)object withSelector:(SEL)selector {
     func getGuides(ids guideids:[NSNumber], handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         let guideidsString = guideids.map { $0.description }.joinWithSeparator(",")
@@ -233,7 +225,6 @@ class iFixitAPI: NSObject {
         }
     }
     
-//    - (void)getSearchResults:(NSString *)search withFilter:(NSString *)filter forObject:(id)object withSelector:(SEL)selector {
     func getSearchResults(search:String, filter:String, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         
@@ -274,7 +265,6 @@ class iFixitAPI: NSObject {
     
     // MARK: - Login, Register and Logout API
     
-//    - (void)loginWithSessionId:(NSString *)sessionId forObject:(id)object withSelector:(SEL)selector {
     func login(sessionId sessionId:String, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         
@@ -296,8 +286,6 @@ class iFixitAPI: NSObject {
             }
         }
     }
-    
-//    - (void)loginWithLogin:(NSString *)login andPassword:(NSString *)password forObject:(id)object withSelector:(SEL)selector {
     
     func login(name login:String, password:String, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
@@ -323,7 +311,6 @@ class iFixitAPI: NSObject {
         }
     }
     
-//    - (void)registerWithLogin:(NSString *)login andPassword:(NSString *)password andName:(NSString *)name forObject:(id)object withSelector:(SEL)selector {
     func register(login login:String, password:String, name:String, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         
@@ -370,8 +357,6 @@ class iFixitAPI: NSObject {
     
     // MARK: - Authenticated
     
-//    - (void)getUserFavoritesForObject:(id)object withSelector:(SEL)selector {
-    
     func getUserFavorites(handler:(([[String:AnyObject]]?) -> ())) {
         let config = Config.currentConfig()
         
@@ -392,7 +377,6 @@ class iFixitAPI: NSObject {
         }
     }
     
-//    - (void)like:(NSNumber *)iGuideid forObject:(id)object withSelector:(SEL)selector {
     func like(iGuideid:NSNumber, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         
@@ -413,7 +397,6 @@ class iFixitAPI: NSObject {
         }
     }
     
-//    - (void)unlike:(NSNumber *)iGuideid forObject:(id)object withSelector:(SEL)selector {
     func unlike(iGuideid:NSNumber, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         

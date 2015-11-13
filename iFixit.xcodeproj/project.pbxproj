@@ -34,7 +34,7 @@
 		ABB84A6A177F591200C58514 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB84A69177F591200C58514 /* ListViewController.swift */; };
 		ABDB16C41756AE2D00053573 /* CategoryWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDB16C21756AE2C00053573 /* CategoryWebViewController.m */; };
 		ABDB16C51756AE2D00053573 /* CategoryWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */; };
-		ABE00C43178BE34F006FD574 /* CategoriesSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE00C42178BE34F006FD574 /* CategoriesSingleton.m */; };
+		ABE00C43178BE34F006FD574 /* CategoriesSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE00C42178BE34F006FD574 /* CategoriesSingleton.swift */; };
 		ABE38C9A1773B9AC00777F60 /* CategoryTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE38C981773B9AC00777F60 /* CategoryTabBarViewController.swift */; };
 		ABE38C9B1773B9AC00777F60 /* CategoryTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE38C991773B9AC00777F60 /* CategoryTabBarViewController.xib */; };
 		ABE472431746E0610002F3D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABE472451746E0610002F3D6 /* Localizable.strings */; };
@@ -54,6 +54,7 @@
 		C0538CEC1BC045510031B35D /* GuideImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CEB1BC045510031B35D /* GuideImage.swift */; };
 		C0538CEE1BC047E00031B35D /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0538CED1BC047E00031B35D /* Guide.swift */; };
 		C06E55C21BCB393300D5D0C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06E55C01BCB393300D5D0C6 /* Main.storyboard */; };
+		C082354B1BF4BB8B00BF0C0F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082354A1BF4BB8B00BF0C0F /* Category.swift */; };
 		C0D569131BBE2C7600B50651 /* iFixitAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */; };
 		C0F0FFC31BD2A25F0022436B /* GuideCatchingWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F0FFC21BD2A25F0022436B /* GuideCatchingWebView.m */; };
 		C10F271A120CE6980027A28D /* iFixitAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F2719120CE6980027A28D /* iFixitAPI.swift */; };
@@ -160,8 +161,7 @@
 		ABDB16C11756AE2C00053573 /* CategoryWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryWebViewController.h; sourceTree = "<group>"; };
 		ABDB16C21756AE2C00053573 /* CategoryWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryWebViewController.m; sourceTree = "<group>"; };
 		ABDB16C31756AE2D00053573 /* CategoryWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryWebViewController.xib; sourceTree = "<group>"; };
-		ABE00C41178BE34F006FD574 /* CategoriesSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoriesSingleton.h; path = ../CategoriesSingleton.h; sourceTree = "<group>"; };
-		ABE00C42178BE34F006FD574 /* CategoriesSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoriesSingleton.m; path = ../CategoriesSingleton.m; sourceTree = "<group>"; };
+		ABE00C42178BE34F006FD574 /* CategoriesSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoriesSingleton.swift; path = ../CategoriesSingleton.swift; sourceTree = "<group>"; };
 		ABE38C981773B9AC00777F60 /* CategoryTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryTabBarViewController.swift; path = ../CategoryTabBarViewController.swift; sourceTree = "<group>"; };
 		ABE38C991773B9AC00777F60 /* CategoryTabBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryTabBarViewController.xib; path = ../CategoryTabBarViewController.xib; sourceTree = "<group>"; };
 		ABE472441746E0610002F3D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -192,6 +192,7 @@
 		C0538CEB1BC045510031B35D /* GuideImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideImage.swift; sourceTree = "<group>"; };
 		C0538CED1BC047E00031B35D /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		C06E55C11BCB393300D5D0C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C082354A1BF4BB8B00BF0C0F /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		C0D569111BBE2C7600B50651 /* iFixit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "iFixit-Bridging-Header.h"; path = "Classes/iFixit-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0D569121BBE2C7600B50651 /* iFixitAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iFixitAppDelegate.swift; path = Classes/iFixitAppDelegate.swift; sourceTree = "<group>"; };
 		C0F0FFC11BD2A25F0022436B /* GuideCatchingWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCatchingWebView.h; sourceTree = "<group>"; };
@@ -453,8 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				9CA4756618CAFEF3005AFE08 /* Utility.swift */,
-				ABE00C41178BE34F006FD574 /* CategoriesSingleton.h */,
-				ABE00C42178BE34F006FD574 /* CategoriesSingleton.m */,
+				ABE00C42178BE34F006FD574 /* CategoriesSingleton.swift */,
 				DACE7FF6165728010013FFFD /* Media Types */,
 				C0538CED1BC047E00031B35D /* Guide.swift */,
 				C0538CE71BC03FE70031B35D /* GuideStep.swift */,
@@ -463,6 +463,7 @@
 				DAAED15B146870E800C476C1 /* Featured Collections */,
 				DA2F766F12FB87D900683D33 /* Config.swift */,
 				DA05677A138D976600660C86 /* User.swift */,
+				C082354A1BF4BB8B00BF0C0F /* Category.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -817,6 +818,7 @@
 				DA666AF31360E2A4002B1D62 /* GuideCatchingWebView.m in Sources */,
 				DAA750881368DA87002AA546 /* WBFont.mm in Sources */,
 				DAA750891368DA87002AA546 /* WBProgressHUD.mm in Sources */,
+				C082354B1BF4BB8B00BF0C0F /* Category.swift in Sources */,
 				DAA7508A1368DA87002AA546 /* WBView.mm in Sources */,
 				DAA7508B1368DA87002AA546 /* WBViewRect.mm in Sources */,
 				67CBC0011BC8287A0077AD70 /* CategoryWebViewController.swift in Sources */,
@@ -847,7 +849,7 @@
 				ABE38C9A1773B9AC00777F60 /* CategoryTabBarViewController.swift in Sources */,
 				C0538CE81BC03FE70031B35D /* GuideStep.swift in Sources */,
 				ABB84A6A177F591200C58514 /* ListViewController.swift in Sources */,
-				ABE00C43178BE34F006FD574 /* CategoriesSingleton.m in Sources */,
+				ABE00C43178BE34F006FD574 /* CategoriesSingleton.swift in Sources */,
 				AB324BB0179473680001E29D /* iFixitSplashScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
