@@ -19,6 +19,7 @@ enum {
     ConfigComcast,
     ConfigDripAssist,
     ConfigPva,
+    ConfigTechtitanhq,
     /*EAOConfig*/
 };
 

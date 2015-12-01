@@ -119,6 +119,15 @@ static Config *currentConfig = nil;
             self.private = NO;
             self.scanner = NO;
             break;
+        case ConfigTechtitanhq:
+            self.host = @"techtitanhq.dozuki.com";
+            self.baseURL = @"http://techtitanhq.dozuki.com";
+            answersEnabled = NO;
+            collectionsEnabled = NO;
+            self.store = nil;
+            self.private = YES;
+            self.scanner = NO;
+            break;
         /*EAOOptions*/
         default:
             self.host = nil;
