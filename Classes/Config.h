@@ -20,6 +20,7 @@ enum {
     ConfigDripAssist,
     ConfigPva,
     ConfigOscaro,
+    ConfigTechtitanhq,
     /*EAOConfig*/
 };
 

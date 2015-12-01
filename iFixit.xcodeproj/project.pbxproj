@@ -48,6 +48,9 @@
 		9CA4756718CAFEF3005AFE08 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4756618CAFEF3005AFE08 /* Utility.m */; };
 		9CA6617C1A9EAD4C001C40D7 /* titleImageDripassist.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA6617B1A9EAD4C001C40D7 /* titleImageDripassist.png */; };
 		9CA6617E1A9EAE18001C40D7 /* dripassist_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA6617D1A9EAE18001C40D7 /* dripassist_logo_transparent.png */; };
+		9CB50EFB1BFD239C0085ABD0 /* techtitanhq_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB50EF81BFD239C0085ABD0 /* techtitanhq_logo_transparent.png */; };
+		9CB50EFC1BFD239C0085ABD0 /* detailViewTextTechtitanhq.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB50EF91BFD239C0085ABD0 /* detailViewTextTechtitanhq.png */; };
+		9CB50EFD1BFD239C0085ABD0 /* titleImageTechtitanhq.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB50EFA1BFD239C0085ABD0 /* titleImageTechtitanhq.png */; };
 		9CCF9E1E17D1F55E00B0B0BB /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */; };
 		9CCF9E2117D1F55E00B0B0BB /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0B17D1F44D00B0B0BB /* ASIDataCompressor.m */; };
 		9CCF9E2317D1F55E00B0B0BB /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF9E0D17D1F44D00B0B0BB /* ASIDataDecompressor.m */; };
@@ -328,6 +331,9 @@
 		9CA4756618CAFEF3005AFE08 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		9CA6617B1A9EAD4C001C40D7 /* titleImageDripassist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageDripassist.png; sourceTree = "<group>"; };
 		9CA6617D1A9EAE18001C40D7 /* dripassist_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dripassist_logo_transparent.png; sourceTree = "<group>"; };
+		9CB50EF81BFD239C0085ABD0 /* techtitanhq_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = techtitanhq_logo_transparent.png; sourceTree = "<group>"; };
+		9CB50EF91BFD239C0085ABD0 /* detailViewTextTechtitanhq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detailViewTextTechtitanhq.png; sourceTree = "<group>"; };
+		9CB50EFA1BFD239C0085ABD0 /* titleImageTechtitanhq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageTechtitanhq.png; sourceTree = "<group>"; };
 		9CCF9E0717D1F44D00B0B0BB /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = "asi-http-request/Classes/ASIAuthenticationDialog.h"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0817D1F44D00B0B0BB /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = "asi-http-request/Classes/ASIAuthenticationDialog.m"; sourceTree = SOURCE_ROOT; };
 		9CCF9E0917D1F44D00B0B0BB /* ASICacheDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = "asi-http-request/Classes/ASICacheDelegate.h"; sourceTree = SOURCE_ROOT; };
@@ -937,6 +943,9 @@
 				9CD8330317D7FE3C007F32F4 /* detailViewTextMjtrim.png */,
 				9CD8330417D7FE3C007F32F4 /* titleImageMjtrim@2x.png */,
 				9CD8330517D7FE3C007F32F4 /* titleImageMjtrim.png */,
+				9CB50EF81BFD239C0085ABD0 /* techtitanhq_logo_transparent.png */,
+				9CB50EF91BFD239C0085ABD0 /* detailViewTextTechtitanhq.png */,
+				9CB50EFA1BFD239C0085ABD0 /* titleImageTechtitanhq.png */,
 				AB5C74BD17A73069003AD63B /* WaitImage.png */,
 				AB1F950B17A584B4009F3419 /* NoImage@2x.jpg */,
 				AB94D11717A57B67003ACDFD /* NoImage.jpg */,
@@ -1438,6 +1447,7 @@
 				DA0877C6142D4EAB00954482 /* vignette@2x.png in Resources */,
 				DA0877C7142D4EAB00954482 /* vignette~ipad.png in Resources */,
 				9C47FB3517F623D40074CEBE /* icon76.png in Resources */,
+				9CB50EFB1BFD239C0085ABD0 /* techtitanhq_logo_transparent.png in Resources */,
 				DAAAC74A1433F43C00CB90AF /* GuideStepViewController~ipad.xib in Resources */,
 				DAAAC74D1433F49300CB90AF /* CategoriesViewController.xib in Resources */,
 				DAC0C19D146B182000EF42DC /* collectionsImagePlaceholder.png in Resources */,
@@ -1515,8 +1525,10 @@
 				ABE51914177B77F400E9555E /* category_more_info_iphone.css in Resources */,
 				AB324BB1179473680001E29D /* iFixitSplashScreenViewController.xib in Resources */,
 				AB324BB9179477E90001E29D /* iPhone-ifixit-logo.png in Resources */,
+				9CB50EFC1BFD239C0085ABD0 /* detailViewTextTechtitanhq.png in Resources */,
 				AB324BBA179477E90001E29D /* iPhone-ifixit-logo@2x.png in Resources */,
 				AB324BE8179615930001E29D /* iPad-ifixit-logo.png in Resources */,
+				9CB50EFD1BFD239C0085ABD0 /* titleImageTechtitanhq.png in Resources */,
 				9C47FB3817F623D40074CEBE /* icon114.png in Resources */,
 				AB324BE9179615930001E29D /* iPad-ifixit-logo@2x.png in Resources */,
 				ABA8A2A91797598100682597 /* logo_ifixit.png in Resources */,
