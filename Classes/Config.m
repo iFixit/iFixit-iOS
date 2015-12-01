@@ -128,6 +128,15 @@ static Config *currentConfig = nil;
             self.private = YES;
             self.scanner = NO;
             break;
+        case ConfigOscaro:
+            self.host = @"oscaro.dozuki.com";
+            self.baseURL = @"http://oscaro.dozuki.com";
+            answersEnabled = NO;
+            collectionsEnabled = NO;
+            self.store = nil;
+            self.private = NO;
+            self.scanner = NO;
+            break;
         /*EAOOptions*/
         default:
             self.host = nil;

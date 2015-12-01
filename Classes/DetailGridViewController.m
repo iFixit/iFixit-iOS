@@ -134,6 +134,7 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+    self.delegate = self;
     [super viewDidLoad];
     
     BOOL oniOS7 = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0");
@@ -185,6 +186,11 @@
             break;
         case ConfigPva:
             self.siteLogo.image = [UIImage imageNamed:@"pva_logo_transparent.png"];
+            self.siteLogo.frame = CGRectMake(60, 110, self.siteLogo.frame.size.width, self.siteLogo.frame.size.height);
+            [self.backgroundView addSubview:self.siteLogo];
+            break;
+        case ConfigOscaro:
+            self.siteLogo.image = [UIImage imageNamed:@"oscaro_logo_transparent.png"];
             self.siteLogo.frame = CGRectMake(60, 110, self.siteLogo.frame.size.width, self.siteLogo.frame.size.height);
             [self.backgroundView addSubview:self.siteLogo];
             break;
