@@ -140,7 +140,7 @@
 		C184D4C61210CDB900953C39 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D4C41210CDB900953C39 /* GuideViewController.m */; };
 		C184D4C71210CDB900953C39 /* GuideView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D4C51210CDB900953C39 /* GuideView~ipad.xib */; };
 		C184D5381210D8CD00953C39 /* GuideIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D5361210D8CD00953C39 /* GuideIntroViewController.m */; };
-		C184D5391210D8CD00953C39 /* GuideIntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */; };
+		C184D5391210D8CD00953C39 /* GuideIntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D5371210D8CD00953C39 /* GuideIntroViewController~ipad.xib */; };
 		C1C894F7121B447E0036FAFC /* TapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C894F6121B447E0036FAFC /* TapDetectingImageView.m */; };
 		C1D980A1120DFA5B00509D18 /* GuideImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D980A0120DFA5B00509D18 /* GuideImage.m */; };
 		C1D980AA120DFB2900509D18 /* GuideStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D980A9120DFB2900509D18 /* GuideStep.m */; };
@@ -459,7 +459,7 @@
 		C184D4C51210CDB900953C39 /* GuideView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideView~ipad.xib"; sourceTree = "<group>"; };
 		C184D5351210D8CD00953C39 /* GuideIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideIntroViewController.h; sourceTree = "<group>"; };
 		C184D5361210D8CD00953C39 /* GuideIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideIntroViewController.m; sourceTree = "<group>"; };
-		C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideIntroView~ipad.xib"; sourceTree = "<group>"; };
+		C184D5371210D8CD00953C39 /* GuideIntroViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideIntroViewController~ipad.xib"; sourceTree = "<group>"; };
 		C1C894F5121B447E0036FAFC /* TapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapDetectingImageView.h; sourceTree = "<group>"; };
 		C1C894F6121B447E0036FAFC /* TapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapDetectingImageView.m; sourceTree = "<group>"; };
 		C1D9809F120DFA5B00509D18 /* GuideImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideImage.h; sourceTree = "<group>"; };
@@ -1037,7 +1037,7 @@
 			children = (
 				DABE9CF413C54D2200B778FE /* GuideView.xib */,
 				C184D4C51210CDB900953C39 /* GuideView~ipad.xib */,
-				C184D5371210D8CD00953C39 /* GuideIntroView~ipad.xib */,
+				C184D5371210D8CD00953C39 /* GuideIntroViewController~ipad.xib */,
 				C184D4C31210CDB900953C39 /* GuideViewController.h */,
 				C184D4C41210CDB900953C39 /* GuideViewController.m */,
 				C184D5351210D8CD00953C39 /* GuideIntroViewController.h */,
@@ -1389,7 +1389,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */,
 				C184D4C71210CDB900953C39 /* GuideView~ipad.xib in Resources */,
 				9CA6617C1A9EAD4C001C40D7 /* titleImageDripassist.png in Resources */,
-				C184D5391210D8CD00953C39 /* GuideIntroView~ipad.xib in Resources */,
+				C184D5391210D8CD00953C39 /* GuideIntroViewController~ipad.xib in Resources */,
 				DA61C52513380E4C000028C3 /* back.png in Resources */,
 				9C47FB3017F623D40074CEBE /* icon50.png in Resources */,
 				DA61C52613380E4C000028C3 /* back@2x.png in Resources */,
