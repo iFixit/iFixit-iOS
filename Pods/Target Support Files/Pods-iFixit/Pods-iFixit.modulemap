@@ -1,0 +1,6 @@
+framework module Pods_iFixit {
+  umbrella header "Pods-iFixit-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,1 +1,0 @@
-../../../MGSplitViewController/Classes/MGSplitViewController.h

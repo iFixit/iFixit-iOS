@@ -8,53 +8,41 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>MGSplitViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-iFixit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>Reachability.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>UIColor-Hex.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>ZBarSDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>36B485ACD2210B9B17AC3B27D03E1FFA</key>
+		<key>2F98B97C0233FD0029E20978DA8A0D4B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -64,57 +52,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4AB5AFAEFD9C2569C1B23A0C7CE4F630</key>
+		<key>4BE42DB6DF6A3DE525D05F5B914C4918</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5E49F0E04B4DAC0E77793E6849649063</key>
+		<key>917DC13D5C137908AB94C748F0DFCEA1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>70C1FC50FE729437F9EB6B1CF99F0425</key>
+		<key>A7F301F46F5648011656F62D9122B0B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7B5BBD59046E1C8106D937BDB9BEA922</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7E609175FE6DE11AB937D004FCDC5D1C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8A10B17EE5E102F44F79236467F49FCA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BE1385B6BF4AA96F896385B85AA3A163</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CA9E3965D7A9A7D7A46CD323CA5B6409</key>
+		<key>D70C9A4C57B02627D1D49B17A07CB25B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>F6050CB9C20133936F551B08325A5466</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FB7C5E1FCBFD2B2F3AA96A1DF6FF2853</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FC3E06C243A3B254957022DF50B58A28</key>
 		<dict>
 			<key>primary</key>
 			<true/>

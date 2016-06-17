@@ -1,24 +1,26 @@
-// Result.swift
 //
-// Copyright (c) 2014–2015 Alamofire Software Foundation (http://alamofire.org/)
+//  Result.swift
 //
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
+//  Copyright (c) 2014-2016 Alamofire Software Foundation (http://alamofire.org/)
 //
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
 //
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+//
 
 import Foundation
 
@@ -30,9 +32,9 @@ import Foundation
     - Failure: The request encountered an error resulting in a failure. The associated values are the original data 
                provided by the server as well as the error that caused the failure.
 */
-public enum Result<Value> {
+public enum Result<Value, Error: ErrorType> {
     case Success(Value)
-    case Failure(NSData?, ErrorType)
+    case Failure(Error)
 
     /// Returns `true` if the result is a success, `false` otherwise.
     public var isSuccess: Bool {
@@ -59,22 +61,12 @@ public enum Result<Value> {
         }
     }
 
-    /// Returns the associated data value if the result is a failure, `nil` otherwise.
-    public var data: NSData? {
-        switch self {
-        case .Success:
-            return nil
-        case .Failure(let data, _):
-            return data
-        }
-    }
-
     /// Returns the associated error value if the result is a failure, `nil` otherwise.
-    public var error: ErrorType? {
+    public var error: Error? {
         switch self {
         case .Success:
             return nil
-        case .Failure(_, let error):
+        case .Failure(let error):
             return error
         }
     }
@@ -83,6 +75,8 @@ public enum Result<Value> {
 // MARK: - CustomStringConvertible
 
 extension Result: CustomStringConvertible {
+    /// The textual representation used when written to an output stream, which includes whether the result was a 
+    /// success or failure.
     public var description: String {
         switch self {
         case .Success:
@@ -96,19 +90,14 @@ extension Result: CustomStringConvertible {
 // MARK: - CustomDebugStringConvertible
 
 extension Result: CustomDebugStringConvertible {
+    /// The debug textual representation used when written to an output stream, which includes whether the result was a
+    /// success or failure in addition to the value or error.
     public var debugDescription: String {
         switch self {
         case .Success(let value):
             return "SUCCESS: \(value)"
-        case .Failure(let data, let error):
-            if let
-                data = data,
-                utf8Data = NSString(data: data, encoding: NSUTF8StringEncoding)
-            {
-                return "FAILURE: \(error) \(utf8Data)"
-            } else {
-                return "FAILURE with Error: \(error)"
-            }
+        case .Failure(let error):
+            return "FAILURE: \(error)"
         }
     }
 }

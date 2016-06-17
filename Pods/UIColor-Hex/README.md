@@ -3,6 +3,8 @@
 [![Version](http://cocoapod-badges.herokuapp.com/v/UIColor-Hex/badge.png)](http://cocoadocs.org/docsets/UIColor-Hex)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/UIColor-Hex/badge.png)](http://cocoadocs.org/docsets/UIColor-Hex)
 [![Build Status](https://travis-ci.org/nakajijapan/UIColor-Hex.png?branch=master)](https://travis-ci.org/nakajijapan/UIColor-Hex)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 
 ## Installation
 
