@@ -30,20 +30,20 @@ class Site {
     var siteid = 0
     var priority = false
     var hideFromiOS = false
-    var name:String?
-    var domain:String?
-    var custom_domain:String?
-    var title:String?
-    var theme:String?
-    var color:String?
+    var name: String?
+    var domain: String?
+    var custom_domain: String?
+    var title: String?
+    var theme: String?
+    var color: String?
     var `private` = false
-    var siteDescription:String?
-    var authentication:[String:AnyObject]?
+    var siteDescription: String?
+    var authentication: [String: AnyObject]?
     var answers = false
     var collections = false
-    var store:String?
+    var store: String?
     
-    init(json:[String:AnyObject]) {
+    init(json: [String: AnyObject]) {
         
         siteid = json["siteid"] as? Int ?? 0
         priority = json["priority"] as? Bool ?? false
@@ -62,7 +62,7 @@ class Site {
         store = json["store"] as? String
     }
     
-    init(domain:String) {
+    init(domain: String) {
         self.domain = domain
     }
 }
@@ -70,12 +70,12 @@ class Site {
 class Config: NSObject {
     
     var site: SiteID = .IFixit
-    var dozuki:Bool = false
-    var siteData:[String:AnyObject]!
-    var custom_domain:String?
-    var title:String? = nil
-    var concreteBackgroundImage:UIImage!
-    var siteInfo:[String:AnyObject]!
+    var dozuki = false
+    var siteData: [String:AnyObject]!
+    var custom_domain: String?
+    var title: String? = nil
+    var concreteBackgroundImage: UIImage!
+    var siteInfo: [String: AnyObject]!
     
     class func currentConfig() -> Config {
         struct Static {
@@ -194,6 +194,7 @@ class Config: NSObject {
             switch site {
             case .Comcast:
                 return "http://comcast.dozuki.com"
+
             default:
                 return nil
             }
@@ -203,7 +204,7 @@ class Config: NSObject {
         }
     }
     
-    private var _host:String?
+    private var _host: String?
     var host: String? {
         get {
             if _host != nil {
@@ -251,7 +252,7 @@ class Config: NSObject {
         }
     }
 
-    private var _baseURL:NSURL?
+    private var _baseURL: NSURL?
     var baseURL:NSURL? {
         get {
             if _baseURL != nil {
@@ -300,7 +301,7 @@ class Config: NSObject {
         }
     }
     
-    var backgroundColor:UIColor {
+    var backgroundColor: UIColor {
         switch site {
         case .IFixit, .IFixitDev:
             return UIColor(red:39/255.0, green:41/255.0, blue:43/255.0, alpha:1)
@@ -311,7 +312,7 @@ class Config: NSObject {
         }
     }
     
-    var textColor:UIColor {
+    var textColor: UIColor {
         switch site {
         case .Make, .MakeDev, .Mjtrim, .Magnolia:
             return UIColor.blackColor()
@@ -320,7 +321,7 @@ class Config: NSObject {
         }
     }
     
-    var toolbarColor:UIColor {
+    var toolbarColor: UIColor {
         switch site {
         case .Make, .MakeDev:
             return UIColor(red:0.16, green:0.67, blue:0.89, alpha:1.0)
@@ -337,7 +338,8 @@ class Config: NSObject {
         }
     }
     
-    var buttonColor:UIColor? {
+    var buttonColor: UIColor {
+
         switch site {
         case .IFixit, .IFixitDev:
             return UIColor(red:0.0, green:113/255.0, blue:206.0/255.0, alpha:1.0)
@@ -354,7 +356,7 @@ class Config: NSObject {
         }
     }
     
-    var tabBarColor:UIColor? {
+    var tabBarColor: UIColor {
         switch site {
         case .Mjtrim:
             return self.toolbarColor
@@ -365,7 +367,7 @@ class Config: NSObject {
         }
     }
     
-    var introCSS:String? {
+    var introCSS: String? {
         var filename:String?
         
         switch site {

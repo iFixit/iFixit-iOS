@@ -27,8 +27,10 @@ class iFixitAPI: NSObject {
     
     override init() {
         super.init()
+
         loadSession()
         loadAppId()
+
         createAndSetUserAgent()
     }
 
@@ -101,7 +103,8 @@ class iFixitAPI: NSObject {
         
         let url = "https://\(config.host!)/api/2.0/sites?limit=\(limit)&offset=\(offset)"
 
-        Alamofire.request(.GET, url, headers:commonHeaders()).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.GET, url, headers:commonHeaders()).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
                 let value = JSON.value as! [[String:AnyObject]]
                 let sites = value.map { Site(json:$0) }
@@ -117,7 +120,8 @@ class iFixitAPI: NSObject {
         
         let url = "https://\(config.host!)/api/2.0/info"
 
-        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
                 let value = JSON.value as! [String:AnyObject]
                 handler(value)
@@ -132,7 +136,8 @@ class iFixitAPI: NSObject {
         
         let url = "https://\(config.host!)/api/2.0/collections?limit=\(limit)&offset=\(offset)"
         
-        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
                 let value = JSON.value as! [[String:AnyObject]]
                 handler(value)
@@ -147,7 +152,8 @@ class iFixitAPI: NSObject {
         
         let url = "https://\(config.host!)/api/2.0/guides/\(iGuideid)"
         
-        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
                 let value = JSON.value as! [String:AnyObject]
                 let guide = Guide(json: value)
@@ -158,22 +164,25 @@ class iFixitAPI: NSObject {
         }
     }
     
-    func getCategories(handler:(([String:AnyObject]?) -> ())) {
+    func getCategories(handler: (([String], [String: Category]) -> Void)) {
         let config = Config.currentConfig()
         // On iPhone and iPod touch, only show leaf nodes with viewable guides.
         let url = "https://\(config.host!)/api/2.0/categories?withDisplayTitles"
         
-        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.GET, url, headers: commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
                 let value = JSON.value as! [String:AnyObject]
-                handler(value)
+                let displayTitles = value["display_titles"] as! [String]
+                let categories = value["hierarchy"] as! [String: Category]
+                handler(displayTitles, categories)
             } else {
-                handler(nil)
+                handler([], [:])
             }
         }
     }
     
-    func getCategory(category:String, handler:(([String:AnyObject]?) -> ())) {
+    func getCategory(category: String, handler:(([String:AnyObject]?) -> ())) {
         let config = Config.currentConfig()
         let language = Utility.getDeviceLanguage()
         
@@ -181,7 +190,8 @@ class iFixitAPI: NSObject {
         
         let url = "https://\(config.host!)/api/2.0/wikis/CATEGORY/\(escapedCategory!)?langid=\(language)"
         
-        Alamofire.request(.GET, url, encoding:.URLEncodedInURL, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.GET, url, encoding:.URLEncodedInURL, headers:commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
                 // Make writeable.
                 let value = JSON.value as! [String:AnyObject]
@@ -198,7 +208,8 @@ class iFixitAPI: NSObject {
         
         let url = "https://\(config.host!)/api/2.0/guides?limit=\(limit)"
         
-        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
                 let value = JSON.value as! [[String:AnyObject]]
                 let guides = value.map { Guide(json:$0) }
@@ -215,7 +226,8 @@ class iFixitAPI: NSObject {
         let guideidsString = guideids.map { $0.description }.joinWithSeparator(",")
         let url = "https://\(config.host!)/api/2.0/guides?guideids=\(guideidsString)"
         
-        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
                 let value = JSON.value as! [String:AnyObject]
                 handler(value)
@@ -233,7 +245,8 @@ class iFixitAPI: NSObject {
 
         let url = "https://\(config.host!)/api/2.0/search/\(escapedSearch!)?limit=50&filter=\(escapedFilter!)"
         
-        Alamofire.request(.GET, url, encoding:.URLEncodedInURL, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.GET, url, encoding:.URLEncodedInURL, headers:commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
                 let value = JSON.value as! [String:AnyObject]
                 handler(value)
@@ -274,13 +287,14 @@ class iFixitAPI: NSObject {
 
 //        request.useCookiePersistence = NO;
         
-        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
                 let value = JSON.value as! [String:AnyObject]
                 self.checkLogin(value)
                 handler(value)
             } else {
-                let error = JSON.error as? NSError
+                let error = JSON.error
                 let value = ["error": 1, "msg": error?.localizedDescription as! AnyObject]
                 handler(value)
             }
@@ -297,14 +311,15 @@ class iFixitAPI: NSObject {
 //        if ([Config currentConfig].site == ConfigIFixitDev || [Config currentConfig].site == ConfigMakeDev)
 //        request.useCookiePersistence = NO;
         
-        Alamofire.request(.POST, url, encoding:.JSON, parameters:parameters, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.POST, url, encoding:.JSON, parameters:parameters, headers:commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
                 let value = JSON.value as! [String:AnyObject]
                 self.checkLogin(value)
                 handler(["type":"login"])
             } else {
 //                let value = JSON.value as! [String:AnyObject]
-                let error = JSON.error as? NSError
+                let error = JSON.error
                 let value = ["error": 1, "msg": error?.localizedDescription as! AnyObject]
                 handler(value)
             }
@@ -322,13 +337,14 @@ class iFixitAPI: NSObject {
 //        request.useSessionPersistence = NO;
 //        request.useCookiePersistence = NO;
 
-        Alamofire.request(.POST, url, encoding:.JSON, parameters:parameters, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.POST, url, encoding:.JSON, parameters:parameters, headers:commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
                 let value = JSON.value as! [String:AnyObject]
                 self.checkLogin(value)
                 handler(["type":"register"])
             } else {
-                let error = JSON.error as? NSError
+                let error = JSON.error
                 let value = ["error": 1, "msg": error?.localizedDescription as! AnyObject]
                 handler(value)
             }
@@ -364,13 +380,14 @@ class iFixitAPI: NSObject {
         
 //        request.useCookiePersistence = NO;
 
-        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.GET, url, headers:commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
                 let value = JSON.value as! [[String:AnyObject]]
                 self.checkSession(value[0])
                 handler(value)
             } else {
-                let error = JSON.error as? NSError
+                let error = JSON.error
                 let value = [["error": 1, "msg": error?.localizedDescription as! AnyObject]]
                 handler(value)
             }
@@ -384,13 +401,14 @@ class iFixitAPI: NSObject {
         
         //        request.useCookiePersistence = NO;
 
-        Alamofire.request(.PUT, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.PUT, url, headers:commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
-                let value = ["statusCode": resp?.statusCode as! AnyObject]
+                let value = ["statusCode": response.response?.statusCode as! AnyObject]
                 self.checkSession(value)
                 handler(value)
             } else {
-                let error = JSON.error as? NSError
+                let error = JSON.error
                 let value = ["error": 1, "msg": error?.localizedDescription as! AnyObject]
                 handler(value)
             }
@@ -402,13 +420,14 @@ class iFixitAPI: NSObject {
         
         let url = "https://\(config.host!)/api/2.0/user/favorites/guides/\(iGuideid)"
         
-        Alamofire.request(.DELETE, url, headers:commonHeaders(secure: true)).responseJSON {(req, resp, JSON) in
+        Alamofire.request(.DELETE, url, headers:commonHeaders(secure: true)).responseJSON { response in
+            let JSON = response.result
             if JSON.isSuccess {
-                let value = ["statusCode": resp?.statusCode as! AnyObject]
+                let value = ["statusCode": response.response?.statusCode as! AnyObject]
                 self.checkSession(value)
                 handler(value)
             } else {
-                let error = JSON.error as? NSError
+                let error = JSON.error
                 let value = ["error": 1, "msg": error?.localizedDescription as! AnyObject]
                 handler(value)
             }
@@ -435,7 +454,7 @@ class iFixitAPI: NSObject {
             viewControllerToPresent = BookmarksViewController(nibName:"BookmarksView", bundle:nil)
         } else {
             viewControllerToPresent = LoginViewController()
-            (viewControllerToPresent as! LoginViewController).delegate = viewController as! LoginViewControllerDelegate
+            (viewControllerToPresent as! LoginViewController).delegate = viewController 
         }
         
         // Create the animation ourselves to mimic a modal presentation

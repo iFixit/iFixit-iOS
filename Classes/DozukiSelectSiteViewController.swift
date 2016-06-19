@@ -90,7 +90,7 @@ class DozukiSelectSiteViewController: UITableViewController, UIAlertViewDelegate
             
             // Insert these new rows at the bottom.
             var paths:[NSIndexPath] = []
-            for (var i = 0; i < count; i++) {
+            for (var i = 0; i < count; i += 1) {
                 
                 paths.append(NSIndexPath(forRow:(i + count!), inSection:0))
                 

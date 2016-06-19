@@ -8,8 +8,8 @@
 
 class CategoriesSingleton : NSObject {
 
-    var masterCategoryList:[String:AnyObject]?
-    var masterDisplayTitleList:[String:AnyObject]?
+    var masterCategoryList: [String: AnyObject] = [:]
+    var masterDisplayTitleList: [String: String] = [:]
 
     class var sharedInstance: CategoriesSingleton {
         struct Static {

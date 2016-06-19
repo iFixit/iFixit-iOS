@@ -6,6 +6,8 @@
 //  Copyright 2010 iFixit. All rights reserved.
 //
 
+import UIKit
+
 class GuideViewController: UIViewController, UIScrollViewDelegate, UIAlertViewDelegate {
 
     let dummyVC = UIViewController()
@@ -206,7 +208,7 @@ class GuideViewController: UIViewController, UIScrollViewDelegate, UIAlertViewDe
         // view controllers are created lazily
         // in the meantime, load the array with placeholders which will be replaced on demand
         var controllers:[UIViewController] = []
-        for (var i = 0; i < numPages; i++) {
+        for (var i = 0; i < numPages; i += 1) {
             controllers.append(dummyVC)
         }
         self.viewControllers = controllers
@@ -320,7 +322,7 @@ class GuideViewController: UIViewController, UIScrollViewDelegate, UIAlertViewDe
     let page = pageControl.currentPage
     
     // Unload the views+controllers which are no longer visible
-    for (var i = 2; i < pageControl.numberOfPages; i++) {
+    for (var i = 2; i < pageControl.numberOfPages; i += 1) {
         let distance = fabs(CGFloat(page - i + 1))
         if (distance > 2.0) {
             let vc = viewControllers[i]
@@ -400,7 +402,7 @@ class GuideViewController: UIViewController, UIScrollViewDelegate, UIAlertViewDe
             self.showOrHidePageControlForInterface(toInterfaceOrientation)
 //        }
         
-        for (var i=0; i<viewControllers.count; i++) {
+        for (var i=0; i<viewControllers.count; i += 1) {
             let vc = viewControllers[i]
             
             if vc != dummyVC {

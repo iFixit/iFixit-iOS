@@ -16,5 +16,16 @@ enum Categories: Int {
 
 class Category: NSObject {
 
-
+    var guideid = 0
+    var name: String?
+    var type: Categories?
+    var displayTitle: String?
+    var image: GuideImage?
+    var subCategories: [Category] = []
+    
+    init(json: [String: AnyObject]) {
+        super.init()
+        
+    }
+    
 }

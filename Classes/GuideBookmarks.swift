@@ -376,7 +376,7 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
         // Count the media items...
         for step in guide!.steps {
             if step.video != nil {
-                videosRemaining++
+                videosRemaining += 1
             }
             
             for image in step.images {
@@ -388,7 +388,7 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
         downloadDocumentsForGuide(guide!)
         
         if guide?.image != nil {
-            imagesRemaining++
+            imagesRemaining += 1
             SDWebImageManager.sharedManager().downloadWithURL(guide!.image?.standard, delegate: self, retryFailed:true)
         }
         
@@ -417,9 +417,10 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
             // Create the file path
             let filePath = documentsPath.URLByAppendingPathComponent("\(uid)_\(guide.iGuideid)_\(documentId).pdf")
 
-            Alamofire.request(.GET, document["download_url"] as! String).responseData({ (req, resp, result) in
+            Alamofire.request(.GET, document["download_url"] as! String).responseData { response in
+                let result = response.result
                 if result.isSuccess {
-                    if let documentData = result.data {
+                    if let documentData = response.data {
                         do {
                             try manager.createDirectoryAtURL(documentsPath, withIntermediateDirectories: false, attributes: nil)
                             
@@ -431,12 +432,12 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
                     }
                 }
                 
-                self.documentsDownloaded++
-                self.documentsRemaining--
+                self.documentsDownloaded += 1
+                self.documentsRemaining -= 1
                 
                 self.updateProgessBar()
                 self.checkIfFinishedDownloading()
-            })
+            }
             
         }
     }
@@ -451,9 +452,10 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
             "\(uid)_\(step.stepid)_\(step.video.videoid)_\(step.video.filename)")
 
         // Create the request
-        Alamofire.request(.GET, step.video.url).responseData({ (req, resp, result) in
+        Alamofire.request(.GET, step.video.url).responseData { response in
+            let result = response.result
             if result.isSuccess {
-                if let videoData = result.data {
+                if let videoData = response.data {
                     do {
                         try manager.createDirectoryAtURL(videosPath, withIntermediateDirectories: false, attributes: nil)
                         
@@ -465,12 +467,12 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
                 }
             }
             
-            self.videosDownloaded++
-            self.videosRemaining--
+            self.videosDownloaded += 1
+            self.videosRemaining -= 1
             
             self.updateProgessBar()
             self.checkIfFinishedDownloading()
-        })
+        }
     }
     
     func checkIfFinishedDownloading() {
@@ -494,8 +496,8 @@ class GuideBookmarks: NSObject, SDWebImageManagerDelegate {
     }
 
     func webImageManager(imageManager: SDWebImageManager!, didFinishWithImage image: UIImage!) {
-        imagesDownloaded++;
-        imagesRemaining--;
+        imagesDownloaded += 1
+        imagesRemaining -= 1
         
         // Update the progress bar.
         updateProgessBar()

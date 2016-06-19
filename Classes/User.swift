@@ -6,6 +6,8 @@
 //  Copyright 2011 iFixit. All rights reserved.
 //
 
+import Foundation
+
 class User: NSObject {
 
     var data:[String: AnyObject]!

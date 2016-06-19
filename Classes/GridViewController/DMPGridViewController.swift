@@ -70,9 +70,9 @@ class DMPGridViewController : UITableViewController {
         var numberOfCells = delegate!.numberOfCellsForGridViewController(self)
         
         var rows = 0
-        for (var i=0; numberOfCells>0; i++) {
+        for (var i=0; numberOfCells>0; i += 1) {
             numberOfCells -= DMPGridViewCell.cellsPerRowForStyle(self.styleForRow(i))
-            rows++
+            rows += 1
         }
         
         return rows
@@ -101,13 +101,13 @@ class DMPGridViewController : UITableViewController {
         
         // Configure the cell...
         var offset = 0
-        for (var i=0; i<indexPath.row; i++) {
+        for (var i=0; i<indexPath.row; i += 1) {
             offset += DMPGridViewCell.cellsPerRowForStyle(self.styleForRow(i))
         }
         
         var numberOfCells = delegate?.numberOfCellsForGridViewController(self)
         
-        for (var i=0; i < DMPGridViewCell.cellsPerRowForStyle(style); i++) {
+        for (var i=0; i < DMPGridViewCell.cellsPerRowForStyle(style); i += 1) {
             if (offset + i >= numberOfCells) {
                 break
             }

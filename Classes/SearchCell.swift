@@ -6,6 +6,8 @@
 //
 //
 
+import UIKit
+
 class SearchCell: UITableViewCell {
 
     override init(style:UITableViewCellStyle, reuseIdentifier:String?) {

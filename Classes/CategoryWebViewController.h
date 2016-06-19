@@ -14,18 +14,18 @@
 
 @interface CategoryWebViewController : UIViewController <UIWebViewDelegate>
 
-@property (retain, nonatomic) IBOutlet UIBarButtonItem *favoritesButton;
-@property (retain, nonatomic) IBOutlet UIWebView *webView;
-@property (retain, nonatomic) WBProgressHUD *loading;
-@property (retain, nonatomic) NSString *webViewType;
-@property (retain, nonatomic) NSString *category;
-@property (retain, nonatomic) IBOutlet UINavigationBar *categoryNavigationBar;
+@property (retain, nonatomic, nullable) IBOutlet UIBarButtonItem *favoritesButton;
+@property (retain, nonatomic, nonnull) IBOutlet UIWebView *webView;
+@property (retain, nonatomic, nullable) WBProgressHUD *loading;
+@property (retain, nonatomic, nullable) NSString *webViewType;
+@property (retain, nonatomic, nullable) NSString *category;
+@property (retain, nonatomic, nonnull) IBOutlet UINavigationBar *categoryNavigationBar;
 
-@property (retain, nonatomic) ListViewController *listViewController;
+@property (retain, nonatomic, nullable) ListViewController *listViewController;
 @property (retain, nonatomic, nullable) CategoryTabBarViewController *categoryTabBarViewController;
 
 
 - (void)configureProperties;
-+ (NSString*)configureHtmlForWebview:(NSDictionary*)categoryMetaData;
++ (NSString* _Nullable)configureHtmlForWebview:(NSDictionary*  _Nonnull)categoryMetaData;
     
 @end

@@ -6,6 +6,9 @@
 //  Copyright 2011 iFixit. All rights reserved.
 //
 
+import UIKit
+//import GoogleAnalytics
+
 class BookmarksViewController : UITableViewController, LoginViewControllerDelegate, UIActionSheetDelegate {
 
     var bookmarks:[String: [Guide]] = [:]

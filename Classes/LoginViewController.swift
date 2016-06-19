@@ -6,6 +6,8 @@
 //  Copyright 2011 iFixit. All rights reserved.
 //
 
+import UIKit
+
 class LoginViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, LoginViewControllerDelegate {
 
     var delegate: LoginViewControllerDelegate?

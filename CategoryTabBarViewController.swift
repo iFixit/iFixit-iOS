@@ -7,6 +7,7 @@
 //
 
 //#import <QuartzCore/QuartzCore.h>
+import MGSplitViewController
 
 class CategoryTabBarViewController: UITabBarController, UINavigationBarDelegate, MGSplitViewControllerDelegate, UITabBarControllerDelegate {
     
@@ -396,7 +397,7 @@ class CategoryTabBarViewController: UITabBarController, UINavigationBarDelegate,
     // Force a tab bar selection on the first item that is enabled
     func updateTabBarSelection() {
         
-        for (var i = 0; i < self.tabBar.items!.count; i++) {
+        for (var i = 0; i < self.tabBar.items!.count; i += 1) {
             // We only care about the first item that is enabled
             if self.tabBar.items![i].enabled {
                 self.tabBar(self.tabBar, didSelectItem:self.tabBar.items![i])
@@ -509,8 +510,8 @@ class CategoryTabBarViewController: UITabBarController, UINavigationBarDelegate,
         
     }
 
-    func gotCategoryResult(results:[String:AnyObject]?) {
-        if results == nil {
+    func gotCategoryResult(displayTitles: [String], categories: [String: Category]) {
+        if categories.isEmpty {
             iFixitAPI.displayConnectionErrorAlert()
             return
         }
@@ -647,7 +648,8 @@ class CategoryTabBarViewController: UITabBarController, UINavigationBarDelegate,
         } else {
             let imageData = (results!["logo"] as! [String:AnyObject])["image"] as! [String:AnyObject]
             if imageData["standard"] != nil {
-                cvc.configureTableViewTitleLogoFromURL(imageData["standard"] as! String)
+                let standardURL = NSURL(string:imageData["standard"] as! String)
+                cvc.configureTableViewTitleLogoFromURL(standardURL!)
             } else {
                 cvc.setTableViewTitle()
             }

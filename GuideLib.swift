@@ -6,6 +6,9 @@
 //
 //
 
+import UIKit
+import Reachability
+
 class GuideLib: NSObject {
 
     class func loadAndPresentGuideForGuideid(iGuideid: Int) {

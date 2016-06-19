@@ -13,25 +13,25 @@ import MediaPlayer
 
 class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageManagerDelegate {
 
-    @IBOutlet weak var titleLabel:UILabel!
-    @IBOutlet weak var mainImage:UIButton!
-    @IBOutlet weak var webView:GuideCatchingWebView!
-    @IBOutlet weak var image1:UIButton!
-    @IBOutlet weak var image2:UIButton!
-    @IBOutlet weak var image3:UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var mainImage: UIButton!
+    @IBOutlet weak var webView: GuideCatchingWebView!
+    @IBOutlet weak var image1: UIButton!
+    @IBOutlet weak var image2: UIButton!
+    @IBOutlet weak var image3: UIButton!
 
     var delegate: UIViewController?
-    var step:GuideStep!
-    var moviePlayer:MPMoviePlayerController?
-    var embedView:UIWebView!
-    var guideViewController:GuideViewController!
+    var step: GuideStep!
+    var moviePlayer: MPMoviePlayerController?
+    var embedView: UIWebView!
+    var guideViewController: GuideViewController!
     var numImagesLoaded = 0
     var absoluteStepNumber = 0
-    var html:String!
-    var largeImages:[String:String]!
+    var html: String!
+    var largeImages: [String: String]!
     
     // Load the view nib and initialize the pageNumber ivar.
-    init(step:GuideStep, withAbsolute stepNumber:Int) {
+    init(step: GuideStep, withAbsolute stepNumber: Int) {
         
         self.absoluteStepNumber = stepNumber
         
@@ -169,14 +169,15 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
             
             let oembedURL = "\(step.embed.url)&maxwidth=\(embedSize.width)&maxheight=\(embedSize.height)"
             
-            Alamofire.request(.GET, oembedURL).responseJSON { (req, resp, result) in
+            Alamofire.request(.GET, oembedURL).responseJSON { response in
+                let result = response.result
                 if result.isSuccess {
                     let json = result.value as! [String:AnyObject]
                     let embedHtml = json["html"] as! String
                     let header = "<html><head><style type=\"text/css\"> \(config.stepCSS!) </style></head><body>"
                     let htmlString = "\(header) \(embedHtml)"
                     
-                    self.embedView.loadHTMLString(htmlString, baseURL:NSURL(string:json["provider_url"] as! String))
+                    self.embedView.loadHTMLString(htmlString, baseURL: NSURL(string: json["provider_url"] as! String))
                 }
             }
         }

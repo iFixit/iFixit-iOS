@@ -9,6 +9,6 @@
 @protocol LoginViewControllerDelegate <NSObject>
 
 - (void)refresh;
-- (void)presentViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
+- (void)presentViewController:(UIViewController *  _Nonnull)viewController animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
 
 @end

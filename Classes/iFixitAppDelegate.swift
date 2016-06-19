@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import MGSplitViewController
 
 //#import <Crashlytics/Crashlytics.h>
 
