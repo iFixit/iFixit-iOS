@@ -119,7 +119,7 @@ class CategoryTabBarViewController: UITabBarController, UINavigationBarDelegate,
     }
     
     func createStatusBarBackgroundView() {
-        let view = UIView(frame:CGRectMake(0, 0, self.view.frame.size.width, 20))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
         view.backgroundColor = Config.currentConfig().toolbarColor
         self.view.addSubview(view)
     }
@@ -131,7 +131,7 @@ class CategoryTabBarViewController: UITabBarController, UINavigationBarDelegate,
         popOverController!.presentPopoverFromRect(frame, inView: self.view, permittedArrowDirections: .Up, animated: true)
     }
 
-    func createGradient(btn:UIButton) {
+    func createGradient(btn: UIButton) {
         
         /**
         * Taken from: http://stackoverflow.com/a/14940984/2089315
@@ -273,12 +273,12 @@ class CategoryTabBarViewController: UITabBarController, UINavigationBarDelegate,
         )
     }
 
-    func enableTabBarItems(option:Bool) {
+    func enableTabBarItems(option: Bool) {
         
         UIView.transitionWithView(tabBar,
-            duration:0.3,
-            options:.TransitionCrossDissolve,
-            animations:{
+            duration: 0.3,
+            options: .TransitionCrossDissolve,
+            animations: {
                 if (self.onTablet) {
                     for tabBarItem in self.tabBar.items! {
                         tabBarItem.enabled = option
@@ -355,15 +355,15 @@ class CategoryTabBarViewController: UITabBarController, UINavigationBarDelegate,
 
     // Resize our fonts to avoid edge case on iOS 7 when resizing tabbar
     func configureFontSizeForTabBarItems() {
-        let textAttributes = [NSFontAttributeName : UIFont(name:"OpenSans", size:12.0)!]
+        let textAttributes = [NSFontAttributeName : UIFont(name: "OpenSans", size: 12.0)!]
         
         for viewController in tabBarViewControllers! {
-            viewController.tabBarItem.setTitleTextAttributes(textAttributes, forState:.Normal)
+            viewController.tabBarItem.setTitleTextAttributes(textAttributes, forState: .Normal)
         }
     }
 
     // Update the tab bar once we get more information about the category we are currently viewing
-    func updateTabBar(results:[String:AnyObject]) {
+    func updateTabBar(results: [String: AnyObject]) {
         self.categoryMetaData = results
         
         UIView.transitionWithView(tabBar,
@@ -488,8 +488,8 @@ class CategoryTabBarViewController: UITabBarController, UINavigationBarDelegate,
             
             // Our more info page needs to be configured
             if (tag == self.MORE_INFO) {
-                let cwvc = CategoryWebViewController.configureHtmlForWebview(self.categoryMetaData)
-                viewController.webView.loadHTMLString(cwvc, baseURL:nil)
+                let cwvc = CategoryWebViewController.configureHtmlForWebview(self.categoryMetaData!)
+                viewController.webView.loadHTMLString(cwvc!, baseURL: nil)
                 // Answers is a straight webview so no HTML manipulation is needed, just load the request
             } else {
                 let url = NSURL(string:(categoryMetaData!["solutions"] as! [String:AnyObject])["url"] as! String)
