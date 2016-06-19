@@ -208,11 +208,11 @@ class GuideViewController: UIViewController, UIScrollViewDelegate, UIAlertViewDe
         // view controllers are created lazily
         // in the meantime, load the array with placeholders which will be replaced on demand
         var controllers:[UIViewController] = []
-        for (var i = 0; i < numPages; i += 1) {
+        for i in 0 ..< numPages {
             controllers.append(dummyVC)
         }
         self.viewControllers = controllers
-        
+
         // a page is the width of the scroll view
         scrollView.pagingEnabled = true
         self.adjustScrollViewContentSizeForInterfaceOrientation(self.interfaceOrientation)
@@ -322,7 +322,7 @@ class GuideViewController: UIViewController, UIScrollViewDelegate, UIAlertViewDe
     let page = pageControl.currentPage
     
     // Unload the views+controllers which are no longer visible
-    for (var i = 2; i < pageControl.numberOfPages; i += 1) {
+    for i in 2 ..< pageControl.numberOfPages {
         let distance = fabs(CGFloat(page - i + 1))
         if (distance > 2.0) {
             let vc = viewControllers[i]
@@ -402,7 +402,7 @@ class GuideViewController: UIViewController, UIScrollViewDelegate, UIAlertViewDe
             self.showOrHidePageControlForInterface(toInterfaceOrientation)
 //        }
         
-        for (var i=0; i<viewControllers.count; i += 1) {
+        for i in 0 ..< viewControllers.count {
             let vc = viewControllers[i]
             
             if vc != dummyVC {

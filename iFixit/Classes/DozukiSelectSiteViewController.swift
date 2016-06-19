@@ -89,10 +89,9 @@ class DozukiSelectSiteViewController: UITableViewController, UIAlertViewDelegate
             hasMoreSites = count! == SITES_REQUEST_LIMIT
             
             // Insert these new rows at the bottom.
-            var paths:[NSIndexPath] = []
-            for (var i = 0; i < count; i += 1) {
-                
-                paths.append(NSIndexPath(forRow:(i + count!), inSection:0))
+            var paths: [NSIndexPath] = []
+            for i in 0 ..< count {
+                paths.append(NSIndexPath(forRow: (i + count), inSection: 0))
                 
                 // Check for priority sites and separate them off
                 let site = theSites![i]

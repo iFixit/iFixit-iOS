@@ -142,11 +142,9 @@ class GuideIntroViewController: UIViewController, UIWebViewDelegate {
             swipeLabel.hidden = true
         }
         
-        if (config.buttonColor != nil) {
-            self.navigationItem.rightBarButtonItem?.tintColor = config.buttonColor
-            self.navigationItem.leftBarButtonItem?.tintColor = config.buttonColor
-        }
-        
+        self.navigationItem.rightBarButtonItem?.tintColor = config.buttonColor
+        self.navigationItem.leftBarButtonItem?.tintColor = config.buttonColor
+
         let bgColor = UIColor.clearColor()
         
         if config.backgroundColor == UIColor.whiteColor() {

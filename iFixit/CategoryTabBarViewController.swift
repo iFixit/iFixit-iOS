@@ -390,14 +390,14 @@ class CategoryTabBarViewController: UITabBarController, UINavigationBarDelegate,
                     self.updateTabBarSelection()
                 }
             },
-            completion:nil
+            completion: nil
         )
     }
 
     // Force a tab bar selection on the first item that is enabled
     func updateTabBarSelection() {
         
-        for (var i = 0; i < self.tabBar.items!.count; i += 1) {
+        for i in 0 ..< self.tabBar.items!.count {
             // We only care about the first item that is enabled
             if self.tabBar.items![i].enabled {
                 self.tabBar(self.tabBar, didSelectItem:self.tabBar.items![i])

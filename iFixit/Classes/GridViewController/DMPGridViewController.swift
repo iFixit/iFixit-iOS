@@ -90,7 +90,7 @@ class DMPGridViewController : UITableViewController {
         
         var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier)
         if (cell == nil) {
-            cell = UITableViewCell(style:.Default, reuseIdentifier:CellIdentifier)
+            cell = UITableViewCell(style: .Default, reuseIdentifier:CellIdentifier)
             cell?.selectionStyle = .None
         } else {
             // Remove any existing DMPGridViewCells since we don't reuse them.
@@ -101,13 +101,13 @@ class DMPGridViewController : UITableViewController {
         
         // Configure the cell...
         var offset = 0
-        for (var i=0; i<indexPath.row; i += 1) {
+        for i in 0 ..< indexPath.row {
             offset += DMPGridViewCell.cellsPerRowForStyle(self.styleForRow(i))
         }
         
         var numberOfCells = delegate?.numberOfCellsForGridViewController(self)
         
-        for (var i=0; i < DMPGridViewCell.cellsPerRowForStyle(style); i += 1) {
+        for i in 0 ..< DMPGridViewCell.cellsPerRowForStyle(style) {
             if (offset + i >= numberOfCells) {
                 break
             }

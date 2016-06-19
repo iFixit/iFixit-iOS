@@ -55,10 +55,8 @@ class ListViewController: UINavigationController, UINavigationControllerDelegate
         } else {
             self.navigationBar.translucent = false
             
-            if (config.buttonColor != nil) {
-                self.navigationItem.leftBarButtonItem?.tintColor = config.buttonColor
-                self.navigationItem.rightBarButtonItem?.tintColor = config.buttonColor
-            }
+            self.navigationItem.leftBarButtonItem?.tintColor = config.buttonColor
+            self.navigationItem.rightBarButtonItem?.tintColor = config.buttonColor
         }
         
     }
