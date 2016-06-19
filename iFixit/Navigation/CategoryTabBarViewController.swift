@@ -484,17 +484,17 @@ class CategoryTabBarViewController: UITabBarController, UINavigationBarDelegate,
         // Don't reload the page if we are looking at the current category
         if category != viewController.category {
             // Empty the page
-            viewController.webView.stringByEvaluatingJavaScriptFromString("document.body.innerHTML = \"\";")
+            viewController.webView?.stringByEvaluatingJavaScriptFromString("document.body.innerHTML = \"\";")
             
             // Our more info page needs to be configured
             if (tag == self.MORE_INFO) {
                 let cwvc = CategoryWebViewController.configureHtmlForWebview(self.categoryMetaData!)
-                viewController.webView.loadHTMLString(cwvc!, baseURL: nil)
+                viewController.webView?.loadHTMLString(cwvc, baseURL: nil)
                 // Answers is a straight webview so no HTML manipulation is needed, just load the request
             } else {
                 let url = NSURL(string:(categoryMetaData!["solutions"] as! [String:AnyObject])["url"] as! String)
                 let request = NSURLRequest(URL: url!)
-                viewController.webView.loadRequest(request)
+                viewController.webView?.loadRequest(request)
             }
             
             viewController.category = category
@@ -504,7 +504,7 @@ class CategoryTabBarViewController: UITabBarController, UINavigationBarDelegate,
             // This is the most elegant solution sadly.
             if (!onTablet) {
                 let navItems = listViewController!.navigationBar.items!
-                viewController.categoryNavigationBar.items![1].title = navItems[navItems.count - 2].title
+                viewController.categoryNavigationBar!.items![1].title = navItems[navItems.count - 2].title
             }
         }
         

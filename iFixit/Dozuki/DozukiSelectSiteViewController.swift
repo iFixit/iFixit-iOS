@@ -90,8 +90,8 @@ class DozukiSelectSiteViewController: UITableViewController, UIAlertViewDelegate
             
             // Insert these new rows at the bottom.
             var paths: [NSIndexPath] = []
-            for i in 0 ..< count {
-                paths.append(NSIndexPath(forRow: (i + count), inSection: 0))
+            for i in 0 ..< count! {
+                paths.append(NSIndexPath(forRow: (i + count!), inSection: 0))
                 
                 // Check for priority sites and separate them off
                 let site = theSites![i]

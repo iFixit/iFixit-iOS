@@ -8,6 +8,7 @@
 
 import UIKit
 
+@objc
 protocol DMPGridViewDelegate: UITableViewDelegate {
 
     func gridViewController(gridViewController:DMPGridViewController, titleForCellAtIndex index:Int) -> String

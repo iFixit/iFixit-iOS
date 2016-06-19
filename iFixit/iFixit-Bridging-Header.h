@@ -6,7 +6,7 @@
 #import "ZBarSDK.h"
 #import "DetailGridViewControllerDelegate.h"
 #import "SDImageCache.h"
-#import "CategoryWebViewController.h"
+//#import "CategoryWebViewController.h"
 #import "UIButton+WebCache.h"
 #import "UIImageView+WebCache.h"
 #import "LoginViewControllerDelegate.h"

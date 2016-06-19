@@ -183,7 +183,7 @@ class GuideStepViewController : UIViewController, UIWebViewDelegate, SDWebImageM
         }
         
         // Notification to Fix rotation while playing video.
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"_moviePlayerWillExitFullscreen:", name:MPMoviePlayerWillExitFullscreenNotification, object:nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("_moviePlayerWillExitFullscreen:"), name:MPMoviePlayerWillExitFullscreenNotification, object:nil)
         
         // Notification to track when the movie player state changes (ie: Pause, Play)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"_moviePlayerPlaybackStateDidChange:", name:MPMoviePlayerPlaybackStateDidChangeNotification, object:nil)

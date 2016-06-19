@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 class CategoryWebViewController: UIViewController, UIWebViewDelegate {
     
@@ -50,18 +51,17 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
     }
 
     func resizeWebViewFrameForOrientation(orientation:UIInterfaceOrientation) {
-        let showsTabBar = appDelegate.showsTabBar()
+        let showsTabBar = appDelegate.showsTabBar
     
     // TODO: Remove these ternary for reader's sanity
-        if (UIDeviceOrientationIsLandscape(orientation)) {
-            self.webView.frame = CGRectMake(0, 64, 703, (showsTabBar) ? 663 : 706)
+        if UIInterfaceOrientationIsLandscape(orientation) {
+            self.webView?.frame = CGRectMake(0, 64, 703, (showsTabBar) ? 663 : 706)
         } else {
-            self.webView.frame = CGRectMake(0, 64, 770, (showsTabBar) ? 919 : 963)
+            self.webView?.frame = CGRectMake(0, 64, 770, (showsTabBar) ? 919 : 963)
         }
     }
     
-    func didReceiveMemoryWarning()
-    {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -69,17 +69,17 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
 
      func webViewDidStartLoad(webView: UIWebView ) {
         // Hide any previous loading items
-        self.loadingProgress.hide()
+        self.loadingProgress?.hide(true)
     
         // Hide the webview with a transition
-        UIView.transitionWithView(self.webView, duration: 0.3, options: UIViewAnimationOptionTransitionCrossDissolve, animations: {
+        UIView.transitionWithView(self.webView, duration: 0.3, options: .TransitionCrossDissolve, animations: {
             self.webView?.hidden = true
             }, completion: nil)
     
-        var yCoord : double = 0
+        var yCoord : Double = 0
         // Figure out the yCoord for the loading icon
         if IS_IPAD {
-            yCoord = UIDeviceOrientationIsPortrait(self.interfaceOrientation) ? 400 : 300
+            yCoord = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 400 : 300
         } else {
             yCoord = 160
         }
@@ -87,8 +87,8 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
         
         var frame = CGRectMake(self.view.frame.size.width/2.0 - 60, yCoord, 120.0, 120.0)
     
-        self.loadingProgress = MBProgressHUD(frame:frame)
-        self.loadingProgress.showInView(self.view)
+        self.loadingProgress = MBProgressHUD(frame: frame)
+        self.loadingProgress?.show(true)
     }
 
     func webViewDidFinishLoad(webView: UIWebView ) {
@@ -100,7 +100,7 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
                 if self.webViewType.isEqualToString("answers") {
                     self.injectCSSIntoWebview();
                 }
-            }, completion:(animation:BOOL){
+            }, completion:(animation: Bool){
                 self.webView.hidden = false
             })
     }
@@ -142,26 +142,13 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
             }
         })
     }
-    
-    func resizeWebViewFrameForOrientation(orientation:UIInterfaceOrientation) {
-        
-        let showsTabBar = appDelegate.showsTabBar()
 
-        
-        // TODO: Remove these ternary for reader's sanity
-        if (UIDeviceOrientationIsLandscape(orientation)) {
-            self.webView.frame = CGRectMake(0, 64, 703, (showsTabBar) ? 663 : 706)
-        } else {
-            self.webView.frame = CGRectMake(0, 64, 770, (showsTabBar) ? 919 : 963)
-        }
-    }
-    
     func configureNavigationBar() {
         self.categoryNavigationBar.hidden = false
         self.categoryNavigationBar.translucent = false
     
-        var backButtonItem = UINavigationItem.initWithTitle("")
-        var titleItem = UINavigationItem.initWithTitle("")
+        var backButtonItem = UINavigationItem(title: "")
+        var titleItem = UINavigationItem(title: "")
         var favoritesButtonItem = self.categoryNavigationBar.items[0]
     
     // Hack to get a back button, title view, and a right bar button item on a navigation bar without having to use a navigation controller
@@ -193,6 +180,5 @@ class CategoryWebViewController: UIViewController, UIWebViewDelegate {
     
         return header+image+content+footer
     }
-
 
 }

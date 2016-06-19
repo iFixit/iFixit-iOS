@@ -6,6 +6,8 @@
 //  Copyright (c) 2011 iFixit. All rights reserved.
 //
 
+import MBProgressHUD
+
 class DetailGridViewController : DMPGridViewController, DMPGridViewDelegate, UIAlertViewDelegate {
 
     var category: String? {
@@ -19,7 +21,7 @@ class DetailGridViewController : DMPGridViewController, DMPGridViewDelegate, UIA
         }
     }
     var guides: [Guide]?
-    var loading: WBProgressHUD!
+    var loading: MBProgressHUD!
     var orientationOverride: UIInterfaceOrientation = .Unknown
 
     var noGuidesImage: UIImageView!
@@ -52,14 +54,14 @@ class DetailGridViewController : DMPGridViewController, DMPGridViewDelegate, UIA
 
     func showLoading() {
         if loading.superview != nil {
-            loading.showInView(self.view)
+            loading.show(true)
             return
         }
         
         let frame = CGRectMake(self.view.frame.size.width / 2.0 - 60, 260.0, 120.0, 120.0)
-        self.loading = WBProgressHUD(frame:frame)
+        self.loading = MBProgressHUD(frame:frame)
         self.loading.autoresizingMask = [.FlexibleTopMargin, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleBottomMargin]
-        loading.showInView(self.view)
+        loading.show(true)
     }
 
     func loadCategory() {
@@ -92,7 +94,7 @@ class DetailGridViewController : DMPGridViewController, DMPGridViewDelegate, UIA
         self.guides = data?["guides"] as? [Guide]    // Check if NSNull
         
         if (guides == nil) {
-            self.loading.hide()
+            self.loading.hide(true)
             let alert = UIAlertView(title:NSLocalizedString("Could not load guide list.", comment:""),
                                     message:NSLocalizedString("Please check your internet connection and try again.", comment:""),
                                              delegate:self,
@@ -104,7 +106,7 @@ class DetailGridViewController : DMPGridViewController, DMPGridViewDelegate, UIA
         else if guides?.count == 0 {
             gridDelegate?.detailGrid(self, gotGuideCount:0)
             
-            self.loading.hide()
+            self.loading.hide(true)
             return
         }
         
@@ -115,7 +117,7 @@ class DetailGridViewController : DMPGridViewController, DMPGridViewDelegate, UIA
                            options:.TransitionCrossDissolve,
                         animations:{
                             self.tableView.reloadData()
-                            self.loading.hide()
+                            self.loading.hide(true)
                         },
                         completion:nil)
     }

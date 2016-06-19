@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class LoginViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, LoginViewControllerDelegate {
 
     var delegate: LoginViewControllerDelegate?
     var message:String!
-    var loading: WBProgressHUD?
+    var loading: MBProgressHUD?
     var showRegister = false
     var modal = false
 
