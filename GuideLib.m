@@ -27,7 +27,7 @@
         vc = [[GuideViewController alloc] initWithGuide:offlineGuide];
         vc.offlineGuide = YES;
         // No offline guide? Just use the guideid and retrieve info from API
-    } else if (!internetStatus == NotReachable) {
+    } else if (!(internetStatus == NotReachable)) {
         vc = [[GuideViewController alloc] initWithGuideid:iGuideid];
     } else {
         // No internet access or guides, let's display a connection alert and bail
