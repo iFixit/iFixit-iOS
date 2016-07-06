@@ -25,7 +25,7 @@
 #import "CategoryTabBarViewController.h"
 #import "iFixitSplashScreenViewController.h"
 #import "MGSplitViewController.h"
-#import <Crashlytics/Crashlytics.h>
+//#import <Crashlytics/Crashlytics.h>
 
 static const NSInteger kGANDispatchPeriodSec = 10;
 
@@ -117,7 +117,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         firstLoad = NO;
     }
     
-    [Crashlytics startWithAPIKey:@"25b29ddac9745140e41d9a00281ea38965b44f4c"];
+    //[Crashlytics startWithAPIKey:@"25b29ddac9745140e41d9a00281ea38965b44f4c"];
     
     return YES;
 }
