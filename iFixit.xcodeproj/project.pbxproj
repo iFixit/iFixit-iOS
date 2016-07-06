@@ -36,7 +36,6 @@
 		9C47FB3A17F623D40074CEBE /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2B17F623D40074CEBE /* icon144.png */; };
 		9C47FB3B17F623D40074CEBE /* icon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2C17F623D40074CEBE /* icon152.png */; };
 		9C47FB3C17F623D40074CEBE /* icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FB2D17F623D40074CEBE /* icon1024.png */; };
-		9C67A6C417E7A9040079C099 /* iFixit-App-Id.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */; };
 		9C6E961319AE8B9A00FE847D /* FA-Featured-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961119AE8B9A00FE847D /* FA-Featured-2x.png */; };
 		9C6E961419AE8B9A00FE847D /* FA-Featured.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961219AE8B9A00FE847D /* FA-Featured.png */; };
 		9C6E961719AE8BA700FE847D /* FA-Repair-Manuals-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E961519AE8BA700FE847D /* FA-Repair-Manuals-2x.png */; };
@@ -313,7 +312,6 @@
 		9C47FB2B17F623D40074CEBE /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		9C47FB2C17F623D40074CEBE /* icon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon152.png; sourceTree = "<group>"; };
 		9C47FB2D17F623D40074CEBE /* icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1024.png; sourceTree = "<group>"; };
-		9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-App-Id.plist"; sourceTree = "<group>"; };
 		9C6E961119AE8B9A00FE847D /* FA-Featured-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Featured-2x.png"; sourceTree = "<group>"; };
 		9C6E961219AE8B9A00FE847D /* FA-Featured.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Featured.png"; sourceTree = "<group>"; };
 		9C6E961519AE8BA700FE847D /* FA-Repair-Manuals-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FA-Repair-Manuals-2x.png"; sourceTree = "<group>"; };
@@ -728,7 +726,6 @@
 				9C47FB2B17F623D40074CEBE /* icon144.png */,
 				9C47FB2C17F623D40074CEBE /* icon152.png */,
 				9C47FB2D17F623D40074CEBE /* icon1024.png */,
-				9C67A6C317E7A9040079C099 /* iFixit-App-Id.plist */,
 				AB26882017CD5AA6004AC6ED /* OpenSans-Bold.ttf */,
 				AB26882117CD5AA6004AC6ED /* OpenSans-Regular.ttf */,
 				AB5C74DB17A766E2003AD63B /* Default-Landscape@2x~ipad.png */,
@@ -1532,7 +1529,6 @@
 				AB5C74E217A766E2003AD63B /* Default-Portrait~ipad.png in Resources */,
 				AB26882217CD5AA6004AC6ED /* OpenSans-Bold.ttf in Resources */,
 				AB26882317CD5AA6004AC6ED /* OpenSans-Regular.ttf in Resources */,
-				9C67A6C417E7A9040079C099 /* iFixit-App-Id.plist in Resources */,
 				9C6E961719AE8BA700FE847D /* FA-Repair-Manuals-2x.png in Resources */,
 				9CD8330617D7FE3C007F32F4 /* mjtrim_logo_transparent.png in Resources */,
 				9CD8330717D7FE3C007F32F4 /* mjtrim_logo_transparent@2x.png in Resources */,
@@ -1698,9 +1694,8 @@
 			baseConfigurationReference = 043B26711DADB63E489C70FE /* Pods-iFixit.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1724,6 +1719,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.ifixit;
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1737,9 +1733,8 @@
 			baseConfigurationReference = 2F76ECCE2782568FE4742CC0 /* Pods-iFixit.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: iFixit (G5Y57M9E28)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: iFixit (G5Y57M9E28)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1761,6 +1756,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.ifixit;
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

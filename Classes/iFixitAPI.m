@@ -34,8 +34,7 @@ static int volatile openConnections = 0;
 
 - (void)loadAppId {
     // look for the iFixit app id by default
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"iFixit-App-Id" ofType: @"plist"];
-    NSString *appId = [NSDictionary dictionaryWithContentsOfFile:plistPath][@"ifixit"];
+    NSString *appId = @"com.dozuki.ifixit";
     
     self.appId = appId ? appId : @"";
 }
