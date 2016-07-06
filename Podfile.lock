@@ -1,0 +1,20 @@
+PODS:
+  - GoogleAnalytics-iOS-SDK (3.12):
+    - GoogleAnalytics-iOS-SDK/Core (= 3.12)
+  - GoogleAnalytics-iOS-SDK/Core (3.12)
+  - Reachability (3.2)
+  - ZBarSDK (1.3.1)
+
+DEPENDENCIES:
+  - GoogleAnalytics-iOS-SDK
+  - Reachability
+  - ZBarSDK
+
+SPEC CHECKSUMS:
+  GoogleAnalytics-iOS-SDK: 13241762fa4aea845eb75bef6c0da3427a26e7b3
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
+
+PODFILE CHECKSUM: fbcc294abd23d147342646cc71404f635231ac68
+
+COCOAPODS: 1.0.1
