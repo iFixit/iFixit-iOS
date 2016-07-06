@@ -14,7 +14,7 @@
 
 @end
 
-BOOL initialLoad;
+BOOL initialStartup;
 
 @implementation iFixitSplashScreenViewController
 
@@ -23,7 +23,7 @@ BOOL initialLoad;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        initialLoad = YES;
+        initialStartup = YES;
     }
     return self;
 }
@@ -37,7 +37,7 @@ BOOL initialLoad;
 
 - (void)viewDidAppear:(BOOL)animated {
     [self presentStartRepairButton];
-    initialLoad = NO;
+    initialStartup = NO;
 }
 
 - (void)presentStartRepairButton {
@@ -91,7 +91,7 @@ BOOL initialLoad;
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     
-    if (initialLoad) {
+    if (initialStartup) {
         [self reflowImages:toInterfaceOrientation];
     } else {
         [UIView transitionWithView:self.view
