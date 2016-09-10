@@ -25,6 +25,7 @@
 #import "CategoryTabBarViewController.h"
 #import "iFixitSplashScreenViewController.h"
 #import "MGSplitViewController.h"
+#import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
 static const NSInteger kGANDispatchPeriodSec = 10;
@@ -116,8 +117,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         
         firstLoad = NO;
     }
-    
-    [Crashlytics startWithAPIKey:@"25b29ddac9745140e41d9a00281ea38965b44f4c"];
+    [Fabric with:@[[Crashlytics class]]];
     
     return YES;
 }
@@ -145,7 +145,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 - (void)showDozukiSplash {
     // Make sure we're not pointing at a site requiring setup.
-    [[Config currentConfig] setSite:ConfigIFixit];
+    [[Config currentConfig] setSite:ConfigDozuki];
     
     // Reset the saved choice.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
