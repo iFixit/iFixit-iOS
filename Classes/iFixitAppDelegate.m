@@ -30,6 +30,28 @@
 
 static const NSInteger kGANDispatchPeriodSec = 10;
 
+@implementation UINavigationController (overrides)
+
+- (BOOL)shouldAutorotate
+
+{
+     
+     id currentViewController = self.topViewController;
+     
+     
+     
+     if ([currentViewController isKindOfClass:[GuideViewController class]])
+          
+          return NO;
+     
+     
+     
+     return YES;
+     
+}
+
+@end
+
 @implementation UISplitViewController (SplitViewRotate)
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -84,8 +106,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 // Override point for customization after app launch.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     /* Configure. */
-    [Config currentConfig].dozuki = NO;
-    [Config currentConfig].site = ConfigIFixit;
+    [Config currentConfig].dozuki = YES;
+    [Config currentConfig].site = ConfigDozuki;
     
     /* Track. */
     [self setupAnalytics];

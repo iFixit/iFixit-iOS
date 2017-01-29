@@ -30,7 +30,7 @@
 // Session management
 - (void)loginWithSessionId:(NSString *)sessionId forObject:(id)object withSelector:(SEL)selector;
 - (void)loginWithLogin:(NSString *)login andPassword:(NSString *)password forObject:(id)object withSelector:(SEL)selector;
-- (void)registerWithLogin:(NSString *)login andPassword:(NSString *)password andName:(NSString *)name forObject:(id)object withSelector:(SEL)selector;
+- (void)registerWithLogin:(NSString *)login andPassword:(NSString *)password andName:(NSString *)name andUsername:(NSString *)username forObject:(id)object withSelector:(SEL)selector;
 - (void)logout;
 
 // Authenticated

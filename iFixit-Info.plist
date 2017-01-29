@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
-	<string>iFixit</string>
+	<string>Dozuki</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
@@ -26,7 +26,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.1</string>
+	<string>57</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -35,15 +35,15 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>CFBundleURLName</key>
-			<string>com.ifixit.ifixit</string>
+			<string>com.dozuki.dozuki</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>ifixit</string>
+				<string>dozuki</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>20160909.1</string>
+	<string>1.2.0</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -67,8 +67,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Take images and send to Dozuki.</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Images can be saved to your device.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Ubuntu-Italic.ttf</string>
@@ -88,6 +92,8 @@
 	<array>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

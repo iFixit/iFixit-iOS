@@ -139,7 +139,7 @@ static Config *currentConfig = nil;
             break;
         /*EAOOptions*/
         default:
-            self.host = nil;
+            self.host = @"www.dozuki.com";
             self.baseURL = nil;
             answersEnabled = NO;
             collectionsEnabled = NO;

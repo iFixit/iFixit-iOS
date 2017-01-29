@@ -138,6 +138,7 @@
 		C10F2712120CE5900027A28D /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2711120CE5900027A28D /* Guide.m */; };
 		C10F271A120CE6980027A28D /* iFixitAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2719120CE6980027A28D /* iFixitAPI.m */; };
 		C115FC2D12174FA1005D0B77 /* GuideImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */; };
+		C11C0C9D1E00D8BF00435905 /* iFixit-App-Id.plist in Resources */ = {isa = PBXBuildFile; fileRef = C11C0C9C1E00D8BF00435905 /* iFixit-App-Id.plist */; };
 		C184D4C61210CDB900953C39 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D4C41210CDB900953C39 /* GuideViewController.m */; };
 		C184D4C71210CDB900953C39 /* GuideView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D4C51210CDB900953C39 /* GuideView~ipad.xib */; };
 		C184D5381210D8CD00953C39 /* GuideIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D5361210D8CD00953C39 /* GuideIntroViewController.m */; };
@@ -460,6 +461,7 @@
 		C10F2719120CE6980027A28D /* iFixitAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iFixitAPI.m; sourceTree = "<group>"; };
 		C115FC2A12174FA1005D0B77 /* GuideImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideImageViewController.h; sourceTree = "<group>"; };
 		C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideImageViewController.m; sourceTree = "<group>"; };
+		C11C0C9C1E00D8BF00435905 /* iFixit-App-Id.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-App-Id.plist"; sourceTree = "<group>"; };
 		C184D4C31210CDB900953C39 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		C184D4C41210CDB900953C39 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		C184D4C51210CDB900953C39 /* GuideView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideView~ipad.xib"; sourceTree = "<group>"; };
@@ -731,6 +733,7 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				704C0F241F92FB830DB883DE /* Pods */,
 			);
+			indentWidth = 5;
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
@@ -770,6 +773,7 @@
 				28A0AAE50D9B0CCF005BE974 /* iFixit_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				C10E3EB1120E369E008CE3AE /* Entitlements.plist */,
+				C11C0C9C1E00D8BF00435905 /* iFixit-App-Id.plist */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1371,7 +1375,7 @@
 				LastUpgradeCheck = 0730;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 2NJB457542;
+						DevelopmentTeam = A7FJ4U8N9U;
 					};
 				};
 			};
@@ -1523,6 +1527,7 @@
 				ABC63D5516CF16140041A995 /* logo_zeal@2x.png in Resources */,
 				ABC63D5616CF16140041A995 /* logo_zeal.png in Resources */,
 				ABE472431746E0610002F3D6 /* Localizable.strings in Resources */,
+				C11C0C9D1E00D8BF00435905 /* iFixit-App-Id.plist in Resources */,
 				ABDB16C51756AE2D00053573 /* CategoryWebViewController.xib in Resources */,
 				9CD0B39D182779EF0023EB5F /* qr-icon.png in Resources */,
 				9C1EB8131B703BE200CE11F5 /* oscaro_logo_transparent.png in Resources */,
@@ -1750,11 +1755,11 @@
 			baseConfigurationReference = 73099B6C2509F4875C8752E9 /* Pods-iFixit.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = A7FJ4U8N9U;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1781,7 +1786,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ifixit.ifixit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.dozuki;
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1795,11 +1800,11 @@
 			baseConfigurationReference = E973B5200D15EE1DF52AB43D /* Pods-iFixit.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = A7FJ4U8N9U;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1824,7 +1829,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ifixit.ifixit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.dozuki;
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1924,11 +1929,11 @@
 			baseConfigurationReference = C522573AE427EC8CC27CCF8C /* Pods-iFixit.ad-hoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = A7FJ4U8N9U;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1955,7 +1960,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ifixit.ifixit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.dozuki;
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

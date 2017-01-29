@@ -23,7 +23,7 @@
 @implementation LoginViewController
 
 @synthesize delegate, message, loading, showRegister, modal;
-@synthesize emailField, passwordField, passwordVerifyField, fullNameField;
+@synthesize emailField, passwordField, passwordVerifyField, fullNameField, usernameField;
 @synthesize loginButton, registerButton, cancelButton, googleButton, yahooButton;
 
 - (id)init {
@@ -37,6 +37,7 @@
         self.passwordField = nil;
         self.passwordVerifyField = nil;
         self.fullNameField = nil;
+        self.usernameField = nil;
         self.loginButton = nil;
         self.registerButton = nil;
         self.cancelButton = nil;
@@ -59,7 +60,7 @@
 
 - (void)showMessage {
     if ([emailField isFirstResponder] || [passwordField isFirstResponder] ||
-        [passwordVerifyField isFirstResponder] || [fullNameField isFirstResponder])
+        [passwordVerifyField isFirstResponder] || [fullNameField isFirstResponder] || [usernameField isFirstResponder])
         return;
 
     [UIView beginAnimations:@"repositionForm" context:nil];
@@ -81,6 +82,9 @@
     }
     else if (showRegister && (!fullNameField.text || [fullNameField.text isEqual:@""])) {
         [fullNameField becomeFirstResponder];
+    }
+    else if (showRegister && (!usernameField.text || [usernameField.text isEqual:@""])) {
+        [usernameField becomeFirstResponder];
     }
     else if (showRegister) {
         [self sendRegister];
@@ -126,6 +130,7 @@
     [passwordField release];
     [passwordVerifyField release];
     [fullNameField release];
+    [usernameField release];
 
     [loginButton release];
     [registerButton release];
@@ -316,7 +321,8 @@
 
     NSArray *indexPaths = [NSArray arrayWithObjects:
                            [NSIndexPath indexPathForRow:2 inSection:0],
-                           [NSIndexPath indexPathForRow:3 inSection:0], nil];
+                           [NSIndexPath indexPathForRow:3 inSection:0],
+                           [NSIndexPath indexPathForRow:4 inSection:0], nil];
 
     if (showRegister) {
         [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
@@ -450,6 +456,7 @@
     self.passwordField = nil;
     self.passwordVerifyField = nil;
     self.fullNameField = nil;
+    self.usernameField = nil;
 
     self.loginButton = nil;
     self.registerButton = nil;
@@ -474,7 +481,7 @@
         return 0;
 
     // Return the number of rows in the section.
-    return showRegister ? 4 : 2;
+    return showRegister ? 5 : 2;
 }
 
 - (UITextField *)inputFieldForRow:(NSInteger)row {
@@ -483,6 +490,7 @@
     inputField.font = [UIFont systemFontOfSize:16.0];
     inputField.adjustsFontSizeToFitWidth = YES;
     inputField.textColor = [UIColor darkGrayColor];
+    inputField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     CGRect rect = CGRectMake(120, 12, 175, 30);
 
     if (row == 0) {
@@ -538,9 +546,21 @@
         inputField.keyboardType = UIKeyboardTypeDefault;
         inputField.returnKeyType = UIReturnKeyDone;
     }
+    else if (row == 4) {
+         if (usernameField) {
+              [inputField release];
+              return usernameField;
+         }
+         
+         self.usernameField = inputField;
+         inputField.frame = rect;
+         inputField.placeholder = @"johnny1990";
+         inputField.keyboardType = UIKeyboardTypeDefault;
+         inputField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+         inputField.returnKeyType = UIReturnKeyDone;
+    }
     inputField.backgroundColor = [UIColor clearColor];
     inputField.autocorrectionType = UITextAutocorrectionTypeNo;
-    inputField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     inputField.textAlignment = UITextAlignmentLeft;
     inputField.delegate = self;
     inputField.tag = 0;
@@ -568,7 +588,9 @@
     else if (indexPath.row == 2)
         cell.textLabel.text = NSLocalizedString(@"Password", nil);
     else if (indexPath.row == 3)
-        cell.textLabel.text = NSLocalizedString(@"Your Name", nil);
+         cell.textLabel.text = NSLocalizedString(@"Your Name", nil);
+    else if (indexPath.row == 4)
+         cell.textLabel.text = NSLocalizedString(@"Username", nil);
 
     // Add the text field
     for (UIView *v in cell.subviews) {
@@ -608,7 +630,7 @@
 }
 
 - (void)sendRegister {
-    if (!emailField.text || !passwordField.text || !passwordVerifyField.text || !fullNameField.text) {
+    if (!emailField.text || !passwordField.text || !passwordVerifyField.text || !fullNameField.text || !usernameField.text) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"More information needed", nil)
                                                         message:NSLocalizedString(@"Please fill out all the information.", nil)
                                                        delegate:nil
@@ -631,6 +653,7 @@
         [[iFixitAPI sharedInstance] registerWithLogin:emailField.text
                                           andPassword:passwordField.text
                                               andName:fullNameField.text
+                                          andUsername:usernameField.text
                                             forObject:self
                                          withSelector:@selector(loginResults:)];
     }
@@ -645,6 +668,7 @@
     }
     
     if (![results objectForKey:@"authToken"]) {
+         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
                                                         message:results[@"message"]
                                                        delegate:nil

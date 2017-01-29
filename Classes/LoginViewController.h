@@ -22,6 +22,7 @@
 @property (nonatomic, retain) UITextField *passwordField;
 @property (nonatomic, retain) UITextField *passwordVerifyField;
 @property (nonatomic, retain) UITextField *fullNameField;
+@property (nonatomic, retain) UITextField *usernameField;
 @property (nonatomic, retain) ListViewController *listViewController;
 
 @property (nonatomic, retain) UIButton *loginButton;

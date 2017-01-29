@@ -168,7 +168,7 @@
     else {        
         // Landscape
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-            frame = CGRectMake(0, 0, screenSize.height, screenSize.width - 44);
+            frame = CGRectMake(0, 0, screenSize.width, screenSize.height - 44);
         }
         // Portrait
         else {
@@ -405,11 +405,13 @@
         UIViewController *vc = [viewControllers objectAtIndex:i];
         
         if ((NSNull *)vc != [NSNull null]) {
-            CGRect frame = scrollView.frame;
+      /*      CGRect frame = scrollView.frame;
             frame.origin.x = frame.size.width * i;
             frame.origin.y = 0;
-            
-            vc.view.frame = frame;
+            CGSize screenSize = [UIScreen mainScreen].bounds.size;
+            frame.size.width = screenSize.height - 44;
+            frame.size.height = screenSize.width;
+            vc.view.frame = frame;*/
             [vc willRotateToInterfaceOrientation:toInterfaceOrientation duration:0];
         }
     }
@@ -429,6 +431,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [self showOrHidePageControlForInterface:self.interfaceOrientation];
+    [UIViewController attemptRotationToDeviceOrientation];
+
 }
 
 - (void)dealloc {

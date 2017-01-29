@@ -35,7 +35,7 @@ static int volatile openConnections = 0;
 - (void)loadAppId {
     // look for the iFixit app id by default
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"iFixit-App-Id" ofType: @"plist"];
-    NSString *appId = [NSDictionary dictionaryWithContentsOfFile:plistPath][@"ifixit"];
+    NSString *appId = [NSDictionary dictionaryWithContentsOfFile:plistPath][@"dozuki"];
     
     self.appId = appId ? appId : @"";
 }
@@ -379,9 +379,9 @@ static int volatile openConnections = 0;
     [request startAsynchronous];
 }
 
-- (void)registerWithLogin:(NSString *)login andPassword:(NSString *)password andName:(NSString *)name forObject:(id)object withSelector:(SEL)selector {
+- (void)registerWithLogin:(NSString *)login andPassword:(NSString *)password andName:(NSString *)name andUsername:(NSString *)username forObject:(id)object withSelector:(SEL)selector {
     NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/users", [Config currentConfig].host];
-    NSString *json = [@{@"email" : login, @"username" : name, @"password" : password} JSONRepresentation];
+     NSString *json = [@{@"email" : login, @"username" : name, @"password" : password, @"unique_username" : username} JSONRepresentation];
 
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     request.userAgentString = self.userAgent;
@@ -403,7 +403,15 @@ static int volatile openConnections = 0;
         [object performSelector:selector withObject:results];
     }];
     [request setFailedBlock:^{
-        NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
+        NSString *responseString = [request responseString];
+         if (responseString != nil) {
+              NSLog(@"ResponseString:%@",responseString);
+              NSMutableDictionary *results = [[request responseString] JSONValue];
+              responseString = [results valueForKey:@"message"];
+         } else {
+              responseString = @"Server error.";
+         }
+        NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", responseString, @"message", nil];
         [object performSelector:selector withObject:results];
     }];
 
