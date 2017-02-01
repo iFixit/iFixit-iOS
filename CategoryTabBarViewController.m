@@ -389,7 +389,7 @@ BOOL onTablet, initialLoad, showTabBar;
 
 // Resize our fonts to avoid edge case on iOS 7 when resizing tabbar
 - (void)configureFontSizeForTabBarItems {
-    NSDictionary *textAttributes = @{UITextAttributeFont : [UIFont fontWithName:@"OpenSans" size:12.0]};
+    NSDictionary *textAttributes = @{UITextAttributeFont : [UIFont fontWithName:@"MuseoSans-500" size:12.0]};
 
     for (id viewController in self.tabBarViewControllers) {
         [[viewController tabBarItem] setTitleTextAttributes:textAttributes forState:UIControlStateNormal];

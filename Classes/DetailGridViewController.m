@@ -273,7 +273,7 @@
     l.textAlignment = UITextAlignmentCenter;
     l.lineBreakMode = UILineBreakModeWordWrap;
     l.backgroundColor = [UIColor clearColor];
-    l.font = [UIFont fontWithName:@"OpenSans-Bold" size:17.0];
+    l.font = [UIFont fontWithName:@"MuseoSans-500" size:17.0];
     l.textColor = [Config currentConfig].textColor;
     l.alpha = 0.8;
     l.shadowColor = [UIColor darkGrayColor];

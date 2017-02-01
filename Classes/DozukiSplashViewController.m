@@ -49,6 +49,10 @@
      self.getStarted.layer.cornerRadius = 8.0;
      self.dozukiSlogan.hidden = YES;
      self.dozukiDescription.hidden = YES;
+     UIFont *font = [UIFont fontWithName:@"MuseoSans-500" size:17.0f];
+     self.getStarted.font = font;
+
+     
 }
 
 - (void)viewDidLoad {

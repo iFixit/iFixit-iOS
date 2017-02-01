@@ -139,6 +139,17 @@
 		C10F271A120CE6980027A28D /* iFixitAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2719120CE6980027A28D /* iFixitAPI.m */; };
 		C115FC2D12174FA1005D0B77 /* GuideImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */; };
 		C11C0C9D1E00D8BF00435905 /* iFixit-App-Id.plist in Resources */ = {isa = PBXBuildFile; fileRef = C11C0C9C1E00D8BF00435905 /* iFixit-App-Id.plist */; };
+		C14B69F91E41549500C1BDBA /* d-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C14B69F81E41549500C1BDBA /* d-logo.png */; };
+		C14B6A041E41565F00C1BDBA /* MuseoSans-900Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B69FA1E41565F00C1BDBA /* MuseoSans-900Italic.otf */; };
+		C14B6A051E41565F00C1BDBA /* MuseoSans-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B69FB1E41565F00C1BDBA /* MuseoSans-900.otf */; };
+		C14B6A061E41565F00C1BDBA /* MuseoSans-700Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B69FC1E41565F00C1BDBA /* MuseoSans-700Italic.otf */; };
+		C14B6A071E41565F00C1BDBA /* MuseoSans-700.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B69FD1E41565F00C1BDBA /* MuseoSans-700.otf */; };
+		C14B6A081E41565F00C1BDBA /* MuseoSans-500Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B69FE1E41565F00C1BDBA /* MuseoSans-500Italic.otf */; };
+		C14B6A091E41565F00C1BDBA /* MuseoSans-500.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B69FF1E41565F00C1BDBA /* MuseoSans-500.otf */; };
+		C14B6A0A1E41565F00C1BDBA /* MuseoSans-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B6A001E41565F00C1BDBA /* MuseoSans-300.otf */; };
+		C14B6A0B1E41565F00C1BDBA /* MuseoSans-100Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B6A011E41565F00C1BDBA /* MuseoSans-100Italic.otf */; };
+		C14B6A0C1E41565F00C1BDBA /* MuseoSans-100.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B6A021E41565F00C1BDBA /* MuseoSans-100.otf */; };
+		C14B6A0D1E41565F00C1BDBA /* MuseoSans-300Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B6A031E41565F00C1BDBA /* MuseoSans-300Italic.otf */; };
 		C184D4C61210CDB900953C39 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D4C41210CDB900953C39 /* GuideViewController.m */; };
 		C184D4C71210CDB900953C39 /* GuideView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D4C51210CDB900953C39 /* GuideView~ipad.xib */; };
 		C184D5381210D8CD00953C39 /* GuideIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D5361210D8CD00953C39 /* GuideIntroViewController.m */; };
@@ -462,6 +473,17 @@
 		C115FC2A12174FA1005D0B77 /* GuideImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideImageViewController.h; sourceTree = "<group>"; };
 		C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideImageViewController.m; sourceTree = "<group>"; };
 		C11C0C9C1E00D8BF00435905 /* iFixit-App-Id.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-App-Id.plist"; sourceTree = "<group>"; };
+		C14B69F81E41549500C1BDBA /* d-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "d-logo.png"; path = "Graphics/d-logo.png"; sourceTree = "<group>"; };
+		C14B69FA1E41565F00C1BDBA /* MuseoSans-900Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-900Italic.otf"; sourceTree = "<group>"; };
+		C14B69FB1E41565F00C1BDBA /* MuseoSans-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-900.otf"; sourceTree = "<group>"; };
+		C14B69FC1E41565F00C1BDBA /* MuseoSans-700Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-700Italic.otf"; sourceTree = "<group>"; };
+		C14B69FD1E41565F00C1BDBA /* MuseoSans-700.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-700.otf"; sourceTree = "<group>"; };
+		C14B69FE1E41565F00C1BDBA /* MuseoSans-500Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-500Italic.otf"; sourceTree = "<group>"; };
+		C14B69FF1E41565F00C1BDBA /* MuseoSans-500.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-500.otf"; sourceTree = "<group>"; };
+		C14B6A001E41565F00C1BDBA /* MuseoSans-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-300.otf"; sourceTree = "<group>"; };
+		C14B6A011E41565F00C1BDBA /* MuseoSans-100Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-100Italic.otf"; sourceTree = "<group>"; };
+		C14B6A021E41565F00C1BDBA /* MuseoSans-100.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-100.otf"; sourceTree = "<group>"; };
+		C14B6A031E41565F00C1BDBA /* MuseoSans-300Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-300Italic.otf"; sourceTree = "<group>"; };
 		C184D4C31210CDB900953C39 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		C184D4C41210CDB900953C39 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		C184D4C51210CDB900953C39 /* GuideView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideView~ipad.xib"; sourceTree = "<group>"; };
@@ -740,6 +762,16 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C14B69FA1E41565F00C1BDBA /* MuseoSans-900Italic.otf */,
+				C14B69FB1E41565F00C1BDBA /* MuseoSans-900.otf */,
+				C14B69FC1E41565F00C1BDBA /* MuseoSans-700Italic.otf */,
+				C14B69FD1E41565F00C1BDBA /* MuseoSans-700.otf */,
+				C14B69FE1E41565F00C1BDBA /* MuseoSans-500Italic.otf */,
+				C14B69FF1E41565F00C1BDBA /* MuseoSans-500.otf */,
+				C14B6A001E41565F00C1BDBA /* MuseoSans-300.otf */,
+				C14B6A011E41565F00C1BDBA /* MuseoSans-100Italic.otf */,
+				C14B6A021E41565F00C1BDBA /* MuseoSans-100.otf */,
+				C14B6A031E41565F00C1BDBA /* MuseoSans-300Italic.otf */,
 				9C47FB1F17F623D40074CEBE /* icon29.png */,
 				9C47FB2017F623D40074CEBE /* icon40.png */,
 				9C47FB2117F623D40074CEBE /* icon50.png */,
@@ -935,6 +967,7 @@
 		C184D4E91210D3B400953C39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C14B69F81E41549500C1BDBA /* d-logo.png */,
 				9C1EB80F1B703BE200CE11F5 /* detailViewTextOscaro.png */,
 				9C1EB8101B703BE200CE11F5 /* oscaro_logo_transparent.png */,
 				9C1EB8111B703BE200CE11F5 /* titleImageOscaro.png */,
@@ -1421,6 +1454,7 @@
 				DA61C53513380E4C000028C3 /* logo_make_black.png in Resources */,
 				DA61C53613380E4C000028C3 /* logo_make.png in Resources */,
 				DA61C53913380E4C000028C3 /* splash_header_make_black.png in Resources */,
+				C14B6A0A1E41565F00C1BDBA /* MuseoSans-300.otf in Resources */,
 				DA61C53A13380E4C000028C3 /* splash_header_make.png in Resources */,
 				C1F692521D638C9F00906B2D /* Images.xcassets in Resources */,
 				DA61C53B13380E4C000028C3 /* splash_header.png in Resources */,
@@ -1437,8 +1471,10 @@
 				DACE44731353CE3700F78360 /* make_intro.css in Resources */,
 				9CF8AB2F1A44D2400083B725 /* comcast_logo_transparent.png in Resources */,
 				DACE44741353CE3700F78360 /* make_step.css in Resources */,
+				C14B6A061E41565F00C1BDBA /* MuseoSans-700Italic.otf in Resources */,
 				DAA7508D1368DD71002AA546 /* splashButton.png in Resources */,
 				DAA7508F1368DDA7002AA546 /* splashButton@2x.png in Resources */,
+				C14B6A091E41565F00C1BDBA /* MuseoSans-500.otf in Resources */,
 				DAA750911368F45D002AA546 /* titleImage_make.png in Resources */,
 				DAB9344413722AEB00B6AA9A /* login.png in Resources */,
 				DAB9344613722FB300B6AA9A /* register.png in Resources */,
@@ -1459,9 +1495,11 @@
 				DA0877C3142D4BBB00954482 /* vignette.png in Resources */,
 				DA0877C6142D4EAB00954482 /* vignette@2x.png in Resources */,
 				DA0877C7142D4EAB00954482 /* vignette~ipad.png in Resources */,
+				C14B6A041E41565F00C1BDBA /* MuseoSans-900Italic.otf in Resources */,
 				9C47FB3517F623D40074CEBE /* icon76.png in Resources */,
 				9CB50EFB1BFD239C0085ABD0 /* techtitanhq_logo_transparent.png in Resources */,
 				DAAAC74A1433F43C00CB90AF /* GuideStepViewController~ipad.xib in Resources */,
+				C14B6A0D1E41565F00C1BDBA /* MuseoSans-300Italic.otf in Resources */,
 				DAAAC74D1433F49300CB90AF /* CategoriesViewController.xib in Resources */,
 				DAC0C19D146B182000EF42DC /* collectionsImagePlaceholder.png in Resources */,
 				DAC0C1A1146B37E000EF42DC /* concreteBackground.png in Resources */,
@@ -1479,10 +1517,12 @@
 				DA35629E147717D700683947 /* tabBarItemList.png in Resources */,
 				DA3562A5147718FA00683947 /* sv-action-white.png in Resources */,
 				DA3562A6147718FA00683947 /* sv-back-white.png in Resources */,
+				C14B6A071E41565F00C1BDBA /* MuseoSans-700.otf in Resources */,
 				9C47FB3317F623D40074CEBE /* icon60.png in Resources */,
 				DA3562A7147718FA00683947 /* sv-forward-white.png in Resources */,
 				9CF8AB331A44D7A30083B725 /* titleImageComcast.png in Resources */,
 				DA3562A8147718FA00683947 /* sv-refresh-white.png in Resources */,
+				C14B69F91E41549500C1BDBA /* d-logo.png in Resources */,
 				DA3562A9147718FA00683947 /* sv-stop-white.png in Resources */,
 				DA3562AB14771E2B00683947 /* tabBarItemBook.png in Resources */,
 				DA3562AD1477254500683947 /* Ubuntu-BoldItalic.ttf in Resources */,
@@ -1545,9 +1585,11 @@
 				9C47FB3817F623D40074CEBE /* icon114.png in Resources */,
 				AB324BE9179615930001E29D /* iPad-ifixit-logo@2x.png in Resources */,
 				ABA8A2A91797598100682597 /* logo_ifixit.png in Resources */,
+				C14B6A0C1E41565F00C1BDBA /* MuseoSans-100.otf in Resources */,
 				ABA8A2AA1797598100682597 /* logo_ifixit@2x.png in Resources */,
 				AB4D33BD17A042270080C40A /* answers.png in Resources */,
 				AB4D33BE17A042270080C40A /* answers@2x.png in Resources */,
+				C14B6A0B1E41565F00C1BDBA /* MuseoSans-100Italic.otf in Resources */,
 				9C47FB3617F623D40074CEBE /* icon80.png in Resources */,
 				9C002FBF182EE57C00822063 /* accustream_logo_transparent.png in Resources */,
 				AB4D33BF17A042270080C40A /* guides.png in Resources */,
@@ -1571,9 +1613,11 @@
 				AB5C74DA17A76683003AD63B /* Default@2x.png in Resources */,
 				AB5C74DF17A766E2003AD63B /* Default-Landscape@2x~ipad.png in Resources */,
 				AB5C74E017A766E2003AD63B /* Default-Landscape~ipad.png in Resources */,
+				C14B6A051E41565F00C1BDBA /* MuseoSans-900.otf in Resources */,
 				AB5C74E117A766E2003AD63B /* Default-Portrait@2x~ipad.png in Resources */,
 				9C1EB8121B703BE200CE11F5 /* detailViewTextOscaro.png in Resources */,
 				AB5C74E217A766E2003AD63B /* Default-Portrait~ipad.png in Resources */,
+				C14B6A081E41565F00C1BDBA /* MuseoSans-500Italic.otf in Resources */,
 				AB26882217CD5AA6004AC6ED /* OpenSans-Bold.ttf in Resources */,
 				AB26882317CD5AA6004AC6ED /* OpenSans-Regular.ttf in Resources */,
 				9C6E961719AE8BA700FE847D /* FA-Repair-Manuals-2x.png in Resources */,
@@ -1755,6 +1799,7 @@
 			baseConfigurationReference = 73099B6C2509F4875C8752E9 /* Pods-iFixit.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1800,6 +1845,7 @@
 			baseConfigurationReference = E973B5200D15EE1DF52AB43D /* Pods-iFixit.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1929,6 +1975,7 @@
 			baseConfigurationReference = C522573AE427EC8CC27CCF8C /* Pods-iFixit.ad-hoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
