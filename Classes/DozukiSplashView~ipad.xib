@@ -35,14 +35,14 @@
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="dozukiLogo.png" id="12">
-                            <rect key="frame" x="35" y="50" width="381" height="123"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" misplaced="YES" image="d-logo.png" id="12">
+                            <rect key="frame" x="35" y="50" width="460" height="123"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="We make technical documentation come to life." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" id="19">
-                            <rect key="frame" x="35" y="152" width="381" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="All Your Procedures In One Place." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" id="19">
+                            <rect key="frame" x="35" y="185" width="460" height="52"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="45"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -87,7 +87,7 @@
     </objects>
     <resources>
         <image name="Default-Landscape.png" width="1024" height="768"/>
-        <image name="dozukiLogo.png" width="282" height="91"/>
+        <image name="d-logo.png" width="300" height="300"/>
         <image name="vignette.png" width="320" height="480"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

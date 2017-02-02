@@ -41,18 +41,26 @@
 #pragma mark - View lifecycle
 
 - (void)configureLabels {
-     self.dozukiSlogan.text = NSLocalizedString(@"Visual is better.", nil);
+     self.dozukiSlogan.text = NSLocalizedString(@"All Your Procedures In One Place.", nil);
      self.dozukiDescription.text = NSLocalizedString(@"A modern documentation platform for everything from work instructions to product support.", nil);
      self.getStarted.text = NSLocalizedString(@"Get Started", nil);
      self.getStarted.backgroundColor = [UIColor colorWithRed:0.87 green:0.25 blue:0.14 alpha:1.0];
      self.getStarted.layer.masksToBounds = YES;
      self.getStarted.layer.cornerRadius = 8.0;
-     self.dozukiSlogan.hidden = YES;
+     self.dozukiSlogan.hidden = NO;
      self.dozukiDescription.hidden = YES;
-     UIFont *font = [UIFont fontWithName:@"MuseoSans-500" size:17.0f];
-     self.getStarted.font = font;
+     UIFont *fontgs = nil;
+     UIFont *fontsl = nil;
+     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+          fontsl = [UIFont fontWithName:@"MuseoSans-500" size:17.0f];
+          fontgs = [UIFont fontWithName:@"MuseoSans-500" size:17.0f];
+     } else {
+          fontsl = [UIFont fontWithName:@"MuseoSans-500" size:45.0f];
+          fontgs = [UIFont fontWithName:@"MuseoSans-500" size:31.0f];
 
-     
+     }
+     self.getStarted.font = fontgs;
+     self.dozukiSlogan.font = fontsl;
 }
 
 - (void)viewDidLoad {
