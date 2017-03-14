@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:iFixit.xcodeproj">
+      location = "group:/Users/bpascazio/code/iFixit-iOS/Postmix.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
