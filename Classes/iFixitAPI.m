@@ -150,9 +150,19 @@ static int volatile openConnections = 0;
 }
 
 - (void)addAuthorizationHeaderToRequest:(ASIHTTPRequest *)request {
-    if (self.user) {
-        [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
-    }
+     
+     [self addAuthorizationHeaderToRequest:request withSession:nil];
+}
+
+- (void)addAuthorizationHeaderToRequest:(ASIHTTPRequest *)request withSession:(NSString*)session {
+     
+     NSString *sessionToAdd = session;
+     if (sessionToAdd == nil && self.user) {
+          sessionToAdd = self.user.session;
+     }
+     if (sessionToAdd != nil) {
+          [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", sessionToAdd]];
+     }
 }
 
 - (void)getGuide:(NSNumber *)iGuideid forObject:(id)object withSelector:(SEL)selector {
@@ -331,7 +341,8 @@ static int volatile openConnections = 0;
     [request setRequestMethod:@"GET"];
 
     [request addRequestHeader:@"X-App-Id" value:self.appId];
-    [self addAuthorizationHeaderToRequest:request];
+    [self addAuthorizationHeaderToRequest:request withSession:sessionId];
+
     request.useCookiePersistence = NO;
 
     [request setCompletionBlock:^{
