@@ -79,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "386"
             endingLineNumber = "386"
-            landmarkName = "-registerWithLogin:andPassword:andName:andUsername:forObject:withSelector:"
+            landmarkName = "-loginWithLogin:andPassword:forObject:withSelector:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -95,7 +95,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "306"
             endingLineNumber = "306"
-            landmarkName = "-checkLogin:"
+            landmarkName = "-getSearchResults:withFilter:forObject:withSelector:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -161,6 +161,53 @@
             endingLineNumber = "415"
             landmarkName = "-registerWithLogin:andPassword:andName:andUsername:forObject:withSelector:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__86-[iFixitAPI registerWithLogin:andPassword:andName:andUsername:forObject:withSelector:]_block_invoke"
+                  moduleName = "iFixit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bpascazio/code/iFixit-iOS/Classes/iFixitAPI.m"
+                  timestampString = "513935316.065646"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "415"
+                  endingLineNumber = "415"
+                  offsetFromSymbolStart = "171">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.297"
+                  moduleName = "iFixit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bpascazio/code/iFixit-iOS/Classes/iFixitAPI.m"
+                  timestampString = "513935316.06973"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "415"
+                  endingLineNumber = "415"
+                  offsetFromSymbolStart = "117">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.298"
+                  moduleName = "iFixit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bpascazio/code/iFixit-iOS/Classes/iFixitAPI.m"
+                  timestampString = "513935316.075378"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "415"
+                  endingLineNumber = "415"
+                  offsetFromSymbolStart = "73">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -400,6 +447,22 @@
             startingLineNumber = "53"
             endingLineNumber = "53"
             landmarkName = "-configureLabels"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Classes/iFixitAPI.m"
+            timestampString = "513935123.41352"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "-getCategory:forObject:withSelector:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
