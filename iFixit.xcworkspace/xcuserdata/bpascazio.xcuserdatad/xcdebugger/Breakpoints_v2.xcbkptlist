@@ -6,22 +6,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GuideLib.m"
-            timestampString = "503283134.827903"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "+loadAndPresentGuideForGuideid:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -336,22 +320,6 @@
             startingLineNumber = "94"
             endingLineNumber = "94"
             landmarkName = "-willRotateToInterfaceOrientation:duration:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Classes/DozukiSplashViewController.m"
-            timestampString = "507689021.962136"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "-shouldAutorotateToInterfaceOrientation:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -682,7 +650,7 @@
                   moduleName = "iFixit"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/bpascazio/code/iFixit-iOS/CategoryTabBarViewController.m"
-                  timestampString = "509553738.282457"
+                  timestampString = "512350963.999671"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "547"
@@ -697,7 +665,7 @@
                   moduleName = "iFixit"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/bpascazio/code/iFixit-iOS/CategoryTabBarViewController.m"
-                  timestampString = "509553738.284884"
+                  timestampString = "512350964.003209"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "547"

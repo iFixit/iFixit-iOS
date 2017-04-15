@@ -7,107 +7,107 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01178D6F217925EF25BA01A4A5B75D83 /* bch15_5.c in Sources */ = {isa = PBXBuildFile; fileRef = 36C87B16BD21E44F497DD107EC7399DE /* bch15_5.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		03BFD4F0720AD6402F92357593F0E5A7 /* ZBarCaptureReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 97872678BF7B55C1E061BB8EA2579961 /* ZBarCaptureReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06AAF66A23BB1153333F38B74E4BBC11 /* pdf417_hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 12C1D654922F7AD0CA216F5786C1A19C /* pdf417_hash.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		07EB55D5AEFB07A1BE687E427BADA332 /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A4C6D3E6DBB953BAB1272665032A90 /* debug.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0AF38ED5AE9C777B79A28BF991DD8D87 /* ZBarReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C33DD62889AF8FF5F3282BDD55B81200 /* ZBarReaderView.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		0B29321B71401F248ED8042234A34BF3 /* ZBarHelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E4819C322F6C52992874477533D8B3 /* ZBarHelpController.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		0CAEF79D5BE17C18A01866F6C21CE0BD /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 2075F121F522D31AC723F1BC53917C56 /* window.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0E7F7289E94BFC492E9E3D7E4F54833E /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D45BE78282CF4038697CDA8D40DC1A3 /* config.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		0ED213F34FAD02E5842DAB811E5CD86F /* ZBarSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2EF684606C70BB3C861CFDFEBC0225 /* ZBarSDK-dummy.m */; };
-		0F9CD005BDBC5F24FAEDE2760B0297F4 /* ZBarReaderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 950BD06806E5503D0E8E67F27ED6E302 /* ZBarReaderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		10AC46670F43B252B4E88CFC92195772 /* codabar.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C5D218F68B44AABA708790C564BF7E /* codabar.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		14158B940732555DA394AC4D8A776257 /* databar.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0A6A2B9FED13DF4BCB816078A0D7DB /* databar.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		17F5B299EAC604004133E0BF2D81225A /* code39.c in Sources */ = {isa = PBXBuildFile; fileRef = BD523FD7C69FBCACEBAAE0F904E1FE40 /* code39.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		1993A9A783AC2CCBACD310670709129D /* error.h in Headers */ = {isa = PBXBuildFile; fileRef = 51DF71B80E3FC875E77397EF3FFD2A0D /* error.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1E27CEAB5DDED6C1DEE8E8F7FB735544 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF9426AD21D5F6D439A8410145AB8B81 /* CoreVideo.framework */; };
-		22C811055D6D3792A28F8C75679645EE /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 78FC993F043331A4C6F7CA7273510F27 /* util.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		280C8D694E8E3AFBB069075E69A2F827 /* ZBarCVImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 419EEB88A75495C6799D16BA7AF1EDED /* ZBarCVImage.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		289E20724175FE1A8F2E6F265A3EC88E /* pdf417.h in Headers */ = {isa = PBXBuildFile; fileRef = 001379920D895207D6CAB1888B9BD645 /* pdf417.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2960B100FBAF74CAEC8949C72A8BC0BD /* qrcode.h in Headers */ = {isa = PBXBuildFile; fileRef = 5662F21EADCEEC07AD9CCC9BD97A6D29 /* qrcode.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2C6BFC0EF07D41CD2ABBFB96E0E0738D /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 10F8EDF16ECF63DCEA08DFF7EC93EBC3 /* error.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		33D3D03E86C0DBE73728457416168CD9 /* code128.c in Sources */ = {isa = PBXBuildFile; fileRef = B21C41C4AD08259769423E4ED75AEE2D /* code128.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		33E5BA7C3F38DD27D5EC242F38D07CD7 /* ZBarCVImage.h in Headers */ = {isa = PBXBuildFile; fileRef = DEB14E2422642BC4CA88A047A3EC3DB1 /* ZBarCVImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		349EAFF8FBF03ECF25E13AD8F356626B /* ZBarImage.h in Headers */ = {isa = PBXBuildFile; fileRef = AB525FE2A56126C5619D0320FE3BEC25 /* ZBarImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		39D864A6ADF1171E77B7EF8121E6CE2D /* ZBarCaptureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C32938B6E49406D947FA3EFE6666F479 /* ZBarCaptureReader.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		4D9FE9ECF793C50E00A9C9892D5FEDD1 /* image.h in Headers */ = {isa = PBXBuildFile; fileRef = 2052EF4678B3BA019491012902B17B6E /* image.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4F6714BC1513903DD630C40667F8BA1E /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = D297EB277D79B0D009FA0E04A8D6FA15 /* timer.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		50C882A4384139E239F5762A4810CC47 /* isaac.c in Sources */ = {isa = PBXBuildFile; fileRef = 36F63B7D672A7F2C4D5D8D0DC975F3DF /* isaac.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		52FEFBAE4133ACEF55E07D7A4818ED26 /* symbol.h in Headers */ = {isa = PBXBuildFile; fileRef = AF264B496EB67904F326AEBB02C759EB /* symbol.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5788330A8CE3007679EEB1D72C292449 /* i25.h in Headers */ = {isa = PBXBuildFile; fileRef = EB5A6F3CD21416DC5070E113B0BA4522 /* i25.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		588AF1D77DE7FBC915F8AEFC50D4565F /* bch15_5.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A1ABB962E5E202E7343BC5D06DC5638 /* bch15_5.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		58ED9186F646EFC4EAB834D761A6EB9E /* processor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9DD6AC32D2DFE1BAE573AD809D5C31 /* processor.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		59FE34C8342B20A8E4983FB4011A48B9 /* rs.c in Sources */ = {isa = PBXBuildFile; fileRef = C249D0489D7A5B18479426515D0264A6 /* rs.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		5A0C5EF872632C869E838F8820BADBC6 /* ean.c in Sources */ = {isa = PBXBuildFile; fileRef = DAA161B80ED06A304925EBDCFE8CA46E /* ean.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		5C25615F0F4CF194BDD8371939DCF237 /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = BFE509DFFF9B005785788CD9345221A0 /* debug.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5DD16D359EE75F7AAA9DC9ADDBCD958F /* qrdec.h in Headers */ = {isa = PBXBuildFile; fileRef = A52B759537DDA567191AFD8363AA79CE /* qrdec.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		649659960E81BB823D5CC71814557166 /* codabar.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D038A013BC3F780DA67888570BF7B3C /* codabar.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		65780822D4780589F006493B7EE20B37 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A8F2D27B0C9E0D8156A0882D8FBEC5 /* QuartzCore.framework */; };
-		6ED40D4A9235127FBEF5430430C422FC /* ZBarReaderViewImpl_Simulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CFF91D28F5B16B82C34574123A9006 /* ZBarReaderViewImpl_Simulator.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		70F6524EE9708F8928AFD20FD7FBC76E /* video.h in Headers */ = {isa = PBXBuildFile; fileRef = 169533A2FCA1221F9EEED7A0CCFA4629 /* video.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		729E4E6CF45C1BF8ADCB1FD026225689 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C1AC40FF2D869733A9DC8A2EA1CA2B /* CoreMedia.framework */; };
-		72F8421071CA25FF2B8932C36BA85CBC /* ZBarSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = ED10344D094240EC838F81BE5D604FCF /* ZBarSymbol.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		75614FB751721AA1522B0AE866C81996 /* code128.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EE5D10ADD384C49CE0A0DCB3FD941C3 /* code128.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		76C7A6B212EEE17EF42B99991AFCF6EE /* i25.c in Sources */ = {isa = PBXBuildFile; fileRef = DDB928D79C6782280F5CAAD898D835B3 /* i25.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		773C067B310044415EA52EB533A5F697 /* code93.c in Sources */ = {isa = PBXBuildFile; fileRef = C56B3F0ECA935C25240968F98ADAC412 /* code93.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		7B10CF8746B40D1FE9F06C4A29E51895 /* img_scanner.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C193B8A170D2E6E79060B21A01A188D /* img_scanner.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		7B736AE1714FB7252265602AEA2E5DEF /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA48642FB436E8DF7886DBA067E3BA /* util.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		7B989735321C4948BC710F674D9382EA /* Pods-iFixit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7CC3E3261B211981C5C29C9B152A7C /* Pods-iFixit-dummy.m */; };
-		7BA1E30C1BF08A18604576841E85BD02 /* refcnt.c in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8348183E4DE20DE770290D779FE56 /* refcnt.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		7CD9F8E86AA315631FC0769E900D1C89 /* isaac.h in Headers */ = {isa = PBXBuildFile; fileRef = 01C4AC7E843819B414047FC9FD27C6DE /* isaac.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		83A8E1293F438A561C6C8845E20A5CB8 /* ZBarCameraSimulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FCD70F8764B49DA983021316D1856CE /* ZBarCameraSimulator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		882ADA5346EAD398920E244C148FEA34 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = F38E49D75A72F4FF45F13FF576F7CC6C /* config.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8BFCC6DA1450F927F58C2A64863F7A59 /* svg.h in Headers */ = {isa = PBXBuildFile; fileRef = C7BEC290B3934D36B794FB1A4853D061 /* svg.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8C5B06EC55426606070228C22C1A53A4 /* code93.h in Headers */ = {isa = PBXBuildFile; fileRef = B2A1A8B6FE701882E8C7BC5ECA8AE02A /* code93.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8C73B765A5B5002890473920F9EF7E75 /* ZBarImageScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 77E1B923752AD60D3B1F529F23FB3155 /* ZBarImageScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9461FAC29050AF08596176369E8392F7 /* code39.h in Headers */ = {isa = PBXBuildFile; fileRef = 5877E788741EB3DCB545E42507A9C7A5 /* code39.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9627E7AD93EC0C543F4D6B1048C00730 /* win.h in Headers */ = {isa = PBXBuildFile; fileRef = FE70572F53CAA1FCEC3AB66FF8D79FC7 /* win.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		990E1E2FB778597EF034855E793C4B07 /* ZBarCameraSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C3908FAC9DFEA03239D518F109DA8 /* ZBarCameraSimulator.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		99FBBD41E9BBA9A9C92F40F54E1901CD /* qrdec.c in Sources */ = {isa = PBXBuildFile; fileRef = 00D3C132500806EDC9DB5B9F0E40B676 /* qrdec.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		9B89C501E3256D41AC36FB4FF2849147 /* event.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DF3E259A42036FA2C6B3DA4B27B76B5 /* event.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9F98B040B57FD55D26AA6C11C38A4491 /* ZBarSymbol.h in Headers */ = {isa = PBXBuildFile; fileRef = EE0281B95286CEAFB10A38390AF12906 /* ZBarSymbol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A0E6922F0476D86137E7434958C98C99 /* ZBarSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = F6401CEE75DE3F8F3C221F4B57D08A75 /* ZBarSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A47A9D64BF4A2D546F84BDC10C98A4B0 /* symbol.c in Sources */ = {isa = PBXBuildFile; fileRef = ADCDABC6DEEA6E44EB2F89F63AC89516 /* symbol.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		A5BDE36A99A7E36A7AAA18B47214A205 /* binarize.h in Headers */ = {isa = PBXBuildFile; fileRef = A0AA5CFD2C7EB5909D13680714F4A3C2 /* binarize.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		AD3C08A3108A7FC527C6F474E34895F2 /* ZBarHelpController.h in Headers */ = {isa = PBXBuildFile; fileRef = 97ECFA055609B5D0A1CE2B59D1D02DD9 /* ZBarHelpController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B8ADA1F60E484163690CD36939775EF9 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 425349F4EB18D76119EAFD24FA22DEAC /* thread.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BA76FFC0EE89C214CC74E417C29B30A3 /* ZBarImageScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 722BADF6B4124684C4AD0BB3CB7CA489 /* ZBarImageScanner.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		BACBAB723B0E096E89D2DB4E8D215D02 /* databar.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E740B49186EF4A522AC9ED044CCBE6B /* databar.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		BB345B0CAC1ABC727B5A193625136576 /* refcnt.h in Headers */ = {isa = PBXBuildFile; fileRef = 93B1AE5C44396580411F7A8878BF881B /* refcnt.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BCBCB6731BDE4EABBE1AEA2334037869 /* ZBarReaderViewImpl_Capture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6B0DBAB4C243A6B981869E87876B9 /* ZBarReaderViewImpl_Capture.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		BD2E404AF38B5B73D79CDB254DAFAF0E /* qrdectxt.c in Sources */ = {isa = PBXBuildFile; fileRef = 867E8C1A13C12C20D4246C776E19CEBC /* qrdectxt.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		C42AABCBBA1A7179DFA9DDE5425E59C9 /* scanner.c in Sources */ = {isa = PBXBuildFile; fileRef = 291C55D8EAA12C813A84784DFB9785BE /* scanner.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		CDD9FEA0D8DBEDF9FD952FABDB7E9155 /* image.c in Sources */ = {isa = PBXBuildFile; fileRef = F02B341D97358A9C281E5376D8917B62 /* image.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		CF53D931114A9B605838C1F350056064 /* decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B45CA12A15632A8FFFADEE9CF2BC451 /* decoder.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D35F62119527133CD1F745A3202B8291 /* rs.h in Headers */ = {isa = PBXBuildFile; fileRef = 82A504929CA356F9B4D5BD7ABEF7E820 /* rs.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D4558D7DC346690CCE0CAF1B4FCFA3FF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22ECFEE4EF3382A8AB9035308D14BBEA /* AVFoundation.framework */; };
-		D5418E5404D042B507B6E8F866E27F44 /* decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 62D4A183ECFC5CBE5204F465B1452C1E /* decoder.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		D9061325B21D4179A4D21B7D2C213E36 /* ZBarImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 492FC1644D6D916BD3FCD7506149E265 /* ZBarImage.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		DA94CE21F77A9AFC33AA8029921B8E0B /* ZBarReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1605994D169013558A41976061314C2 /* ZBarReaderViewController.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		DE337B462535D28A1A4957B0A23F6B13 /* qr_finder.h in Headers */ = {isa = PBXBuildFile; fileRef = E3A7F49C8ACC2F833BD0BDC21500E720 /* qr_finder.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E46BA2BAF44CF7ECB4C6BA2F50D9423E /* x.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E36090ABFE0CCA5BD5BD04E04B0B774 /* x.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E4BD5D7E94703C8128A838D731C4B780 /* binarize.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CDB0F7E4C8BB40C0883842E28DA0C14 /* binarize.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		E9D5D223F241F0C1D107093DBA0B0E4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E76A7D17A968DF7FD8DAC9225C8233BE /* Foundation.framework */; };
-		EBF76DABD31A861F65227B9EE86D4F07 /* qr_finder.c in Sources */ = {isa = PBXBuildFile; fileRef = 10BF6347DC4B0B114F530B03BDB606A0 /* qr_finder.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
-		EC9F9E2B500A14D6BB9A852B16B1A2E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E76A7D17A968DF7FD8DAC9225C8233BE /* Foundation.framework */; };
-		F08011CB06D72F9930CFC563A19552B9 /* ZBarReaderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 45F6E6D5A28123D0629DAE91A47E7775 /* ZBarReaderViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F323C44CEC4713965CA91CC50F48C7E6 /* mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 566B77C7BDA03DCE172B80680915AC34 /* mutex.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F6305BCB0B5FB75AD23EE5234C81D43E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D2F9316049D5B0A04EABEC9DE5AB5DC /* CoreGraphics.framework */; };
-		F74A7AB482913406E084F4F11B3D023E /* zbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CEF4C4C6C20A0F9F2794A7DB08E1F49 /* zbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F7DE3770FE5E4FA33F4D73B292A78840 /* img_scanner.h in Headers */ = {isa = PBXBuildFile; fileRef = B16FF85D438F145BE925742A2262CBE6 /* img_scanner.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F88275F59CECFBC2AEF17C0372764607 /* posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 521C72DD2158AF82747772BE4FAD2D03 /* posix.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F9A17957740B2AA27AEE537A73EE12C8 /* ean.h in Headers */ = {isa = PBXBuildFile; fileRef = 392C935EFD37B9158B39FB49C9A28AB7 /* ean.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FA9EEA1DD1C03AA956853A1A0EE6B34E /* ZBarReaderController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78894538015F2C242F210F7AF9813C53 /* ZBarReaderController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FCAE8921C28E8F559E8AAF3C1461A47B /* ZBarReaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29874B5C1DB2B04FB5E87F74C52E4E3B /* ZBarReaderController.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		009DF43791BC3DD242D967B791700304 /* img_scanner.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C193B8A170D2E6E79060B21A01A188D /* img_scanner.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		0163EFDF189428B35561247D04D601EA /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = F38E49D75A72F4FF45F13FF576F7CC6C /* config.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		01B9462E8B1054B838D07B7E7FF895B6 /* qr_finder.h in Headers */ = {isa = PBXBuildFile; fileRef = E3A7F49C8ACC2F833BD0BDC21500E720 /* qr_finder.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		02CFB26D5C3E556444E374454805F245 /* event.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DF3E259A42036FA2C6B3DA4B27B76B5 /* event.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0699878E3D1916827DDB6AB1A38110E8 /* ZBarReaderController.h in Headers */ = {isa = PBXBuildFile; fileRef = 78894538015F2C242F210F7AF9813C53 /* ZBarReaderController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		075011BC618C849C487431BC3B1EE90A /* ZBarReaderViewImpl_Simulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CFF91D28F5B16B82C34574123A9006 /* ZBarReaderViewImpl_Simulator.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		07686926F11D12E20B4673E7A298C929 /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = D297EB277D79B0D009FA0E04A8D6FA15 /* timer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0BB16C86C2348C294CC967897443897D /* qr_finder.c in Sources */ = {isa = PBXBuildFile; fileRef = 10BF6347DC4B0B114F530B03BDB606A0 /* qr_finder.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		0C74C4C3EC400A3DBC21EE8385E131EC /* posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 521C72DD2158AF82747772BE4FAD2D03 /* posix.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0E0605A64D7E80A93CFA0F95D2A7D7B1 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 2075F121F522D31AC723F1BC53917C56 /* window.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		104F70948BF226006DD9309D319B7E1C /* ZBarReaderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 950BD06806E5503D0E8E67F27ED6E302 /* ZBarReaderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		11856C609CAB878B0961B417B2BEEA13 /* isaac.c in Sources */ = {isa = PBXBuildFile; fileRef = 36F63B7D672A7F2C4D5D8D0DC975F3DF /* isaac.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		146237748EF01D4E31795CEBDD6BEBD0 /* processor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9DD6AC32D2DFE1BAE573AD809D5C31 /* processor.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		14B8A95CF6217CF1BBF4F41439C4D0B5 /* ZBarCaptureReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 97872678BF7B55C1E061BB8EA2579961 /* ZBarCaptureReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A5E28D29DCCF89FA7DA48F72DD603A4 /* decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 62D4A183ECFC5CBE5204F465B1452C1E /* decoder.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		1A80EA9B92ABB71E2A276DA766798F73 /* ZBarCameraSimulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FCD70F8764B49DA983021316D1856CE /* ZBarCameraSimulator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1F8C309DC8779369C90D7E19DC13DD93 /* ZBarImageScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 722BADF6B4124684C4AD0BB3CB7CA489 /* ZBarImageScanner.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		22C271708611B791AD9454F6CDEFAE6C /* binarize.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CDB0F7E4C8BB40C0883842E28DA0C14 /* binarize.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		2417595AAAF07AF1BFBD99B9B2CBEFAB /* codabar.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D038A013BC3F780DA67888570BF7B3C /* codabar.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		2E01652E31AD3EA1280F3627849D3AD9 /* qrcode.h in Headers */ = {isa = PBXBuildFile; fileRef = 5662F21EADCEEC07AD9CCC9BD97A6D29 /* qrcode.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2F681FF5FEDA26695A37AB8C944629D6 /* ZBarImageScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 77E1B923752AD60D3B1F529F23FB3155 /* ZBarImageScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		33B979FE1986CC9B1D77D33A82E279C3 /* video.h in Headers */ = {isa = PBXBuildFile; fileRef = 169533A2FCA1221F9EEED7A0CCFA4629 /* video.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		36774E352177CC31D97F955C86FA402C /* bch15_5.c in Sources */ = {isa = PBXBuildFile; fileRef = 36C87B16BD21E44F497DD107EC7399DE /* bch15_5.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		36E55AB5593D9D28554FF5439CC1984E /* rs.h in Headers */ = {isa = PBXBuildFile; fileRef = 82A504929CA356F9B4D5BD7ABEF7E820 /* rs.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3C9A22E522F15612C0B9A7775F40420C /* ZBarReaderViewImpl_Capture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED6B0DBAB4C243A6B981869E87876B9 /* ZBarReaderViewImpl_Capture.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		3F947E7DD9DC33E12BC91432714168A5 /* isaac.h in Headers */ = {isa = PBXBuildFile; fileRef = 01C4AC7E843819B414047FC9FD27C6DE /* isaac.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		46492C395361713224FA9F53883B2EBE /* pdf417.h in Headers */ = {isa = PBXBuildFile; fileRef = 001379920D895207D6CAB1888B9BD645 /* pdf417.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		490104FFED5C12C05F054594C566326C /* ZBarReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C33DD62889AF8FF5F3282BDD55B81200 /* ZBarReaderView.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		5004762B4A75595F3386940AC60247B5 /* code128.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EE5D10ADD384C49CE0A0DCB3FD941C3 /* code128.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5638DBAED337A5BE5C106398F9081F81 /* databar.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0A6A2B9FED13DF4BCB816078A0D7DB /* databar.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		563E48F874A460787D4E481C81516652 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 10F8EDF16ECF63DCEA08DFF7EC93EBC3 /* error.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		59D0AEB6AE06D1E8611A4DD3E82F6852 /* symbol.c in Sources */ = {isa = PBXBuildFile; fileRef = ADCDABC6DEEA6E44EB2F89F63AC89516 /* symbol.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		5EAB424CB7057691EBC9535C140E8299 /* ZBarImage.h in Headers */ = {isa = PBXBuildFile; fileRef = AB525FE2A56126C5619D0320FE3BEC25 /* ZBarImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5FA4857C81C95E3DAD2C3CBEDC87F55A /* code39.h in Headers */ = {isa = PBXBuildFile; fileRef = 5877E788741EB3DCB545E42507A9C7A5 /* code39.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		61591551E4183D01AC191781600B7714 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E76A7D17A968DF7FD8DAC9225C8233BE /* Foundation.framework */; };
+		6362B9A037DE83F5F3420A17101B8174 /* ZBarCVImage.h in Headers */ = {isa = PBXBuildFile; fileRef = DEB14E2422642BC4CA88A047A3EC3DB1 /* ZBarCVImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6769F950AFA317EC862FB741418E0773 /* ean.h in Headers */ = {isa = PBXBuildFile; fileRef = 392C935EFD37B9158B39FB49C9A28AB7 /* ean.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6BDDF0FDBE50D0B7951DFBDEEF113BB7 /* symbol.h in Headers */ = {isa = PBXBuildFile; fileRef = AF264B496EB67904F326AEBB02C759EB /* symbol.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6CE828BF693B1478A27DF055A8C89036 /* mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 566B77C7BDA03DCE172B80680915AC34 /* mutex.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		76E036D4C89EE5A989236430DF151288 /* img_scanner.h in Headers */ = {isa = PBXBuildFile; fileRef = B16FF85D438F145BE925742A2262CBE6 /* img_scanner.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7A207B2BF589F3261E362F7E340FD650 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22ECFEE4EF3382A8AB9035308D14BBEA /* AVFoundation.framework */; };
+		8005C533E957945628956E33E662DFEC /* databar.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E740B49186EF4A522AC9ED044CCBE6B /* databar.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		82ABD728E06C668EA19D3BA0021CC7BF /* svg.h in Headers */ = {isa = PBXBuildFile; fileRef = C7BEC290B3934D36B794FB1A4853D061 /* svg.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		86CA3A610998B99A045D16BEE76022E0 /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A4C6D3E6DBB953BAB1272665032A90 /* debug.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		87D70B0673DC00EF74E515E0809F0CCD /* scanner.c in Sources */ = {isa = PBXBuildFile; fileRef = 291C55D8EAA12C813A84784DFB9785BE /* scanner.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		890B3B933352030C1248F488FC3BB62A /* x.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E36090ABFE0CCA5BD5BD04E04B0B774 /* x.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8CAA522EA9539C01469C3D5991F3DCEC /* code93.h in Headers */ = {isa = PBXBuildFile; fileRef = B2A1A8B6FE701882E8C7BC5ECA8AE02A /* code93.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8F555804F1CC19559A9846B0D23753E7 /* ZBarCVImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 419EEB88A75495C6799D16BA7AF1EDED /* ZBarCVImage.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		8F89734714905B3C2B4FB6AC7591DA0F /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 78FC993F043331A4C6F7CA7273510F27 /* util.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		93E2AA4103AC8D5EF6DC133C197B7E40 /* ZBarHelpController.h in Headers */ = {isa = PBXBuildFile; fileRef = 97ECFA055609B5D0A1CE2B59D1D02DD9 /* ZBarHelpController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		967306D0EB57F3A31A153D73AD99B04A /* ZBarReaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29874B5C1DB2B04FB5E87F74C52E4E3B /* ZBarReaderController.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		9709474FFA8A9725CAF93560CB81F45D /* decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B45CA12A15632A8FFFADEE9CF2BC451 /* decoder.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		977A9C81F24B815A50E2A077FA0F93C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E76A7D17A968DF7FD8DAC9225C8233BE /* Foundation.framework */; };
+		99009E89CEBF22F0E2022579CCE02096 /* qrdec.h in Headers */ = {isa = PBXBuildFile; fileRef = A52B759537DDA567191AFD8363AA79CE /* qrdec.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9D00E5B6C47BD65309F153E7E3461EA6 /* refcnt.h in Headers */ = {isa = PBXBuildFile; fileRef = 93B1AE5C44396580411F7A8878BF881B /* refcnt.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9D6AD34162E458388E150B717ED0CE85 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA48642FB436E8DF7886DBA067E3BA /* util.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		9DC816BBC550EFBDEDC35D00747949AC /* ZBarHelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E4819C322F6C52992874477533D8B3 /* ZBarHelpController.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		A102D6B83AECC485543B341B2BC79092 /* qrdec.c in Sources */ = {isa = PBXBuildFile; fileRef = 00D3C132500806EDC9DB5B9F0E40B676 /* qrdec.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		A122DF1175F085883F3895D16B5AF475 /* rs.c in Sources */ = {isa = PBXBuildFile; fileRef = C249D0489D7A5B18479426515D0264A6 /* rs.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		B111BD59DF1F145EFEA9D8E35FA2020E /* ZBarReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1605994D169013558A41976061314C2 /* ZBarReaderViewController.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		B3EC780BE3DA2BB3F04C97ECD912BD2C /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 425349F4EB18D76119EAFD24FA22DEAC /* thread.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B4476959220B111550A3D107F345A22F /* bch15_5.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A1ABB962E5E202E7343BC5D06DC5638 /* bch15_5.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B5392ECE3E3E6F005784126AC3D8B234 /* ZBarCaptureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C32938B6E49406D947FA3EFE6666F479 /* ZBarCaptureReader.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		B896E43256C0A425B9D702F8E1E84E3B /* refcnt.c in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8348183E4DE20DE770290D779FE56 /* refcnt.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		B8AF988AFD40DA5D5E788E3A82B4AD86 /* i25.h in Headers */ = {isa = PBXBuildFile; fileRef = EB5A6F3CD21416DC5070E113B0BA4522 /* i25.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B915DF130E71433D1271E1745E19E099 /* codabar.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C5D218F68B44AABA708790C564BF7E /* codabar.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B9364857B013EE67B474F0F00BE74435 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C1AC40FF2D869733A9DC8A2EA1CA2B /* CoreMedia.framework */; };
+		BD6546A5F7E0865D7BAEB0A9A673A13E /* ZBarSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = ED10344D094240EC838F81BE5D604FCF /* ZBarSymbol.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		BDA0C677227FDAEEBFE9690585BF8E0A /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D45BE78282CF4038697CDA8D40DC1A3 /* config.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		BF4BCEA3E42F7965A44DFB0B31CBF78F /* Pods-Postmix-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F1182A48B8DC78C1DEEA5BBAB3EB1B6A /* Pods-Postmix-dummy.m */; };
+		BFC8D63DB0CE9EDFA2F171036CDF29DA /* zbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CEF4C4C6C20A0F9F2794A7DB08E1F49 /* zbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BFCDF33A2B095A1786491FB64CF9A868 /* ZBarSymbol.h in Headers */ = {isa = PBXBuildFile; fileRef = EE0281B95286CEAFB10A38390AF12906 /* ZBarSymbol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3BB278C43412F177D382FB23A5A103E /* code39.c in Sources */ = {isa = PBXBuildFile; fileRef = BD523FD7C69FBCACEBAAE0F904E1FE40 /* code39.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		C5701E7AB3A488187A6D387FDDCAD4B3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D2F9316049D5B0A04EABEC9DE5AB5DC /* CoreGraphics.framework */; };
+		C7476B8D2DBA46BBDBA5267FE857959A /* qrdectxt.c in Sources */ = {isa = PBXBuildFile; fileRef = 867E8C1A13C12C20D4246C776E19CEBC /* qrdectxt.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		C9CE835EB335371D36A5BCF8AEDB5518 /* image.h in Headers */ = {isa = PBXBuildFile; fileRef = 2052EF4678B3BA019491012902B17B6E /* image.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CA2228A305C037F941C913426F15ABE6 /* image.c in Sources */ = {isa = PBXBuildFile; fileRef = F02B341D97358A9C281E5376D8917B62 /* image.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		CE279CB221F8C949BD733CD605F6A416 /* ean.c in Sources */ = {isa = PBXBuildFile; fileRef = DAA161B80ED06A304925EBDCFE8CA46E /* ean.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		D417DF30E6CA0B247C1B23D2CD24AA53 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A8F2D27B0C9E0D8156A0882D8FBEC5 /* QuartzCore.framework */; };
+		D465193EE1E9B59A7E155DC01C759A59 /* ZBarSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2EF684606C70BB3C861CFDFEBC0225 /* ZBarSDK-dummy.m */; };
+		D4F46B259A4A7B431F47B10A2FDC1E80 /* code128.c in Sources */ = {isa = PBXBuildFile; fileRef = B21C41C4AD08259769423E4ED75AEE2D /* code128.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		D6A2B973CA9CCAFDB4A9A0BA82186C3F /* ZBarReaderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 45F6E6D5A28123D0629DAE91A47E7775 /* ZBarReaderViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E346D6CC319B521B11BE5CF0C39DBB8B /* ZBarCameraSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C3908FAC9DFEA03239D518F109DA8 /* ZBarCameraSimulator.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		E69C8BADB8BC3DDEBF4D0B50114FAC5C /* ZBarSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = F6401CEE75DE3F8F3C221F4B57D08A75 /* ZBarSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F1CC1602BDE182DCF43D9A3BA73ECAF8 /* pdf417_hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 12C1D654922F7AD0CA216F5786C1A19C /* pdf417_hash.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F5CD933DF3FBEE15B28FB342C5EA7A5E /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = BFE509DFFF9B005785788CD9345221A0 /* debug.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F856F4C262C9720EDDF7CB21C0BD1D29 /* error.h in Headers */ = {isa = PBXBuildFile; fileRef = 51DF71B80E3FC875E77397EF3FFD2A0D /* error.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F87F20347D3DEE9A8E2915EC7505870E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF9426AD21D5F6D439A8410145AB8B81 /* CoreVideo.framework */; };
+		FB9C1DE8AF6DCDCFB742EBAC40B7DE6B /* binarize.h in Headers */ = {isa = PBXBuildFile; fileRef = A0AA5CFD2C7EB5909D13680714F4A3C2 /* binarize.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FC958B6C628D131E8FD5A13C61308357 /* code93.c in Sources */ = {isa = PBXBuildFile; fileRef = C56B3F0ECA935C25240968F98ADAC412 /* code93.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		FCBEFD202F053E259C277AB10D95275D /* ZBarImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 492FC1644D6D916BD3FCD7506149E265 /* ZBarImage.m */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
+		FD6B713449A566A59189EDC050047A61 /* win.h in Headers */ = {isa = PBXBuildFile; fileRef = FE70572F53CAA1FCEC3AB66FF8D79FC7 /* win.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FF4947D4D3ED67F2002807487BC240BD /* i25.c in Sources */ = {isa = PBXBuildFile; fileRef = DDB928D79C6782280F5CAAD898D835B3 /* i25.c */; settings = {COMPILER_FLAGS = "-w -fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		77BE4A505AB735C18EDA74EDE2BD576A /* PBXContainerItemProxy */ = {
+		9312FA4DD75693628B7CD2CCDD2E587F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8C7AB3EB0E79001C2F6D6B0240568BD0;
+			remoteGlobalIDString = C65F12584566EE4D26C2D05868B9240C;
 			remoteInfo = ZBarSDK;
 		};
 /* End PBXContainerItemProxy section */
@@ -116,20 +116,20 @@
 		001379920D895207D6CAB1888B9BD645 /* pdf417.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = pdf417.h; path = zbar/decoder/pdf417.h; sourceTree = "<group>"; };
 		00D3C132500806EDC9DB5B9F0E40B676 /* qrdec.c */ = {isa = PBXFileReference; includeInIndex = 1; name = qrdec.c; path = zbar/qrcode/qrdec.c; sourceTree = "<group>"; };
 		01C4AC7E843819B414047FC9FD27C6DE /* isaac.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = isaac.h; path = zbar/qrcode/isaac.h; sourceTree = "<group>"; };
-		01E4A282520FD113302A9F22416E88D4 /* Pods-iFixit-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iFixit-resources.sh"; sourceTree = "<group>"; };
 		01F4E2761F541895E81F495268BDB53B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
 		03C572EFD6498CDE3E78495A527107AF /* ZBarSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZBarSDK-prefix.pch"; sourceTree = "<group>"; };
 		08A3881ADE56C4DC1098D7AE5D638CCD /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProductAction.h; path = GoogleAnalytics/Library/GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		097608E7D46DEB291CC000D0225945FA /* Pods-Postmix.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Postmix.ad-hoc.xcconfig"; sourceTree = "<group>"; };
 		0E36090ABFE0CCA5BD5BD04E04B0B774 /* x.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = x.h; path = zbar/window/x.h; sourceTree = "<group>"; };
 		10BF6347DC4B0B114F530B03BDB606A0 /* qr_finder.c */ = {isa = PBXFileReference; includeInIndex = 1; name = qr_finder.c; path = zbar/decoder/qr_finder.c; sourceTree = "<group>"; };
 		10F8EDF16ECF63DCEA08DFF7EC93EBC3 /* error.c */ = {isa = PBXFileReference; includeInIndex = 1; name = error.c; path = zbar/error.c; sourceTree = "<group>"; };
 		12C1D654922F7AD0CA216F5786C1A19C /* pdf417_hash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = pdf417_hash.h; path = zbar/decoder/pdf417_hash.h; sourceTree = "<group>"; };
-		14123EBBDB883D57E0DFBBFEA9C448AE /* libPods-iFixit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iFixit.a"; path = "libPods-iFixit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15CFF91D28F5B16B82C34574123A9006 /* ZBarReaderViewImpl_Simulator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZBarReaderViewImpl_Simulator.m; path = iphone/ZBarReaderViewImpl_Simulator.m; sourceTree = "<group>"; };
 		169533A2FCA1221F9EEED7A0CCFA4629 /* video.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = video.h; path = zbar/video.h; sourceTree = "<group>"; };
 		1B45CA12A15632A8FFFADEE9CF2BC451 /* decoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = decoder.h; path = zbar/decoder.h; sourceTree = "<group>"; };
 		1D45BE78282CF4038697CDA8D40DC1A3 /* config.c */ = {isa = PBXFileReference; includeInIndex = 1; name = config.c; path = zbar/config.c; sourceTree = "<group>"; };
 		1D9DD6AC32D2DFE1BAE573AD809D5C31 /* processor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = processor.h; path = zbar/processor.h; sourceTree = "<group>"; };
+		1DBF8FFA424B71CA2B0508C22F82E67B /* Pods-Postmix-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Postmix-frameworks.sh"; sourceTree = "<group>"; };
 		2052EF4678B3BA019491012902B17B6E /* image.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = image.h; path = zbar/image.h; sourceTree = "<group>"; };
 		2075F121F522D31AC723F1BC53917C56 /* window.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = window.h; path = zbar/window.h; sourceTree = "<group>"; };
 		22A538B06B04EB40BC40487673C11890 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProduct.h; path = GoogleAnalytics/Library/GAIEcommerceProduct.h; sourceTree = "<group>"; };
@@ -152,7 +152,6 @@
 		419EEB88A75495C6799D16BA7AF1EDED /* ZBarCVImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZBarCVImage.m; path = iphone/ZBarCVImage.m; sourceTree = "<group>"; };
 		425349F4EB18D76119EAFD24FA22DEAC /* thread.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = thread.h; path = zbar/thread.h; sourceTree = "<group>"; };
 		45F6E6D5A28123D0629DAE91A47E7775 /* ZBarReaderViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZBarReaderViewController.h; path = iphone/include/ZBarSDK/ZBarReaderViewController.h; sourceTree = "<group>"; };
-		4698842439C78D3BFD4C94904C739948 /* Pods-iFixit.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iFixit.ad-hoc.xcconfig"; sourceTree = "<group>"; };
 		47BC6A66BD14545F8652329BA26F8415 /* GAITracker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = GoogleAnalytics/Library/GAITracker.h; sourceTree = "<group>"; };
 		492FC1644D6D916BD3FCD7506149E265 /* ZBarImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZBarImage.m; path = iphone/ZBarImage.m; sourceTree = "<group>"; };
 		4C193B8A170D2E6E79060B21A01A188D /* img_scanner.c */ = {isa = PBXFileReference; includeInIndex = 1; name = img_scanner.c; path = zbar/img_scanner.c; sourceTree = "<group>"; };
@@ -160,6 +159,7 @@
 		4FCD70F8764B49DA983021316D1856CE /* ZBarCameraSimulator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZBarCameraSimulator.h; path = iphone/include/ZBarSDK/ZBarCameraSimulator.h; sourceTree = "<group>"; };
 		51DF71B80E3FC875E77397EF3FFD2A0D /* error.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = error.h; path = zbar/error.h; sourceTree = "<group>"; };
 		521C72DD2158AF82747772BE4FAD2D03 /* posix.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = posix.h; path = zbar/processor/posix.h; sourceTree = "<group>"; };
+		5638BEBD74ED02B6E1C48A1996A33E2F /* Pods-Postmix-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Postmix-acknowledgements.plist"; sourceTree = "<group>"; };
 		5662F21EADCEEC07AD9CCC9BD97A6D29 /* qrcode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = qrcode.h; path = zbar/qrcode.h; sourceTree = "<group>"; };
 		566B77C7BDA03DCE172B80680915AC34 /* mutex.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mutex.h; path = zbar/mutex.h; sourceTree = "<group>"; };
 		5877E788741EB3DCB545E42507A9C7A5 /* code39.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = code39.h; path = zbar/decoder/code39.h; sourceTree = "<group>"; };
@@ -189,19 +189,20 @@
 		8EFF4B3658F1E752EDCD8F2CAACFFEFE /* zbar-samples.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "zbar-samples.png"; path = "iphone/res/zbar-samples.png"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93B1AE5C44396580411F7A8878BF881B /* refcnt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = refcnt.h; path = zbar/refcnt.h; sourceTree = "<group>"; };
+		94B05DB10733294310F908DD98E130A1 /* Pods-Postmix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Postmix.debug.xcconfig"; sourceTree = "<group>"; };
 		950BD06806E5503D0E8E67F27ED6E302 /* ZBarReaderView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZBarReaderView.h; path = iphone/include/ZBarSDK/ZBarReaderView.h; sourceTree = "<group>"; };
 		9559642DDAA076A3932C296B2E870C5F /* GAIFields.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = GoogleAnalytics/Library/GAIFields.h; sourceTree = "<group>"; };
-		96EB69119F60D1CBC3BA2C4D1D4FB2CD /* Pods-iFixit-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iFixit-acknowledgements.plist"; sourceTree = "<group>"; };
 		97872678BF7B55C1E061BB8EA2579961 /* ZBarCaptureReader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZBarCaptureReader.h; path = iphone/include/ZBarSDK/ZBarCaptureReader.h; sourceTree = "<group>"; };
 		97ECFA055609B5D0A1CE2B59D1D02DD9 /* ZBarHelpController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZBarHelpController.h; path = iphone/include/ZBarSDK/ZBarHelpController.h; sourceTree = "<group>"; };
 		9B40E2DDFD2BF3AA745A8500441DFFD4 /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = iOS/Crashlytics.framework/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
 		9CDB0F7E4C8BB40C0883842E28DA0C14 /* binarize.c */ = {isa = PBXFileReference; includeInIndex = 1; name = binarize.c; path = zbar/qrcode/binarize.c; sourceTree = "<group>"; };
-		A086C53D0ED727F312211EABFC403572 /* Pods-iFixit-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iFixit-frameworks.sh"; sourceTree = "<group>"; };
 		A0AA5CFD2C7EB5909D13680714F4A3C2 /* binarize.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = binarize.h; path = zbar/qrcode/binarize.h; sourceTree = "<group>"; };
 		A0F9FFA06265B6D5175D3ADFBBD301B9 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
 		A2828469CE7F086A0B2F2C525B91181A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
 		A2AF9F0087E085BF5DF6062DCD198E22 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceFields.h; path = GoogleAnalytics/Library/GAIEcommerceFields.h; sourceTree = "<group>"; };
 		A52B759537DDA567191AFD8363AA79CE /* qrdec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = qrdec.h; path = zbar/qrcode/qrdec.h; sourceTree = "<group>"; };
+		AA792BB9BC2C86709A65AB5988622870 /* libZBarSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libZBarSDK.a; path = libZBarSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB1533B49288DD4A22F124075BE97A0E /* Pods-Postmix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Postmix.release.xcconfig"; sourceTree = "<group>"; };
 		AB525FE2A56126C5619D0320FE3BEC25 /* ZBarImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZBarImage.h; path = iphone/include/ZBarSDK/ZBarImage.h; sourceTree = "<group>"; };
 		ADCDABC6DEEA6E44EB2F89F63AC89516 /* symbol.c */ = {isa = PBXFileReference; includeInIndex = 1; name = symbol.c; path = zbar/symbol.c; sourceTree = "<group>"; };
 		AF264B496EB67904F326AEBB02C759EB /* symbol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = symbol.h; path = zbar/symbol.h; sourceTree = "<group>"; };
@@ -209,7 +210,6 @@
 		B21C41C4AD08259769423E4ED75AEE2D /* code128.c */ = {isa = PBXFileReference; includeInIndex = 1; name = code128.c; path = zbar/decoder/code128.c; sourceTree = "<group>"; };
 		B23C0D83BBCFF416A20DA9DF01CE3AA5 /* TAGManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TAGManager.h; path = GoogleTagManager/Library/TAGManager.h; sourceTree = "<group>"; };
 		B2A1A8B6FE701882E8C7BC5ECA8AE02A /* code93.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = code93.h; path = zbar/decoder/code93.h; sourceTree = "<group>"; };
-		BD2B9AA471C7655EF132ED34C2510AAB /* Pods-iFixit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iFixit.release.xcconfig"; sourceTree = "<group>"; };
 		BD523FD7C69FBCACEBAAE0F904E1FE40 /* code39.c */ = {isa = PBXFileReference; includeInIndex = 1; name = code39.c; path = zbar/decoder/code39.c; sourceTree = "<group>"; };
 		BF716BEF9390059419CE7C9170621CE4 /* GAI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = GoogleAnalytics/Library/GAI.h; sourceTree = "<group>"; };
 		BFE509DFFF9B005785788CD9345221A0 /* debug.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = debug.h; path = iphone/debug.h; sourceTree = "<group>"; };
@@ -218,18 +218,17 @@
 		C33DD62889AF8FF5F3282BDD55B81200 /* ZBarReaderView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZBarReaderView.m; path = iphone/ZBarReaderView.m; sourceTree = "<group>"; };
 		C36E3D4BE05E39313AD41D3E7B81AA2B /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = iOS/Crashlytics.framework/Headers/CLSLogging.h; sourceTree = "<group>"; };
 		C56B3F0ECA935C25240968F98ADAC412 /* code93.c */ = {isa = PBXFileReference; includeInIndex = 1; name = code93.c; path = zbar/decoder/code93.c; sourceTree = "<group>"; };
-		C65EE1C26B496E8D2E43B0DF390858BB /* Pods-iFixit-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iFixit-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C7BEC290B3934D36B794FB1A4853D061 /* svg.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = svg.h; path = zbar/svg.h; sourceTree = "<group>"; };
 		CF9426AD21D5F6D439A8410145AB8B81 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreVideo.framework; sourceTree = DEVELOPER_DIR; };
 		D297EB277D79B0D009FA0E04A8D6FA15 /* timer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = timer.h; path = zbar/timer.h; sourceTree = "<group>"; };
 		D2E4819C322F6C52992874477533D8B3 /* ZBarHelpController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZBarHelpController.m; path = iphone/ZBarHelpController.m; sourceTree = "<group>"; };
+		D9FF35AD93749F10A869AF492DEAFAC2 /* libPods-Postmix.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Postmix.a"; path = "libPods-Postmix.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA161B80ED06A304925EBDCFE8CA46E /* ean.c */ = {isa = PBXFileReference; includeInIndex = 1; name = ean.c; path = zbar/decoder/ean.c; sourceTree = "<group>"; };
 		DDB928D79C6782280F5CAAD898D835B3 /* i25.c */ = {isa = PBXFileReference; includeInIndex = 1; name = i25.c; path = zbar/decoder/i25.c; sourceTree = "<group>"; };
 		DEB14E2422642BC4CA88A047A3EC3DB1 /* ZBarCVImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZBarCVImage.h; path = iphone/ZBarCVImage.h; sourceTree = "<group>"; };
 		E1605994D169013558A41976061314C2 /* ZBarReaderViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZBarReaderViewController.m; path = iphone/ZBarReaderViewController.m; sourceTree = "<group>"; };
 		E3A7F49C8ACC2F833BD0BDC21500E720 /* qr_finder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = qr_finder.h; path = zbar/decoder/qr_finder.h; sourceTree = "<group>"; };
 		E47E591A1BC62837B43EC92585EE7032 /* GAILogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = GoogleAnalytics/Library/GAILogger.h; sourceTree = "<group>"; };
-		E514735AA34D04DB2BA51AC49BF91CAE /* Pods-iFixit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iFixit.debug.xcconfig"; sourceTree = "<group>"; };
 		E76A7D17A968DF7FD8DAC9225C8233BE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		EA2C3908FAC9DFEA03239D518F109DA8 /* ZBarCameraSimulator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZBarCameraSimulator.m; path = iphone/ZBarCameraSimulator.m; sourceTree = "<group>"; };
 		EB5A6F3CD21416DC5070E113B0BA4522 /* i25.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = i25.h; path = zbar/decoder/i25.h; sourceTree = "<group>"; };
@@ -237,73 +236,50 @@
 		EE0281B95286CEAFB10A38390AF12906 /* ZBarSymbol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZBarSymbol.h; path = iphone/include/ZBarSDK/ZBarSymbol.h; sourceTree = "<group>"; };
 		EF8F235284439211A0E66F38D4ED1261 /* TAGContainer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TAGContainer.h; path = GoogleTagManager/Library/TAGContainer.h; sourceTree = "<group>"; };
 		F02B341D97358A9C281E5376D8917B62 /* image.c */ = {isa = PBXFileReference; includeInIndex = 1; name = image.c; path = zbar/image.c; sourceTree = "<group>"; };
+		F114B4A00D12822D7B7B7730319FB17A /* Pods-Postmix-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Postmix-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F1182A48B8DC78C1DEEA5BBAB3EB1B6A /* Pods-Postmix-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Postmix-dummy.m"; sourceTree = "<group>"; };
 		F38E49D75A72F4FF45F13FF576F7CC6C /* config.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = config.h; path = iphone/include/config.h; sourceTree = "<group>"; };
-		F5725DFC8211D8C858CB8B82F37464DB /* libZBarSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libZBarSDK.a; path = libZBarSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6401CEE75DE3F8F3C221F4B57D08A75 /* ZBarSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZBarSDK.h; path = iphone/include/ZBarSDK/ZBarSDK.h; sourceTree = "<group>"; };
 		F67D2B1E36C891E8749DD9AD80553CA0 /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = iOS/Crashlytics.framework/Headers/CLSAttributes.h; sourceTree = "<group>"; };
 		F6C5D218F68B44AABA708790C564BF7E /* codabar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = codabar.h; path = zbar/decoder/codabar.h; sourceTree = "<group>"; };
 		FA0A6A2B9FED13DF4BCB816078A0D7DB /* databar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = databar.h; path = zbar/decoder/databar.h; sourceTree = "<group>"; };
 		FA24342FFDA635E887978D53C181F93C /* zbar-helpicons.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "zbar-helpicons.png"; path = "iphone/res/zbar-helpicons.png"; sourceTree = "<group>"; };
 		FBA0FB4A8281EC6CBEE99FA63FD69FBE /* GAITrackedViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = GoogleAnalytics/Library/GAITrackedViewController.h; sourceTree = "<group>"; };
+		FC38F36B9F450DB5EEFD4E99D858122D /* Pods-Postmix-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Postmix-resources.sh"; sourceTree = "<group>"; };
 		FE70572F53CAA1FCEC3AB66FF8D79FC7 /* win.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = win.h; path = zbar/window/win.h; sourceTree = "<group>"; };
-		FE7CC3E3261B211981C5C29C9B152A7C /* Pods-iFixit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iFixit-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		564FBABD93CA0587EA81B3C4D9E7BDB3 /* Frameworks */ = {
+		72A7F9226FEA5CAAF52828C5B9F96826 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4558D7DC346690CCE0CAF1B4FCFA3FF /* AVFoundation.framework in Frameworks */,
-				F6305BCB0B5FB75AD23EE5234C81D43E /* CoreGraphics.framework in Frameworks */,
-				729E4E6CF45C1BF8ADCB1FD026225689 /* CoreMedia.framework in Frameworks */,
-				1E27CEAB5DDED6C1DEE8E8F7FB735544 /* CoreVideo.framework in Frameworks */,
-				E9D5D223F241F0C1D107093DBA0B0E4E /* Foundation.framework in Frameworks */,
-				65780822D4780589F006493B7EE20B37 /* QuartzCore.framework in Frameworks */,
+				61591551E4183D01AC191781600B7714 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5D5FBDABB11E9C59990AFA0909490F78 /* Frameworks */ = {
+		BDB0E580C4C3CA2C78CE734DC3669EA0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC9F9E2B500A14D6BB9A852B16B1A2E8 /* Foundation.framework in Frameworks */,
+				7A207B2BF589F3261E362F7E340FD650 /* AVFoundation.framework in Frameworks */,
+				C5701E7AB3A488187A6D387FDDCAD4B3 /* CoreGraphics.framework in Frameworks */,
+				B9364857B013EE67B474F0F00BE74435 /* CoreMedia.framework in Frameworks */,
+				F87F20347D3DEE9A8E2915EC7505870E /* CoreVideo.framework in Frameworks */,
+				977A9C81F24B815A50E2A077FA0F93C8 /* Foundation.framework in Frameworks */,
+				D417DF30E6CA0B247C1B23D2CD24AA53 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		05AEDD6ECD456D0F0E64659A34354D87 /* Pods-iFixit */ = {
-			isa = PBXGroup;
-			children = (
-				C65EE1C26B496E8D2E43B0DF390858BB /* Pods-iFixit-acknowledgements.markdown */,
-				96EB69119F60D1CBC3BA2C4D1D4FB2CD /* Pods-iFixit-acknowledgements.plist */,
-				FE7CC3E3261B211981C5C29C9B152A7C /* Pods-iFixit-dummy.m */,
-				A086C53D0ED727F312211EABFC403572 /* Pods-iFixit-frameworks.sh */,
-				01E4A282520FD113302A9F22416E88D4 /* Pods-iFixit-resources.sh */,
-				4698842439C78D3BFD4C94904C739948 /* Pods-iFixit.ad-hoc.xcconfig */,
-				E514735AA34D04DB2BA51AC49BF91CAE /* Pods-iFixit.debug.xcconfig */,
-				BD2B9AA471C7655EF132ED34C2510AAB /* Pods-iFixit.release.xcconfig */,
-			);
-			name = "Pods-iFixit";
-			path = "Target Support Files/Pods-iFixit";
-			sourceTree = "<group>";
-		};
 		0F75DF6C7C5F002280EC53F48E80B587 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				6F68B61E6B334C4D6321389642D9F6CE /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		1CA39BF4C37685B632542EF474325F14 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				05AEDD6ECD456D0F0E64659A34354D87 /* Pods-iFixit */,
-			);
-			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		32AB62236DE6443D9EA5E8B8BDDE83AB /* ZBarSDK */ = {
@@ -400,21 +376,20 @@
 			path = ZBarSDK;
 			sourceTree = "<group>";
 		};
+		491CF0698454351A824FB2537CEDCD04 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				848DA7A0D9D677D6260BA55D4D1456C6 /* Pods-Postmix */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 		5FF39104C65EEF763FCEA5A8DA54548F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				01F4E2761F541895E81F495268BDB53B /* Fabric.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6949BE85E8C170F2AEF3B6CC50B37768 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				14123EBBDB883D57E0DFBBFEA9C448AE /* libPods-iFixit.a */,
-				F5725DFC8211D8C858CB8B82F37464DB /* libZBarSDK.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		6F68B61E6B334C4D6321389642D9F6CE /* iOS */ = {
@@ -455,9 +430,25 @@
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				0F75DF6C7C5F002280EC53F48E80B587 /* Frameworks */,
 				74F0D2CA390AF56C6C4AD132E1BBFF78 /* Pods */,
-				6949BE85E8C170F2AEF3B6CC50B37768 /* Products */,
-				1CA39BF4C37685B632542EF474325F14 /* Targets Support Files */,
+				C3F0AC12B3D5352FDF1AE4C480996CE7 /* Products */,
+				491CF0698454351A824FB2537CEDCD04 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		848DA7A0D9D677D6260BA55D4D1456C6 /* Pods-Postmix */ = {
+			isa = PBXGroup;
+			children = (
+				F114B4A00D12822D7B7B7730319FB17A /* Pods-Postmix-acknowledgements.markdown */,
+				5638BEBD74ED02B6E1C48A1996A33E2F /* Pods-Postmix-acknowledgements.plist */,
+				F1182A48B8DC78C1DEEA5BBAB3EB1B6A /* Pods-Postmix-dummy.m */,
+				1DBF8FFA424B71CA2B0508C22F82E67B /* Pods-Postmix-frameworks.sh */,
+				FC38F36B9F450DB5EEFD4E99D858122D /* Pods-Postmix-resources.sh */,
+				097608E7D46DEB291CC000D0225945FA /* Pods-Postmix.ad-hoc.xcconfig */,
+				94B05DB10733294310F908DD98E130A1 /* Pods-Postmix.debug.xcconfig */,
+				AB1533B49288DD4A22F124075BE97A0E /* Pods-Postmix.release.xcconfig */,
+			);
+			name = "Pods-Postmix";
+			path = "Target Support Files/Pods-Postmix";
 			sourceTree = "<group>";
 		};
 		980A43160D7A03191841C738C04CF96E /* Core */ = {
@@ -509,6 +500,15 @@
 			path = Fabric;
 			sourceTree = "<group>";
 		};
+		C3F0AC12B3D5352FDF1AE4C480996CE7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D9FF35AD93749F10A869AF492DEAFAC2 /* libPods-Postmix.a */,
+				AA792BB9BC2C86709A65AB5988622870 /* libZBarSDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E22C10A75B76B52530513F2D3DE24738 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,89 +543,89 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		ABC8ED562AFF0659AE27879D3AF1ADF4 /* Headers */ = {
+		2674C9D7DB393E5CB9EF158BAF0A3DD9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				588AF1D77DE7FBC915F8AEFC50D4565F /* bch15_5.h in Headers */,
-				A5BDE36A99A7E36A7AAA18B47214A205 /* binarize.h in Headers */,
-				10AC46670F43B252B4E88CFC92195772 /* codabar.h in Headers */,
-				75614FB751721AA1522B0AE866C81996 /* code128.h in Headers */,
-				9461FAC29050AF08596176369E8392F7 /* code39.h in Headers */,
-				8C5B06EC55426606070228C22C1A53A4 /* code93.h in Headers */,
-				882ADA5346EAD398920E244C148FEA34 /* config.h in Headers */,
-				14158B940732555DA394AC4D8A776257 /* databar.h in Headers */,
-				07EB55D5AEFB07A1BE687E427BADA332 /* debug.h in Headers */,
-				5C25615F0F4CF194BDD8371939DCF237 /* debug.h in Headers */,
-				CF53D931114A9B605838C1F350056064 /* decoder.h in Headers */,
-				F9A17957740B2AA27AEE537A73EE12C8 /* ean.h in Headers */,
-				1993A9A783AC2CCBACD310670709129D /* error.h in Headers */,
-				9B89C501E3256D41AC36FB4FF2849147 /* event.h in Headers */,
-				5788330A8CE3007679EEB1D72C292449 /* i25.h in Headers */,
-				4D9FE9ECF793C50E00A9C9892D5FEDD1 /* image.h in Headers */,
-				F7DE3770FE5E4FA33F4D73B292A78840 /* img_scanner.h in Headers */,
-				7CD9F8E86AA315631FC0769E900D1C89 /* isaac.h in Headers */,
-				F323C44CEC4713965CA91CC50F48C7E6 /* mutex.h in Headers */,
-				289E20724175FE1A8F2E6F265A3EC88E /* pdf417.h in Headers */,
-				06AAF66A23BB1153333F38B74E4BBC11 /* pdf417_hash.h in Headers */,
-				F88275F59CECFBC2AEF17C0372764607 /* posix.h in Headers */,
-				58ED9186F646EFC4EAB834D761A6EB9E /* processor.h in Headers */,
-				DE337B462535D28A1A4957B0A23F6B13 /* qr_finder.h in Headers */,
-				2960B100FBAF74CAEC8949C72A8BC0BD /* qrcode.h in Headers */,
-				5DD16D359EE75F7AAA9DC9ADDBCD958F /* qrdec.h in Headers */,
-				BB345B0CAC1ABC727B5A193625136576 /* refcnt.h in Headers */,
-				D35F62119527133CD1F745A3202B8291 /* rs.h in Headers */,
-				8BFCC6DA1450F927F58C2A64863F7A59 /* svg.h in Headers */,
-				52FEFBAE4133ACEF55E07D7A4818ED26 /* symbol.h in Headers */,
-				B8ADA1F60E484163690CD36939775EF9 /* thread.h in Headers */,
-				4F6714BC1513903DD630C40667F8BA1E /* timer.h in Headers */,
-				22C811055D6D3792A28F8C75679645EE /* util.h in Headers */,
-				70F6524EE9708F8928AFD20FD7FBC76E /* video.h in Headers */,
-				9627E7AD93EC0C543F4D6B1048C00730 /* win.h in Headers */,
-				0CAEF79D5BE17C18A01866F6C21CE0BD /* window.h in Headers */,
-				E46BA2BAF44CF7ECB4C6BA2F50D9423E /* x.h in Headers */,
-				F74A7AB482913406E084F4F11B3D023E /* zbar.h in Headers */,
-				83A8E1293F438A561C6C8845E20A5CB8 /* ZBarCameraSimulator.h in Headers */,
-				03BFD4F0720AD6402F92357593F0E5A7 /* ZBarCaptureReader.h in Headers */,
-				33E5BA7C3F38DD27D5EC242F38D07CD7 /* ZBarCVImage.h in Headers */,
-				AD3C08A3108A7FC527C6F474E34895F2 /* ZBarHelpController.h in Headers */,
-				349EAFF8FBF03ECF25E13AD8F356626B /* ZBarImage.h in Headers */,
-				8C73B765A5B5002890473920F9EF7E75 /* ZBarImageScanner.h in Headers */,
-				FA9EEA1DD1C03AA956853A1A0EE6B34E /* ZBarReaderController.h in Headers */,
-				0F9CD005BDBC5F24FAEDE2760B0297F4 /* ZBarReaderView.h in Headers */,
-				F08011CB06D72F9930CFC563A19552B9 /* ZBarReaderViewController.h in Headers */,
-				A0E6922F0476D86137E7434958C98C99 /* ZBarSDK.h in Headers */,
-				9F98B040B57FD55D26AA6C11C38A4491 /* ZBarSymbol.h in Headers */,
+				B4476959220B111550A3D107F345A22F /* bch15_5.h in Headers */,
+				FB9C1DE8AF6DCDCFB742EBAC40B7DE6B /* binarize.h in Headers */,
+				B915DF130E71433D1271E1745E19E099 /* codabar.h in Headers */,
+				5004762B4A75595F3386940AC60247B5 /* code128.h in Headers */,
+				5FA4857C81C95E3DAD2C3CBEDC87F55A /* code39.h in Headers */,
+				8CAA522EA9539C01469C3D5991F3DCEC /* code93.h in Headers */,
+				0163EFDF189428B35561247D04D601EA /* config.h in Headers */,
+				5638DBAED337A5BE5C106398F9081F81 /* databar.h in Headers */,
+				86CA3A610998B99A045D16BEE76022E0 /* debug.h in Headers */,
+				F5CD933DF3FBEE15B28FB342C5EA7A5E /* debug.h in Headers */,
+				9709474FFA8A9725CAF93560CB81F45D /* decoder.h in Headers */,
+				6769F950AFA317EC862FB741418E0773 /* ean.h in Headers */,
+				F856F4C262C9720EDDF7CB21C0BD1D29 /* error.h in Headers */,
+				02CFB26D5C3E556444E374454805F245 /* event.h in Headers */,
+				B8AF988AFD40DA5D5E788E3A82B4AD86 /* i25.h in Headers */,
+				C9CE835EB335371D36A5BCF8AEDB5518 /* image.h in Headers */,
+				76E036D4C89EE5A989236430DF151288 /* img_scanner.h in Headers */,
+				3F947E7DD9DC33E12BC91432714168A5 /* isaac.h in Headers */,
+				6CE828BF693B1478A27DF055A8C89036 /* mutex.h in Headers */,
+				46492C395361713224FA9F53883B2EBE /* pdf417.h in Headers */,
+				F1CC1602BDE182DCF43D9A3BA73ECAF8 /* pdf417_hash.h in Headers */,
+				0C74C4C3EC400A3DBC21EE8385E131EC /* posix.h in Headers */,
+				146237748EF01D4E31795CEBDD6BEBD0 /* processor.h in Headers */,
+				01B9462E8B1054B838D07B7E7FF895B6 /* qr_finder.h in Headers */,
+				2E01652E31AD3EA1280F3627849D3AD9 /* qrcode.h in Headers */,
+				99009E89CEBF22F0E2022579CCE02096 /* qrdec.h in Headers */,
+				9D00E5B6C47BD65309F153E7E3461EA6 /* refcnt.h in Headers */,
+				36E55AB5593D9D28554FF5439CC1984E /* rs.h in Headers */,
+				82ABD728E06C668EA19D3BA0021CC7BF /* svg.h in Headers */,
+				6BDDF0FDBE50D0B7951DFBDEEF113BB7 /* symbol.h in Headers */,
+				B3EC780BE3DA2BB3F04C97ECD912BD2C /* thread.h in Headers */,
+				07686926F11D12E20B4673E7A298C929 /* timer.h in Headers */,
+				8F89734714905B3C2B4FB6AC7591DA0F /* util.h in Headers */,
+				33B979FE1986CC9B1D77D33A82E279C3 /* video.h in Headers */,
+				FD6B713449A566A59189EDC050047A61 /* win.h in Headers */,
+				0E0605A64D7E80A93CFA0F95D2A7D7B1 /* window.h in Headers */,
+				890B3B933352030C1248F488FC3BB62A /* x.h in Headers */,
+				BFC8D63DB0CE9EDFA2F171036CDF29DA /* zbar.h in Headers */,
+				1A80EA9B92ABB71E2A276DA766798F73 /* ZBarCameraSimulator.h in Headers */,
+				14B8A95CF6217CF1BBF4F41439C4D0B5 /* ZBarCaptureReader.h in Headers */,
+				6362B9A037DE83F5F3420A17101B8174 /* ZBarCVImage.h in Headers */,
+				93E2AA4103AC8D5EF6DC133C197B7E40 /* ZBarHelpController.h in Headers */,
+				5EAB424CB7057691EBC9535C140E8299 /* ZBarImage.h in Headers */,
+				2F681FF5FEDA26695A37AB8C944629D6 /* ZBarImageScanner.h in Headers */,
+				0699878E3D1916827DDB6AB1A38110E8 /* ZBarReaderController.h in Headers */,
+				104F70948BF226006DD9309D319B7E1C /* ZBarReaderView.h in Headers */,
+				D6A2B973CA9CCAFDB4A9A0BA82186C3F /* ZBarReaderViewController.h in Headers */,
+				E69C8BADB8BC3DDEBF4D0B50114FAC5C /* ZBarSDK.h in Headers */,
+				BFCDF33A2B095A1786491FB64CF9A868 /* ZBarSymbol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6311420501007CD3102890C95081A5AC /* Pods-iFixit */ = {
+		B997CBCDE9B25A931CBE5B93ED59AB88 /* Pods-Postmix */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B5342493BA671B162CBE097250885FAF /* Build configuration list for PBXNativeTarget "Pods-iFixit" */;
+			buildConfigurationList = 5D266BF8FA827D858F8DFD445414D42B /* Build configuration list for PBXNativeTarget "Pods-Postmix" */;
 			buildPhases = (
-				37B2777CCAAD5D312F33A6026AFC7B5D /* Sources */,
-				5D5FBDABB11E9C59990AFA0909490F78 /* Frameworks */,
+				E8FF1810D37DB05F112BB023837527F8 /* Sources */,
+				72A7F9226FEA5CAAF52828C5B9F96826 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C4D67BDC290F44949954E4712A6386FE /* PBXTargetDependency */,
+				679650AACE0259630A1947E99102AD13 /* PBXTargetDependency */,
 			);
-			name = "Pods-iFixit";
-			productName = "Pods-iFixit";
-			productReference = 14123EBBDB883D57E0DFBBFEA9C448AE /* libPods-iFixit.a */;
+			name = "Pods-Postmix";
+			productName = "Pods-Postmix";
+			productReference = D9FF35AD93749F10A869AF492DEAFAC2 /* libPods-Postmix.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		8C7AB3EB0E79001C2F6D6B0240568BD0 /* ZBarSDK */ = {
+		C65F12584566EE4D26C2D05868B9240C /* ZBarSDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2BA8273261D7F810BB5317F42E6734F1 /* Build configuration list for PBXNativeTarget "ZBarSDK" */;
+			buildConfigurationList = 07330DC25752E96AB9B20BDAE89C1916 /* Build configuration list for PBXNativeTarget "ZBarSDK" */;
 			buildPhases = (
-				754F73AEE260E1C6B190C24165A1CF05 /* Sources */,
-				564FBABD93CA0587EA81B3C4D9E7BDB3 /* Frameworks */,
-				ABC8ED562AFF0659AE27879D3AF1ADF4 /* Headers */,
+				DE6957B0B0CE5FF5C1D322DF4F741F08 /* Sources */,
+				BDB0E580C4C3CA2C78CE734DC3669EA0 /* Frameworks */,
+				2674C9D7DB393E5CB9EF158BAF0A3DD9 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -633,7 +633,7 @@
 			);
 			name = ZBarSDK;
 			productName = ZBarSDK;
-			productReference = F5725DFC8211D8C858CB8B82F37464DB /* libZBarSDK.a */;
+			productReference = AA792BB9BC2C86709A65AB5988622870 /* libZBarSDK.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -653,126 +653,80 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 6949BE85E8C170F2AEF3B6CC50B37768 /* Products */;
+			productRefGroup = C3F0AC12B3D5352FDF1AE4C480996CE7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6311420501007CD3102890C95081A5AC /* Pods-iFixit */,
-				8C7AB3EB0E79001C2F6D6B0240568BD0 /* ZBarSDK */,
+				B997CBCDE9B25A931CBE5B93ED59AB88 /* Pods-Postmix */,
+				C65F12584566EE4D26C2D05868B9240C /* ZBarSDK */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		37B2777CCAAD5D312F33A6026AFC7B5D /* Sources */ = {
+		DE6957B0B0CE5FF5C1D322DF4F741F08 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B989735321C4948BC710F674D9382EA /* Pods-iFixit-dummy.m in Sources */,
+				36774E352177CC31D97F955C86FA402C /* bch15_5.c in Sources */,
+				22C271708611B791AD9454F6CDEFAE6C /* binarize.c in Sources */,
+				2417595AAAF07AF1BFBD99B9B2CBEFAB /* codabar.c in Sources */,
+				D4F46B259A4A7B431F47B10A2FDC1E80 /* code128.c in Sources */,
+				C3BB278C43412F177D382FB23A5A103E /* code39.c in Sources */,
+				FC958B6C628D131E8FD5A13C61308357 /* code93.c in Sources */,
+				BDA0C677227FDAEEBFE9690585BF8E0A /* config.c in Sources */,
+				8005C533E957945628956E33E662DFEC /* databar.c in Sources */,
+				1A5E28D29DCCF89FA7DA48F72DD603A4 /* decoder.c in Sources */,
+				CE279CB221F8C949BD733CD605F6A416 /* ean.c in Sources */,
+				563E48F874A460787D4E481C81516652 /* error.c in Sources */,
+				FF4947D4D3ED67F2002807487BC240BD /* i25.c in Sources */,
+				CA2228A305C037F941C913426F15ABE6 /* image.c in Sources */,
+				009DF43791BC3DD242D967B791700304 /* img_scanner.c in Sources */,
+				11856C609CAB878B0961B417B2BEEA13 /* isaac.c in Sources */,
+				0BB16C86C2348C294CC967897443897D /* qr_finder.c in Sources */,
+				A102D6B83AECC485543B341B2BC79092 /* qrdec.c in Sources */,
+				C7476B8D2DBA46BBDBA5267FE857959A /* qrdectxt.c in Sources */,
+				B896E43256C0A425B9D702F8E1E84E3B /* refcnt.c in Sources */,
+				A122DF1175F085883F3895D16B5AF475 /* rs.c in Sources */,
+				87D70B0673DC00EF74E515E0809F0CCD /* scanner.c in Sources */,
+				59D0AEB6AE06D1E8611A4DD3E82F6852 /* symbol.c in Sources */,
+				9D6AD34162E458388E150B717ED0CE85 /* util.c in Sources */,
+				E346D6CC319B521B11BE5CF0C39DBB8B /* ZBarCameraSimulator.m in Sources */,
+				B5392ECE3E3E6F005784126AC3D8B234 /* ZBarCaptureReader.m in Sources */,
+				8F555804F1CC19559A9846B0D23753E7 /* ZBarCVImage.m in Sources */,
+				9DC816BBC550EFBDEDC35D00747949AC /* ZBarHelpController.m in Sources */,
+				FCBEFD202F053E259C277AB10D95275D /* ZBarImage.m in Sources */,
+				1F8C309DC8779369C90D7E19DC13DD93 /* ZBarImageScanner.m in Sources */,
+				967306D0EB57F3A31A153D73AD99B04A /* ZBarReaderController.m in Sources */,
+				490104FFED5C12C05F054594C566326C /* ZBarReaderView.m in Sources */,
+				B111BD59DF1F145EFEA9D8E35FA2020E /* ZBarReaderViewController.m in Sources */,
+				3C9A22E522F15612C0B9A7775F40420C /* ZBarReaderViewImpl_Capture.m in Sources */,
+				075011BC618C849C487431BC3B1EE90A /* ZBarReaderViewImpl_Simulator.m in Sources */,
+				D465193EE1E9B59A7E155DC01C759A59 /* ZBarSDK-dummy.m in Sources */,
+				BD6546A5F7E0865D7BAEB0A9A673A13E /* ZBarSymbol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		754F73AEE260E1C6B190C24165A1CF05 /* Sources */ = {
+		E8FF1810D37DB05F112BB023837527F8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01178D6F217925EF25BA01A4A5B75D83 /* bch15_5.c in Sources */,
-				E4BD5D7E94703C8128A838D731C4B780 /* binarize.c in Sources */,
-				649659960E81BB823D5CC71814557166 /* codabar.c in Sources */,
-				33D3D03E86C0DBE73728457416168CD9 /* code128.c in Sources */,
-				17F5B299EAC604004133E0BF2D81225A /* code39.c in Sources */,
-				773C067B310044415EA52EB533A5F697 /* code93.c in Sources */,
-				0E7F7289E94BFC492E9E3D7E4F54833E /* config.c in Sources */,
-				BACBAB723B0E096E89D2DB4E8D215D02 /* databar.c in Sources */,
-				D5418E5404D042B507B6E8F866E27F44 /* decoder.c in Sources */,
-				5A0C5EF872632C869E838F8820BADBC6 /* ean.c in Sources */,
-				2C6BFC0EF07D41CD2ABBFB96E0E0738D /* error.c in Sources */,
-				76C7A6B212EEE17EF42B99991AFCF6EE /* i25.c in Sources */,
-				CDD9FEA0D8DBEDF9FD952FABDB7E9155 /* image.c in Sources */,
-				7B10CF8746B40D1FE9F06C4A29E51895 /* img_scanner.c in Sources */,
-				50C882A4384139E239F5762A4810CC47 /* isaac.c in Sources */,
-				EBF76DABD31A861F65227B9EE86D4F07 /* qr_finder.c in Sources */,
-				99FBBD41E9BBA9A9C92F40F54E1901CD /* qrdec.c in Sources */,
-				BD2E404AF38B5B73D79CDB254DAFAF0E /* qrdectxt.c in Sources */,
-				7BA1E30C1BF08A18604576841E85BD02 /* refcnt.c in Sources */,
-				59FE34C8342B20A8E4983FB4011A48B9 /* rs.c in Sources */,
-				C42AABCBBA1A7179DFA9DDE5425E59C9 /* scanner.c in Sources */,
-				A47A9D64BF4A2D546F84BDC10C98A4B0 /* symbol.c in Sources */,
-				7B736AE1714FB7252265602AEA2E5DEF /* util.c in Sources */,
-				990E1E2FB778597EF034855E793C4B07 /* ZBarCameraSimulator.m in Sources */,
-				39D864A6ADF1171E77B7EF8121E6CE2D /* ZBarCaptureReader.m in Sources */,
-				280C8D694E8E3AFBB069075E69A2F827 /* ZBarCVImage.m in Sources */,
-				0B29321B71401F248ED8042234A34BF3 /* ZBarHelpController.m in Sources */,
-				D9061325B21D4179A4D21B7D2C213E36 /* ZBarImage.m in Sources */,
-				BA76FFC0EE89C214CC74E417C29B30A3 /* ZBarImageScanner.m in Sources */,
-				FCAE8921C28E8F559E8AAF3C1461A47B /* ZBarReaderController.m in Sources */,
-				0AF38ED5AE9C777B79A28BF991DD8D87 /* ZBarReaderView.m in Sources */,
-				DA94CE21F77A9AFC33AA8029921B8E0B /* ZBarReaderViewController.m in Sources */,
-				BCBCB6731BDE4EABBE1AEA2334037869 /* ZBarReaderViewImpl_Capture.m in Sources */,
-				6ED40D4A9235127FBEF5430430C422FC /* ZBarReaderViewImpl_Simulator.m in Sources */,
-				0ED213F34FAD02E5842DAB811E5CD86F /* ZBarSDK-dummy.m in Sources */,
-				72F8421071CA25FF2B8932C36BA85CBC /* ZBarSymbol.m in Sources */,
+				BF4BCEA3E42F7965A44DFB0B31CBF78F /* Pods-Postmix-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C4D67BDC290F44949954E4712A6386FE /* PBXTargetDependency */ = {
+		679650AACE0259630A1947E99102AD13 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ZBarSDK;
-			target = 8C7AB3EB0E79001C2F6D6B0240568BD0 /* ZBarSDK */;
-			targetProxy = 77BE4A505AB735C18EDA74EDE2BD576A /* PBXContainerItemProxy */;
+			target = C65F12584566EE4D26C2D05868B9240C /* ZBarSDK */;
+			targetProxy = 9312FA4DD75693628B7CD2CCDD2E587F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0929CEF5690E6833BA9D2C33A6B88486 /* Ad-Hoc */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4698842439C78D3BFD4C94904C739948 /* Pods-iFixit.ad-hoc.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = "Ad-Hoc";
-		};
-		10EA87B0FFA1F73364F364AAD565F9C7 /* Ad-Hoc */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BD83C47F86292E8CC8C503A5ABD98DD /* ZBarSDK.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/ZBarSDK/ZBarSDK-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = "Ad-Hoc";
-		};
 		2E0E031EADE2BEF5BDA277F93A0C7480 /* Ad-Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -812,9 +766,9 @@
 			};
 			name = "Ad-Hoc";
 		};
-		44DC05AE4D23BFDD571F30B1C72AC7A5 /* Release */ = {
+		5C427C7C907DFC9F346E0A998AF08662 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD2B9AA471C7655EF132ED34C2510AAB /* Pods-iFixit.release.xcconfig */;
+			baseConfigurationReference = AB1533B49288DD4A22F124075BE97A0E /* Pods-Postmix.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -835,30 +789,7 @@
 			};
 			name = Release;
 		};
-		64C3FF6113CCB2A3323340E7D956B8B6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BD83C47F86292E8CC8C503A5ABD98DD /* ZBarSDK.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/ZBarSDK/ZBarSDK-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		A36D849D00FD62E30B6F9DE1120AEE4F /* Release */ = {
+		5E5D48210257B71E25A94A8E725B01EE /* Ad-Hoc */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2BD83C47F86292E8CC8C503A5ABD98DD /* ZBarSDK.xcconfig */;
 			buildSettings = {
@@ -879,7 +810,30 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
-			name = Release;
+			name = "Ad-Hoc";
+		};
+		9BF0F2F839E68D7AB3CAB88346253B8C /* Ad-Hoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 097608E7D46DEB291CC000D0225945FA /* Pods-Postmix.ad-hoc.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = "Ad-Hoc";
 		};
 		B569ECED6DF5EC7ABDDF8C8957E26574 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -921,9 +875,32 @@
 			};
 			name = Release;
 		};
-		F68E138B1C99B337F2175A47B34940D7 /* Debug */ = {
+		CF63BB896613BB20CD2FEA181185B0B7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E514735AA34D04DB2BA51AC49BF91CAE /* Pods-iFixit.debug.xcconfig */;
+			baseConfigurationReference = 2BD83C47F86292E8CC8C503A5ABD98DD /* ZBarSDK.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ZBarSDK/ZBarSDK-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		D6E06DEDBAEC3F8E9F62541815C8C6D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BD83C47F86292E8CC8C503A5ABD98DD /* ZBarSDK.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -931,14 +908,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				MACH_O_TYPE = staticlib;
+				GCC_PREFIX_HEADER = "Target Support Files/ZBarSDK/ZBarSDK-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
@@ -988,15 +965,38 @@
 			};
 			name = Debug;
 		};
+		FFB3311733DD1AE8C9E72119E48C5EC9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94B05DB10733294310F908DD98E130A1 /* Pods-Postmix.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2BA8273261D7F810BB5317F42E6734F1 /* Build configuration list for PBXNativeTarget "ZBarSDK" */ = {
+		07330DC25752E96AB9B20BDAE89C1916 /* Build configuration list for PBXNativeTarget "ZBarSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				10EA87B0FFA1F73364F364AAD565F9C7 /* Ad-Hoc */,
-				64C3FF6113CCB2A3323340E7D956B8B6 /* Debug */,
-				A36D849D00FD62E30B6F9DE1120AEE4F /* Release */,
+				5E5D48210257B71E25A94A8E725B01EE /* Ad-Hoc */,
+				D6E06DEDBAEC3F8E9F62541815C8C6D3 /* Debug */,
+				CF63BB896613BB20CD2FEA181185B0B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1011,12 +1011,12 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B5342493BA671B162CBE097250885FAF /* Build configuration list for PBXNativeTarget "Pods-iFixit" */ = {
+		5D266BF8FA827D858F8DFD445414D42B /* Build configuration list for PBXNativeTarget "Pods-Postmix" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0929CEF5690E6833BA9D2C33A6B88486 /* Ad-Hoc */,
-				F68E138B1C99B337F2175A47B34940D7 /* Debug */,
-				44DC05AE4D23BFDD571F30B1C72AC7A5 /* Release */,
+				9BF0F2F839E68D7AB3CAB88346253B8C /* Ad-Hoc */,
+				FFB3311733DD1AE8C9E72119E48C5EC9 /* Debug */,
+				5C427C7C907DFC9F346E0A998AF08662 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

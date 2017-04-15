@@ -136,6 +136,11 @@ BOOL searchViewEnabled;
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
+             case ConfigPepsi:
+                  titleImage = [UIImage imageNamed:@"titleImageOscaro.png"];
+                  imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+                  self.navigationItem.titleView = imageTitle;
+                  break;
             /*EAOTitle*/
         }
     }

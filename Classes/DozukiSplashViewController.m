@@ -47,7 +47,7 @@
      self.getStarted.backgroundColor = [UIColor colorWithRed:0.87 green:0.25 blue:0.14 alpha:1.0];
      self.getStarted.layer.masksToBounds = YES;
      self.getStarted.layer.cornerRadius = 8.0;
-     self.dozukiSlogan.hidden = NO;
+     //self.dozukiSlogan.hidden = NO;
      self.dozukiDescription.hidden = YES;
      UIFont *fontgs = nil;
      UIFont *fontsl = nil;

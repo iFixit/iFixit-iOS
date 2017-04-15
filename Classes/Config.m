@@ -137,6 +137,15 @@ static Config *currentConfig = nil;
             self.private = NO;
             self.scanner = NO;
             break;
+         case ConfigPepsi:
+              self.host = @"charlessmith.dozuki.com";
+              self.baseURL = @"http://charlessmith.dozuki.com";
+              answersEnabled = NO;
+              collectionsEnabled = NO;
+              self.store = nil;
+              self.private = YES;
+              self.scanner = NO;
+              break;
         /*EAOOptions*/
         default:
             self.host = @"www.dozuki.com";
