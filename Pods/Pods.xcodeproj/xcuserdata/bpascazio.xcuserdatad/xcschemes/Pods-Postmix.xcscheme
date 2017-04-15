@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6311420501007CD3102890C95081A5AC'
-               BlueprintName = 'Pods-iFixit'
+               BlueprintIdentifier = 'B997CBCDE9B25A931CBE5B93ED59AB88'
+               BlueprintName = 'Pods-Postmix'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-iFixit.a'>
+               BuildableName = 'libPods-Postmix.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

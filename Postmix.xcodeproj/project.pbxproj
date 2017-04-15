@@ -80,7 +80,6 @@
 		9CE6783F18387080001912DF /* accustream_step.css in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6783E18387080001912DF /* accustream_step.css */; };
 		9CF8AB2F1A44D2400083B725 /* comcast_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CF8AB2E1A44D2400083B725 /* comcast_logo_transparent.png */; };
 		9CF8AB331A44D7A30083B725 /* titleImageComcast.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CF8AB321A44D7A30083B725 /* titleImageComcast.png */; };
-		A02CF5724F1FA14B3D7E962C /* libPods-iFixit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF194D64CF4BF5C70428F54D /* libPods-iFixit.a */; };
 		AB0B27AD15E7E3550088BA07 /* titleImageZeal.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */; };
 		AB0B27B015E7E36B0088BA07 /* titleImageZeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */; };
 		AB1F950C17A584B4009F3419 /* NoImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB1F950B17A584B4009F3419 /* NoImage@2x.jpg */; };
@@ -150,6 +149,7 @@
 		C14B6A0B1E41565F00C1BDBA /* MuseoSans-100Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B6A011E41565F00C1BDBA /* MuseoSans-100Italic.otf */; };
 		C14B6A0C1E41565F00C1BDBA /* MuseoSans-100.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B6A021E41565F00C1BDBA /* MuseoSans-100.otf */; };
 		C14B6A0D1E41565F00C1BDBA /* MuseoSans-300Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B6A031E41565F00C1BDBA /* MuseoSans-300Italic.otf */; };
+		C17BAD3A1E9DB3DC00F4CC03 /* libPods-Postmix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C17BAD391E9DB3DC00F4CC03 /* libPods-Postmix.a */; };
 		C184D4C61210CDB900953C39 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D4C41210CDB900953C39 /* GuideViewController.m */; };
 		C184D4C71210CDB900953C39 /* GuideView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D4C51210CDB900953C39 /* GuideView~ipad.xib */; };
 		C184D5381210D8CD00953C39 /* GuideIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D5361210D8CD00953C39 /* GuideIntroViewController.m */; };
@@ -304,9 +304,11 @@
 		28A0AAE50D9B0CCF005BE974 /* iFixit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iFixit_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		35E0ADC88E3E6F8BB3E5297F /* Pods-Postmix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Postmix.release.xcconfig"; path = "Pods/Target Support Files/Pods-Postmix/Pods-Postmix.release.xcconfig"; sourceTree = "<group>"; };
 		40331C958D2F4747A5B6D568 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		73099B6C2509F4875C8752E9 /* Pods-iFixit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iFixit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iFixit/Pods-iFixit.debug.xcconfig"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		95787745AD6E441EDE1F8491 /* Pods-Postmix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Postmix.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Postmix/Pods-Postmix.debug.xcconfig"; sourceTree = "<group>"; };
 		957C51BCFD710BB69E045663 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accustream_logo_transparent.png; sourceTree = "<group>"; };
 		9C1A1981189735C3003E79F0 /* GuideLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideLib.h; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 		9CE6783E18387080001912DF /* accustream_step.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accustream_step.css; sourceTree = "<group>"; };
 		9CF8AB2E1A44D2400083B725 /* comcast_logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comcast_logo_transparent.png; sourceTree = "<group>"; };
 		9CF8AB321A44D7A30083B725 /* titleImageComcast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageComcast.png; sourceTree = "<group>"; };
+		AA3864F52D0953CBEC96DF93 /* libPods-Postmix.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Postmix.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0B27AC15E7E3550088BA07 /* titleImageZeal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImageZeal.png; sourceTree = "<group>"; };
 		AB0B27AF15E7E36B0088BA07 /* titleImageZeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleImageZeal@2x.png"; sourceTree = "<group>"; };
 		AB1F950B17A584B4009F3419 /* NoImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "NoImage@2x.jpg"; sourceTree = "<group>"; };
@@ -469,7 +472,7 @@
 		C10F2710120CE5900027A28D /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guide.h; sourceTree = "<group>"; };
 		C10F2711120CE5900027A28D /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guide.m; sourceTree = "<group>"; };
 		C10F2718120CE6980027A28D /* iFixitAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iFixitAPI.h; sourceTree = "<group>"; };
-		C10F2719120CE6980027A28D /* iFixitAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iFixitAPI.m; sourceTree = "<group>"; };
+		C10F2719120CE6980027A28D /* iFixitAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 6; lastKnownFileType = sourcecode.c.objc; path = iFixitAPI.m; sourceTree = "<group>"; };
 		C115FC2A12174FA1005D0B77 /* GuideImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideImageViewController.h; sourceTree = "<group>"; };
 		C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideImageViewController.m; sourceTree = "<group>"; };
 		C11C0C9C1E00D8BF00435905 /* iFixit-App-Id.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-App-Id.plist"; sourceTree = "<group>"; };
@@ -484,6 +487,7 @@
 		C14B6A011E41565F00C1BDBA /* MuseoSans-100Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-100Italic.otf"; sourceTree = "<group>"; };
 		C14B6A021E41565F00C1BDBA /* MuseoSans-100.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-100.otf"; sourceTree = "<group>"; };
 		C14B6A031E41565F00C1BDBA /* MuseoSans-300Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-300Italic.otf"; sourceTree = "<group>"; };
+		C17BAD391E9DB3DC00F4CC03 /* libPods-Postmix.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Postmix.a"; path = "../../Library/Developer/Xcode/DerivedData/Postmix-fibwyphlwjbuebfktenyotnxbpwl/Build/Products/Debug-iphonesimulator/libPods-Postmix.a"; sourceTree = "<group>"; };
 		C184D4C31210CDB900953C39 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		C184D4C41210CDB900953C39 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		C184D4C51210CDB900953C39 /* GuideView~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "GuideView~ipad.xib"; sourceTree = "<group>"; };
@@ -676,6 +680,7 @@
 		DAF3AF601422AF4800913238 /* GuideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCell.h; sourceTree = "<group>"; };
 		DAF3AF611422AF4800913238 /* GuideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCell.m; sourceTree = "<group>"; };
 		E353F8DB6E6C89DA7ADE25F5 /* Pods.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods.ad-hoc.xcconfig"; path = "Pods/Target Support Files/Pods/Pods.ad-hoc.xcconfig"; sourceTree = "<group>"; };
+		E703AEE8E6ACF441510008CE /* Pods-Postmix.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Postmix.ad-hoc.xcconfig"; path = "Pods/Target Support Files/Pods-Postmix/Pods-Postmix.ad-hoc.xcconfig"; sourceTree = "<group>"; };
 		E973B5200D15EE1DF52AB43D /* Pods-iFixit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iFixit.release.xcconfig"; path = "Pods/Target Support Files/Pods-iFixit/Pods-iFixit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -684,6 +689,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C17BAD3A1E9DB3DC00F4CC03 /* libPods-Postmix.a in Frameworks */,
 				9CD0B3CA18277F3D0023EB5F /* libiconv.dylib in Frameworks */,
 				9CD0B3C818277F260023EB5F /* CoreVideo.framework in Frameworks */,
 				9CD0B3C618277F120023EB5F /* CoreAudio.framework in Frameworks */,
@@ -703,7 +709,6 @@
 				DAE4242113C3DE6C00F20EEE /* libz.dylib in Frameworks */,
 				DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */,
 				9CE0D45419DB191B00292462 /* libGoogleAnalyticsServices.a in Frameworks */,
-				A02CF5724F1FA14B3D7E962C /* libPods-iFixit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,6 +718,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C17BAD3B1E9DB42400F4CC03 /* Platform */,
 				AB324BDD1794CA280001E29D /* iFixitSplash */,
 				DAC88AD51427E10B00D33C00 /* Packages */,
 				C10F2767120CF1830027A28D /* Net */,
@@ -728,8 +734,6 @@
 				DA1977201473009A00CD6305 /* DetailGridViewController.h */,
 				DA1977211473009A00CD6305 /* DetailGridViewController.m */,
 				DA38111B147AE2C000BBFB9C /* DetailGridViewControllerDelegate.h */,
-				1D3623240D0F684500981E51 /* iFixitAppDelegate.h */,
-				1D3623250D0F684500981E51 /* iFixitAppDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -826,6 +830,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C17BAD391E9DB3DC00F4CC03 /* libPods-Postmix.a */,
 				9CE0D45319DB191B00292462 /* libGoogleAnalyticsServices.a */,
 				9CE0D44F19DB0DE900292462 /* libPods-GoogleAnalytics-iOS-SDK.a */,
 				9CD0B3C918277F3D0023EB5F /* libiconv.dylib */,
@@ -848,6 +853,7 @@
 				DA0A0C15138B07DA0027721E /* libxml2.2.dylib */,
 				40331C958D2F4747A5B6D568 /* libPods.a */,
 				BF194D64CF4BF5C70428F54D /* libPods-iFixit.a */,
+				AA3864F52D0953CBEC96DF93 /* libPods-Postmix.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -861,6 +867,9 @@
 				73099B6C2509F4875C8752E9 /* Pods-iFixit.debug.xcconfig */,
 				C522573AE427EC8CC27CCF8C /* Pods-iFixit.ad-hoc.xcconfig */,
 				E973B5200D15EE1DF52AB43D /* Pods-iFixit.release.xcconfig */,
+				95787745AD6E441EDE1F8491 /* Pods-Postmix.debug.xcconfig */,
+				E703AEE8E6ACF441510008CE /* Pods-Postmix.ad-hoc.xcconfig */,
+				35E0ADC88E3E6F8BB3E5297F /* Pods-Postmix.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -962,6 +971,15 @@
 				C10F2719120CE6980027A28D /* iFixitAPI.m */,
 			);
 			name = Net;
+			sourceTree = "<group>";
+		};
+		C17BAD3B1E9DB42400F4CC03 /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* iFixitAppDelegate.h */,
+				1D3623250D0F684500981E51 /* iFixitAppDelegate.m */,
+			);
+			name = Platform;
 			sourceTree = "<group>";
 		};
 		C184D4E91210D3B400953C39 /* Images */ = {
@@ -1427,6 +1445,7 @@
 				es,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -1647,7 +1666,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iFixit/Pods-iFixit-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Postmix/Pods-Postmix-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5A9A334BC8773A53B14F2721 /* [CP] Embed Pods Frameworks */ = {
@@ -1662,7 +1681,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iFixit/Pods-iFixit-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Postmix/Pods-Postmix-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6DAA79E961574847B3059BB7 /* [CP] Check Pods Manifest.lock */ = {
@@ -1677,7 +1696,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9CFA265419DB2CB40059A1C3 /* ShellScript */ = {
@@ -1796,7 +1815,7 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73099B6C2509F4875C8752E9 /* Pods-iFixit.debug.xcconfig */;
+			baseConfigurationReference = 95787745AD6E441EDE1F8491 /* Pods-Postmix.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
@@ -1808,7 +1827,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/BaseInfinity/Desktop/iFixit-iOS/iFixit-iOS",
+					"/Users/bpascazio/code/iFixit-iOS/iFixit-iOS",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1842,7 +1861,7 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E973B5200D15EE1DF52AB43D /* Pods-iFixit.release.xcconfig */;
+			baseConfigurationReference = 35E0ADC88E3E6F8BB3E5297F /* Pods-Postmix.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
@@ -1854,7 +1873,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/BaseInfinity/Desktop/iFixit-iOS/iFixit-iOS",
+					"/Users/bpascazio/code/iFixit-iOS/iFixit-iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iFixit_Prefix.pch;
@@ -1972,7 +1991,7 @@
 		};
 		C1523E29120E382D007E8DD8 /* Ad-Hoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C522573AE427EC8CC27CCF8C /* Pods-iFixit.ad-hoc.xcconfig */;
+			baseConfigurationReference = E703AEE8E6ACF441510008CE /* Pods-Postmix.ad-hoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
@@ -1984,7 +2003,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/BaseInfinity/Desktop/iFixit-iOS/iFixit-iOS",
+					"/Users/bpascazio/code/iFixit-iOS/iFixit-iOS",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
