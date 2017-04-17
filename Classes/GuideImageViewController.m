@@ -9,9 +9,6 @@
 #import "GuideImageViewController.h"
 #import "Config.h"
 
-#define ZOOM_VIEW_TAG 100
-
-
 @interface GuideImageViewController (UtilityMethods)
 - (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center;
 @end
@@ -19,7 +16,7 @@
 
 @implementation GuideImageViewController
 
-@synthesize delegate, image, imageScrollView, delay;
+@synthesize delegate, image, imageScrollView, imageView, delay;
 
 static CGRect frameView;
 
@@ -71,45 +68,38 @@ static CGRect frameView;
     [[delegate delegate] willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [imageScrollView setZoomScale:1.0 animated:YES];
+    imageView.frame = imageScrollView.frame;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [imageScrollView setZoomScale:1.0 animated:YES];
+}
+
 - (void)loadView {
     [super loadView];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
     // set up main scroll view
-	self.imageScrollView = [[[UIScrollView alloc] initWithFrame:self.view.frame] autorelease];
+	self.imageScrollView = [[[UIScrollView alloc] initWithFrame:self.view.bounds] autorelease];
     imageScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [imageScrollView setBackgroundColor:[Config currentConfig].backgroundColor];
     [imageScrollView setDelegate:self];
     [imageScrollView setBouncesZoom:YES];
+    [imageScrollView setMaximumZoomScale:2.0];
     [self.view addSubview:imageScrollView];
 	[self.view sendSubviewToBack:imageScrollView];
 
     // add touch-sensitive image view to the scroll view
-	UIImageView *imageView = [[UIImageView alloc] initWithImage:self.image];
-
-    [imageView setTag:ZOOM_VIEW_TAG];
+	self.imageView = [[[UIImageView alloc] initWithFrame:imageScrollView.bounds] autorelease];
+    imageView.image = self.image;
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     [imageView setUserInteractionEnabled:YES];
-    //[imageScrollView setContentSize:[imageView frame].size];
-    imageView.frame = CGRectMake(0.0, 0.0, 1600.0, 1200.0);
-    [imageScrollView setContentSize:CGSizeMake(1600.0f, 1200.0f)];
 	[imageScrollView addSubview:imageView];
-    [imageView release];
    
-    // calculate minimum scale to perfectly fit longer edge, and begin at that scale
-    float minimumWidthScale = [imageScrollView frame].size.width / [imageView frame].size.width;
-    float minimumHeightScale = [imageScrollView frame].size.height / [imageView frame].size.height;
-    float minimumScale = fmax(minimumWidthScale, minimumHeightScale);
-    
-    [imageScrollView setMinimumZoomScale:minimumScale];
-    [imageScrollView setZoomScale:minimumScale];
-    [imageScrollView setMaximumZoomScale:2.0];
-   
-    CGPoint center = CGPointMake(0, 0);
-    CGRect zoomRect = [self zoomRectForScale:minimumScale withCenter:center];
-    [imageScrollView zoomToRect:zoomRect animated:NO];
-   
-    [self setupTouchEvents:imageView];
+    [self setupTouchEvents];
     
     self.delay = [NSDate date];
     
@@ -125,7 +115,7 @@ static CGRect frameView;
     [self.view addSubview:back];
        
 }
-- (void)setupTouchEvents:(UIImageView *)imageView {
+- (void)setupTouchEvents {
    
    // add gesture recognizers to the image view
    UITapGestureRecognizer *singleTapG = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
@@ -148,6 +138,7 @@ static CGRect frameView;
 - (void)dealloc {
     [image release];
     [imageScrollView release];
+    [imageView release];
     [delay release];
     
     [super dealloc];
@@ -156,7 +147,7 @@ static CGRect frameView;
 #pragma mark UIScrollViewDelegate methods
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return [imageScrollView viewWithTag:ZOOM_VIEW_TAG];
+    return imageView;
 }
 
 #pragma mark TapDetectingImageViewDelegate methods

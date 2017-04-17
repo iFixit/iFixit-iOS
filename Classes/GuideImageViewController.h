@@ -16,6 +16,7 @@
 
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) UIScrollView *imageScrollView;
+@property (nonatomic, retain) UIImageView *imageView;
 @property (nonatomic, retain) UIImage *image;
 @property (nonatomic, retain) NSDate *delay;
 
