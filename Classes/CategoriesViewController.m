@@ -66,7 +66,8 @@ BOOL searchViewEnabled;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+     [self presentTransparentNavigationBar];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(orientationChanged:)
                                                  name:UIDeviceOrientationDidChangeNotification
@@ -172,6 +173,7 @@ BOOL searchViewEnabled;
     }
 
     self.tableView.rowHeight = 43.5;
+
 }
 
 - (void)configureSearchBar {
@@ -242,6 +244,16 @@ BOOL searchViewEnabled;
     
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0];
 }
+
+- (void)presentTransparentNavigationBar
+{
+     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Default"] forBarMetrics:UIBarMetricsDefault];
+//     [self.navigationController.navigationBar setTranslucent:YES];
+//     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+//     [self.navigationController setNavigationBarHidden:NO animated:YES];
+  //   self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+}
+
 - (void)setTableViewTitle {
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     titleLabel.backgroundColor = [UIColor clearColor];
@@ -724,7 +736,32 @@ BOOL searchViewEnabled;
     
     return self.categoryTypes.count;
 }
+- (CGFloat)tableView:(UITableView *)tableView
+heightForHeaderInSection:(NSInteger)section {
+     return 40.0;
+}
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
+     /* Create custom view to display section header... */
+     [view setBackgroundColor:[UIColor redColor]];
+     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, tableView.frame.size.width, 40)];
+     label.font = [UIFont fontWithName:@"MuseoSans-500" size:20.0];
+     //[label setFont:[UIFont boldSystemFontOfSize:14]];
+     [label setTextColor:[UIColor whiteColor]];
+     NSString *string =(section==0)?@"Categories":@"Categories";//[list objectAtIndex:section];
+     /* Section header is in 0th index... */
+     [label setText:string];
+     [view addSubview:label];
+     [view setBackgroundColor:[UIColor colorWithRed:240/255.0 green:28/255.0 blue:0/255.0 alpha:1.0]]; //your background color...
+     
+     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+     imageView.image = [UIImage imageNamed:@"GuidesSection"];
+     [view addSubview:imageView];
+     return view;
+}
+/*
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (self.searching) {
         NSString *string = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
@@ -732,7 +769,7 @@ BOOL searchViewEnabled;
     }
 
     return NSLocalizedString([self.categoryTypes[section] capitalizedString], nil);
-}
+}*/
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     

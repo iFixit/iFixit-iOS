@@ -138,6 +138,10 @@
 		C10F271A120CE6980027A28D /* iFixitAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2719120CE6980027A28D /* iFixitAPI.m */; };
 		C115FC2D12174FA1005D0B77 /* GuideImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */; };
 		C11C0C9D1E00D8BF00435905 /* iFixit-App-Id.plist in Resources */ = {isa = PBXBuildFile; fileRef = C11C0C9C1E00D8BF00435905 /* iFixit-App-Id.plist */; };
+		C13B3A501EBFEA250094ED72 /* WikiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C13B3A4B1EBFEA250094ED72 /* WikiCell.m */; };
+		C13B3A511EBFEA250094ED72 /* WikiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C13B3A4C1EBFEA250094ED72 /* WikiCell.xib */; };
+		C13B3A521EBFEA250094ED72 /* WikiVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C13B3A4E1EBFEA250094ED72 /* WikiVC.m */; };
+		C13B3A531EBFEA250094ED72 /* WikiVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C13B3A4F1EBFEA250094ED72 /* WikiVC.xib */; };
 		C14B69F91E41549500C1BDBA /* d-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C14B69F81E41549500C1BDBA /* d-logo.png */; };
 		C14B6A041E41565F00C1BDBA /* MuseoSans-900Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B69FA1E41565F00C1BDBA /* MuseoSans-900Italic.otf */; };
 		C14B6A051E41565F00C1BDBA /* MuseoSans-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B69FB1E41565F00C1BDBA /* MuseoSans-900.otf */; };
@@ -476,6 +480,12 @@
 		C115FC2A12174FA1005D0B77 /* GuideImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideImageViewController.h; sourceTree = "<group>"; };
 		C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideImageViewController.m; sourceTree = "<group>"; };
 		C11C0C9C1E00D8BF00435905 /* iFixit-App-Id.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-App-Id.plist"; sourceTree = "<group>"; };
+		C13B3A4A1EBFEA250094ED72 /* WikiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikiCell.h; sourceTree = "<group>"; };
+		C13B3A4B1EBFEA250094ED72 /* WikiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikiCell.m; sourceTree = "<group>"; };
+		C13B3A4C1EBFEA250094ED72 /* WikiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WikiCell.xib; sourceTree = "<group>"; };
+		C13B3A4D1EBFEA250094ED72 /* WikiVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikiVC.h; sourceTree = "<group>"; };
+		C13B3A4E1EBFEA250094ED72 /* WikiVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikiVC.m; sourceTree = "<group>"; };
+		C13B3A4F1EBFEA250094ED72 /* WikiVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WikiVC.xib; sourceTree = "<group>"; };
 		C14B69F81E41549500C1BDBA /* d-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "d-logo.png"; path = "Graphics/d-logo.png"; sourceTree = "<group>"; };
 		C14B69FA1E41565F00C1BDBA /* MuseoSans-900Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-900Italic.otf"; sourceTree = "<group>"; };
 		C14B69FB1E41565F00C1BDBA /* MuseoSans-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSans-900.otf"; sourceTree = "<group>"; };
@@ -1360,6 +1370,12 @@
 		DAF3AF511422881B00913238 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				C13B3A4A1EBFEA250094ED72 /* WikiCell.h */,
+				C13B3A4B1EBFEA250094ED72 /* WikiCell.m */,
+				C13B3A4C1EBFEA250094ED72 /* WikiCell.xib */,
+				C13B3A4D1EBFEA250094ED72 /* WikiVC.h */,
+				C13B3A4E1EBFEA250094ED72 /* WikiVC.m */,
+				C13B3A4F1EBFEA250094ED72 /* WikiVC.xib */,
 				ABB84A68177F591100C58514 /* ListViewController.h */,
 				ABB84A69177F591200C58514 /* ListViewController.m */,
 				ABE38C971773B9AC00777F60 /* CategoryTabBarViewController.h */,
@@ -1427,6 +1443,7 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = A7FJ4U8N9U;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1477,6 +1494,7 @@
 				DA61C53A13380E4C000028C3 /* splash_header_make.png in Resources */,
 				C1F692521D638C9F00906B2D /* Images.xcassets in Resources */,
 				DA61C53B13380E4C000028C3 /* splash_header.png in Resources */,
+				C13B3A531EBFEA250094ED72 /* WikiVC.xib in Resources */,
 				DA61C55713383571000028C3 /* titleImage.png in Resources */,
 				DA61C55813383571000028C3 /* titleImage@2x.png in Resources */,
 				DA3E3E3B133C1A8E0070615F /* MainWindow.xib in Resources */,
@@ -1530,6 +1548,7 @@
 				DAB2697B146CA483000D3A7A /* tabBarItemGears.png in Resources */,
 				9C6E961819AE8BA700FE847D /* FA-Repair-Manuals.png in Resources */,
 				DAB2697D146CA969000D3A7A /* tabBarItemBubbles.png in Resources */,
+				C13B3A511EBFEA250094ED72 /* WikiCell.xib in Resources */,
 				DA35628B1476EDDD00683947 /* detailViewFist.png in Resources */,
 				DA35629C1476F84C00683947 /* detailViewText.png in Resources */,
 				9C47FB2F17F623D40074CEBE /* icon40.png in Resources */,
@@ -1720,6 +1739,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CCF9E1E17D1F55E00B0B0BB /* ASIAuthenticationDialog.m in Sources */,
+				C13B3A501EBFEA250094ED72 /* WikiCell.m in Sources */,
 				9CCF9E2117D1F55E00B0B0BB /* ASIDataCompressor.m in Sources */,
 				9CCF9E2317D1F55E00B0B0BB /* ASIDataDecompressor.m in Sources */,
 				9CCF9E2517D1F55E00B0B0BB /* ASIDownloadCache.m in Sources */,
@@ -1738,6 +1758,7 @@
 				C10F270B120CE5140027A28D /* SBJsonParser.m in Sources */,
 				C10F270C120CE5140027A28D /* SBJsonWriter.m in Sources */,
 				9CDBCD871803540B00984A67 /* MGSplitDividerView.m in Sources */,
+				C13B3A521EBFEA250094ED72 /* WikiVC.m in Sources */,
 				C10F2712120CE5900027A28D /* Guide.m in Sources */,
 				C10F271A120CE6980027A28D /* iFixitAPI.m in Sources */,
 				9CDBCD861803540B00984A67 /* MGSplitCornersView.m in Sources */,
@@ -1852,7 +1873,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.postmix;
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c6983d0b-646f-43d4-84ce-41d88ec94856";
+				PROVISIONING_PROFILE_SPECIFIER = "Postmix development";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1869,7 +1891,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = A7FJ4U8N9U;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1897,6 +1919,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.postmix;
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1999,7 +2022,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = A7FJ4U8N9U;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2029,6 +2052,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.postmix;
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
