@@ -146,6 +146,15 @@ static Config *currentConfig = nil;
               self.private = YES;
               self.scanner = NO;
               break;
+         case ConfigAristo:
+              self.host = @"aristocrat.dozuki.com";
+              self.baseURL = @"http://aristocrat.dozuki.com";
+              answersEnabled = NO;
+              collectionsEnabled = NO;
+              self.store = nil;
+              self.private = YES;
+              self.scanner = NO;
+              break;
         /*EAOOptions*/
         default:
             self.host = @"www.dozuki.com";

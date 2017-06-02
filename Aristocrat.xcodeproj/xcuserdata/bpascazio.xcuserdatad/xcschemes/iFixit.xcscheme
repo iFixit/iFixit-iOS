@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
                BuildableName = "iFixit.app"
-               BlueprintName = "Postmix"
-               ReferencedContainer = "container:Postmix.xcodeproj">
+               BlueprintName = "Aristocrat"
+               ReferencedContainer = "container:Aristocrat.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "iFixit.app"
-            BlueprintName = "Postmix"
-            ReferencedContainer = "container:Postmix.xcodeproj">
+            BlueprintName = "Aristocrat"
+            ReferencedContainer = "container:Aristocrat.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -57,8 +57,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "iFixit.app"
-            BlueprintName = "Postmix"
-            ReferencedContainer = "container:Postmix.xcodeproj">
+            BlueprintName = "Aristocrat"
+            ReferencedContainer = "container:Aristocrat.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -76,8 +76,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "iFixit.app"
-            BlueprintName = "Postmix"
-            ReferencedContainer = "container:Postmix.xcodeproj">
+            BlueprintName = "Aristocrat"
+            ReferencedContainer = "container:Aristocrat.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
@@ -85,7 +85,7 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

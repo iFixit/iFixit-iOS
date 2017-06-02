@@ -1,9 +1,9 @@
 source 'https://github.com/CocoaPods/Specs.git'
-project 'Postmix.xcodeproj'
+project 'Aristocrat.xcodeproj'
 
 platform :ios, '6.0'
 
-target "Postmix" do
+target "Aristocrat" do
 
 pod 'ZBarSDK', '~> 1.3'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.0'

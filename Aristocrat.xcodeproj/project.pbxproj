@@ -14,6 +14,7 @@
 		2804200B108E984D000629CD /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28042008108E984D000629CD /* CategoriesViewController.m */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
+		2C9CE8B5966DA7836ECB6E79 /* libPods-Aristocrat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB9AD65A657553B91321366A /* libPods-Aristocrat.a */; };
 		9C002FBF182EE57C00822063 /* accustream_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */; };
 		9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A1982189735C3003E79F0 /* GuideLib.m */; };
 		9C1EB8121B703BE200CE11F5 /* detailViewTextOscaro.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1EB80F1B703BE200CE11F5 /* detailViewTextOscaro.png */; };
@@ -153,7 +154,6 @@
 		C14B6A0B1E41565F00C1BDBA /* MuseoSans-100Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B6A011E41565F00C1BDBA /* MuseoSans-100Italic.otf */; };
 		C14B6A0C1E41565F00C1BDBA /* MuseoSans-100.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B6A021E41565F00C1BDBA /* MuseoSans-100.otf */; };
 		C14B6A0D1E41565F00C1BDBA /* MuseoSans-300Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C14B6A031E41565F00C1BDBA /* MuseoSans-300Italic.otf */; };
-		C17BAD3A1E9DB3DC00F4CC03 /* libPods-Postmix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C17BAD391E9DB3DC00F4CC03 /* libPods-Postmix.a */; };
 		C184D4C61210CDB900953C39 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D4C41210CDB900953C39 /* GuideViewController.m */; };
 		C184D4C71210CDB900953C39 /* GuideView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C184D4C51210CDB900953C39 /* GuideView~ipad.xib */; };
 		C184D5381210D8CD00953C39 /* GuideIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C184D5361210D8CD00953C39 /* GuideIntroViewController.m */; };
@@ -297,6 +297,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0681842F6499E35AFAD589C5 /* Pods-Aristocrat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aristocrat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aristocrat/Pods-Aristocrat.release.xcconfig"; sourceTree = "<group>"; };
+		12C833ABD9ABEA40A4EEED6D /* Pods-Aristocrat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aristocrat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aristocrat/Pods-Aristocrat.debug.xcconfig"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* iFixitAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iFixitAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* iFixitAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iFixitAppDelegate.m; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		35E0ADC88E3E6F8BB3E5297F /* Pods-Postmix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Postmix.release.xcconfig"; path = "Pods/Target Support Files/Pods-Postmix/Pods-Postmix.release.xcconfig"; sourceTree = "<group>"; };
 		40331C958D2F4747A5B6D568 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B4CC0647FD16EB53A27EC49 /* Pods-Aristocrat.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aristocrat.ad-hoc.xcconfig"; path = "Pods/Target Support Files/Pods-Aristocrat/Pods-Aristocrat.ad-hoc.xcconfig"; sourceTree = "<group>"; };
 		73099B6C2509F4875C8752E9 /* Pods-iFixit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iFixit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iFixit/Pods-iFixit.debug.xcconfig"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		95787745AD6E441EDE1F8491 /* Pods-Postmix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Postmix.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Postmix/Pods-Postmix.debug.xcconfig"; sourceTree = "<group>"; };
@@ -692,6 +695,7 @@
 		E353F8DB6E6C89DA7ADE25F5 /* Pods.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods.ad-hoc.xcconfig"; path = "Pods/Target Support Files/Pods/Pods.ad-hoc.xcconfig"; sourceTree = "<group>"; };
 		E703AEE8E6ACF441510008CE /* Pods-Postmix.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Postmix.ad-hoc.xcconfig"; path = "Pods/Target Support Files/Pods-Postmix/Pods-Postmix.ad-hoc.xcconfig"; sourceTree = "<group>"; };
 		E973B5200D15EE1DF52AB43D /* Pods-iFixit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iFixit.release.xcconfig"; path = "Pods/Target Support Files/Pods-iFixit/Pods-iFixit.release.xcconfig"; sourceTree = "<group>"; };
+		EB9AD65A657553B91321366A /* libPods-Aristocrat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aristocrat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -699,7 +703,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C17BAD3A1E9DB3DC00F4CC03 /* libPods-Postmix.a in Frameworks */,
 				9CD0B3CA18277F3D0023EB5F /* libiconv.dylib in Frameworks */,
 				9CD0B3C818277F260023EB5F /* CoreVideo.framework in Frameworks */,
 				9CD0B3C618277F120023EB5F /* CoreAudio.framework in Frameworks */,
@@ -719,6 +722,7 @@
 				DAE4242113C3DE6C00F20EEE /* libz.dylib in Frameworks */,
 				DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */,
 				9CE0D45419DB191B00292462 /* libGoogleAnalyticsServices.a in Frameworks */,
+				2C9CE8B5966DA7836ECB6E79 /* libPods-Aristocrat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -864,6 +868,7 @@
 				40331C958D2F4747A5B6D568 /* libPods.a */,
 				BF194D64CF4BF5C70428F54D /* libPods-iFixit.a */,
 				AA3864F52D0953CBEC96DF93 /* libPods-Postmix.a */,
+				EB9AD65A657553B91321366A /* libPods-Aristocrat.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -880,6 +885,9 @@
 				95787745AD6E441EDE1F8491 /* Pods-Postmix.debug.xcconfig */,
 				E703AEE8E6ACF441510008CE /* Pods-Postmix.ad-hoc.xcconfig */,
 				35E0ADC88E3E6F8BB3E5297F /* Pods-Postmix.release.xcconfig */,
+				12C833ABD9ABEA40A4EEED6D /* Pods-Aristocrat.debug.xcconfig */,
+				5B4CC0647FD16EB53A27EC49 /* Pods-Aristocrat.ad-hoc.xcconfig */,
+				0681842F6499E35AFAD589C5 /* Pods-Aristocrat.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1412,9 +1420,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Postmix */ = {
+		1D6058900D05DD3D006BFB54 /* Aristocrat */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Postmix" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Aristocrat" */;
 			buildPhases = (
 				6DAA79E961574847B3059BB7 /* [CP] Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
@@ -1428,7 +1436,7 @@
 			);
 			dependencies = (
 			);
-			name = Postmix;
+			name = Aristocrat;
 			productName = iFixit;
 			productReference = 1D6058910D05DD3D006BFB54 /* iFixit.app */;
 			productType = "com.apple.product-type.application";
@@ -1447,7 +1455,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Postmix" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Aristocrat" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -1466,7 +1474,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Postmix */,
+				1D6058900D05DD3D006BFB54 /* Aristocrat */,
 			);
 		};
 /* End PBXProject section */
@@ -1685,7 +1693,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Postmix/Pods-Postmix-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aristocrat/Pods-Aristocrat-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5A9A334BC8773A53B14F2721 /* [CP] Embed Pods Frameworks */ = {
@@ -1700,7 +1708,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Postmix/Pods-Postmix-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aristocrat/Pods-Aristocrat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6DAA79E961574847B3059BB7 /* [CP] Check Pods Manifest.lock */ = {
@@ -1836,10 +1844,10 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95787745AD6E441EDE1F8491 /* Pods-Postmix.debug.xcconfig */;
+			baseConfigurationReference = 12C833ABD9ABEA40A4EEED6D /* Pods-Aristocrat.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1861,7 +1869,7 @@
 					"$(SDKROOT)/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
@@ -1871,10 +1879,10 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.postmix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.aristo;
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "c6983d0b-646f-43d4-84ce-41d88ec94856";
-				PROVISIONING_PROFILE_SPECIFIER = "Postmix development";
+				PROVISIONING_PROFILE = "fdd0f37e-8fc0-4e1e-b831-3bca4e1a85ab";
+				PROVISIONING_PROFILE_SPECIFIER = Aristocrat;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1883,15 +1891,15 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 35E0ADC88E3E6F8BB3E5297F /* Pods-Postmix.release.xcconfig */;
+			baseConfigurationReference = 0681842F6499E35AFAD589C5 /* Pods-Aristocrat.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = A7FJ4U8N9U;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1906,7 +1914,7 @@
 					"$(SDKROOT)/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
@@ -1916,10 +1924,10 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.postmix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.aristo;
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "c6d013d4-6880-4544-8403-edca251d71df";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.dozuki.*";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -2014,15 +2022,15 @@
 		};
 		C1523E29120E382D007E8DD8 /* Ad-Hoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E703AEE8E6ACF441510008CE /* Pods-Postmix.ad-hoc.xcconfig */;
+			baseConfigurationReference = 5B4CC0647FD16EB53A27EC49 /* Pods-Aristocrat.ad-hoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = A7FJ4U8N9U;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2039,7 +2047,7 @@
 					"$(SDKROOT)/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
@@ -2049,10 +2057,10 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.postmix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.aristo;
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "fdd0f37e-8fc0-4e1e-b831-3bca4e1a85ab";
+				PROVISIONING_PROFILE_SPECIFIER = Aristocrat;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -2062,7 +2070,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Postmix" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Aristocrat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -2072,7 +2080,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Postmix" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Aristocrat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
