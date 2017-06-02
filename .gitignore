@@ -8,3 +8,5 @@ iFixit-App-Id.plist
 *.bak
 .DS_Store
 Reveal.framework/
+Pods
+assets
