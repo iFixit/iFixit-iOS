@@ -138,12 +138,12 @@ static Config *currentConfig = nil;
             self.scanner = NO;
             break;
          case ConfigPepsi:
-              self.host = @"gunnerautomotive.dozuki.com";
-              self.baseURL = @"http://gunnerautomotive.dozuki.com";
+              self.host = @"charlessmith.dozuki.com";
+              self.baseURL = @"http://charlessmith.dozuki.com";
               answersEnabled = NO;
               collectionsEnabled = NO;
               self.store = nil;
-              self.private = NO;
+              self.private = YES;
               self.scanner = NO;
               break;
         /*EAOOptions*/
