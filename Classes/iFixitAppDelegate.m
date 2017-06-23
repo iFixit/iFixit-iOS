@@ -106,8 +106,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 // Override point for customization after app launch.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     /* Configure. */
-    [Config currentConfig].dozuki = NO;
-    [Config currentConfig].site = ConfigPepsi;
+    [Config currentConfig].dozuki = YES;
+    [Config currentConfig].site = ConfigDozuki;
     
     /* Track. */
     [self setupAnalytics];
