@@ -155,7 +155,6 @@ static int volatile openConnections = 0;
 }
 
 - (void)addAuthorizationHeaderToRequest:(ASIHTTPRequest *)request withSession:(NSString*)session {
-     
      NSString *sessionToAdd = session;
      if (sessionToAdd == nil && self.user) {
           sessionToAdd = self.user.session;
@@ -176,8 +175,8 @@ static int volatile openConnections = 0;
     }
 
     [request addRequestHeader:@"X-App-Id" value:self.appId];
-    [self addAuthorizationHeaderToRequest:request];
-
+    [self addAuthorizationHeaderToRequest:request withSession:sessionId];
+     
     [request setCompletionBlock:^{
         NSDictionary *result = [[request responseString] JSONValue];
         Guide *guide = result ? [Guide guideWithDictionary:result] : nil;
