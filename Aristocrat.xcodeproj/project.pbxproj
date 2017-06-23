@@ -14,7 +14,7 @@
 		2804200B108E984D000629CD /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28042008108E984D000629CD /* CategoriesViewController.m */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow-iPad.xib */; };
-		2C9CE8B5966DA7836ECB6E79 /* libPods-Aristocrat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB9AD65A657553B91321366A /* libPods-Aristocrat.a */; };
+		51A61827C4C27DB2017A5E17 /* libPods-Aristocrat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FDD708CD2AC34E96BCA4EE /* libPods-Aristocrat.a */; };
 		9C002FBF182EE57C00822063 /* accustream_logo_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */; };
 		9C1A1983189735C3003E79F0 /* GuideLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A1982189735C3003E79F0 /* GuideLib.m */; };
 		9C1EB8121B703BE200CE11F5 /* detailViewTextOscaro.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1EB80F1B703BE200CE11F5 /* detailViewTextOscaro.png */; };
@@ -139,6 +139,7 @@
 		C10F271A120CE6980027A28D /* iFixitAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F2719120CE6980027A28D /* iFixitAPI.m */; };
 		C115FC2D12174FA1005D0B77 /* GuideImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */; };
 		C11C0C9D1E00D8BF00435905 /* iFixit-App-Id.plist in Resources */ = {isa = PBXBuildFile; fileRef = C11C0C9C1E00D8BF00435905 /* iFixit-App-Id.plist */; };
+		C13657DA1EE104CF002689FB /* titleImagePepsi.png in Resources */ = {isa = PBXBuildFile; fileRef = C13657D91EE104CE002689FB /* titleImagePepsi.png */; };
 		C13B3A501EBFEA250094ED72 /* WikiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C13B3A4B1EBFEA250094ED72 /* WikiCell.m */; };
 		C13B3A511EBFEA250094ED72 /* WikiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C13B3A4C1EBFEA250094ED72 /* WikiCell.xib */; };
 		C13B3A521EBFEA250094ED72 /* WikiVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C13B3A4E1EBFEA250094ED72 /* WikiVC.m */; };
@@ -297,8 +298,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0681842F6499E35AFAD589C5 /* Pods-Aristocrat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aristocrat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aristocrat/Pods-Aristocrat.release.xcconfig"; sourceTree = "<group>"; };
-		12C833ABD9ABEA40A4EEED6D /* Pods-Aristocrat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aristocrat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aristocrat/Pods-Aristocrat.debug.xcconfig"; sourceTree = "<group>"; };
+		168EC72695E7C4C43BE8D329 /* Pods-Aristocrat.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aristocrat.ad-hoc.xcconfig"; path = "Pods/Target Support Files/Pods-Aristocrat/Pods-Aristocrat.ad-hoc.xcconfig"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* iFixitAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iFixitAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* iFixitAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iFixitAppDelegate.m; sourceTree = "<group>"; };
@@ -312,7 +312,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		35E0ADC88E3E6F8BB3E5297F /* Pods-Postmix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Postmix.release.xcconfig"; path = "Pods/Target Support Files/Pods-Postmix/Pods-Postmix.release.xcconfig"; sourceTree = "<group>"; };
 		40331C958D2F4747A5B6D568 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B4CC0647FD16EB53A27EC49 /* Pods-Aristocrat.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aristocrat.ad-hoc.xcconfig"; path = "Pods/Target Support Files/Pods-Aristocrat/Pods-Aristocrat.ad-hoc.xcconfig"; sourceTree = "<group>"; };
+		4D69F343AB72D3B03738E22E /* Pods-Aristocrat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aristocrat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aristocrat/Pods-Aristocrat.debug.xcconfig"; sourceTree = "<group>"; };
+		64D789877286DB7C0959DA51 /* Pods-Aristocrat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aristocrat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aristocrat/Pods-Aristocrat.release.xcconfig"; sourceTree = "<group>"; };
 		73099B6C2509F4875C8752E9 /* Pods-iFixit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iFixit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iFixit/Pods-iFixit.debug.xcconfig"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iFixit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		95787745AD6E441EDE1F8491 /* Pods-Postmix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Postmix.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Postmix/Pods-Postmix.debug.xcconfig"; sourceTree = "<group>"; };
@@ -483,6 +484,7 @@
 		C115FC2A12174FA1005D0B77 /* GuideImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideImageViewController.h; sourceTree = "<group>"; };
 		C115FC2B12174FA1005D0B77 /* GuideImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideImageViewController.m; sourceTree = "<group>"; };
 		C11C0C9C1E00D8BF00435905 /* iFixit-App-Id.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFixit-App-Id.plist"; sourceTree = "<group>"; };
+		C13657D91EE104CE002689FB /* titleImagePepsi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImagePepsi.png; sourceTree = "<group>"; };
 		C13B3A4A1EBFEA250094ED72 /* WikiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikiCell.h; sourceTree = "<group>"; };
 		C13B3A4B1EBFEA250094ED72 /* WikiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikiCell.m; sourceTree = "<group>"; };
 		C13B3A4C1EBFEA250094ED72 /* WikiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WikiCell.xib; sourceTree = "<group>"; };
@@ -693,9 +695,9 @@
 		DAF3AF601422AF4800913238 /* GuideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCell.h; sourceTree = "<group>"; };
 		DAF3AF611422AF4800913238 /* GuideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCell.m; sourceTree = "<group>"; };
 		E353F8DB6E6C89DA7ADE25F5 /* Pods.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods.ad-hoc.xcconfig"; path = "Pods/Target Support Files/Pods/Pods.ad-hoc.xcconfig"; sourceTree = "<group>"; };
+		E5FDD708CD2AC34E96BCA4EE /* libPods-Aristocrat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aristocrat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E703AEE8E6ACF441510008CE /* Pods-Postmix.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Postmix.ad-hoc.xcconfig"; path = "Pods/Target Support Files/Pods-Postmix/Pods-Postmix.ad-hoc.xcconfig"; sourceTree = "<group>"; };
 		E973B5200D15EE1DF52AB43D /* Pods-iFixit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iFixit.release.xcconfig"; path = "Pods/Target Support Files/Pods-iFixit/Pods-iFixit.release.xcconfig"; sourceTree = "<group>"; };
-		EB9AD65A657553B91321366A /* libPods-Aristocrat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aristocrat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -722,7 +724,7 @@
 				DAE4242113C3DE6C00F20EEE /* libz.dylib in Frameworks */,
 				DA53FA75141368BB00D5388F /* libicucore.dylib in Frameworks */,
 				9CE0D45419DB191B00292462 /* libGoogleAnalyticsServices.a in Frameworks */,
-				2C9CE8B5966DA7836ECB6E79 /* libPods-Aristocrat.a in Frameworks */,
+				51A61827C4C27DB2017A5E17 /* libPods-Aristocrat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,7 +870,7 @@
 				40331C958D2F4747A5B6D568 /* libPods.a */,
 				BF194D64CF4BF5C70428F54D /* libPods-iFixit.a */,
 				AA3864F52D0953CBEC96DF93 /* libPods-Postmix.a */,
-				EB9AD65A657553B91321366A /* libPods-Aristocrat.a */,
+				E5FDD708CD2AC34E96BCA4EE /* libPods-Aristocrat.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -885,9 +887,9 @@
 				95787745AD6E441EDE1F8491 /* Pods-Postmix.debug.xcconfig */,
 				E703AEE8E6ACF441510008CE /* Pods-Postmix.ad-hoc.xcconfig */,
 				35E0ADC88E3E6F8BB3E5297F /* Pods-Postmix.release.xcconfig */,
-				12C833ABD9ABEA40A4EEED6D /* Pods-Aristocrat.debug.xcconfig */,
-				5B4CC0647FD16EB53A27EC49 /* Pods-Aristocrat.ad-hoc.xcconfig */,
-				0681842F6499E35AFAD589C5 /* Pods-Aristocrat.release.xcconfig */,
+				4D69F343AB72D3B03738E22E /* Pods-Aristocrat.debug.xcconfig */,
+				168EC72695E7C4C43BE8D329 /* Pods-Aristocrat.ad-hoc.xcconfig */,
+				64D789877286DB7C0959DA51 /* Pods-Aristocrat.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1015,6 +1017,7 @@
 				9CF8AB2E1A44D2400083B725 /* comcast_logo_transparent.png */,
 				9C3811461A240A68004DC698 /* magnoliamedical_logo_transparent.png */,
 				9C3811441A240985004DC698 /* titleImageMagnoliamedical.png */,
+				C13657D91EE104CE002689FB /* titleImagePepsi.png */,
 				9C002FBE182EE57C00822063 /* accustream_logo_transparent.png */,
 				9CD0B39C182779EF0023EB5F /* qr-icon.png */,
 				9CD8330017D7FE3C007F32F4 /* mjtrim_logo_transparent.png */,
@@ -1452,6 +1455,11 @@
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = A7FJ4U8N9U;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1560,6 +1568,7 @@
 				DA35628B1476EDDD00683947 /* detailViewFist.png in Resources */,
 				DA35629C1476F84C00683947 /* detailViewText.png in Resources */,
 				9C47FB2F17F623D40074CEBE /* icon40.png in Resources */,
+				C13657DA1EE104CF002689FB /* titleImagePepsi.png in Resources */,
 				DA35629E147717D700683947 /* tabBarItemList.png in Resources */,
 				DA3562A5147718FA00683947 /* sv-action-white.png in Resources */,
 				DA3562A6147718FA00683947 /* sv-back-white.png in Resources */,
@@ -1844,11 +1853,10 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12C833ABD9ABEA40A4EEED6D /* Pods-Aristocrat.debug.xcconfig */;
+			baseConfigurationReference = 4D69F343AB72D3B03738E22E /* Pods-Aristocrat.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1869,7 +1877,7 @@
 					"$(SDKROOT)/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
@@ -1879,10 +1887,10 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.aristo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.aristocrat;
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "fdd0f37e-8fc0-4e1e-b831-3bca4e1a85ab";
-				PROVISIONING_PROFILE_SPECIFIER = Aristocrat;
+				PROVISIONING_PROFILE = "c6983d0b-646f-43d4-84ce-41d88ec94856";
+				PROVISIONING_PROFILE_SPECIFIER = "Postmix development";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1891,11 +1899,10 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0681842F6499E35AFAD589C5 /* Pods-Aristocrat.release.xcconfig */;
+			baseConfigurationReference = 64D789877286DB7C0959DA51 /* Pods-Aristocrat.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
@@ -1914,7 +1921,7 @@
 					"$(SDKROOT)/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
@@ -1924,7 +1931,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.aristo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.aristocrat;
 				PRODUCT_NAME = iFixit;
 				PROVISIONING_PROFILE = "c6d013d4-6880-4544-8403-edca251d71df";
 				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.dozuki.*";
@@ -2022,15 +2029,14 @@
 		};
 		C1523E29120E382D007E8DD8 /* Ad-Hoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B4CC0647FD16EB53A27EC49 /* Pods-Aristocrat.ad-hoc.xcconfig */;
+			baseConfigurationReference = 168EC72695E7C4C43BE8D329 /* Pods-Aristocrat.ad-hoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = A7FJ4U8N9U;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2047,7 +2053,7 @@
 					"$(SDKROOT)/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "iFixit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
@@ -2057,10 +2063,10 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.aristo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dozuki.aristocrat;
 				PRODUCT_NAME = iFixit;
-				PROVISIONING_PROFILE = "fdd0f37e-8fc0-4e1e-b831-3bca4e1a85ab";
-				PROVISIONING_PROFILE_SPECIFIER = Aristocrat;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";

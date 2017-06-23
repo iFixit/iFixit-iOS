@@ -17,6 +17,7 @@
         self.textLabel.numberOfLines = 2;
         self.textLabel.adjustsFontSizeToFitWidth = YES;
     }
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     return self;
 }
 
