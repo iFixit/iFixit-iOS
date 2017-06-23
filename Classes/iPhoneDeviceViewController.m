@@ -30,6 +30,7 @@
         self.topic = topic;
          self.guides = [NSArray array];
          self.wikis = [NSArray array];
+         self.cats = [NSArray array];
         
         if (!topic)
             self.title = NSLocalizedString(@"Guides", nil);
@@ -42,8 +43,8 @@
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (self.currentCategory)
-        self.navigationItem.title = self.currentCategory;
+//    if (self.currentCategory)
+//        self.navigationItem.title = self.currentCategory;
 }
 
 - (void)showRefreshButton {
@@ -109,6 +110,7 @@
     
      self.guides = [data arrayForKey:@"guides"];
      self.wikis = [data arrayForKey:@"related_wikis"];
+     self.cats = [data arrayForKey:@"children"];
     [self.tableView reloadData];
     [self hideLoading];
     
@@ -166,10 +168,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
+     int amount = 1;
      if (self.wikis != nil && [self.wikis count] > 0) {
-          return 2;
+          amount++;
      }
-    return 1;
+     if (self.cats != nil && [self.cats count] > 0) {
+          amount++;
+     }
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -177,8 +183,11 @@
      if (section == 0) {
           return [self.guides count];
      } else if (section == 1) {
+          return [self.cats count];
+     } else if (section == 2) {
           return [self.wikis count];
-     }
+    }
+
      return 0;
 }
 
@@ -208,18 +217,33 @@
     [cell.imageView setImageWithURL:[NSURL URLWithString:thumbnailURL] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
     
     return cell;
-     } else {
-          WikiCell *cell = (WikiCell*)[tableView dequeueReusableCellWithIdentifier:@"WikiCell"];
+     } else if (indexPath.section == 1) {
+          
+          GuideCell *cell = (GuideCell*)[tableView dequeueReusableCellWithIdentifier:@"GuideCell"];
           if (cell == nil) {
-               cell = [[WikiCell alloc] initWithStyle:UITableViewStylePlain reuseIdentifier:@"WikiCell"];
+               cell = [[GuideCell alloc] initWithStyle:UITableViewStylePlain reuseIdentifier:@"GuideCell"];
           }
-          NSString *title = [self.wikis[indexPath.row][@"title"] isEqual:@""] ? NSLocalizedString(@"Untitled", nil) : self.wikis[indexPath.row][@"title"];
-          [cell.wikiTitle setText:title];
-          NSDictionary *imageData = self.wikis[indexPath.row][@"image"];
+          NSString *title = [self.cats[indexPath.row][@"title"] isEqual:@""] ? NSLocalizedString(@"Untitled", nil) : self.cats[indexPath.row][@"title"];
+          [cell.textLabel setText:title];
+          NSDictionary *imageData = self.cats[indexPath.row][@"image"];
           NSString *thumbnailURL = [imageData isEqual:[NSNull null]] ? nil : imageData[@"medium"];
-          [cell.wikiImage setImageWithURL:[NSURL URLWithString:thumbnailURL] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
+          [cell.imageView setImageWithURL:[NSURL URLWithString:thumbnailURL] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
           [cell setNeedsLayout];
-         return cell;
+          return cell;
+               } else {
+                    
+                    GuideCell *cell = (GuideCell*)[tableView dequeueReusableCellWithIdentifier:@"GuideCell"];
+                    if (cell == nil) {
+                         cell = [[GuideCell alloc] initWithStyle:UITableViewStylePlain reuseIdentifier:@"GuideCell"];
+                    }
+                    NSString *title = [self.wikis[indexPath.row][@"title"] isEqual:@""] ? NSLocalizedString(@"Untitled", nil) : self.wikis[indexPath.row][@"title"];
+                    [cell.textLabel setText:title];
+                    NSDictionary *imageData = self.wikis[indexPath.row][@"image"];
+                    NSString *thumbnailURL = [imageData isEqual:[NSNull null]] ? nil : imageData[@"medium"];
+                    [cell.imageView setImageWithURL:[NSURL URLWithString:thumbnailURL] placeholderImage:[UIImage imageNamed:@"WaitImage.png"]];
+                    [cell setNeedsLayout];
+                    return cell;
+
      }
      return nil;
 }
@@ -228,22 +252,34 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
      if (indexPath.section == 1) {
-          return 200.0f;
+          return 44.0f;
      }
      return 44.0f;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView
+heightForHeaderInSection:(NSInteger)section {
+     return 40.0;
+}
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
      /* Create custom view to display section header... */
-     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
-     [label setFont:[UIFont boldSystemFontOfSize:12]];
-     NSString *string =(section==0)?@"Guides":@"Wikis";//[list objectAtIndex:section];
+     [view setBackgroundColor:[UIColor redColor]];
+     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, tableView.frame.size.width, 20)];
+     label.font = [UIFont fontWithName:@"MuseoSans-500" size:18.0];
+     //[label setFont:[UIFont boldSystemFontOfSize:14]];
+     [label setTextColor:[UIColor whiteColor]];
+     NSString *string =(section==0)?@"Guides":((section==1)?@"Categories":@"Wikis");//[list objectAtIndex:section];
      /* Section header is in 0th index... */
      [label setText:string];
      [view addSubview:label];
-     [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
+     [view setBackgroundColor:[UIColor colorWithRed:240/255.0 green:28/255.0 blue:0/255.0 alpha:1.0]]; //your background color...
+     
+     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+     imageView.image = [UIImage imageNamed:(section==0)?@"GuidesSection":((section==1)?@"CategoriesSection":@"WikisSection")];
+     [view addSubview:imageView];
      return view;
 }
 

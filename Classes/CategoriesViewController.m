@@ -66,7 +66,8 @@ BOOL searchViewEnabled;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+     [self presentTransparentNavigationBar];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(orientationChanged:)
                                                  name:UIDeviceOrientationDidChangeNotification
@@ -136,6 +137,19 @@ BOOL searchViewEnabled;
                 imageTitle = [[UIImageView alloc] initWithImage:titleImage];
                 self.navigationItem.titleView = imageTitle;
                 break;
+             case ConfigPepsi:
+
+                  titleImage = [UIImage imageNamed:@"titleImagePepsi.png"];
+                  imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+                  imageTitle.frame = CGRectMake(0, 0, 144, 44);
+                  //self.navigationItem.titleView = imageTitle;
+                  
+                  imageTitle.contentMode = UIViewContentModeScaleAspectFit;
+                  imageTitle.center = CGPointMake(self.navigationController.navigationBar.frame.size.width / 2.0, 22.0);
+                  imageTitle.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+                  
+                  [self.navigationController.navigationBar addSubview:imageTitle];
+                  break;
             /*EAOTitle*/
         }
     }
@@ -167,6 +181,7 @@ BOOL searchViewEnabled;
     }
 
     self.tableView.rowHeight = 43.5;
+
 }
 
 - (void)configureSearchBar {
@@ -237,6 +252,18 @@ BOOL searchViewEnabled;
     
     [self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0];
 }
+
+- (void)presentTransparentNavigationBar
+{
+     //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Default"] forBarMetrics:UIBarMetricsDefault];
+     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+     self.navigationController.navigationItem.title = @"";
+//     [self.navigationController.navigationBar setTranslucent:YES];
+//     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+//     [self.navigationController setNavigationBarHidden:NO animated:YES];
+  //   self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+}
+
 - (void)setTableViewTitle {
     UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     titleLabel.backgroundColor = [UIColor clearColor];
@@ -353,12 +380,18 @@ BOOL searchViewEnabled;
                 frame.size.height = 30.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigOscaro:
-                frame = self.navigationItem.titleView.frame;
-                frame.size.width = 257.0;
-                frame.size.height = 30.0;
-                self.navigationItem.titleView.frame = frame;
-                break;
+             case ConfigOscaro:
+                  frame = self.navigationItem.titleView.frame;
+                  frame.size.width = 257.0;
+                  frame.size.height = 30.0;
+                  self.navigationItem.titleView.frame = frame;
+                  break;
+             case ConfigPepsi:
+                  frame = self.navigationItem.titleView.frame;
+                  frame.size.width = 257.0;
+                  frame.size.height = 30.0;
+                  self.navigationItem.titleView.frame = frame;
+                  break;
             case ConfigTechtitanhq:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 257.0;
@@ -419,12 +452,18 @@ BOOL searchViewEnabled;
                 frame.size.height = 40.0;
                 self.navigationItem.titleView.frame = frame;
                 break;
-            case ConfigOscaro:
-                frame = self.navigationItem.titleView.frame;
-                frame.size.width = 157.0;
-                frame.size.height = 40.0;
-                self.navigationItem.titleView.frame = frame;
-                break;
+             case ConfigOscaro:
+                  frame = self.navigationItem.titleView.frame;
+                  frame.size.width = 157.0;
+                  frame.size.height = 40.0;
+                  self.navigationItem.titleView.frame = frame;
+                  break;
+             case ConfigPepsi:
+                  frame = self.navigationItem.titleView.frame;
+                  frame.size.width = self.view.frame.size.width;
+                  frame.size.height = 40.0;
+                  self.navigationItem.titleView.frame = frame;
+                  break;
             case ConfigTechtitanhq:
                 frame = self.navigationItem.titleView.frame;
                 frame.size.width = 157.0;
@@ -719,7 +758,32 @@ BOOL searchViewEnabled;
     
     return self.categoryTypes.count;
 }
+- (CGFloat)tableView:(UITableView *)tableView
+heightForHeaderInSection:(NSInteger)section {
+     return 40.0;
+}
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
+     /* Create custom view to display section header... */
+     [view setBackgroundColor:[UIColor redColor]];
+     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, tableView.frame.size.width, 20)];
+     label.font = [UIFont fontWithName:@"MuseoSans-500" size:18.0];
+     //[label setFont:[UIFont boldSystemFontOfSize:14]];
+     [label setTextColor:[UIColor whiteColor]];
+     NSString *string =(section==0)?@"Categories":@"Guides";//[list objectAtIndex:section];
+     /* Section header is in 0th index... */
+     [label setText:string];
+     [view addSubview:label];
+     [view setBackgroundColor:[UIColor colorWithRed:240/255.0 green:28/255.0 blue:0/255.0 alpha:1.0]]; //your background color...
+     
+     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
+     imageView.image = [UIImage imageNamed:(section==0)?@"CategoriesSection":@"GuidesSection"];
+     [view addSubview:imageView];
+     return view;
+}
+/*
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (self.searching) {
         NSString *string = self.searchBar.scopeButtonTitles[self.searchBar.selectedScopeButtonIndex];
@@ -727,7 +791,7 @@ BOOL searchViewEnabled;
     }
 
     return NSLocalizedString([self.categoryTypes[section] capitalizedString], nil);
-}
+}*/
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -857,7 +921,7 @@ BOOL searchViewEnabled;
     // Category
     if (category[@"type"] == @(CATEGORY)) {
         CategoriesViewController *vc = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
-        vc.title = category[@"display_title"];
+  //      vc.title = category[@"display_title"];
         vc.categoryMetaData = category;
         
         if (self.searching) {
@@ -875,7 +939,7 @@ BOOL searchViewEnabled;
     } else if (category[@"type"] == @(DEVICE)) {
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
             iPhoneDeviceViewController *vc = [[iPhoneDeviceViewController alloc] initWithTopic:category[@"name"]];
-            vc.title = category[@"display_title"];
+ //           vc.title = category[@"display_title"];
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
         } else {
@@ -893,7 +957,7 @@ BOOL searchViewEnabled;
     
     // Change the back button title to @"Home", only if we have 2 views on the stack
     if (self.navigationController.viewControllers.count == 2) {
-        self.listViewController.navigationBar.backItem.title = NSLocalizedString(@"Home", nil);
+ //       self.listViewController.navigationBar.backItem.title = NSLocalizedString(@"Home", nil);
     }
     
 }
