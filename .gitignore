@@ -11,3 +11,4 @@ Reveal.framework/
 Pods
 Pods/
 assets
+*.xcworkspace/xcuserdata/
