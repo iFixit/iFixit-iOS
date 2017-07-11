@@ -9,4 +9,5 @@ iFixit-App-Id.plist
 .DS_Store
 Reveal.framework/
 Pods
+Pods/
 assets
