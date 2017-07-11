@@ -147,10 +147,8 @@ static Config *currentConfig = nil;
               self.scanner = NO;
               break;
          case ConfigAristo:
-              self.host = @"charlessmith.dozuki.com";
-              self.baseURL = @"http://charlessmith.dozuki.com";
-              //self.host = @"aristocrat.dozuki.com";
-              //self.baseURL = @"http://aristocrat.dozuki.com";
+              self.host = @"aristocrat.dozuki.com";
+              self.baseURL = @"http://aristocrat.dozuki.com";
               answersEnabled = NO;
               collectionsEnabled = NO;
               self.store = nil;
