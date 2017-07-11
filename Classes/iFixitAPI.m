@@ -542,6 +542,36 @@ static int volatile openConnections = 0;
     [alert release];
 }
 
+// Display an alert that allows the user to retry the connection
++ (void)displayLoggedOutErrorAlert {
+      
+      [[iFixitAPI sharedInstance] logout];
+      if ([Config currentConfig].dozuki && [Config currentConfig].private) {
+            [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showDozukiSplash];
+            // On a custom private app
+      } else if ([Config currentConfig].private) {
+            [(iFixitAppDelegate*)[[UIApplication sharedApplication] delegate] showSiteSplash];
+            // Everyone else who is public
+      }
+      
+      
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+      if (buttonIndex == 0)
+      {
+            //Code for OK button
+            // On Dozuki App
+            
+      }
+      if (buttonIndex == 1)
+      {
+            //Code for download button
+      }
+}
+
 + (void)checkCredentialsForViewController:(id)viewController {
     id viewControllerToPresent;
 

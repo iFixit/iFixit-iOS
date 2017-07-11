@@ -307,7 +307,7 @@ BOOL searchViewEnabled;
     // Areas was nil, meaning we probably had a connection error
     if (!areas[@"hierarchy"]) {
         [self showRefreshButton];
-        [iFixitAPI displayConnectionErrorAlert];
+        [iFixitAPI displayLoggedOutErrorAlert];
     }
     
     if ([areas[@"hierarchy"] allKeys].count) {
