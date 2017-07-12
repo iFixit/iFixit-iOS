@@ -41,6 +41,7 @@
 
 // Error handling
 + (void)displayConnectionErrorAlert;
++ (void)displayLoggedOutErrorAlert:(UIViewController*)vc;
 
 // Authentication Handeling
 + (void)checkCredentialsForViewController:(id)viewController;

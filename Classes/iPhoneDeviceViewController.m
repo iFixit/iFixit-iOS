@@ -102,7 +102,7 @@
 }
 - (void)gotCategory:(NSDictionary *)data {
     if (!data) {
-        [iFixitAPI displayConnectionErrorAlert];
+        [iFixitAPI displayLoggedOutErrorAlert:self];
         [self showRefreshButton];
         return;
     }
