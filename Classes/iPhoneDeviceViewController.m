@@ -102,7 +102,7 @@
 }
 - (void)gotCategory:(NSDictionary *)data {
     if (!data) {
-        [iFixitAPI displayConnectionErrorAlert];
+        [iFixitAPI displayLoggedOutErrorAlert:self];
         [self showRefreshButton];
         return;
     }
@@ -259,11 +259,45 @@
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForHeaderInSection:(NSInteger)section {
+     NSInteger count = 0;
+     if (section == 0) {
+          count = [self.guides count];
+     } else if (section == 1) {
+          count = [self.cats count];
+     } else if (section == 2) {
+          count = [self.wikis count];
+     }
+     if ([self.guides count] == 0 && [self.cats count] == 0 && [self.wikis count] == 0 && section==0) {
+          return 40.0;
+     } else if (count == 0) {
+          return 0.0;
+     }
      return 40.0;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+     NSInteger count = 0;
+     if (section == 0) {
+          count = [self.guides count];
+     } else if (section == 1) {
+          count = [self.cats count];
+     } else if (section == 2) {
+          count = [self.wikis count];
+     }
+     if ([self.guides count] == 0 && [self.cats count] == 0 && [self.wikis count] == 0 && section==0) {
+          UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
+          UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, tableView.frame.size.width, 20)];
+          label.font = [UIFont fontWithName:@"MuseoSans-500" size:18.0];
+          [label setTextColor:[UIColor blackColor]];
+          [label setText:@"No guides are available."];
+          [label setTextAlignment:NSTextAlignmentCenter];
+          [view addSubview:label];
+          return view;
+     } else if (count == 0) {
+          UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 0)];
+          return view;
+     }
      UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
      /* Create custom view to display section header... */
      [view setBackgroundColor:[UIColor redColor]];

@@ -539,7 +539,7 @@ BOOL onTablet, initialLoad, showTabBar;
 
 - (void)gotCategoryResult:(NSDictionary *)results {
     if (!results) {
-        [iFixitAPI displayConnectionErrorAlert];
+        [iFixitAPI displayLoggedOutErrorAlert:self];
         return;
     }
     

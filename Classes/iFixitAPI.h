@@ -8,7 +8,7 @@
 
 @class User;
 
-@interface iFixitAPI : NSObject
+@interface iFixitAPI : NSObject<UIAlertViewDelegate>
 
 @property (nonatomic, retain) User *user;
 @property (nonatomic, retain) NSString *appId;
@@ -41,6 +41,7 @@
 
 // Error handling
 + (void)displayConnectionErrorAlert;
++ (void)displayLoggedOutErrorAlert:(UIViewController*)vc;
 
 // Authentication Handeling
 + (void)checkCredentialsForViewController:(id)viewController;
