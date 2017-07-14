@@ -15,7 +15,8 @@
 enum {
     DEVICE,
     CATEGORY,
-    GUIDE
+    GUIDE,
+    WIKI
 };
 
 #define TOPICS @"TOPICS"
@@ -47,6 +48,7 @@ enum {
 - (void)showLoading;
 - (void)setData:(NSDictionary *)dict;
 - (void)addGuidesToTableView:(NSArray*)guides;
+- (void)addWikisToTableView:(NSArray*)wikis;
 - (void)setTableViewTitle;
 - (void)configureTableViewTitleLogoFromURL:(NSString*)URL;
 - (void)configureSearchBar;
