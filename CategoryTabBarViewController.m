@@ -556,6 +556,11 @@ BOOL onTablet, initialLoad, showTabBar;
                 // Add guides to our top level view controller's tableview
                 [viewController addGuidesToTableView:results[@"guides"]];
             }
+             // Only on iPhone do we want to add a wiki section to the tableView
+             if (!onTablet && [viewController respondsToSelector:@selector(addWikisToTableView:)] && [results[@"related_wikis"] count] > 0) {
+                  // Add guides to our top level view controller's tableview
+                  [viewController addWikisToTableView:results[@"related_wikis"]];
+             }
         }
     }
     
