@@ -257,7 +257,7 @@ BOOL searchViewEnabled;
 - (void)presentTransparentNavigationBar
 {
      //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Default"] forBarMetrics:UIBarMetricsDefault];
-     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+     [self.navigationController.navigationBar setBarTintColor:[Config currentConfig].navBarColor];
      self.navigationController.navigationItem.title = @"";
 //     [self.navigationController.navigationBar setTranslucent:YES];
 //     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
