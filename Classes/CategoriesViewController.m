@@ -27,6 +27,7 @@
 #import "GuideLib.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
+#import "WikiVC.h"
 
 @implementation CategoriesViewController
 
@@ -261,7 +262,7 @@ BOOL searchViewEnabled;
 - (void)presentTransparentNavigationBar
 {
      //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Default"] forBarMetrics:UIBarMetricsDefault];
-     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+     [self.navigationController.navigationBar setBarTintColor:[Config currentConfig].navBarColor];
      self.navigationController.navigationItem.title = @"";
 //     [self.navigationController.navigationBar setTranslucent:YES];
 //     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
@@ -760,7 +761,7 @@ BOOL searchViewEnabled;
     if (self.searching) {
         return 1;
     }
-    
+     NSLog(@"categories %d",self.categoryTypes.count);
     return self.categoryTypes.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView
@@ -781,14 +782,16 @@ heightForHeaderInSection:(NSInteger)section {
      label.font = [UIFont fontWithName:@"MuseoSans-500" size:18.0];
      //[label setFont:[UIFont boldSystemFontOfSize:14]];
      [label setTextColor:[UIColor whiteColor]];
-     NSString *string =(section==0)?@"Categories":@"Guides";//[list objectAtIndex:section];
+     NSString *string =(section==0)?@"Guides":((section==1)?@"Categories":@"Wikis");//[list objectAtIndex:section];
+
      /* Section header is in 0th index... */
      [label setText:string];
      [view addSubview:label];
      [view setBackgroundColor:[UIColor colorWithRed:240/255.0 green:28/255.0 blue:0/255.0 alpha:1.0]]; //your background color...
      
      UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
-     imageView.image = [UIImage imageNamed:(section==0)?@"CategoriesSection":@"GuidesSection"];
+     imageView.image = [UIImage imageNamed:(section==0)?@"GuidesSection":((section==1)?@"CategoriesSection":@"WikisSection")];
+
      [view addSubview:imageView];
      return view;
 }
@@ -955,11 +958,18 @@ heightForHeaderInSection:(NSInteger)section {
             self.categoryMetaData = category;
         }
     // Guide
-    } else {
+    } else if (category[@"type"] == @(GUIDE)) {
         [GuideLib loadAndPresentGuideForGuideid:category[@"guideid"]];
         
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
+    } else if (category[@"type"] == @(WIKI)) {
+         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+         NSString *url = [category[@"url"] isEqual:@""] ? @"http://www.dozuki.com" : category[@"url"];
+         WikiVC *viewController = [[WikiVC alloc] initWithNibName:@"WikiVC" bundle:nil];
+         viewController.url = url;
+         [self.navigationController pushViewController:viewController animated:true];
+         return;
     }
     
     [[iFixitAPI sharedInstance] getCategory:category[@"name"] forObject:self.listViewController.categoryTabBarViewController withSelector:@selector(gotCategoryResult:)];
@@ -1007,6 +1017,14 @@ heightForHeaderInSection:(NSInteger)section {
     }
 }
 
+// Massage the data to match our already gathered data
+- (void)modifyTypesForWikis:(NSArray*)wikis {
+     for (id wiki in wikis) {
+          wiki[@"type"] = @(WIKI);
+          wiki[@"name"] = [wiki[@"display_title"] isEqual:@""] ? NSLocalizedString(@"Untitled", nil) : wiki[@"display_title"];
+     }
+}
+
 // Add guides to the tableview if they exist
 - (void)addGuidesToTableView:(NSArray*)guides {
     [self modifyTypesForGuides:guides];
@@ -1024,6 +1042,25 @@ heightForHeaderInSection:(NSInteger)section {
     // Donezo
     [self.tableView endUpdates];
 }
+
+// Add guides to the tableview if they exist
+- (void)addWikisToTableView:(NSArray*)wikis {
+     [self modifyTypesForWikis:wikis];
+     
+     // Begin the update
+     [self.tableView beginUpdates];
+     [self.tableView insertSections:[NSIndexSet indexSetWithIndex:self.categoryTypes.count] withRowAnimation:UITableViewRowAnimationFade];
+     
+     // Add the new guides to our category list
+     [self.categories addEntriesFromDictionary:@{@"wikis": wikis}];
+     
+     // Add a new category type "wikis"
+     [self.categoryTypes addObject:@"wikis"];
+     
+     // Donezo
+     [self.tableView endUpdates];
+}
+
 - (IBAction)scannerViewTouched:(id)sender {
     
     ZBarReaderViewController *qrReader = [ZBarReaderViewController new];

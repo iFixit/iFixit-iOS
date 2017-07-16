@@ -150,7 +150,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
     
     if ([[UINavigationBar class] instancesRespondToSelector:@selector(setBarTintColor:)]) {
-        [[UINavigationBar appearance] setBarTintColor:[Config currentConfig].toolbarColor];
+        [[UINavigationBar appearance] setBarTintColor:[Config currentConfig].navBarColor];
     }
     
     [[UINavigationBar appearance] setTitleTextAttributes:
