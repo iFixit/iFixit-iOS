@@ -82,8 +82,8 @@ static int volatile openConnections = 0;
       return nil;
 }
 
-- (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
-      NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/sites?limit=%d&offset=%d", [Config currentConfig].host, limit, offset];
+- (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector usePublic:(BOOL)pub {
+      NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/sites?limit=%d&offset=%d", pub?[Config currentConfig].dozukiHost:[Config currentConfig].host, limit, offset];
       
       __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
       request.userAgentString = self.userAgent;

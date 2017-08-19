@@ -14,7 +14,7 @@ static Config *currentConfig = nil;
 @implementation Config
 
 @synthesize dozuki, answersEnabled, sso, collectionsEnabled, private, store;
-@synthesize site, siteData, host, custom_domain, baseURL, backgroundColor, textColor, toolbarColor, navBarColor, introCSS, stepCSS;
+@synthesize site, siteData, host, dozukiHost, custom_domain, baseURL, backgroundColor, textColor, toolbarColor, navBarColor, introCSS, stepCSS;
 
 + (Config *)currentConfig {
     if (!currentConfig) {
@@ -164,6 +164,8 @@ static Config *currentConfig = nil;
             self.store = nil;
             self.title = nil;
     }
+     
+    self.dozukiHost = @"www.dozuki.com";
     
     switch (site) {
         // Make
