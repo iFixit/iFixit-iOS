@@ -134,7 +134,7 @@
 			navBar.autoresizesSubviews = YES;
 			
 			NSArray* viewCtrlers = self.navigationController.viewControllers;
-			UIViewController* prevCtrler = [viewCtrlers objectAtIndex:[viewCtrlers count]-2];
+			UIViewController* prevCtrler = [viewCtrlers objectAtIndex:[viewCtrlers count]-1];
 			titleLeftOffset = [prevCtrler.navigationItem.backBarButtonItem.title sizeWithFont:[UIFont boldSystemFontOfSize:12]].width+26;
 		}
 		
@@ -180,7 +180,7 @@
         }
         
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-            titleLabel.textColor = [UIColor whiteColor];
+            titleLabel.textColor = [UIColor redColor];
         }
 
 		titleLabel.backgroundColor = [UIColor clearColor];

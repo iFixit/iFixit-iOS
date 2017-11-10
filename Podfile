@@ -1,7 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 project 'Aristocrat.xcodeproj'
 
-platform :ios, '6.0'
+platform :ios, '9.1'
 
 target "Aristocrat" do
 

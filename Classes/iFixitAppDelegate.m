@@ -140,7 +140,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         firstLoad = NO;
     }
     [Fabric with:@[[Crashlytics class]]];
-    
     return YES;
 }
 

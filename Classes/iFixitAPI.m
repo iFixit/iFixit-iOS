@@ -150,8 +150,20 @@ static int volatile openConnections = 0;
 }
 
 - (void)addAuthorizationHeaderToRequest:(ASIHTTPRequest *)request {
+      
+      [self addAuthorizationHeaderToRequest:request sessionID:nil];
+      
+}
+
+- (void)addAuthorizationHeaderToRequest:(ASIHTTPRequest *)request sessionID:(NSString*)sessionId {
       if (self.user) {
+//            BFLog(@"self.user was set using header Authorization %@", [NSString stringWithFormat:@"api %@", self.user.session]);
             [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
+      } else if (sessionId!=nil) {
+//            BFLog(@"sessionID header Authorization %@", [NSString stringWithFormat:@"api %@", sessionId]);
+            [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", sessionId]];
+      } else {
+//            BFLog(@"cound not set header there is no self.user");
       }
 }
 
@@ -325,28 +337,36 @@ static int volatile openConnections = 0;
       // SSL doesn't exist so we just use HTTP.
       NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user", [Config currentConfig].host];
       
+//      BFLog(@"curent config host %@", [Config currentConfig].host);
+//      BFLog(@"sessionId %@", sessionId);
+      
       __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
       request.userAgentString = self.userAgent;
       
       [request setRequestMethod:@"GET"];
       
       [request addRequestHeader:@"X-App-Id" value:self.appId];
-      [self addAuthorizationHeaderToRequest:request];
+//      BFLog(@"self.appId %@", self.appId);
+      
+      [self addAuthorizationHeaderToRequest:request sessionID:sessionId];
       request.useCookiePersistence = NO;
       
       [request setCompletionBlock:^{
             NSMutableDictionary *results = [[request responseString] JSONValue];
+//            BFLog(@"completion %@", results);
             
             [self checkLogin:results];
             [object performSelector:selector withObject:results];
       }];
       [request setFailedBlock:^{
             NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
+//            BFLog(@"failed %@", results);
             [object performSelector:selector withObject:results];
       }];
       
       [request startAsynchronous];
 }
+
 
 - (void)loginWithLogin:(NSString *)login andPassword:(NSString *)password forObject:(id)object withSelector:(SEL)selector {
       
