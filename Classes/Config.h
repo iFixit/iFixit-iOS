@@ -36,6 +36,7 @@ enum {
 @property (nonatomic) NSInteger site;
 @property (nonatomic, copy) NSString *sso;
 @property (nonatomic, retain) NSDictionary *siteData;
+@property (nonatomic, retain) NSString *dozukiHost;
 @property (nonatomic, retain) NSString *host;
 @property (nonatomic, retain) NSString *custom_domain;
 @property (nonatomic, retain) NSString *baseURL;
