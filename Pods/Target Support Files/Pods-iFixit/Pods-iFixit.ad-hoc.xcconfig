@@ -1,4 +1,3 @@
-ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO
 EXCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*][arch=*] = ZBarReaderViewImpl_Simulator.m
 EXCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*][arch=*] = ZBarReaderViewImpl_Capture.m ZBarCaptureReader.m
 FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Crashlytics/iOS" "${PODS_ROOT}/Fabric/iOS"
