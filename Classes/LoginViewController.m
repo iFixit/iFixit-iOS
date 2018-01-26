@@ -19,6 +19,11 @@
 #import "User.h"
 #import "ListViewController.h"
 #import "iFixitAppDelegate.h"
+#import "iFixitAPI.h"
+
+static NSMutableArray *sites = nil;
+static NSMutableArray *prioritySites = nil;
+#define SITES_REQUEST_LIMIT 500
 
 @implementation LoginViewController
 
@@ -42,6 +47,13 @@
           self.registerButton = nil;
           self.cancelButton = nil;
      }
+<<<<<<< HEAD
+=======
+     if (!sites) {
+          sites = [[NSMutableArray array] retain];
+          prioritySites = [[NSMutableArray array] retain];
+     }
+>>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
      return self;
 }
 
@@ -399,6 +411,16 @@
      
      [self configureAppearance];
      [self configureLeftBarButtonItem];
+<<<<<<< HEAD
+=======
+     
+     [self showLoading];
+     [[iFixitAPI sharedInstance] getSitesWithLimit:SITES_REQUEST_LIMIT
+                                         andOffset:[sites count]
+                                         forObject:self
+                                      withSelector:@selector(gotSites:)
+                                         usePublic:true];
+>>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
 }
 
 - (void)configureLeftBarButtonItem {
@@ -715,6 +737,87 @@
                [delegate refresh];
           }];
      }
+<<<<<<< HEAD
+=======
+}
+
+- (NSString*)storedListPath {
+     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+     NSString *docDirectory = [paths objectAtIndex:0];
+     return [docDirectory stringByAppendingPathComponent:@"dozukiSiteList.plist"];
+}
+
+- (void)gotSites:(NSArray *)theSites {
+     [self hideLoading];
+     
+     int count = [theSites count];
+     
+     if (theSites && count) {
+          hasMoreSites = [theSites count] == SITES_REQUEST_LIMIT;
+          
+          // Insert these new rows at the bottom.
+          NSMutableArray *paths = [NSMutableArray array];
+          for (int i=0; i<[theSites count]; i++) {
+               
+               [paths addObject:[NSIndexPath indexPathForRow:(i + count) inSection:0]];
+               
+               // Check for priority sites and separate them off
+               NSDictionary *site = [theSites objectAtIndex:i];
+               if ([site objectForKey:@"priority"] && ![site objectForKey:@"hideFromiOS"]) {
+                    [prioritySites addObject:site];
+               }
+               NSString* domain = [[site objectForKey:@"domain"] description];
+               NSString* host = [Config currentConfig].host;
+               NSDictionary* authObj = [site objectForKey:@"authentication"];
+               if (domain!=Nil && [domain isEqualToString:host] && authObj) {
+                    if ([authObj objectForKey:@"sso"]) {
+                         NSString* sso = [[authObj objectForKey:@"sso"] description];
+                         [Config currentConfig].sso = sso;
+                   }
+               }
+          }
+          
+          // Populate the non-priority sites list.
+          for (NSDictionary *site in theSites) {
+               if (![site objectForKey:@"priority"] && ![site objectForKey:@"hideFromiOS"]) {
+                    [sites addObject:site];
+               }
+          }
+          
+          [self.tableView reloadData];
+          
+          // Cache to disk.
+          NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                prioritySites, @"prioritySites",
+                                sites, @"sites",
+                                nil];
+          [dict writeToFile:[self storedListPath] atomically:YES];
+     }
+     else {
+          hasMoreSites = NO;
+          if ([sites count])
+               return;
+          
+          // If we failed to get fresh data, use the cached site list if available.
+          NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[self storedListPath]];
+          if (![sites count] && dict) {
+               [sites release];
+               [prioritySites release];
+               sites = [[dict objectForKey:@"sites"] mutableCopy];
+               prioritySites = [[dict objectForKey:@"prioritySites"] mutableCopy];
+               [self.tableView reloadData];
+          }
+          else {
+               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Could not load site list.", nil)
+                                                               message:NSLocalizedString(@"Please check your internet connection and try again.", nil)
+                                                              delegate:self
+                                                     cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                     otherButtonTitles:NSLocalizedString(@"Retry", nil), nil];
+               [alert show];
+               [alert release];
+          }
+     }
+>>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
 }
 
 @end

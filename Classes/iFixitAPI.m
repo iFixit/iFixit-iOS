@@ -82,8 +82,13 @@ static int volatile openConnections = 0;
       return nil;
 }
 
+<<<<<<< HEAD
 - (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector {
       NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/sites?limit=%d&offset=%d", [Config currentConfig].host, limit, offset];
+=======
+- (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector usePublic:(BOOL)pub {
+      NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/sites?limit=%d&offset=%d&disableCacheGets", pub?[Config currentConfig].dozukiHost:[Config currentConfig].host, limit, offset];
+>>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
       
       __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
       request.userAgentString = self.userAgent;
@@ -150,8 +155,25 @@ static int volatile openConnections = 0;
 }
 
 - (void)addAuthorizationHeaderToRequest:(ASIHTTPRequest *)request {
+<<<<<<< HEAD
       if (self.user) {
             [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
+=======
+      
+      [self addAuthorizationHeaderToRequest:request sessionID:nil];
+      
+}
+
+- (void)addAuthorizationHeaderToRequest:(ASIHTTPRequest *)request sessionID:(NSString*)sessionId {
+      if (self.user) {
+//            BFLog(@"self.user was set using header Authorization %@", [NSString stringWithFormat:@"api %@", self.user.session]);
+            [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", self.user.session]];
+      } else if (sessionId!=nil) {
+//            BFLog(@"sessionID header Authorization %@", [NSString stringWithFormat:@"api %@", sessionId]);
+            [request addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"api %@", sessionId]];
+      } else {
+//            BFLog(@"cound not set header there is no self.user");
+>>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
       }
 }
 
@@ -325,29 +347,53 @@ static int volatile openConnections = 0;
       // SSL doesn't exist so we just use HTTP.
       NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user", [Config currentConfig].host];
       
+<<<<<<< HEAD
+=======
+//      BFLog(@"curent config host %@", [Config currentConfig].host);
+//      BFLog(@"sessionId %@", sessionId);
+      
+>>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
       __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
       request.userAgentString = self.userAgent;
       
       [request setRequestMethod:@"GET"];
       
       [request addRequestHeader:@"X-App-Id" value:self.appId];
+<<<<<<< HEAD
       [self addAuthorizationHeaderToRequest:request];
+=======
+//      BFLog(@"self.appId %@", self.appId);
+      
+      [self addAuthorizationHeaderToRequest:request sessionID:sessionId];
+>>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
       request.useCookiePersistence = NO;
       
       [request setCompletionBlock:^{
             NSMutableDictionary *results = [[request responseString] JSONValue];
+<<<<<<< HEAD
+=======
+//            BFLog(@"completion %@", results);
+>>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
             
             [self checkLogin:results];
             [object performSelector:selector withObject:results];
       }];
       [request setFailedBlock:^{
             NSDictionary *results = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], @"error", [[request error] localizedDescription], @"msg", nil];
+<<<<<<< HEAD
+=======
+//            BFLog(@"failed %@", results);
+>>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
             [object performSelector:selector withObject:results];
       }];
       
       [request startAsynchronous];
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
 - (void)loginWithLogin:(NSString *)login andPassword:(NSString *)password forObject:(id)object withSelector:(SEL)selector {
       
       NSString *url =	[NSString stringWithFormat:@"https://%@/api/2.0/user/token", [Config currentConfig].host];

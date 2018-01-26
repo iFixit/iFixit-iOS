@@ -17,7 +17,7 @@
 + (iFixitAPI *)sharedInstance;
 
 // Anonymous
-- (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector;
+- (void)getSitesWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector usePublic:(BOOL)pub;
 - (void)getCollectionsWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset forObject:(id)object withSelector:(SEL)selector;
 - (void)getGuide:(NSNumber *)iGuideid forObject:(id)object withSelector:(SEL)selector;
 - (void)getCategoriesForObject:(id)object withSelector:(SEL)selector;

@@ -151,6 +151,11 @@ BOOL searchViewEnabled;
                   
                   [self.navigationController.navigationBar addSubview:imageTitle];
                   break;
+             case ConfigAristo:
+                  titleImage = [UIImage imageNamed:@"titleImageAristocrat.png"];
+                  imageTitle = [[UIImageView alloc] initWithImage:titleImage];
+                  self.navigationItem.titleView = imageTitle;
+                  break;
             /*EAOTitle*/
         }
     }

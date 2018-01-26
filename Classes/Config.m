@@ -14,7 +14,11 @@ static Config *currentConfig = nil;
 @implementation Config
 
 @synthesize dozuki, answersEnabled, sso, collectionsEnabled, private, store;
+<<<<<<< HEAD
 @synthesize site, siteData, host, custom_domain, baseURL, backgroundColor, textColor, toolbarColor, navBarColor, introCSS, stepCSS;
+=======
+@synthesize site, siteData, host, dozukiHost, custom_domain, baseURL, backgroundColor, textColor, toolbarColor, navBarColor, introCSS, stepCSS;
+>>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
 
 + (Config *)currentConfig {
     if (!currentConfig) {
@@ -146,6 +150,15 @@ static Config *currentConfig = nil;
               self.private = YES;
               self.scanner = NO;
               break;
+         case ConfigAristo:
+              self.host = @"aristocrat.dozuki.com";
+              self.baseURL = @"http://aristocrat.dozuki.com";
+              answersEnabled = NO;
+              collectionsEnabled = NO;
+              self.store = nil;
+              self.private = YES;
+              self.scanner = NO;
+              break;
         /*EAOOptions*/
         default:
             self.host = @"www.dozuki.com";
@@ -155,6 +168,8 @@ static Config *currentConfig = nil;
             self.store = nil;
             self.title = nil;
     }
+     
+    self.dozukiHost = @"www.dozuki.com";
     
     switch (site) {
         // Make

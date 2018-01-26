@@ -42,7 +42,8 @@ static NSMutableArray *prioritySites = nil;
         [[iFixitAPI sharedInstance] getSitesWithLimit:SITES_REQUEST_LIMIT
                                             andOffset:[sites count]
                                             forObject:self
-                                         withSelector:@selector(gotSites:)];
+                                         withSelector:@selector(gotSites:)
+                                            usePublic:false];
     }
 }
 
