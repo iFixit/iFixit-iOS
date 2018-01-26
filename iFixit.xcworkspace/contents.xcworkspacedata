@@ -2,13 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-<<<<<<< HEAD
-      location = "group:iFixit.xcodeproj">
-=======
-      location = "group:/Users/bpascazio/code/iFixit-iOS/Aristocrat.xcodeproj">
->>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
+      location = "group:iFixit.xcodeproj">
    </FileRef>
 </Workspace>

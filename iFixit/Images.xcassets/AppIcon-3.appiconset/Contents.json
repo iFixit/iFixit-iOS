@@ -145,15 +145,12 @@
       "scale" : "2x"
     },
     {
-<<<<<<< HEAD
-=======
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
       "filename" : "Icon-App-Aristo-1024x1024.png",
       "scale" : "1x"
     },
     {
->>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
       "size" : "40x40",
       "idiom" : "iphone",
       "filename" : "Icon-App-40x40@1x.png",

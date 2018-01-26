@@ -47,13 +47,10 @@ static NSMutableArray *prioritySites = nil;
           self.registerButton = nil;
           self.cancelButton = nil;
      }
-<<<<<<< HEAD
-=======
      if (!sites) {
           sites = [[NSMutableArray array] retain];
           prioritySites = [[NSMutableArray array] retain];
      }
->>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
      return self;
 }
 
@@ -411,8 +408,6 @@ static NSMutableArray *prioritySites = nil;
      
      [self configureAppearance];
      [self configureLeftBarButtonItem];
-<<<<<<< HEAD
-=======
      
      [self showLoading];
      [[iFixitAPI sharedInstance] getSitesWithLimit:SITES_REQUEST_LIMIT
@@ -420,7 +415,6 @@ static NSMutableArray *prioritySites = nil;
                                          forObject:self
                                       withSelector:@selector(gotSites:)
                                          usePublic:true];
->>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
 }
 
 - (void)configureLeftBarButtonItem {
@@ -737,8 +731,6 @@ static NSMutableArray *prioritySites = nil;
                [delegate refresh];
           }];
      }
-<<<<<<< HEAD
-=======
 }
 
 - (NSString*)storedListPath {
@@ -817,7 +809,6 @@ static NSMutableArray *prioritySites = nil;
                [alert release];
           }
      }
->>>>>>> f2f966f9a8a03d63864e3643d9fb509d0ecfe81f
 }
 
 @end
