@@ -20,7 +20,7 @@ static Config *currentConfig = nil;
     if (!currentConfig) {
         currentConfig = [[self alloc] init];
         currentConfig.site = ConfigIFixit;
-        currentConfig.dozuki = NO;
+        currentConfig.dozuki = YES;
     }
     return currentConfig;
 }
