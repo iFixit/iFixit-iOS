@@ -43,7 +43,7 @@ static NSMutableArray *prioritySites = nil;
                                             andOffset:[sites count]
                                             forObject:self
                                          withSelector:@selector(gotSites:)
-                                            usePublic:(BOOL)true];
+                                            usePublic:false];
     }
 }
 
