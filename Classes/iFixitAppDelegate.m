@@ -176,7 +176,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     // Dozuki splash
     DozukiSplashViewController *dsvc = [[DozukiSplashViewController alloc] init];
     dsvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    self.window.rootViewController = dsvc;
+    [self.window setRootViewController:dsvc];
     [dsvc release];
 
     [window makeKeyAndVisible];
@@ -212,7 +212,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     UINavigationController *nvc = nil;
     
     // Only refresh our UIWindow on a very special edge case
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") && [UIDevice currentDevice].userInterfaceIdiom ==
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") && SYSTEM_VERSION_LESS_THAN(@"9.0") && [UIDevice currentDevice].userInterfaceIdiom ==
      UIUserInterfaceIdiomPad && [Config currentConfig].site == ConfigDozuki) {
         [self refreshUIWindow];
     }
@@ -229,7 +229,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         // iPad: display in form sheet
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
             root = [[[LoginBackgroundViewController alloc] init] autorelease];
-            self.window.rootViewController = root;
+             [self.window setRootViewController:root];
             [window makeKeyAndVisible];
             vc.modal = YES;
             [root presentModalViewController:nvc animated:NO];
@@ -244,8 +244,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         root = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ?
                 [self iPadRoot] : [self iPhoneRoot];
     }
- 
-    self.window.rootViewController = root;
+   
+    [self.window setRootViewController:root];
     [self.window makeKeyAndVisible];
 }
 
@@ -366,7 +366,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
 
     [storeViewController release];
-    
+     [tbc retain];
     return [tbc autorelease];
 }
 

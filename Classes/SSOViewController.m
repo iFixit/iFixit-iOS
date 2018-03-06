@@ -45,7 +45,7 @@
     [super webViewDidFinishLoad:webView];
 
     NSString *host = [webView.request.URL host];
-//     BFLog(@"sso finished loading %@", host);
+     NSLog(@"sso finished loading %@", host);
 
      if ([host isEqual:[Config currentConfig].host] || [host isEqual:[Config currentConfig].custom_domain]) {
         // Extract the sessionid.
@@ -63,7 +63,7 @@
         [[iFixitAPI sharedInstance] loginWithSessionId:sessionid forObject:self withSelector:@selector(loginResults:)];
      } else {
           
-//          BFLog(@"hosts are not equal host %@ customdomain %@", [Config currentConfig].host, [Config currentConfig].custom_domain);
+          NSLog(@"hosts are not equal host %@ customdomain %@", [Config currentConfig].host, [Config currentConfig].custom_domain);
 
           
      }
