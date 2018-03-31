@@ -131,6 +131,7 @@ static Config *currentConfig = nil;
         case ConfigOscaro:
             self.host = @"oscaro.dozuki.com";
             self.baseURL = @"http://oscaro.dozuki.com";
+            self.custom_domain = @"tutoriels.oscaro.com";
             answersEnabled = NO;
             collectionsEnabled = NO;
             self.store = nil;

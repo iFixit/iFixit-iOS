@@ -13,6 +13,8 @@
 
 @property (nonatomic, retain) CategoryTabBarViewController *categoryTabBarViewController;
 @property (nonatomic, retain) UIBarButtonItem *favoritesButton;
+@property (nonatomic) CGRect xframe;
+@property (nonatomic) CGRect xbounds;
 
 - (void)showFavoritesButton:(id)viewController;
 - (void)favoritesButtonPushed;

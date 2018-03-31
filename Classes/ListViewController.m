@@ -19,6 +19,8 @@
 
 @implementation ListViewController
 
+@synthesize xframe, xbounds;
+
 - (id)initWithRootViewController:(UIViewController *)rvc {
     if ((self = [super initWithRootViewController:rvc])) {
         // Custom initializing
@@ -110,9 +112,21 @@
     // Make sure that we only update the tabbar when we need to
     } else if ([viewController isKindOfClass:[CategoriesViewController class]]) {
         [self.categoryTabBarViewController updateTabBar:[self.topViewController categoryMetaData]];
+         
+//         self.xframe = ((UIViewController*)viewController).view.frame;
+//         self.xbounds = ((UIViewController*)viewController).view.bounds;
     }
     
     return viewController;
+}
+
+- (void) viewDidLayoutSubviews {
+     CGRect frame = self.view.frame;
+     if (frame.size.width == 1024) {
+        self.view.frame = self.xframe;
+     } else {
+          self.xframe = self.view.frame;
+     }
 }
 
 - (void)statusBarBackground {
@@ -132,7 +146,13 @@
         [self.categoryTabBarViewController hideBrowseInstructions:YES];
     }
     
-    [super pushViewController:viewController animated:animated];
+     [super pushViewController:viewController animated:animated];
+
+     if ([viewController isKindOfClass:[CategoriesViewController class]]) {
+//         self.xframe = ((CategoriesViewController*)viewController).view.frame;
+//         self.xbounds = ((CategoriesViewController*)viewController).view.bounds;
+    }
+     
 }
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

@@ -17,6 +17,7 @@
 #import "GuideBookmarks.h"
 #import "BookmarksViewController.h"
 #import "LoginViewController.h"
+#import "ListViewController.h"
 #import "Utility.h"
 
 @implementation iFixitAPI
@@ -599,6 +600,11 @@ static int volatile openConnections = 0;
       
       if ([iFixitAPI sharedInstance].user) {
             viewControllerToPresent = [[BookmarksViewController alloc] initWithNibName:@"BookmarksView" bundle:nil];
+            if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+                 CGRect bmframe = ((BookmarksViewController*)viewControllerToPresent).view.frame;
+                 ListViewController* lvc = ((ListViewController*)viewController);
+                 ((BookmarksViewController*)viewControllerToPresent).xframe = lvc.xframe;
+            }
       } else {
             viewControllerToPresent = [[LoginViewController alloc] init];
             [viewControllerToPresent setDelegate:viewController];
