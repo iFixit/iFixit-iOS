@@ -23,7 +23,7 @@
 
 @implementation BookmarksViewController
 
-@synthesize bookmarks, lvc, devices;
+@synthesize bookmarks, lvc, devices, xframe;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
      if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -158,6 +158,18 @@
      [self.tableView setEditing:!self.tableView.editing animated:YES];
      
      self.navigationItem.rightBarButtonItem.title = self.tableView.editing ? NSLocalizedString(@"Done", nil) : NSLocalizedString(@"Edit", nil);
+}
+
+- (void)viewWillLayoutSubviews
+{
+     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+//          self.view.frame = self.xframe;
+     }
+}
+
+- (void)viewDidLayoutSubviews
+{
+
 }
 
 - (void)viewDidLoad
