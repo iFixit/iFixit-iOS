@@ -1394,9 +1394,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* iFixit */ = {
+		1D6058900D05DD3D006BFB54 /* Postmix */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iFixit" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Postmix" */;
 			buildPhases = (
 				6DAA79E961574847B3059BB7 /* [CP] Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
@@ -1410,7 +1410,7 @@
 			);
 			dependencies = (
 			);
-			name = iFixit;
+			name = Postmix;
 			productName = iFixit;
 			productReference = 1D6058910D05DD3D006BFB54 /* iFixit.app */;
 			productType = "com.apple.product-type.application";
@@ -1447,7 +1447,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* iFixit */,
+				1D6058900D05DD3D006BFB54 /* Postmix */,
 			);
 		};
 /* End PBXProject section */
@@ -2049,7 +2049,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iFixit" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Postmix" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,

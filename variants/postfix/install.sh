@@ -20,7 +20,7 @@ cp -v Default* ../../
 cp -v dozuki.sh ../../
 cp -v icon* ../../
 cp -v LoginViewController.m ../../Classes/LoginViewController.m
-cp -v project.pbxproj ../../Postmix.xcodeproj/project.pbxproj
+cp -v project.pbxproj ../../iFixit.xcodeproj/project.pbxproj
 mkdir ../../iFixit/Images.xcassets/AppIcon-2.appiconset
 mkdir ../../Postmix.xcodeproj
 cp -v AppIcon-2.appiconset/* ../../iFixit/Images.xcassets/AppIcon-2.appiconset
