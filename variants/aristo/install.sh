@@ -8,9 +8,11 @@ cp -v iFixit-Info.plist ../../iFixit-Info.plist
 cp -v Default* ../../
 mkdir ../../iFixit/Images.xcassets/AppIcon-3.appiconset
 cp -v AppIcon-3.appiconset/* ../../iFixit/Images.xcassets/AppIcon-3.appiconset
-cp -R Aristocrat.xcodeproj ../../iFixit/Aristocrat.xcodeproj
-cp -R Aristocrat.xcworkspace ../../iFixit/Aristocrat.xcworkspace
+cp -R Aristocrat.xcodeproj ../../Aristocrat.xcodeproj
+cp -R Aristocrat.xcworkspace ../../Aristocrat.xcworkspace
 cp -v Config.m ../../Classes/Config.m
 cp -v iFixitAppDelegate.m ../../Classes/iFixitAppDelegate.m
-rm -rf 	../../iFixit/Aristocrat.xcodeproj/
-rm -rf  ../../iFixit/Aristocrat.xcworkspace/
+cp -v Podfile ../../Podfile
+cp -v Podfile.lock ../../Podfile.lock
+rm -rf ../../Pods
+cp -R Pods ../../Pods

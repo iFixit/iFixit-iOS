@@ -12,6 +12,7 @@ git checkout -- ../../Default-Portrait@2x~ipad.png
 git checkout -- ../../Default-Portrait~ipad.png
 git checkout -- ../../Default.png
 git checkout -- ../../Default@2x.png
+git checkout -- ../../Podfile.lock
 rm ../../Default-667h@2x.png
 rm ../../Default-Landscape-736h@3x.png
 rm ../../Default-Portrait-736h@3x.png
@@ -23,6 +24,9 @@ rm ../../titleImagePepsi.png
 git checkout -- ../../iFixit-Info.plist
 git checkout -- ../../iFixit/Images.xcassets/AppIcon-3.appiconset
 rm -rf ../../Aristocrat.xcodeproj
-rm -rf ../../Arisotcrat.xcworkspace
+rm -rf ../../Aristocrat.xcworkspace
 git checkout -- ../../Classes/Config.m
 git checkout -- ../../Classes/iFixitAppDelegate.m
+git checkout -- ../../Podfile
+rm -rf ../../Pods
+git checkout -- ../../Pods
