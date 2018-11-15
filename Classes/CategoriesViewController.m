@@ -212,7 +212,7 @@ BOOL searchViewEnabled;
      // Show the Dozuki sites select button if needed.
      if ([Config currentConfig].dozuki && self.navigationController.viewControllers.count == 1) {
           UIImage *icon = [UIImage imageNamed:@"backtosites.png"];
-          UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStyleBordered
+          UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStylePlain
                                                                     target:[[UIApplication sharedApplication] delegate]
                                                                     action:@selector(showDozukiSplash)];
           self.navigationItem.leftBarButtonItem = button;

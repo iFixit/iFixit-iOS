@@ -213,7 +213,10 @@
         self.favoritesButton = favoritesButton;
         [favoritesButton release];
     }
-     if (!self.customBackButton) {
+    
+     [viewController navigationItem].rightBarButtonItem = self.favoritesButton;
+     
+     if (!self.customBackButton && [Config currentConfig].site != ConfigDozuki) {
           UIBarButtonItem *customBackButton = [[UIBarButtonItem alloc] initWithImage:[factory createImageForIcon:NIKFontAwesomeIconChevronLeft] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
           
           
@@ -226,9 +229,7 @@
           self.customBackButton = customBackButton;
           [customBackButton release];
      }
-    
-     [viewController navigationItem].rightBarButtonItem = self.favoritesButton;
-     [viewController navigationItem].leftBarButtonItem = self.customBackButton;
+     if ([Config currentConfig].site != ConfigDozuki) [viewController navigationItem].leftBarButtonItem = self.customBackButton;
 }
 
 - (void)refresh {
