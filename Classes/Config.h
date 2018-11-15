@@ -22,7 +22,8 @@ enum {
     ConfigOscaro,
     ConfigTechtitanhq,
      ConfigPepsi,
-     ConfigAristo
+     ConfigAristo,
+     ConfigHyperthermToolkit
     /*EAOConfig*/
 };
 
