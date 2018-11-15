@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-project 'Hypertherm.xcodeproj'
+project 'iFixIt.xcodeproj'
 
 platform :ios, '9.1'
 
