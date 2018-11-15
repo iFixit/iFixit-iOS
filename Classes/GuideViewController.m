@@ -1,4 +1,4 @@
-    //
+//
 //  GuideViewController.m
 //  iFixit
 //
@@ -26,426 +26,440 @@
 @synthesize shouldLoadPage;
 
 - (id)initWithGuide:(Guide *)guide {
-    return [self initWithGuideid:@0 guide:guide];
+     return [self initWithGuideid:@0 guide:guide];
 }
 - (id)initWithGuideid:(NSNumber *)iGuideid {
-    return [self initWithGuideid:iGuideid guide:nil];
+     return [self initWithGuideid:iGuideid guide:nil];
 }
 - (id)initWithGuideid:(NSNumber *)iGuideid guide:(Guide *)guide {
-    if ((self = [super initWithNibName:@"GuideView" bundle:nil])) {
-        self.guide = guide;
-        self.iGuideid = guide ? guide.iGuideid : iGuideid;
-        self.shouldLoadPage = 0;
-        self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        
-        GuideBookmarker *b = [[GuideBookmarker alloc] init];
-        b.delegate = self;
-        self.bookmarker = b;
-        [b release];
-        
-        [UIApplication sharedApplication].idleTimerDisabled = YES;
-        
-        
-        // Analytics
-        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Guide"
-                                                              action:@"Viewed"
-                                                               label:@"Guide"
-                                                               value:self.iGuideid] build]];
-        
-        if (!self.memoryCache) {
-            self.memoryCache = [[NSCache alloc] init];
-        }
-    }
-    return self;
+     if ((self = [super initWithNibName:@"GuideView" bundle:nil])) {
+          self.guide = guide;
+          self.iGuideid = guide ? guide.iGuideid : iGuideid;
+          self.shouldLoadPage = 0;
+          self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+          
+          GuideBookmarker *b = [[GuideBookmarker alloc] init];
+          b.delegate = self;
+          self.bookmarker = b;
+          [b release];
+          
+          [UIApplication sharedApplication].idleTimerDisabled = YES;
+          
+          
+          // Analytics
+          [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Guide"
+                                                                                              action:@"Viewed"
+                                                                                               label:@"Guide"
+                                                                                               value:self.iGuideid] build]];
+          
+          if (!self.memoryCache) {
+               self.memoryCache = [[NSCache alloc] init];
+          }
+     }
+     return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // Make sure we have the correct orientation when our
-    // view appears, this fixes orientation issues regarding
-    // rotating after logging in.
-    [self willRotateToInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation duration:0];
-    self.pageControl.hidden = YES;
+     // Make sure we have the correct orientation when our
+     // view appears, this fixes orientation issues regarding
+     // rotating after logging in.
+     [self willRotateToInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation duration:0];
+     self.pageControl.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+     
+     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+     return UIStatusBarStyleDefault;
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Replace black with concrete.
-    UIColor *bgColor = [Config currentConfig].backgroundColor;
-    if ([bgColor isEqual:[UIColor whiteColor]])
-        bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackgroundWhite.png"]];
-    else
-        bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
-    
-    self.view.backgroundColor = bgColor;
-    
-    if (self.guide) {
-        [self gotGuide:self.guide];
-    } else {
-        // Load the data
-        [[iFixitAPI sharedInstance] getGuide:self.iGuideid forObject:self withSelector:@selector(gotGuide:)];
-    }
-    
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        
-        // Landscape
-        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-            spinner.frame = CGRectMake(494.0, 333.0, 37.0, 37.0);
-        }
-        // Portrait
-        else {
-            spinner.frame = CGRectMake(365.0, 450.0, 37.0, 37.0);
-        }
-        
-    }
-    
-    self.navigationController.navigationBar.translucent = NO;
+     [super viewDidLoad];
+     
+     // Replace black with concrete.
+     UIColor *bgColor = [Config currentConfig].backgroundColor;
+     if ([bgColor isEqual:[UIColor whiteColor]])
+          bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackgroundWhite.png"]];
+     else
+          bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concreteBackground.png"]];
+     
+     self.view.backgroundColor = bgColor;
+     
+     if (self.guide) {
+          [self gotGuide:self.guide];
+     } else {
+          // Load the data
+          [[iFixitAPI sharedInstance] getGuide:self.iGuideid forObject:self withSelector:@selector(gotGuide:)];
+     }
+     
+     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+          
+          // Landscape
+          if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+               spinner.frame = CGRectMake(494.0, 333.0, 37.0, 37.0);
+          }
+          // Portrait
+          else {
+               spinner.frame = CGRectMake(365.0, 450.0, 37.0, 37.0);
+          }
+          
+     }
+     
+     self.navigationController.navigationBar.translucent = NO;
+     
+     [self setNeedsStatusBarAppearanceUpdate];
+     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+     
 }
 
 - (void)showOrHidePageControlForInterface:(UIInterfaceOrientation)orientation {
-    [UIView transitionWithView:pageControl
-                      duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve
-                    animations:^{
-                        // We only want to hide on the intro page and in landscape
-                        pageControl.hidden = (UIInterfaceOrientationIsLandscape(orientation) && pageControl.currentPage == 0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone);
-                        
-                    } completion:nil
-     ];
+     [UIView transitionWithView:pageControl
+                       duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve
+                     animations:^{
+                          // We only want to hide on the intro page and in landscape
+                          pageControl.hidden = (UIInterfaceOrientationIsLandscape(orientation) && pageControl.currentPage == 0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone);
+                          
+                     } completion:nil
+      ];
 }
 - (void)closeGuide {
-    if (bookmarker.poc.isPopoverVisible)
-        [bookmarker.poc dismissPopoverAnimated:YES];
-    
-    // Hide the guide. Only on iOS 7 do we want to cross disolve instead of horizontal flip
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    }
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+     if (bookmarker.poc.isPopoverVisible)
+          [bookmarker.poc dismissPopoverAnimated:YES];
+     
+     // Hide the guide. Only on iOS 7 do we want to cross disolve instead of horizontal flip
+     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+          [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+     }
+     
+     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    // Try Again
-    if (buttonIndex) {
-        [[iFixitAPI sharedInstance] getGuide:self.iGuideid forObject:self withSelector:@selector(gotGuide:)];
-    }
-    // Cancel
-    else {
-        [self dismissModalViewControllerAnimated:YES];
-    }
+     // Try Again
+     if (buttonIndex) {
+          [[iFixitAPI sharedInstance] getGuide:self.iGuideid forObject:self withSelector:@selector(gotGuide:)];
+     }
+     // Cancel
+     else {
+          [self dismissModalViewControllerAnimated:YES];
+     }
 }
 
 - (void)adjustScrollViewContentSizeForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    NSInteger numPages = [self.guide.steps count] + 1;
-    CGRect frame;
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
-
-    // iPad
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        // Landscape
-        if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-            spinner.frame = CGRectMake(494.0, 333.0, 37.0, 37.0);
-            // A nasty hack to make sure our view frame isn't cut off.
-            // In iOS 8, screenSize.height returns a different value before and after
-            // the view is drawn, so it'd be wrong the first time around. So we hardcode it.
-            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-                frame = CGRectMake(0, 0, 1024.0, 724.0);
-            } else {
-                frame = CGRectMake(0, 0, screenSize.height, screenSize.width - 44);
-            }
-        }
-        // Portrait
-        else {
-            spinner.frame = CGRectMake(365.0, 450.0, 37.0, 37.0);
-            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-                frame = CGRectMake(0, 0, 768.0, 980.0);
-            } else {
-                frame = CGRectMake(0, 0, screenSize.width, screenSize.height - 44);
-            }
-        }        
-    }
-    // iPhone
-    else {        
-        // Landscape
-        if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-            frame = CGRectMake(0, 0, screenSize.width, screenSize.height - 44);
-        }
-        // Portrait
-        else {
-            frame = CGRectMake(0, 0, screenSize.width, screenSize.height - 64);
-        }
-    }
-
-    scrollView.frame = frame;
-    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * numPages, scrollView.frame.size.height);
+     NSInteger numPages = [self.guide.steps count] + 1;
+     CGRect frame;
+     CGSize screenSize = [UIScreen mainScreen].bounds.size;
+     
+     // iPad
+     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+          // Landscape
+          if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+               spinner.frame = CGRectMake(494.0, 333.0, 37.0, 37.0);
+               // A nasty hack to make sure our view frame isn't cut off.
+               // In iOS 8, screenSize.height returns a different value before and after
+               // the view is drawn, so it'd be wrong the first time around. So we hardcode it.
+               if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+                    frame = CGRectMake(0, 0, 1024.0, 724.0);
+               } else {
+                    frame = CGRectMake(0, 0, screenSize.height, screenSize.width - 44);
+               }
+          }
+          // Portrait
+          else {
+               spinner.frame = CGRectMake(365.0, 450.0, 37.0, 37.0);
+               if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+                    frame = CGRectMake(0, 0, 768.0, 980.0);
+               } else {
+                    frame = CGRectMake(0, 0, screenSize.width, screenSize.height - 44);
+               }
+          }        
+     }
+     // iPhone
+     else {        
+          // Landscape
+          if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+               frame = CGRectMake(0, 0, screenSize.width, screenSize.height - 44);
+          }
+          // Portrait
+          else {
+               frame = CGRectMake(0, 0, screenSize.width, screenSize.height - 64);
+          }
+     }
+     
+     scrollView.frame = frame;
+     scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * numPages, scrollView.frame.size.height);
 }
 
 - (void)gotGuide:(Guide *)guide {
-	[spinner stopAnimating];
-
-    if (!guide) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
-                                                            message:NSLocalizedString(@"Failed loading guide.", nil)
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                                  otherButtonTitles:NSLocalizedString(@"Try Again", nil), nil];
-        [alertView show];
-        [alertView release];
-        return;
-    }
-    
-	self.guide = guide;
-
-	// Steps plus one for intro
-	NSInteger numPages = [self.guide.steps count] + 1;
-	
-	// view controllers are created lazily
-    // in the meantime, load the array with placeholders which will be replaced on demand
-    NSMutableArray *controllers = [[NSMutableArray alloc] init];
-    for (unsigned i = 0; i < numPages; i++) {
-        [controllers addObject:[NSNull null]];
-    }
-    self.viewControllers = controllers;
-    [controllers release];
-	
-    // a page is the width of the scroll view
-    scrollView.pagingEnabled = YES;
-    [self adjustScrollViewContentSizeForInterfaceOrientation:self.interfaceOrientation];
-    scrollView.showsHorizontalScrollIndicator = NO;
-    scrollView.showsVerticalScrollIndicator = NO;
-    scrollView.scrollsToTop = NO;
-    scrollView.delegate = self;
-	
-	// Steps plus one for intro
-    pageControl.numberOfPages = numPages;
-    pageControl.currentPage = 0;
-    pageControl.hidden = YES;
-    
-    // Setup the navigation items to show back arrow and bookmarks button
-    NSString *title = guide.title;
-    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad && [guide.subject length] > 0)
-        title = guide.subject;
-    
-    self.title = title;
-    
-    
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
-                                                                   style:UIBarButtonItemStyleDone
+     [spinner stopAnimating];
+     
+     if (!guide) {
+          UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                              message:NSLocalizedString(@"Failed loading guide.", nil)
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                    otherButtonTitles:NSLocalizedString(@"Try Again", nil), nil];
+          [alertView show];
+          [alertView release];
+          return;
+     }
+     
+     self.guide = guide;
+     
+     // Steps plus one for intro
+     NSInteger numPages = [self.guide.steps count] + 1;
+     
+     // view controllers are created lazily
+     // in the meantime, load the array with placeholders which will be replaced on demand
+     NSMutableArray *controllers = [[NSMutableArray alloc] init];
+     for (unsigned i = 0; i < numPages; i++) {
+          [controllers addObject:[NSNull null]];
+     }
+     self.viewControllers = controllers;
+     [controllers release];
+     
+     // a page is the width of the scroll view
+     scrollView.pagingEnabled = YES;
+     [self adjustScrollViewContentSizeForInterfaceOrientation:self.interfaceOrientation];
+     scrollView.showsHorizontalScrollIndicator = NO;
+     scrollView.showsVerticalScrollIndicator = NO;
+     scrollView.scrollsToTop = NO;
+     scrollView.delegate = self;
+     
+     // Steps plus one for intro
+     pageControl.numberOfPages = numPages;
+     pageControl.currentPage = 0;
+     pageControl.hidden = YES;
+     
+     // Setup the navigation items to show back arrow and bookmarks button
+     NSString *title = guide.title;
+     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad && [guide.subject length] > 0)
+          title = guide.subject;
+     
+     self.title = title;
+     
+     
+     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
+                                                                    style:UIBarButtonItemStyleDone
                                                                    target:self
                                                                    action:@selector(closeGuide)
-                                  ];
-    
-    self.navigationItem.leftBarButtonItem = doneButton;
-    
-    [bookmarker setNewGuideId:self.guide.iGuideid];
-    
-    if (shouldLoadPage) {
-       [self showPage:shouldLoadPage];
-    } else {
-       [self loadScrollViewWithPage:0];
-       [self loadScrollViewWithPage:1];
-    }
+                                    ];
+     
+     self.navigationItem.leftBarButtonItem = doneButton;
+     
+     [bookmarker setNewGuideId:self.guide.iGuideid];
+     
+     if (shouldLoadPage) {
+          [self showPage:shouldLoadPage];
+     } else {
+          [self loadScrollViewWithPage:0];
+          [self loadScrollViewWithPage:1];
+     }
 }
 
 - (void)showPage:(NSInteger)page {
-    if (self.guide) {
-        pageControl.currentPage = page;
-        [self changePage:nil];
-    } else {
-        shouldLoadPage = page;
-    }
+     if (self.guide) {
+          pageControl.currentPage = page;
+          [self changePage:nil];
+     } else {
+          shouldLoadPage = page;
+     }
 }
 
 - (void)loadScrollViewWithPage:(int)page {
-
-    if (page < 0 || page >= pageControl.numberOfPages)
-       return;
-	
-    NSInteger stepNumber = page - 1;
-	
-    // replace the placeholder if necessary
-    UIViewController *controller = [viewControllers objectAtIndex:page];
-    if ((NSNull *)controller == [NSNull null]) {
-		if (stepNumber == -1) {
-			controller = [[GuideIntroViewController alloc] initWithGuide:self.guide];
-            ((GuideIntroViewController *)controller).delegate = self;
-		} else {
-			controller = [[GuideStepViewController alloc] initWithStep:[self.guide.steps objectAtIndex:stepNumber] withAbsolute:[NSNumber numberWithInteger:stepNumber + 1]];
-            ((GuideStepViewController *)controller).delegate = self;
-            ((GuideStepViewController *)controller).guideViewController = self;
-		}
-
-        [viewControllers replaceObjectAtIndex:page withObject:controller];
-        [controller release];
-    }
-	
-    // add the controller's view to the scroll view
-    if (nil == controller.view.superview) {
-        CGRect frame = scrollView.frame;
-        frame.origin.x = frame.size.width * page;
-        frame.origin.y = 0;
-        controller.view.frame = frame;
-        [controller willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
-        [scrollView addSubview:controller.view];
-    }
+     
+     if (page < 0 || page >= pageControl.numberOfPages)
+          return;
+     
+     NSInteger stepNumber = page - 1;
+     
+     // replace the placeholder if necessary
+     UIViewController *controller = [viewControllers objectAtIndex:page];
+     if ((NSNull *)controller == [NSNull null]) {
+          if (stepNumber == -1) {
+               controller = [[GuideIntroViewController alloc] initWithGuide:self.guide];
+               ((GuideIntroViewController *)controller).delegate = self;
+          } else {
+               controller = [[GuideStepViewController alloc] initWithStep:[self.guide.steps objectAtIndex:stepNumber] withAbsolute:[NSNumber numberWithInteger:stepNumber + 1]];
+               ((GuideStepViewController *)controller).delegate = self;
+               ((GuideStepViewController *)controller).guideViewController = self;
+          }
+          
+          [viewControllers replaceObjectAtIndex:page withObject:controller];
+          [controller release];
+     }
+     
+     // add the controller's view to the scroll view
+     if (nil == controller.view.superview) {
+          CGRect frame = scrollView.frame;
+          frame.origin.x = frame.size.width * page;
+          frame.origin.y = 0;
+          controller.view.frame = frame;
+          [controller willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
+          [scrollView addSubview:controller.view];
+     }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
-   
-    // We don't want a "feedback loop" between the UIPageControl and the scroll delegate in
-    // which a scroll event generated from the user hitting the page control triggers updates from
-    // the delegate method. We use a boolean to disable the delegate logic when the page control is used.
-    if (pageControlUsed) {
-        // do nothing - the scroll was initiated from the page control, not the user dragging
-        return;
-    }
-	
-    // Switch the indicator when more than 50% of the previous/next page is visible
-    CGFloat pageWidth = scrollView.frame.size.width;
-    int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    pageControl.currentPage = page;
-    
-    [self showOrHidePageControlForInterface:self.interfaceOrientation];
+     
+     // We don't want a "feedback loop" between the UIPageControl and the scroll delegate in
+     // which a scroll event generated from the user hitting the page control triggers updates from
+     // the delegate method. We use a boolean to disable the delegate logic when the page control is used.
+     if (pageControlUsed) {
+          // do nothing - the scroll was initiated from the page control, not the user dragging
+          return;
+     }
+     
+     // Switch the indicator when more than 50% of the previous/next page is visible
+     CGFloat pageWidth = scrollView.frame.size.width;
+     int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+     pageControl.currentPage = page;
+     
+     [self showOrHidePageControlForInterface:self.interfaceOrientation];
 }
 
 // At the begin of scroll dragging, reset the boolean used when scrolls originate from the UIPageControl
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    pageControlUsed = NO;
+     pageControlUsed = NO;
 }
 
 - (void)unloadViewControllers {
-    int page = pageControl.currentPage;
-    
-    // Unload the views+controllers which are no longer visible
-    for (int i = 2; i < pageControl.numberOfPages; i++) {
-        float distance = fabs(page - i + 1);
-        if (distance > 2.0) {
-            UIViewController *vc = [viewControllers objectAtIndex:i];
-            if ((NSNull *)vc != [NSNull null]) {
-                [vc viewWillDisappear:NO];
-                [vc.view removeFromSuperview];
-                vc.view = nil;
-                [viewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
-            }
-        }
-    }
+     int page = pageControl.currentPage;
+     
+     // Unload the views+controllers which are no longer visible
+     for (int i = 2; i < pageControl.numberOfPages; i++) {
+          float distance = fabs(page - i + 1);
+          if (distance > 2.0) {
+               UIViewController *vc = [viewControllers objectAtIndex:i];
+               if ((NSNull *)vc != [NSNull null]) {
+                    [vc viewWillDisappear:NO];
+                    [vc.view removeFromSuperview];
+                    vc.view = nil;
+                    [viewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
+               }
+          }
+     }
 }
 
 // At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    pageControlUsed = NO;
-    
-    [self preloadForCurrentPage:[NSNumber numberWithInt:pageControl.currentPage]];
-    [self unloadViewControllers];
-    
-    // If the user scrolls super fast, a view controller may be null, this will force a view load if we come across that behavior
-    if ([viewControllers[pageControl.currentPage] isKindOfClass:[NSNull class]]) {
-        [self scrollViewWillBeginDragging:scrollView];
-    }
-    
-    // Only load secondary images if we are looking at the current view for longer than half a second
-    if (pageControl.currentPage > 0) {
-        [[viewControllers[pageControl.currentPage] moviePlayer] prepareToPlay];
-        [viewControllers[pageControl.currentPage] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:0.8];
-    }
+     pageControlUsed = NO;
+     
+     [self preloadForCurrentPage:[NSNumber numberWithInt:pageControl.currentPage]];
+     [self unloadViewControllers];
+     
+     // If the user scrolls super fast, a view controller may be null, this will force a view load if we come across that behavior
+     if ([viewControllers[pageControl.currentPage] isKindOfClass:[NSNull class]]) {
+          [self scrollViewWillBeginDragging:scrollView];
+     }
+     
+     // Only load secondary images if we are looking at the current view for longer than half a second
+     if (pageControl.currentPage > 0) {
+          [[viewControllers[pageControl.currentPage] moviePlayer] prepareToPlay];
+          [viewControllers[pageControl.currentPage] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:0.8];
+     }
 }
 
 - (IBAction)changePage:(id)sender {
-    int page = pageControl.currentPage;
-	
-    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    [self preloadForCurrentPage:[NSNumber numberWithInt:page]];
-    [self unloadViewControllers];
-    
-	// update the scroll view to the appropriate page
-    CGRect frame = scrollView.frame;
-    frame.origin.x = frame.size.width * page;
-    frame.origin.y = 0;
-   
-    [scrollView scrollRectToVisible:frame animated:sender ? YES : NO];
-    
-	// Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
-    pageControlUsed = YES;
-    
-    // Only load secondary images if we are looking at the current view for longer than .8 second
-    if (page > 0) {
-        [[viewControllers[pageControl.currentPage] moviePlayer] prepareToPlay];
-        [viewControllers[page] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:0.8];
-        [self showOrHidePageControlForInterface:self.interfaceOrientation];
-    }
+     int page = pageControl.currentPage;
+     
+     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
+     [self preloadForCurrentPage:[NSNumber numberWithInt:page]];
+     [self unloadViewControllers];
+     
+     // update the scroll view to the appropriate page
+     CGRect frame = scrollView.frame;
+     frame.origin.x = frame.size.width * page;
+     frame.origin.y = 0;
+     
+     [scrollView scrollRectToVisible:frame animated:sender ? YES : NO];
+     
+     // Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
+     pageControlUsed = YES;
+     
+     // Only load secondary images if we are looking at the current view for longer than .8 second
+     if (page > 0) {
+          [[viewControllers[pageControl.currentPage] moviePlayer] prepareToPlay];
+          [viewControllers[page] performSelector:@selector(loadSecondaryImages) withObject:nil afterDelay:0.8];
+          [self showOrHidePageControlForInterface:self.interfaceOrientation];
+     }
 }
 
 - (void)preloadForCurrentPage:(NSNumber *)iPageNumber {
-	int page = [iPageNumber integerValue];
-	
-	[self loadScrollViewWithPage:page - 1];
-    [self loadScrollViewWithPage:page];
-    [self loadScrollViewWithPage:page + 1];
+     int page = [iPageNumber integerValue];
+     
+     [self loadScrollViewWithPage:page - 1];
+     [self loadScrollViewWithPage:page];
+     [self loadScrollViewWithPage:page + 1];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // iPad any orientation.
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        return YES;
-    
-    // iPhone Portrait+Landscape.
-    return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+     // iPad any orientation.
+     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+          return YES;
+     
+     // iPhone Portrait+Landscape.
+     return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    int page = pageControl.currentPage;
-    
-    [self adjustScrollViewContentSizeForInterfaceOrientation:toInterfaceOrientation];
-    
-    if (viewControllers) {
-        [self showOrHidePageControlForInterface:toInterfaceOrientation];
-    }
-    
-    for (int i=0; i<[viewControllers count]; i++) {
-        UIViewController *vc = [viewControllers objectAtIndex:i];
-        
-        if ((NSNull *)vc != [NSNull null]) {
-      /*      CGRect frame = scrollView.frame;
-            frame.origin.x = frame.size.width * i;
-            frame.origin.y = 0;
-            CGSize screenSize = [UIScreen mainScreen].bounds.size;
-            frame.size.width = screenSize.height - 44;
-            frame.size.height = screenSize.width;
-            vc.view.frame = frame;*/
-            [vc willRotateToInterfaceOrientation:toInterfaceOrientation duration:0];
-        }
-    }
-    
-    [self showPage:page];
+     int page = pageControl.currentPage;
+     
+     [self adjustScrollViewContentSizeForInterfaceOrientation:toInterfaceOrientation];
+     
+     if (viewControllers) {
+          [self showOrHidePageControlForInterface:toInterfaceOrientation];
+     }
+     
+     for (int i=0; i<[viewControllers count]; i++) {
+          UIViewController *vc = [viewControllers objectAtIndex:i];
+          
+          if ((NSNull *)vc != [NSNull null]) {
+               /*      CGRect frame = scrollView.frame;
+                frame.origin.x = frame.size.width * i;
+                frame.origin.y = 0;
+                CGSize screenSize = [UIScreen mainScreen].bounds.size;
+                frame.size.width = screenSize.height - 44;
+                frame.size.height = screenSize.width;
+                vc.view.frame = frame;*/
+               [vc willRotateToInterfaceOrientation:toInterfaceOrientation duration:0];
+          }
+     }
+     
+     [self showPage:page];
 }
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
-    self.spinner = nil;
-    self.scrollView = nil;
-    self.pageControl = nil;
-
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+     [super viewDidUnload];
+     self.spinner = nil;
+     self.scrollView = nil;
+     self.pageControl = nil;
+     
+     // Release any retained subviews of the main view.
+     // e.g. self.myOutlet = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self showOrHidePageControlForInterface:self.interfaceOrientation];
-    [UIViewController attemptRotationToDeviceOrientation];
-
+     [self showOrHidePageControlForInterface:self.interfaceOrientation];
+     [UIViewController attemptRotationToDeviceOrientation];
+     
 }
 
 - (void)dealloc {
-    [_guide release];
-    
-    [spinner release];
-    [scrollView release];
-    [pageControl release];
-    [bookmarker release];
+     [_guide release];
      
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
+     [spinner release];
+     [scrollView release];
+     [pageControl release];
+     [bookmarker release];
      
-    [super dealloc];
+     [UIApplication sharedApplication].idleTimerDisabled = NO;
+     
+     [super dealloc];
 }
 
 

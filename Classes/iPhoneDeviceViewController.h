@@ -8,7 +8,7 @@
 
 @class ListViewController;
 
-@interface iPhoneDeviceViewController : UITableViewController <UIAlertViewDelegate> {
+@interface iPhoneDeviceViewController : UITableViewController <UIAlertViewDelegate, UIDocumentInteractionControllerDelegate> {
     BOOL loading;
 }
     
@@ -16,6 +16,8 @@
 @property (nonatomic, retain) NSArray *guides;
 @property (nonatomic, retain) NSArray *wikis;
 @property (nonatomic, retain) NSArray *cats;
+@property (nonatomic, retain) NSArray *docs;
+@property (nonatomic, retain) NSArray *videos;
 @property (nonatomic, retain) NSString *currentCategory;
 @property (nonatomic, retain) NSString *moreInfoHTML;
 @property (nonatomic, retain) NSDictionary *categoryMetaData;

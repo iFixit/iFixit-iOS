@@ -7,6 +7,9 @@
 
 */
 
+"Videos" = "Videos";
+"Documents" = "Documents";
+"Wikis" = "Wikis";
 "Search" = "Search";
 "Categories" = "Categories";
 "Devices" = "Devices";
@@ -38,9 +41,9 @@
 "General Information" = "General Information";
 "Loading..." = "Loading...";
 "Browse" = "Browse";
-"Guides" = "Guides";
+"Guides" = "Files";
 "Projects" = "Projects";
-"More Info" = "More Info";
+"More Info" = "Category Info";
 "Answers" = "Answers";
 "Back" = "Back";
 "Choose a Site" = "Choose a Site";

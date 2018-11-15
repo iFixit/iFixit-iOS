@@ -12,6 +12,8 @@
 #import "Config.h"
 #import "CategoriesViewController.h"
 #import "LoginViewController.h"
+#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h>
+#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory+iOS.h>
 
 @implementation UINavigationBar (UINavigationBarCategory)
 
@@ -197,17 +199,36 @@
 
 - (void)showFavoritesButton:(id)viewController {
     // Create Favorites button if it doesn't already exist and add to navigation controller
+     NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
     if (!self.favoritesButton) {
-        UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc]
-                                            initWithTitle:NSLocalizedString(@"Favorites", nil)
-                                            style:UIBarButtonItemStyleBordered
-                                            target:self action:@selector(favoritesButtonPushed)];
+         UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc] initWithImage:[factory createImageForIcon:NIKFontAwesomeIconDownload] style:UIBarButtonItemStylePlain target:self action:@selector(favoritesButtonPushed)];
+                                             
+                                             
+         
+//         UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc]
+//                                             initWithTitle:NSLocalizedString(@"Favorites", nil)
+//                                             style:UIBarButtonItemStyleBordered
+//                                             target:self action:@selector(favoritesButtonPushed)];
         
         self.favoritesButton = favoritesButton;
         [favoritesButton release];
     }
+     if (!self.customBackButton) {
+          UIBarButtonItem *customBackButton = [[UIBarButtonItem alloc] initWithImage:[factory createImageForIcon:NIKFontAwesomeIconChevronLeft] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
+          
+          
+          
+          //         UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc]
+          //                                             initWithTitle:NSLocalizedString(@"Favorites", nil)
+          //                                             style:UIBarButtonItemStyleBordered
+          //                                             target:self action:@selector(favoritesButtonPushed)];
+          
+          self.customBackButton = customBackButton;
+          [customBackButton release];
+     }
     
-    [viewController navigationItem].rightBarButtonItem = self.favoritesButton;
+     [viewController navigationItem].rightBarButtonItem = self.favoritesButton;
+     [viewController navigationItem].leftBarButtonItem = self.customBackButton;
 }
 
 - (void)refresh {

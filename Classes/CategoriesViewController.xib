@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,8 +23,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" barStyle="black" prompt="" placeholder="Search" translucent="NO" showsScopeBar="YES" id="6">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+                <searchBar contentMode="redraw" misplaced="YES" barStyle="black" prompt="" placeholder="Search" translucent="NO" id="6">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -37,8 +37,8 @@
                         <outlet property="delegate" destination="-1" id="8"/>
                     </connections>
                 </searchBar>
-                <view contentMode="scaleToFill" id="K2N-42-E0X">
-                    <rect key="frame" x="0.0" y="87" width="375" height="44"/>
+                <view contentMode="scaleToFill" misplaced="YES" id="K2N-42-E0X">
+                    <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qr-icon.png" id="iRs-f9-cbL">

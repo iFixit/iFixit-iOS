@@ -13,6 +13,7 @@
 
 @property (nonatomic, retain) CategoryTabBarViewController *categoryTabBarViewController;
 @property (nonatomic, retain) UIBarButtonItem *favoritesButton;
+@property (nonatomic, retain) UIBarButtonItem *customBackButton;
 @property (nonatomic) CGRect xframe;
 @property (nonatomic) CGRect xbounds;
 

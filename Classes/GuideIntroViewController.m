@@ -96,9 +96,13 @@
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width, image.size.height);
                 headerImageLogo.image = image;
                 break;
-            case ConfigAccustream:
-                headerImageLogo.image = [UIImage imageNamed:@"accustream_logo_transparent.png"];
-                break;
+             case ConfigAccustream:
+                  headerImageLogo.image = [UIImage imageNamed:@"accustream_logo_transparent.png"];
+                  break;
+             case ConfigHyperthermToolkit:
+                  headerImageLogo.image = [UIImage imageNamed:@"accustream_logo_transparent.png"];
+                  break;
+                  
             case ConfigMagnolia:
                 image = [UIImage imageNamed:@"magnoliamedical_logo_transparent.png"];
                 headerImageLogo.frame = CGRectMake(headerImageLogo.frame.origin.x, headerImageLogo.frame.origin.y, image.size.width/1.5, image.size.height/1.5);
