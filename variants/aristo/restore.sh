@@ -19,8 +19,6 @@ rm ../../Default-Portrait-736h@3x.png
 rm ../../Default-Portrait.png
 rm ../../Default-Portrait@2x.png
 rm ../../iFixit/Images.xcassets/AppIcon-3.appiconset/Icon-App-Aristo-1024x1024.png
-rm ../../titleImageAristocrat.png
-rm ../../titleImagePepsi.png
 git checkout -- ../../iFixit/Images.xcassets/AppIcon-3.appiconset
 
 # configuration files

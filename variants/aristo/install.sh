@@ -3,8 +3,6 @@
 echo making aristo
 
 # images
-cp -v titleImageAristocrat.png ../../titleImageAristocrat.png
-cp -v titleImagePepsi.png ../../titleImagePepsi.png
 cp -v Default* ../../
 mkdir ../../iFixit/Images.xcassets/AppIcon-3.appiconset
 cp -v AppIcon-3.appiconset/* ../../iFixit/Images.xcassets/AppIcon-3.appiconset
