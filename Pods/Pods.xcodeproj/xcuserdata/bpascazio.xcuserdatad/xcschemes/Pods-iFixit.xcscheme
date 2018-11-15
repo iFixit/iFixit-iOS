@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6311420501007CD3102890C95081A5AC'
-               BlueprintName = 'Pods-iFixit'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-iFixit.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1BA22B06AC216068EA48C83F9B12C312"
+               BlueprintName = "Pods-iFixit"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libPods-iFixit.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8C7AB3EB0E79001C2F6D6B0240568BD0'
-               BlueprintName = 'ZBarSDK'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libZBarSDK.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "539808FC5036514BF323604910AB65CB"
+               BlueprintName = "ZBarSDK"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libZBarSDK.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

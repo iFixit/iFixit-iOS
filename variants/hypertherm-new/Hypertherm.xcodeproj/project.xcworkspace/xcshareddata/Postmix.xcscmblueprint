@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DA850F37EC28DC25FE66088B229791D7E623139C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "DA850F37EC28DC25FE66088B229791D7E623139C" : 9223372036854775807,
+    "FAF40D7FD305BB7D5BE5F87AE969BD7D31922D57" : 9223372036854775807,
+    "5033EDB6B36AFC1F9AB7153D494FDE66318C7E8E" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "401DC742-DBEE-43CC-8FE5-AD44EE173EC1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "DA850F37EC28DC25FE66088B229791D7E623139C" : "iFixit-iOS\/",
+    "FAF40D7FD305BB7D5BE5F87AE969BD7D31922D57" : "iFixit-iOS\/asi-http-request\/",
+    "5033EDB6B36AFC1F9AB7153D494FDE66318C7E8E" : "iFixit-iOS\/MGSplitViewController\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Postmix",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Postmix.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:asprega\/MGSplitViewController.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5033EDB6B36AFC1F9AB7153D494FDE66318C7E8E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:bpascazio\/iFixit-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DA850F37EC28DC25FE66088B229791D7E623139C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:pokeb\/asi-http-request.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FAF40D7FD305BB7D5BE5F87AE969BD7D31922D57"
+    }
+  ]
+}
