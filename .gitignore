@@ -1,4 +1,6 @@
 build
+iFixit.xcworkspace/xcuserdata
+Pods/Pods.xcodeproj/xcuserdata
 iFixit.xcodeproj/dmpatierno.mode1v3
 iFixit.xcodeproj/dmpatierno.pbxuser
 iFixit.xcodeproj/project.xcworkspace
