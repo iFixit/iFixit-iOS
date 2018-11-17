@@ -22,4 +22,4 @@ cp -R Pods ../../Pods
 cp openproj.sh ../../
 cp byebye.sh ../../
 cd ../../
-./openproj.sh
+source ./openproj.sh
