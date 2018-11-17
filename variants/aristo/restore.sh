@@ -31,3 +31,5 @@ git checkout -- ../../Podfile
 git checkout -- ../../Podfile.lock
 rm -rf ../../Pods
 git checkout -- ../../Pods
+git checkout -- ../../openproj.sh
+rm ../../byebye.sh

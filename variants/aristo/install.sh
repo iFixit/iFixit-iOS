@@ -19,4 +19,7 @@ cp -v Podfile ../../Podfile
 cp -v Podfile.lock ../../Podfile.lock
 rm -rf ../../Pods
 cp -R Pods ../../Pods
-
+cp openproj.sh ../../
+cp byebye.sh ../../
+cd ../../
+./openproj.sh
