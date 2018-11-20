@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-project 'iFixIt.xcodeproj'
+project 'iFixit.xcodeproj'
 
 platform :ios, '9.1'
 

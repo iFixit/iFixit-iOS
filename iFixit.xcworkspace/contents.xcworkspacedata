@@ -7,7 +7,4 @@
    <FileRef
       location = "group:iFixit.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:iFixIt.xcodeproj">
-   </FileRef>
 </Workspace>
