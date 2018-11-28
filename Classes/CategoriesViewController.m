@@ -28,6 +28,7 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "WikiVC.h"
+#import "SVProgressHUD.h"
 
 @implementation CategoriesViewController
 
@@ -802,8 +803,8 @@ heightForHeaderInSection:(NSInteger)section {
      label.font = [UIFont fontWithName:@"MuseoSans-500" size:18.0];
      //[label setFont:[UIFont boldSystemFontOfSize:14]];
      [label setTextColor:[UIColor whiteColor]];
-     NSString *string =(section==0)?NSLocalizedString(@"Categories", nil):((section==1)?NSLocalizedString(@"Guides", nil):NSLocalizedString(@"Wikis", nil));//[list objectAtIndex:section];
-     
+     NSString *string =(section==0)?NSLocalizedString(@"Categories", nil):((section==1)?NSLocalizedString(@"Guides", nil):((section==2)?NSLocalizedString(@"Wikis", nil):NSLocalizedString(@"Documents", nil)));//[list objectAtIndex:section];
+
      /* Section header is in 0th index... */
      [label setText:string];
      [view addSubview:label];
@@ -990,6 +991,51 @@ heightForHeaderInSection:(NSInteger)section {
           viewController.url = url;
           [self.navigationController pushViewController:viewController animated:true];
           return;
+     } else if (category[@"type"] == @(DOC)) {
+          [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+          NSString *list = [category[@"filename"] isEqual:@""] ? @"http://www.dozuki.com" : category[@"filename"];
+          NSString *guid = [category[@"guid"] isEqual:@""] ? @"http://www.dozuki.com" : category[@"guid"];
+
+          if ([list rangeOfString:@".pot" options:NSRegularExpressionSearch].location != NSNotFound) {
+               
+               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice"
+                                                               message:@"Filetype is not supported."
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:nil];
+               [alert show];
+               [alert release];
+               return;
+          }
+          
+          NSArray *listItems = [list componentsSeparatedByString:@"."];
+          NSString *urla =
+          [[NSString alloc] initWithFormat: @"%@%@.%@", @"https://dozuki-documents.s3.amazonaws.com/",
+           [guid isEqual:@""] ? @"" : guid, listItems[1]];
+          
+          NSURL* url = [[NSURL alloc] initWithString:urla];
+          NSURL* documentsUrl = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask].firstObject;
+          NSURL* destinationUrl = [documentsUrl URLByAppendingPathComponent:list];
+          
+          NSError* err = nil;
+          [SVProgressHUD show];
+          
+          dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+               NSData* fileData = [[NSData alloc] initWithContentsOfURL:url options:NSDataReadingUncached error:&err];
+               dispatch_async(dispatch_get_main_queue(), ^{
+                    if (!err && fileData && fileData.length && [fileData writeToURL:destinationUrl atomically:true]) {
+                         
+                         UIDocumentInteractionController* document = [UIDocumentInteractionController interactionControllerWithURL:destinationUrl];
+                         // [UINavigationBar appearance].tintColor = [UIColor blueColor];
+                         
+                         //             document.UTI = @"com.adobe.pdf"; //@"public.jpeg";
+                         document.delegate = self;
+                         document.name = @"";
+                         [document presentPreviewAnimated:YES];
+                    }
+                    [SVProgressHUD dismiss];
+               });
+          });
      }
      
      [[iFixitAPI sharedInstance] getCategory:category[@"name"] forObject:self.listViewController.categoryTabBarViewController withSelector:@selector(gotCategoryResult:)];
@@ -1045,6 +1091,14 @@ heightForHeaderInSection:(NSInteger)section {
      }
 }
 
+// Massage the data to match our already gathered data
+- (void)modifyTypesForDocs:(NSArray*)docs {
+     for (id doc in docs) {
+          doc[@"type"] = @(DOC);
+          doc[@"name"] = [doc[@"title"] isEqual:@""] ? NSLocalizedString(@"Untitled", nil) : doc[@"title"];
+     }
+}
+
 // Add guides to the tableview if they exist
 - (void)addGuidesToTableView:(NSArray*)guides {
      [self modifyTypesForGuides:guides];
@@ -1076,6 +1130,24 @@ heightForHeaderInSection:(NSInteger)section {
      
      // Add a new category type "wikis"
      [self.categoryTypes addObject:@"wikis"];
+     
+     // Donezo
+     [self.tableView endUpdates];
+}
+
+// Add documents to the tableview if they exist
+- (void)addDocsToTableView:(NSArray*)docs {
+     [self modifyTypesForDocs:docs];
+     
+     // Begin the update
+     [self.tableView beginUpdates];
+     [self.tableView insertSections:[NSIndexSet indexSetWithIndex:self.categoryTypes.count] withRowAnimation:UITableViewRowAnimationFade];
+     
+     // Add the new documents to our category list
+     [self.categories addEntriesFromDictionary:@{@"docs": docs}];
+     
+     // Add a new category type "wikis"
+     [self.categoryTypes addObject:@"docs"];
      
      // Donezo
      [self.tableView endUpdates];
@@ -1264,4 +1336,31 @@ heightForHeaderInSection:(NSInteger)section {
      [super dealloc];
 }
 
+#pragma mark - UIDocumentInteractionControllerDelegate
+
+- (void)documentInteractionControllerDidEndPreview:(UIDocumentInteractionController *)controller {
+     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+     
+     [SVProgressHUD dismiss];
+}
+
+- (void)documentInteractionControllerDidDismissOptionsMenu:(UIDocumentInteractionController *)controller {
+     [SVProgressHUD dismiss];
+}
+
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
+     [SVProgressHUD dismiss];
+     return self;
+}
+
+- (UIView *)documentInteractionControllerViewForPreview:(UIDocumentInteractionController *)controller {
+     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+     [SVProgressHUD dismiss];
+     return self.view;
+}
+
+- (CGRect)documentInteractionControllerRectForPreview:(UIDocumentInteractionController *)controller {
+     [SVProgressHUD dismiss];
+     return self.view.frame;
+}
 @end

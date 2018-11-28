@@ -16,14 +16,15 @@ enum {
     DEVICE,
     CATEGORY,
     GUIDE,
-    WIKI
+    WIKI,
+    DOC
 };
 
 #define TOPICS @"TOPICS"
 #define CATEGORIES @"categories"
 #define DEVICES @"devices"
 
-@interface CategoriesViewController : UIViewController <UISearchBarDelegate, UIAlertViewDelegate, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, ZBarReaderDelegate>
+@interface CategoriesViewController : UIViewController <UISearchBarDelegate, UIAlertViewDelegate, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, ZBarReaderDelegate, UIDocumentInteractionControllerDelegate>
 
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
@@ -49,6 +50,7 @@ enum {
 - (void)setData:(NSDictionary *)dict;
 - (void)addGuidesToTableView:(NSArray*)guides;
 - (void)addWikisToTableView:(NSArray*)wikis;
+- (void)addDocsToTableView:(NSArray*)wikis;
 - (void)setTableViewTitle;
 - (void)configureTableViewTitleLogoFromURL:(NSString*)URL;
 - (void)configureSearchBar;

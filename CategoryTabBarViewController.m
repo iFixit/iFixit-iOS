@@ -555,15 +555,20 @@ BOOL onTablet, initialLoad, showTabBar;
         if ([categoryName isEqualToString:results[@"title"]]) {
             [viewController setCategoryMetaData:results];
             
-            // Only on iPhone do we want to add a guides section to the tableView
-            if (!onTablet && [viewController respondsToSelector:@selector(addGuidesToTableView:)] && [results[@"guides"] count] > 0) {
-                // Add guides to our top level view controller's tableview
-                [viewController addGuidesToTableView:results[@"guides"]];
-            }
+             // Only on iPhone do we want to add a guides section to the tableView
+             if (!onTablet && [viewController respondsToSelector:@selector(addGuidesToTableView:)] && [results[@"guides"] count] > 0) {
+                  // Add guides to our top level view controller's tableview
+                  [viewController addGuidesToTableView:results[@"guides"]];
+             }
              // Only on iPhone do we want to add a wiki section to the tableView
              if (!onTablet && [viewController respondsToSelector:@selector(addWikisToTableView:)] && [results[@"related_wikis"] count] > 0) {
                   // Add guides to our top level view controller's tableview
                   [viewController addWikisToTableView:results[@"related_wikis"]];
+             }
+             // Only on iPhone do we want to add a files section to the tableView
+             if (!onTablet && [viewController respondsToSelector:@selector(addDocsToTableView:)] && [results[@"documents"] count] > 0) {
+                  // Add guides to our top level view controller's tableview
+                  [viewController addDocsToTableView:results[@"documents"]];
              }
         }
     }
