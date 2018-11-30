@@ -36,6 +36,8 @@ enum {
 
 @property (nonatomic, retain) NSMutableDictionary *searchResults;
 @property (nonatomic) BOOL noResults;
+@property (nonatomic) BOOL noGuides;
+@property (nonatomic) BOOL noWikis;
 @property (nonatomic, retain) NSString *currentSearchTerm;
 
 @property (nonatomic, retain) NSMutableDictionary *categories;
@@ -51,6 +53,8 @@ enum {
 - (void)addGuidesToTableView:(NSArray*)guides;
 - (void)addWikisToTableView:(NSArray*)wikis;
 - (void)addDocsToTableView:(NSArray*)wikis;
+- (void)setGuidesAvailable:(BOOL)isAvailable;
+- (void)setWikisAvaliable:(BOOL)isAvailable;
 - (void)setTableViewTitle;
 - (void)configureTableViewTitleLogoFromURL:(NSString*)URL;
 - (void)configureSearchBar;

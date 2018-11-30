@@ -803,6 +803,12 @@ heightForHeaderInSection:(NSInteger)section {
      label.font = [UIFont fontWithName:@"MuseoSans-500" size:18.0];
      //[label setFont:[UIFont boldSystemFontOfSize:14]];
      [label setTextColor:[UIColor whiteColor]];
+     if (self.noGuides) {
+          section++;
+     }
+     if (self.noWikis) {
+          section++;
+     }
      NSString *string =(section==0)?NSLocalizedString(@"Categories", nil):((section==1)?NSLocalizedString(@"Guides", nil):((section==2)?NSLocalizedString(@"Wikis", nil):NSLocalizedString(@"Documents", nil)));//[list objectAtIndex:section];
 
      /* Section header is in 0th index... */
@@ -1098,6 +1104,10 @@ heightForHeaderInSection:(NSInteger)section {
           doc[@"name"] = [doc[@"title"] isEqual:@""] ? NSLocalizedString(@"Untitled", nil) : doc[@"title"];
      }
 }
+- (void)setGuidesAvailable:(BOOL)isAvalable {
+     
+     self.noGuides = !isAvalable;
+}
 
 // Add guides to the tableview if they exist
 - (void)addGuidesToTableView:(NSArray*)guides {
@@ -1115,6 +1125,11 @@ heightForHeaderInSection:(NSInteger)section {
      
      // Donezo
      [self.tableView endUpdates];
+}
+
+- (void)setWikisAvaliable:(BOOL)isAvailable {
+     
+     self.noWikis = !isAvailable;
 }
 
 // Add guides to the tableview if they exist

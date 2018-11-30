@@ -559,11 +559,17 @@ BOOL onTablet, initialLoad, showTabBar;
              if (!onTablet && [viewController respondsToSelector:@selector(addGuidesToTableView:)] && [results[@"guides"] count] > 0) {
                   // Add guides to our top level view controller's tableview
                   [viewController addGuidesToTableView:results[@"guides"]];
+                  [viewController setGuidesAvailable:true];
+             } else {
+                  [viewController setGuidesAvailable:false];
              }
              // Only on iPhone do we want to add a wiki section to the tableView
              if (!onTablet && [viewController respondsToSelector:@selector(addWikisToTableView:)] && [results[@"related_wikis"] count] > 0) {
                   // Add guides to our top level view controller's tableview
                   [viewController addWikisToTableView:results[@"related_wikis"]];
+                  [viewController setWikisAvaliable:true];
+             } else {
+                  [viewController setWikisAvaliable:false];
              }
              // Only on iPhone do we want to add a files section to the tableView
              if (!onTablet && [viewController respondsToSelector:@selector(addDocsToTableView:)] && [results[@"documents"] count] > 0) {
