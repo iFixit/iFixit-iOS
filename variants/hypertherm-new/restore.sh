@@ -3,7 +3,9 @@
 echo restoring dozuki
 
 git checkout -- ../../iFixit-Info.plist
+git checkout -- ../../Pods
 git checkout -- ../../Podfile
+git checkout -- ../../Podfile.lock
 git checkout -- ../../icon*
 git checkout -- ../../guides.png
 rm ../../GoogleService-Info.plist 
