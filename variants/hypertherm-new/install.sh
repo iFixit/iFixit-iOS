@@ -14,3 +14,6 @@ cp -v AppIcon-3.appiconset/* ../../iFixit/Images.xcassets/AppIcon-4.appiconset
 cp -v Config.h ../../Classes/Config.h
 cp -v Config.m ../../Classes/Config.m
 cp -v iFixitAppDelegate.m ../../Classes/iFixitAppDelegate.m
+cd ../..
+pod install
+open Hypertherm.xcworkspace
