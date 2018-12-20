@@ -52,7 +52,9 @@
         NSString *sessionid = nil;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         for (NSHTTPCookie *cookie in [storage cookies]) {
-            if ([cookie.name isEqual:@"session"]) {
+             if ([cookie.name rangeOfString:@"session"].location == NSNotFound) {
+                // ignore this cookie
+             } else {
                 sessionid = cookie.value;
                 break;
             }
