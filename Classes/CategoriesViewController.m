@@ -1014,11 +1014,13 @@ heightForHeaderInSection:(NSInteger)section {
                return;
           }
           
-          NSArray *listItems = [list componentsSeparatedByString:@"."];
-          NSString *urla =
-          [[NSString alloc] initWithFormat: @"%@%@.%@", @"https://dozuki-documents.s3.amazonaws.com/",
-           [guid isEqual:@""] ? @"" : guid, listItems[1]];
+          NSString *urla = [NSString stringWithFormat:@"https://%@/Document/%@/.pdf", [Config currentConfig].host, category[@"documentid"]];
           
+          // old way
+          // NSArray *listItems = [list componentsSeparatedByString:@"."];
+          // [[NSString alloc] initWithFormat: @"%@%@.%@", @"https://dozuki-documents.s3.amazonaws.com/",
+          // [guid isEqual:@""] ? @"" : guid, listItems[1]];
+
           NSURL* url = [[NSURL alloc] initWithString:urla];
           NSURL* documentsUrl = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask].firstObject;
           NSURL* destinationUrl = [documentsUrl URLByAppendingPathComponent:list];
