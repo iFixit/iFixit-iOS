@@ -6,6 +6,9 @@
 
 */
 
+"Videos" = "Videos";
+"Documents" = "Documents";
+"Wikis" = "Wikis";
 "Search" = "Recherche";
 "Categories" = "Catégories";
 "Devices" = "Matériels";
@@ -17,6 +20,7 @@
 "Email" = "Adresse mel";
 "Password" = "Mot de passe";
 "Your Name" = "Votre nom";
+"Username" = "Nom d'utilisateur";
 "Register" = "Enregistrer";
 "again" = "A nouveau";
 "Cancel" = "Annuler";

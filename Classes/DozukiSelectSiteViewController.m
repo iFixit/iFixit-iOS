@@ -42,7 +42,8 @@ static NSMutableArray *prioritySites = nil;
         [[iFixitAPI sharedInstance] getSitesWithLimit:SITES_REQUEST_LIMIT
                                             andOffset:[sites count]
                                             forObject:self
-                                         withSelector:@selector(gotSites:)];
+                                         withSelector:@selector(gotSites:)
+                                            usePublic:false];
     }
 }
 
@@ -166,7 +167,7 @@ static NSMutableArray *prioritySites = nil;
     }
     
     // Add the search bar
-    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 36.0)];
+    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 56.0)];
     searchBar.placeholder = NSLocalizedString(@"Search", nil);
     searchBar.delegate = self;
     self.tableView.tableHeaderView = searchBar;

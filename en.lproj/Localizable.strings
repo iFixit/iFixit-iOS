@@ -1,4 +1,4 @@
-
+ 
 /* 
   Localizable.strings
   iFixit
@@ -7,6 +7,9 @@
 
 */
 
+"Videos" = "Videos";
+"Documents" = "Documents";
+"Wikis" = "Wikis";
 "Search" = "Search";
 "Categories" = "Categories";
 "Devices" = "Devices";
@@ -19,6 +22,7 @@
 "Password" = "Password";
 "Your Name" = "Your Name";
 "Register" = "Register";
+"Username" = "Username";
 "again" = "again";
 "Cancel" = "Cancel";
 "Logout" = "Logout";
@@ -39,7 +43,7 @@
 "Browse" = "Browse";
 "Guides" = "Guides";
 "Projects" = "Projects";
-"More Info" = "More Info";
+"More Info" = "Category Info";
 "Answers" = "Answers";
 "Back" = "Back";
 "Choose a Site" = "Choose a Site";

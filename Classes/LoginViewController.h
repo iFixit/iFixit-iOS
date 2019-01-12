@@ -10,7 +10,11 @@
 @class ListViewController;
 #import "LoginViewControllerDelegate.h"
 
-@interface LoginViewController : UITableViewController <UITextFieldDelegate, UIGestureRecognizerDelegate, LoginViewControllerDelegate>
+@interface LoginViewController : UITableViewController <UITextFieldDelegate, UIGestureRecognizerDelegate, LoginViewControllerDelegate> {
+     BOOL hasMoreSites;
+     BOOL searching;
+     BOOL noResults;
+}
 
 @property (nonatomic, assign) id<LoginViewControllerDelegate> delegate;
 @property (nonatomic, copy) NSString *message;
@@ -22,6 +26,7 @@
 @property (nonatomic, retain) UITextField *passwordField;
 @property (nonatomic, retain) UITextField *passwordVerifyField;
 @property (nonatomic, retain) UITextField *fullNameField;
+@property (nonatomic, retain) UITextField *usernameField;
 @property (nonatomic, retain) ListViewController *listViewController;
 
 @property (nonatomic, retain) UIButton *loginButton;

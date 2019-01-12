@@ -14,13 +14,13 @@ static Config *currentConfig = nil;
 @implementation Config
 
 @synthesize dozuki, answersEnabled, sso, collectionsEnabled, private, store;
-@synthesize site, siteData, host, custom_domain, baseURL, backgroundColor, textColor, toolbarColor, introCSS, stepCSS;
+@synthesize site, siteData, host, dozukiHost, custom_domain, baseURL, backgroundColor, textColor, toolbarColor, navBarColor, introCSS, stepCSS;
 
 + (Config *)currentConfig {
     if (!currentConfig) {
         currentConfig = [[self alloc] init];
         currentConfig.site = ConfigIFixit;
-        currentConfig.dozuki = NO;
+        currentConfig.dozuki = YES;
     }
     return currentConfig;
 }
@@ -131,21 +131,42 @@ static Config *currentConfig = nil;
         case ConfigOscaro:
             self.host = @"oscaro.dozuki.com";
             self.baseURL = @"http://oscaro.dozuki.com";
+            self.custom_domain = @"tutoriels.oscaro.com";
             answersEnabled = NO;
             collectionsEnabled = NO;
             self.store = nil;
             self.private = NO;
             self.scanner = NO;
             break;
+         case ConfigPepsi:
+              self.host = @"charlessmith.dozuki.com";
+              self.baseURL = @"http://charlessmith.dozuki.com";
+              answersEnabled = NO;
+              collectionsEnabled = NO;
+              self.store = nil;
+              self.private = YES;
+              self.scanner = NO;
+              break;
+         case ConfigAristo:
+              self.host = @"aristocrat.dozuki.com";
+              self.baseURL = @"http://aristocrat.dozuki.com";
+              answersEnabled = NO;
+              collectionsEnabled = NO;
+              self.store = nil;
+              self.private = YES;
+              self.scanner = NO;
+              break;
         /*EAOOptions*/
         default:
-            self.host = nil;
+            self.host = @"www.dozuki.com";
             self.baseURL = nil;
             answersEnabled = NO;
             collectionsEnabled = NO;
             self.store = nil;
             self.title = nil;
     }
+     
+    self.dozukiHost = @"www.dozuki.com";
     
     switch (site) {
         // Make
@@ -154,6 +175,7 @@ static Config *currentConfig = nil;
         case ConfigMakeDev:
             self.backgroundColor = [UIColor whiteColor];
             self.textColor = [UIColor blackColor];
+            self.navBarColor = [UIColor whiteColor];
             self.toolbarColor = [UIColor colorWithRed:0.16 green:0.67 blue:0.89 alpha:1.0];
             
             // Load intro and step css from the css folder.
@@ -167,6 +189,7 @@ static Config *currentConfig = nil;
             self.textColor = [UIColor whiteColor];
             self.toolbarColor = [UIColor colorWithRed:10/255.0f green:10/255.0f blue:10/255.0f alpha:1];
             self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
+            self.navBarColor = [UIColor whiteColor];
             
             // Load intro and step css from the css folder.        
             self.introCSS    = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
@@ -182,6 +205,7 @@ static Config *currentConfig = nil;
             self.toolbarColor = [UIColor colorWithRed:204/255.0f green:0.0f blue:0.0f alpha:1.0];
             self.buttonColor = [UIColor colorWithRed:234/255.0f green:166.0/255.0f blue:160.0/255.0f alpha:1.0];
             self.tabBarColor = self.toolbarColor;
+            self.navBarColor = [UIColor whiteColor];
 
             self.concreteBackgroundImage = [UIImage imageNamed:@"concreteBackgroundWhite.png"];
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
@@ -194,6 +218,7 @@ static Config *currentConfig = nil;
             self.toolbarColor = [UIColor whiteColor];
             self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
             self.tabBarColor = self.buttonColor;
+            self.navBarColor = [UIColor whiteColor];
 
             self.concreteBackgroundImage = [UIImage imageNamed:@"concreteBackgroundWhite.png"];
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"make_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
@@ -204,6 +229,7 @@ static Config *currentConfig = nil;
             self.textColor = [UIColor whiteColor];
             self.toolbarColor = [UIColor blackColor];
             self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
+            self.navBarColor = [UIColor whiteColor];
             
             // Load intro and step css from the css folder.        
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"accustream_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
@@ -218,6 +244,7 @@ static Config *currentConfig = nil;
             self.textColor = [UIColor whiteColor];
             self.toolbarColor = [UIColor colorWithRed:192.0f/255.0f green:192.0f/255.0f blue:192.0/255.0f alpha:1.0];
             self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:109.0f/255.0f green:109.0f/255.0f blue:109.0f/255.0f alpha:1.0] : self.toolbarColor;
+            self.navBarColor = [UIColor whiteColor];
             
             // Load intro and step css from the css folder.        
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
@@ -231,6 +258,7 @@ static Config *currentConfig = nil;
             self.textColor = [UIColor whiteColor];
             self.toolbarColor = [UIColor blackColor];
             self.buttonColor = [UIColor colorWithRed:35.0/255.0f green:217.0/255.0f blue:253.0/255.0f alpha:1.0];
+            self.navBarColor = [UIColor whiteColor];
             
             // Load intro and step css from the css folder.        
             self.introCSS    = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
@@ -239,11 +267,12 @@ static Config *currentConfig = nil;
                 ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
                 : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
             break;
-        default:
+        case ConfigZeal:
             self.backgroundColor = [UIColor blackColor];
             self.textColor = [UIColor whiteColor];
             self.toolbarColor = [UIColor blackColor];
             self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
+            self.navBarColor = [UIColor blackColor];
             
             // Load intro and step css from the css folder.        
             self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
@@ -251,6 +280,20 @@ static Config *currentConfig = nil;
             self.moreInfoCSS = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
                 ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
                 : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+            break;
+         default:
+              self.backgroundColor = [UIColor blackColor];
+              self.textColor = [UIColor whiteColor];
+              self.toolbarColor = [UIColor blackColor];
+              self.buttonColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? [UIColor colorWithRed:0.0f green:113/255.0f blue:206.0/255.0f alpha:1.0] : self.toolbarColor;
+              self.navBarColor = [UIColor blackColor];
+              
+              // Load intro and step css from the css folder.
+              self.introCSS = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_intro" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
+              self.stepCSS  = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ifixit_step" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
+              self.moreInfoCSS = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+              ? [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_ipad" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil]
+              : [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"category_more_info_iphone" ofType:@"css"]  encoding:NSUTF8StringEncoding error:nil];
     }
 }
 

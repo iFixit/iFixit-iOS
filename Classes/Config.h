@@ -21,6 +21,9 @@ enum {
     ConfigPva,
     ConfigOscaro,
     ConfigTechtitanhq,
+     ConfigPepsi,
+     ConfigAristo,
+     ConfigHyperthermToolkit
     /*EAOConfig*/
 };
 
@@ -35,6 +38,7 @@ enum {
 @property (nonatomic) NSInteger site;
 @property (nonatomic, copy) NSString *sso;
 @property (nonatomic, retain) NSDictionary *siteData;
+@property (nonatomic, retain) NSString *dozukiHost;
 @property (nonatomic, retain) NSString *host;
 @property (nonatomic, retain) NSString *custom_domain;
 @property (nonatomic, retain) NSString *baseURL;
@@ -43,6 +47,7 @@ enum {
 @property (nonatomic, retain) UIColor *toolbarColor;
 @property (nonatomic, retain) UIColor *buttonColor;
 @property (nonatomic, retain) UIColor *tabBarColor;
+@property (nonatomic, retain) UIColor *navBarColor;
 @property (nonatomic, retain) NSString *introCSS;
 @property (nonatomic, retain) NSString *stepCSS;
 @property (nonatomic, retain) NSString *moreInfoCSS;

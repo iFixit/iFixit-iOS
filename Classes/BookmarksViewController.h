@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSMutableArray *devices;
 @property (nonatomic, retain) UIBarButtonItem *editButton;
 @property (nonatomic, retain) ListViewController *listViewController;
+@property (nonatomic) CGRect xframe;
 
 - (void)refresh;
 

@@ -371,7 +371,11 @@
         frame.origin.x = 160;
         image3.frame = frame;
 
-        webView.frame = CGRectMake(230, 0, screenSize.height - 230, 236);
+        webView.frame = CGRectMake(230, 0, screenSize.width - 230, 236);
+         
+        CGRect containerFrame = self.view.frame;
+        containerFrame.size = CGSizeMake(screenSize.width, containerFrame.size.height);
+        self.view.frame = containerFrame;
     }
 }
 - (void)layoutPortrait {

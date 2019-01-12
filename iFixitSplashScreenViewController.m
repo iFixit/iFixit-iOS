@@ -152,7 +152,8 @@ BOOL initialLoad;
     self.startRepairButton.layer.cornerRadius = 24.0;
     self.startRepairButton.clipsToBounds = YES;
     self.startRepairButton.layer.masksToBounds = YES;
-    self.startRepairButton.titleLabel.font = [UIFont fontWithName:@"OpenSans-Bold" size:17.0f];
+    UIFont *font = [UIFont fontWithName:@"MuseoSans-500" size:17.0f];
+    self.startRepairButton.titleLabel.font = font;
     self.startRepairButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self.startRepairButton setTitle:NSLocalizedString(@"START A REPAIR", nil) forState:UIControlStateNormal];
 }

@@ -8,4 +8,6 @@
 
 @interface GuideCell : UITableViewCell
 
+- (void)displayLanguage:(NSString*)languageId;
+
 @end

@@ -20,6 +20,7 @@
     for (NSHTTPCookie *cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
     }
+//     BFLog(@"sso %@", url);
 
     // Set a custom cookie for simple success SSO redirect: sso-origin=SHOW_SUCCESS
     NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:
@@ -44,20 +45,30 @@
     [super webViewDidFinishLoad:webView];
 
     NSString *host = [webView.request.URL host];
-    if ([host isEqual:[Config currentConfig].host] || [host isEqual:[Config currentConfig].custom_domain]) {
+     NSLog(@"sso finished loading %@", host);
+
+     if ([host isEqual:[Config currentConfig].host] || [host isEqual:[Config currentConfig].custom_domain]) {
         // Extract the sessionid.
         NSString *sessionid = nil;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         for (NSHTTPCookie *cookie in [storage cookies]) {
-            if ([cookie.name isEqual:@"session"]) {
+             if ([cookie.name rangeOfString:@"session"].location == NSNotFound) {
+                // ignore this cookie
+             } else {
                 sessionid = cookie.value;
                 break;
             }
         }
 
-        // Validate and obtain user data.
+//     BFLog(@"sso session %@", sessionid);
+       // Validate and obtain user data.
         [[iFixitAPI sharedInstance] loginWithSessionId:sessionid forObject:self withSelector:@selector(loginResults:)];
-    }
+     } else {
+          
+          NSLog(@"hosts are not equal host %@ customdomain %@", [Config currentConfig].host, [Config currentConfig].custom_domain);
+
+          
+     }
 }
 
 - (void)loginResults:(NSDictionary *)results {
@@ -65,6 +76,7 @@
         [iFixitAPI displayConnectionErrorAlert];
         return;
     }
+//     BFLog(@"results %@", results);
     
     if ([results objectForKey:@"error"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)

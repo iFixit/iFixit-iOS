@@ -12,12 +12,16 @@
 #import "Config.h"
 #import "CategoriesViewController.h"
 #import "LoginViewController.h"
+#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h>
+#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory+iOS.h>
 
 @implementation UINavigationBar (UINavigationBarCategory)
 
 @end
 
 @implementation ListViewController
+
+@synthesize xframe, xbounds;
 
 - (id)initWithRootViewController:(UIViewController *)rvc {
     if ((self = [super initWithRootViewController:rvc])) {
@@ -110,9 +114,21 @@
     // Make sure that we only update the tabbar when we need to
     } else if ([viewController isKindOfClass:[CategoriesViewController class]]) {
         [self.categoryTabBarViewController updateTabBar:[self.topViewController categoryMetaData]];
+         
+//         self.xframe = ((UIViewController*)viewController).view.frame;
+//         self.xbounds = ((UIViewController*)viewController).view.bounds;
     }
     
     return viewController;
+}
+
+- (void) viewDidLayoutSubviews {
+     CGRect frame = self.view.frame;
+     if (frame.size.width == 1024) {
+        self.view.frame = self.xframe;
+     } else {
+          self.xframe = self.view.frame;
+     }
 }
 
 - (void)statusBarBackground {
@@ -132,7 +148,13 @@
         [self.categoryTabBarViewController hideBrowseInstructions:YES];
     }
     
-    [super pushViewController:viewController animated:animated];
+     [super pushViewController:viewController animated:animated];
+
+     if ([viewController isKindOfClass:[CategoriesViewController class]]) {
+//         self.xframe = ((CategoriesViewController*)viewController).view.frame;
+//         self.xbounds = ((CategoriesViewController*)viewController).view.bounds;
+    }
+     
 }
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -177,17 +199,37 @@
 
 - (void)showFavoritesButton:(id)viewController {
     // Create Favorites button if it doesn't already exist and add to navigation controller
+     NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
     if (!self.favoritesButton) {
-        UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc]
-                                            initWithTitle:NSLocalizedString(@"Favorites", nil)
-                                            style:UIBarButtonItemStyleBordered
-                                            target:self action:@selector(favoritesButtonPushed)];
+         UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc] initWithImage:[factory createImageForIcon:NIKFontAwesomeIconDownload] style:UIBarButtonItemStylePlain target:self action:@selector(favoritesButtonPushed)];
+                                             
+                                             
+         
+//         UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc]
+//                                             initWithTitle:NSLocalizedString(@"Favorites", nil)
+//                                             style:UIBarButtonItemStyleBordered
+//                                             target:self action:@selector(favoritesButtonPushed)];
         
         self.favoritesButton = favoritesButton;
         [favoritesButton release];
     }
     
-    [viewController navigationItem].rightBarButtonItem = self.favoritesButton;
+     [viewController navigationItem].rightBarButtonItem = self.favoritesButton;
+     
+     if (!self.customBackButton && [Config currentConfig].site != ConfigDozuki) {
+          UIBarButtonItem *customBackButton = [[UIBarButtonItem alloc] initWithImage:[factory createImageForIcon:NIKFontAwesomeIconChevronLeft] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
+          
+          
+          
+          //         UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc]
+          //                                             initWithTitle:NSLocalizedString(@"Favorites", nil)
+          //                                             style:UIBarButtonItemStyleBordered
+          //                                             target:self action:@selector(favoritesButtonPushed)];
+          
+          self.customBackButton = customBackButton;
+          [customBackButton release];
+     }
+     if ([Config currentConfig].site != ConfigDozuki) [viewController navigationItem].leftBarButtonItem = self.customBackButton;
 }
 
 - (void)refresh {
